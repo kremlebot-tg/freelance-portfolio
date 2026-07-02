@@ -1,8 +1,10 @@
 name: Deploy to GitHub Pages
 
+# ОТКЛЮЧЁН авто-запуск: Pages переведён на branch-based сборку
+# (Actions-деплой застревал в deployment_queued 2026-07-02).
+# Вернуть workflow-режим: раскомментировать push-триггер и переключить
+# build_type: gh api repos/<owner>/<repo>/pages -X PUT -f build_type=workflow
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 permissions:

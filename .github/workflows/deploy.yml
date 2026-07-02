@@ -19,16 +19,30 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ steps.deployment.outputs.page_url || steps.deployment_retry.outputs.page_url || steps.deployment_final.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
           path: '.'
+      # GitHub Pages иногда держит деплой в очереди (deployment_queued)
+      # дольше, чем deploy-pages готов ждать (жёсткий потолок экшена —
+      # 10 минут, инпут timeout клампится). Поэтому до трёх попыток
+      # с паузами: каждая заново встаёт в очередь.
       - id: deployment
         uses: actions/deploy-pages@v4
-        with:
-          # GitHub Pages иногда подолгу держит деплой в очереди
-          # (deployment_queued) — ждём до 30 минут вместо дефолтных 10.
-          timeout: 1800000
+        continue-on-error: true
+      - name: Пауза перед второй попыткой (очередь Pages не успела)
+        if: steps.deployment.outcome == 'failure'
+        run: sleep 90
+      - id: deployment_retry
+        if: steps.deployment.outcome == 'failure'
+        uses: actions/deploy-pages@v4
+        continue-on-error: true
+      - name: Пауза перед третьей попыткой
+        if: steps.deployment.outcome == 'failure' && steps.deployment_retry.outcome == 'failure'
+        run: sleep 180
+      - id: deployment_final
+        if: steps.deployment.outcome == 'failure' && steps.deployment_retry.outcome == 'failure'
+        uses: actions/deploy-pages@v4

@@ -6,6 +6,7 @@
 <title>Связаться — Даниил Яценко</title>
 <meta name="description" content="Расскажите, что нужно автоматизировать — прикину решение и сроки.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script src="./site-config.js"></script>
 <script src="./support.js"></script>
 </head>
 <body>
@@ -58,12 +59,14 @@
           </label>
 
           <sc-if value="{{ showError }}" hint-placeholder-val="{{ false }}">
-            <div role="alert" style="font:500 14px Inter,system-ui,sans-serif;color:#C0392B;background:#FDEDEB;border-radius:10px;padding:10px 14px">Заполните описание задачи и контакт — иначе не смогу ответить.</div>
+            <div role="alert" style="font:500 14px Inter,system-ui,sans-serif;color:#C0392B;background:#FDEDEB;border-radius:10px;padding:10px 14px">{{ errorText }}</div>
           </sc-if>
 
           <div style="display:flex;flex-direction:column;gap:10px">
-            <button type="button" onClick="{{ onSubmit }}" style="display:inline-flex;align-items:center;justify-content:center;gap:9px;background:#229ED9;color:#FFFFFF;border:none;cursor:pointer;font:600 16px/1 Inter,system-ui,sans-serif;padding:14px 24px;border-radius:13px;width:fit-content" style-hover="background:#1A79C7" style-focus="outline:2px solid #13232F;outline-offset:2px">Отправить</button>
-            <span style="font:400 12.5px/1.5 JetBrains Mono,monospace;color:#8FA4B3">// прототип: реальную отправку подключит Claude Code</span>
+            <button type="button" onClick="{{ onSubmit }}" aria-busy="{{ sending }}" style="display:inline-flex;align-items:center;justify-content:center;gap:9px;background:#229ED9;color:#FFFFFF;border:none;cursor:pointer;font:600 16px/1 Inter,system-ui,sans-serif;padding:14px 24px;border-radius:13px;width:fit-content" style-hover="background:#1A79C7" style-focus="outline:2px solid #13232F;outline-offset:2px">{{ submitLabel }}</button>
+            <sc-if value="{{ demoMode }}" hint-placeholder-val="{{ true }}">
+              <span style="font:400 12.5px/1.5 JetBrains Mono,monospace;color:#8FA4B3">// прототип: реальную отправку подключит Claude Code</span>
+            </sc-if>
           </div>
         </div>
       </sc-if>
@@ -71,7 +74,9 @@
       <sc-if value="{{ submitted }}" hint-placeholder-val="{{ false }}">
         <div style="display:flex;flex-direction:column;gap:14px">
           <div style="background:#DCE8F0;border-radius:16px 16px 16px 5px;padding:14px 18px;font:400 15.5px/1.55 Inter,system-ui,sans-serif;max-width:480px">Заявка принята ✓ Обычно отвечаю за пару часов — напишу вам в {{ echoContact }}.</div>
-          <div style="font:400 13px/1.5 JetBrains Mono,monospace;color:#8FA4B3">// это демонстрация: отправку на сервер подключит Claude Code</div>
+          <sc-if value="{{ demoMode }}" hint-placeholder-val="{{ false }}">
+            <div style="font:400 13px/1.5 JetBrains Mono,monospace;color:#8FA4B3">// это демонстрация: отправку на сервер подключит Claude Code</div>
+          </sc-if>
           <button type="button" onClick="{{ onReset }}" style="font:500 14px Inter,system-ui,sans-serif;color:#1A79C7;background:#EAF4FB;border:none;cursor:pointer;padding:10px 16px;border-radius:10px;width:fit-content" style-hover="background:#DBEDF9" style-focus="outline:2px solid #1A79C7;outline-offset:2px">Заполнить ещё раз</button>
         </div>
       </sc-if>
@@ -81,7 +86,7 @@
     <div style="display:flex;flex-direction:column;gap:16px">
       <div style="background:#FFFFFF;border:1px solid #D9E3EB;border-radius:18px;padding:clamp(20px,3vw,26px);display:flex;flex-direction:column;gap:14px">
         <h2 style="margin:0;font:600 18px/1.3 Sora,sans-serif">Или напрямую</h2>
-        <a href="#" style="display:flex;align-items:center;gap:12px;text-decoration:none;color:#13232F;border:1px solid #E4EBF1;border-radius:13px;padding:12px 14px" style-hover="border-color:#B9D6EA;background:#FBFDFE" style-focus="outline:2px solid #1A79C7;outline-offset:2px">
+        <a href="{{ tgHref }}" style="display:flex;align-items:center;gap:12px;text-decoration:none;color:#13232F;border:1px solid #E4EBF1;border-radius:13px;padding:12px 14px" style-hover="border-color:#B9D6EA;background:#FBFDFE" style-focus="outline:2px solid #1A79C7;outline-offset:2px">
           <span style="width:38px;height:38px;border-radius:50%;background:#229ED9;display:grid;place-items:center;flex:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M3 11L21 3.5L17 20.5L10.5 15L8 19L7.5 13.5L3 11Z" fill="#FFFFFF"></path></svg></span>
           <span style="display:flex;flex-direction:column;gap:2px">
             <span style="font:600 15px Inter,system-ui,sans-serif">Telegram</span>
@@ -95,7 +100,9 @@
             <span style="font:500 13.5px JetBrains Mono,monospace;color:#1A79C7">{{ email }}</span>
           </span>
         </a>
-        <span style="font:400 12.5px/1.5 JetBrains Mono,monospace;color:#8FA4B3">// плейсхолдеры — замените на свои контакты (панель «Tweaks»)</span>
+        <sc-if value="{{ contactsArePlaceholders }}" hint-placeholder-val="{{ true }}">
+          <span style="font:400 12.5px/1.5 JetBrains Mono,monospace;color:#8FA4B3">// плейсхолдеры — замените на свои контакты в site-config.js</span>
+        </sc-if>
       </div>
       <div style="display:flex;align-items:center;gap:10px;font:500 14px Inter,system-ui,sans-serif;color:#45596A;padding:0 6px">
         <span style="width:8px;height:8px;border-radius:50%;background:#31B545;box-shadow:0 0 0 3px rgba(49,181,69,0.25);flex:none"></span>
@@ -110,8 +117,11 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;brandName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Даниил Яценко&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Бренд&quot;},&quot;telegram&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;@ваш_ник&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Контакты&quot;},&quot;email&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;you@example.com&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Контакты&quot;}}">
 class Component extends DCLogic {
-  state = { task: '', type: 'боты', budget: '', contact: '', submitted: false, error: false };
+  state = { task: '', type: 'боты', budget: '', contact: '', submitted: false, error: false, errorKind: '', sending: false };
   renderVals() {
+    const cfg = (typeof window !== 'undefined' && window.SITE_CONFIG) || {};
+    const endpoint = (cfg.formEndpoint || '').trim();
+    const demoMode = !endpoint;
     const types = ['боты', 'оплаты и подписки', 'ИИ', 'мини-апп', 'другое'];
     const typeChips = types.map(label => {
       const on = this.state.type === label;
@@ -124,13 +134,17 @@ class Component extends DCLogic {
         border: on ? '#229ED9' : '#C4D8E6',
       };
     });
-    const tg = this.props.telegram ?? '@ваш_ник';
-    const email = this.props.email ?? 'you@example.com';
+    const tg = cfg.telegram || this.props.telegram || '@ваш_ник';
+    const email = cfg.email || this.props.email || 'you@example.com';
+    const tgHref = /^@[\w\d_]+$/.test(tg) ? 'https://t.me/' + tg.slice(1) : '#';
     return {
       brandName: this.props.brandName ?? 'Даниил Яценко',
       telegram: tg,
       email,
       mailtoHref: 'mailto:' + email,
+      tgHref,
+      contactsArePlaceholders: tg === '@ваш_ник' || email === 'you@example.com',
+      demoMode,
       task: this.state.task,
       budget: this.state.budget,
       contact: this.state.contact,
@@ -138,15 +152,42 @@ class Component extends DCLogic {
       notSubmitted: !this.state.submitted,
       submitted: this.state.submitted,
       showError: this.state.error,
+      errorText: this.state.errorKind === 'network'
+        ? 'Не получилось отправить — попробуйте ещё раз или напишите напрямую в Telegram.'
+        : 'Заполните описание задачи и контакт — иначе не смогу ответить.',
+      sending: this.state.sending,
+      submitLabel: this.state.sending ? 'Отправляю…' : 'Отправить',
       echoContact: this.state.contact || 'Telegram',
       onTask: e => this.setState({ task: e.target.value, error: false }),
       onBudget: e => this.setState({ budget: e.target.value }),
       onContact: e => this.setState({ contact: e.target.value, error: false }),
       onSubmit: () => {
-        if (!this.state.task.trim() || !this.state.contact.trim()) { this.setState({ error: true }); return; }
-        this.setState({ submitted: true, error: false });
+        if (this.state.sending) return;
+        if (!this.state.task.trim() || !this.state.contact.trim()) { this.setState({ error: true, errorKind: '' }); return; }
+        if (demoMode) {
+          // демо-режим: endpoint не настроен (см. site-config.js)
+          this.setState({ submitted: true, error: false });
+          return;
+        }
+        this.setState({ sending: true, error: false });
+        fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({
+            'Задача': this.state.task,
+            'Тип задачи': this.state.type,
+            'Бюджет': this.state.budget || 'не указан',
+            'Контакт': this.state.contact,
+            '_subject': 'Новая заявка с сайта-портфолио',
+          }),
+        }).then(res => {
+          if (!res.ok) throw new Error('HTTP ' + res.status);
+          this.setState({ sending: false, submitted: true, error: false });
+        }).catch(() => {
+          this.setState({ sending: false, error: true, errorKind: 'network' });
+        });
       },
-      onReset: () => this.setState({ task: '', budget: '', contact: '', submitted: false, error: false }),
+      onReset: () => this.setState({ task: '', budget: '', contact: '', submitted: false, error: false, errorKind: '', sending: false }),
     };
   }
 }

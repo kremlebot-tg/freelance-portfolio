@@ -3,9 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Кейс: автопрайсер для маркетплейса — Даниил Яценко</title>
-<meta name="description" content="Цены на ~5500 товаров пересчитываются сами: себестоимость, маржа, коридор. Живое демо внутри.">
+<title>Кейс: бот-автопрайсер для маркетплейса на 5500 товаров — Даниил Яценко</title>
+<meta name="description" content="Автоматическое ценообразование для маркетплейса: цены на ~5500 товаров пересчитываются от себестоимости, маржи и коридора. Собственный продукт. Живое демо внутри.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script src="./site-config.js"></script>
 <script src="./support.js"></script>
 </head>
 <body>
@@ -22,7 +23,10 @@
   <a href="projects.html" style="display:inline-flex;align-items:center;gap:6px;font:500 14.5px Inter,system-ui,sans-serif;color:#1A79C7;text-decoration:none;border-radius:8px;padding:4px 6px;margin:0 0 18px -6px" style-hover="background:#EAF4FB" style-focus="outline:2px solid #1A79C7;outline-offset:2px">← Все проекты</a>
 
   <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:28px">
-    <span style="font:500 13px JetBrains Mono,monospace;color:#1A79C7">[Автоматизация]</span>
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+      <span style="font:500 13px JetBrains Mono,monospace;color:#1A79C7">[Автоматизация]</span>
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:#EAF4FB;color:#1A79C7;font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:#31B545"></span>собственный продукт</span>
+    </div>
     <h1 style="margin:0;font:700 clamp(28px,4vw,42px)/1.15 Sora,sans-serif;letter-spacing:-0.02em">Автопрайсер для маркетплейса</h1>
     <p style="margin:0;font:400 clamp(15.5px,1.6vw,18px)/1.55 Inter,system-ui,sans-serif;color:#45596A;max-width:640px">Сервис сам считает цены от себестоимости, маржи и коридора — и обновляет их на ~5500 товарах.</p>
   </div>
@@ -133,8 +137,9 @@
     <span style="font:500 13px JetBrains Mono,monospace;background:#FFFFFF;border:1px solid #D9E3EB;border-radius:9px;padding:7px 11px">automation</span>
   </div>
 
-  <div style="display:flex;align-items:center;gap:12px;margin-top:clamp(32px,5vw,52px);flex-wrap:wrap">
-    <a href="contact.html" style="display:inline-flex;align-items:center;gap:9px;background:#229ED9;color:#FFFFFF;text-decoration:none;font:600 15.5px/1 Inter,system-ui,sans-serif;padding:13px 22px;border-radius:12px" style-hover="background:#1A79C7" style-focus="outline:2px solid #13232F;outline-offset:2px"><span style="width:8px;height:8px;border-radius:50%;background:#31B545"></span>Нужно похожее — написать</a>
+  <dc-import name="CaseCTA" hint-size="100%,170px"></dc-import>
+
+  <div style="display:flex;align-items:center;gap:12px;margin-top:18px;flex-wrap:wrap">
     <a href="case-mutual.html" style="margin-left:auto;font:500 15px Inter,system-ui,sans-serif;color:#1A79C7;text-decoration:none;border-radius:8px;padding:6px 8px" style-hover="background:#EAF4FB" style-focus="outline:2px solid #1A79C7;outline-offset:2px">следующий кейс: MUTUAL →</a>
   </div>
 </main>

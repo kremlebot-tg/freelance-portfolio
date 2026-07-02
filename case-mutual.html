@@ -3,9 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Кейс: MUTUAL — знакомства через QR — Даниил Яценко</title>
-<meta name="description" content="Стритвир-бренд, где вещь знакомит: скан QR открывает профиль владельца. Прототип мини-аппа внутри.">
+<title>Кейс: Telegram мини-апп MUTUAL — знакомства через QR — Даниил Яценко</title>
+<meta name="description" content="Прототип мини-аппа для стритвир-бренда: скан QR на вещи открывает профиль владельца. Кликабельный прототип из 5 экранов внутри.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script src="./site-config.js"></script>
 <script src="./support.js"></script>
 </head>
 <body>
@@ -28,7 +29,10 @@ body{margin:0;background:#E7EDF2;color:#13232F;-webkit-font-smoothing:antialiase
   <a href="projects.html" style="display:inline-flex;align-items:center;gap:6px;font:500 14.5px Inter,system-ui,sans-serif;color:#1A79C7;text-decoration:none;border-radius:8px;padding:4px 6px;margin:0 0 18px -6px" style-hover="background:#EAF4FB" style-focus="outline:2px solid #1A79C7;outline-offset:2px">← Все проекты</a>
 
   <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:28px">
-    <span style="font:500 13px JetBrains Mono,monospace;color:#1A79C7">[Мини-апп]</span>
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+      <span style="font:500 13px JetBrains Mono,monospace;color:#1A79C7">[Мини-апп]</span>
+      <span style="display:inline-flex;align-items:center;padding:5px 10px;border-radius:99px;background:#F1F5F8;color:#5A7284;font:500 12.5px Inter,system-ui,sans-serif">прототип</span>
+    </div>
     <h1 style="margin:0;font:700 clamp(28px,4vw,42px)/1.15 Sora,sans-serif;letter-spacing:-0.02em">MUTUAL — знакомства через QR</h1>
     <p style="margin:0;font:400 clamp(15.5px,1.6vw,18px)/1.55 Inter,system-ui,sans-serif;color:#45596A;max-width:640px">Стритвир-бренд, где вещь знакомит: скан QR на одежде открывает профиль владельца.</p>
   </div>
@@ -201,8 +205,9 @@ body{margin:0;background:#E7EDF2;color:#13232F;-webkit-font-smoothing:antialiase
     <span style="font:500 13px JetBrains Mono,monospace;background:#FFFFFF;border:1px solid #D9E3EB;border-radius:9px;padding:7px 11px">UX-прототип</span>
   </div>
 
-  <div style="display:flex;align-items:center;gap:12px;margin-top:clamp(32px,5vw,52px);flex-wrap:wrap">
-    <a href="contact.html" style="display:inline-flex;align-items:center;gap:9px;background:#229ED9;color:#FFFFFF;text-decoration:none;font:600 15.5px/1 Inter,system-ui,sans-serif;padding:13px 22px;border-radius:12px" style-hover="background:#1A79C7" style-focus="outline:2px solid #13232F;outline-offset:2px"><span style="width:8px;height:8px;border-radius:50%;background:#31B545"></span>Нужно похожее — написать</a>
+  <dc-import name="CaseCTA" hint-size="100%,170px"></dc-import>
+
+  <div style="display:flex;align-items:center;gap:12px;margin-top:18px;flex-wrap:wrap">
     <a href="case-faith.html" style="margin-left:auto;font:500 15px Inter,system-ui,sans-serif;color:#1A79C7;text-decoration:none;border-radius:8px;padding:6px 8px" style-hover="background:#EAF4FB" style-focus="outline:2px solid #1A79C7;outline-offset:2px">следующий кейс: Faith App →</a>
   </div>
 </main>

@@ -94,11 +94,17 @@ python3 -m http.server 8788
 
 ## Деплой
 
-GitHub Pages, автоматически при пуше в `main` (`.github/workflows/deploy.yml`):
+GitHub Pages собирает сайт прямо из ветки `main` (branch-based сборка,
+`.nojekyll` в корне) — автоматически при каждом пуше:
 
 ```bash
 git push
 ```
+
+Примечание: раньше деплой шёл через Actions (`.github/workflows/deploy.yml`),
+но 2026-07-02 очередь Actions-деплоев Pages весь вечер висела — переключил
+на ветковую сборку, она идёт другим пайплайном. Workflow оставлен на ручной
+запуск; как вернуть его — комментарий внутри файла.
 
 ## Если правите ios-frame.jsx
 

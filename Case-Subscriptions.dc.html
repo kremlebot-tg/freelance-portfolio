@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:#E7EDF2;color:#13232F;-webkit-font-smoothing:antialiased}
+@keyframes bubbleIn{from{opacity:0;transform:translateY(8px) scale(0.98)}to{opacity:1;transform:none}}
+@keyframes tgDot{0%,60%,100%{opacity:0.35;transform:translateY(0)}30%{opacity:1;transform:translateY(-2px)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+</style>
+</helmet>
+
+<dc-import name="Header" active="projects" brand-name="{{ brandName }}" hint-size="100%,64px"></dc-import>
+
+<main style="font-family:Inter,system-ui,sans-serif;max-width:1140px;margin:0 auto;padding:clamp(32px,4vw,52px) 20px clamp(56px,7vw,88px)">
+
+  <a href="Projects.dc.html" style="display:inline-flex;align-items:center;gap:6px;font:500 14.5px Inter,system-ui,sans-serif;color:#1A79C7;text-decoration:none;border-radius:8px;padding:4px 6px;margin:0 0 18px -6px" style-hover="background:#EAF4FB" style-focus="outline:2px solid #1A79C7;outline-offset:2px">← Все проекты</a>
+
+  <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:28px">
+    <span style="font:500 13px JetBrains Mono,monospace;color:#1A79C7">[Подписки · Оплаты]</span>
+    <h1 style="margin:0;font:700 clamp(28px,4vw,42px)/1.15 Sora,sans-serif;letter-spacing:-0.02em">Подписочный Telegram-сервис</h1>
+    <p style="margin:0;font:400 clamp(15.5px,1.6vw,18px)/1.55 Inter,system-ui,sans-serif;color:#45596A;max-width:640px">Бот принимает регулярную оплату через ЮКассу и сам выдаёт платный доступ. ~200 платящих, в проде.</p>
+  </div>
+
+  <!-- ============ DEMO ============ -->
+  <section aria-label="Живое демо бота" style="background:#FFFFFF;border:1px solid #D9E3EB;border-radius:22px;padding:clamp(18px,3vw,32px);display:flex;flex-direction:column;gap:18px">
+    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+      <span style="display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:99px;background:#EAF4FB;color:#1A79C7;font:500 13px Inter,system-ui,sans-serif"><span style="width:7px;height:7px;border-radius:50%;background:#31B545"></span>живое демо — кликайте, как в настоящем боте</span>
+      <button type="button" onClick="{{ onResetDemo }}" style="margin-left:auto;font:500 13.5px Inter,system-ui,sans-serif;color:#5A7284;background:#F1F5F8;border:none;cursor:pointer;padding:8px 14px;border-radius:10px" style-hover="background:#E4EBF1;color:#13232F" style-focus="outline:2px solid #1A79C7;outline-offset:2px">⟳ сбросить демо</button>
+    </div>
+
+    <div style="display:flex;justify-content:center">
+      <div style="position:relative;width:100%;max-width:440px;background:#FFFFFF;border:1px solid #D9E3EB;border-radius:20px;overflow:hidden;box-shadow:0 20px 50px -18px rgba(19,35,47,0.22)">
+        <!-- chat header -->
+        <div style="display:flex;align-items:center;gap:11px;padding:11px 16px;border-bottom:1px solid #E4EBF1">
+          <span style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#7A6CF0,#4F8EF7);color:#FFFFFF;display:grid;place-items:center;font:600 13px Sora,sans-serif">SB</span>
+          <div style="display:flex;flex-direction:column;gap:2px">
+            <span style="font:600 15px/1 Sora,sans-serif">Subscription Bot</span>
+            <span style="font:400 12.5px/1 Inter,system-ui,sans-serif;color:{{ statusColor }}">{{ statusText }}</span>
+          </div>
+          <span style="margin-left:auto;font:500 12px JetBrains Mono,monospace;color:#8FA4B3">/demo</span>
+        </div>
+
+        <!-- chat body -->
+        <div ref="{{ chatRef }}" style="height:420px;overflow-y:auto;padding:16px 12px;display:flex;flex-direction:column;gap:9px;background-color:#DCE8F0;background-image:radial-gradient(rgba(26,121,199,0.08) 1px,transparent 1.3px);background-size:20px 20px">
+
+          <div style="align-self:flex-start;max-width:88%;background:#FFFFFF;border-radius:15px 15px 15px 4px;padding:9px 13px;box-shadow:0 1px 1px rgba(19,35,47,0.07);font:400 14.5px/1.45 Inter,system-ui,sans-serif">Это демо настоящего сценария оплаты. Нажмите /start внизу 👇</div>
+
+          <sc-if value="{{ s1 }}" hint-placeholder-val="{{ false }}">
+            <div style="align-self:flex-end;max-width:88%;background:#D3ECFB;border-radius:15px 15px 4px 15px;padding:9px 13px;box-shadow:0 1px 1px rgba(19,35,47,0.07);font:500 14.5px/1.45 JetBrains Mono,monospace;animation:{{ anim }}">/start</div>
+          </sc-if>
+
+          <sc-if value="{{ s2 }}" hint-placeholder-val="{{ false }}">
+            <div style="align-self:flex-start;max-width:88%;display:flex;flex-direction:column;gap:6px;animation:{{ anim }}">
+              <div style="background:#FFFFFF;border-radius:15px 15px 15px 4px;padding:9px 13px;box-shadow:0 1px 1px rgba(19,35,47,0.07);font:400 14.5px/1.45 Inter,system-ui,sans-serif">Привет! Это платная подписка на сервис. Выберите тариф:</div>
+              <div style="display:flex;flex-direction:column;gap:5px">
+                <sc-for list="{{ tariffs }}" as="t" hint-placeholder-count="3">
+                  <button type="button" onClick="{{ t.pick }}" disabled="{{ tariffsLocked }}" style="text-align:center;padding:10px 12px;border-radius:11px;border:1px solid {{ t.border }};background:{{ t.bg }};color:{{ t.color }};font:500 14px/1 Inter,system-ui,sans-serif;cursor:{{ tariffCursor }}" style-hover="background:#FFFFFF" style-focus="outline:2px solid #1A79C7;outline-offset:2px">{{ t.label }}</button>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ s3 }}" hint-placeholder-val="{{ false }}">
+            <div style="align-self:flex-end;max-width:88%;background:#D3ECFB;border-radius:15px 15px 4px 15px;padding:9px 13px;box-shadow:0 1px 1px rgba(19,35,47,0.07);font:400 14.5px/1.45 Inter,system-ui,sans-serif;animation:{{ anim }}">{{ chosenLabel }}</div>
+          </sc-if>
+
+          <sc-if value="{{ s4 }}" hint-placeholder-val="{{ false }}">
+            <div style="align-self:flex-start;max-width:88%;display:flex;flex-direction:column;gap:6px;animation:{{ anim }}">
+              <div style="background:#FFFFFF;border-radius:15px 15px 15px 4px;padding:12px 13px;box-shadow:0 1px 1px rgba(19,35,47,0.07);display:flex;flex-direction:column;gap:8px">
+                <span style="font:600 14.5px Inter,system-ui,sans-serif">Счёт на оплату</span>
+                <span style="font:400 13.5px/1.5 Inter,system-ui,sans-serif;color:#45596A">Подписка · {{ chosenName }}<br>Продавец: {{ brandName }}</span>
+                <span style="font:700 20px Sora,sans-serif">{{ chosenPrice }} ₽</span>
+              </div>
+              <button type="button" onClick="{{ onOpenPay }}" disabled="{{ payLocked }}" style="text-align:center;padding:11px 12px;border-radius:11px;border:1px solid rgba(26,121,199,0.2);background:rgba(255,255,255,0.85);color:#1A79C7;font:600 14px/1 Inter,system-ui,sans-serif;cursor:{{ payCursor }}" style-hover="background:#FFFFFF" style-focus="outline:2px solid #1A79C7;outline-offset:2px">💳 Оплатить {{ chosenPrice }} ₽</button>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ s5 }}" hint-placeholder-val="{{ false }}">
+            <div style="align-self:flex-start;max-width:88%;display:flex;flex-direction:column;gap:6px;animation:{{ anim }}">
+              <div style="background:#FFFFFF;border-radius:15px 15px 15px 4px;padding:12px 13px;box-shadow:0 1px 1px rgba(19,35,47,0.07);display:flex;flex-direction:column;gap:10px">
+                <span style="font:600 14.5px Inter,system-ui,sans-serif;color:#1E9E46">Оплачено ✓ Доступ выдан</span>
+                <pre style="margin:0;background:#13232F;color:#B8E2F7;border-radius:10px;padding:12px 14px;font:400 12px/1.65 JetBrains Mono,monospace;overflow-x:auto">план:    {{ chosenName }}
+ключ:    dY7k-4fA2-x9Q1
+доступ:  до {{ paidUntil }}
+статус:  active · автопродление</pre>
+                <span style="font:400 13px/1.5 Inter,system-ui,sans-serif;color:#45596A">За 3 дня до окончания бот напомнит и продлит автоматически.</span>
+              </div>
+              <button type="button" onClick="{{ onResetDemo }}" style="text-align:center;padding:10px 12px;border-radius:11px;border:1px solid rgba(26,121,199,0.2);background:rgba(255,255,255,0.85);color:#1A79C7;font:500 14px/1 Inter,system-ui,sans-serif;cursor:pointer" style-hover="background:#FFFFFF" style-focus="outline:2px solid #1A79C7;outline-offset:2px">⟳ Пройти сценарий заново</button>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ typing }}" hint-placeholder-val="{{ false }}">
+            <div aria-hidden="true" style="align-self:flex-start;background:#FFFFFF;border-radius:15px 15px 15px 4px;padding:12px 14px;box-shadow:0 1px 1px rgba(19,35,47,0.07);display:flex;gap:4px">
+              <span style="width:6px;height:6px;border-radius:50%;background:#8FA4B3;animation:tgDot 1.1s infinite"></span>
+              <span style="width:6px;height:6px;border-radius:50%;background:#8FA4B3;animation:tgDot 1.1s 0.18s infinite"></span>
+              <span style="width:6px;height:6px;border-radius:50%;background:#8FA4B3;animation:tgDot 1.1s 0.36s infinite"></span>
+            </div>
+          </sc-if>
+        </div>
+
+        <!-- input bar -->
+        <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-top:1px solid #E4EBF1;background:#FFFFFF">
+          <sc-if value="{{ showStartChip }}" hint-placeholder-val="{{ true }}">
+            <button type="button" onClick="{{ onStart }}" style="font:500 14px JetBrains Mono,monospace;color:#1A79C7;background:#EAF4FB;border:1px solid rgba(26,121,199,0.25);cursor:pointer;padding:9px 16px;border-radius:18px" style-hover="background:#DBEDF9" style-focus="outline:2px solid #1A79C7;outline-offset:2px">/start</button>
+          </sc-if>
+          <span aria-hidden="true" style="flex:1;padding:9px 14px;border-radius:18px;background:#F1F5F8;color:#8FA4B3;font:400 14px Inter,system-ui,sans-serif">Сообщение</span>
+        </div>
+
+        <!-- payment overlay (mock YooKassa) -->
+        <sc-if value="{{ showPay }}" hint-placeholder-val="{{ false }}">
+          <div role="dialog" aria-label="Демо-экран оплаты" style="position:absolute;inset:0;background:rgba(19,35,47,0.5);display:flex;align-items:flex-end;z-index:5">
+            <div style="width:100%;background:#FFFFFF;border-radius:18px 18px 0 0;padding:20px;display:flex;flex-direction:column;gap:14px;animation:{{ anim }}">
+              <div style="display:flex;align-items:center;gap:8px">
+                <span style="font:700 17px Sora,sans-serif">ЮKassa</span>
+                <span style="font:400 11.5px JetBrains Mono,monospace;color:#8FA4B3">// мок-экран, деньги не списываются</span>
+                <button type="button" aria-label="Закрыть" onClick="{{ onClosePay }}" style="margin-left:auto;border:none;background:#F1F5F8;color:#5A7284;width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:15px;line-height:1" style-hover="background:#E4EBF1" style-focus="outline:2px solid #1A79C7;outline-offset:2px">✕</button>
+              </div>
+              <div style="display:flex;align-items:baseline;gap:8px">
+                <span style="font:700 26px Sora,sans-serif">{{ chosenPrice }} ₽</span>
+                <span style="font:400 13.5px Inter,system-ui,sans-serif;color:#5A7284">Подписка · {{ chosenName }}</span>
+              </div>
+              <div style="border:1px solid #C4D8E6;border-radius:13px;padding:13px 14px;display:flex;flex-direction:column;gap:8px;background:#FBFDFE">
+                <span style="font:500 14.5px JetBrains Mono,monospace;letter-spacing:0.04em">4111 1111 1111 1111</span>
+                <span style="display:flex;gap:16px;font:400 13px JetBrains Mono,monospace;color:#5A7284"><span>12/29</span><span>CVC ···</span><span style="margin-left:auto;color:#8FA4B3">демо-карта</span></span>
+              </div>
+              <button type="button" onClick="{{ onPay }}" disabled="{{ paying }}" style="display:flex;align-items:center;justify-content:center;gap:9px;background:#229ED9;color:#FFFFFF;border:none;cursor:pointer;font:600 15.5px/1 Inter,system-ui,sans-serif;padding:14px;border-radius:13px" style-hover="background:#1A79C7" style-focus="outline:2px solid #13232F;outline-offset:2px">
+                <sc-if value="{{ paying }}" hint-placeholder-val="{{ false }}"><span aria-hidden="true" style="width:15px;height:15px;border-radius:50%;border:2px solid rgba(255,255,255,0.4);border-top-color:#FFFFFF;animation:spin 0.7s linear infinite"></span></sc-if>
+                {{ payBtnText }}
+              </button>
+            </div>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CASE STORY ============ -->
+  <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:24px">
+    <div style="background:#FFFFFF;border:1px solid #D9E3EB;border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
+      <span style="font:500 12.5px JetBrains Mono,monospace;color:#8FA4B3">01 · задача</span>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:#2C4254;text-wrap:pretty">Принимать регулярную оплату и управлять платным доступом без ручной работы: выдача, продление, отзыв.</p>
+    </div>
+    <div style="background:#FFFFFF;border:1px solid #D9E3EB;border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
+      <span style="font:500 12.5px JetBrains Mono,monospace;color:#8FA4B3">02 · как решал</span>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:#2C4254;text-wrap:pretty">Бот на Bot API: тарифы, счета и вебхуки ЮКассы, автовыдача и отзыв доступа, напоминания о продлении, админка со статистикой. Хостинг и мониторинг на VPS.</p>
+    </div>
+    <div style="background:#FFFFFF;border:1px solid #D9E3EB;border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
+      <span style="font:500 12.5px JetBrains Mono,monospace;color:#8FA4B3">03 · результат</span>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:#2C4254;text-wrap:pretty"><strong style="color:#1A79C7">~200 платящих пользователей.</strong> Сервис в проде и приносит выручку, оплата и доступ работают без моего участия.</p>
+    </div>
+  </section>
+
+  <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:20px">
+    <span style="font:500 13px JetBrains Mono,monospace;background:#FFFFFF;border:1px solid #D9E3EB;border-radius:9px;padding:7px 11px">Python</span>
+    <span style="font:500 13px JetBrains Mono,monospace;background:#FFFFFF;border:1px solid #D9E3EB;border-radius:9px;padding:7px 11px">Bot API</span>
+    <span style="font:500 13px JetBrains Mono,monospace;background:#FFFFFF;border:1px solid #D9E3EB;border-radius:9px;padding:7px 11px">ЮКасса</span>
+    <span style="font:500 13px JetBrains Mono,monospace;background:#FFFFFF;border:1px solid #D9E3EB;border-radius:9px;padding:7px 11px">VPS</span>
+  </div>
+
+  <div style="display:flex;align-items:center;gap:12px;margin-top:clamp(32px,5vw,52px);flex-wrap:wrap">
+    <a href="Contact.dc.html" style="display:inline-flex;align-items:center;gap:9px;background:#229ED9;color:#FFFFFF;text-decoration:none;font:600 15.5px/1 Inter,system-ui,sans-serif;padding:13px 22px;border-radius:12px" style-hover="background:#1A79C7" style-focus="outline:2px solid #13232F;outline-offset:2px"><span style="width:8px;height:8px;border-radius:50%;background:#31B545"></span>Нужно похожее — написать</a>
+    <a href="Case-CRM.dc.html" style="margin-left:auto;font:500 15px Inter,system-ui,sans-serif;color:#1A79C7;text-decoration:none;border-radius:8px;padding:6px 8px" style-hover="background:#EAF4FB" style-focus="outline:2px solid #1A79C7;outline-offset:2px">следующий кейс: CRM для нетворкинга →</a>
+  </div>
+</main>
+
+<dc-import name="Footer" brand-name="{{ brandName }}" hint-size="100%,110px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;brandName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Даниил Яценко&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = { stage: 0, typing: false, tariff: null, showPay: false, paying: false };
+  // stage: 0 idle · 1 /start sent · 2 tariffs shown · 3 tariff chosen · 4 invoice shown · 5 paid
+
+  constructor(props) {
+    super(props);
+    this._chatRef = React.createRef();
+    this._timers = [];
+  }
+  _later(fn, t) { this._timers.push(setTimeout(fn, t)); }
+  componentWillUnmount() { this._timers.forEach(clearTimeout); }
+  componentDidUpdate() {
+    const el = this._chatRef.current;
+    if (el) el.scrollTop = el.scrollHeight;
+  }
+  _reduced() { return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches; }
+  _typeThen(fn) {
+    const d = this._reduced() ? 250 : 850;
+    this.setState({ typing: true });
+    this._later(() => { this.setState({ typing: false }); fn(); }, d);
+  }
+
+  renderVals() {
+    const TARIFFS = [
+      { name: '1 месяц', price: 199, label: '1 месяц — 199 ₽' },
+      { name: '3 месяца', price: 499, label: '3 месяца — 499 ₽ · выгоднее на 16%' },
+      { name: '12 месяцев', price: 1490, label: '12 месяцев — 1490 ₽ · выгоднее на 38%' },
+      ];
+    const st = this.state;
+    const chosen = st.tariff || TARIFFS[1];
+    const months = chosen.name === '1 месяц' ? 1 : chosen.name === '3 месяца' ? 3 : 12;
+    const until = new Date();
+    until.setMonth(until.getMonth() + months);
+    const paidUntil = until.toLocaleDateString('ru-RU');
+    const reduced = typeof window !== 'undefined' && this._reduced();
+
+    const tariffsLocked = st.stage >= 3;
+    return {
+      brandName: this.props.brandName ?? 'Даниил Яценко',
+      chatRef: this._chatRef,
+      anim: reduced ? 'none' : 'bubbleIn 0.26s ease both',
+      statusText: st.typing ? 'печатает…' : 'бот · онлайн',
+      statusColor: st.typing ? '#1A79C7' : '#31B545',
+      s1: st.stage >= 1, s2: st.stage >= 2, s3: st.stage >= 3, s4: st.stage >= 4, s5: st.stage >= 5,
+      typing: st.typing,
+      showStartChip: st.stage === 0,
+      tariffsLocked,
+      tariffCursor: tariffsLocked ? 'default' : 'pointer',
+      tariffs: TARIFFS.map(t => {
+        const isChosen = st.tariff && st.tariff.name === t.name;
+        return {
+          label: t.label,
+          pick: () => {
+            if (this.state.stage !== 2) return;
+            this.setState({ tariff: t, stage: 3 });
+            this._typeThen(() => this.setState({ stage: 4 }));
+          },
+          bg: isChosen ? '#D3ECFB' : 'rgba(255,255,255,0.85)',
+          color: isChosen ? '#13598F' : '#1A79C7',
+          border: isChosen ? '#229ED9' : 'rgba(26,121,199,0.2)',
+        };
+      }),
+      chosenLabel: chosen.label,
+      chosenName: chosen.name,
+      chosenPrice: chosen.price,
+      paidUntil,
+      payLocked: st.stage >= 5,
+      payCursor: st.stage >= 5 ? 'default' : 'pointer',
+      showPay: st.showPay,
+      paying: st.paying,
+      payBtnText: st.paying ? 'Проводим платёж…' : ('Заплатить ' + chosen.price + ' ₽'),
+      onStart: () => {
+        if (this.state.stage !== 0) return;
+        this.setState({ stage: 1 });
+        this._typeThen(() => this.setState({ stage: 2 }));
+      },
+      onOpenPay: () => { if (this.state.stage === 4) this.setState({ showPay: true }); },
+      onClosePay: () => this.setState({ showPay: false, paying: false }),
+      onPay: () => {
+        if (this.state.paying) return;
+        this.setState({ paying: true });
+        this._later(() => {
+          this.setState({ showPay: false, paying: false });
+          this._typeThen(() => this.setState({ stage: 5 }));
+        }, this._reduced() ? 300 : 900);
+      },
+      onResetDemo: () => {
+        this._timers.forEach(clearTimeout);
+        this._timers = [];
+        this.setState({ stage: 0, typing: false, tariff: null, showPay: false, paying: false });
+      },
+    };
+  }
+}
+</script>
+</body>
+</html>

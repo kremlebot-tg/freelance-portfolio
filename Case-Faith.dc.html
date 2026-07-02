@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:#E7EDF2;color:#13232F;-webkit-font-smoothing:antialiased}
+@keyframes bubbleIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+</style>
+</helmet>
+
+<dc-import name="Header" active="projects" brand-name="{{ brandName }}" hint-size="100%,64px"></dc-import>
+
+<main style="font-family:Inter,system-ui,sans-serif;max-width:1140px;margin:0 auto;padding:clamp(32px,4vw,52px) 20px clamp(56px,7vw,88px)">
+
+  <a href="Projects.dc.html" style="display:inline-flex;align-items:center;gap:6px;font:500 14.5px Inter,system-ui,sans-serif;color:#1A79C7;text-decoration:none;border-radius:8px;padding:4px 6px;margin:0 0 18px -6px" style-hover="background:#EAF4FB" style-focus="outline:2px solid #1A79C7;outline-offset:2px">← Все проекты</a>
+
+  <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:28px">
+    <span style="font:500 13px JetBrains Mono,monospace;color:#1A79C7">[Мобильное]</span>
+    <h1 style="margin:0;font:700 clamp(28px,4vw,42px)/1.15 Sora,sans-serif;letter-spacing:-0.02em">Faith App — обучение в стиле Duolingo</h1>
+    <p style="margin:0;font:400 clamp(15.5px,1.6vw,18px)/1.55 Inter,system-ui,sans-serif;color:#45596A;max-width:640px">Православное обучающее приложение: короткие уроки, ответы с мгновенной проверкой, прогресс и серия дней.</p>
+  </div>
+
+  <!-- ============ DEMO ============ -->
+  <section aria-label="Живое демо: фрагмент урока" style="background:#FFFFFF;border:1px solid #D9E3EB;border-radius:22px;padding:clamp(18px,3vw,32px);display:flex;flex-direction:column;gap:18px">
+    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+      <span style="display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:99px;background:#EAF4FB;color:#1A79C7;font:500 13px Inter,system-ui,sans-serif"><span style="width:7px;height:7px;border-radius:50%;background:#31B545"></span>живое демо — пройдите фрагмент урока, отвечая на вопросы</span>
+      <button type="button" onClick="{{ onReset }}" style="margin-left:auto;font:500 13.5px Inter,system-ui,sans-serif;color:#5A7284;background:#F1F5F8;border:none;cursor:pointer;padding:8px 14px;border-radius:10px" style-hover="background:#E4EBF1;color:#13232F" style-focus="outline:2px solid #1A79C7;outline-offset:2px">⟳ сбросить демо</button>
+    </div>
+
+    <div style="display:flex;justify-content:center">
+      <div style="max-width:100%;overflow-x:auto;padding:6px">
+      <x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" width="{{ 372 }}" height="{{ 740 }}" hint-size="372px,740px">
+        <div style="position:relative;height:100%;background:#FDFBF7;color:#2B2417;font-family:Inter,system-ui,sans-serif;display:flex;flex-direction:column;overflow:hidden">
+
+          <!-- lesson -->
+          <sc-if value="{{ inLesson }}" hint-placeholder-val="{{ true }}">
+            <div style="flex:1;display:flex;flex-direction:column;padding:78px 22px 44px">
+              <div style="display:flex;align-items:center;gap:12px">
+                <span aria-hidden="true" style="font:600 17px Inter,system-ui,sans-serif;color:#B4AA97">✕</span>
+                <div role="progressbar" aria-label="Прогресс урока" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ progressPct }}" style="flex:1;height:12px;border-radius:99px;background:#EFE9DD;overflow:hidden">
+                  <div style="width:{{ progressW }};height:100%;border-radius:99px;background:#C99A2E;transition:width .3s ease"></div>
+                </div>
+                <span style="display:flex;align-items:center;gap:4px;font:700 14px Inter,system-ui,sans-serif;color:#D9822B"><span aria-hidden="true">🔥</span>3</span>
+              </div>
+
+              <span style="margin-top:26px;font:500 12px JetBrains Mono,monospace;color:#B4AA97;letter-spacing:0.08em">УРОК 4 · ОСНОВЫ</span>
+              <h2 style="margin:10px 0 0;font:700 clamp(20px,5vw,23px)/1.35 Sora,sans-serif;color:#2B2417;text-wrap:balance">{{ question }}</h2>
+
+              <div style="margin-top:22px;display:flex;flex-direction:column;gap:10px">
+                <sc-for list="{{ options }}" as="o" hint-placeholder-count="4">
+                  <button type="button" onClick="{{ o.pick }}" disabled="{{ answered }}" style="text-align:left;padding:15px 16px;border-radius:15px;border:2px solid {{ o.border }};border-bottom-width:4px;background:{{ o.bg }};color:{{ o.color }};font:600 15.5px Inter,system-ui,sans-serif;cursor:{{ optCursor }};transition:transform .1s ease" style-hover="transform:translateY(-1px)" style-focus="outline:2px solid #C99A2E;outline-offset:2px">{{ o.label }}</button>
+                </sc-for>
+              </div>
+
+              <div style="margin-top:auto;min-height:118px;display:flex;flex-direction:column;justify-content:flex-end">
+                <sc-if value="{{ showFeedback }}" hint-placeholder-val="{{ false }}">
+                  <div style="border-radius:18px;padding:16px 18px;background:{{ fbBg }};display:flex;flex-direction:column;gap:10px;animation:{{ anim }}">
+                    <span aria-live="polite" style="font:700 16px Sora,sans-serif;color:{{ fbColor }}">{{ fbTitle }}</span>
+                    <span style="font:400 13.5px/1.45 Inter,system-ui,sans-serif;color:{{ fbColor }}">{{ fbText }}</span>
+                    <button type="button" onClick="{{ onNext }}" style="padding:13px;border-radius:13px;border:none;background:{{ fbBtnBg }};color:#FFFFFF;font:700 15px Sora,sans-serif;cursor:pointer" style-hover="filter:brightness(1.06)" style-focus="outline:2px solid #2B2417;outline-offset:2px">{{ nextLabel }}</button>
+                  </div>
+                </sc-if>
+              </div>
+            </div>
+          </sc-if>
+
+          <!-- completion -->
+          <sc-if value="{{ inDone }}" hint-placeholder-val="{{ false }}">
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:78px 30px 60px;text-align:center;gap:14px">
+              <span aria-hidden="true" style="width:92px;height:92px;border-radius:50%;background:#F6EFDD;display:grid;place-items:center;font-size:40px;animation:{{ anim }}">☦️</span>
+              <h2 style="margin:8px 0 0;font:700 26px Sora,sans-serif;color:#2B2417">Урок пройден!</h2>
+              <span style="font:400 15px/1.5 Inter,system-ui,sans-serif;color:#8A7F68">{{ doneStats }}</span>
+              <div style="display:flex;gap:10px;margin-top:8px">
+                <span style="display:flex;flex-direction:column;gap:2px;background:#F6EFDD;border-radius:13px;padding:12px 18px"><span style="font:700 18px Sora,sans-serif;color:#C99A2E">+{{ xp }} XP</span><span style="font:500 11.5px Inter,system-ui,sans-serif;color:#8A7F68">опыт</span></span>
+                <span style="display:flex;flex-direction:column;gap:2px;background:#F6EFDD;border-radius:13px;padding:12px 18px"><span style="font:700 18px Sora,sans-serif;color:#D9822B">🔥 4</span><span style="font:500 11.5px Inter,system-ui,sans-serif;color:#8A7F68">серия дней</span></span>
+              </div>
+              <button type="button" onClick="{{ onReset }}" style="margin-top:18px;width:100%;padding:15px;border-radius:14px;border:none;background:#C99A2E;color:#FFFFFF;font:700 16px Sora,sans-serif;cursor:pointer" style-hover="filter:brightness(1.06)" style-focus="outline:2px solid #2B2417;outline-offset:3px">Пройти ещё раз</button>
+            </div>
+          </sc-if>
+
+        </div>
+      </x-import>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CASE STORY ============ -->
+  <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:24px">
+    <div style="background:#FFFFFF;border:1px solid #D9E3EB;border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
+      <span style="font:500 12.5px JetBrains Mono,monospace;color:#8FA4B3">01 · суть</span>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:#2C4254;text-wrap:pretty">Православное обучающее приложение в механике Duolingo: короткие уроки, мгновенная проверка ответов, прогресс и серия дней — привычка вместо силы воли.</p>
+    </div>
+    <div style="background:#FFFFFF;border:1px solid #D9E3EB;border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
+      <span style="font:500 12.5px JetBrains Mono,monospace;color:#8FA4B3">02 · как решал</span>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:#2C4254;text-wrap:pretty">Flutter под iOS: структура курсов и уроков, механика ответов, XP и серия дней. Демо выше повторяет боевой экран урока.</p>
+    </div>
+    <div style="background:#FFFFFF;border:1px solid #D9E3EB;border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
+      <span style="font:500 12.5px JetBrains Mono,monospace;color:#8FA4B3">03 · результат</span>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:#2C4254;text-wrap:pretty"><strong style="color:#1A79C7">В активной разработке.</strong> Ядро урока работает; впереди — контент курсов и запуск в App Store.</p>
+    </div>
+  </section>
+
+  <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:20px">
+    <span style="font:500 13px JetBrains Mono,monospace;background:#FFFFFF;border:1px solid #D9E3EB;border-radius:9px;padding:7px 11px">Flutter</span>
+    <span style="font:500 13px JetBrains Mono,monospace;background:#FFFFFF;border:1px solid #D9E3EB;border-radius:9px;padding:7px 11px">iOS</span>
+  </div>
+
+  <div style="display:flex;align-items:center;gap:12px;margin-top:clamp(32px,5vw,52px);flex-wrap:wrap">
+    <a href="Contact.dc.html" style="display:inline-flex;align-items:center;gap:9px;background:#229ED9;color:#FFFFFF;text-decoration:none;font:600 15.5px/1 Inter,system-ui,sans-serif;padding:13px 22px;border-radius:12px" style-hover="background:#1A79C7" style-focus="outline:2px solid #13232F;outline-offset:2px"><span style="width:8px;height:8px;border-radius:50%;background:#31B545"></span>Нужно похожее — написать</a>
+    <a href="Case-Subscriptions.dc.html" style="margin-left:auto;font:500 15px Inter,system-ui,sans-serif;color:#1A79C7;text-decoration:none;border-radius:8px;padding:6px 8px" style-hover="background:#EAF4FB" style-focus="outline:2px solid #1A79C7;outline-offset:2px">следующий кейс: подписочный сервис →</a>
+  </div>
+</main>
+
+<dc-import name="Footer" brand-name="{{ brandName }}" hint-size="100%,110px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;brandName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Даниил Яценко&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = { qIndex: 0, picked: null, correctCount: 0, done: false };
+
+  renderVals() {
+    const QUESTIONS = [
+      { q: 'Как называется первая книга Библии?', correct: 'Бытие', options: ['Исход', 'Бытие', 'Псалтирь', 'Деяния'],
+        explain: 'Бытие открывает Ветхий Завет — с него начинается вся Библия.' },
+      { q: 'Какой праздник называют «Праздником праздников»?', correct: 'Пасха', options: ['Рождество', 'Крещение', 'Пасха', 'Троица'],
+        explain: 'Пасха — главный праздник церковного года, «Праздник праздников».' },
+      { q: 'Сколько апостолов было среди ближайших учеников Христа?', correct: '12', options: ['7', '10', '12', '40'],
+        explain: 'Двенадцать апостолов — ближайшие ученики Христа.' },
+    ];
+    const st = this.state;
+    const cur = QUESTIONS[Math.min(st.qIndex, QUESTIONS.length - 1)];
+    const answered = st.picked !== null;
+    const isCorrect = answered && st.picked === cur.correct;
+    const isLast = st.qIndex === QUESTIONS.length - 1;
+    const reduced = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const progress = ((st.qIndex + (answered ? 1 : 0)) / QUESTIONS.length) * 100;
+
+    return {
+      brandName: this.props.brandName ?? 'Даниил Яценко',
+      anim: reduced ? 'none' : 'bubbleIn 0.28s ease both',
+      inLesson: !st.done,
+      inDone: st.done,
+      question: cur.q,
+      progressPct: Math.round(progress),
+      progressW: progress + '%',
+      answered,
+      optCursor: answered ? 'default' : 'pointer',
+      options: cur.options.map(label => {
+        const picked = st.picked === label;
+        const showCorrect = answered && label === cur.correct;
+        const showWrong = answered && picked && label !== cur.correct;
+        return {
+          label,
+          pick: () => {
+            if (this.state.picked !== null) return;
+            this.setState(s => ({ picked: label, correctCount: s.correctCount + (label === cur.correct ? 1 : 0) }));
+          },
+          border: showCorrect ? '#58A700' : showWrong ? '#EA2B2B' : '#E5DCC9',
+          bg: showCorrect ? '#EEF7E3' : showWrong ? '#FDEBEB' : '#FFFFFF',
+          color: showCorrect ? '#3F7A00' : showWrong ? '#C11B1B' : '#2B2417',
+        };
+      },
+      ),
+      showFeedback: answered,
+      fbBg: isCorrect ? '#EEF7E3' : '#FDEBEB',
+      fbColor: isCorrect ? '#3F7A00' : '#C11B1B',
+      fbTitle: isCorrect ? 'Верно! +10 XP' : 'Не совсем',
+      fbText: isCorrect ? cur.explain : ('Правильный ответ: ' + cur.correct + '. ' + cur.explain),
+      fbBtnBg: isCorrect ? '#58A700' : '#EA2B2B',
+      nextLabel: isLast ? 'Завершить урок' : 'Дальше',
+      onNext: () => {
+        if (isLast) this.setState({ done: true });
+        else this.setState(s => ({ qIndex: s.qIndex + 1, picked: null }));
+      },
+      xp: st.correctCount * 10,
+      doneStats: 'Правильных ответов: ' + st.correctCount + ' из ' + QUESTIONS.length,
+      onReset: () => this.setState({ qIndex: 0, picked: null, correctCount: 0, done: false }),
+    };
+  }
+}
+</script>
+</body>
+</html>

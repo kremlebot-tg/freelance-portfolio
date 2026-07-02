@@ -28,3 +28,7 @@ jobs:
           path: '.'
       - id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          # GitHub Pages иногда подолгу держит деплой в очереди
+          # (deployment_queued) — ждём до 30 минут вместо дефолтных 10.
+          timeout: 1800000

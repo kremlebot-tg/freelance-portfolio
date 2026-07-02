@@ -11,7 +11,7 @@
 <body>
 <x-dc>
 <helmet>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="fonts/fonts.css" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box}
 body{margin:0;background:#E7EDF2;color:#13232F;-webkit-font-smoothing:antialiased}
@@ -40,7 +40,7 @@ body{margin:0;background:#E7EDF2;color:#13232F;-webkit-font-smoothing:antialiase
 
     <div style="display:flex;justify-content:center">
       <div style="max-width:100%;overflow-x:auto;padding:6px">
-      <x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" width="{{ 372 }}" height="{{ 740 }}" hint-size="372px,740px">
+      <x-import component-from-global-scope="IOSDevice" from="./ios-frame.js" width="{{ 372 }}" height="{{ 740 }}" hint-size="372px,740px">
         <div style="position:relative;height:100%;background:#FDFBF7;color:#2B2417;font-family:Inter,system-ui,sans-serif;display:flex;flex-direction:column;overflow:hidden">
 
           <!-- lesson -->

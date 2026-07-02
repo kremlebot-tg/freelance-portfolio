@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="../support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="../fonts/fonts.css" rel="stylesheet">
+<style>*,*::before,*::after{box-sizing:border-box} body{margin:0}</style>
+</helmet>
+<footer style="border-top:1px solid #D9E3EB;background:#FFFFFF;font-family:Inter,system-ui,sans-serif">
+  <div style="max-width:1140px;margin:0 auto;padding:32px 20px;display:flex;align-items:center;gap:16px 28px;flex-wrap:wrap">
+    <div style="display:flex;flex-direction:column;gap:6px;min-width:220px">
+      <span style="font:600 16px Sora,sans-serif;color:#13232F">© 2026 {{ brandName }}</span>
+      <span style="font:400 13.5px/1.5 Inter,system-ui,sans-serif;color:#5A7284">Telegram bots, mini apps and business automation</span>
+    </div>
+    <nav aria-label="Site sections" style="display:flex;gap:4px 6px;margin-left:auto;flex-wrap:wrap">
+      <a href="projects.html" style="padding:8px 12px;border-radius:10px;text-decoration:none;font:500 14.5px Inter,system-ui,sans-serif;color:#13232F" style-hover="background:#EAF4FB;color:#1A79C7" style-focus="outline:2px solid #1A79C7;outline-offset:2px">Projects</a>
+      <a href="services.html" style="padding:8px 12px;border-radius:10px;text-decoration:none;font:500 14.5px Inter,system-ui,sans-serif;color:#13232F" style-hover="background:#EAF4FB;color:#1A79C7" style-focus="outline:2px solid #1A79C7;outline-offset:2px">Services</a>
+      <a href="about.html" style="padding:8px 12px;border-radius:10px;text-decoration:none;font:500 14.5px Inter,system-ui,sans-serif;color:#13232F" style-hover="background:#EAF4FB;color:#1A79C7" style-focus="outline:2px solid #1A79C7;outline-offset:2px">About</a>
+      <a href="contact.html" style="padding:8px 12px;border-radius:10px;text-decoration:none;font:500 14.5px Inter,system-ui,sans-serif;color:#1A79C7" style-hover="background:#EAF4FB" style-focus="outline:2px solid #1A79C7;outline-offset:2px">Contact</a>
+    </nav>
+  </div>
+  <div style="max-width:1140px;margin:0 auto;padding:0 20px 24px;display:flex;align-items:center;gap:8px 24px;flex-wrap:wrap;border-top:0">
+    <span style="font:400 12.5px/1.5 Inter,system-ui,sans-serif;color:#8FA4B3">{{ requisitesEn }}</span>
+    <nav aria-label="Legal" style="display:flex;gap:2px 14px;margin-left:auto;flex-wrap:wrap">
+      <a href="privacy.html" style="font:400 12.5px/1.5 Inter,system-ui,sans-serif;color:#8FA4B3;text-decoration:none;border-radius:4px" style-hover="color:#1A79C7;text-decoration:underline" style-focus="outline:2px solid #1A79C7;outline-offset:1px">Privacy policy</a>
+    </nav>
+  </div>
+</footer>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;1200px&quot;,&quot;height&quot;:&quot;120px&quot;},&quot;brandName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Daniil Yatsenko&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const cfg = (typeof window !== 'undefined' && window.SITE_CONFIG) || {};
+    return {
+      brandName: this.props.brandName ?? 'Daniil Yatsenko',
+      requisitesEn: cfg.requisitesEn || 'Sole proprietor · TIN 502991709786',
+    };
+  }
+}
+</script>
+</body>
+</html>

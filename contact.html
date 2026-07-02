@@ -6,6 +6,9 @@
 <title>Заказать Telegram-бота: обсудить задачу — Даниил Яценко</title>
 <meta name="description" content="Опишите задачу — отвечу с прикидкой решения, цены и срока, обычно за пару часов. Работаю официально: ИП, договор, безналичная оплата.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="alternate" hreflang="ru" href="https://kremlebot-tg.github.io/freelance-portfolio/contact.html">
+<link rel="alternate" hreflang="en" href="https://kremlebot-tg.github.io/freelance-portfolio/en/contact.html">
+<link rel="alternate" hreflang="x-default" href="https://kremlebot-tg.github.io/freelance-portfolio/contact.html">
 <script src="./site-config.js"></script>
 <script src="./support.js"></script>
 </head>
@@ -57,6 +60,7 @@
             <span style="font:600 14.5px Inter,system-ui,sans-serif">Как с вами связаться</span>
             <input type="text" value="{{ contact }}" onChange="{{ onContact }}" placeholder="@ник в Telegram или email" style="font:400 15px Inter,system-ui,sans-serif;color:#13232F;border:1px solid #C4D8E6;border-radius:12px;padding:12px 14px;background:#FBFDFE;outline:none" style-focus="border-color:#229ED9;box-shadow:0 0 0 3px rgba(34,158,217,0.18)">
           </label>
+          <input type="text" name="website" value="{{ website }}" onChange="{{ onWebsite }}" autocomplete="off" tabindex="-1" aria-hidden="true" style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;opacity:0.01;pointer-events:none">
 
           <sc-if value="{{ showError }}" hint-placeholder-val="{{ false }}">
             <div role="alert" style="font:500 14px Inter,system-ui,sans-serif;color:#C0392B;background:#FDEDEB;border-radius:10px;padding:10px 14px">{{ errorText }}</div>
@@ -149,6 +153,10 @@
         <p style="margin:0;font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:#45596A">Официально: ИП, договор, безналичная оплата. Этапами — часть на старте, остальное по факту сдачи работающего бота.</p>
       </div>
       <div style="background:#FFFFFF;border:1px solid #D9E3EB;border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:8px">
+        <h3 style="margin:0;font:600 16.5px/1.35 Sora,sans-serif">Кто будет делать мой проект?</h3>
+        <p style="margin:0;font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:#45596A">Проект ведёт лично Даниил: разработка и вся коммуникация. Дизайн и тестирование — команда.</p>
+      </div>
+      <div style="background:#FFFFFF;border:1px solid #D9E3EB;border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:8px">
         <h3 style="margin:0;font:600 16.5px/1.35 Sora,sans-serif">Делаете под ключ?</h3>
         <p style="margin:0;font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:#45596A">Да: логика, оплаты, сервер, запуск. Вы получаете работающий продукт, а не код, который нужно куда-то пристраивать.</p>
       </div>
@@ -160,7 +168,7 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;brandName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Даниил Яценко&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Бренд&quot;},&quot;telegram&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;@ваш_ник&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Контакты&quot;},&quot;email&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;you@example.com&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Контакты&quot;}}">
 class Component extends DCLogic {
-  state = { task: '', type: 'боты', budget: '', contact: '', submitted: false, error: false, errorKind: '', sending: false };
+  state = { task: '', type: 'боты', budget: '', contact: '', website: '', submitted: false, error: false, errorKind: '', sending: false };
   renderVals() {
     const cfg = (typeof window !== 'undefined' && window.SITE_CONFIG) || {};
     const endpoint = (cfg.formEndpoint || '').trim();
@@ -201,6 +209,8 @@ class Component extends DCLogic {
       sending: this.state.sending,
       submitLabel: this.state.sending ? 'Отправляю…' : 'Отправить',
       echoContact: this.state.contact || 'Telegram',
+      website: this.state.website,
+      onWebsite: e => this.setState({ website: e.target.value }),
       onTask: e => this.setState({ task: e.target.value, error: false }),
       onBudget: e => this.setState({ budget: e.target.value }),
       onContact: e => this.setState({ contact: e.target.value, error: false }),
@@ -217,11 +227,12 @@ class Component extends DCLogic {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
           body: JSON.stringify({
-            'Задача': this.state.task,
-            'Тип задачи': this.state.type,
-            'Бюджет': this.state.budget || 'не указан',
-            'Контакт': this.state.contact,
-            '_subject': 'Новая заявка с сайта-портфолио',
+            lang: 'ru',
+            task: this.state.task,
+            type: this.state.type,
+            budget: this.state.budget || 'не указан',
+            contact: this.state.contact,
+            website: this.state.website || '',
           }),
         }).then(res => {
           if (!res.ok) throw new Error('HTTP ' + res.status);
@@ -230,7 +241,7 @@ class Component extends DCLogic {
           this.setState({ sending: false, error: true, errorKind: 'network' });
         });
       },
-      onReset: () => this.setState({ task: '', budget: '', contact: '', submitted: false, error: false, errorKind: '', sending: false }),
+      onReset: () => this.setState({ task: '', budget: '', contact: '', website: '', submitted: false, error: false, errorKind: '', sending: false }),
     };
   }
 }

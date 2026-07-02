@@ -1567,9 +1567,18 @@
   // src/index.ts
   // ИЗМЕНЕНО (деплой): React/ReactDOM хостятся локально (vendor/), а не с unpkg.
   // Файлы байт-идентичны unpkg-оригиналам — SRI-хэши сохранены.
-  var REACT_URL = "./vendor/react.production.min.js";
+  // Пути считаются от расположения САМОГО support.js (а не страницы),
+  // чтобы страницы из подкаталогов (/en/) находили vendor/ в корне.
+  var SUPPORT_BASE = (function () {
+    try {
+      var s = document.currentScript;
+      if (s && s.src) return new URL(".", s.src).href;
+    } catch (e) {}
+    return "./";
+  })();
+  var REACT_URL = SUPPORT_BASE + "vendor/react.production.min.js";
   var REACT_SRI = "sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z";
-  var REACT_DOM_URL = "./vendor/react-dom.production.min.js";
+  var REACT_DOM_URL = SUPPORT_BASE + "vendor/react-dom.production.min.js";
   var REACT_DOM_SRI = "sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1";
   function hideRawTemplate() {
     const s = document.createElement("style");

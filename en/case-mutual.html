@@ -1,21 +1,21 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Кейс: Telegram мини-апп MUTUAL — знакомства через QR — Даниил Яценко</title>
-<meta name="description" content="Прототип мини-аппа для стритвир-бренда: скан QR на вещи открывает профиль владельца. Кликабельный прототип из 5 экранов внутри.">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<title>Case Study: MUTUAL — Telegram Mini App Prototype — Daniil Yatsenko</title>
+<meta name="description" content="A streetwear brand where the clothes introduce people: scanning a QR opens the owner's profile. Clickable 5-screen mini app prototype inside.">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <link rel="alternate" hreflang="ru" href="https://kremlebot-tg.github.io/freelance-portfolio/case-mutual.html">
 <link rel="alternate" hreflang="en" href="https://kremlebot-tg.github.io/freelance-portfolio/en/case-mutual.html">
 <link rel="alternate" hreflang="x-default" href="https://kremlebot-tg.github.io/freelance-portfolio/case-mutual.html">
-<script src="./site-config.js"></script>
-<script src="./support.js"></script>
+<script src="../site-config.js"></script>
+<script src="../support.js"></script>
 </head>
 <body>
 <x-dc>
 <helmet>
-<link href="fonts/fonts.css" rel="stylesheet">
+<link href="../fonts/fonts.css" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box}
 body{margin:0;background:#E7EDF2;color:#13232F;-webkit-font-smoothing:antialiased}
@@ -29,27 +29,27 @@ body{margin:0;background:#E7EDF2;color:#13232F;-webkit-font-smoothing:antialiase
 
 <main style="font-family:Inter,system-ui,sans-serif;max-width:1140px;margin:0 auto;padding:clamp(32px,4vw,52px) 20px clamp(56px,7vw,88px)">
 
-  <a href="projects.html" style="display:inline-flex;align-items:center;gap:6px;font:500 14.5px Inter,system-ui,sans-serif;color:#1A79C7;text-decoration:none;border-radius:8px;padding:4px 6px;margin:0 0 18px -6px" style-hover="background:#EAF4FB" style-focus="outline:2px solid #1A79C7;outline-offset:2px">← Все проекты</a>
+  <a href="projects.html" style="display:inline-flex;align-items:center;gap:6px;font:500 14.5px Inter,system-ui,sans-serif;color:#1A79C7;text-decoration:none;border-radius:8px;padding:4px 6px;margin:0 0 18px -6px" style-hover="background:#EAF4FB" style-focus="outline:2px solid #1A79C7;outline-offset:2px">← All projects</a>
 
   <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:28px">
     <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
-      <span style="font:500 13px JetBrains Mono,monospace;color:#1A79C7">[Мини-апп]</span>
-      <span style="display:inline-flex;align-items:center;padding:5px 10px;border-radius:99px;background:#F1F5F8;color:#5A7284;font:500 12.5px Inter,system-ui,sans-serif">прототип</span>
+      <span style="font:500 13px JetBrains Mono,monospace;color:#1A79C7">[Mini app]</span>
+      <span style="display:inline-flex;align-items:center;padding:5px 10px;border-radius:99px;background:#F1F5F8;color:#5A7284;font:500 12.5px Inter,system-ui,sans-serif">prototype</span>
     </div>
-    <h1 style="margin:0;font:700 clamp(28px,4vw,42px)/1.15 Sora,sans-serif;letter-spacing:-0.02em">MUTUAL — знакомства через QR</h1>
-    <p style="margin:0;font:400 clamp(15.5px,1.6vw,18px)/1.55 Inter,system-ui,sans-serif;color:#45596A;max-width:640px">Стритвир-бренд, где вещь знакомит: скан QR на одежде открывает профиль владельца.</p>
+    <h1 style="margin:0;font:700 clamp(28px,4vw,42px)/1.15 Sora,sans-serif;letter-spacing:-0.02em">MUTUAL — meet via QR</h1>
+    <p style="margin:0;font:400 clamp(15.5px,1.6vw,18px)/1.55 Inter,system-ui,sans-serif;color:#45596A;max-width:640px">A streetwear brand where the clothes introduce people: scanning the QR on a garment opens the owner’s profile.</p>
   </div>
 
   <!-- ============ DEMO ============ -->
-  <section aria-label="Живое демо мини-аппа" style="background:#FFFFFF;border:1px solid #D9E3EB;border-radius:22px;padding:clamp(18px,3vw,32px);display:flex;flex-direction:column;gap:18px">
+  <section aria-label="Live mini app demo" style="background:#FFFFFF;border:1px solid #D9E3EB;border-radius:22px;padding:clamp(18px,3vw,32px);display:flex;flex-direction:column;gap:18px">
     <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
-      <span style="display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:99px;background:#EAF4FB;color:#1A79C7;font:500 13px Inter,system-ui,sans-serif"><span style="width:7px;height:7px;border-radius:50%;background:#31B545"></span>живое демо — кликабельный прототип, пройдите путь целиком</span>
-      <button type="button" onClick="{{ onReset }}" style="margin-left:auto;font:500 13.5px Inter,system-ui,sans-serif;color:#5A7284;background:#F1F5F8;border:none;cursor:pointer;padding:8px 14px;border-radius:10px" style-hover="background:#E4EBF1;color:#13232F" style-focus="outline:2px solid #1A79C7;outline-offset:2px">⟳ сбросить демо</button>
+      <span style="display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:99px;background:#EAF4FB;color:#1A79C7;font:500 13px Inter,system-ui,sans-serif"><span style="width:7px;height:7px;border-radius:50%;background:#31B545"></span>live demo — clickable prototype, walk the whole flow</span>
+      <button type="button" onClick="{{ onReset }}" style="margin-left:auto;font:500 13.5px Inter,system-ui,sans-serif;color:#5A7284;background:#F1F5F8;border:none;cursor:pointer;padding:8px 14px;border-radius:10px" style-hover="background:#E4EBF1;color:#13232F" style-focus="outline:2px solid #1A79C7;outline-offset:2px">⟳ reset demo</button>
     </div>
 
     <div style="display:flex;justify-content:center;gap:clamp(20px,4vw,48px);align-items:center;flex-wrap:wrap">
       <div style="max-width:100%;overflow-x:auto;padding:6px">
-      <x-import component-from-global-scope="IOSDevice" from="./ios-frame.js" dark="{{ true }}" width="{{ 372 }}" height="{{ 740 }}" hint-size="372px,740px">
+      <x-import component-from-global-scope="IOSDevice" from="../ios-frame.js" dark="{{ true }}" width="{{ 372 }}" height="{{ 740 }}" hint-size="372px,740px">
         <div style="position:relative;height:100%;background:#0B0B0D;color:#F4F4F2;font-family:Inter,system-ui,sans-serif;display:flex;flex-direction:column;overflow:hidden">
 
           <!-- onboarding -->
@@ -57,10 +57,10 @@ body{margin:0;background:#E7EDF2;color:#13232F;-webkit-font-smoothing:antialiase
             <div style="flex:1;display:flex;flex-direction:column;padding:84px 26px 56px;background:radial-gradient(120% 60% at 50% 0%,#1D1D22,#0B0B0D)">
               <span style="font:500 12px JetBrains Mono,monospace;color:#7C7C85;letter-spacing:0.14em">TELEGRAM MINI APP</span>
               <span style="margin-top:14px;font:800 44px/1.02 Sora,sans-serif;letter-spacing:-0.03em">MUTUAL</span>
-              <span style="margin-top:12px;font:400 16px/1.5 Inter,system-ui,sans-serif;color:#B9B9C0;max-width:250px">Вещь знакомит. Скан QR на одежде открывает профиль владельца.</span>
+              <span style="margin-top:12px;font:400 16px/1.5 Inter,system-ui,sans-serif;color:#B9B9C0;max-width:250px">The clothes do the introductions. Scan the QR on a garment to open the owner’s profile.</span>
               <div style="margin-top:auto;display:flex;flex-direction:column;gap:10px">
-                <button type="button" onClick="{{ goScan }}" style="width:100%;padding:16px;border-radius:14px;border:none;background:#F4F4F2;color:#0B0B0D;font:700 16px Sora,sans-serif;cursor:pointer" style-hover="background:#FFFFFF" style-focus="outline:2px solid #FFFFFF;outline-offset:3px">Сканировать QR</button>
-                <span style="text-align:center;font:400 12.5px Inter,system-ui,sans-serif;color:#7C7C85">профиль подтянется из Telegram</span>
+                <button type="button" onClick="{{ goScan }}" style="width:100%;padding:16px;border-radius:14px;border:none;background:#F4F4F2;color:#0B0B0D;font:700 16px Sora,sans-serif;cursor:pointer" style-hover="background:#FFFFFF" style-focus="outline:2px solid #FFFFFF;outline-offset:3px">Scan QR</button>
+                <span style="text-align:center;font:400 12.5px Inter,system-ui,sans-serif;color:#7C7C85">your profile is pulled from Telegram</span>
               </div>
             </div>
           </sc-if>
@@ -68,7 +68,7 @@ body{margin:0;background:#E7EDF2;color:#13232F;-webkit-font-smoothing:antialiase
           <!-- scan -->
           <sc-if value="{{ scrScan }}" hint-placeholder-val="{{ false }}">
             <div style="flex:1;display:flex;flex-direction:column;padding:78px 26px 48px;background:linear-gradient(180deg,#141419,#0B0B0D)">
-              <span style="font:600 17px Sora,sans-serif">Скан QR</span>
+              <span style="font:600 17px Sora,sans-serif">Scan QR</span>
               <div style="margin:26px auto 0;position:relative;width:210px;height:210px">
                 <div style="position:absolute;inset:0;border-radius:20px;background:linear-gradient(135deg,#1E1E24,#26262E)"></div>
                 <div style="position:absolute;top:0;left:0;width:34px;height:34px;border-top:3px solid #F4F4F2;border-left:3px solid #F4F4F2;border-radius:8px 0 0 0"></div>
@@ -87,7 +87,7 @@ body{margin:0;background:#E7EDF2;color:#13232F;-webkit-font-smoothing:antialiase
               <span aria-live="polite" style="margin:18px auto 0;font:500 13px JetBrains Mono,monospace;color:{{ scanCaptionColor }}">{{ scanCaption }}</span>
               <div style="margin-top:auto">
                 <sc-if value="{{ scanFound }}" hint-placeholder-val="{{ false }}">
-                  <button type="button" onClick="{{ goMap }}" style="width:100%;padding:16px;border-radius:14px;border:none;background:#F4F4F2;color:#0B0B0D;font:700 16px Sora,sans-serif;cursor:pointer;animation:{{ anim }}" style-hover="background:#FFFFFF" style-focus="outline:2px solid #FFFFFF;outline-offset:3px">Кто рядом</button>
+                  <button type="button" onClick="{{ goMap }}" style="width:100%;padding:16px;border-radius:14px;border:none;background:#F4F4F2;color:#0B0B0D;font:700 16px Sora,sans-serif;cursor:pointer;animation:{{ anim }}" style-hover="background:#FFFFFF" style-focus="outline:2px solid #FFFFFF;outline-offset:3px">Who’s nearby</button>
                 </sc-if>
               </div>
             </div>
@@ -97,50 +97,50 @@ body{margin:0;background:#E7EDF2;color:#13232F;-webkit-font-smoothing:antialiase
           <sc-if value="{{ scrMap }}" hint-placeholder-val="{{ false }}">
             <div style="flex:1;display:flex;flex-direction:column;padding:78px 0 44px;background:#0B0B0D">
               <div style="padding:0 26px;display:flex;align-items:baseline;gap:10px">
-                <span style="font:600 17px Sora,sans-serif">Кто рядом</span>
-                <span style="font:500 12px JetBrains Mono,monospace;color:#7C7C85">3 в mutual поблизости</span>
+                <span style="font:600 17px Sora,sans-serif">Who’s nearby</span>
+                <span style="font:500 12px JetBrains Mono,monospace;color:#7C7C85">3 on mutual nearby</span>
               </div>
               <div style="position:relative;flex:1;margin:18px 16px 16px;border-radius:18px;overflow:hidden;background-color:#141419;background-image:linear-gradient(rgba(244,244,242,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(244,244,242,0.05) 1px,transparent 1px);background-size:36px 36px">
                 <span aria-hidden="true" style="position:absolute;left:18%;top:64%;width:10px;height:10px;border-radius:50%;background:#4A4A54"></span>
                 <span aria-hidden="true" style="position:absolute;left:74%;top:70%;width:10px;height:10px;border-radius:50%;background:#4A4A54"></span>
-                <span aria-hidden="true" style="position:absolute;left:50%;bottom:14px;transform:translateX(-50%);font:400 11px JetBrains Mono,monospace;color:#5C5C66">карта — мок для прототипа</span>
-                <button type="button" onClick="{{ goProfile }}" aria-label="Кира, 40 метров" style="position:absolute;left:52%;top:30%;display:flex;flex-direction:column;align-items:center;gap:7px;background:none;border:none;cursor:pointer;padding:8px" style-focus="outline:2px solid #FFFFFF;outline-offset:2px;border-radius:12px">
-                  <span style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#F4F4F2,#C9C9CE);color:#0B0B0D;display:grid;place-items:center;font:700 19px Sora,sans-serif;border:2px solid #31B545;animation:{{ pulseAnim }}">К</span>
-                  <span style="font:600 12.5px Inter,system-ui,sans-serif;color:#F4F4F2;background:rgba(11,11,13,0.8);padding:4px 9px;border-radius:99px">Кира · 40 м</span>
+                <span aria-hidden="true" style="position:absolute;left:50%;bottom:14px;transform:translateX(-50%);font:400 11px JetBrains Mono,monospace;color:#5C5C66">map — mocked for the prototype</span>
+                <button type="button" onClick="{{ goProfile }}" aria-label="Kira, 40 meters" style="position:absolute;left:52%;top:30%;display:flex;flex-direction:column;align-items:center;gap:7px;background:none;border:none;cursor:pointer;padding:8px" style-focus="outline:2px solid #FFFFFF;outline-offset:2px;border-radius:12px">
+                  <span style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#F4F4F2,#C9C9CE);color:#0B0B0D;display:grid;place-items:center;font:700 19px Sora,sans-serif;border:2px solid #31B545;animation:{{ pulseAnim }}">K</span>
+                  <span style="font:600 12.5px Inter,system-ui,sans-serif;color:#F4F4F2;background:rgba(11,11,13,0.8);padding:4px 9px;border-radius:99px">Kira · 40 m</span>
                 </button>
               </div>
-              <span style="padding:0 26px;font:400 12.5px Inter,system-ui,sans-serif;color:#7C7C85">это владелица худи, чей QR вы отсканировали — нажмите на неё</span>
+              <span style="padding:0 26px;font:400 12.5px Inter,system-ui,sans-serif;color:#7C7C85">that’s the owner of the hoodie whose QR you scanned — tap her</span>
             </div>
           </sc-if>
 
           <!-- profile -->
           <sc-if value="{{ scrProfile }}" hint-placeholder-val="{{ false }}">
             <div style="flex:1;display:flex;flex-direction:column;padding:78px 26px 48px;background:radial-gradient(120% 50% at 50% 0%,#1D1D22,#0B0B0D)">
-              <button type="button" onClick="{{ goMap }}" style="align-self:flex-start;background:none;border:none;color:#7C7C85;font:500 14px Inter,system-ui,sans-serif;cursor:pointer;padding:6px 8px;margin-left:-8px;border-radius:8px" style-hover="color:#F4F4F2" style-focus="outline:2px solid #FFFFFF;outline-offset:2px">← карта</button>
+              <button type="button" onClick="{{ goMap }}" style="align-self:flex-start;background:none;border:none;color:#7C7C85;font:500 14px Inter,system-ui,sans-serif;cursor:pointer;padding:6px 8px;margin-left:-8px;border-radius:8px" style-hover="color:#F4F4F2" style-focus="outline:2px solid #FFFFFF;outline-offset:2px">← map</button>
               <div style="margin-top:14px;display:flex;align-items:center;gap:16px">
-                <span style="width:76px;height:76px;border-radius:50%;background:linear-gradient(135deg,#F4F4F2,#C9C9CE);color:#0B0B0D;display:grid;place-items:center;font:700 28px Sora,sans-serif;flex:none">К</span>
+                <span style="width:76px;height:76px;border-radius:50%;background:linear-gradient(135deg,#F4F4F2,#C9C9CE);color:#0B0B0D;display:grid;place-items:center;font:700 28px Sora,sans-serif;flex:none">K</span>
                 <span style="display:flex;flex-direction:column;gap:4px">
-                  <span style="font:700 24px Sora,sans-serif">Кира</span>
-                  <span style="font:500 13px JetBrains Mono,monospace;color:#7C7C85">@kira_mutl · Москва</span>
+                  <span style="font:700 24px Sora,sans-serif">Kira</span>
+                  <span style="font:500 13px JetBrains Mono,monospace;color:#7C7C85">@kira_mutl · Moscow</span>
                 </span>
               </div>
               <div style="margin-top:18px;padding:14px 16px;border-radius:14px;background:#17171C;border:1px solid #26262E;display:flex;flex-direction:column;gap:6px">
-                <span style="font:500 11.5px JetBrains Mono,monospace;color:#7C7C85">ВЕЩЬ</span>
-                <span style="font:600 15px Sora,sans-serif">hoodie «MUTUAL 042»</span>
-                <span style="font:400 13px Inter,system-ui,sans-serif;color:#B9B9C0">дроп осень-25 · 1 из 100</span>
+                <span style="font:500 11.5px JetBrains Mono,monospace;color:#7C7C85">ITEM</span>
+                <span style="font:600 15px Sora,sans-serif">hoodie “MUTUAL 042”</span>
+                <span style="font:400 13px Inter,system-ui,sans-serif;color:#B9B9C0">fall ’25 drop · 1 of 100</span>
               </div>
               <div style="margin-top:14px;display:flex;flex-wrap:wrap;gap:7px">
-                <span style="font:500 12.5px Inter,system-ui,sans-serif;color:#B9B9C0;border:1px solid #33333C;border-radius:99px;padding:6px 12px">стритвир</span>
-                <span style="font:500 12.5px Inter,system-ui,sans-serif;color:#B9B9C0;border:1px solid #33333C;border-radius:99px;padding:6px 12px">плёночное фото</span>
-                <span style="font:500 12.5px Inter,system-ui,sans-serif;color:#B9B9C0;border:1px solid #33333C;border-radius:99px;padding:6px 12px">техно</span>
+                <span style="font:500 12.5px Inter,system-ui,sans-serif;color:#B9B9C0;border:1px solid #33333C;border-radius:99px;padding:6px 12px">streetwear</span>
+                <span style="font:500 12.5px Inter,system-ui,sans-serif;color:#B9B9C0;border:1px solid #33333C;border-radius:99px;padding:6px 12px">film photography</span>
+                <span style="font:500 12.5px Inter,system-ui,sans-serif;color:#B9B9C0;border:1px solid #33333C;border-radius:99px;padding:6px 12px">techno</span>
               </div>
               <div style="margin-top:auto;display:flex;flex-direction:column;gap:10px">
                 <sc-if value="{{ notPinged }}" hint-placeholder-val="{{ true }}">
-                  <button type="button" onClick="{{ onPing }}" style="width:100%;padding:16px;border-radius:14px;border:none;background:#F4F4F2;color:#0B0B0D;font:700 16px Sora,sans-serif;cursor:pointer" style-hover="background:#FFFFFF" style-focus="outline:2px solid #FFFFFF;outline-offset:3px">Отправить пинг 👋</button>
+                  <button type="button" onClick="{{ onPing }}" style="width:100%;padding:16px;border-radius:14px;border:none;background:#F4F4F2;color:#0B0B0D;font:700 16px Sora,sans-serif;cursor:pointer" style-hover="background:#FFFFFF" style-focus="outline:2px solid #FFFFFF;outline-offset:3px">Send a ping 👋</button>
                 </sc-if>
                 <sc-if value="{{ pinged }}" hint-placeholder-val="{{ false }}">
-                  <div style="text-align:center;font:500 14px Inter,system-ui,sans-serif;color:#31B545;animation:{{ anim }}">Пинг отправлен · Кира ответила 👋</div>
-                  <button type="button" onClick="{{ goChat }}" style="width:100%;padding:16px;border-radius:14px;border:none;background:#31B545;color:#FFFFFF;font:700 16px Sora,sans-serif;cursor:pointer;animation:{{ anim }}" style-hover="background:#2AA23D" style-focus="outline:2px solid #FFFFFF;outline-offset:3px">Открыть чат</button>
+                  <div style="text-align:center;font:500 14px Inter,system-ui,sans-serif;color:#31B545;animation:{{ anim }}">Ping sent · Kira replied 👋</div>
+                  <button type="button" onClick="{{ goChat }}" style="width:100%;padding:16px;border-radius:14px;border:none;background:#31B545;color:#FFFFFF;font:700 16px Sora,sans-serif;cursor:pointer;animation:{{ anim }}" style-hover="background:#2AA23D" style-focus="outline:2px solid #FFFFFF;outline-offset:3px">Open chat</button>
                 </sc-if>
               </div>
             </div>
@@ -150,20 +150,20 @@ body{margin:0;background:#E7EDF2;color:#13232F;-webkit-font-smoothing:antialiase
           <sc-if value="{{ scrChat }}" hint-placeholder-val="{{ false }}">
             <div style="flex:1;display:flex;flex-direction:column;padding:70px 0 44px;background:#0B0B0D">
               <div style="display:flex;align-items:center;gap:11px;padding:8px 20px 12px;border-bottom:1px solid #1E1E24">
-                <button type="button" onClick="{{ goProfile }}" aria-label="Назад к профилю" style="background:none;border:none;color:#7C7C85;font-size:17px;cursor:pointer;padding:4px 8px;margin-left:-8px;border-radius:8px" style-hover="color:#F4F4F2" style-focus="outline:2px solid #FFFFFF;outline-offset:2px">←</button>
-                <span style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#F4F4F2,#C9C9CE);color:#0B0B0D;display:grid;place-items:center;font:700 14px Sora,sans-serif">К</span>
+                <button type="button" onClick="{{ goProfile }}" aria-label="Back to profile" style="background:none;border:none;color:#7C7C85;font-size:17px;cursor:pointer;padding:4px 8px;margin-left:-8px;border-radius:8px" style-hover="color:#F4F4F2" style-focus="outline:2px solid #FFFFFF;outline-offset:2px">←</button>
+                <span style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#F4F4F2,#C9C9CE);color:#0B0B0D;display:grid;place-items:center;font:700 14px Sora,sans-serif">K</span>
                 <span style="display:flex;flex-direction:column;gap:2px">
-                  <span style="font:600 14.5px Sora,sans-serif">Кира</span>
-                  <span style="font:400 11.5px Inter,system-ui,sans-serif;color:#31B545">онлайн</span>
+                  <span style="font:600 14.5px Sora,sans-serif">Kira</span>
+                  <span style="font:400 11.5px Inter,system-ui,sans-serif;color:#31B545">online</span>
                 </span>
               </div>
               <div style="flex:1;padding:16px 18px;display:flex;flex-direction:column;gap:9px;overflow-y:auto">
-                <div style="align-self:flex-end;max-width:82%;background:#F4F4F2;color:#0B0B0D;border-radius:15px 15px 4px 15px;padding:9px 13px;font:400 14px/1.45 Inter,system-ui,sans-serif;animation:{{ anim }}">привет! увидел твой худи 042 🔥</div>
-                <div style="align-self:flex-start;max-width:82%;background:#1E1E24;border-radius:15px 15px 15px 4px;padding:9px 13px;font:400 14px/1.45 Inter,system-ui,sans-serif;animation:{{ anim }}">ахах привет! редкий скан — ты третий за месяц</div>
-                <div style="align-self:flex-start;max-width:82%;background:#1E1E24;border-radius:15px 15px 15px 4px;padding:9px 13px;font:400 14px/1.45 Inter,system-ui,sans-serif;animation:{{ anim }}">мы сейчас на маркете у входа, подходи ☕️</div>
+                <div style="align-self:flex-end;max-width:82%;background:#F4F4F2;color:#0B0B0D;border-radius:15px 15px 4px 15px;padding:9px 13px;font:400 14px/1.45 Inter,system-ui,sans-serif;animation:{{ anim }}">hey! spotted your 042 hoodie 🔥</div>
+                <div style="align-self:flex-start;max-width:82%;background:#1E1E24;border-radius:15px 15px 15px 4px;padding:9px 13px;font:400 14px/1.45 Inter,system-ui,sans-serif;animation:{{ anim }}">haha hey! rare scan — you’re the third this month</div>
+                <div style="align-self:flex-start;max-width:82%;background:#1E1E24;border-radius:15px 15px 15px 4px;padding:9px 13px;font:400 14px/1.45 Inter,system-ui,sans-serif;animation:{{ anim }}">we’re at the market by the entrance, come say hi ☕️</div>
               </div>
               <div style="display:flex;align-items:center;gap:10px;padding:10px 18px 0;border-top:1px solid #1E1E24">
-                <span aria-hidden="true" style="flex:1;padding:10px 14px;border-radius:18px;background:#17171C;color:#5C5C66;font:400 13.5px Inter,system-ui,sans-serif">Сообщение…</span>
+                <span aria-hidden="true" style="flex:1;padding:10px 14px;border-radius:18px;background:#17171C;color:#5C5C66;font:400 13.5px Inter,system-ui,sans-serif">Message…</span>
                 <span aria-hidden="true" style="width:34px;height:34px;border-radius:50%;background:#F4F4F2;display:grid;place-items:center;color:#0B0B0D;font-weight:700">↑</span>
               </div>
             </div>
@@ -190,34 +190,34 @@ body{margin:0;background:#E7EDF2;color:#13232F;-webkit-font-smoothing:antialiase
   <!-- ============ CASE STORY ============ -->
   <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:24px">
     <div style="background:#FFFFFF;border:1px solid #D9E3EB;border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
-      <span style="font:500 12.5px JetBrains Mono,monospace;color:#8FA4B3">01 · суть</span>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:#2C4254;text-wrap:pretty">Стритвир-бренд, где вещь знакомит: на каждой вещи — QR, скан открывает профиль владельца и людей рядом из комьюнити.</p>
+      <span style="font:500 12.5px JetBrains Mono,monospace;color:#8FA4B3">01 · problem</span>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:#2C4254;text-wrap:pretty">A streetwear brand where the clothes introduce people: every item carries a QR, and scanning it opens the owner’s profile and nearby community members.</p>
     </div>
     <div style="background:#FFFFFF;border:1px solid #D9E3EB;border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
-      <span style="font:500 12.5px JetBrains Mono,monospace;color:#8FA4B3">02 · как решал</span>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:#2C4254;text-wrap:pretty">Кликабельный прототип мини-аппа: онбординг, скан, карта «кто рядом», профили, пинги и чат. Ровно тот путь, что вы прошли в демо слева.</p>
+      <span style="font:500 12.5px JetBrains Mono,monospace;color:#8FA4B3">02 · solution</span>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:#2C4254;text-wrap:pretty">A clickable mini app prototype: onboarding, scanning, a “who’s nearby” map, profiles, pings and chat. Exactly the flow you just walked through in the demo on the left.</p>
     </div>
     <div style="background:#FFFFFF;border:1px solid #D9E3EB;border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
-      <span style="font:500 12.5px JetBrains Mono,monospace;color:#8FA4B3">03 · результат</span>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:#2C4254;text-wrap:pretty"><strong style="color:#1A79C7">Готовый прототип</strong> для проверки идеи на живых людях — до написания «настоящего» кода.</p>
+      <span style="font:500 12.5px JetBrains Mono,monospace;color:#8FA4B3">03 · result</span>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:#2C4254;text-wrap:pretty"><strong style="color:#1A79C7">A ready-to-test prototype</strong> for validating the idea with real people — before writing any “real” code.</p>
     </div>
   </section>
 
   <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:20px">
     <span style="font:500 13px JetBrains Mono,monospace;background:#FFFFFF;border:1px solid #D9E3EB;border-radius:9px;padding:7px 11px">Mini App</span>
-    <span style="font:500 13px JetBrains Mono,monospace;background:#FFFFFF;border:1px solid #D9E3EB;border-radius:9px;padding:7px 11px">UX-прототип</span>
+    <span style="font:500 13px JetBrains Mono,monospace;background:#FFFFFF;border:1px solid #D9E3EB;border-radius:9px;padding:7px 11px">UX prototype</span>
   </div>
 
   <dc-import name="CaseCTA" hint-size="100%,170px"></dc-import>
 
   <div style="display:flex;align-items:center;gap:12px;margin-top:18px;flex-wrap:wrap">
-    <a href="case-faith.html" style="margin-left:auto;font:500 15px Inter,system-ui,sans-serif;color:#1A79C7;text-decoration:none;border-radius:8px;padding:6px 8px" style-hover="background:#EAF4FB" style-focus="outline:2px solid #1A79C7;outline-offset:2px">следующий кейс: Faith App →</a>
+    <a href="case-faith.html" style="margin-left:auto;font:500 15px Inter,system-ui,sans-serif;color:#1A79C7;text-decoration:none;border-radius:8px;padding:6px 8px" style-hover="background:#EAF4FB" style-focus="outline:2px solid #1A79C7;outline-offset:2px">next case: Faith App →</a>
   </div>
 </main>
 
 <dc-import name="Footer" brand-name="{{ brandName }}" hint-size="100%,110px"></dc-import>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;brandName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Даниил Яценко&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;brandName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Daniil Yatsenko&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
 class Component extends DCLogic {
   state = { screen: 'onb', scanState: 'idle', pinged: false };
   constructor(props) { super(props); this._timers = []; }
@@ -235,11 +235,11 @@ class Component extends DCLogic {
     const st = this.state;
     const reduced = this._reduced();
     const ORDER = ['onb', 'scan', 'map', 'profile', 'chat'];
-    const LABELS = { onb: 'Онбординг', scan: 'Скан QR', map: 'Карта «кто рядом»', profile: 'Профиль владельца', chat: 'Пинг и чат' };
+    const LABELS = { onb: 'Onboarding', scan: 'Scan QR', map: '“Who’s nearby” map', profile: 'Owner profile', chat: 'Ping & chat' };
     const idx = ORDER.indexOf(st.screen);
 
     return {
-      brandName: this.props.brandName ?? 'Даниил Яценко',
+      brandName: this.props.brandName ?? 'Daniil Yatsenko',
       anim: reduced ? 'none' : 'bubbleIn 0.26s ease both',
       scanAnim: reduced ? 'none' : 'scanLine 1.6s ease-in-out infinite',
       pulseAnim: reduced ? 'none' : 'pulseDot 1.8s ease-out infinite',
@@ -252,7 +252,7 @@ class Component extends DCLogic {
 
       scanning: st.scanState === 'scanning',
       scanFound: st.scanState === 'found',
-      scanCaption: st.scanState === 'found' ? 'найдено: hoodie «MUTUAL 042» · Кира' : 'наведите камеру на QR на бирке',
+      scanCaption: st.scanState === 'found' ? 'found: hoodie “MUTUAL 042” · Kira' : 'point the camera at the QR on the tag',
       scanCaptionColor: st.scanState === 'found' ? '#31B545' : '#7C7C85',
 
       notPinged: !st.pinged,

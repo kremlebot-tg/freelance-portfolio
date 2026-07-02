@@ -1,21 +1,21 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Кейс: мобильное приложение Faith App на Flutter — Даниил Яценко</title>
-<meta name="description" content="Разработка обучающего мобильного приложения в стиле Duolingo: уроки, прогресс, серия дней. Моя роль — разработка. Живое демо урока внутри.">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<title>Case Study: Faith App — Duolingo-style Mobile Learning App — Daniil Yatsenko</title>
+<meta name="description" content="An Orthodox Christian learning app built with Flutter: short lessons, instant feedback, progress and streaks. My role — development. Live lesson demo inside.">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <link rel="alternate" hreflang="ru" href="https://kremlebot-tg.github.io/freelance-portfolio/case-faith.html">
 <link rel="alternate" hreflang="en" href="https://kremlebot-tg.github.io/freelance-portfolio/en/case-faith.html">
 <link rel="alternate" hreflang="x-default" href="https://kremlebot-tg.github.io/freelance-portfolio/case-faith.html">
-<script src="./site-config.js"></script>
-<script src="./support.js"></script>
+<script src="../site-config.js"></script>
+<script src="../support.js"></script>
 </head>
 <body>
 <x-dc>
 <helmet>
-<link href="fonts/fonts.css" rel="stylesheet">
+<link href="../fonts/fonts.css" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box}
 body{margin:0;background:#E7EDF2;color:#13232F;-webkit-font-smoothing:antialiased}
@@ -27,25 +27,25 @@ body{margin:0;background:#E7EDF2;color:#13232F;-webkit-font-smoothing:antialiase
 
 <main style="font-family:Inter,system-ui,sans-serif;max-width:1140px;margin:0 auto;padding:clamp(32px,4vw,52px) 20px clamp(56px,7vw,88px)">
 
-  <a href="projects.html" style="display:inline-flex;align-items:center;gap:6px;font:500 14.5px Inter,system-ui,sans-serif;color:#1A79C7;text-decoration:none;border-radius:8px;padding:4px 6px;margin:0 0 18px -6px" style-hover="background:#EAF4FB" style-focus="outline:2px solid #1A79C7;outline-offset:2px">← Все проекты</a>
+  <a href="projects.html" style="display:inline-flex;align-items:center;gap:6px;font:500 14.5px Inter,system-ui,sans-serif;color:#1A79C7;text-decoration:none;border-radius:8px;padding:4px 6px;margin:0 0 18px -6px" style-hover="background:#EAF4FB" style-focus="outline:2px solid #1A79C7;outline-offset:2px">← All projects</a>
 
   <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:28px">
-    <span style="font:500 13px JetBrains Mono,monospace;color:#1A79C7">[Мобильное]</span>
-    <h1 style="margin:0;font:700 clamp(28px,4vw,42px)/1.15 Sora,sans-serif;letter-spacing:-0.02em">Faith App — обучение в стиле Duolingo</h1>
-    <p style="margin:0;font:400 clamp(15.5px,1.6vw,18px)/1.55 Inter,system-ui,sans-serif;color:#45596A;max-width:640px">Православное обучающее приложение: короткие уроки, ответы с мгновенной проверкой, прогресс и серия дней.</p>
-    <span style="font:500 13px JetBrains Mono,monospace;color:#8FA4B3">Моя роль: разработка · дизайн — Светлана · тестирование — Егор</span>
+    <span style="font:500 13px JetBrains Mono,monospace;color:#1A79C7">[Mobile]</span>
+    <h1 style="margin:0;font:700 clamp(28px,4vw,42px)/1.15 Sora,sans-serif;letter-spacing:-0.02em">Faith App — Duolingo-style learning</h1>
+    <p style="margin:0;font:400 clamp(15.5px,1.6vw,18px)/1.55 Inter,system-ui,sans-serif;color:#45596A;max-width:640px">An Orthodox Christian learning app: short lessons, answers checked instantly, progress and a day streak.</p>
+    <span style="font:500 13px JetBrains Mono,monospace;color:#8FA4B3">My role: development · design — Svetlana · testing — Egor</span>
   </div>
 
   <!-- ============ DEMO ============ -->
-  <section aria-label="Живое демо: фрагмент урока" style="background:#FFFFFF;border:1px solid #D9E3EB;border-radius:22px;padding:clamp(18px,3vw,32px);display:flex;flex-direction:column;gap:18px">
+  <section aria-label="Live demo: a lesson excerpt" style="background:#FFFFFF;border:1px solid #D9E3EB;border-radius:22px;padding:clamp(18px,3vw,32px);display:flex;flex-direction:column;gap:18px">
     <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
-      <span style="display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:99px;background:#EAF4FB;color:#1A79C7;font:500 13px Inter,system-ui,sans-serif"><span style="width:7px;height:7px;border-radius:50%;background:#31B545"></span>живое демо — пройдите фрагмент урока, отвечая на вопросы</span>
-      <button type="button" onClick="{{ onReset }}" style="margin-left:auto;font:500 13.5px Inter,system-ui,sans-serif;color:#5A7284;background:#F1F5F8;border:none;cursor:pointer;padding:8px 14px;border-radius:10px" style-hover="background:#E4EBF1;color:#13232F" style-focus="outline:2px solid #1A79C7;outline-offset:2px">⟳ сбросить демо</button>
+      <span style="display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:99px;background:#EAF4FB;color:#1A79C7;font:500 13px Inter,system-ui,sans-serif"><span style="width:7px;height:7px;border-radius:50%;background:#31B545"></span>live demo — try a lesson excerpt by answering the questions</span>
+      <button type="button" onClick="{{ onReset }}" style="margin-left:auto;font:500 13.5px Inter,system-ui,sans-serif;color:#5A7284;background:#F1F5F8;border:none;cursor:pointer;padding:8px 14px;border-radius:10px" style-hover="background:#E4EBF1;color:#13232F" style-focus="outline:2px solid #1A79C7;outline-offset:2px">⟳ reset demo</button>
     </div>
 
     <div style="display:flex;justify-content:center">
       <div style="max-width:100%;overflow-x:auto;padding:6px">
-      <x-import component-from-global-scope="IOSDevice" from="./ios-frame.js" width="{{ 372 }}" height="{{ 740 }}" hint-size="372px,740px">
+      <x-import component-from-global-scope="IOSDevice" from="../ios-frame.js" width="{{ 372 }}" height="{{ 740 }}" hint-size="372px,740px">
         <div style="position:relative;height:100%;background:#FDFBF7;color:#2B2417;font-family:Inter,system-ui,sans-serif;display:flex;flex-direction:column;overflow:hidden">
 
           <!-- lesson -->
@@ -53,13 +53,13 @@ body{margin:0;background:#E7EDF2;color:#13232F;-webkit-font-smoothing:antialiase
             <div style="flex:1;display:flex;flex-direction:column;padding:78px 22px 44px">
               <div style="display:flex;align-items:center;gap:12px">
                 <span aria-hidden="true" style="font:600 17px Inter,system-ui,sans-serif;color:#B4AA97">✕</span>
-                <div role="progressbar" aria-label="Прогресс урока" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ progressPct }}" style="flex:1;height:12px;border-radius:99px;background:#EFE9DD;overflow:hidden">
+                <div role="progressbar" aria-label="Lesson progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ progressPct }}" style="flex:1;height:12px;border-radius:99px;background:#EFE9DD;overflow:hidden">
                   <div style="width:{{ progressW }};height:100%;border-radius:99px;background:#C99A2E;transition:width .3s ease"></div>
                 </div>
                 <span style="display:flex;align-items:center;gap:4px;font:700 14px Inter,system-ui,sans-serif;color:#D9822B"><span aria-hidden="true">🔥</span>3</span>
               </div>
 
-              <span style="margin-top:26px;font:500 12px JetBrains Mono,monospace;color:#B4AA97;letter-spacing:0.08em">УРОК 4 · ОСНОВЫ</span>
+              <span style="margin-top:26px;font:500 12px JetBrains Mono,monospace;color:#B4AA97;letter-spacing:0.08em">LESSON 4 · BASICS</span>
               <h2 style="margin:10px 0 0;font:700 clamp(20px,5vw,23px)/1.35 Sora,sans-serif;color:#2B2417;text-wrap:balance">{{ question }}</h2>
 
               <div style="margin-top:22px;display:flex;flex-direction:column;gap:10px">
@@ -84,13 +84,13 @@ body{margin:0;background:#E7EDF2;color:#13232F;-webkit-font-smoothing:antialiase
           <sc-if value="{{ inDone }}" hint-placeholder-val="{{ false }}">
             <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:78px 30px 60px;text-align:center;gap:14px">
               <span aria-hidden="true" style="width:92px;height:92px;border-radius:50%;background:#F6EFDD;display:grid;place-items:center;font-size:40px;animation:{{ anim }}">☦️</span>
-              <h2 style="margin:8px 0 0;font:700 26px Sora,sans-serif;color:#2B2417">Урок пройден!</h2>
+              <h2 style="margin:8px 0 0;font:700 26px Sora,sans-serif;color:#2B2417">Lesson complete!</h2>
               <span style="font:400 15px/1.5 Inter,system-ui,sans-serif;color:#8A7F68">{{ doneStats }}</span>
               <div style="display:flex;gap:10px;margin-top:8px">
-                <span style="display:flex;flex-direction:column;gap:2px;background:#F6EFDD;border-radius:13px;padding:12px 18px"><span style="font:700 18px Sora,sans-serif;color:#C99A2E">+{{ xp }} XP</span><span style="font:500 11.5px Inter,system-ui,sans-serif;color:#8A7F68">опыт</span></span>
-                <span style="display:flex;flex-direction:column;gap:2px;background:#F6EFDD;border-radius:13px;padding:12px 18px"><span style="font:700 18px Sora,sans-serif;color:#D9822B">🔥 4</span><span style="font:500 11.5px Inter,system-ui,sans-serif;color:#8A7F68">серия дней</span></span>
+                <span style="display:flex;flex-direction:column;gap:2px;background:#F6EFDD;border-radius:13px;padding:12px 18px"><span style="font:700 18px Sora,sans-serif;color:#C99A2E">+{{ xp }} XP</span><span style="font:500 11.5px Inter,system-ui,sans-serif;color:#8A7F68">experience</span></span>
+                <span style="display:flex;flex-direction:column;gap:2px;background:#F6EFDD;border-radius:13px;padding:12px 18px"><span style="font:700 18px Sora,sans-serif;color:#D9822B">🔥 4</span><span style="font:500 11.5px Inter,system-ui,sans-serif;color:#8A7F68">day streak</span></span>
               </div>
-              <button type="button" onClick="{{ onReset }}" style="margin-top:18px;width:100%;padding:15px;border-radius:14px;border:none;background:#C99A2E;color:#FFFFFF;font:700 16px Sora,sans-serif;cursor:pointer" style-hover="filter:brightness(1.06)" style-focus="outline:2px solid #2B2417;outline-offset:3px">Пройти ещё раз</button>
+              <button type="button" onClick="{{ onReset }}" style="margin-top:18px;width:100%;padding:15px;border-radius:14px;border:none;background:#C99A2E;color:#FFFFFF;font:700 16px Sora,sans-serif;cursor:pointer" style-hover="filter:brightness(1.06)" style-focus="outline:2px solid #2B2417;outline-offset:3px">Try again</button>
             </div>
           </sc-if>
 
@@ -103,16 +103,16 @@ body{margin:0;background:#E7EDF2;color:#13232F;-webkit-font-smoothing:antialiase
   <!-- ============ CASE STORY ============ -->
   <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:24px">
     <div style="background:#FFFFFF;border:1px solid #D9E3EB;border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
-      <span style="font:500 12.5px JetBrains Mono,monospace;color:#8FA4B3">01 · суть</span>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:#2C4254;text-wrap:pretty">Православное обучающее приложение в механике Duolingo: короткие уроки, мгновенная проверка ответов, прогресс и серия дней — привычка вместо силы воли.</p>
+      <span style="font:500 12.5px JetBrains Mono,monospace;color:#8FA4B3">01 · problem</span>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:#2C4254;text-wrap:pretty">An Orthodox Christian learning app with Duolingo mechanics: short lessons, instant answer checking, progress and a day streak — habit instead of willpower.</p>
     </div>
     <div style="background:#FFFFFF;border:1px solid #D9E3EB;border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
-      <span style="font:500 12.5px JetBrains Mono,monospace;color:#8FA4B3">02 · как решал</span>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:#2C4254;text-wrap:pretty">Flutter под iOS: структура курсов и уроков, механика ответов, XP и серия дней. Демо выше повторяет боевой экран урока.</p>
+      <span style="font:500 12.5px JetBrains Mono,monospace;color:#8FA4B3">02 · solution</span>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:#2C4254;text-wrap:pretty">Flutter on iOS: course and lesson structure, answer mechanics, XP and day streaks. The demo above mirrors the production lesson screen.</p>
     </div>
     <div style="background:#FFFFFF;border:1px solid #D9E3EB;border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
-      <span style="font:500 12.5px JetBrains Mono,monospace;color:#8FA4B3">03 · результат</span>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:#2C4254;text-wrap:pretty"><strong style="color:#1A79C7">В активной разработке.</strong> Ядро урока работает; впереди — контент курсов и запуск в App Store.</p>
+      <span style="font:500 12.5px JetBrains Mono,monospace;color:#8FA4B3">03 · result</span>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:#2C4254;text-wrap:pretty"><strong style="color:#1A79C7">In active development.</strong> The lesson core is up and running; next come course content and the App Store launch.</p>
     </div>
   </section>
 
@@ -124,24 +124,24 @@ body{margin:0;background:#E7EDF2;color:#13232F;-webkit-font-smoothing:antialiase
   <dc-import name="CaseCTA" hint-size="100%,170px"></dc-import>
 
   <div style="display:flex;align-items:center;gap:12px;margin-top:18px;flex-wrap:wrap">
-    <a href="case-subscriptions.html" style="margin-left:auto;font:500 15px Inter,system-ui,sans-serif;color:#1A79C7;text-decoration:none;border-radius:8px;padding:6px 8px" style-hover="background:#EAF4FB" style-focus="outline:2px solid #1A79C7;outline-offset:2px">следующий кейс: подписочный сервис →</a>
+    <a href="case-subscriptions.html" style="margin-left:auto;font:500 15px Inter,system-ui,sans-serif;color:#1A79C7;text-decoration:none;border-radius:8px;padding:6px 8px" style-hover="background:#EAF4FB" style-focus="outline:2px solid #1A79C7;outline-offset:2px">next case: subscription service →</a>
   </div>
 </main>
 
 <dc-import name="Footer" brand-name="{{ brandName }}" hint-size="100%,110px"></dc-import>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;brandName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Даниил Яценко&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;brandName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Daniil Yatsenko&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
 class Component extends DCLogic {
   state = { qIndex: 0, picked: null, correctCount: 0, done: false };
 
   renderVals() {
     const QUESTIONS = [
-      { q: 'Как называется первая книга Библии?', correct: 'Бытие', options: ['Исход', 'Бытие', 'Псалтирь', 'Деяния'],
-        explain: 'Бытие открывает Ветхий Завет — с него начинается вся Библия.' },
-      { q: 'Какой праздник называют «Праздником праздников»?', correct: 'Пасха', options: ['Рождество', 'Крещение', 'Пасха', 'Троица'],
-        explain: 'Пасха — главный праздник церковного года, «Праздник праздников».' },
-      { q: 'Сколько апостолов было среди ближайших учеников Христа?', correct: '12', options: ['7', '10', '12', '40'],
-        explain: 'Двенадцать апостолов — ближайшие ученики Христа.' },
+      { q: 'What is the first book of the Bible?', correct: 'Genesis', options: ['Exodus', 'Genesis', 'Psalms', 'Acts'],
+        explain: 'Genesis opens the Old Testament — the whole Bible begins with it.' },
+      { q: 'Which feast is called the “Feast of Feasts”?', correct: 'Pascha', options: ['Nativity', 'Theophany', 'Pascha', 'Pentecost'],
+        explain: 'Pascha is the chief feast of the church year — the “Feast of Feasts”.' },
+      { q: 'How many apostles were among Christ’s closest disciples?', correct: '12', options: ['7', '10', '12', '40'],
+        explain: 'The Twelve Apostles were Christ’s closest disciples.' },
     ];
     const st = this.state;
     const cur = QUESTIONS[Math.min(st.qIndex, QUESTIONS.length - 1)];
@@ -152,7 +152,7 @@ class Component extends DCLogic {
     const progress = ((st.qIndex + (answered ? 1 : 0)) / QUESTIONS.length) * 100;
 
     return {
-      brandName: this.props.brandName ?? 'Даниил Яценко',
+      brandName: this.props.brandName ?? 'Daniil Yatsenko',
       anim: reduced ? 'none' : 'bubbleIn 0.28s ease both',
       inLesson: !st.done,
       inDone: st.done,
@@ -180,16 +180,16 @@ class Component extends DCLogic {
       showFeedback: answered,
       fbBg: isCorrect ? '#EEF7E3' : '#FDEBEB',
       fbColor: isCorrect ? '#3F7A00' : '#C11B1B',
-      fbTitle: isCorrect ? 'Верно! +10 XP' : 'Не совсем',
-      fbText: isCorrect ? cur.explain : ('Правильный ответ: ' + cur.correct + '. ' + cur.explain),
+      fbTitle: isCorrect ? 'Correct! +10 XP' : 'Not quite',
+      fbText: isCorrect ? cur.explain : ('Correct answer: ' + cur.correct + '. ' + cur.explain),
       fbBtnBg: isCorrect ? '#58A700' : '#EA2B2B',
-      nextLabel: isLast ? 'Завершить урок' : 'Дальше',
+      nextLabel: isLast ? 'Finish lesson' : 'Next',
       onNext: () => {
         if (isLast) this.setState({ done: true });
         else this.setState(s => ({ qIndex: s.qIndex + 1, picked: null }));
       },
       xp: st.correctCount * 10,
-      doneStats: 'Правильных ответов: ' + st.correctCount + ' из ' + QUESTIONS.length,
+      doneStats: 'Correct answers: ' + st.correctCount + ' of ' + QUESTIONS.length,
       onReset: () => this.setState({ qIndex: 0, picked: null, correctCount: 0, done: false }),
     };
   }

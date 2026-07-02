@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Case Study: Marketplace Repricing Bot for 5,500 SKUs — Daniil Yatsenko</title>
+<meta name="description" content="Prices for ~5,500 SKUs recalculate automatically from cost, target margin and a price corridor. Own product. Live pricing dashboard inside.">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="alternate" hreflang="ru" href="https://kremlebot-tg.github.io/freelance-portfolio/case-autopricer.html">
+<link rel="alternate" hreflang="en" href="https://kremlebot-tg.github.io/freelance-portfolio/en/case-autopricer.html">
+<link rel="alternate" hreflang="x-default" href="https://kremlebot-tg.github.io/freelance-portfolio/case-autopricer.html">
+<script src="../site-config.js"></script>
+<script src="../support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="../fonts/fonts.css" rel="stylesheet">
+<style>*,*::before,*::after{box-sizing:border-box} body{margin:0;background:#E7EDF2;color:#13232F;-webkit-font-smoothing:antialiased}</style>
+</helmet>
+
+<dc-import name="Header" active="projects" brand-name="{{ brandName }}" hint-size="100%,64px"></dc-import>
+
+<main style="font-family:Inter,system-ui,sans-serif;max-width:1140px;margin:0 auto;padding:clamp(32px,4vw,52px) 20px clamp(56px,7vw,88px)">
+
+  <a href="projects.html" style="display:inline-flex;align-items:center;gap:6px;font:500 14.5px Inter,system-ui,sans-serif;color:#1A79C7;text-decoration:none;border-radius:8px;padding:4px 6px;margin:0 0 18px -6px" style-hover="background:#EAF4FB" style-focus="outline:2px solid #1A79C7;outline-offset:2px">← All projects</a>
+
+  <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:28px">
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+      <span style="font:500 13px JetBrains Mono,monospace;color:#1A79C7">[Automation]</span>
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:#EAF4FB;color:#1A79C7;font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:#31B545"></span>own product</span>
+    </div>
+    <h1 style="margin:0;font:700 clamp(28px,4vw,42px)/1.15 Sora,sans-serif;letter-spacing:-0.02em">Marketplace autopricer</h1>
+    <p style="margin:0;font:400 clamp(15.5px,1.6vw,18px)/1.55 Inter,system-ui,sans-serif;color:#45596A;max-width:640px">The service computes prices from cost, target margin and a price corridor on its own — and keeps them updated across ~5,500 SKUs.</p>
+  </div>
+
+  <!-- ============ DEMO ============ -->
+  <section aria-label="Live demo: pricing dashboard" style="background:#FFFFFF;border:1px solid #D9E3EB;border-radius:22px;padding:clamp(18px,3vw,32px);display:flex;flex-direction:column;gap:18px">
+    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+      <span style="display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:99px;background:#EAF4FB;color:#1A79C7;font:500 13px Inter,system-ui,sans-serif"><span style="width:7px;height:7px;border-radius:50%;background:#31B545"></span>live demo — move the sliders, prices recalculate instantly</span>
+      <span style="margin-left:auto;font:400 12px JetBrains Mono,monospace;color:#8FA4B3">// real math on mock products</span>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:16px;align-items:start">
+
+      <!-- Params -->
+      <div style="background:#F6FAFC;border:1px solid #E4EBF1;border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:20px;max-width:420px">
+        <span style="font:600 15px Sora,sans-serif">Pricing parameters</span>
+
+        <label style="display:flex;flex-direction:column;gap:8px">
+          <span style="display:flex;justify-content:space-between;font:500 13.5px Inter,system-ui,sans-serif;color:#2C4254">Cost change<span style="font:500 13px JetBrains Mono,monospace;color:#1A79C7">{{ costDeltaLabel }}</span></span>
+          <input type="range" min="-20" max="30" step="1" value="{{ costDelta }}" onChange="{{ onCostDelta }}" style="width:100%;accent-color:#229ED9" style-focus="outline:2px solid #1A79C7;outline-offset:3px">
+        </label>
+
+        <label style="display:flex;flex-direction:column;gap:8px">
+          <span style="display:flex;justify-content:space-between;font:500 13.5px Inter,system-ui,sans-serif;color:#2C4254">Fulfilment &amp; logistics<span style="font:500 13px JetBrains Mono,monospace;color:#1A79C7">+{{ fulfil }} ₽/unit</span></span>
+          <input type="range" min="0" max="300" step="5" value="{{ fulfil }}" onChange="{{ onFulfil }}" style="width:100%;accent-color:#229ED9" style-focus="outline:2px solid #1A79C7;outline-offset:3px">
+        </label>
+
+        <label style="display:flex;flex-direction:column;gap:8px">
+          <span style="display:flex;justify-content:space-between;font:500 13.5px Inter,system-ui,sans-serif;color:#2C4254">Target margin<span style="font:500 13px JetBrains Mono,monospace;color:#1A79C7">{{ margin }} % of price</span></span>
+          <input type="range" min="5" max="45" step="1" value="{{ margin }}" onChange="{{ onMargin }}" style="width:100%;accent-color:#229ED9" style-focus="outline:2px solid #1A79C7;outline-offset:3px">
+        </label>
+
+        <div style="display:flex;flex-direction:column;gap:14px;border-top:1px dashed #C4D8E6;padding-top:16px">
+          <span style="font:500 13px Inter,system-ui,sans-serif;color:#5A7284">Price corridor — protection from extremes</span>
+          <label style="display:flex;flex-direction:column;gap:8px">
+            <span style="display:flex;justify-content:space-between;font:500 13.5px Inter,system-ui,sans-serif;color:#2C4254">Floor, markup over cost<span style="font:500 13px JetBrains Mono,monospace;color:#1A79C7">+{{ floorPct }} %</span></span>
+            <input type="range" min="10" max="100" step="5" value="{{ floorPct }}" onChange="{{ onFloor }}" style="width:100%;accent-color:#229ED9" style-focus="outline:2px solid #1A79C7;outline-offset:3px">
+          </label>
+          <label style="display:flex;flex-direction:column;gap:8px">
+            <span style="display:flex;justify-content:space-between;font:500 13.5px Inter,system-ui,sans-serif;color:#2C4254">Ceiling<span style="font:500 13px JetBrains Mono,monospace;color:#1A79C7">×{{ maxMult }} cost</span></span>
+            <input type="range" min="1.5" max="5" step="0.1" value="{{ maxMultRaw }}" onChange="{{ onMaxMult }}" style="width:100%;accent-color:#229ED9" style-focus="outline:2px solid #1A79C7;outline-offset:3px">
+          </label>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;border-top:1px dashed #C4D8E6;padding-top:16px">
+          <div style="display:flex;flex-direction:column;gap:3px">
+            <span style="font:700 22px Sora,sans-serif;color:#1A79C7">{{ avgMargin }} %</span>
+            <span style="font:400 12.5px/1.4 Inter,system-ui,sans-serif;color:#5A7284">avg actual margin</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:3px">
+            <span style="font:700 22px Sora,sans-serif;color:{{ clampedColor }}">{{ clampedCount }}</span>
+            <span style="font:400 12.5px/1.4 Inter,system-ui,sans-serif;color:#5A7284">products hit the corridor</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Table -->
+      <div style="min-width:0;overflow-x:auto;border:1px solid #E4EBF1;border-radius:16px">
+        <table style="width:100%;border-collapse:collapse;font:400 14px Inter,system-ui,sans-serif;min-width:540px">
+          <thead>
+            <tr style="background:#F6FAFC">
+              <th scope="col" style="text-align:left;padding:12px 14px;font:600 12.5px Inter,system-ui,sans-serif;color:#5A7284;border-bottom:1px solid #E4EBF1">Product</th>
+              <th scope="col" style="text-align:right;padding:12px 14px;font:600 12.5px Inter,system-ui,sans-serif;color:#5A7284;border-bottom:1px solid #E4EBF1">Cost</th>
+              <th scope="col" style="text-align:right;padding:12px 14px;font:600 12.5px Inter,system-ui,sans-serif;color:#5A7284;border-bottom:1px solid #E4EBF1">Fee</th>
+              <th scope="col" style="text-align:right;padding:12px 14px;font:600 12.5px Inter,system-ui,sans-serif;color:#5A7284;border-bottom:1px solid #E4EBF1">Price</th>
+              <th scope="col" style="text-align:right;padding:12px 14px;font:600 12.5px Inter,system-ui,sans-serif;color:#5A7284;border-bottom:1px solid #E4EBF1">Margin</th>
+              <th scope="col" style="text-align:left;padding:12px 14px;font:600 12.5px Inter,system-ui,sans-serif;color:#5A7284;border-bottom:1px solid #E4EBF1">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <sc-for list="{{ rows }}" as="r" hint-placeholder-count="8">
+              <tr>
+                <td style="padding:11px 14px;border-bottom:1px solid #EEF3F7">{{ r.name }}</td>
+                <td style="padding:11px 14px;border-bottom:1px solid #EEF3F7;text-align:right;font-family:JetBrains Mono,monospace;font-size:13px;color:#5A7284">{{ r.cost }} ₽</td>
+                <td style="padding:11px 14px;border-bottom:1px solid #EEF3F7;text-align:right;font-family:JetBrains Mono,monospace;font-size:13px;color:#5A7284">{{ r.comm }} %</td>
+                <td style="padding:11px 14px;border-bottom:1px solid #EEF3F7;text-align:right;font-family:JetBrains Mono,monospace;font-size:13.5px;font-weight:500;color:#13232F">{{ r.price }} ₽</td>
+                <td style="padding:11px 14px;border-bottom:1px solid #EEF3F7;text-align:right;font-family:JetBrains Mono,monospace;font-size:13px;color:{{ r.marginColor }}">{{ r.marginPct }} %</td>
+                <td style="padding:11px 14px;border-bottom:1px solid #EEF3F7"><span style="font:500 12px Inter,system-ui,sans-serif;padding:4px 9px;border-radius:99px;background:{{ r.badgeBg }};color:{{ r.badgeColor }};white-space:nowrap">{{ r.status }}</span></td>
+              </tr>
+            </sc-for>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <p style="margin:0;font:400 13.5px/1.55 Inter,system-ui,sans-serif;color:#5A7284;max-width:720px">The demo shows 8 products. In production the same calculation runs across ~5,500 SKUs: costs and fees come from the Ozon API, and prices update on a schedule.</p>
+  </section>
+
+  <!-- ============ CASE STORY ============ -->
+  <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:24px">
+    <div style="background:#FFFFFF;border:1px solid #D9E3EB;border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
+      <span style="font:500 12.5px JetBrains Mono,monospace;color:#8FA4B3">01 · problem</span>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:#2C4254;text-wrap:pretty">Keeping prices current on thousands of products by hand is impossible: costs, fees and logistics keep shifting — and margin quietly drifts away.</p>
+    </div>
+    <div style="background:#FFFFFF;border:1px solid #D9E3EB;border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
+      <span style="font:500 12.5px JetBrains Mono,monospace;color:#8FA4B3">02 · solution</span>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:#2C4254;text-wrap:pretty">A Python service: it pulls products and fees from the Ozon API, computes each price from cost, target margin and the corridor, updates on a schedule and writes a change report.</p>
+    </div>
+    <div style="background:#FFFFFF;border:1px solid #D9E3EB;border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
+      <span style="font:500 12.5px JetBrains Mono,monospace;color:#8FA4B3">03 · result</span>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:#2C4254;text-wrap:pretty"><strong style="color:#1A79C7">~5,500 SKUs</strong> reprice automatically. Manual price work shrank to tuning the parameters.</p>
+    </div>
+  </section>
+
+  <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:20px">
+    <span style="font:500 13px JetBrains Mono,monospace;background:#FFFFFF;border:1px solid #D9E3EB;border-radius:9px;padding:7px 11px">Python</span>
+    <span style="font:500 13px JetBrains Mono,monospace;background:#FFFFFF;border:1px solid #D9E3EB;border-radius:9px;padding:7px 11px">Ozon API</span>
+    <span style="font:500 13px JetBrains Mono,monospace;background:#FFFFFF;border:1px solid #D9E3EB;border-radius:9px;padding:7px 11px">automation</span>
+  </div>
+
+  <dc-import name="CaseCTA" hint-size="100%,170px"></dc-import>
+
+  <div style="display:flex;align-items:center;gap:12px;margin-top:18px;flex-wrap:wrap">
+    <a href="case-mutual.html" style="margin-left:auto;font:500 15px Inter,system-ui,sans-serif;color:#1A79C7;text-decoration:none;border-radius:8px;padding:6px 8px" style-hover="background:#EAF4FB" style-focus="outline:2px solid #1A79C7;outline-offset:2px">next case: MUTUAL →</a>
+  </div>
+</main>
+
+<dc-import name="Footer" brand-name="{{ brandName }}" hint-size="100%,110px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;brandName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Daniil Yatsenko&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = { costDelta: 0, fulfil: 75, margin: 20, floorPct: 30, maxMult: 3 };
+
+  renderVals() {
+    const PRODUCTS = [
+      { name: 'Phone case', cost: 190, comm: 18 },
+      { name: 'USB-C cable, 2 m', cost: 95, comm: 18 },
+      { name: 'Desk lamp', cost: 740, comm: 16 },
+      { name: 'City backpack', cost: 1250, comm: 17 },
+      { name: 'Travel mug, 450 ml', cost: 430, comm: 15 },
+      { name: 'XL mouse pad', cost: 210, comm: 18 },
+      { name: 'Power bank, 20,000 mAh', cost: 890, comm: 16 },
+      { name: 'Cable organizer', cost: 320, comm: 17 },
+    ];
+    const st = this.state;
+    const fmt = n => Math.round(n).toLocaleString('en-US');
+
+    let marginSum = 0, clamped = 0;
+    const rows = PRODUCTS.map(p => {
+      const cost = p.cost * (1 + st.costDelta / 100);
+      const denom = 1 - p.comm / 100 - st.margin / 100;
+      const raw = denom > 0.05 ? (cost + st.fulfil) / denom : (cost + st.fulfil) / 0.05;
+      const floor = cost * (1 + st.floorPct / 100);
+      const ceil = cost * st.maxMult;
+      const price = Math.min(Math.max(raw, floor), ceil);
+      const profit = price * (1 - p.comm / 100) - cost - st.fulfil;
+      const marginPct = price > 0 ? (profit / price) * 100 : 0;
+      marginSum += marginPct;
+      let status = 'in range', badgeBg = '#E7F6EC', badgeColor = '#1E9E46';
+      if (price >= ceil - 0.5) { status = 'at ceiling'; badgeBg = '#FDF3E3'; badgeColor = '#B07817'; clamped++; }
+      else if (price <= floor + 0.5) { status = 'at floor'; badgeBg = '#FDEDEB'; badgeColor = '#C0392B'; clamped++; }
+      return {
+        name: p.name,
+        cost: fmt(cost),
+        comm: p.comm,
+        price: fmt(price),
+        marginPct: marginPct.toFixed(1),
+        marginColor: marginPct < 5 ? '#C0392B' : marginPct < 12 ? '#B07817' : '#1E9E46',
+        status, badgeBg, badgeColor,
+      };
+    });
+
+    return {
+      brandName: this.props.brandName ?? 'Daniil Yatsenko',
+      costDelta: st.costDelta,
+      costDeltaLabel: (st.costDelta > 0 ? '+' : '') + st.costDelta + ' %',
+      fulfil: st.fulfil,
+      margin: st.margin,
+      floorPct: st.floorPct,
+      maxMultRaw: st.maxMult,
+      maxMult: st.maxMult.toFixed(1),
+      onCostDelta: e => this.setState({ costDelta: +e.target.value }),
+      onFulfil: e => this.setState({ fulfil: +e.target.value }),
+      onMargin: e => this.setState({ margin: +e.target.value }),
+      onFloor: e => this.setState({ floorPct: +e.target.value }),
+      onMaxMult: e => this.setState({ maxMult: +e.target.value }),
+      rows,
+      avgMargin: (marginSum / PRODUCTS.length).toFixed(1),
+      clampedCount: clamped,
+      clampedColor: clamped === 0 ? '#1E9E46' : '#B07817',
+    };
+  }
+}
+</script>
+</body>
+</html>

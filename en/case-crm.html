@@ -1,21 +1,21 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Кейс: ИИ-CRM в Telegram — извлечение фактов из заметок — Даниил Яценко</title>
-<meta name="description" content="Разработка ИИ-CRM: заметки о людях превращаются в граф связей и извлечённые факты. Собственный продукт, LLM в проде. Живое демо внутри.">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<title>Case Study: AI Networking CRM in Telegram — Daniil Yatsenko</title>
+<meta name="description" content="Notes about people turn into a relationship graph and extracted facts — an LLM in production, not in a slide deck. Own product. Live demo inside.">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <link rel="alternate" hreflang="ru" href="https://kremlebot-tg.github.io/freelance-portfolio/case-crm.html">
 <link rel="alternate" hreflang="en" href="https://kremlebot-tg.github.io/freelance-portfolio/en/case-crm.html">
 <link rel="alternate" hreflang="x-default" href="https://kremlebot-tg.github.io/freelance-portfolio/case-crm.html">
-<script src="./site-config.js"></script>
-<script src="./support.js"></script>
+<script src="../site-config.js"></script>
+<script src="../support.js"></script>
 </head>
 <body>
 <x-dc>
 <helmet>
-<link href="fonts/fonts.css" rel="stylesheet">
+<link href="../fonts/fonts.css" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box}
 body{margin:0;background:#E7EDF2;color:#13232F;-webkit-font-smoothing:antialiased}
@@ -28,25 +28,25 @@ body{margin:0;background:#E7EDF2;color:#13232F;-webkit-font-smoothing:antialiase
 
 <main style="font-family:Inter,system-ui,sans-serif;max-width:1140px;margin:0 auto;padding:clamp(32px,4vw,52px) 20px clamp(56px,7vw,88px)">
 
-  <a href="projects.html" style="display:inline-flex;align-items:center;gap:6px;font:500 14.5px Inter,system-ui,sans-serif;color:#1A79C7;text-decoration:none;border-radius:8px;padding:4px 6px;margin:0 0 18px -6px" style-hover="background:#EAF4FB" style-focus="outline:2px solid #1A79C7;outline-offset:2px">← Все проекты</a>
+  <a href="projects.html" style="display:inline-flex;align-items:center;gap:6px;font:500 14.5px Inter,system-ui,sans-serif;color:#1A79C7;text-decoration:none;border-radius:8px;padding:4px 6px;margin:0 0 18px -6px" style-hover="background:#EAF4FB" style-focus="outline:2px solid #1A79C7;outline-offset:2px">← All projects</a>
 
   <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:28px">
     <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
-      <span style="font:500 13px JetBrains Mono,monospace;color:#1A79C7">[ИИ · CRM]</span>
-      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:#EAF4FB;color:#1A79C7;font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:#31B545"></span>собственный продукт</span>
+      <span style="font:500 13px JetBrains Mono,monospace;color:#1A79C7">[AI · CRM]</span>
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:#EAF4FB;color:#1A79C7;font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:#31B545"></span>own product</span>
     </div>
-    <h1 style="margin:0;font:700 clamp(28px,4vw,42px)/1.15 Sora,sans-serif;letter-spacing:-0.02em">CRM для нетворкинга</h1>
-    <p style="margin:0;font:400 clamp(15.5px,1.6vw,18px)/1.55 Inter,system-ui,sans-serif;color:#45596A;max-width:640px">ИИ извлекает факты из заметок о людях и строит граф связей — контакты не теряются.</p>
+    <h1 style="margin:0;font:700 clamp(28px,4vw,42px)/1.15 Sora,sans-serif;letter-spacing:-0.02em">Networking CRM (AI)</h1>
+    <p style="margin:0;font:400 clamp(15.5px,1.6vw,18px)/1.55 Inter,system-ui,sans-serif;color:#45596A;max-width:640px">AI extracts facts from notes about people and builds a relationship graph — contacts never get lost.</p>
   </div>
 
   <!-- ============ DEMO A: GRAPH ============ -->
-  <section aria-label="Демо: граф связей" style="background:#FFFFFF;border:1px solid #D9E3EB;border-radius:22px;padding:clamp(18px,3vw,32px);display:flex;flex-direction:column;gap:16px">
+  <section aria-label="Demo: relationship graph" style="background:#FFFFFF;border:1px solid #D9E3EB;border-radius:22px;padding:clamp(18px,3vw,32px);display:flex;flex-direction:column;gap:16px">
     <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
-      <span style="display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:99px;background:#EAF4FB;color:#1A79C7;font:500 13px Inter,system-ui,sans-serif"><span style="width:7px;height:7px;border-radius:50%;background:#31B545"></span>живое демо · граф можно двигать, узлы — кликать</span>
+      <span style="display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:99px;background:#EAF4FB;color:#1A79C7;font:500 13px Inter,system-ui,sans-serif"><span style="width:7px;height:7px;border-radius:50%;background:#31B545"></span>live demo · drag the graph, click the nodes</span>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;align-items:stretch">
       <div style="position:relative;grid-column:span 1;min-width:0;background:#F6FAFC;border:1px solid #E4EBF1;border-radius:16px;overflow:hidden">
-        <svg viewBox="0 0 640 460" role="application" aria-label="Граф контактов" style="display:block;width:100%;height:auto;touch-action:none;user-select:none;cursor:{{ svgCursor }}" onPointerMove="{{ onMove }}" onPointerUp="{{ onUp }}" onPointerLeave="{{ onUp }}" ref="{{ svgRef }}">
+        <svg viewBox="0 0 640 460" role="application" aria-label="Contact graph" style="display:block;width:100%;height:auto;touch-action:none;user-select:none;cursor:{{ svgCursor }}" onPointerMove="{{ onMove }}" onPointerUp="{{ onUp }}" onPointerLeave="{{ onUp }}" ref="{{ svgRef }}">
           <sc-for list="{{ edges }}" as="e" hint-placeholder-count="8">
             <line x1="{{ e.x1 }}" y1="{{ e.y1 }}" x2="{{ e.x2 }}" y2="{{ e.y2 }}" stroke="{{ e.stroke }}" stroke-width="{{ e.w }}"></line>
           </sc-for>
@@ -67,7 +67,7 @@ body{margin:0;background:#E7EDF2;color:#13232F;-webkit-font-smoothing:antialiase
         <sc-if value="{{ noSelection }}" hint-placeholder-val="{{ false }}">
           <div style="margin:auto;text-align:center;display:flex;flex-direction:column;gap:8px;color:#8FA4B3">
             <span style="font-size:26px" aria-hidden="true">↖</span>
-            <span style="font:400 14.5px/1.5 Inter,system-ui,sans-serif;max-width:240px">Кликните по узлу — откроется карточка с фактами, которые извлёк ИИ</span>
+            <span style="font:400 14.5px/1.5 Inter,system-ui,sans-serif;max-width:240px">Click a node to open a card with the facts AI extracted</span>
           </div>
         </sc-if>
         <sc-if value="{{ hasSelection }}" hint-placeholder-val="{{ true }}">
@@ -87,7 +87,7 @@ body{margin:0;background:#E7EDF2;color:#13232F;-webkit-font-smoothing:antialiase
             </sc-for>
           </div>
           <div style="margin-top:auto;display:flex;flex-direction:column;gap:6px">
-            <span style="font:500 11.5px JetBrains Mono,monospace;color:#8FA4B3">связи</span>
+            <span style="font:500 11.5px JetBrains Mono,monospace;color:#8FA4B3">connections</span>
             <div style="display:flex;flex-wrap:wrap;gap:6px">
               <sc-for list="{{ selLinks }}" as="l" hint-placeholder-count="2">
                 <button type="button" onClick="{{ l.open }}" style="font:500 13px Inter,system-ui,sans-serif;color:#1A79C7;background:#EAF4FB;border:none;cursor:pointer;padding:6px 11px;border-radius:99px" style-hover="background:#DBEDF9" style-focus="outline:2px solid #1A79C7;outline-offset:2px">{{ l.name }}</button>
@@ -100,10 +100,10 @@ body{margin:0;background:#E7EDF2;color:#13232F;-webkit-font-smoothing:antialiase
   </section>
 
   <!-- ============ DEMO B: EXTRACTION ============ -->
-  <section aria-label="Демо: извлечение фактов" style="background:#FFFFFF;border:1px solid #D9E3EB;border-radius:22px;padding:clamp(18px,3vw,32px);display:flex;flex-direction:column;gap:16px;margin-top:20px">
+  <section aria-label="Demo: fact extraction" style="background:#FFFFFF;border:1px solid #D9E3EB;border-radius:22px;padding:clamp(18px,3vw,32px);display:flex;flex-direction:column;gap:16px;margin-top:20px">
     <div style="display:flex;flex-direction:column;gap:6px">
-      <span style="display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:99px;background:#EAF4FB;color:#1A79C7;font:500 13px Inter,system-ui,sans-serif;width:fit-content"><span style="width:7px;height:7px;border-radius:50%;background:#31B545"></span>живое демо · заметка → факты</span>
-      <p style="margin:6px 0 0;font:400 14.5px/1.5 Inter,system-ui,sans-serif;color:#5A7284">Так это работает в боте: пишете заметку о человеке как попало — ИИ раскладывает её по полочкам.</p>
+      <span style="display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:99px;background:#EAF4FB;color:#1A79C7;font:500 13px Inter,system-ui,sans-serif;width:fit-content"><span style="width:7px;height:7px;border-radius:50%;background:#31B545"></span>live demo · note → facts</span>
+      <p style="margin:6px 0 0;font:400 14.5px/1.5 Inter,system-ui,sans-serif;color:#5A7284">This is how the bot works: jot down a messy note about someone — AI sorts it into tidy fields.</p>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;align-items:start">
       <div style="display:flex;flex-direction:column;gap:10px">
@@ -112,19 +112,19 @@ body{margin:0;background:#E7EDF2;color:#13232F;-webkit-font-smoothing:antialiase
             <button type="button" onClick="{{ ex.use }}" style="font:500 13px Inter,system-ui,sans-serif;color:{{ ex.color }};background:{{ ex.bg }};border:1px solid {{ ex.border }};cursor:pointer;padding:7px 12px;border-radius:99px" style-hover="border-color:#229ED9" style-focus="outline:2px solid #1A79C7;outline-offset:2px">{{ ex.label }}</button>
           </sc-for>
         </div>
-        <textarea rows="4" value="{{ note }}" onChange="{{ onNote }}" placeholder="Вставьте заметку о человеке — или возьмите пример выше" style="font:400 15px/1.55 Inter,system-ui,sans-serif;color:#13232F;border:1px solid #C4D8E6;border-radius:12px;padding:12px 14px;resize:vertical;background:#FBFDFE;outline:none" style-focus="border-color:#229ED9;box-shadow:0 0 0 3px rgba(34,158,217,0.18)"></textarea>
-        <button type="button" onClick="{{ onExtract }}" style="display:inline-flex;align-items:center;gap:8px;background:#229ED9;color:#FFFFFF;border:none;cursor:pointer;font:600 15px/1 Inter,system-ui,sans-serif;padding:12px 20px;border-radius:12px;width:fit-content" style-hover="background:#1A79C7" style-focus="outline:2px solid #13232F;outline-offset:2px">Извлечь факты</button>
-        <span style="font:400 12px/1.5 JetBrains Mono,monospace;color:#8FA4B3">// в прототипе извлечение заскриптовано на примерах, в проде это делает LLM</span>
+        <textarea rows="4" value="{{ note }}" onChange="{{ onNote }}" placeholder="Paste a note about someone — or pick an example above" style="font:400 15px/1.55 Inter,system-ui,sans-serif;color:#13232F;border:1px solid #C4D8E6;border-radius:12px;padding:12px 14px;resize:vertical;background:#FBFDFE;outline:none" style-focus="border-color:#229ED9;box-shadow:0 0 0 3px rgba(34,158,217,0.18)"></textarea>
+        <button type="button" onClick="{{ onExtract }}" style="display:inline-flex;align-items:center;gap:8px;background:#229ED9;color:#FFFFFF;border:none;cursor:pointer;font:600 15px/1 Inter,system-ui,sans-serif;padding:12px 20px;border-radius:12px;width:fit-content" style-hover="background:#1A79C7" style-focus="outline:2px solid #13232F;outline-offset:2px">Extract facts</button>
+        <span style="font:400 12px/1.5 JetBrains Mono,monospace;color:#8FA4B3">// in this prototype extraction is scripted on the examples; in production an LLM does it</span>
       </div>
       <div style="background:#F6FAFC;border:1px solid #E4EBF1;border-radius:16px;padding:18px;min-height:180px;display:flex;flex-direction:column;gap:10px">
         <sc-if value="{{ extractIdle }}" hint-placeholder-val="{{ false }}">
-          <span style="margin:auto;font:400 14px/1.5 Inter,system-ui,sans-serif;color:#8FA4B3;text-align:center;max-width:240px">Здесь появятся извлечённые факты</span>
+          <span style="margin:auto;font:400 14px/1.5 Inter,system-ui,sans-serif;color:#8FA4B3;text-align:center;max-width:240px">Extracted facts will appear here</span>
         </sc-if>
         <sc-if value="{{ extracting }}" hint-placeholder-val="{{ false }}">
-          <span aria-live="polite" style="margin:auto;display:flex;gap:5px;align-items:center;font:400 14px Inter,system-ui,sans-serif;color:#5A7284">анализирую<span style="width:5px;height:5px;border-radius:50%;background:#8FA4B3;animation:tgDot 1.1s infinite"></span><span style="width:5px;height:5px;border-radius:50%;background:#8FA4B3;animation:tgDot 1.1s 0.18s infinite"></span><span style="width:5px;height:5px;border-radius:50%;background:#8FA4B3;animation:tgDot 1.1s 0.36s infinite"></span></span>
+          <span aria-live="polite" style="margin:auto;display:flex;gap:5px;align-items:center;font:400 14px Inter,system-ui,sans-serif;color:#5A7284">analyzing<span style="width:5px;height:5px;border-radius:50%;background:#8FA4B3;animation:tgDot 1.1s infinite"></span><span style="width:5px;height:5px;border-radius:50%;background:#8FA4B3;animation:tgDot 1.1s 0.18s infinite"></span><span style="width:5px;height:5px;border-radius:50%;background:#8FA4B3;animation:tgDot 1.1s 0.36s infinite"></span></span>
         </sc-if>
         <sc-if value="{{ hasFacts }}" hint-placeholder-val="{{ true }}">
-          <span style="font:500 11.5px JetBrains Mono,monospace;color:#8FA4B3">извлечено</span>
+          <span style="font:500 11.5px JetBrains Mono,monospace;color:#8FA4B3">extracted</span>
           <sc-for list="{{ facts }}" as="f" hint-placeholder-count="4">
             <div style="display:flex;gap:10px;align-items:baseline;background:#FFFFFF;border:1px solid #E4EBF1;border-radius:11px;padding:9px 13px;animation:{{ anim }}">
               <span style="font:500 12px JetBrains Mono,monospace;color:#1A79C7;flex:none;min-width:110px">{{ f.k }}</span>
@@ -133,7 +133,7 @@ body{margin:0;background:#E7EDF2;color:#13232F;-webkit-font-smoothing:antialiase
           </sc-for>
         </sc-if>
         <sc-if value="{{ unknownNote }}" hint-placeholder-val="{{ false }}">
-          <div style="margin:auto 0;font:400 14px/1.55 Inter,system-ui,sans-serif;color:#5A7284;background:#FFFFFF;border:1px solid #E4EBF1;border-radius:11px;padding:12px 14px">В прототипе извлечение заскриптовано на трёх примерах — возьмите один из них. В рабочей версии любой текст разбирает LLM.</div>
+          <div style="margin:auto 0;font:400 14px/1.55 Inter,system-ui,sans-serif;color:#5A7284;background:#FFFFFF;border:1px solid #E4EBF1;border-radius:11px;padding:12px 14px">In this prototype extraction is scripted on the three examples — pick one of them. In the working version an LLM parses any text.</div>
         </sc-if>
       </div>
     </div>
@@ -142,16 +142,16 @@ body{margin:0;background:#E7EDF2;color:#13232F;-webkit-font-smoothing:antialiase
   <!-- ============ CASE STORY ============ -->
   <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:24px">
     <div style="background:#FFFFFF;border:1px solid #D9E3EB;border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
-      <span style="font:500 12.5px JetBrains Mono,monospace;color:#8FA4B3">01 · задача</span>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:#2C4254;text-wrap:pretty">Контакты и связи теряются: где познакомились, о чём договорились, кто кого представил. Обычная CRM для этого слишком тяжёлая.</p>
+      <span style="font:500 12.5px JetBrains Mono,monospace;color:#8FA4B3">01 · problem</span>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:#2C4254;text-wrap:pretty">Contacts and connections slip away: where you met, what you agreed on, who introduced whom. A regular CRM is far too heavy for this.</p>
     </div>
     <div style="background:#FFFFFF;border:1px solid #D9E3EB;border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
-      <span style="font:500 12.5px JetBrains Mono,monospace;color:#8FA4B3">02 · как решал</span>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:#2C4254;text-wrap:pretty">Заметки свободным текстом прямо в бота. LLM извлекает факты — имя, контекст знакомства, интересы, договорённости — и связывает людей в граф. Мини-апп для просмотра и поиска.</p>
+      <span style="font:500 12.5px JetBrains Mono,monospace;color:#8FA4B3">02 · solution</span>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:#2C4254;text-wrap:pretty">Free-form notes straight into the bot. An LLM extracts the facts — name, how you met, interests, agreements — and links people into a graph. A mini app for browsing and search.</p>
     </div>
     <div style="background:#FFFFFF;border:1px solid #D9E3EB;border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
-      <span style="font:500 12.5px JetBrains Mono,monospace;color:#8FA4B3">03 · результат</span>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:#2C4254;text-wrap:pretty"><strong style="color:#1A79C7">Рабочая версия.</strong> Использую сам: ИИ-извлечение фактов работает в проде, а не в презентации.</p>
+      <span style="font:500 12.5px JetBrains Mono,monospace;color:#8FA4B3">03 · result</span>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:#2C4254;text-wrap:pretty"><strong style="color:#1A79C7">Working version.</strong> I use it myself: AI fact extraction runs in production, not in a slide deck.</p>
     </div>
   </section>
 
@@ -164,13 +164,13 @@ body{margin:0;background:#E7EDF2;color:#13232F;-webkit-font-smoothing:antialiase
   <dc-import name="CaseCTA" hint-size="100%,170px"></dc-import>
 
   <div style="display:flex;align-items:center;gap:12px;margin-top:18px;flex-wrap:wrap">
-    <a href="case-autopricer.html" style="margin-left:auto;font:500 15px Inter,system-ui,sans-serif;color:#1A79C7;text-decoration:none;border-radius:8px;padding:6px 8px" style-hover="background:#EAF4FB" style-focus="outline:2px solid #1A79C7;outline-offset:2px">следующий кейс: автопрайсер →</a>
+    <a href="case-autopricer.html" style="margin-left:auto;font:500 15px Inter,system-ui,sans-serif;color:#1A79C7;text-decoration:none;border-radius:8px;padding:6px 8px" style-hover="background:#EAF4FB" style-focus="outline:2px solid #1A79C7;outline-offset:2px">next case: marketplace autopricer →</a>
   </div>
 </main>
 
 <dc-import name="Footer" brand-name="{{ brandName }}" hint-size="100%,110px"></dc-import>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;brandName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Даниил Яценко&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;brandName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Daniil Yatsenko&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
 class Component extends DCLogic {
   constructor(props) {
     super(props);
@@ -182,22 +182,22 @@ class Component extends DCLogic {
       extractState: 'idle', // idle | busy | done | unknown
       facts: [],
       nodes: [
-        { id: 'me',    name: 'Вы',    initial: 'Я', role: 'центр графа', x: 320, y: 230, me: true,
-          facts: [{ k: 'контактов', v: '8 в этом демо (в рабочей версии — сотни)' }], links: ['igor', 'anya', 'pasha', 'lev', 'sonya'] },
-        { id: 'igor',  name: 'Игорь', initial: 'И', role: 'CTO · финтех', x: 150, y: 110,
-          facts: [{ k: 'познакомились', v: 'конференция Heroes of Deep Tech' }, { k: 'интересы', v: 'вейксёрф, велотуры' }, { k: 'последний контакт', v: 'договорились созвониться в четверг' }], links: ['me', 'marina'] },
-        { id: 'anya',  name: 'Аня',   initial: 'А', role: 'продуктовый дизайнер', x: 500, y: 100,
-          facts: [{ k: 'познакомились', v: 'демо-день, представила Марина' }, { k: 'город', v: 'Стамбул' }, { k: 'факт', v: 'делает собственный шрифт' }], links: ['me', 'marina', 'timur'] },
-        { id: 'pasha', name: 'Паша',  initial: 'П', role: 'владелец сети кофеен', x: 140, y: 330,
-          facts: [{ k: 'познакомились', v: 'баня, через Льва' }, { k: 'потребность', v: 'ищет подрядчика на мини-апп' }, { k: 'статус', v: 'тёплый лид' }], links: ['me', 'lev'] },
-        { id: 'marina', name: 'Марина', initial: 'М', role: 'комьюнити-менеджер', x: 330, y: 60,
-          facts: [{ k: 'роль в графе', v: 'познакомила с Игорем и Аней' }, { k: 'интересы', v: 'нетворкинг-ивенты' }], links: ['igor', 'anya'] },
-        { id: 'lev',   name: 'Лев',   initial: 'Л', role: 'инвестор', x: 300, y: 390,
-          facts: [{ k: 'познакомились', v: 'питч-сессия акселератора' }, { k: 'последний контакт', v: 'спрашивал про метрики подписки' }], links: ['me', 'pasha', 'sonya'] },
-        { id: 'sonya', name: 'Соня',  initial: 'С', role: 'маркетолог', x: 520, y: 330,
-          facts: [{ k: 'познакомились', v: 'чат выпускников курса' }, { k: 'договорённость', v: 'обмен аудиториями в каналах' }], links: ['me', 'lev', 'timur'] },
-        { id: 'timur', name: 'Тимур', initial: 'Т', role: 'iOS-разработчик', x: 560, y: 200,
-          facts: [{ k: 'познакомились', v: 'хакатон, были в одной команде' }, { k: 'интересы', v: 'инди-приложения' }], links: ['anya', 'sonya'] },
+        { id: 'me',    name: 'You',    initial: 'Y', role: 'center of the graph', x: 320, y: 230, me: true,
+          facts: [{ k: 'contacts', v: '8 in this demo (hundreds in the working version)' }], links: ['igor', 'anya', 'pasha', 'lev', 'sonya'] },
+        { id: 'igor',  name: 'Igor', initial: 'I', role: 'CTO · fintech', x: 150, y: 110,
+          facts: [{ k: 'met at', v: 'Heroes of Deep Tech conference' }, { k: 'interests', v: 'wakesurfing, bike tours' }, { k: 'last contact', v: 'agreed to call on Thursday' }], links: ['me', 'marina'] },
+        { id: 'anya',  name: 'Anya',   initial: 'A', role: 'product designer', x: 500, y: 100,
+          facts: [{ k: 'met at', v: 'demo day, introduced by Marina' }, { k: 'city', v: 'Istanbul' }, { k: 'fact', v: 'designing her own typeface' }], links: ['me', 'marina', 'timur'] },
+        { id: 'pasha', name: 'Pasha',  initial: 'P', role: 'owns a coffee shop chain', x: 140, y: 330,
+          facts: [{ k: 'met at', v: 'sauna, through Lev' }, { k: 'need', v: 'looking for a mini app contractor' }, { k: 'status', v: 'warm lead' }], links: ['me', 'lev'] },
+        { id: 'marina', name: 'Marina', initial: 'M', role: 'community manager', x: 330, y: 60,
+          facts: [{ k: 'role in graph', v: 'introduced Igor and Anya' }, { k: 'interests', v: 'networking events' }], links: ['igor', 'anya'] },
+        { id: 'lev',   name: 'Lev',   initial: 'L', role: 'investor', x: 300, y: 390,
+          facts: [{ k: 'met at', v: 'accelerator pitch session' }, { k: 'last contact', v: 'asked about subscription metrics' }], links: ['me', 'pasha', 'sonya'] },
+        { id: 'sonya', name: 'Sonya',  initial: 'S', role: 'marketer', x: 520, y: 330,
+          facts: [{ k: 'met at', v: 'course alumni chat' }, { k: 'agreement', v: 'audience swap between channels' }], links: ['me', 'lev', 'timur'] },
+        { id: 'timur', name: 'Timur', initial: 'T', role: 'iOS developer', x: 560, y: 200,
+          facts: [{ k: 'met at', v: 'hackathon, same team' }, { k: 'interests', v: 'indie apps' }], links: ['anya', 'sonya'] },
       ],
     };
     this._drag = null;
@@ -223,16 +223,16 @@ class Component extends DCLogic {
     }));
 
     const EXAMPLES = [
-      { label: 'про Игоря (конференция)', text: 'Познакомился с Игорем на Heroes of Deep Tech, он CTO в финтехе, увлекается вейксёрфом, договорились созвониться в четверг',
-        facts: [{ k: 'имя', v: 'Игорь' }, { k: 'познакомились', v: 'Heroes of Deep Tech' }, { k: 'роль', v: 'CTO, финтех' }, { k: 'интересы', v: 'вейксёрф' }, { k: 'следующий шаг', v: 'созвон в четверг' }] },
-      { label: 'про Аню (демо-день)', text: 'Аня — дизайнер из Стамбула, нас познакомила Марина на демо-дне, сейчас делает собственный шрифт',
-        facts: [{ k: 'имя', v: 'Аня' }, { k: 'роль', v: 'дизайнер' }, { k: 'город', v: 'Стамбул' }, { k: 'через кого', v: 'Марина' }, { k: 'факт', v: 'делает собственный шрифт' }] },
-      { label: 'про Пашу (лид)', text: 'Виделся с Пашей в бане, у него сеть кофеен, ищет подрядчика на мини-апп с программой лояльности',
-        facts: [{ k: 'имя', v: 'Паша' }, { k: 'контекст', v: 'баня' }, { k: 'бизнес', v: 'сеть кофеен' }, { k: 'потребность', v: 'мини-апп с лояльностью' }, { k: 'метка', v: 'тёплый лид' }] },
+      { label: 'about Igor (conference)', text: 'Met Igor at Heroes of Deep Tech, he is a CTO at a fintech, into wakesurfing, agreed to call on Thursday',
+        facts: [{ k: 'name', v: 'Igor' }, { k: 'met at', v: 'Heroes of Deep Tech' }, { k: 'role', v: 'CTO, fintech' }, { k: 'interests', v: 'wakesurfing' }, { k: 'next step', v: 'call on Thursday' }] },
+      { label: 'about Anya (demo day)', text: 'Anya is a designer from Istanbul, Marina introduced us at a demo day, she is designing her own typeface',
+        facts: [{ k: 'name', v: 'Anya' }, { k: 'role', v: 'designer' }, { k: 'city', v: 'Istanbul' }, { k: 'introduced by', v: 'Marina' }, { k: 'fact', v: 'designing her own typeface' }] },
+      { label: 'about Pasha (lead)', text: 'Saw Pasha at the sauna, he owns a coffee shop chain, looking for a contractor to build a loyalty mini app',
+        facts: [{ k: 'name', v: 'Pasha' }, { k: 'context', v: 'sauna' }, { k: 'business', v: 'coffee shop chain' }, { k: 'need', v: 'loyalty mini app' }, { k: 'tag', v: 'warm lead' }] },
     ];
 
     return {
-      brandName: this.props.brandName ?? 'Даниил Яценко',
+      brandName: this.props.brandName ?? 'Daniil Yatsenko',
       svgRef: this._svgRef,
       svgCursor: this._drag ? 'grabbing' : 'default',
       anim: reduced ? 'none' : 'bubbleIn 0.24s ease both',

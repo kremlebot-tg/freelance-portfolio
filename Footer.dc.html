@@ -25,7 +25,7 @@
     </nav>
   </div>
   <div style="max-width:1140px;margin:0 auto;padding:0 20px 24px;display:flex;align-items:center;gap:8px 24px;flex-wrap:wrap;border-top:0">
-    <span style="font:400 12.5px/1.5 Inter,system-ui,sans-serif;color:#8FA4B3">ИП Яценко Д. · {{ requisites }}</span>
+    <span style="font:400 12.5px/1.5 Inter,system-ui,sans-serif;color:#8FA4B3">{{ requisitesFull }} · {{ requisites }}</span>
     <nav aria-label="Правовая информация" style="display:flex;gap:2px 14px;margin-left:auto;flex-wrap:wrap">
       <a href="privacy.html" style="font:400 12.5px/1.5 Inter,system-ui,sans-serif;color:#8FA4B3;text-decoration:none;border-radius:4px" style-hover="color:#1A79C7;text-decoration:underline" style-focus="outline:2px solid #1A79C7;outline-offset:1px">Политика конфиденциальности</a>
       <a href="consent.html" style="font:400 12.5px/1.5 Inter,system-ui,sans-serif;color:#8FA4B3;text-decoration:none;border-radius:4px" style-hover="color:#1A79C7;text-decoration:underline" style-focus="outline:2px solid #1A79C7;outline-offset:1px">Согласие на обработку ПДн</a>
@@ -39,7 +39,8 @@ class Component extends DCLogic {
     const cfg = (typeof window !== 'undefined' && window.SITE_CONFIG) || {};
     return {
       brandName: this.props.brandName ?? 'Даниил Яценко',
-      requisites: cfg.requisites || 'ИНН 000000000000 · ОГРНИП 000000000000000',
+      requisitesFull: cfg.requisitesFull || 'ИП Яценко Даниил [ОТЧЕСТВО]',
+      requisites: cfg.requisites || 'ИНН 502991709786 · ОГРНИП [PLACEHOLDER]',
     };
   }
 }

@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Кейс: бот-автопрайсер для маркетплейса на 5500 товаров — Даниил Яценко</title>
+<title>Кейс: бот-автопрайсер для маркетплейса на 5500 товаров — Re:dnd</title>
 <meta name="description" content="Автоматическое ценообразование для маркетплейса: цены на ~5500 товаров пересчитываются от себестоимости, маржи и коридора. Собственный продукт. Живое демо внутри.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="alternate" hreflang="ru" href="https://kremlebot-tg.github.io/freelance-portfolio/case-autopricer.html">
-<link rel="alternate" hreflang="en" href="https://kremlebot-tg.github.io/freelance-portfolio/en/case-autopricer.html">
-<link rel="alternate" hreflang="x-default" href="https://kremlebot-tg.github.io/freelance-portfolio/case-autopricer.html">
+<link rel="alternate" hreflang="ru" href="https://rednd.ru/case-autopricer.html">
+<link rel="alternate" hreflang="en" href="https://rednd.ru/en/case-autopricer.html">
+<link rel="alternate" hreflang="x-default" href="https://rednd.ru/case-autopricer.html">
 <script src="./site-config.js"></script>
 <script src="./support.js"></script>
 </head>
@@ -149,7 +149,7 @@
 
 <dc-import name="Footer" brand-name="{{ brandName }}" hint-size="100%,110px"></dc-import>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;brandName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Даниил Яценко&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;brandName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Re:dnd&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
 class Component extends DCLogic {
   state = { costDelta: 0, fulfil: 75, margin: 20, floorPct: 30, maxMult: 3 };
 
@@ -193,7 +193,7 @@ class Component extends DCLogic {
     });
 
     return {
-      brandName: this.props.brandName ?? 'Даниил Яценко',
+      brandName: this.props.brandName ?? 'Re:dnd',
       costDelta: st.costDelta,
       costDeltaLabel: (st.costDelta > 0 ? '+' : '') + st.costDelta + ' %',
       fulfil: st.fulfil,

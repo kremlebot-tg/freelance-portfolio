@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Case Study: Subscription Telegram Bot with Recurring Payments — Daniil Yatsenko</title>
+<title>Case Study: Subscription Telegram Bot with Recurring Payments — Re:dnd</title>
 <meta name="description" content="A subscription Telegram service: plans as buttons, recurring payments via YooKassa, automatic access management. Own product, ~200 paying users. Live demo inside.">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
-<link rel="alternate" hreflang="ru" href="https://kremlebot-tg.github.io/freelance-portfolio/case-subscriptions.html">
-<link rel="alternate" hreflang="en" href="https://kremlebot-tg.github.io/freelance-portfolio/en/case-subscriptions.html">
-<link rel="alternate" hreflang="x-default" href="https://kremlebot-tg.github.io/freelance-portfolio/case-subscriptions.html">
+<link rel="alternate" hreflang="ru" href="https://rednd.ru/case-subscriptions.html">
+<link rel="alternate" hreflang="en" href="https://rednd.ru/en/case-subscriptions.html">
+<link rel="alternate" hreflang="x-default" href="https://rednd.ru/case-subscriptions.html">
 <script src="../site-config.js"></script>
 <script src="../support.js"></script>
 </head>
@@ -185,7 +185,7 @@ status:  active · auto-renew</pre>
 
 <dc-import name="Footer" brand-name="{{ brandName }}" hint-size="100%,110px"></dc-import>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;brandName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Daniil Yatsenko&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;brandName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Re:dnd&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
 class Component extends DCLogic {
   state = { stage: 0, typing: false, tariff: null, showPay: false, paying: false };
   // stage: 0 idle · 1 /start sent · 2 tariffs shown · 3 tariff chosen · 4 invoice shown · 5 paid
@@ -224,7 +224,7 @@ class Component extends DCLogic {
 
     const tariffsLocked = st.stage >= 3;
     return {
-      brandName: this.props.brandName ?? 'Daniil Yatsenko',
+      brandName: this.props.brandName ?? 'Re:dnd',
       chatRef: this._chatRef,
       anim: reduced ? 'none' : 'bubbleIn 0.26s ease both',
       statusText: st.typing ? 'typing…' : 'bot · online',

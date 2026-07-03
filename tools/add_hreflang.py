@@ -7,7 +7,7 @@
 import pathlib
 import re
 
-BASE = 'https://kremlebot-tg.github.io/freelance-portfolio/'
+BASE = 'https://rednd.ru/'
 PAIRED = [
     'index.html', 'projects.html', 'services.html', 'about.html',
     'contact.html', 'privacy.html',

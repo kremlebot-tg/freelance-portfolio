@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Разработка Telegram-ботов и мини-аппов под ключ — Даниил Яценко</title>
+<title>Re:dnd — разработка Telegram-ботов и мини-аппов под ключ</title>
 <meta name="description" content="Telegram-боты под ключ: приём заявок, оплаты и подписки через ЮКассу, ИИ-ассистенты, мини-аппы. Небольшая команда со своими продуктами в проде. 30 дней бесплатных исправлений, официально (ИП, договор).">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="alternate" hreflang="ru" href="https://kremlebot-tg.github.io/freelance-portfolio/">
-<link rel="alternate" hreflang="en" href="https://kremlebot-tg.github.io/freelance-portfolio/en/">
-<link rel="alternate" hreflang="x-default" href="https://kremlebot-tg.github.io/freelance-portfolio/">
+<link rel="alternate" hreflang="ru" href="https://rednd.ru/">
+<link rel="alternate" hreflang="en" href="https://rednd.ru/en/">
+<link rel="alternate" hreflang="x-default" href="https://rednd.ru/">
 <script src="./site-config.js"></script>
 <script src="./support.js"></script>
 </head>
@@ -42,9 +42,9 @@ body{margin:0;background:#E7EDF2;color:#13232F;-webkit-font-smoothing:antialiase
     <!-- Chat window -->
     <div aria-label="Демо-чат" style="justify-self:center;width:100%;max-width:432px;background:#FFFFFF;border:1px solid #D9E3EB;border-radius:20px;overflow:hidden;box-shadow:0 24px 60px -18px rgba(19,35,47,0.22)">
       <div style="display:flex;align-items:center;gap:11px;padding:12px 16px;background:#FFFFFF;border-bottom:1px solid #E4EBF1">
-        <span style="width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#38AEE5,#1A79C7);color:#FFFFFF;display:grid;place-items:center;font:600 14px Sora,sans-serif">{{ initials }}</span>
+        <span style="width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#38AEE5,#1A79C7);color:#FFFFFF;display:grid;place-items:center;font:600 14px Sora,sans-serif">{{ personInitials }}</span>
         <div style="display:flex;flex-direction:column;gap:2px">
-          <span style="font:600 15px/1 Sora,sans-serif">{{ brandName }}</span>
+          <span style="font:600 15px/1 Sora,sans-serif">{{ personName }}</span>
           <span style="font:400 13px/1 Inter,system-ui,sans-serif;color:{{ statusColor }}">{{ statusText }}</span>
         </div>
         <span style="margin-left:auto;font:500 12px JetBrains Mono,monospace;color:#8FA4B3">@bot</span>
@@ -269,7 +269,7 @@ body{margin:0;background:#E7EDF2;color:#13232F;-webkit-font-smoothing:antialiase
 
 <dc-import name="Footer" brand-name="{{ brandName }}" hint-size="100%,110px"></dc-import>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;brandName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Даниил Яценко&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Бренд&quot;},&quot;animateHero&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Герой&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;brandName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Re:dnd&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Бренд&quot;},&quot;animateHero&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Герой&quot;}}">
 class Component extends DCLogic {
   state = { step: 0, typing: false };
   componentDidMount() {
@@ -297,8 +297,9 @@ class Component extends DCLogic {
     return {
       testimonials,
       hasTestimonials: testimonials.length > 0,
-      brandName: this.props.brandName ?? 'Даниил Яценко',
-      initials: (this.props.brandName ?? 'Даниил Яценко').trim().split(/\s+/).slice(0, 2).map(p => p[0] || '').join('').toUpperCase(),
+      brandName: this.props.brandName ?? 'Re:dnd',
+      personName: 'Даниил Яценко',
+      personInitials: 'ДЯ',
       showB1: step >= 1,
       showB2: step >= 2,
       showB3: step >= 3,

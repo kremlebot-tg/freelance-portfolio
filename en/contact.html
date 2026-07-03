@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Get a Quote for Your Telegram Bot — Daniil Yatsenko</title>
+<title>Get a Quote for Your Telegram Bot — Re:dnd</title>
 <meta name="description" content="Describe your task — you'll get a solution sketch, price and timeline, usually within a couple of hours. Officially registered sole proprietor, contract, bank transfer.">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
-<link rel="alternate" hreflang="ru" href="https://kremlebot-tg.github.io/freelance-portfolio/contact.html">
-<link rel="alternate" hreflang="en" href="https://kremlebot-tg.github.io/freelance-portfolio/en/contact.html">
-<link rel="alternate" hreflang="x-default" href="https://kremlebot-tg.github.io/freelance-portfolio/contact.html">
+<link rel="alternate" hreflang="ru" href="https://rednd.ru/contact.html">
+<link rel="alternate" hreflang="en" href="https://rednd.ru/en/contact.html">
+<link rel="alternate" hreflang="x-default" href="https://rednd.ru/contact.html">
 <script src="../site-config.js"></script>
 <script src="../support.js"></script>
 </head>
@@ -166,7 +166,7 @@
 
 <dc-import name="Footer" brand-name="{{ brandName }}" hint-size="100%,110px"></dc-import>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;brandName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Daniil Yatsenko&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Brand&quot;},&quot;telegram&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;@your_handle&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Contacts&quot;},&quot;email&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;you@example.com&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Contacts&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;brandName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Re:dnd&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Brand&quot;},&quot;telegram&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;@your_handle&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Contacts&quot;},&quot;email&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;you@example.com&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Contacts&quot;}}">
 class Component extends DCLogic {
   state = { task: '', type: 'bots', budget: '', contact: '', website: '', submitted: false, error: false, errorKind: '', sending: false };
   renderVals() {
@@ -191,7 +191,7 @@ class Component extends DCLogic {
     const email = cfg.email || this.props.email || 'you@example.com';
     const tgHref = /^@[\w\d_]+$/.test(tg) ? 'https://t.me/' + tg.slice(1) : '#';
     return {
-      brandName: this.props.brandName ?? 'Daniil Yatsenko',
+      brandName: this.props.brandName ?? 'Re:dnd',
       telegram: tg,
       email,
       mailtoHref: 'mailto:' + email,

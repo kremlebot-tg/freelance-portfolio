@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Команда: разработка Telegram-ботов и мини-аппов — Даниил Яценко</title>
+<title>Команда: разработка Telegram-ботов и мини-аппов — Re:dnd</title>
 <meta name="description" content="Небольшая команда со своими продуктами в проде. Проекты лично ведёт Даниил — разработка и коммуникация; дизайн — Светлана, тестирование — Егор.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="alternate" hreflang="ru" href="https://kremlebot-tg.github.io/freelance-portfolio/about.html">
-<link rel="alternate" hreflang="en" href="https://kremlebot-tg.github.io/freelance-portfolio/en/about.html">
-<link rel="alternate" hreflang="x-default" href="https://kremlebot-tg.github.io/freelance-portfolio/about.html">
+<link rel="alternate" hreflang="ru" href="https://rednd.ru/about.html">
+<link rel="alternate" hreflang="en" href="https://rednd.ru/en/about.html">
+<link rel="alternate" hreflang="x-default" href="https://rednd.ru/about.html">
 <script src="./site-config.js"></script>
 <script src="./support.js"></script>
 </head>
@@ -25,14 +25,14 @@
 
   <div style="display:flex;align-items:center;gap:18px;margin-bottom:24px;flex-wrap:wrap">
     <sc-if value="{{ hasPhoto }}" hint-placeholder-val="{{ false }}">
-      <img src="{{ photoSrc }}" alt="Фото: {{ brandName }}" style="width:72px;height:72px;border-radius:50%;object-fit:cover;flex:none;border:1px solid #D9E3EB">
+      <img src="{{ photoSrc }}" alt="Фото: {{ personName }}" style="width:72px;height:72px;border-radius:50%;object-fit:cover;flex:none;border:1px solid #D9E3EB">
     </sc-if>
     <sc-if value="{{ noPhoto }}" hint-placeholder-val="{{ true }}">
       <span style="width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,#38AEE5,#1A79C7);color:#FFFFFF;display:grid;place-items:center;font:600 26px Sora,sans-serif;flex:none">{{ initials }}</span>
     </sc-if>
     <div style="display:flex;flex-direction:column;gap:6px">
       <h1 style="margin:0;font:700 clamp(28px,4vw,42px)/1.15 Sora,sans-serif;letter-spacing:-0.02em">Команда</h1>
-      <span style="display:flex;align-items:center;gap:8px;font:500 13.5px JetBrains Mono,monospace;color:#5A7284"><span style="width:8px;height:8px;border-radius:50%;background:#31B545"></span>{{ brandName }} · руководитель и разработчик</span>
+      <span style="display:flex;align-items:center;gap:8px;font:500 13.5px JetBrains Mono,monospace;color:#5A7284"><span style="width:8px;height:8px;border-radius:50%;background:#31B545"></span>{{ personName }} · руководитель и разработчик</span>
     </div>
   </div>
 
@@ -88,16 +88,18 @@
 
 <dc-import name="Footer" brand-name="{{ brandName }}" hint-size="100%,110px"></dc-import>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;brandName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Даниил Яценко&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;brandName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Re:dnd&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
 class Component extends DCLogic {
   renderVals() {
-    const name = this.props.brandName ?? 'Даниил Яценко';
+    const name = this.props.brandName ?? 'Re:dnd';
+    const person = 'Даниил Яценко';
     const cfg = (typeof window !== 'undefined' && window.SITE_CONFIG) || {};
     const photo = (cfg.aboutPhoto || '').trim();
     const lines = (cfg.aboutLines || []).map(s => ({ text: s }));
     return {
       brandName: name,
-      initials: String(name).trim().split(/\s+/).slice(0, 2).map(p => p[0] || '').join('').toUpperCase(),
+      personName: person,
+      initials: person.trim().split(/\s+/).slice(0, 2).map(p => p[0] || '').join('').toUpperCase(),
       hasPhoto: !!photo,
       noPhoto: !photo,
       photoSrc: photo || 'favicon.svg',

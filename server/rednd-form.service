@@ -1,0 +1,23 @@
+# /etc/systemd/system/rednd-form.service
+# Эндпоинт формы rednd.ru: POST /submit -> Telegram (см. form_server.py)
+[Unit]
+Description=Re:dnd site form endpoint (POST -> Telegram)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+ExecStart=/usr/bin/python3 /opt/rednd-form/form_server.py
+EnvironmentFile=/etc/rednd-form.env
+Restart=always
+RestartSec=3
+# минимальные привилегии: динамический пользователь, только чтение ФС
+DynamicUser=yes
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+CapabilityBoundingSet=
+AmbientCapabilities=
+
+[Install]
+WantedBy=multi-user.target

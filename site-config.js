@@ -2,16 +2,15 @@
 // НАСТРОЙКИ САЙТА — единственный файл, который нужно править.
 // ============================================================
 window.SITE_CONFIG = {
-  // --- Отправка формы заявки (Vercel serverless → Telegram) ---
-  // Как включить — см. README, раздел «Форма → Telegram (Vercel)».
-  // Токен бота и chat_id живут в Environment Variables на Vercel, НЕ здесь.
-  // Вставьте сюда URL функции вида https://<проект>.vercel.app/api/form :
-  formEndpoint: '',
+  // --- Отправка формы заявки (эндпоинт на нашем VPS → Telegram) ---
+  // Бэкенд: form.rednd.ru (nginx → 127.0.0.1:8010, systemd rednd-form).
+  // Токен бота и chat_id живут в /etc/rednd-form.env на сервере, НЕ здесь.
+  formEndpoint: 'https://form.rednd.ru/submit',
   // Пока endpoint пустой, форма работает в демо-режиме (показывает успех,
   // но никуда не отправляет) и честно подписана как прототип.
 
   // --- Прямые контакты (страницы «Связаться» / Contact) ---
-  telegram: '@ваш_ник',            // ← ник в Telegram, с @ (в процессе замены)
+  telegram: '@re_dnd',
   email: 'politushkin@gmail.com',
 
   // --- Цены услуг ---

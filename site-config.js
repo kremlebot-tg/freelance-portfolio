@@ -3,7 +3,7 @@
 // ============================================================
 window.SITE_CONFIG = {
   // --- Отправка формы заявки (эндпоинт на нашем VPS → Telegram) ---
-  // Бэкенд: form.rednd.ru (nginx → 127.0.0.1:8010, systemd rednd-form).
+  // Бэкенд: form.rednd.ru (nginx → 127.0.0.1:8011, systemd rednd-form).
   // Токен бота и chat_id живут в /etc/rednd-form.env на сервере, НЕ здесь.
   formEndpoint: 'https://form.rednd.ru/submit',
   // Пока endpoint пустой, форма работает в демо-режиме (показывает успех,

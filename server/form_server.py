@@ -2,12 +2,13 @@
 """Эндпоинт формы Re:dnd: POST /submit → сообщение в Telegram.
 
 Только стандартная библиотека Python — на сервере не нужны pip/venv.
-Слушает 127.0.0.1:8010, наружу смотрит только через nginx (form.rednd.ru).
+Слушает 127.0.0.1:$FORM_PORT (по умолчанию 8011) — наружу только через nginx.
 
 Секреты — в /etc/rednd-form.env (права 600), НЕ в этом файле:
     TG_BOT_TOKEN=...
     TG_CHAT_ID=...
     ALLOWED_ORIGINS=https://rednd.ru,https://www.rednd.ru
+    FORM_PORT=8011
 
 Логика повторяет прежний api/form.js: CORS по белому списку, honeypot
 с фейковым успехом, rate-limit по IP, обрезка длин, префикс [RU]/[EN].
@@ -125,4 +126,5 @@ class Handler(BaseHTTPRequestHandler):
 
 
 if __name__ == '__main__':
-    ThreadingHTTPServer(('127.0.0.1', 8010), Handler).serve_forever()
+    port = int(os.environ.get('FORM_PORT', '8011'))
+    ThreadingHTTPServer(('127.0.0.1', port), Handler).serve_forever()

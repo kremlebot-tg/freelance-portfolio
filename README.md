@@ -21,7 +21,7 @@ testimonials, aboutPhoto, aboutLines / aboutLinesEn
 
 Заявки с обеих форм (RU и EN) приходят сообщением в Telegram с префиксом
 `[RU]`/`[EN]`. Бэкенд — маленький python-сервис (только stdlib, без
-зависимостей) на нашем сервере: `form.rednd.ru` → nginx → `127.0.0.1:8010`
+зависимостей) на нашем сервере: `form.rednd.ru` → nginx → `127.0.0.1:8011`
 → Bot API. Исходники в [server/](server/):
 
 | Файл | Куда встаёт на сервере |

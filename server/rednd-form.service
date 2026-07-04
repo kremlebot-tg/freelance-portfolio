@@ -1,3 +1,7 @@
+# DEPRECATED (2026-07-04): форма переехала на Vercel (api/form.js).
+# Причина: IP VPS совпадает с VPN-сервером — у клиентов под VPN
+# запросы к form.rednd.ru таймаутились. Сервис на VPS оставлен
+# работающим, но фронт его больше не использует.
 # /etc/systemd/system/rednd-form.service
 # Эндпоинт формы rednd.ru: POST /submit -> Telegram (см. form_server.py)
 [Unit]

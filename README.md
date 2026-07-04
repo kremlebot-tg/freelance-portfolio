@@ -9,7 +9,7 @@
 ### 1. Контакты, цены, реквизиты — [site-config.js](site-config.js)
 
 ```js
-formEndpoint: 'https://form.rednd.ru/submit',  // эндпоинт на нашем VPS
+formEndpoint: 'https://rednd-form.vercel.app/api/form',  // Vercel (см. ниже)
 telegram: '@re_dnd',
 email: 'politushkin@gmail.com',
 requisites / requisitesFull,      // ← отчество и ОГРНИП вместо плейсхолдеров
@@ -59,8 +59,8 @@ reload nginx`). VPN-стека это не касается.
 
 `privacy.html` и `consent.html` — типовые тексты под 152-ФЗ, написанные
 под фактическое поведение сайта (форма собирает только контакт и описание
-задачи; передача через собственный сервер form.rednd.ru с доставкой в
-Telegram — передача в Telegram трансграничная; без cookies и аналитики). `/en/privacy.html` —
+задачи; передача через Vercel с доставкой в Telegram — трансграничная
+передача; без cookies и аналитики). `/en/privacy.html` —
 generic-версия без 152-ФЗ. ⚠️ Перед серьёзным использованием покажите
 тексты юристу.
 

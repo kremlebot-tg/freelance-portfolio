@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Case Study: MUTUAL — Telegram Mini App Prototype — Re:dnd</title>
-<meta name="description" content="A streetwear brand where the clothes introduce people: scanning a QR opens the owner's profile. Clickable 5-screen mini app prototype inside.">
+<title>Case Study: MUTUAL — QR Networking Concept & UX Prototype — Re:dnd</title>
+<meta name="description" content="MUTUAL, a product concept: streetwear where a static QR on a garment stands for the owner's identity, and meeting happens through consent. The flow and privacy are designed, with a clickable prototype of every screen. A concept, not launched. Live demo inside.">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <link rel="alternate" hreflang="ru" href="https://rednd.ru/case-mutual.html">
 <link rel="alternate" hreflang="en" href="https://rednd.ru/en/case-mutual.html">
@@ -35,11 +35,12 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
 
   <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:28px">
     <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
-      <span style="font:500 13px JetBrains Mono,monospace;color:var(--accent)">[Mini app]</span>
-      <span style="display:inline-flex;align-items:center;padding:5px 10px;border-radius:99px;background:var(--surface-2);color:var(--text-meta);font:500 12.5px Inter,system-ui,sans-serif">prototype</span>
+      <span style="font:500 13px JetBrains Mono,monospace;color:var(--accent)">[Product · Mini app]</span>
+      <span style="display:inline-flex;align-items:center;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif">own concept</span>
+      <span style="display:inline-flex;align-items:center;padding:5px 10px;border-radius:99px;background:var(--surface-2);color:var(--text-meta);border:1px solid var(--border);font:500 12.5px Inter,system-ui,sans-serif">clickable prototype</span>
     </div>
     <h1 style="margin:0;font:700 clamp(28px,4vw,42px)/1.15 Sora,sans-serif;letter-spacing:-0.02em">MUTUAL — meet via QR</h1>
-    <p style="margin:0;font:400 clamp(15.5px,1.6vw,18px)/1.55 Inter,system-ui,sans-serif;color:var(--text-body);max-width:640px">A streetwear brand where the clothes introduce people: scanning the QR on a garment opens the owner’s profile.</p>
+    <p style="margin:0;font:400 clamp(15.5px,1.6vw,18px)/1.55 Inter,system-ui,sans-serif;color:var(--text-body);max-width:720px">A streetwear brand where the clothes introduce people: a static QR on a garment stands for the owner’s identity, and the introduction only opens by mutual consent.</p>
   </div>
 
   <!-- ============ DEMO ============ -->
@@ -190,24 +191,36 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
   </section>
 
   <!-- ============ CASE STORY ============ -->
-  <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:24px">
+  <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,470px),1fr));gap:16px;margin-top:24px">
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
       <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">01 · problem</span>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">A streetwear brand where the clothes introduce people: every item carries a QR, and scanning it opens the owner’s profile and nearby community members.</p>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">Meeting people offline is chance and awkwardness: you notice someone whose style you vibe with, but there’s no bridge from “spotted them in a crowd” to “we’re chatting,” and making the first move is uncomfortable for both. MUTUAL turns the garment itself into that bridge: a streetwear brand where every item carries a QR, and scanning it opens not a product page but the owner’s identity and their consent to be contacted. The product problem wasn’t the code — it was designing the whole flow to stay useful without turning into surveillance.</p>
     </div>
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
       <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">02 · solution</span>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">A clickable mini app prototype: onboarding, scanning, a “who’s nearby” map, profiles, pings and chat. Exactly the flow you just walked through in the demo on the left.</p>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">The key decision is an inversion: the garment holds a fixed pointer, the identity lives online. The QR is printed on a physical garment and can’t be reprinted, so it carries not a person’s data but a stable link; everything mutable — name, interests, privacy, even the owner on resale — is edited in the online profile at any time. On top of that, a consent-based introduction flow: scan → ping the owner → chat opens only on mutual interest. I built a clickable Telegram Mini App prototype: onboarding, item activation, personal QR, scan, a “who’s nearby” map, profile, pings, chat — the whole path is walkable end to end; there’s no backend, the data is mocked.</p>
     </div>
-    <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
-      <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">03 · result</span>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty"><strong style="color:var(--accent)">A ready-to-test prototype</strong> for validating the idea with real people — before writing any “real” code.</p>
+    <div style="grid-column:1/-1;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
+      <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">03 · what was hard</span>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px"><strong style="color:var(--text)">What the scanner sees before consent.</strong> The first version of the flow went straight from scan to a profile with a “message” button — and it broke on privacy: any scan meant direct access to a person. I reworked it: before consent the scanner sees only a public storefront — the item, a nickname, a couple of interest tags — but no contacts, no precise location, and can’t message. Between profile and chat sits a gate: the only action is a “ping,” and the chat doesn’t exist at all until the owner answers in kind. Consent here isn’t a checkbox in settings — it’s the act of replying to the ping.</p>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px"><strong style="color:var(--text)">A “who’s nearby” map without stalking.</strong> The map is useful, but people’s location is the most dangerous screen in the product. I resolved the forks like this: you only appear on the map by explicitly opting in to be visible; distance is approximate (“~40 m,” not coordinates); and a person is shown only after a scan has already linked you, not to everyone. Precise geo, address and continuous position are never exposed — the map shows the fact of being close, not the place.</p>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-body);text-wrap:pretty;max-width:760px;border-left:2px solid var(--border-hover);padding-left:14px">The principle the whole flow is built around: in a product about meeting people, privacy isn’t a settings screen — it’s the direction of the flow itself. Every step first answers “what does this person reveal, and did they consent to it,” and only then “how does it look.”</p>
+    </div>
+    <div style="grid-column:1/-1;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
+      <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">04 · result</span>
+      <ul style="margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px;font:400 15px/1.55 Inter,system-ui,sans-serif;color:var(--text-strong);max-width:760px">
+        <li>The idea, the consent mechanics and the privacy are designed — the whole path from scan to chat.</li>
+        <li>A clickable Telegram Mini App prototype: 8 screens (onboarding, item activation, personal QR, scan, “who’s nearby” map, profile, pings, chat) — every transition is walkable end to end.</li>
+        <li>The prototype has no backend and mocked data: it’s a tool to validate the idea and the flow, not a running service.</li>
+        <li>Status: a concept with a working prototype. Not launched — no users, no paying customers, no audience metrics.</li>
+      </ul>
     </div>
   </section>
 
   <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:20px">
-    <span style="font:500 13px JetBrains Mono,monospace;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 11px">Mini App</span>
+    <span style="font:500 13px JetBrains Mono,monospace;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 11px">Telegram Mini App</span>
     <span style="font:500 13px JetBrains Mono,monospace;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 11px">UX prototype</span>
+    <span style="font:500 13px JetBrains Mono,monospace;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 11px">product design</span>
   </div>
 
   <dc-import name="CaseCTA" hint-size="100%,170px"></dc-import>

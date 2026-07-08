@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Кейс: Telegram мини-апп MUTUAL — знакомства через QR — Re:dnd</title>
-<meta name="description" content="Прототип мини-аппа для стритвир-бренда: скан QR на вещи открывает профиль владельца. Кликабельный прототип из 5 экранов внутри.">
+<title>Кейс: MUTUAL — концепт знакомств через QR и UX-прототип — Re:dnd</title>
+<meta name="description" content="Продуктовый концепт MUTUAL: стритвир, где статичный QR на вещи — личность владельца, а знакомство идёт через согласие. Спроектированы флоу и приватность, собран кликабельный прототип всех экранов. Концепт, не запущен. Живое демо внутри.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="alternate" hreflang="ru" href="https://rednd.ru/case-mutual.html">
 <link rel="alternate" hreflang="en" href="https://rednd.ru/en/case-mutual.html">
@@ -35,11 +35,12 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
 
   <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:28px">
     <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
-      <span style="font:500 13px JetBrains Mono,monospace;color:var(--accent)">[Мини-апп]</span>
-      <span style="display:inline-flex;align-items:center;padding:5px 10px;border-radius:99px;background:var(--surface-2);color:var(--text-meta);font:500 12.5px Inter,system-ui,sans-serif">прототип</span>
+      <span style="font:500 13px JetBrains Mono,monospace;color:var(--accent)">[Продукт · Мини-апп]</span>
+      <span style="display:inline-flex;align-items:center;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif">собственный концепт</span>
+      <span style="display:inline-flex;align-items:center;padding:5px 10px;border-radius:99px;background:var(--surface-2);color:var(--text-meta);border:1px solid var(--border);font:500 12.5px Inter,system-ui,sans-serif">кликабельный прототип</span>
     </div>
     <h1 style="margin:0;font:700 clamp(28px,4vw,42px)/1.15 Sora,sans-serif;letter-spacing:-0.02em">MUTUAL — знакомства через QR</h1>
-    <p style="margin:0;font:400 clamp(15.5px,1.6vw,18px)/1.55 Inter,system-ui,sans-serif;color:var(--text-body);max-width:640px">Стритвир-бренд, где вещь знакомит: скан QR на одежде открывает профиль владельца.</p>
+    <p style="margin:0;font:400 clamp(15.5px,1.6vw,18px)/1.55 Inter,system-ui,sans-serif;color:var(--text-body);max-width:720px">Стритвир-бренд, где вещь знакомит: статичный QR на одежде — это личность владельца, а само знакомство открывается только по взаимному согласию.</p>
   </div>
 
   <!-- ============ DEMO ============ -->
@@ -190,24 +191,36 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
   </section>
 
   <!-- ============ CASE STORY ============ -->
-  <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:24px">
+  <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,470px),1fr));gap:16px;margin-top:24px">
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
-      <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">01 · суть</span>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">Стритвир-бренд, где вещь знакомит: на каждой вещи — QR, скан открывает профиль владельца и людей рядом из комьюнити.</p>
+      <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">01 · задача</span>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">Знакомства в оффлайне — это случай и неловкость: увидел человека, чей стиль зацепил, а моста от «заметил в толпе» к «списались» нет, и подойти первым неудобно обоим. MUTUAL превращает в этот мост саму вещь: стритвир-бренд, где на каждой одежде — QR, и скан открывает не карточку товара, а личность владельца и его согласие на контакт. Продуктовая задача была не в коде, а в том, чтобы спроектировать весь флоу полезным — и так, чтобы он не превращался в слежку.</p>
     </div>
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
       <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">02 · как решал</span>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">Кликабельный прототип мини-аппа: онбординг, скан, карта «кто рядом», профили, пинги и чат. Ровно тот путь, что вы прошли в демо слева.</p>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">Ключевое решение — инверсия: на вещи неизменный указатель, личность живёт онлайн. QR напечатан на физической одежде, перепечатать его нельзя, поэтому в нём не данные человека, а стабильная ссылка; всё изменчивое — имя, интересы, приватность и даже владелец при перепродаже — правится в онлайн-профиле в любой момент. Поверх этого — флоу знакомства через согласие: скан → пинг владельцу → чат открывается только при взаимном интересе. Собрал кликабельный прототип Telegram Mini App: онбординг, активация вещи, личный QR, скан, карта «кто рядом», профиль, пинги, чат — весь путь проходится целиком; бэкенда нет, данные замоканы.</p>
     </div>
-    <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
-      <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">03 · результат</span>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty"><strong style="color:var(--accent)">Готовый прототип</strong> для проверки идеи на живых людях — до написания «настоящего» кода.</p>
+    <div style="grid-column:1/-1;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
+      <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">03 · что оказалось сложным</span>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px"><strong style="color:var(--text)">Что сканирующий видит до согласия.</strong> Первая версия флоу вела от скана сразу в профиль с кнопкой «написать» — и ломалась о приватность: любой скан = прямой доступ к человеку. Переделал так: до согласия сканирующий видит только публичную витрину — вещь, никнейм, пару тегов-интересов, — но не контакты, не точную гео и не может написать. Между профилем и чатом встал гейт: единственное действие — «пинг», а чат вообще не существует, пока владелец не ответил взаимностью. Согласие здесь — не галочка в настройках, а сам жест ответа на пинг.</p>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px"><strong style="color:var(--text)">Карта «кто рядом» без слежки.</strong> Карта полезна, но геолокация людей — самый опасный экран продукта. Развилки решал так: попасть на карту можно только по явному согласию быть видимым; расстояние — приблизительное («~40 м», а не координаты); и человек виден только после того, как скан уже связал вас, а не всем подряд. Точная гео, адрес и постоянное положение не раскрываются никогда — карта показывает факт близости, а не место.</p>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-body);text-wrap:pretty;max-width:760px;border-left:2px solid var(--border-hover);padding-left:14px">Принцип, вокруг которого собран весь флоу: в продукте про знакомства приватность — не экран настроек, а направление самого флоу. Каждый шаг сперва отвечает на «что человек раскрывает и дал ли он на это согласие» и только потом — «как это выглядит».</p>
+    </div>
+    <div style="grid-column:1/-1;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
+      <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">04 · результат</span>
+      <ul style="margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px;font:400 15px/1.55 Inter,system-ui,sans-serif;color:var(--text-strong);max-width:760px">
+        <li>Спроектированы идея, механика согласия и приватность — весь путь от скана до чата.</li>
+        <li>Кликабельный прототип Telegram Mini App: 8 экранов (онбординг, активация вещи, личный QR, скан, карта «кто рядом», профиль, пинги, чат) — все переходы проходятся целиком.</li>
+        <li>Прототип без бэкенда, данные замоканы: это инструмент проверить идею и флоу, а не рабочий сервис.</li>
+        <li>Статус: концепт с рабочим прототипом. Не запущен — пользователей, платящих и метрик аудитории нет.</li>
+      </ul>
     </div>
   </section>
 
   <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:20px">
-    <span style="font:500 13px JetBrains Mono,monospace;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 11px">Mini App</span>
+    <span style="font:500 13px JetBrains Mono,monospace;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 11px">Telegram Mini App</span>
     <span style="font:500 13px JetBrains Mono,monospace;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 11px">UX-прототип</span>
+    <span style="font:500 13px JetBrains Mono,monospace;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 11px">продуктовый дизайн</span>
   </div>
 
   <dc-import name="CaseCTA" hint-size="100%,170px"></dc-import>

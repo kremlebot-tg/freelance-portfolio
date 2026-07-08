@@ -18,7 +18,18 @@
 <x-dc>
 <helmet>
 <link href="fonts/fonts.css" rel="stylesheet">
-<style>*,*::before,*::after{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}</style>
+<style>*,*::before,*::after{box-sizing:border-box}
+.acc-sum{display:block;width:100%;text-align:left;background:none;border:none;padding:0;margin:0;font:inherit;color:inherit;cursor:pointer}
+.acc-sum:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+.acc-chev{display:inline-block;margin-left:8px;font-size:0.78em;color:var(--text-muted);transition:transform .3s ease;vertical-align:middle}
+.acc[data-state="open"] .acc-chev,.acc[data-state="closing"] .acc-chev{transform:rotate(180deg)}
+.acc-body{display:none}
+.acc-inner{display:flex;flex-direction:column;gap:10px;padding-top:10px}
+.acc[data-state="open"] .acc-body,.acc[data-state="closing"] .acc-body{display:block}
+.acc[data-state="closed"] .acc-body{display:none}
+@keyframes accIn{from{opacity:0;transform:translateY(-7px)}to{opacity:1;transform:none}}
+@keyframes accOut{from{opacity:1;transform:none}to{opacity:0;transform:translateY(-5px)}}
+@media (prefers-reduced-motion:reduce){.acc-body{animation:none!important}.acc-chev{transition:none}} body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}</style>
 </helmet>
 
 <dc-import name="Header" active="projects" brand-name="{{ brandName }}" hint-size="100%,64px"></dc-import>
@@ -133,9 +144,19 @@
     </div>
     <div style="grid-column:1/-1;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
       <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">03 · что оказалось сложным</span>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px">Первая версия юнит-экономики опиралась на заявленные тарифы маркетплейса и показала: магазин глубоко убыточен, большинство продаж в минус. Напрашивалось закрытие. Вместо этого я сверил расчёт с фактическими транзакциями — и картина оказалась противоположной. Разбор вскрыл систематические перекосы: реальная комиссия заметно ниже заявленной, реальная логистика — существенно ниже максимальных тарифов, а аналитический эндпоинт недосчитывал продажи против финансового.</p>
+      <div class="acc" data-state="{{ hardAState }}">
+        <button type="button" class="acc-sum" onClick="{{ onHardA }}" aria-expanded="{{ hardAExp }}" aria-controls="ap-h1" style="font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);max-width:760px">Первая версия юнит-экономики опиралась на заявленные тарифы маркетплейса и показала: магазин глубоко убыточен, большинство продаж в минус.<span class="acc-chev" aria-hidden="true">▾</span></button>
+        <div id="ap-h1" class="acc-body" style="animation:{{ hardAAnim }}"><div class="acc-inner">
+          <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px">Напрашивалось закрытие. Вместо этого я сверил расчёт с фактическими транзакциями — и картина оказалась противоположной. Разбор вскрыл систематические перекосы: реальная комиссия заметно ниже заявленной, реальная логистика — существенно ниже максимальных тарифов, а аналитический эндпоинт недосчитывал продажи против финансового.</p>
+        </div></div>
+      </div>
       <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-body);text-wrap:pretty;max-width:760px;border-left:2px solid var(--border-hover);padding-left:14px">Отсюда принцип, зашитый в систему: прогнозная модель — только для будущих цен, финансовый результат — только из фактических транзакций.</p>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px">Вторая находка того же порядка: цена, которую видит покупатель, и цена, которую начисляют продавцу, — разные числа. Вся оценка конкурентности была построена на неверном из них. После сверки отправлений с начислениями правило стало жёстким: экономика каждого товара обязана сходиться в плюс на собственном начислении, без учёта внешних скидок маркетплейса.</p>
+      <div class="acc" data-state="{{ hardBState }}">
+        <button type="button" class="acc-sum" onClick="{{ onHardB }}" aria-expanded="{{ hardBExp }}" aria-controls="ap-h2" style="font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);max-width:760px">Вторая находка того же порядка: цена, которую видит покупатель, и цена, которую начисляют продавцу, — разные числа.<span class="acc-chev" aria-hidden="true">▾</span></button>
+        <div id="ap-h2" class="acc-body" style="animation:{{ hardBAnim }}"><div class="acc-inner">
+          <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px">Вся оценка конкурентности была построена на неверном из них. После сверки отправлений с начислениями правило стало жёстким: экономика каждого товара обязана сходиться в плюс на собственном начислении, без учёта внешних скидок маркетплейса.</p>
+        </div></div>
+      </div>
     </div>
     <div style="grid-column:1/-1;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
       <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">04 · результат</span>
@@ -167,7 +188,7 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;brandName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Re:dnd&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
 class Component extends DCLogic {
-  state = { costDelta: 0, fulfil: 75, margin: 20, floorPct: 30, maxMult: 3 };
+  state = { costDelta: 0, fulfil: 75, margin: 20, floorPct: 30, maxMult: 3, hardA: 'open', hardB: 'closed' };
 
   renderVals() {
     const PRODUCTS = [
@@ -210,6 +231,10 @@ class Component extends DCLogic {
 
     return {
       brandName: this.props.brandName ?? 'Re:dnd',
+      hardAState: st.hardA, hardAAnim: st.hardA === 'open' ? 'accIn .3s ease both' : (st.hardA === 'closing' ? 'accOut .22s ease both' : 'none'), hardAExp: st.hardA === 'open' ? 'true' : 'false',
+      onHardA: () => { const c = this.state.hardA; if (c === 'closed') { this.setState({ hardA: 'open' }); } else { this.setState({ hardA: 'closing' }); setTimeout(() => { if (this.state.hardA === 'closing') this.setState({ hardA: 'closed' }); }, 240); } },
+      hardBState: st.hardB, hardBAnim: st.hardB === 'open' ? 'accIn .3s ease both' : (st.hardB === 'closing' ? 'accOut .22s ease both' : 'none'), hardBExp: st.hardB === 'open' ? 'true' : 'false',
+      onHardB: () => { const c = this.state.hardB; if (c === 'closed') { this.setState({ hardB: 'open' }); } else { this.setState({ hardB: 'closing' }); setTimeout(() => { if (this.state.hardB === 'closing') this.setState({ hardB: 'closed' }); }, 240); } },
       costDelta: st.costDelta,
       costDeltaLabel: (st.costDelta > 0 ? '+' : '') + st.costDelta + ' %',
       fulfil: st.fulfil,

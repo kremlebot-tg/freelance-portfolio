@@ -42,6 +42,11 @@
   --status-green-bg: #E7F6EC;
   --status-amber-fg: #B07817;
   --status-amber-bg: #FDF3E3;
+  /* демо подписок (бот-чат) — адаптируется под тёмную, светлые значения = оригинал */
+  --msg-out-bg: #D3ECFB;
+  --btn-ghost-bg: rgba(255,255,255,0.85);
+  --btn-ghost-border: rgba(26,121,199,0.2);
+  --tariff-chosen-fg: #13598F;
   color-scheme: light;
 }
 
@@ -83,6 +88,11 @@
   --status-green-bg: #163523;
   --status-amber-fg: #E0B24D;
   --status-amber-bg: #3A2E14;
+  /* демо подписок (бот-чат) — тёмные значения */
+  --msg-out-bg: #23405A;
+  --btn-ghost-bg: rgba(255,255,255,0.06);
+  --btn-ghost-border: rgba(72,169,240,0.30);
+  --tariff-chosen-fg: #A6D4F7;
   color-scheme: dark;
 }
 

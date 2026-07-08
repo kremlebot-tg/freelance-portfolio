@@ -20,6 +20,17 @@
 <link href="fonts/fonts.css" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box}
+.acc-sum{display:block;width:100%;text-align:left;background:none;border:none;padding:0;margin:0;font:inherit;color:inherit;cursor:pointer}
+.acc-sum:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+.acc-chev{display:inline-block;margin-left:8px;font-size:0.78em;color:var(--text-muted);transition:transform .3s ease;vertical-align:middle}
+.acc[data-state="open"] .acc-chev,.acc[data-state="closing"] .acc-chev{transform:rotate(180deg)}
+.acc-body{display:none}
+.acc-inner{display:flex;flex-direction:column;gap:10px;padding-top:10px}
+.acc[data-state="open"] .acc-body,.acc[data-state="closing"] .acc-body{display:block}
+.acc[data-state="closed"] .acc-body{display:none}
+@keyframes accIn{from{opacity:0;transform:translateY(-7px)}to{opacity:1;transform:none}}
+@keyframes accOut{from{opacity:1;transform:none}to{opacity:0;transform:translateY(-5px)}}
+@media (prefers-reduced-motion:reduce){.acc-body{animation:none!important}.acc-chev{transition:none}}
 body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
 @keyframes bubbleIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 </style>
@@ -117,11 +128,21 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
     </div>
     <div style="grid-column:1/-1;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
       <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">03 · что оказалось сложным</span>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px"><strong style="color:var(--text)">Зелёные проверки при мёртвой фиче.</strong> Реализовал «заморозку» серии дней — правки в четырёх местах, анализатор вернул ноль ошибок, сборка iOS прошла. Формально готово. По факту ключевая правка не записалась вовсе: инструмент редактирования прервался, а остальные три ссылались на значение, которое нигде не сохранялось. Анализатор молчал — поле формально использовалось в интерфейсе, и компилятору неважно, что оно никогда не пишется. Фича была мертва при полностью зелёной проверке. Поймал только дословным чтением тела функции.</p>
+      <div class="acc" data-state="{{ hardAState }}">
+        <button type="button" class="acc-sum" onClick="{{ onHardA }}" aria-expanded="{{ hardAExp }}" aria-controls="fa-h1" style="font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);max-width:760px"><strong style="color:var(--text)">Зелёные проверки при мёртвой фиче.</strong> Реализовал «заморозку» серии дней — правки в четырёх местах, анализатор вернул ноль ошибок, сборка iOS прошла.<span class="acc-chev" aria-hidden="true">▾</span></button>
+        <div id="fa-h1" class="acc-body" style="animation:{{ hardAAnim }}"><div class="acc-inner">
+          <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px">Формально готово. По факту ключевая правка не записалась вовсе: инструмент редактирования прервался, а остальные три ссылались на значение, которое нигде не сохранялось. Анализатор молчал — поле формально использовалось в интерфейсе, и компилятору неважно, что оно никогда не пишется. Фича была мертва при полностью зелёной проверке. Поймал только дословным чтением тела функции.</p>
+        </div></div>
+      </div>
       <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-body);text-wrap:pretty;max-width:760px;border-left:2px solid var(--border-hover);padding-left:14px">Отсюда правило: зелёные проверки доказывают, что код компилируется, а не что он делает то, что задумано. Теперь ни один отчёт об изменении не принимается без дословного дампа изменённого фрагмента.</p>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px"><strong style="color:var(--text)">Правильный ответ всегда первый.</strong> В тестах уроков нашлись два дефекта, и ни один не был в коде. Верный вариант систематически оказывался самым длинным — автор дописывал его пояснением, а неверные бросал куцыми, и сообразительный человек угадывал ответ по форме, не зная темы. Второй, найденный уже на устройстве: верный ответ стоял первым в каждом вопросе, потому что варианты рендерились строго по индексу.</p>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px">Чинил в двух слоях. В коде — перемешивание вариантов, но не в методе отрисовки: он вызывается на каждое обновление состояния, и кнопки прыгали бы под пальцем. Пришлось найти все точки перехода между вопросами и тасовать там, а заодно перевести пять мест проверки правильности с позиции в списке на сам объект ответа. В контенте — правило: варианты одной длины и одного грамматического строя, позиция верного распределена равномерно, неверные варианты это реальные заблуждения новичка, а не соломенные чучела. Проверяется скриптом при сборке контента.</p>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px">Почему оба слоя: перемешивание делает порядок в исходнике безвредным для приложения, но черновики читают живые люди — автор, рецензент, редактор. Документ, где верный ответ всегда первый, порождает слепоту у всех, кто его вычитывает.</p>
+      <div class="acc" data-state="{{ hardBState }}">
+        <button type="button" class="acc-sum" onClick="{{ onHardB }}" aria-expanded="{{ hardBExp }}" aria-controls="fa-h2" style="font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);max-width:760px"><strong style="color:var(--text)">Правильный ответ всегда первый.</strong> В тестах уроков нашлись два дефекта, и ни один не был в коде.<span class="acc-chev" aria-hidden="true">▾</span></button>
+        <div id="fa-h2" class="acc-body" style="animation:{{ hardBAnim }}"><div class="acc-inner">
+          <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px">Верный вариант систематически оказывался самым длинным — автор дописывал его пояснением, а неверные бросал куцыми, и сообразительный человек угадывал ответ по форме, не зная темы. Второй, найденный уже на устройстве: верный ответ стоял первым в каждом вопросе, потому что варианты рендерились строго по индексу.</p>
+          <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px">Чинил в двух слоях. В коде — перемешивание вариантов, но не в методе отрисовки: он вызывается на каждое обновление состояния, и кнопки прыгали бы под пальцем. Пришлось найти все точки перехода между вопросами и тасовать там, а заодно перевести пять мест проверки правильности с позиции в списке на сам объект ответа. В контенте — правило: варианты одной длины и одного грамматического строя, позиция верного распределена равномерно, неверные варианты это реальные заблуждения новичка, а не соломенные чучела. Проверяется скриптом при сборке контента.</p>
+          <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px">Почему оба слоя: перемешивание делает порядок в исходнике безвредным для приложения, но черновики читают живые люди — автор, рецензент, редактор. Документ, где верный ответ всегда первый, порождает слепоту у всех, кто его вычитывает.</p>
+        </div></div>
+      </div>
     </div>
     <div style="grid-column:1/-1;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
       <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">04 · результат</span>
@@ -153,7 +174,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;brandName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Re:dnd&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
 class Component extends DCLogic {
-  state = { qIndex: 0, picked: null, correctCount: 0, done: false };
+  state = { qIndex: 0, picked: null, correctCount: 0, done: false, hardA: 'open', hardB: 'closed' };
 
   renderVals() {
     const QUESTIONS = [
@@ -174,6 +195,10 @@ class Component extends DCLogic {
 
     return {
       brandName: this.props.brandName ?? 'Re:dnd',
+      hardAState: st.hardA, hardAAnim: st.hardA === 'open' ? 'accIn .3s ease both' : (st.hardA === 'closing' ? 'accOut .22s ease both' : 'none'), hardAExp: st.hardA === 'open' ? 'true' : 'false',
+      onHardA: () => { const c = this.state.hardA; if (c === 'closed') { this.setState({ hardA: 'open' }); } else { this.setState({ hardA: 'closing' }); setTimeout(() => { if (this.state.hardA === 'closing') this.setState({ hardA: 'closed' }); }, 240); } },
+      hardBState: st.hardB, hardBAnim: st.hardB === 'open' ? 'accIn .3s ease both' : (st.hardB === 'closing' ? 'accOut .22s ease both' : 'none'), hardBExp: st.hardB === 'open' ? 'true' : 'false',
+      onHardB: () => { const c = this.state.hardB; if (c === 'closed') { this.setState({ hardB: 'open' }); } else { this.setState({ hardB: 'closing' }); setTimeout(() => { if (this.state.hardB === 'closing') this.setState({ hardB: 'closed' }); }, 240); } },
       anim: reduced ? 'none' : 'bubbleIn 0.28s ease both',
       inLesson: !st.done,
       inDone: st.done,

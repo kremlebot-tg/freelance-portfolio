@@ -20,6 +20,17 @@
 <link href="fonts/fonts.css" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box}
+.acc-sum{display:block;width:100%;text-align:left;background:none;border:none;padding:0;margin:0;font:inherit;color:inherit;cursor:pointer}
+.acc-sum:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+.acc-chev{display:inline-block;margin-left:8px;font-size:0.78em;color:var(--text-muted);transition:transform .3s ease;vertical-align:middle}
+.acc[data-state="open"] .acc-chev,.acc[data-state="closing"] .acc-chev{transform:rotate(180deg)}
+.acc-body{display:none}
+.acc-inner{display:flex;flex-direction:column;gap:10px;padding-top:10px}
+.acc[data-state="open"] .acc-body,.acc[data-state="closing"] .acc-body{display:block}
+.acc[data-state="closed"] .acc-body{display:none}
+@keyframes accIn{from{opacity:0;transform:translateY(-7px)}to{opacity:1;transform:none}}
+@keyframes accOut{from{opacity:1;transform:none}to{opacity:0;transform:translateY(-5px)}}
+@media (prefers-reduced-motion:reduce){.acc-body{animation:none!important}.acc-chev{transition:none}}
 body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
 @keyframes bubbleIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 @keyframes pulseDot{0%,100%{box-shadow:0 0 0 0 rgba(49,181,69,0.5)}60%{box-shadow:0 0 0 14px rgba(49,181,69,0)}}
@@ -202,8 +213,18 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
     </div>
     <div style="grid-column:1/-1;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
       <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">03 · что оказалось сложным</span>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px"><strong style="color:var(--text)">Что сканирующий видит до согласия.</strong> Первая версия флоу вела от скана сразу в профиль с кнопкой «написать» — и ломалась о приватность: любой скан = прямой доступ к человеку. Переделал так: до согласия сканирующий видит только публичную витрину — вещь, никнейм, пару тегов-интересов, — но не контакты, не точную гео и не может написать. Между профилем и чатом встал гейт: единственное действие — «пинг», а чат вообще не существует, пока владелец не ответил взаимностью. Согласие здесь — не галочка в настройках, а сам жест ответа на пинг.</p>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px"><strong style="color:var(--text)">Карта «кто рядом» без слежки.</strong> Карта полезна, но геолокация людей — самый опасный экран продукта. Развилки решал так: попасть на карту можно только по явному согласию быть видимым; расстояние — приблизительное («~40 м», а не координаты); и человек виден только после того, как скан уже связал вас, а не всем подряд. Точная гео, адрес и постоянное положение не раскрываются никогда — карта показывает факт близости, а не место.</p>
+      <div class="acc" data-state="{{ hardAState }}">
+        <button type="button" class="acc-sum" onClick="{{ onHardA }}" aria-expanded="{{ hardAExp }}" aria-controls="mu-h1" style="font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);max-width:760px"><strong style="color:var(--text)">Что сканирующий видит до согласия.</strong> Первая версия флоу вела от скана сразу в профиль с кнопкой «написать» — и ломалась о приватность: любой скан = прямой доступ к человеку.<span class="acc-chev" aria-hidden="true">▾</span></button>
+        <div id="mu-h1" class="acc-body" style="animation:{{ hardAAnim }}"><div class="acc-inner">
+          <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px">Переделал так: до согласия сканирующий видит только публичную витрину — вещь, никнейм, пару тегов-интересов, — но не контакты, не точную гео и не может написать. Между профилем и чатом встал гейт: единственное действие — «пинг», а чат вообще не существует, пока владелец не ответил взаимностью. Согласие здесь — не галочка в настройках, а сам жест ответа на пинг.</p>
+        </div></div>
+      </div>
+      <div class="acc" data-state="{{ hardBState }}">
+        <button type="button" class="acc-sum" onClick="{{ onHardB }}" aria-expanded="{{ hardBExp }}" aria-controls="mu-h2" style="font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);max-width:760px"><strong style="color:var(--text)">Карта «кто рядом» без слежки.</strong> Карта полезна, но геолокация людей — самый опасный экран продукта.<span class="acc-chev" aria-hidden="true">▾</span></button>
+        <div id="mu-h2" class="acc-body" style="animation:{{ hardBAnim }}"><div class="acc-inner">
+          <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px">Развилки решал так: попасть на карту можно только по явному согласию быть видимым; расстояние — приблизительное («~40 м», а не координаты); и человек виден только после того, как скан уже связал вас, а не всем подряд. Точная гео, адрес и постоянное положение не раскрываются никогда — карта показывает факт близости, а не место.</p>
+        </div></div>
+      </div>
       <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-body);text-wrap:pretty;max-width:760px;border-left:2px solid var(--border-hover);padding-left:14px">Принцип, вокруг которого собран весь флоу: в продукте про знакомства приватность — не экран настроек, а направление самого флоу. Каждый шаг сперва отвечает на «что человек раскрывает и дал ли он на это согласие» и только потом — «как это выглядит».</p>
     </div>
     <div style="grid-column:1/-1;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
@@ -234,7 +255,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;brandName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Re:dnd&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
 class Component extends DCLogic {
-  state = { screen: 'onb', scanState: 'idle', pinged: false };
+  state = { screen: 'onb', scanState: 'idle', pinged: false, hardA: 'open', hardB: 'closed' };
   constructor(props) { super(props); this._timers = []; }
   componentWillUnmount() { this._timers.forEach(clearTimeout); }
   _reduced() { return typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches; }
@@ -255,6 +276,10 @@ class Component extends DCLogic {
 
     return {
       brandName: this.props.brandName ?? 'Re:dnd',
+      hardAState: st.hardA, hardAAnim: st.hardA === 'open' ? 'accIn .3s ease both' : (st.hardA === 'closing' ? 'accOut .22s ease both' : 'none'), hardAExp: st.hardA === 'open' ? 'true' : 'false',
+      onHardA: () => { const c = this.state.hardA; if (c === 'closed') { this.setState({ hardA: 'open' }); } else { this.setState({ hardA: 'closing' }); setTimeout(() => { if (this.state.hardA === 'closing') this.setState({ hardA: 'closed' }); }, 240); } },
+      hardBState: st.hardB, hardBAnim: st.hardB === 'open' ? 'accIn .3s ease both' : (st.hardB === 'closing' ? 'accOut .22s ease both' : 'none'), hardBExp: st.hardB === 'open' ? 'true' : 'false',
+      onHardB: () => { const c = this.state.hardB; if (c === 'closed') { this.setState({ hardB: 'open' }); } else { this.setState({ hardB: 'closing' }); setTimeout(() => { if (this.state.hardB === 'closing') this.setState({ hardB: 'closed' }); }, 240); } },
       anim: reduced ? 'none' : 'bubbleIn 0.26s ease both',
       scanAnim: reduced ? 'none' : 'scanLine 1.6s ease-in-out infinite',
       pulseAnim: reduced ? 'none' : 'pulseDot 1.8s ease-out infinite',

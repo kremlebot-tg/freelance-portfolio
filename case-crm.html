@@ -23,6 +23,17 @@
 body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
 @keyframes bubbleIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 @keyframes tgDot{0%,60%,100%{opacity:0.35}30%{opacity:1}}
+.acc-sum{display:block;width:100%;text-align:left;background:none;border:none;padding:0;margin:0;font:inherit;color:inherit;cursor:pointer}
+.acc-sum:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+.acc-chev{display:inline-block;margin-left:8px;font-size:0.78em;color:var(--text-muted);transition:transform .3s ease;vertical-align:middle}
+.acc[data-state="open"] .acc-chev,.acc[data-state="closing"] .acc-chev{transform:rotate(180deg)}
+.acc-body{display:none}
+.acc-inner{display:flex;flex-direction:column;gap:10px;padding-top:10px}
+.acc[data-state="open"] .acc-body,.acc[data-state="closing"] .acc-body{display:block}
+.acc[data-state="closed"] .acc-body{display:none}
+@keyframes accIn{from{opacity:0;transform:translateY(-7px)}to{opacity:1;transform:none}}
+@keyframes accOut{from{opacity:1;transform:none}to{opacity:0;transform:translateY(-5px)}}
+@media (prefers-reduced-motion:reduce){.acc-body{animation:none!important}.acc-chev{transition:none}}
 </style>
 </helmet>
 
@@ -154,11 +165,21 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
     </div>
     <div style="grid-column:1/-1;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
       <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">03 · что оказалось сложным</span>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px"><strong style="color:var(--text)">Фича, которая убивала экономику продукта.</strong> Спроектировал автоматический извлекатель фактов из всех входящих переписок — работал стабильно на прототипе. Через три дня обкатки биллинг показал: около 83 ₽ в день на одного пользователя. В пересчёте — примерно 2500 ₽ на пользователя в месяц против подписки в десять раз дешевле. Продукт был бы фундаментально убыточным.</p>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px">Перебрал варианты: урезать промпт (экономия ~30%, всё равно минус), кэшировать по хешу текста (реальный поток почти не повторяется), двухступенчатый гейт — дешёвая модель решает «есть ли тут факт», дорогая извлекает только при «да» (~40%, всё равно недостаточно).</p>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px">Решение — вырезать автоизвлечение целиком. Оставил бесплатные метаданные: кто написал и когда, это обычный SQL. Автомат теперь заводит карточку нового собеседника и обновляет дату последнего контакта, а дорогой ИИ подключается только когда пользователь сам пересылает сообщение — явное действие, окупается. Побочный бонус: снялся юридический риск автоматического чтения чужих переписок без согласия.</p>
+      <div class="acc" data-state="{{ hardAState }}">
+        <button type="button" class="acc-sum" onClick="{{ onHardA }}" aria-expanded="{{ hardAExp }}" aria-controls="crm-h1" style="font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);max-width:760px"><strong style="color:var(--text)">Фича, которая убивала экономику продукта.</strong> Спроектировал автоматический извлекатель фактов из всех входящих переписок — работал стабильно на прототипе.<span class="acc-chev" aria-hidden="true">▾</span></button>
+        <div id="crm-h1" class="acc-body" style="animation:{{ hardAAnim }}"><div class="acc-inner">
+          <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px">Через три дня обкатки биллинг показал: около 83 ₽ в день на одного пользователя. В пересчёте — примерно 2500 ₽ на пользователя в месяц против подписки в десять раз дешевле. Продукт был бы фундаментально убыточным.</p>
+          <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px">Перебрал варианты: урезать промпт (экономия ~30%, всё равно минус), кэшировать по хешу текста (реальный поток почти не повторяется), двухступенчатый гейт — дешёвая модель решает «есть ли тут факт», дорогая извлекает только при «да» (~40%, всё равно недостаточно).</p>
+          <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px">Решение — вырезать автоизвлечение целиком. Оставил бесплатные метаданные: кто написал и когда, это обычный SQL. Автомат теперь заводит карточку нового собеседника и обновляет дату последнего контакта, а дорогой ИИ подключается только когда пользователь сам пересылает сообщение — явное действие, окупается. Побочный бонус: снялся юридический риск автоматического чтения чужих переписок без согласия.</p>
+        </div></div>
+      </div>
       <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-body);text-wrap:pretty;max-width:760px;border-left:2px solid var(--border-hover);padding-left:14px">Принцип, который из этого вырос: unit-экономику измеряют на третий день, а не после запуска. Фича, которую любишь, вырезается, если она не сходится в деньгах.</p>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px"><strong style="color:var(--text)">Тихая поломка после каждого деплоя.</strong> После обновления бота ломалась связь с Telegram Business — пользователь переподключал, не помогало, в логах пусто. Два часа диагностики. Причина: фреймворк при старте сбрасывал очередь необработанных событий для чистого запуска, а Telegram шлёт уведомление о подключении Business ровно один раз — если бот в этот момент рестартует, оно теряется. Связь есть, но бот о ней не знает. Перебрал варианты, выбрал не сбрасывать очередь при старте — как бонус, события, накопленные за время обновления, доходят до бота, а для CRM это плюс: не теряются факты о новых контактах. Плюс добавил стартовый лог активных связей, чтобы тихая поломка стала видимой.</p>
+      <div class="acc" data-state="{{ hardBState }}">
+        <button type="button" class="acc-sum" onClick="{{ onHardB }}" aria-expanded="{{ hardBExp }}" aria-controls="crm-h2" style="font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);max-width:760px"><strong style="color:var(--text)">Тихая поломка после каждого деплоя.</strong> После обновления бота ломалась связь с Telegram Business — пользователь переподключал, не помогало, в логах пусто.<span class="acc-chev" aria-hidden="true">▾</span></button>
+        <div id="crm-h2" class="acc-body" style="animation:{{ hardBAnim }}"><div class="acc-inner">
+          <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px">Два часа диагностики. Причина: фреймворк при старте сбрасывал очередь необработанных событий для чистого запуска, а Telegram шлёт уведомление о подключении Business ровно один раз — если бот в этот момент рестартует, оно теряется. Связь есть, но бот о ней не знает. Перебрал варианты, выбрал не сбрасывать очередь при старте — как бонус, события, накопленные за время обновления, доходят до бота, а для CRM это плюс: не теряются факты о новых контактах. Плюс добавил стартовый лог активных связей, чтобы тихая поломка стала видимой.</p>
+        </div></div>
+      </div>
     </div>
     <div style="grid-column:1/-1;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
       <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">04 · результат</span>
@@ -198,6 +219,7 @@ class Component extends DCLogic {
     this._timers = [];
     this.state = {
       selected: 'igor',
+      hardA: 'open', hardB: 'closed',
       note: '',
       extractState: 'idle', // idle | busy | done | unknown
       facts: [],
@@ -253,6 +275,14 @@ class Component extends DCLogic {
 
     return {
       brandName: this.props.brandName ?? 'Re:dnd',
+      hardAState: st.hardA,
+      hardAAnim: st.hardA === 'open' ? 'accIn .3s ease both' : (st.hardA === 'closing' ? 'accOut .22s ease both' : 'none'),
+      hardAExp: st.hardA === 'open' ? 'true' : 'false',
+      onHardA: () => { const c = this.state.hardA; if (c === 'closed') { this.setState({ hardA: 'open' }); } else { this.setState({ hardA: 'closing' }); this._timers.push(setTimeout(() => { if (this.state.hardA === 'closing') this.setState({ hardA: 'closed' }); }, 240)); } },
+      hardBState: st.hardB,
+      hardBAnim: st.hardB === 'open' ? 'accIn .3s ease both' : (st.hardB === 'closing' ? 'accOut .22s ease both' : 'none'),
+      hardBExp: st.hardB === 'open' ? 'true' : 'false',
+      onHardB: () => { const c = this.state.hardB; if (c === 'closed') { this.setState({ hardB: 'open' }); } else { this.setState({ hardB: 'closing' }); this._timers.push(setTimeout(() => { if (this.state.hardB === 'closing') this.setState({ hardB: 'closed' }); }, 240)); } },
       svgRef: this._svgRef,
       svgCursor: this._drag ? 'grabbing' : 'default',
       anim: reduced ? 'none' : 'bubbleIn 0.24s ease both',

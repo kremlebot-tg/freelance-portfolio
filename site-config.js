@@ -2,14 +2,12 @@
 // НАСТРОЙКИ САЙТА — единственный файл, который нужно править.
 // ============================================================
 window.SITE_CONFIG = {
-  // --- Отправка формы заявки (Vercel serverless → Telegram) ---
-  // Бэкенд: api/form.js на Vercel (VPS-вариант не годился: IP совпадает
-  // с VPN-сервером, у клиентов под VPN запросы таймаутились).
-  // Токен бота и chat_id — в Environment Variables проекта Vercel, НЕ здесь.
-  // Если Vercel выдал проекту другой домен — поправьте только эту строку:
-  formEndpoint: 'https://rednd-form.vercel.app/api/form',
-  // Пока endpoint пустой, форма работает в демо-режиме (показывает успех,
-  // но никуда не отправляет) и честно подписана как прототип.
+  // --- Отправка формы заявки (Yandex Cloud, РФ → Telegram) ---
+  // Бэкенд: API Gateway → Cloud Function в Yandex Cloud (ru-central1).
+  // Заявка сначала пишется в Object Storage в РФ (152-ФЗ), потом уведомление
+  // в Telegram. Токен бота и chat_id — в Lockbox, НЕ здесь. См. README.
+  formEndpoint: 'https://d5d7olk60q94hjb111lj.kocrdvxt.apigw.yandexcloud.net/submit',
+  // Если endpoint пустой — форма показывает демо-режим. Сейчас задан.
 
   // --- Прямые контакты (страницы «Связаться» / Contact) ---
   telegram: '@re_dnd',

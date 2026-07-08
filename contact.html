@@ -18,7 +18,20 @@
 <x-dc>
 <helmet>
 <link href="fonts/fonts.css" rel="stylesheet">
-<style>*,*::before,*::after{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}</style>
+<style>*,*::before,*::after{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
+.acc-sum{display:block;width:100%;text-align:left;background:none;border:none;padding:0;margin:0;font:inherit;color:inherit;cursor:pointer}
+.acc-sum:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+.acc-chev{display:inline-block;margin-left:8px;font-size:0.78em;color:var(--text-muted);transition:transform .3s ease;vertical-align:middle}
+.acc[data-state="open"] .acc-chev,.acc[data-state="closing"] .acc-chev{transform:rotate(180deg)}
+.acc-body{display:none}
+.acc-inner{display:flex;flex-direction:column;gap:10px;padding-top:10px}
+.acc[data-state="open"] .acc-body,.acc[data-state="closing"] .acc-body{display:block}
+.acc[data-state="closed"] .acc-body{display:none}
+@keyframes accIn{from{opacity:0;transform:translateY(-7px)}to{opacity:1;transform:none}}
+@keyframes accOut{from{opacity:1;transform:none}to{opacity:0;transform:translateY(-5px)}}
+.mail-ic{background:var(--text)}
+[data-theme="dark"] .mail-ic{background:#46586B}
+@media (prefers-reduced-motion:reduce){.acc-body{animation:none!important}.acc-chev{transition:none}}</style>
 </helmet>
 
 <dc-import name="Header" active="" brand-name="{{ brandName }}" hint-size="100%,64px"></dc-import>
@@ -101,7 +114,7 @@
           </span>
         </a>
         <a href="{{ mailtoHref }}" style="display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--text);border:1px solid var(--border-soft);border-radius:13px;padding:12px 14px" style-hover="border-color:var(--border-hover);background:var(--input-bg)" style-focus="outline:2px solid var(--accent);outline-offset:2px">
-          <span style="width:38px;height:38px;border-radius:50%;background:var(--text);display:grid;place-items:center;flex:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2.5" stroke="#FFFFFF" stroke-width="1.8"></rect><path d="M4 7L12 13L20 7" stroke="#FFFFFF" stroke-width="1.8"></path></svg></span>
+          <span class="mail-ic" style="width:38px;height:38px;border-radius:50%;display:grid;place-items:center;flex:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2.5" stroke="#FFFFFF" stroke-width="1.8"></rect><path d="M4 7L12 13L20 7" stroke="#FFFFFF" stroke-width="1.8"></path></svg></span>
           <span style="display:flex;flex-direction:column;gap:2px">
             <span style="font:600 15px Inter,system-ui,sans-serif">Email</span>
             <span style="font:500 13.5px JetBrains Mono,monospace;color:var(--accent)">{{ email }}</span>
@@ -134,33 +147,47 @@
   <section style="margin-top:clamp(44px,6vw,68px)">
     <h2 style="margin:0 0 20px;font:600 clamp(24px,3vw,32px)/1.2 Sora,sans-serif;letter-spacing:-0.01em">Частые вопросы</h2>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px">
-      <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:8px">
-        <h3 style="margin:0;font:600 16.5px/1.35 Sora,sans-serif">Сколько стоит бот?</h3>
-        <p style="margin:0;font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Зависит от задачи: приём заявок — от 5 000 ₽, оплаты и подписки — от 8 000 ₽, мини-аппы — от 15 000 ₽. Точную цену называю после обсуждения — до старта работ, и она не меняется.</p>
+      <div class="acc" data-state="{{ faqState0 }}" style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:8px">
+        <h3 style="margin:0"><button type="button" class="acc-sum" onClick="{{ onFaq0 }}" aria-expanded="{{ faqExp0 }}" aria-controls="faq-0" style="font:600 16.5px/1.35 Sora,sans-serif;color:var(--text)">Сколько стоит бот?<span class="acc-chev" aria-hidden="true">▾</span></button></h3>
+        <div id="faq-0" class="acc-body" style="animation:{{ faqAnim0 }}"><div class="acc-inner">
+          <p style="margin:0;font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Зависит от задачи: приём заявок — от 5 000 ₽, оплаты и подписки — от 8 000 ₽, мини-аппы — от 15 000 ₽. Точную цену называю после обсуждения — до старта работ, и она не меняется.</p>
+        </div></div>
       </div>
-      <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:8px">
-        <h3 style="margin:0;font:600 16.5px/1.35 Sora,sans-serif">Сколько времени занимает типовой бот?</h3>
-        <p style="margin:0;font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Бот приёма заявок — от нескольких дней до пары недель. Проекты с оплатами и ИИ — обычно 2–4 недели. Срок фиксируем в предложении вместе с ценой.</p>
+      <div class="acc" data-state="{{ faqState1 }}" style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:8px">
+        <h3 style="margin:0"><button type="button" class="acc-sum" onClick="{{ onFaq1 }}" aria-expanded="{{ faqExp1 }}" aria-controls="faq-1" style="font:600 16.5px/1.35 Sora,sans-serif;color:var(--text)">Сколько времени занимает типовой бот?<span class="acc-chev" aria-hidden="true">▾</span></button></h3>
+        <div id="faq-1" class="acc-body" style="animation:{{ faqAnim1 }}"><div class="acc-inner">
+          <p style="margin:0;font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Бот приёма заявок — от нескольких дней до пары недель. Проекты с оплатами и ИИ — обычно 2–4 недели. Срок фиксируем в предложении вместе с ценой.</p>
+        </div></div>
       </div>
-      <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:8px">
-        <h3 style="margin:0;font:600 16.5px/1.35 Sora,sans-serif">Что нужно от меня как заказчика?</h3>
-        <p style="margin:0;font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Описать задачу своими словами и быть на связи для уточнений — ТЗ не обязательно. Доступы (платёжка, хостинг) оформляются на вас, помогу всё завести.</p>
+      <div class="acc" data-state="{{ faqState2 }}" style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:8px">
+        <h3 style="margin:0"><button type="button" class="acc-sum" onClick="{{ onFaq2 }}" aria-expanded="{{ faqExp2 }}" aria-controls="faq-2" style="font:600 16.5px/1.35 Sora,sans-serif;color:var(--text)">Что нужно от меня как заказчика?<span class="acc-chev" aria-hidden="true">▾</span></button></h3>
+        <div id="faq-2" class="acc-body" style="animation:{{ faqAnim2 }}"><div class="acc-inner">
+          <p style="margin:0;font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Описать задачу своими словами и быть на связи для уточнений — ТЗ не обязательно. Доступы (платёжка, хостинг) оформляются на вас, помогу всё завести.</p>
+        </div></div>
       </div>
-      <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:8px">
-        <h3 style="margin:0;font:600 16.5px/1.35 Sora,sans-serif">Что после запуска?</h3>
-        <p style="margin:0;font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">30 дней бесплатных исправлений после сдачи. Дальше — поддержка по договорённости, либо передаю проект целиком: всё работает у вас, доступы ваши.</p>
+      <div class="acc" data-state="{{ faqState3 }}" style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:8px">
+        <h3 style="margin:0"><button type="button" class="acc-sum" onClick="{{ onFaq3 }}" aria-expanded="{{ faqExp3 }}" aria-controls="faq-3" style="font:600 16.5px/1.35 Sora,sans-serif;color:var(--text)">Что после запуска?<span class="acc-chev" aria-hidden="true">▾</span></button></h3>
+        <div id="faq-3" class="acc-body" style="animation:{{ faqAnim3 }}"><div class="acc-inner">
+          <p style="margin:0;font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">30 дней бесплатных исправлений после сдачи. Дальше — поддержка по договорённости, либо передаю проект целиком: всё работает у вас, доступы ваши.</p>
+        </div></div>
       </div>
-      <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:8px">
-        <h3 style="margin:0;font:600 16.5px/1.35 Sora,sans-serif">Как проходит оплата?</h3>
-        <p style="margin:0;font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Официально: ИП, договор, безналичная оплата. Этапами — часть на старте, остальное по факту сдачи работающего бота.</p>
+      <div class="acc" data-state="{{ faqState4 }}" style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:8px">
+        <h3 style="margin:0"><button type="button" class="acc-sum" onClick="{{ onFaq4 }}" aria-expanded="{{ faqExp4 }}" aria-controls="faq-4" style="font:600 16.5px/1.35 Sora,sans-serif;color:var(--text)">Как проходит оплата?<span class="acc-chev" aria-hidden="true">▾</span></button></h3>
+        <div id="faq-4" class="acc-body" style="animation:{{ faqAnim4 }}"><div class="acc-inner">
+          <p style="margin:0;font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Официально: ИП, договор, безналичная оплата. Этапами — часть на старте, остальное по факту сдачи работающего бота.</p>
+        </div></div>
       </div>
-      <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:8px">
-        <h3 style="margin:0;font:600 16.5px/1.35 Sora,sans-serif">Кто будет делать мой проект?</h3>
-        <p style="margin:0;font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Проект целиком делает Даниил лично — разработка, коммуникация, запуск. Задача не передаётся третьим лицам.</p>
+      <div class="acc" data-state="{{ faqState5 }}" style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:8px">
+        <h3 style="margin:0"><button type="button" class="acc-sum" onClick="{{ onFaq5 }}" aria-expanded="{{ faqExp5 }}" aria-controls="faq-5" style="font:600 16.5px/1.35 Sora,sans-serif;color:var(--text)">Кто будет делать мой проект?<span class="acc-chev" aria-hidden="true">▾</span></button></h3>
+        <div id="faq-5" class="acc-body" style="animation:{{ faqAnim5 }}"><div class="acc-inner">
+          <p style="margin:0;font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Проект целиком делает Даниил лично — разработка, коммуникация, запуск. Задача не передаётся третьим лицам.</p>
+        </div></div>
       </div>
-      <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:8px">
-        <h3 style="margin:0;font:600 16.5px/1.35 Sora,sans-serif">Делаете под ключ?</h3>
-        <p style="margin:0;font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Да: логика, оплаты, сервер, запуск. Вы получаете работающий продукт, а не код, который нужно куда-то пристраивать.</p>
+      <div class="acc" data-state="{{ faqState6 }}" style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:8px">
+        <h3 style="margin:0"><button type="button" class="acc-sum" onClick="{{ onFaq6 }}" aria-expanded="{{ faqExp6 }}" aria-controls="faq-6" style="font:600 16.5px/1.35 Sora,sans-serif;color:var(--text)">Делаете под ключ?<span class="acc-chev" aria-hidden="true">▾</span></button></h3>
+        <div id="faq-6" class="acc-body" style="animation:{{ faqAnim6 }}"><div class="acc-inner">
+          <p style="margin:0;font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Да: логика, оплаты, сервер, запуск. Вы получаете работающий продукт, а не код, который нужно куда-то пристраивать.</p>
+        </div></div>
       </div>
     </div>
   </section>
@@ -170,7 +197,7 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;brandName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Re:dnd&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Бренд&quot;},&quot;telegram&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;@ваш_ник&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Контакты&quot;},&quot;email&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;you@example.com&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Контакты&quot;}}">
 class Component extends DCLogic {
-  state = { task: '', type: 'боты', budget: '', contact: '', website: '', submitted: false, error: false, errorKind: '', sending: false };
+  state = { task: '', type: 'боты', budget: '', contact: '', website: '', submitted: false, error: false, errorKind: '', sending: false, faq: ['closed','closed','closed','closed','closed','closed','closed'] };
   renderVals() {
     const cfg = (typeof window !== 'undefined' && window.SITE_CONFIG) || {};
     const endpoint = (cfg.formEndpoint || '').trim();
@@ -190,8 +217,21 @@ class Component extends DCLogic {
     const tg = cfg.telegram || this.props.telegram || '@ваш_ник';
     const email = cfg.email || this.props.email || 'you@example.com';
     const tgHref = /^@[\w\d_]+$/.test(tg) ? 'https://t.me/' + tg.slice(1) : '#';
+    const faqVals = {};
+    this.state.faq.forEach((s, i) => {
+      faqVals['faqState' + i] = s;
+      faqVals['faqAnim' + i] = s === 'open' ? 'accIn .3s ease both' : (s === 'closing' ? 'accOut .22s ease both' : 'none');
+      faqVals['faqExp' + i] = s === 'open' ? 'true' : 'false';
+      faqVals['onFaq' + i] = () => {
+        const cur = this.state.faq[i];
+        const arr = this.state.faq.slice();
+        if (cur === 'closed') { arr[i] = 'open'; this.setState({ faq: arr }); }
+        else { arr[i] = 'closing'; this.setState({ faq: arr }); setTimeout(() => { const a = this.state.faq.slice(); if (a[i] === 'closing') { a[i] = 'closed'; this.setState({ faq: a }); } }, 240); }
+      };
+    });
     return {
       brandName: this.props.brandName ?? 'Re:dnd',
+      ...faqVals,
       telegram: tg,
       email,
       mailtoHref: 'mailto:' + email,

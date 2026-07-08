@@ -124,15 +124,23 @@ def _put_object(key_id: str, secret: str, bucket: str, obj_key: str, body: bytes
         return 200 <= r.status < 300
 
 
-def _send_telegram(token: str, chat_id: str, text: str) -> bool:
+def _send_telegram(token: str, chat_id: str, text: str):
+    """Отправка в Telegram. Возвращает (ok, http_status, description) —
+    description это поле от Telegram API (без секретов), для лога."""
     req = urllib.request.Request(
         f"https://api.telegram.org/bot{token}/sendMessage",
         data=json.dumps({"chat_id": chat_id, "text": text}).encode(),
         method="POST",
         headers={"Content-Type": "application/json"},
     )
-    with urllib.request.urlopen(req, timeout=10) as r:
-        return 200 <= r.status < 300
+    try:
+        with urllib.request.urlopen(req, timeout=10) as r:
+            raw = r.read().decode("utf-8", "replace")
+        return (200 <= r.status < 300), r.status, raw[:300]
+    except urllib.error.HTTPError as e:  # Telegram отдаёт 4xx с JSON {ok,error_code,description}
+        return False, e.code, e.read().decode("utf-8", "replace")[:300]
+    except Exception as e:  # noqa: BLE001 — таймаут/сеть
+        return False, -1, f"{type(e).__name__}: {e}"[:300]
 
 
 def _cors(origin: str) -> dict:
@@ -219,9 +227,21 @@ def handler(event, context):
 
     # --- шаг 2: уведомление в Telegram (только после успешной записи). ---
     # Заявка уже сохранена (152-ФЗ выполнен) — TG best-effort, его сбой
-    # не роняет ответ пользователю (данные в бакете = источник истины).
+    # не роняет ответ пользователю (данные в бакете = источник истины),
+    # но ошибку НЕ глушим: пишем код и описание от Telegram в лог.
+    import sys as _sys
     try:
         tg = _lockbox(TG_SECRET_ID)
+        tok = tg.get("TG_BOT_TOKEN", "")
+        cid = tg.get("TG_CHAT_ID", "")
+        # диагностика секрета без утечки значений
+        print(
+            f"[rednd-form][tg] token_len={len(tok)} "
+            f"token_is_placeholder={tok == 'PLACEHOLDER_FILL_ME'} "
+            f"chat_id_len={len(cid)} chat_id_is_placeholder={cid == 'PLACEHOLDER_FILL_ME'} "
+            f"chat_id_is_digits={cid.lstrip('-').isdigit() if cid else False}",
+            file=_sys.stderr,
+        )
         text = (
             f"[{lang}] Новая заявка с сайта\n\n"
             f"Задача: {task}\n"
@@ -229,8 +249,10 @@ def handler(event, context):
             f"Бюджет: {budget or '—'}\n"
             f"Контакт: {contact}"
         )
-        _send_telegram(tg["TG_BOT_TOKEN"], tg["TG_CHAT_ID"], text)
-    except Exception:
-        pass
+        ok, status, desc = _send_telegram(tok, cid, text)
+        if not ok:
+            print(f"[rednd-form][tg] sendMessage FAILED http={status} resp={desc}", file=_sys.stderr)
+    except Exception as e:  # noqa: BLE001
+        print(f"[rednd-form][tg] step error: {type(e).__name__}: {e}", file=_sys.stderr)
 
     return _resp(200, {"ok": True}, cors)

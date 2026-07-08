@@ -10,13 +10,15 @@
 <link rel="alternate" hreflang="en" href="https://rednd.ru/en/about.html">
 <link rel="alternate" hreflang="x-default" href="https://rednd.ru/about.html">
 <script src="./site-config.js"></script>
+<script>(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<link rel="stylesheet" href="./theme.css">
 <script src="./support.js"></script>
 </head>
 <body>
 <x-dc>
 <helmet>
 <link href="fonts/fonts.css" rel="stylesheet">
-<style>*,*::before,*::after{box-sizing:border-box} body{margin:0;background:#E7EDF2;color:#13232F;-webkit-font-smoothing:antialiased}</style>
+<style>*,*::before,*::after{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}</style>
 </helmet>
 
 <dc-import name="Header" active="about" brand-name="{{ brandName }}" hint-size="100%,64px"></dc-import>
@@ -25,64 +27,64 @@
 
   <div style="display:flex;align-items:center;gap:18px;margin-bottom:24px;flex-wrap:wrap">
     <sc-if value="{{ hasPhoto }}" hint-placeholder-val="{{ false }}">
-      <img src="{{ photoSrc }}" alt="Фото: {{ personName }}" style="width:72px;height:72px;border-radius:50%;object-fit:cover;flex:none;border:1px solid #D9E3EB">
+      <img src="{{ photoSrc }}" alt="Фото: {{ personName }}" style="width:72px;height:72px;border-radius:50%;object-fit:cover;flex:none;border:1px solid var(--border)">
     </sc-if>
     <sc-if value="{{ noPhoto }}" hint-placeholder-val="{{ true }}">
-      <span style="width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,#38AEE5,#1A79C7);color:#FFFFFF;display:grid;place-items:center;font:600 26px Sora,sans-serif;flex:none">{{ initials }}</span>
+      <span style="width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,#38AEE5,var(--accent));color:var(--surface);display:grid;place-items:center;font:600 26px Sora,sans-serif;flex:none">{{ initials }}</span>
     </sc-if>
     <div style="display:flex;flex-direction:column;gap:6px">
       <h1 style="margin:0;font:700 clamp(28px,4vw,42px)/1.15 Sora,sans-serif;letter-spacing:-0.02em">Команда</h1>
-      <span style="display:flex;align-items:center;gap:8px;font:500 13.5px JetBrains Mono,monospace;color:#5A7284"><span style="width:8px;height:8px;border-radius:50%;background:#31B545"></span>{{ personName }} · руководитель и разработчик</span>
+      <span style="display:flex;align-items:center;gap:8px;font:500 13.5px JetBrains Mono,monospace;color:var(--text-meta)"><span style="width:8px;height:8px;border-radius:50%;background:var(--online)"></span>{{ personName }} · руководитель и разработчик</span>
     </div>
   </div>
 
-  <div style="background:#FFFFFF;border-radius:18px 18px 18px 5px;padding:clamp(20px,3vw,26px);box-shadow:0 2px 6px rgba(19,35,47,0.08);margin-bottom:16px">
+  <div style="background:var(--surface);border-radius:18px 18px 18px 5px;padding:clamp(20px,3vw,26px);box-shadow:0 2px 6px var(--shadow-2);margin-bottom:16px">
     <p style="margin:0;font:400 clamp(15.5px,1.7vw,17.5px)/1.65 Inter,system-ui,sans-serif;text-wrap:pretty">Почти всё в нашем портфолио — собственные продукты: подписочный сервис с ~200 платящими, ИИ-CRM, автопрайсер на 5500 товаров. Всё это крутится в проде прямо сейчас.</p>
   </div>
 
-  <div style="background:#FFFFFF;border-radius:18px 18px 18px 5px;padding:clamp(20px,3vw,26px);box-shadow:0 2px 6px rgba(19,35,47,0.08);margin-bottom:32px">
+  <div style="background:var(--surface);border-radius:18px 18px 18px 5px;padding:clamp(20px,3vw,26px);box-shadow:0 2px 6px var(--shadow-2);margin-bottom:32px">
     <h2 style="margin:0 0 10px;font:600 19px/1.3 Sora,sans-serif">Как мы работаем</h2>
-    <p style="margin:0;font:400 clamp(15px,1.6vw,16.5px)/1.65 Inter,system-ui,sans-serif;color:#2C4254;text-wrap:pretty">Задачу берём целиком — от логики бота и оплат до запуска. Проект ведёт лично Даниил: он же делает разработку и общается с вами по-человечески, без тех-жаргона. Больше всего внимания — тому, на чём проекты обычно умирают: платежам и доведению до конца.</p>
+    <p style="margin:0;font:400 clamp(15px,1.6vw,16.5px)/1.65 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">Задачу берём целиком — от логики бота и оплат до запуска. Проект ведёт лично Даниил: он же делает разработку и общается с вами по-человечески, без тех-жаргона. Больше всего внимания — тому, на чём проекты обычно умирают: платежам и доведению до конца.</p>
   </div>
 
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin-bottom:32px">
-    <div style="background:#FFFFFF;border:1px solid #D9E3EB;border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:9px">
-      <span style="font:500 13px JetBrains Mono,monospace;color:#8FA4B3">/design</span>
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:9px">
+      <span style="font:500 13px JetBrains Mono,monospace;color:var(--text-muted)">/design</span>
       <h2 style="margin:0;font:600 17.5px/1.3 Sora,sans-serif">Дизайн — Светлана</h2>
-      <p style="margin:0;font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:#45596A">Интерфейсы мини-аппов и ботов: чтобы работало и было удобно.</p>
+      <p style="margin:0;font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Интерфейсы мини-аппов и ботов: чтобы работало и было удобно.</p>
     </div>
-    <div style="background:#FFFFFF;border:1px solid #D9E3EB;border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:9px">
-      <span style="font:500 13px JetBrains Mono,monospace;color:#8FA4B3">/qa</span>
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:9px">
+      <span style="font:500 13px JetBrains Mono,monospace;color:var(--text-muted)">/qa</span>
       <h2 style="margin:0;font:600 17.5px/1.3 Sora,sans-serif">Тестирование — Егор</h2>
-      <p style="margin:0;font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:#45596A">Проверяет сценарии и оплаты перед сдачей — до того, как их увидят ваши пользователи.</p>
+      <p style="margin:0;font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Проверяет сценарии и оплаты перед сдачей — до того, как их увидят ваши пользователи.</p>
     </div>
   </div>
 
   <sc-if value="{{ hasAboutLines }}" hint-placeholder-val="{{ false }}">
-    <div style="background:#FFFFFF;border-radius:18px 18px 18px 5px;padding:clamp(20px,3vw,26px);box-shadow:0 2px 6px rgba(19,35,47,0.08);margin:-16px 0 32px">
+    <div style="background:var(--surface);border-radius:18px 18px 18px 5px;padding:clamp(20px,3vw,26px);box-shadow:0 2px 6px var(--shadow-2);margin:-16px 0 32px">
       <sc-for list="{{ aboutLines }}" as="line" hint-placeholder-count="2">
-        <p style="margin:0;font:400 clamp(15px,1.6vw,16.5px)/1.65 Inter,system-ui,sans-serif;color:#2C4254;text-wrap:pretty">{{ line.text }}</p>
+        <p style="margin:0;font:400 clamp(15px,1.6vw,16.5px)/1.65 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">{{ line.text }}</p>
       </sc-for>
     </div>
   </sc-if>
 
   <h2 style="margin:0 0 14px;font:600 19px/1.3 Sora,sans-serif">Стек</h2>
   <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:40px">
-    <span style="font:500 13.5px JetBrains Mono,monospace;color:#13232F;background:#FFFFFF;border:1px solid #D9E3EB;border-radius:9px;padding:8px 12px">Python</span>
-    <span style="font:500 13.5px JetBrains Mono,monospace;color:#13232F;background:#FFFFFF;border:1px solid #D9E3EB;border-radius:9px;padding:8px 12px">Telegram Bot API</span>
-    <span style="font:500 13.5px JetBrains Mono,monospace;color:#13232F;background:#FFFFFF;border:1px solid #D9E3EB;border-radius:9px;padding:8px 12px">Telegram Mini Apps</span>
-    <span style="font:500 13.5px JetBrains Mono,monospace;color:#13232F;background:#FFFFFF;border:1px solid #D9E3EB;border-radius:9px;padding:8px 12px">ЮКасса</span>
-    <span style="font:500 13.5px JetBrains Mono,monospace;color:#13232F;background:#FFFFFF;border:1px solid #D9E3EB;border-radius:9px;padding:8px 12px">LLM / ИИ</span>
-    <span style="font:500 13.5px JetBrains Mono,monospace;color:#13232F;background:#FFFFFF;border:1px solid #D9E3EB;border-radius:9px;padding:8px 12px">Flutter</span>
-    <span style="font:500 13.5px JetBrains Mono,monospace;color:#13232F;background:#FFFFFF;border:1px solid #D9E3EB;border-radius:9px;padding:8px 12px">VPS</span>
+    <span style="font:500 13.5px JetBrains Mono,monospace;color:var(--text);background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:8px 12px">Python</span>
+    <span style="font:500 13.5px JetBrains Mono,monospace;color:var(--text);background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:8px 12px">Telegram Bot API</span>
+    <span style="font:500 13.5px JetBrains Mono,monospace;color:var(--text);background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:8px 12px">Telegram Mini Apps</span>
+    <span style="font:500 13.5px JetBrains Mono,monospace;color:var(--text);background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:8px 12px">ЮКасса</span>
+    <span style="font:500 13.5px JetBrains Mono,monospace;color:var(--text);background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:8px 12px">LLM / ИИ</span>
+    <span style="font:500 13.5px JetBrains Mono,monospace;color:var(--text);background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:8px 12px">Flutter</span>
+    <span style="font:500 13.5px JetBrains Mono,monospace;color:var(--text);background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:8px 12px">VPS</span>
   </div>
 
   <div style="display:flex;gap:10px;flex-wrap:wrap">
-    <a href="contact.html" style="display:inline-flex;align-items:center;gap:9px;background:#229ED9;color:#FFFFFF;text-decoration:none;font:600 15.5px/1 Inter,system-ui,sans-serif;padding:13px 22px;border-radius:12px" style-hover="background:#1A79C7" style-focus="outline:2px solid #13232F;outline-offset:2px">
-      <span style="width:8px;height:8px;border-radius:50%;background:#31B545;box-shadow:0 0 0 3px rgba(49,181,69,0.25)"></span>
+    <a href="contact.html" style="display:inline-flex;align-items:center;gap:9px;background:var(--accent-cta);color:var(--surface);text-decoration:none;font:600 15.5px/1 Inter,system-ui,sans-serif;padding:13px 22px;border-radius:12px" style-hover="background:var(--accent)" style-focus="outline:2px solid var(--text);outline-offset:2px">
+      <span style="width:8px;height:8px;border-radius:50%;background:var(--online);box-shadow:0 0 0 3px rgba(49,181,69,0.25)"></span>
       Написать
     </a>
-    <a href="projects.html" style="display:inline-flex;align-items:center;background:#FFFFFF;color:#1A79C7;border:1px solid #C4D8E6;text-decoration:none;font:600 15.5px/1 Inter,system-ui,sans-serif;padding:13px 22px;border-radius:12px" style-hover="background:#EAF4FB" style-focus="outline:2px solid #1A79C7;outline-offset:2px">Смотреть проекты</a>
+    <a href="projects.html" style="display:inline-flex;align-items:center;background:var(--surface);color:var(--accent);border:1px solid var(--border-input);text-decoration:none;font:600 15.5px/1 Inter,system-ui,sans-serif;padding:13px 22px;border-radius:12px" style-hover="background:var(--accent-tint)" style-focus="outline:2px solid var(--accent);outline-offset:2px">Смотреть проекты</a>
   </div>
 </main>
 

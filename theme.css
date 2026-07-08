@@ -1,0 +1,130 @@
+/* ============================================================
+   Тема сайта Re:dnd. Светлая — эталон: КАЖДЫЙ токен в светлой теме равен
+   исходному хардкод-цвету → светлая тема побайтно тот же визуал.
+   Тёмная — [data-theme="dark"] на <html>. Демо «заморожены» в светлой
+   палитре через [data-theme-lock] (пере-фиксирует токены на светлые).
+   ============================================================ */
+:root {
+  --bg: #E7EDF2;
+  --surface: #FFFFFF;
+  --surface-2: #F1F5F8;
+  --input-bg: #FBFDFE;
+  --border: #D9E3EB;
+  --border-soft: #E4EBF1;
+  --border-input: #C4D8E6;
+  --border-hover: #B9D6EA;
+  --text: #13232F;
+  --text-body: #45596A;
+  --text-strong: #2C4254;
+  --text-meta: #5A7284;
+  --text-muted: #8FA4B3;
+  --accent: #1A79C7;
+  --accent-hover: #1A79C7;
+  --accent-cta: #229ED9;
+  --accent-tint: #EAF4FB;
+  --accent-tint-2: #DBEDF9;
+  --online: #31B545;
+  --error-text: #C0392B;
+  --error-bg: #FDEDEB;
+  --chat-area: #DCE8F0;
+  --chat-key-bg: rgba(255,255,255,0.72);
+  --header-bg: rgba(255,255,255,0.9);
+  --shadow-1: rgba(19,35,47,0.07);
+  --shadow-2: rgba(19,35,47,0.08);
+  --shadow-3: rgba(19,35,47,0.22);
+  /* демо CRM-граф + автопрайсер (адаптируются под тёмную, вариант A) */
+  --demo-canvas: #F6FAFC;
+  --demo-line: #EEF3F7;
+  --node-stroke: #AFC9DA;
+  --edge: #C7D8E4;
+  --edge-active: #7FB8DF;
+  --status-green-fg: #1E9E46;
+  --status-green-bg: #E7F6EC;
+  --status-amber-fg: #B07817;
+  --status-amber-bg: #FDF3E3;
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  --bg: #0F1720;
+  --surface: #1E2B36;
+  --surface-2: #17212B;
+  --input-bg: #17212B;
+  --border: #2C3B48;
+  --border-soft: #26333F;
+  --border-input: #33465A;
+  --border-hover: #3A4E5E;
+  --text: #E8EFF5;
+  --text-body: #C3D0DB;
+  --text-strong: #D2DCE6;
+  --text-meta: #93A7B8;
+  --text-muted: #8398A9;
+  --accent: #48A9F0;
+  --accent-hover: #6BBAF5;
+  --accent-cta: #2AA1E0;
+  --accent-tint: #1C3646;
+  --accent-tint-2: #24425A;
+  --online: #3ECB55;
+  --error-text: #F08379;
+  --error-bg: #3A211E;
+  --chat-area: #0E1621;
+  --chat-key-bg: rgba(255,255,255,0.08);
+  --header-bg: rgba(15,23,32,0.85);
+  --shadow-1: rgba(0,0,0,0.35);
+  --shadow-2: rgba(0,0,0,0.40);
+  --shadow-3: rgba(0,0,0,0.55);
+  /* демо CRM-граф + автопрайсер — тёмные значения */
+  --demo-canvas: #17212B;
+  --demo-line: #263441;
+  --node-stroke: #4A6072;
+  --edge: #3A4E5E;
+  --edge-active: #5AA8E8;
+  --status-green-fg: #58D07A;
+  --status-green-bg: #163523;
+  --status-amber-fg: #E0B24D;
+  --status-amber-bg: #3A2E14;
+  color-scheme: dark;
+}
+
+/* Демо/iOS-рамки: всегда светлая палитра, в обеих темах одинаково. */
+[data-theme-lock] {
+  --bg: #E7EDF2;
+  --surface: #FFFFFF;
+  --surface-2: #F1F5F8;
+  --input-bg: #FBFDFE;
+  --border: #D9E3EB;
+  --border-soft: #E4EBF1;
+  --border-input: #C4D8E6;
+  --border-hover: #B9D6EA;
+  --text: #13232F;
+  --text-body: #45596A;
+  --text-strong: #2C4254;
+  --text-meta: #5A7284;
+  --text-muted: #8FA4B3;
+  --accent: #1A79C7;
+  --accent-hover: #1A79C7;
+  --accent-cta: #229ED9;
+  --accent-tint: #EAF4FB;
+  --accent-tint-2: #DBEDF9;
+  --online: #31B545;
+  --error-text: #C0392B;
+  --error-bg: #FDEDEB;
+  --chat-area: #DCE8F0;
+  --chat-key-bg: rgba(255,255,255,0.72);
+  --header-bg: rgba(255,255,255,0.9);
+  --shadow-1: rgba(19,35,47,0.07);
+  --shadow-2: rgba(19,35,47,0.08);
+  --shadow-3: rgba(19,35,47,0.22);
+  color-scheme: light;
+}
+
+/* База: фон/цвет из токенов сразу (до рендера рантайма) — против вспышки. */
+html { background: var(--bg); }
+body { background: var(--bg); color: var(--text); }
+
+/* Короткий переход между темами; уважает prefers-reduced-motion. */
+@media (prefers-reduced-motion: no-preference) {
+  html.theme-anim, html.theme-anim * {
+    transition: background-color .18s ease, border-color .18s ease, color .18s ease;
+  }
+}

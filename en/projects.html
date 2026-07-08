@@ -10,90 +10,92 @@
 <link rel="alternate" hreflang="en" href="https://rednd.ru/en/projects.html">
 <link rel="alternate" hreflang="x-default" href="https://rednd.ru/projects.html">
 <script src="../site-config.js"></script>
+<script>(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<link rel="stylesheet" href="../theme.css">
 <script src="../support.js"></script>
 </head>
 <body>
 <x-dc>
 <helmet>
 <link href="../fonts/fonts.css" rel="stylesheet">
-<style>*,*::before,*::after{box-sizing:border-box} body{margin:0;background:#E7EDF2;color:#13232F;-webkit-font-smoothing:antialiased}</style>
+<style>*,*::before,*::after{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}</style>
 </helmet>
 
 <dc-import name="Header" active="projects" brand-name="{{ brandName }}" hint-size="100%,64px"></dc-import>
 
 <main style="font-family:Inter,system-ui,sans-serif;max-width:1140px;margin:0 auto;padding:clamp(40px,5vw,64px) 20px clamp(56px,7vw,88px)">
   <h1 style="margin:0 0 12px;font:700 clamp(30px,4vw,44px)/1.15 Sora,sans-serif;letter-spacing:-0.02em">Projects</h1>
-  <p style="margin:0 0 36px;font:400 clamp(15.5px,1.6vw,18px)/1.6 Inter,system-ui,sans-serif;color:#45596A;max-width:640px;text-wrap:pretty">Every case study comes with a live demo, not a screenshot — click through it right on the page, like the real product.</p>
+  <p style="margin:0 0 36px;font:400 clamp(15.5px,1.6vw,18px)/1.6 Inter,system-ui,sans-serif;color:var(--text-body);max-width:640px;text-wrap:pretty">Every case study comes with a live demo, not a screenshot — click through it right on the page, like the real product.</p>
 
   <div style="display:flex;flex-direction:column;gap:16px">
 
-    <a href="case-subscriptions.html" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px 32px;background:#FFFFFF;border:1px solid #D9E3EB;border-radius:18px;padding:clamp(20px,3vw,28px);text-decoration:none;color:#13232F;transition:transform .15s ease,box-shadow .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 16px 40px -16px rgba(19,35,47,0.25);border-color:#B9D6EA" style-focus="outline:2px solid #1A79C7;outline-offset:2px">
+    <a href="case-subscriptions.html" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px 32px;background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(20px,3vw,28px);text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 16px 40px -16px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus="outline:2px solid var(--accent);outline-offset:2px">
       <span style="display:flex;flex-direction:column;gap:10px">
-        <span style="font:500 12.5px JetBrains Mono,monospace;color:#1A79C7">[Subscriptions · Payments]</span>
+        <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--accent)">[Subscriptions · Payments]</span>
         <span style="font:600 clamp(20px,2.4vw,25px)/1.25 Sora,sans-serif">Subscription Telegram service</span>
-        <span style="font:400 15px/1.55 Inter,system-ui,sans-serif;color:#45596A">The bot takes recurring payments via YooKassa and manages paid access on its own.</span>
-        <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:#EAF4FB;color:#1A79C7;font:500 12.5px Inter,system-ui,sans-serif;width:fit-content"><span style="width:6px;height:6px;border-radius:50%;background:#31B545"></span>live demo: bot emulator with payment flow</span>
+        <span style="font:400 15px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">The bot takes recurring payments via YooKassa and manages paid access on its own.</span>
+        <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif;width:fit-content"><span style="width:6px;height:6px;border-radius:50%;background:var(--online)"></span>live demo: bot emulator with payment flow</span>
       </span>
       <span style="display:flex;flex-direction:column;gap:10px;justify-content:center">
-        <span style="font:700 clamp(26px,3vw,34px)/1 Sora,sans-serif;color:#1A79C7">~200 paying users</span>
-        <span style="font:400 14px/1.5 Inter,system-ui,sans-serif;color:#5A7284">in production, generating revenue</span>
-        <span style="font:400 12.5px JetBrains Mono,monospace;color:#8FA4B3">Python · Bot API · YooKassa · VPS</span>
+        <span style="font:700 clamp(26px,3vw,34px)/1 Sora,sans-serif;color:var(--accent)">~200 paying users</span>
+        <span style="font:400 14px/1.5 Inter,system-ui,sans-serif;color:var(--text-meta)">in production, generating revenue</span>
+        <span style="font:400 12.5px JetBrains Mono,monospace;color:var(--text-muted)">Python · Bot API · YooKassa · VPS</span>
       </span>
     </a>
 
-    <a href="case-crm.html" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px 32px;background:#FFFFFF;border:1px solid #D9E3EB;border-radius:18px;padding:clamp(20px,3vw,28px);text-decoration:none;color:#13232F;transition:transform .15s ease,box-shadow .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 16px 40px -16px rgba(19,35,47,0.25);border-color:#B9D6EA" style-focus="outline:2px solid #1A79C7;outline-offset:2px">
+    <a href="case-crm.html" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px 32px;background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(20px,3vw,28px);text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 16px 40px -16px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus="outline:2px solid var(--accent);outline-offset:2px">
       <span style="display:flex;flex-direction:column;gap:10px">
-        <span style="font:500 12.5px JetBrains Mono,monospace;color:#1A79C7">[AI · CRM]</span>
+        <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--accent)">[AI · CRM]</span>
         <span style="font:600 clamp(20px,2.4vw,25px)/1.25 Sora,sans-serif">Networking CRM (AI)</span>
-        <span style="font:400 15px/1.55 Inter,system-ui,sans-serif;color:#45596A">AI pulls facts from your notes about people and builds a connection graph — no contact slips away.</span>
-        <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:#EAF4FB;color:#1A79C7;font:500 12.5px Inter,system-ui,sans-serif;width:fit-content"><span style="width:6px;height:6px;border-radius:50%;background:#31B545"></span>live demo: connection graph + fact extraction</span>
+        <span style="font:400 15px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">AI pulls facts from your notes about people and builds a connection graph — no contact slips away.</span>
+        <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif;width:fit-content"><span style="width:6px;height:6px;border-radius:50%;background:var(--online)"></span>live demo: connection graph + fact extraction</span>
       </span>
       <span style="display:flex;flex-direction:column;gap:10px;justify-content:center">
-        <span style="font:700 clamp(26px,3vw,34px)/1 Sora,sans-serif;color:#1A79C7">working version</span>
-        <span style="font:400 14px/1.5 Inter,system-ui,sans-serif;color:#5A7284">I use it myself every day</span>
-        <span style="font:400 12.5px JetBrains Mono,monospace;color:#8FA4B3">LLM · Mini App · Python</span>
+        <span style="font:700 clamp(26px,3vw,34px)/1 Sora,sans-serif;color:var(--accent)">working version</span>
+        <span style="font:400 14px/1.5 Inter,system-ui,sans-serif;color:var(--text-meta)">I use it myself every day</span>
+        <span style="font:400 12.5px JetBrains Mono,monospace;color:var(--text-muted)">LLM · Mini App · Python</span>
       </span>
     </a>
 
-    <a href="case-autopricer.html" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px 32px;background:#FFFFFF;border:1px solid #D9E3EB;border-radius:18px;padding:clamp(20px,3vw,28px);text-decoration:none;color:#13232F;transition:transform .15s ease,box-shadow .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 16px 40px -16px rgba(19,35,47,0.25);border-color:#B9D6EA" style-focus="outline:2px solid #1A79C7;outline-offset:2px">
+    <a href="case-autopricer.html" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px 32px;background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(20px,3vw,28px);text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 16px 40px -16px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus="outline:2px solid var(--accent);outline-offset:2px">
       <span style="display:flex;flex-direction:column;gap:10px">
-        <span style="font:500 12.5px JetBrains Mono,monospace;color:#1A79C7">[Automation]</span>
+        <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--accent)">[Automation]</span>
         <span style="font:600 clamp(20px,2.4vw,25px)/1.25 Sora,sans-serif">Marketplace autopricer</span>
-        <span style="font:400 15px/1.55 Inter,system-ui,sans-serif;color:#45596A">The service calculates and updates prices on its own, based on cost, margin and price bounds.</span>
-        <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:#EAF4FB;color:#1A79C7;font:500 12.5px Inter,system-ui,sans-serif;width:fit-content"><span style="width:6px;height:6px;border-radius:50%;background:#31B545"></span>live demo: dashboard with real math</span>
+        <span style="font:400 15px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">The service calculates and updates prices on its own, based on cost, margin and price bounds.</span>
+        <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif;width:fit-content"><span style="width:6px;height:6px;border-radius:50%;background:var(--online)"></span>live demo: dashboard with real math</span>
       </span>
       <span style="display:flex;flex-direction:column;gap:10px;justify-content:center">
-        <span style="font:700 clamp(26px,3vw,34px)/1 Sora,sans-serif;color:#1A79C7">~5,500 SKUs</span>
-        <span style="font:400 14px/1.5 Inter,system-ui,sans-serif;color:#5A7284">repriced automatically</span>
-        <span style="font:400 12.5px JetBrains Mono,monospace;color:#8FA4B3">Python · Ozon API · automation</span>
+        <span style="font:700 clamp(26px,3vw,34px)/1 Sora,sans-serif;color:var(--accent)">~5,500 SKUs</span>
+        <span style="font:400 14px/1.5 Inter,system-ui,sans-serif;color:var(--text-meta)">repriced automatically</span>
+        <span style="font:400 12.5px JetBrains Mono,monospace;color:var(--text-muted)">Python · Ozon API · automation</span>
       </span>
     </a>
 
-    <a href="case-mutual.html" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px 32px;background:#FFFFFF;border:1px solid #D9E3EB;border-radius:18px;padding:clamp(20px,3vw,28px);text-decoration:none;color:#13232F;transition:transform .15s ease,box-shadow .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 16px 40px -16px rgba(19,35,47,0.25);border-color:#B9D6EA" style-focus="outline:2px solid #1A79C7;outline-offset:2px">
+    <a href="case-mutual.html" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px 32px;background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(20px,3vw,28px);text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 16px 40px -16px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus="outline:2px solid var(--accent);outline-offset:2px">
       <span style="display:flex;flex-direction:column;gap:10px">
-        <span style="font:500 12.5px JetBrains Mono,monospace;color:#1A79C7">[Mini App]</span>
+        <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--accent)">[Mini App]</span>
         <span style="font:600 clamp(20px,2.4vw,25px)/1.25 Sora,sans-serif">MUTUAL — meet via QR</span>
-        <span style="font:400 15px/1.55 Inter,system-ui,sans-serif;color:#45596A">A streetwear brand where the clothes make the introduction: scan the QR on a garment to open the owner's profile.</span>
-        <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:#EAF4FB;color:#1A79C7;font:500 12.5px Inter,system-ui,sans-serif;width:fit-content"><span style="width:6px;height:6px;border-radius:50%;background:#31B545"></span>live demo: clickable mini app in a phone</span>
+        <span style="font:400 15px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">A streetwear brand where the clothes make the introduction: scan the QR on a garment to open the owner's profile.</span>
+        <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif;width:fit-content"><span style="width:6px;height:6px;border-radius:50%;background:var(--online)"></span>live demo: clickable mini app in a phone</span>
       </span>
       <span style="display:flex;flex-direction:column;gap:10px;justify-content:center">
-        <span style="font:700 clamp(26px,3vw,34px)/1 Sora,sans-serif;color:#1A79C7">working prototype</span>
-        <span style="font:400 14px/1.5 Inter,system-ui,sans-serif;color:#5A7284">testing the idea with real people</span>
-        <span style="font:400 12.5px JetBrains Mono,monospace;color:#8FA4B3">Mini App · UX prototype</span>
+        <span style="font:700 clamp(26px,3vw,34px)/1 Sora,sans-serif;color:var(--accent)">working prototype</span>
+        <span style="font:400 14px/1.5 Inter,system-ui,sans-serif;color:var(--text-meta)">testing the idea with real people</span>
+        <span style="font:400 12.5px JetBrains Mono,monospace;color:var(--text-muted)">Mini App · UX prototype</span>
       </span>
     </a>
 
-    <a href="case-faith.html" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px 32px;background:#FFFFFF;border:1px solid #D9E3EB;border-radius:18px;padding:clamp(20px,3vw,28px);text-decoration:none;color:#13232F;transition:transform .15s ease,box-shadow .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 16px 40px -16px rgba(19,35,47,0.25);border-color:#B9D6EA" style-focus="outline:2px solid #1A79C7;outline-offset:2px">
+    <a href="case-faith.html" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px 32px;background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(20px,3vw,28px);text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 16px 40px -16px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus="outline:2px solid var(--accent);outline-offset:2px">
       <span style="display:flex;flex-direction:column;gap:10px">
-        <span style="font:500 12.5px JetBrains Mono,monospace;color:#1A79C7">[Mobile]</span>
+        <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--accent)">[Mobile]</span>
         <span style="font:600 clamp(20px,2.4vw,25px)/1.25 Sora,sans-serif">Faith App — Duolingo-style learning</span>
-        <span style="font:400 15px/1.55 Inter,system-ui,sans-serif;color:#45596A">An Orthodox Christian learning app: bite-size lessons, quizzes, progress and day streaks.</span>
-        <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:#EAF4FB;color:#1A79C7;font:500 12.5px Inter,system-ui,sans-serif;width:fit-content"><span style="width:6px;height:6px;border-radius:50%;background:#31B545"></span>live demo: a lesson excerpt in a phone</span>
+        <span style="font:400 15px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">An Orthodox Christian learning app: bite-size lessons, quizzes, progress and day streaks.</span>
+        <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif;width:fit-content"><span style="width:6px;height:6px;border-radius:50%;background:var(--online)"></span>live demo: a lesson excerpt in a phone</span>
       </span>
       <span style="display:flex;flex-direction:column;gap:10px;justify-content:center">
-        <span style="font:700 clamp(26px,3vw,34px)/1 Sora,sans-serif;color:#1A79C7">in development</span>
-        <span style="font:400 14px/1.5 Inter,system-ui,sans-serif;color:#5A7284">active build, Flutter</span>
-        <span style="font:400 12.5px JetBrains Mono,monospace;color:#8FA4B3">Flutter · iOS</span>
+        <span style="font:700 clamp(26px,3vw,34px)/1 Sora,sans-serif;color:var(--accent)">in development</span>
+        <span style="font:400 14px/1.5 Inter,system-ui,sans-serif;color:var(--text-meta)">active build, Flutter</span>
+        <span style="font:400 12.5px JetBrains Mono,monospace;color:var(--text-muted)">Flutter · iOS</span>
       </span>
     </a>
 

@@ -10,45 +10,47 @@
 <link rel="alternate" hreflang="en" href="https://rednd.ru/en/contact.html">
 <link rel="alternate" hreflang="x-default" href="https://rednd.ru/contact.html">
 <script src="../site-config.js"></script>
+<script>(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<link rel="stylesheet" href="../theme.css">
 <script src="../support.js"></script>
 </head>
 <body>
 <x-dc>
 <helmet>
 <link href="../fonts/fonts.css" rel="stylesheet">
-<style>*,*::before,*::after{box-sizing:border-box} body{margin:0;background:#E7EDF2;color:#13232F;-webkit-font-smoothing:antialiased}</style>
+<style>*,*::before,*::after{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}</style>
 </helmet>
 
 <dc-import name="Header" active="" brand-name="{{ brandName }}" hint-size="100%,64px"></dc-import>
 
 <main style="font-family:Inter,system-ui,sans-serif;max-width:1140px;margin:0 auto;padding:clamp(40px,5vw,64px) 20px clamp(56px,7vw,88px)">
   <h1 style="margin:0 0 12px;font:700 clamp(30px,4vw,44px)/1.15 Sora,sans-serif;letter-spacing:-0.02em">Tell me about your task</h1>
-  <p style="margin:0 0 36px;font:400 clamp(15.5px,1.6vw,18px)/1.6 Inter,system-ui,sans-serif;color:#45596A;max-width:620px;text-wrap:pretty">Describe the task as it is — no spec needed. I reply myself, usually within a couple of hours.</p>
+  <p style="margin:0 0 36px;font:400 clamp(15.5px,1.6vw,18px)/1.6 Inter,system-ui,sans-serif;color:var(--text-body);max-width:620px;text-wrap:pretty">Describe the task as it is — no spec needed. I reply myself, usually within a couple of hours.</p>
 
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px;align-items:start">
 
     <!-- Form -->
-    <div style="background:#FFFFFF;border:1px solid #D9E3EB;border-radius:18px;padding:clamp(22px,3vw,30px)">
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(22px,3vw,30px)">
       <sc-if value="{{ notSubmitted }}" hint-placeholder-val="{{ true }}">
         <div style="display:flex;flex-direction:column;gap:20px">
 
           <label style="display:flex;flex-direction:column;gap:8px">
             <span style="font:600 14.5px Inter,system-ui,sans-serif">What do you need automated</span>
-            <textarea rows="4" value="{{ task }}" onChange="{{ onTask }}" placeholder="E.g.: collect leads from Telegram and push them to a Google Sheet" style="font:400 15px/1.55 Inter,system-ui,sans-serif;color:#13232F;border:1px solid #C4D8E6;border-radius:12px;padding:12px 14px;resize:vertical;background:#FBFDFE;outline:none" style-focus="border-color:#229ED9;box-shadow:0 0 0 3px rgba(34,158,217,0.18)"></textarea>
+            <textarea rows="4" value="{{ task }}" onChange="{{ onTask }}" placeholder="E.g.: collect leads from Telegram and push them to a Google Sheet" style="font:400 15px/1.55 Inter,system-ui,sans-serif;color:var(--text);border:1px solid var(--border-input);border-radius:12px;padding:12px 14px;resize:vertical;background:var(--input-bg);outline:none" style-focus="border-color:var(--accent-cta);box-shadow:0 0 0 3px rgba(34,158,217,0.18)"></textarea>
           </label>
 
           <div style="display:flex;flex-direction:column;gap:8px">
             <span style="font:600 14.5px Inter,system-ui,sans-serif">Task type</span>
             <div role="radiogroup" aria-label="Task type" style="display:flex;flex-wrap:wrap;gap:8px">
               <sc-for list="{{ typeChips }}" as="chip" hint-placeholder-count="5">
-                <button type="button" role="radio" aria-checked="{{ chip.checked }}" onClick="{{ chip.pick }}" style="font:500 14px Inter,system-ui,sans-serif;padding:9px 14px;border-radius:99px;cursor:pointer;border:1px solid {{ chip.border }};background:{{ chip.bg }};color:{{ chip.color }}" style-hover="border-color:#229ED9" style-focus="outline:2px solid #1A79C7;outline-offset:2px">{{ chip.label }}</button>
+                <button type="button" role="radio" aria-checked="{{ chip.checked }}" onClick="{{ chip.pick }}" style="font:500 14px Inter,system-ui,sans-serif;padding:9px 14px;border-radius:99px;cursor:pointer;border:1px solid {{ chip.border }};background:{{ chip.bg }};color:{{ chip.color }}" style-hover="border-color:var(--accent-cta)" style-focus="outline:2px solid var(--accent);outline-offset:2px">{{ chip.label }}</button>
               </sc-for>
             </div>
           </div>
 
           <label style="display:flex;flex-direction:column;gap:8px">
-            <span style="font:600 14.5px Inter,system-ui,sans-serif">Budget range <span style="font-weight:400;color:#8FA4B3">· optional</span></span>
-            <select value="{{ budget }}" onChange="{{ onBudget }}" style="font:400 15px Inter,system-ui,sans-serif;color:#13232F;border:1px solid #C4D8E6;border-radius:12px;padding:12px 14px;background:#FBFDFE;outline:none;appearance:auto" style-focus="border-color:#229ED9;box-shadow:0 0 0 3px rgba(34,158,217,0.18)">
+            <span style="font:600 14.5px Inter,system-ui,sans-serif">Budget range <span style="font-weight:400;color:var(--text-muted)">· optional</span></span>
+            <select value="{{ budget }}" onChange="{{ onBudget }}" style="font:400 15px Inter,system-ui,sans-serif;color:var(--text);border:1px solid var(--border-input);border-radius:12px;padding:12px 14px;background:var(--input-bg);outline:none;appearance:auto" style-focus="border-color:var(--accent-cta);box-shadow:0 0 0 3px rgba(34,158,217,0.18)">
               <option value="">Not sure yet</option>
               <option value="under $500">Under $500</option>
               <option value="$500–1,500">$500–1,500</option>
@@ -58,70 +60,70 @@
 
           <label style="display:flex;flex-direction:column;gap:8px">
             <span style="font:600 14.5px Inter,system-ui,sans-serif">How can we reach you</span>
-            <input type="text" value="{{ contact }}" onChange="{{ onContact }}" placeholder="@telegram handle or email" style="font:400 15px Inter,system-ui,sans-serif;color:#13232F;border:1px solid #C4D8E6;border-radius:12px;padding:12px 14px;background:#FBFDFE;outline:none" style-focus="border-color:#229ED9;box-shadow:0 0 0 3px rgba(34,158,217,0.18)">
+            <input type="text" value="{{ contact }}" onChange="{{ onContact }}" placeholder="@telegram handle or email" style="font:400 15px Inter,system-ui,sans-serif;color:var(--text);border:1px solid var(--border-input);border-radius:12px;padding:12px 14px;background:var(--input-bg);outline:none" style-focus="border-color:var(--accent-cta);box-shadow:0 0 0 3px rgba(34,158,217,0.18)">
           </label>
           <input type="text" name="website" value="{{ website }}" onChange="{{ onWebsite }}" autocomplete="off" tabindex="-1" aria-hidden="true" style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;opacity:0.01;pointer-events:none">
 
           <sc-if value="{{ showError }}" hint-placeholder-val="{{ false }}">
-            <div role="alert" style="font:500 14px Inter,system-ui,sans-serif;color:#C0392B;background:#FDEDEB;border-radius:10px;padding:10px 14px">{{ errorText }}</div>
+            <div role="alert" style="font:500 14px Inter,system-ui,sans-serif;color:var(--error-text);background:var(--error-bg);border-radius:10px;padding:10px 14px">{{ errorText }}</div>
           </sc-if>
 
           <div style="display:flex;flex-direction:column;gap:10px">
-            <button type="button" onClick="{{ onSubmit }}" aria-busy="{{ sending }}" style="display:inline-flex;align-items:center;justify-content:center;gap:9px;background:#229ED9;color:#FFFFFF;border:none;cursor:pointer;font:600 16px/1 Inter,system-ui,sans-serif;padding:14px 24px;border-radius:13px;width:fit-content" style-hover="background:#1A79C7" style-focus="outline:2px solid #13232F;outline-offset:2px">{{ submitLabel }}</button>
+            <button type="button" onClick="{{ onSubmit }}" aria-busy="{{ sending }}" style="display:inline-flex;align-items:center;justify-content:center;gap:9px;background:var(--accent-cta);color:var(--surface);border:none;cursor:pointer;font:600 16px/1 Inter,system-ui,sans-serif;padding:14px 24px;border-radius:13px;width:fit-content" style-hover="background:var(--accent)" style-focus="outline:2px solid var(--text);outline-offset:2px">{{ submitLabel }}</button>
             <sc-if value="{{ demoMode }}" hint-placeholder-val="{{ true }}">
-              <span style="font:400 12.5px/1.5 JetBrains Mono,monospace;color:#8FA4B3">// prototype: real submission will be wired by Claude Code</span>
+              <span style="font:400 12.5px/1.5 JetBrains Mono,monospace;color:var(--text-muted)">// prototype: real submission will be wired by Claude Code</span>
             </sc-if>
-            <span style="font:400 12.5px/1.5 Inter,system-ui,sans-serif;color:#8FA4B3">By submitting, you agree to the <a href="privacy.html" style="color:#1A79C7;text-decoration:none;border-radius:4px" style-hover="text-decoration:underline" style-focus="outline:2px solid #1A79C7;outline-offset:1px">privacy policy</a>.</span>
+            <span style="font:400 12.5px/1.5 Inter,system-ui,sans-serif;color:var(--text-muted)">By submitting, you agree to the <a href="privacy.html" style="color:var(--accent);text-decoration:none;border-radius:4px" style-hover="text-decoration:underline" style-focus="outline:2px solid var(--accent);outline-offset:1px">privacy policy</a>.</span>
           </div>
         </div>
       </sc-if>
 
       <sc-if value="{{ submitted }}" hint-placeholder-val="{{ false }}">
         <div style="display:flex;flex-direction:column;gap:14px">
-          <div style="background:#DCE8F0;border-radius:16px 16px 16px 5px;padding:14px 18px;font:400 15.5px/1.55 Inter,system-ui,sans-serif;max-width:480px">Request received ✓ I usually reply within a couple of hours — I'll message you at {{ echoContact }}.</div>
+          <div style="background:var(--chat-area);border-radius:16px 16px 16px 5px;padding:14px 18px;font:400 15.5px/1.55 Inter,system-ui,sans-serif;max-width:480px">Request received ✓ I usually reply within a couple of hours — I'll message you at {{ echoContact }}.</div>
           <sc-if value="{{ demoMode }}" hint-placeholder-val="{{ false }}">
-            <div style="font:400 13px/1.5 JetBrains Mono,monospace;color:#8FA4B3">// this is a demo: server submission will be wired by Claude Code</div>
+            <div style="font:400 13px/1.5 JetBrains Mono,monospace;color:var(--text-muted)">// this is a demo: server submission will be wired by Claude Code</div>
           </sc-if>
-          <button type="button" onClick="{{ onReset }}" style="font:500 14px Inter,system-ui,sans-serif;color:#1A79C7;background:#EAF4FB;border:none;cursor:pointer;padding:10px 16px;border-radius:10px;width:fit-content" style-hover="background:#DBEDF9" style-focus="outline:2px solid #1A79C7;outline-offset:2px">Fill in again</button>
+          <button type="button" onClick="{{ onReset }}" style="font:500 14px Inter,system-ui,sans-serif;color:var(--accent);background:var(--accent-tint);border:none;cursor:pointer;padding:10px 16px;border-radius:10px;width:fit-content" style-hover="background:var(--accent-tint-2)" style-focus="outline:2px solid var(--accent);outline-offset:2px">Fill in again</button>
         </div>
       </sc-if>
     </div>
 
     <!-- Direct contacts -->
     <div style="display:flex;flex-direction:column;gap:16px">
-      <div style="background:#FFFFFF;border:1px solid #D9E3EB;border-radius:18px;padding:clamp(20px,3vw,26px);display:flex;flex-direction:column;gap:14px">
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(20px,3vw,26px);display:flex;flex-direction:column;gap:14px">
         <h2 style="margin:0;font:600 18px/1.3 Sora,sans-serif">Or directly</h2>
-        <a href="{{ tgHref }}" style="display:flex;align-items:center;gap:12px;text-decoration:none;color:#13232F;border:1px solid #E4EBF1;border-radius:13px;padding:12px 14px" style-hover="border-color:#B9D6EA;background:#FBFDFE" style-focus="outline:2px solid #1A79C7;outline-offset:2px">
-          <span style="width:38px;height:38px;border-radius:50%;background:#229ED9;display:grid;place-items:center;flex:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M3 11L21 3.5L17 20.5L10.5 15L8 19L7.5 13.5L3 11Z" fill="#FFFFFF"></path></svg></span>
+        <a href="{{ tgHref }}" style="display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--text);border:1px solid var(--border-soft);border-radius:13px;padding:12px 14px" style-hover="border-color:var(--border-hover);background:var(--input-bg)" style-focus="outline:2px solid var(--accent);outline-offset:2px">
+          <span style="width:38px;height:38px;border-radius:50%;background:var(--accent-cta);display:grid;place-items:center;flex:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M3 11L21 3.5L17 20.5L10.5 15L8 19L7.5 13.5L3 11Z" fill="#FFFFFF"></path></svg></span>
           <span style="display:flex;flex-direction:column;gap:2px">
             <span style="font:600 15px Inter,system-ui,sans-serif">Telegram</span>
-            <span style="font:500 13.5px JetBrains Mono,monospace;color:#1A79C7">{{ telegram }}</span>
+            <span style="font:500 13.5px JetBrains Mono,monospace;color:var(--accent)">{{ telegram }}</span>
           </span>
         </a>
-        <a href="{{ mailtoHref }}" style="display:flex;align-items:center;gap:12px;text-decoration:none;color:#13232F;border:1px solid #E4EBF1;border-radius:13px;padding:12px 14px" style-hover="border-color:#B9D6EA;background:#FBFDFE" style-focus="outline:2px solid #1A79C7;outline-offset:2px">
-          <span style="width:38px;height:38px;border-radius:50%;background:#13232F;display:grid;place-items:center;flex:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2.5" stroke="#FFFFFF" stroke-width="1.8"></rect><path d="M4 7L12 13L20 7" stroke="#FFFFFF" stroke-width="1.8"></path></svg></span>
+        <a href="{{ mailtoHref }}" style="display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--text);border:1px solid var(--border-soft);border-radius:13px;padding:12px 14px" style-hover="border-color:var(--border-hover);background:var(--input-bg)" style-focus="outline:2px solid var(--accent);outline-offset:2px">
+          <span style="width:38px;height:38px;border-radius:50%;background:var(--text);display:grid;place-items:center;flex:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2.5" stroke="#FFFFFF" stroke-width="1.8"></rect><path d="M4 7L12 13L20 7" stroke="#FFFFFF" stroke-width="1.8"></path></svg></span>
           <span style="display:flex;flex-direction:column;gap:2px">
             <span style="font:600 15px Inter,system-ui,sans-serif">Email</span>
-            <span style="font:500 13.5px JetBrains Mono,monospace;color:#1A79C7">{{ email }}</span>
+            <span style="font:500 13.5px JetBrains Mono,monospace;color:var(--accent)">{{ email }}</span>
           </span>
         </a>
         <sc-if value="{{ contactsArePlaceholders }}" hint-placeholder-val="{{ true }}">
-          <span style="font:400 12.5px/1.5 JetBrains Mono,monospace;color:#8FA4B3">// placeholders — put your contacts in site-config.js</span>
+          <span style="font:400 12.5px/1.5 JetBrains Mono,monospace;color:var(--text-muted)">// placeholders — put your contacts in site-config.js</span>
         </sc-if>
       </div>
-      <div style="background:#FFFFFF;border:1px solid #D9E3EB;border-radius:18px;padding:clamp(20px,3vw,26px);display:flex;flex-direction:column;gap:12px">
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(20px,3vw,26px);display:flex;flex-direction:column;gap:12px">
         <h2 style="margin:0;font:600 18px/1.3 Sora,sans-serif">How I work</h2>
         <ol style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:9px">
-          <li style="display:flex;gap:10px;font:400 14px/1.5 Inter,system-ui,sans-serif;color:#45596A"><span style="font:500 13px JetBrains Mono,monospace;color:#8FA4B3;flex:none">01</span>You describe the task — I ask clarifying questions</li>
-          <li style="display:flex;gap:10px;font:400 14px/1.5 Inter,system-ui,sans-serif;color:#45596A"><span style="font:500 13px JetBrains Mono,monospace;color:#8FA4B3;flex:none">02</span>I send a proposal: solution, price, timeline</li>
-          <li style="display:flex;gap:10px;font:400 14px/1.5 Inter,system-ui,sans-serif;color:#45596A"><span style="font:500 13px JetBrains Mono,monospace;color:#8FA4B3;flex:none">03</span>Development with interim demos</li>
-          <li style="display:flex;gap:10px;font:400 14px/1.5 Inter,system-ui,sans-serif;color:#45596A"><span style="font:500 13px JetBrains Mono,monospace;color:#8FA4B3;flex:none">04</span>Launch and handover: the bot runs on your side, all access is yours</li>
-          <li style="display:flex;gap:10px;font:400 14px/1.5 Inter,system-ui,sans-serif;color:#45596A"><span style="font:500 13px JetBrains Mono,monospace;color:#8FA4B3;flex:none">05</span>30 days of free fixes after delivery</li>
+          <li style="display:flex;gap:10px;font:400 14px/1.5 Inter,system-ui,sans-serif;color:var(--text-body)"><span style="font:500 13px JetBrains Mono,monospace;color:var(--text-muted);flex:none">01</span>You describe the task — I ask clarifying questions</li>
+          <li style="display:flex;gap:10px;font:400 14px/1.5 Inter,system-ui,sans-serif;color:var(--text-body)"><span style="font:500 13px JetBrains Mono,monospace;color:var(--text-muted);flex:none">02</span>I send a proposal: solution, price, timeline</li>
+          <li style="display:flex;gap:10px;font:400 14px/1.5 Inter,system-ui,sans-serif;color:var(--text-body)"><span style="font:500 13px JetBrains Mono,monospace;color:var(--text-muted);flex:none">03</span>Development with interim demos</li>
+          <li style="display:flex;gap:10px;font:400 14px/1.5 Inter,system-ui,sans-serif;color:var(--text-body)"><span style="font:500 13px JetBrains Mono,monospace;color:var(--text-muted);flex:none">04</span>Launch and handover: the bot runs on your side, all access is yours</li>
+          <li style="display:flex;gap:10px;font:400 14px/1.5 Inter,system-ui,sans-serif;color:var(--text-body)"><span style="font:500 13px JetBrains Mono,monospace;color:var(--text-muted);flex:none">05</span>30 days of free fixes after delivery</li>
         </ol>
-        <span style="display:flex;align-items:center;gap:8px;font:500 12.5px JetBrains Mono,monospace;color:#5A7284"><span style="width:8px;height:8px;border-radius:50%;background:#31B545;flex:none"></span>officially registered: sole proprietor, contract, bank transfer</span>
+        <span style="display:flex;align-items:center;gap:8px;font:500 12.5px JetBrains Mono,monospace;color:var(--text-meta)"><span style="width:8px;height:8px;border-radius:50%;background:var(--online);flex:none"></span>officially registered: sole proprietor, contract, bank transfer</span>
       </div>
-      <div style="display:flex;align-items:center;gap:10px;font:500 14px Inter,system-ui,sans-serif;color:#45596A;padding:0 6px">
-        <span style="width:8px;height:8px;border-radius:50%;background:#31B545;box-shadow:0 0 0 3px rgba(49,181,69,0.25);flex:none"></span>
+      <div style="display:flex;align-items:center;gap:10px;font:500 14px Inter,system-ui,sans-serif;color:var(--text-body);padding:0 6px">
+        <span style="width:8px;height:8px;border-radius:50%;background:var(--online);box-shadow:0 0 0 3px rgba(49,181,69,0.25);flex:none"></span>
         online · usually replies within a couple of hours
       </div>
     </div>
@@ -132,33 +134,33 @@
   <section style="margin-top:clamp(44px,6vw,68px)">
     <h2 style="margin:0 0 20px;font:600 clamp(24px,3vw,32px)/1.2 Sora,sans-serif;letter-spacing:-0.01em">FAQ</h2>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px">
-      <div style="background:#FFFFFF;border:1px solid #D9E3EB;border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:8px">
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:8px">
         <h3 style="margin:0;font:600 16.5px/1.35 Sora,sans-serif">How much does a bot cost?</h3>
-        <p style="margin:0;font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:#45596A">Depends on the task: lead bots — from $500, payments &amp; subscriptions — from $900, mini apps — from $1,500. You get the exact price after we discuss the task — before work starts, and it doesn't change.</p>
+        <p style="margin:0;font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Depends on the task: lead bots — from $500, payments &amp; subscriptions — from $900, mini apps — from $1,500. You get the exact price after we discuss the task — before work starts, and it doesn't change.</p>
       </div>
-      <div style="background:#FFFFFF;border:1px solid #D9E3EB;border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:8px">
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:8px">
         <h3 style="margin:0;font:600 16.5px/1.35 Sora,sans-serif">How long does a typical bot take?</h3>
-        <p style="margin:0;font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:#45596A">A lead-capture bot — from a few days to a couple of weeks. Projects with payments and AI — usually 2–4 weeks. The timeline is locked in the proposal along with the price.</p>
+        <p style="margin:0;font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">A lead-capture bot — from a few days to a couple of weeks. Projects with payments and AI — usually 2–4 weeks. The timeline is locked in the proposal along with the price.</p>
       </div>
-      <div style="background:#FFFFFF;border:1px solid #D9E3EB;border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:8px">
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:8px">
         <h3 style="margin:0;font:600 16.5px/1.35 Sora,sans-serif">What do you need from me as a client?</h3>
-        <p style="margin:0;font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:#45596A">Describe the task in your own words and stay reachable for questions — no formal spec required. Accounts (payment provider, hosting) are registered in your name; I'll help set everything up.</p>
+        <p style="margin:0;font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Describe the task in your own words and stay reachable for questions — no formal spec required. Accounts (payment provider, hosting) are registered in your name; I'll help set everything up.</p>
       </div>
-      <div style="background:#FFFFFF;border:1px solid #D9E3EB;border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:8px">
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:8px">
         <h3 style="margin:0;font:600 16.5px/1.35 Sora,sans-serif">What happens after launch?</h3>
-        <p style="margin:0;font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:#45596A">30 days of free fixes after delivery. Then — support by agreement, or I hand the project over entirely: everything runs on your side, all access is yours.</p>
+        <p style="margin:0;font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">30 days of free fixes after delivery. Then — support by agreement, or I hand the project over entirely: everything runs on your side, all access is yours.</p>
       </div>
-      <div style="background:#FFFFFF;border:1px solid #D9E3EB;border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:8px">
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:8px">
         <h3 style="margin:0;font:600 16.5px/1.35 Sora,sans-serif">How does payment work?</h3>
-        <p style="margin:0;font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:#45596A">Officially: sole proprietor, contract, bank transfer. Milestone payments — part upfront, the rest on delivery of the working bot.</p>
+        <p style="margin:0;font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Officially: sole proprietor, contract, bank transfer. Milestone payments — part upfront, the rest on delivery of the working bot.</p>
       </div>
-      <div style="background:#FFFFFF;border:1px solid #D9E3EB;border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:8px">
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:8px">
         <h3 style="margin:0;font:600 16.5px/1.35 Sora,sans-serif">Who will build my project?</h3>
-        <p style="margin:0;font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:#45596A">Daniil personally runs every project — development and all communication. Design and testing are handled by the team.</p>
+        <p style="margin:0;font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Daniil personally runs every project — development and all communication. Design and testing are handled by the team.</p>
       </div>
-      <div style="background:#FFFFFF;border:1px solid #D9E3EB;border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:8px">
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:8px">
         <h3 style="margin:0;font:600 16.5px/1.35 Sora,sans-serif">Do you build turnkey?</h3>
-        <p style="margin:0;font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:#45596A">Yes: logic, payments, server, launch. You get a working product — not code you still have to figure out where to put.</p>
+        <p style="margin:0;font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Yes: logic, payments, server, launch. You get a working product — not code you still have to figure out where to put.</p>
       </div>
     </div>
   </section>
@@ -180,9 +182,9 @@ class Component extends DCLogic {
         label,
         checked: on,
         pick: () => this.setState({ type: label }),
-        bg: on ? '#EAF4FB' : '#FFFFFF',
-        color: on ? '#1A79C7' : '#13232F',
-        border: on ? '#229ED9' : '#C4D8E6',
+        bg: on ? 'var(--accent-tint)' : 'var(--surface)',
+        color: on ? 'var(--accent)' : 'var(--text)',
+        border: on ? 'var(--accent-cta)' : 'var(--border-input)',
       };
     });
     // русский плейсхолдер из site-config считается «не задано» для английской версии

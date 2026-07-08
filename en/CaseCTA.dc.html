@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<link rel="stylesheet" href="../theme.css">
 <script src="../support.js"></script>
 </head>
 <body>
@@ -12,9 +14,9 @@
 <style>*,*::before,*::after{box-sizing:border-box} body{margin:0}</style>
 </helmet>
 <div style="margin-top:clamp(32px,5vw,52px);display:flex;flex-direction:column;gap:16px;align-items:flex-start;max-width:640px;font-family:Inter,system-ui,sans-serif">
-  <div style="align-self:stretch;background:#FFFFFF;border-radius:18px 18px 18px 5px;padding:16px 20px;box-shadow:0 2px 6px rgba(19,35,47,0.08);font:400 17px/1.5 Inter,system-ui,sans-serif">Need something similar? Write me — I&#8217;ll tell you how I&#8217;d build yours and what it would cost.</div>
-  <a href="contact.html" style="display:inline-flex;align-items:center;gap:9px;background:#229ED9;color:#FFFFFF;text-decoration:none;font:600 15.5px/1 Inter,system-ui,sans-serif;padding:13px 22px;border-radius:12px" style-hover="background:#1A79C7" style-focus="outline:2px solid #13232F;outline-offset:2px">
-    <span style="width:8px;height:8px;border-radius:50%;background:#31B545;box-shadow:0 0 0 3px rgba(49,181,69,0.25)"></span>
+  <div style="align-self:stretch;background:var(--surface);border-radius:18px 18px 18px 5px;padding:16px 20px;box-shadow:0 2px 6px var(--shadow-2);font:400 17px/1.5 Inter,system-ui,sans-serif">Need something similar? Write me — I&#8217;ll tell you how I&#8217;d build yours and what it would cost.</div>
+  <a href="contact.html" style="display:inline-flex;align-items:center;gap:9px;background:var(--accent-cta);color:var(--surface);text-decoration:none;font:600 15.5px/1 Inter,system-ui,sans-serif;padding:13px 22px;border-radius:12px" style-hover="background:var(--accent)" style-focus="outline:2px solid var(--text);outline-offset:2px">
+    <span style="width:8px;height:8px;border-radius:50%;background:var(--online);box-shadow:0 0 0 3px rgba(49,181,69,0.25)"></span>
     Contact
   </a>
 </div>

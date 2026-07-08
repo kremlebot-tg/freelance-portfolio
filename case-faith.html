@@ -10,6 +10,8 @@
 <link rel="alternate" hreflang="en" href="https://rednd.ru/en/case-faith.html">
 <link rel="alternate" hreflang="x-default" href="https://rednd.ru/case-faith.html">
 <script src="./site-config.js"></script>
+<script>(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<link rel="stylesheet" href="./theme.css">
 <script src="./support.js"></script>
 </head>
 <body>
@@ -18,7 +20,7 @@
 <link href="fonts/fonts.css" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box}
-body{margin:0;background:#E7EDF2;color:#13232F;-webkit-font-smoothing:antialiased}
+body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
 @keyframes bubbleIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 </style>
 </helmet>
@@ -27,20 +29,20 @@ body{margin:0;background:#E7EDF2;color:#13232F;-webkit-font-smoothing:antialiase
 
 <main style="font-family:Inter,system-ui,sans-serif;max-width:1140px;margin:0 auto;padding:clamp(32px,4vw,52px) 20px clamp(56px,7vw,88px)">
 
-  <a href="projects.html" style="display:inline-flex;align-items:center;gap:6px;font:500 14.5px Inter,system-ui,sans-serif;color:#1A79C7;text-decoration:none;border-radius:8px;padding:4px 6px;margin:0 0 18px -6px" style-hover="background:#EAF4FB" style-focus="outline:2px solid #1A79C7;outline-offset:2px">← Все проекты</a>
+  <a href="projects.html" style="display:inline-flex;align-items:center;gap:6px;font:500 14.5px Inter,system-ui,sans-serif;color:var(--accent);text-decoration:none;border-radius:8px;padding:4px 6px;margin:0 0 18px -6px" style-hover="background:var(--accent-tint)" style-focus="outline:2px solid var(--accent);outline-offset:2px">← Все проекты</a>
 
   <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:28px">
-    <span style="font:500 13px JetBrains Mono,monospace;color:#1A79C7">[Мобильное]</span>
+    <span style="font:500 13px JetBrains Mono,monospace;color:var(--accent)">[Мобильное]</span>
     <h1 style="margin:0;font:700 clamp(28px,4vw,42px)/1.15 Sora,sans-serif;letter-spacing:-0.02em">Faith App — обучение в стиле Duolingo</h1>
-    <p style="margin:0;font:400 clamp(15.5px,1.6vw,18px)/1.55 Inter,system-ui,sans-serif;color:#45596A;max-width:640px">Православное обучающее приложение: короткие уроки, ответы с мгновенной проверкой, прогресс и серия дней.</p>
-    <span style="font:500 13px JetBrains Mono,monospace;color:#8FA4B3">Моя роль: разработка · дизайн — Светлана · тестирование — Егор</span>
+    <p style="margin:0;font:400 clamp(15.5px,1.6vw,18px)/1.55 Inter,system-ui,sans-serif;color:var(--text-body);max-width:640px">Православное обучающее приложение: короткие уроки, ответы с мгновенной проверкой, прогресс и серия дней.</p>
+    <span style="font:500 13px JetBrains Mono,monospace;color:var(--text-muted)">Моя роль: разработка · дизайн — Светлана · тестирование — Егор</span>
   </div>
 
   <!-- ============ DEMO ============ -->
-  <section aria-label="Живое демо: фрагмент урока" style="background:#FFFFFF;border:1px solid #D9E3EB;border-radius:22px;padding:clamp(18px,3vw,32px);display:flex;flex-direction:column;gap:18px">
+  <section data-theme-lock aria-label="Живое демо: фрагмент урока" style="background:var(--surface);border:1px solid var(--border);border-radius:22px;padding:clamp(18px,3vw,32px);display:flex;flex-direction:column;gap:18px">
     <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
-      <span style="display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:99px;background:#EAF4FB;color:#1A79C7;font:500 13px Inter,system-ui,sans-serif"><span style="width:7px;height:7px;border-radius:50%;background:#31B545"></span>живое демо — пройдите фрагмент урока, отвечая на вопросы</span>
-      <button type="button" onClick="{{ onReset }}" style="margin-left:auto;font:500 13.5px Inter,system-ui,sans-serif;color:#5A7284;background:#F1F5F8;border:none;cursor:pointer;padding:8px 14px;border-radius:10px" style-hover="background:#E4EBF1;color:#13232F" style-focus="outline:2px solid #1A79C7;outline-offset:2px">⟳ сбросить демо</button>
+      <span style="display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 13px Inter,system-ui,sans-serif"><span style="width:7px;height:7px;border-radius:50%;background:var(--online)"></span>живое демо — пройдите фрагмент урока, отвечая на вопросы</span>
+      <button type="button" onClick="{{ onReset }}" style="margin-left:auto;font:500 13.5px Inter,system-ui,sans-serif;color:var(--text-meta);background:var(--surface-2);border:none;cursor:pointer;padding:8px 14px;border-radius:10px" style-hover="background:var(--border-soft);color:var(--text)" style-focus="outline:2px solid var(--accent);outline-offset:2px">⟳ сбросить демо</button>
     </div>
 
     <div style="display:flex;justify-content:center">
@@ -73,7 +75,7 @@ body{margin:0;background:#E7EDF2;color:#13232F;-webkit-font-smoothing:antialiase
                   <div style="border-radius:18px;padding:16px 18px;background:{{ fbBg }};display:flex;flex-direction:column;gap:10px;animation:{{ anim }}">
                     <span aria-live="polite" style="font:700 16px Sora,sans-serif;color:{{ fbColor }}">{{ fbTitle }}</span>
                     <span style="font:400 13.5px/1.45 Inter,system-ui,sans-serif;color:{{ fbColor }}">{{ fbText }}</span>
-                    <button type="button" onClick="{{ onNext }}" style="padding:13px;border-radius:13px;border:none;background:{{ fbBtnBg }};color:#FFFFFF;font:700 15px Sora,sans-serif;cursor:pointer" style-hover="filter:brightness(1.06)" style-focus="outline:2px solid #2B2417;outline-offset:2px">{{ nextLabel }}</button>
+                    <button type="button" onClick="{{ onNext }}" style="padding:13px;border-radius:13px;border:none;background:{{ fbBtnBg }};color:var(--surface);font:700 15px Sora,sans-serif;cursor:pointer" style-hover="filter:brightness(1.06)" style-focus="outline:2px solid #2B2417;outline-offset:2px">{{ nextLabel }}</button>
                   </div>
                 </sc-if>
               </div>
@@ -90,7 +92,7 @@ body{margin:0;background:#E7EDF2;color:#13232F;-webkit-font-smoothing:antialiase
                 <span style="display:flex;flex-direction:column;gap:2px;background:#F6EFDD;border-radius:13px;padding:12px 18px"><span style="font:700 18px Sora,sans-serif;color:#C99A2E">+{{ xp }} XP</span><span style="font:500 11.5px Inter,system-ui,sans-serif;color:#8A7F68">опыт</span></span>
                 <span style="display:flex;flex-direction:column;gap:2px;background:#F6EFDD;border-radius:13px;padding:12px 18px"><span style="font:700 18px Sora,sans-serif;color:#D9822B">🔥 4</span><span style="font:500 11.5px Inter,system-ui,sans-serif;color:#8A7F68">серия дней</span></span>
               </div>
-              <button type="button" onClick="{{ onReset }}" style="margin-top:18px;width:100%;padding:15px;border-radius:14px;border:none;background:#C99A2E;color:#FFFFFF;font:700 16px Sora,sans-serif;cursor:pointer" style-hover="filter:brightness(1.06)" style-focus="outline:2px solid #2B2417;outline-offset:3px">Пройти ещё раз</button>
+              <button type="button" onClick="{{ onReset }}" style="margin-top:18px;width:100%;padding:15px;border-radius:14px;border:none;background:#C99A2E;color:var(--surface);font:700 16px Sora,sans-serif;cursor:pointer" style-hover="filter:brightness(1.06)" style-focus="outline:2px solid #2B2417;outline-offset:3px">Пройти ещё раз</button>
             </div>
           </sc-if>
 
@@ -102,29 +104,29 @@ body{margin:0;background:#E7EDF2;color:#13232F;-webkit-font-smoothing:antialiase
 
   <!-- ============ CASE STORY ============ -->
   <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:24px">
-    <div style="background:#FFFFFF;border:1px solid #D9E3EB;border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
-      <span style="font:500 12.5px JetBrains Mono,monospace;color:#8FA4B3">01 · суть</span>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:#2C4254;text-wrap:pretty">Православное обучающее приложение в механике Duolingo: короткие уроки, мгновенная проверка ответов, прогресс и серия дней — привычка вместо силы воли.</p>
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
+      <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">01 · суть</span>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">Православное обучающее приложение в механике Duolingo: короткие уроки, мгновенная проверка ответов, прогресс и серия дней — привычка вместо силы воли.</p>
     </div>
-    <div style="background:#FFFFFF;border:1px solid #D9E3EB;border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
-      <span style="font:500 12.5px JetBrains Mono,monospace;color:#8FA4B3">02 · как решал</span>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:#2C4254;text-wrap:pretty">Flutter под iOS: структура курсов и уроков, механика ответов, XP и серия дней. Демо выше повторяет боевой экран урока.</p>
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
+      <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">02 · как решал</span>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">Flutter под iOS: структура курсов и уроков, механика ответов, XP и серия дней. Демо выше повторяет боевой экран урока.</p>
     </div>
-    <div style="background:#FFFFFF;border:1px solid #D9E3EB;border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
-      <span style="font:500 12.5px JetBrains Mono,monospace;color:#8FA4B3">03 · результат</span>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:#2C4254;text-wrap:pretty"><strong style="color:#1A79C7">В активной разработке.</strong> Ядро урока работает; впереди — контент курсов и запуск в App Store.</p>
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
+      <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">03 · результат</span>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty"><strong style="color:var(--accent)">В активной разработке.</strong> Ядро урока работает; впереди — контент курсов и запуск в App Store.</p>
     </div>
   </section>
 
   <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:20px">
-    <span style="font:500 13px JetBrains Mono,monospace;background:#FFFFFF;border:1px solid #D9E3EB;border-radius:9px;padding:7px 11px">Flutter</span>
-    <span style="font:500 13px JetBrains Mono,monospace;background:#FFFFFF;border:1px solid #D9E3EB;border-radius:9px;padding:7px 11px">iOS</span>
+    <span style="font:500 13px JetBrains Mono,monospace;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 11px">Flutter</span>
+    <span style="font:500 13px JetBrains Mono,monospace;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 11px">iOS</span>
   </div>
 
   <dc-import name="CaseCTA" hint-size="100%,170px"></dc-import>
 
   <div style="display:flex;align-items:center;gap:12px;margin-top:18px;flex-wrap:wrap">
-    <a href="case-subscriptions.html" style="margin-left:auto;font:500 15px Inter,system-ui,sans-serif;color:#1A79C7;text-decoration:none;border-radius:8px;padding:6px 8px" style-hover="background:#EAF4FB" style-focus="outline:2px solid #1A79C7;outline-offset:2px">следующий кейс: подписочный сервис →</a>
+    <a href="case-subscriptions.html" style="margin-left:auto;font:500 15px Inter,system-ui,sans-serif;color:var(--accent);text-decoration:none;border-radius:8px;padding:6px 8px" style-hover="background:var(--accent-tint)" style-focus="outline:2px solid var(--accent);outline-offset:2px">следующий кейс: подписочный сервис →</a>
   </div>
 </main>
 

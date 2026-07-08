@@ -9,6 +9,8 @@
 <link rel="alternate" hreflang="ru" href="https://rednd.ru/">
 <link rel="alternate" hreflang="en" href="https://rednd.ru/en/">
 <link rel="alternate" hreflang="x-default" href="https://rednd.ru/">
+<script>(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<link rel="stylesheet" href="./theme.css">
 <script src="./site-config.js"></script>
 <script src="./support.js"></script>
 </head>
@@ -18,7 +20,7 @@
 <link href="fonts/fonts.css" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box}
-body{margin:0;background:#E7EDF2;color:#13232F;-webkit-font-smoothing:antialiased}
+body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
 @keyframes bubbleIn{from{opacity:0;transform:translateY(8px) scale(0.98)}to{opacity:1;transform:none}}
 @keyframes tgDot{0%,60%,100%{opacity:0.35;transform:translateY(0)}30%{opacity:1;transform:translateY(-2px)}}
 </style>
@@ -32,50 +34,50 @@ body{margin:0;background:#E7EDF2;color:#13232F;-webkit-font-smoothing:antialiase
   <section style="max-width:1140px;margin:0 auto;padding:clamp(48px,7vw,88px) 20px clamp(40px,6vw,72px);display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:clamp(28px,5vw,64px);align-items:center">
     <div style="display:flex;flex-direction:column;gap:20px;max-width:560px">
       <h1 style="margin:0;font:700 clamp(34px,4.6vw,54px)/1.12 Sora,sans-serif;letter-spacing:-0.02em;text-wrap:balance">Боты и мини-аппы, которые работают в проде</h1>
-      <p style="margin:0;font:400 clamp(16px,1.6vw,19px)/1.6 Inter,system-ui,sans-serif;color:#45596A;text-wrap:pretty">Приём заявок, оплаты и подписки, ИИ-ассистенты — под ключ. Небольшая команда со своими продуктами в проде.</p>
-      <div style="display:flex;align-items:center;gap:10px;font:500 14px JetBrains Mono,monospace;color:#5A7284">
-        <span style="width:8px;height:8px;border-radius:50%;background:#31B545;flex:none"></span>
+      <p style="margin:0;font:400 clamp(16px,1.6vw,19px)/1.6 Inter,system-ui,sans-serif;color:var(--text-body);text-wrap:pretty">Приём заявок, оплаты и подписки, ИИ-ассистенты — под ключ. Небольшая команда со своими продуктами в проде.</p>
+      <div style="display:flex;align-items:center;gap:10px;font:500 14px JetBrains Mono,monospace;color:var(--text-meta)">
+        <span style="width:8px;height:8px;border-radius:50%;background:var(--online);flex:none"></span>
         онлайн · отвечаю обычно за пару часов
       </div>
     </div>
 
     <!-- Chat window -->
-    <div aria-label="Демо-чат" style="justify-self:center;width:100%;max-width:432px;background:#FFFFFF;border:1px solid #D9E3EB;border-radius:20px;overflow:hidden;box-shadow:0 24px 60px -18px rgba(19,35,47,0.22)">
-      <div style="display:flex;align-items:center;gap:11px;padding:12px 16px;background:#FFFFFF;border-bottom:1px solid #E4EBF1">
-        <span style="width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#38AEE5,#1A79C7);color:#FFFFFF;display:grid;place-items:center;font:600 14px Sora,sans-serif">{{ personInitials }}</span>
+    <div aria-label="Демо-чат" style="justify-self:center;width:100%;max-width:432px;background:var(--surface);border:1px solid var(--border);border-radius:20px;overflow:hidden;box-shadow:0 24px 60px -18px var(--shadow-3)">
+      <div style="display:flex;align-items:center;gap:11px;padding:12px 16px;background:var(--surface);border-bottom:1px solid var(--border-soft)">
+        <span style="width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#38AEE5,var(--accent));color:var(--surface);display:grid;place-items:center;font:600 14px Sora,sans-serif">{{ personInitials }}</span>
         <div style="display:flex;flex-direction:column;gap:2px">
           <span style="font:600 15px/1 Sora,sans-serif">{{ personName }}</span>
           <span style="font:400 13px/1 Inter,system-ui,sans-serif;color:{{ statusColor }}">{{ statusText }}</span>
         </div>
-        <span style="margin-left:auto;font:500 12px JetBrains Mono,monospace;color:#8FA4B3">@re_dnd</span>
+        <span style="margin-left:auto;font:500 12px JetBrains Mono,monospace;color:var(--text-muted)">@re_dnd</span>
       </div>
-      <div style="padding:18px 14px 14px;display:flex;flex-direction:column;gap:10px;min-height:330px;background-color:#DCE8F0;background-image:radial-gradient(rgba(26,121,199,0.08) 1px,transparent 1.3px);background-size:20px 20px">
+      <div style="padding:18px 14px 14px;display:flex;flex-direction:column;gap:10px;min-height:330px;background-color:var(--chat-area);background-image:radial-gradient(rgba(26,121,199,0.08) 1px,transparent 1.3px);background-size:20px 20px">
         <sc-if value="{{ showB1 }}" hint-placeholder-val="{{ true }}">
-          <div style="align-self:flex-start;max-width:86%;background:#FFFFFF;border-radius:16px 16px 16px 5px;padding:9px 13px;box-shadow:0 1px 1px rgba(19,35,47,0.07);font:400 15px/1.45 Inter,system-ui,sans-serif;animation:{{ bubbleAnim }}">Привет 👋 Делаю Telegram-ботов и мини-аппы для бизнеса.<span style="display:inline-block;margin-left:8px;font-size:11px;color:#8FA4B3;vertical-align:bottom">12:04</span></div>
+          <div style="align-self:flex-start;max-width:86%;background:var(--surface);border-radius:16px 16px 16px 5px;padding:9px 13px;box-shadow:0 1px 1px var(--shadow-1);font:400 15px/1.45 Inter,system-ui,sans-serif;animation:{{ bubbleAnim }}">Привет 👋 Делаю Telegram-ботов и мини-аппы для бизнеса.<span style="display:inline-block;margin-left:8px;font-size:11px;color:var(--text-muted);vertical-align:bottom">12:04</span></div>
         </sc-if>
         <sc-if value="{{ showB2 }}" hint-placeholder-val="{{ true }}">
-          <div style="align-self:flex-start;max-width:86%;background:#FFFFFF;border-radius:16px 16px 16px 5px;padding:9px 13px;box-shadow:0 1px 1px rgba(19,35,47,0.07);font:400 15px/1.45 Inter,system-ui,sans-serif;animation:{{ bubbleAnim }}">Заявки, оплаты, подписки, ИИ — собираю под ключ.<span style="display:inline-block;margin-left:8px;font-size:11px;color:#8FA4B3;vertical-align:bottom">12:04</span></div>
+          <div style="align-self:flex-start;max-width:86%;background:var(--surface);border-radius:16px 16px 16px 5px;padding:9px 13px;box-shadow:0 1px 1px var(--shadow-1);font:400 15px/1.45 Inter,system-ui,sans-serif;animation:{{ bubbleAnim }}">Заявки, оплаты, подписки, ИИ — собираю под ключ.<span style="display:inline-block;margin-left:8px;font-size:11px;color:var(--text-muted);vertical-align:bottom">12:04</span></div>
         </sc-if>
         <sc-if value="{{ showB3 }}" hint-placeholder-val="{{ true }}">
-          <div style="align-self:flex-start;max-width:86%;background:#FFFFFF;border-radius:16px 16px 16px 5px;padding:9px 13px;box-shadow:0 1px 1px rgba(19,35,47,0.07);font:400 15px/1.45 Inter,system-ui,sans-serif;animation:{{ bubbleAnim }}">Расскажите, что нужно автоматизировать — прикину решение и сроки.<span style="display:inline-block;margin-left:8px;font-size:11px;color:#8FA4B3;vertical-align:bottom">12:05</span></div>
+          <div style="align-self:flex-start;max-width:86%;background:var(--surface);border-radius:16px 16px 16px 5px;padding:9px 13px;box-shadow:0 1px 1px var(--shadow-1);font:400 15px/1.45 Inter,system-ui,sans-serif;animation:{{ bubbleAnim }}">Расскажите, что нужно автоматизировать — прикину решение и сроки.<span style="display:inline-block;margin-left:8px;font-size:11px;color:var(--text-muted);vertical-align:bottom">12:05</span></div>
         </sc-if>
         <sc-if value="{{ showTyping }}" hint-placeholder-val="{{ false }}">
-          <div aria-hidden="true" style="align-self:flex-start;background:#FFFFFF;border-radius:16px 16px 16px 5px;padding:13px 15px;box-shadow:0 1px 1px rgba(19,35,47,0.07);display:flex;gap:4px">
-            <span style="width:6px;height:6px;border-radius:50%;background:#8FA4B3;animation:tgDot 1.1s infinite"></span>
-            <span style="width:6px;height:6px;border-radius:50%;background:#8FA4B3;animation:tgDot 1.1s 0.18s infinite"></span>
-            <span style="width:6px;height:6px;border-radius:50%;background:#8FA4B3;animation:tgDot 1.1s 0.36s infinite"></span>
+          <div aria-hidden="true" style="align-self:flex-start;background:var(--surface);border-radius:16px 16px 16px 5px;padding:13px 15px;box-shadow:0 1px 1px var(--shadow-1);display:flex;gap:4px">
+            <span style="width:6px;height:6px;border-radius:50%;background:var(--text-muted);animation:tgDot 1.1s infinite"></span>
+            <span style="width:6px;height:6px;border-radius:50%;background:var(--text-muted);animation:tgDot 1.1s 0.18s infinite"></span>
+            <span style="width:6px;height:6px;border-radius:50%;background:var(--text-muted);animation:tgDot 1.1s 0.36s infinite"></span>
           </div>
         </sc-if>
         <sc-if value="{{ showKeys }}" hint-placeholder-val="{{ true }}">
           <div style="display:flex;gap:6px;margin-top:2px;animation:{{ bubbleAnim }}">
-            <a href="projects.html" style="flex:1;text-align:center;padding:11px 8px;border-radius:11px;background:rgba(255,255,255,0.72);color:#1A79C7;text-decoration:none;font:500 14px/1 Inter,system-ui,sans-serif;border:1px solid rgba(26,121,199,0.14)" style-hover="background:#FFFFFF" style-focus="outline:2px solid #1A79C7;outline-offset:2px">Смотреть проекты</a>
-            <a href="contact.html" style="flex:1;text-align:center;padding:11px 8px;border-radius:11px;background:rgba(255,255,255,0.72);color:#1A79C7;text-decoration:none;font:500 14px/1 Inter,system-ui,sans-serif;border:1px solid rgba(26,121,199,0.14)" style-hover="background:#FFFFFF" style-focus="outline:2px solid #1A79C7;outline-offset:2px">Обсудить задачу</a>
+            <a href="projects.html" style="flex:1;text-align:center;padding:11px 8px;border-radius:11px;background:var(--chat-key-bg);color:var(--accent);text-decoration:none;font:500 14px/1 Inter,system-ui,sans-serif;border:1px solid rgba(26,121,199,0.14)" style-hover="background:var(--surface)" style-focus="outline:2px solid var(--accent);outline-offset:2px">Смотреть проекты</a>
+            <a href="contact.html" style="flex:1;text-align:center;padding:11px 8px;border-radius:11px;background:var(--chat-key-bg);color:var(--accent);text-decoration:none;font:500 14px/1 Inter,system-ui,sans-serif;border:1px solid rgba(26,121,199,0.14)" style-hover="background:var(--surface)" style-focus="outline:2px solid var(--accent);outline-offset:2px">Обсудить задачу</a>
           </div>
         </sc-if>
       </div>
-      <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;background:#FFFFFF;border-top:1px solid #E4EBF1">
-        <span aria-hidden="true" style="flex:1;padding:9px 14px;border-radius:18px;background:#F1F5F8;color:#8FA4B3;font:400 14px Inter,system-ui,sans-serif">Сообщение</span>
-        <span aria-hidden="true" style="width:34px;height:34px;border-radius:50%;background:#229ED9;display:grid;place-items:center;flex:none">
+      <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--surface);border-top:1px solid var(--border-soft)">
+        <span aria-hidden="true" style="flex:1;padding:9px 14px;border-radius:18px;background:var(--surface-2);color:var(--text-muted);font:400 14px Inter,system-ui,sans-serif">Сообщение</span>
+        <span aria-hidden="true" style="width:34px;height:34px;border-radius:50%;background:var(--accent-cta);display:grid;place-items:center;flex:none">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 12L20 4L13 20L11 13L4 12Z" fill="#FFFFFF"></path></svg>
         </span>
       </div>
@@ -86,57 +88,57 @@ body{margin:0;background:#E7EDF2;color:#13232F;-webkit-font-smoothing:antialiase
   <section style="max-width:1140px;margin:0 auto;padding:clamp(28px,4vw,48px) 20px">
     <div style="display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:24px">
       <h2 style="margin:0;font:600 clamp(26px,3.2vw,36px)/1.15 Sora,sans-serif;letter-spacing:-0.01em">Проекты</h2>
-      <p style="margin:0;font:400 15.5px/1.5 Inter,system-ui,sans-serif;color:#5A7284">Живые демо встроены прямо в страницы кейсов. Можно потыкать самому.</p>
+      <p style="margin:0;font:400 15.5px/1.5 Inter,system-ui,sans-serif;color:var(--text-meta)">Живые демо встроены прямо в страницы кейсов. Можно потыкать самому.</p>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px">
 
-      <a href="case-subscriptions.html" style="display:flex;flex-direction:column;gap:12px;background:#FFFFFF;border:1px solid #D9E3EB;border-radius:16px;padding:22px;text-decoration:none;color:#13232F;transition:transform .15s ease,box-shadow .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 14px 34px -14px rgba(19,35,47,0.25);border-color:#B9D6EA" style-focus="outline:2px solid #1A79C7;outline-offset:2px">
-        <span style="font:500 12.5px JetBrains Mono,monospace;color:#1A79C7">[Подписки · Оплаты]</span>
+      <a href="case-subscriptions.html" style="display:flex;flex-direction:column;gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 14px 34px -14px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus="outline:2px solid var(--accent);outline-offset:2px">
+        <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--accent)">[Подписки · Оплаты]</span>
         <span style="font:600 20px/1.3 Sora,sans-serif">Подписочный Telegram-сервис</span>
-        <span style="font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:#45596A">Тарифы кнопками, оплата через ЮКассу, автоматическая выдача доступа. ~200 платящих.</span>
+        <span style="font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Тарифы кнопками, оплата через ЮКассу, автоматическая выдача доступа. ~200 платящих.</span>
         <span style="margin-top:auto;display:flex;align-items:center;gap:8px">
-          <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:#EAF4FB;color:#1A79C7;font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:#31B545"></span>живое демо внутри</span>
-          <span aria-hidden="true" style="margin-left:auto;color:#1A79C7;font-size:18px">→</span>
+          <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:var(--online)"></span>живое демо внутри</span>
+          <span aria-hidden="true" style="margin-left:auto;color:var(--accent);font-size:18px">→</span>
         </span>
       </a>
 
-      <a href="case-crm.html" style="display:flex;flex-direction:column;gap:12px;background:#FFFFFF;border:1px solid #D9E3EB;border-radius:16px;padding:22px;text-decoration:none;color:#13232F;transition:transform .15s ease,box-shadow .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 14px 34px -14px rgba(19,35,47,0.25);border-color:#B9D6EA" style-focus="outline:2px solid #1A79C7;outline-offset:2px">
-        <span style="font:500 12.5px JetBrains Mono,monospace;color:#1A79C7">[ИИ · CRM]</span>
+      <a href="case-crm.html" style="display:flex;flex-direction:column;gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 14px 34px -14px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus="outline:2px solid var(--accent);outline-offset:2px">
+        <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--accent)">[ИИ · CRM]</span>
         <span style="font:600 20px/1.3 Sora,sans-serif">CRM для нетворкинга</span>
-        <span style="font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:#45596A">Заметки о людях превращаются в граф связей и извлечённые факты — ничего не теряется.</span>
+        <span style="font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Заметки о людях превращаются в граф связей и извлечённые факты — ничего не теряется.</span>
         <span style="margin-top:auto;display:flex;align-items:center;gap:8px">
-          <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:#EAF4FB;color:#1A79C7;font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:#31B545"></span>живое демо внутри</span>
-          <span aria-hidden="true" style="margin-left:auto;color:#1A79C7;font-size:18px">→</span>
+          <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:var(--online)"></span>живое демо внутри</span>
+          <span aria-hidden="true" style="margin-left:auto;color:var(--accent);font-size:18px">→</span>
         </span>
       </a>
 
-      <a href="case-autopricer.html" style="display:flex;flex-direction:column;gap:12px;background:#FFFFFF;border:1px solid #D9E3EB;border-radius:16px;padding:22px;text-decoration:none;color:#13232F;transition:transform .15s ease,box-shadow .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 14px 34px -14px rgba(19,35,47,0.25);border-color:#B9D6EA" style-focus="outline:2px solid #1A79C7;outline-offset:2px">
-        <span style="font:500 12.5px JetBrains Mono,monospace;color:#1A79C7">[Автоматизация]</span>
+      <a href="case-autopricer.html" style="display:flex;flex-direction:column;gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 14px 34px -14px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus="outline:2px solid var(--accent);outline-offset:2px">
+        <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--accent)">[Автоматизация]</span>
         <span style="font:600 20px/1.3 Sora,sans-serif">Автопрайсер для маркетплейса</span>
-        <span style="font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:#45596A">Цены на ~5500 товаров пересчитываются сами — от себестоимости, маржи и коридора.</span>
+        <span style="font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Цены на ~5500 товаров пересчитываются сами — от себестоимости, маржи и коридора.</span>
         <span style="margin-top:auto;display:flex;align-items:center;gap:8px">
-          <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:#EAF4FB;color:#1A79C7;font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:#31B545"></span>живое демо внутри</span>
-          <span aria-hidden="true" style="margin-left:auto;color:#1A79C7;font-size:18px">→</span>
+          <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:var(--online)"></span>живое демо внутри</span>
+          <span aria-hidden="true" style="margin-left:auto;color:var(--accent);font-size:18px">→</span>
         </span>
       </a>
 
-      <a href="case-mutual.html" style="display:flex;flex-direction:column;gap:12px;background:#FFFFFF;border:1px solid #D9E3EB;border-radius:16px;padding:22px;text-decoration:none;color:#13232F;transition:transform .15s ease,box-shadow .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 14px 34px -14px rgba(19,35,47,0.25);border-color:#B9D6EA" style-focus="outline:2px solid #1A79C7;outline-offset:2px">
-        <span style="font:500 12.5px JetBrains Mono,monospace;color:#1A79C7">[Мини-апп]</span>
+      <a href="case-mutual.html" style="display:flex;flex-direction:column;gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 14px 34px -14px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus="outline:2px solid var(--accent);outline-offset:2px">
+        <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--accent)">[Мини-апп]</span>
         <span style="font:600 20px/1.3 Sora,sans-serif">MUTUAL — знакомства через QR</span>
-        <span style="font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:#45596A">Стритвир-бренд, где вещь знакомит: скан QR открывает профиль владельца.</span>
+        <span style="font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Стритвир-бренд, где вещь знакомит: скан QR открывает профиль владельца.</span>
         <span style="margin-top:auto;display:flex;align-items:center;gap:8px">
-          <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:#EAF4FB;color:#1A79C7;font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:#31B545"></span>живое демо внутри</span>
-          <span aria-hidden="true" style="margin-left:auto;color:#1A79C7;font-size:18px">→</span>
+          <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:var(--online)"></span>живое демо внутри</span>
+          <span aria-hidden="true" style="margin-left:auto;color:var(--accent);font-size:18px">→</span>
         </span>
       </a>
 
-      <a href="case-faith.html" style="display:flex;flex-direction:column;gap:12px;background:#FFFFFF;border:1px solid #D9E3EB;border-radius:16px;padding:22px;text-decoration:none;color:#13232F;transition:transform .15s ease,box-shadow .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 14px 34px -14px rgba(19,35,47,0.25);border-color:#B9D6EA" style-focus="outline:2px solid #1A79C7;outline-offset:2px">
-        <span style="font:500 12.5px JetBrains Mono,monospace;color:#1A79C7">[Мобильное]</span>
+      <a href="case-faith.html" style="display:flex;flex-direction:column;gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 14px 34px -14px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus="outline:2px solid var(--accent);outline-offset:2px">
+        <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--accent)">[Мобильное]</span>
         <span style="font:600 20px/1.3 Sora,sans-serif">Faith App — обучение в стиле Duolingo</span>
-        <span style="font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:#45596A">Православное обучающее приложение: короткие уроки, прогресс, серия дней.</span>
+        <span style="font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Православное обучающее приложение: короткие уроки, прогресс, серия дней.</span>
         <span style="margin-top:auto;display:flex;align-items:center;gap:8px">
-          <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:#EAF4FB;color:#1A79C7;font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:#31B545"></span>живое демо внутри</span>
-          <span aria-hidden="true" style="margin-left:auto;color:#1A79C7;font-size:18px">→</span>
+          <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:var(--online)"></span>живое демо внутри</span>
+          <span aria-hidden="true" style="margin-left:auto;color:var(--accent);font-size:18px">→</span>
         </span>
       </a>
 
@@ -147,28 +149,28 @@ body{margin:0;background:#E7EDF2;color:#13232F;-webkit-font-smoothing:antialiase
   <section style="max-width:1140px;margin:0 auto;padding:clamp(28px,4vw,48px) 20px">
     <div style="display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:24px">
       <h2 style="margin:0;font:600 clamp(26px,3.2vw,36px)/1.15 Sora,sans-serif;letter-spacing:-0.01em">Услуги</h2>
-      <a href="services.html" style="font:500 15px Inter,system-ui,sans-serif;color:#1A79C7;text-decoration:none;border-radius:8px;padding:2px 4px" style-hover="text-decoration:underline" style-focus="outline:2px solid #1A79C7;outline-offset:2px">подробнее →</a>
+      <a href="services.html" style="font:500 15px Inter,system-ui,sans-serif;color:var(--accent);text-decoration:none;border-radius:8px;padding:2px 4px" style-hover="text-decoration:underline" style-focus="outline:2px solid var(--accent);outline-offset:2px">подробнее →</a>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px">
-      <div style="background:#FFFFFF;border:1px solid #D9E3EB;border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:9px">
-        <span style="font:500 13px JetBrains Mono,monospace;color:#8FA4B3">/leads</span>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:9px">
+        <span style="font:500 13px JetBrains Mono,monospace;color:var(--text-muted)">/leads</span>
         <span style="font:600 17.5px/1.3 Sora,sans-serif">Приём заявок и продажи</span>
-        <span style="font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:#45596A">Заявка из формы или чата → бот отвечает, пишет в таблицу или CRM и уведомляет вас.</span>
+        <span style="font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Заявка из формы или чата → бот отвечает, пишет в таблицу или CRM и уведомляет вас.</span>
       </div>
-      <div style="background:#FFFFFF;border:1px solid #D9E3EB;border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:9px">
-        <span style="font:500 13px JetBrains Mono,monospace;color:#8FA4B3">/payments</span>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:9px">
+        <span style="font:500 13px JetBrains Mono,monospace;color:var(--text-muted)">/payments</span>
         <span style="font:600 17.5px/1.3 Sora,sans-serif">Оплаты и подписки</span>
-        <span style="font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:#45596A">Платный доступ, рекуррентные платежи через ЮКассу, пробные периоды, рефералки.</span>
+        <span style="font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Платный доступ, рекуррентные платежи через ЮКассу, пробные периоды, рефералки.</span>
       </div>
-      <div style="background:#FFFFFF;border:1px solid #D9E3EB;border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:9px">
-        <span style="font:500 13px JetBrains Mono,monospace;color:#8FA4B3">/ai</span>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:9px">
+        <span style="font:500 13px JetBrains Mono,monospace;color:var(--text-muted)">/ai</span>
         <span style="font:600 17.5px/1.3 Sora,sans-serif">ИИ-агенты и автоматизация</span>
-        <span style="font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:#45596A">ИИ внутри бота: консультирует, квалифицирует заявки, передаёт менеджеру.</span>
+        <span style="font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">ИИ внутри бота: консультирует, квалифицирует заявки, передаёт менеджеру.</span>
       </div>
-      <div style="background:#FFFFFF;border:1px solid #D9E3EB;border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:9px">
-        <span style="font:500 13px JetBrains Mono,monospace;color:#8FA4B3">/miniapps</span>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:9px">
+        <span style="font:500 13px JetBrains Mono,monospace;color:var(--text-muted)">/miniapps</span>
         <span style="font:600 17.5px/1.3 Sora,sans-serif">Мини-аппы в Telegram</span>
-        <span style="font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:#45596A">Полноценные приложения внутри Telegram: дашборды, каталоги, инструменты.</span>
+        <span style="font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Полноценные приложения внутри Telegram: дашборды, каталоги, инструменты.</span>
       </div>
     </div>
   </section>
@@ -179,58 +181,58 @@ body{margin:0;background:#E7EDF2;color:#13232F;-webkit-font-smoothing:antialiase
       <h2 style="margin:0;font:600 clamp(26px,3.2vw,36px)/1.15 Sora,sans-serif;letter-spacing:-0.01em">Как я работаю</h2>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px">
-      <div style="background:#FFFFFF;border:1px solid #D9E3EB;border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:9px">
-        <span style="font:500 13px JetBrains Mono,monospace;color:#8FA4B3">01</span>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:9px">
+        <span style="font:500 13px JetBrains Mono,monospace;color:var(--text-muted)">01</span>
         <span style="font:600 16.5px/1.3 Sora,sans-serif">Вы описываете задачу</span>
-        <span style="font:400 14px/1.55 Inter,system-ui,sans-serif;color:#45596A">Своими словами, без ТЗ. Я задаю уточняющие вопросы.</span>
+        <span style="font:400 14px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Своими словами, без ТЗ. Я задаю уточняющие вопросы.</span>
       </div>
-      <div style="background:#FFFFFF;border:1px solid #D9E3EB;border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:9px">
-        <span style="font:500 13px JetBrains Mono,monospace;color:#8FA4B3">02</span>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:9px">
+        <span style="font:500 13px JetBrains Mono,monospace;color:var(--text-muted)">02</span>
         <span style="font:600 16.5px/1.3 Sora,sans-serif">Присылаю предложение</span>
-        <span style="font:400 14px/1.55 Inter,system-ui,sans-serif;color:#45596A">Решение, цена и срок — фиксируем до старта работ.</span>
+        <span style="font:400 14px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Решение, цена и срок — фиксируем до старта работ.</span>
       </div>
-      <div style="background:#FFFFFF;border:1px solid #D9E3EB;border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:9px">
-        <span style="font:500 13px JetBrains Mono,monospace;color:#8FA4B3">03</span>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:9px">
+        <span style="font:500 13px JetBrains Mono,monospace;color:var(--text-muted)">03</span>
         <span style="font:600 16.5px/1.3 Sora,sans-serif">Разработка</span>
-        <span style="font:400 14px/1.55 Inter,system-ui,sans-serif;color:#45596A">С промежуточными показами: видно, что получается.</span>
+        <span style="font:400 14px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">С промежуточными показами: видно, что получается.</span>
       </div>
-      <div style="background:#FFFFFF;border:1px solid #D9E3EB;border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:9px">
-        <span style="font:500 13px JetBrains Mono,monospace;color:#8FA4B3">04</span>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:9px">
+        <span style="font:500 13px JetBrains Mono,monospace;color:var(--text-muted)">04</span>
         <span style="font:600 16.5px/1.3 Sora,sans-serif">Запуск и передача</span>
-        <span style="font:400 14px/1.55 Inter,system-ui,sans-serif;color:#45596A">Бот работает у вас, все доступы ваши.</span>
+        <span style="font:400 14px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Бот работает у вас, все доступы ваши.</span>
       </div>
-      <div style="background:#FFFFFF;border:1px solid #D9E3EB;border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:9px">
-        <span style="font:500 13px JetBrains Mono,monospace;color:#8FA4B3">05</span>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:9px">
+        <span style="font:500 13px JetBrains Mono,monospace;color:var(--text-muted)">05</span>
         <span style="font:600 16.5px/1.3 Sora,sans-serif">30 дней исправлений</span>
-        <span style="font:400 14px/1.55 Inter,system-ui,sans-serif;color:#45596A">Бесплатно после сдачи проекта.</span>
+        <span style="font:400 14px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Бесплатно после сдачи проекта.</span>
       </div>
     </div>
-    <div style="display:flex;align-items:center;gap:8px;margin-top:16px;font:500 13.5px JetBrains Mono,monospace;color:#5A7284">
-      <span style="width:8px;height:8px;border-radius:50%;background:#31B545;flex:none"></span>
+    <div style="display:flex;align-items:center;gap:8px;margin-top:16px;font:500 13.5px JetBrains Mono,monospace;color:var(--text-meta)">
+      <span style="width:8px;height:8px;border-radius:50%;background:var(--online);flex:none"></span>
       Работаю официально: ИП, договор, безналичная оплата
     </div>
   </section>
 
   <!-- ============ TRUST ============ -->
-  <section style="background:#FFFFFF;border-top:1px solid #D9E3EB;border-bottom:1px solid #D9E3EB;margin-top:clamp(28px,4vw,48px)">
+  <section style="background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-top:clamp(28px,4vw,48px)">
     <div style="max-width:1140px;margin:0 auto;padding:clamp(40px,5vw,64px) 20px;display:flex;flex-direction:column;gap:28px">
       <h2 style="margin:0;font:600 clamp(24px,3vw,34px)/1.2 Sora,sans-serif;letter-spacing:-0.01em;text-wrap:balance">Продукты, которые уже зарабатывают</h2>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px">
-        <div style="display:flex;flex-direction:column;gap:6px;border-left:2px solid #229ED9;padding-left:18px">
-          <span style="font:700 clamp(30px,3.4vw,42px)/1 Sora,sans-serif;color:#1A79C7">~200</span>
-          <span style="font:400 14.5px/1.5 Inter,system-ui,sans-serif;color:#45596A">платящих пользователей в своём подписочном сервисе</span>
+        <div style="display:flex;flex-direction:column;gap:6px;border-left:2px solid var(--accent-cta);padding-left:18px">
+          <span style="font:700 clamp(30px,3.4vw,42px)/1 Sora,sans-serif;color:var(--accent)">~200</span>
+          <span style="font:400 14.5px/1.5 Inter,system-ui,sans-serif;color:var(--text-body)">платящих пользователей в своём подписочном сервисе</span>
         </div>
-        <div style="display:flex;flex-direction:column;gap:6px;border-left:2px solid #229ED9;padding-left:18px">
-          <span style="font:700 clamp(30px,3.4vw,42px)/1 Sora,sans-serif;color:#1A79C7">5500+</span>
-          <span style="font:400 14.5px/1.5 Inter,system-ui,sans-serif;color:#45596A">товаров на автоматическом ценообразовании</span>
+        <div style="display:flex;flex-direction:column;gap:6px;border-left:2px solid var(--accent-cta);padding-left:18px">
+          <span style="font:700 clamp(30px,3.4vw,42px)/1 Sora,sans-serif;color:var(--accent)">5500+</span>
+          <span style="font:400 14.5px/1.5 Inter,system-ui,sans-serif;color:var(--text-body)">товаров на автоматическом ценообразовании</span>
         </div>
-        <div style="display:flex;flex-direction:column;gap:6px;border-left:2px solid #229ED9;padding-left:18px">
-          <span style="font:700 clamp(30px,3.4vw,42px)/1 Sora,sans-serif;color:#1A79C7">ИИ</span>
-          <span style="font:400 14.5px/1.5 Inter,system-ui,sans-serif;color:#45596A">извлекает факты из заметок о людях прямо в CRM</span>
+        <div style="display:flex;flex-direction:column;gap:6px;border-left:2px solid var(--accent-cta);padding-left:18px">
+          <span style="font:700 clamp(30px,3.4vw,42px)/1 Sora,sans-serif;color:var(--accent)">ИИ</span>
+          <span style="font:400 14.5px/1.5 Inter,system-ui,sans-serif;color:var(--text-body)">извлекает факты из заметок о людях прямо в CRM</span>
         </div>
-        <div style="display:flex;flex-direction:column;gap:6px;border-left:2px solid #229ED9;padding-left:18px">
-          <span style="font:700 clamp(30px,3.4vw,42px)/1 Sora,sans-serif;color:#1A79C7">30 дней</span>
-          <span style="font:400 14.5px/1.5 Inter,system-ui,sans-serif;color:#45596A">бесплатных исправлений после сдачи проекта</span>
+        <div style="display:flex;flex-direction:column;gap:6px;border-left:2px solid var(--accent-cta);padding-left:18px">
+          <span style="font:700 clamp(30px,3.4vw,42px)/1 Sora,sans-serif;color:var(--accent)">30 дней</span>
+          <span style="font:400 14.5px/1.5 Inter,system-ui,sans-serif;color:var(--text-body)">бесплатных исправлений после сдачи проекта</span>
         </div>
       </div>
     </div>
@@ -245,10 +247,10 @@ body{margin:0;background:#E7EDF2;color:#13232F;-webkit-font-smoothing:antialiase
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;align-items:start">
         <sc-for list="{{ testimonials }}" as="t" hint-placeholder-count="2">
           <div style="display:flex;flex-direction:column;gap:10px">
-            <div style="background:#FFFFFF;border-radius:18px 18px 18px 5px;padding:16px 20px;box-shadow:0 2px 6px rgba(19,35,47,0.08);font:400 15px/1.55 Inter,system-ui,sans-serif">{{ t.text }}</div>
+            <div style="background:var(--surface);border-radius:18px 18px 18px 5px;padding:16px 20px;box-shadow:0 2px 6px var(--shadow-2);font:400 15px/1.55 Inter,system-ui,sans-serif">{{ t.text }}</div>
             <div style="display:flex;flex-direction:column;gap:2px;padding-left:6px">
               <span style="font:600 14.5px Sora,sans-serif">{{ t.name }}</span>
-              <span style="font:400 13px Inter,system-ui,sans-serif;color:#5A7284">{{ t.role }}</span>
+              <span style="font:400 13px Inter,system-ui,sans-serif;color:var(--text-meta)">{{ t.role }}</span>
             </div>
           </div>
         </sc-for>
@@ -258,9 +260,9 @@ body{margin:0;background:#E7EDF2;color:#13232F;-webkit-font-smoothing:antialiase
 
   <!-- ============ CTA ============ -->
   <section style="max-width:760px;margin:0 auto;padding:clamp(48px,6vw,80px) 20px;display:flex;flex-direction:column;gap:18px;align-items:flex-start">
-    <div style="align-self:stretch;background:#FFFFFF;border-radius:18px 18px 18px 5px;padding:18px 22px;box-shadow:0 2px 6px rgba(19,35,47,0.08);font:400 clamp(17px,2vw,20px)/1.5 Inter,system-ui,sans-serif">Расскажите, что нужно автоматизировать. Отвечу сам — с планом и ценой, без менеджеров.</div>
-    <a href="contact.html" style="display:inline-flex;align-items:center;gap:9px;background:#229ED9;color:#FFFFFF;text-decoration:none;font:600 16px/1 Inter,system-ui,sans-serif;padding:14px 24px;border-radius:13px" style-hover="background:#1A79C7" style-focus="outline:2px solid #13232F;outline-offset:2px">
-      <span style="width:8px;height:8px;border-radius:50%;background:#31B545;box-shadow:0 0 0 3px rgba(49,181,69,0.25)"></span>
+    <div style="align-self:stretch;background:var(--surface);border-radius:18px 18px 18px 5px;padding:18px 22px;box-shadow:0 2px 6px var(--shadow-2);font:400 clamp(17px,2vw,20px)/1.5 Inter,system-ui,sans-serif">Расскажите, что нужно автоматизировать. Отвечу сам — с планом и ценой, без менеджеров.</div>
+    <a href="contact.html" style="display:inline-flex;align-items:center;gap:9px;background:var(--accent-cta);color:var(--surface);text-decoration:none;font:600 16px/1 Inter,system-ui,sans-serif;padding:14px 24px;border-radius:13px" style-hover="background:var(--accent)" style-focus="outline:2px solid var(--text);outline-offset:2px">
+      <span style="width:8px;height:8px;border-radius:50%;background:var(--online);box-shadow:0 0 0 3px rgba(49,181,69,0.25)"></span>
       Написать
     </a>
   </section>

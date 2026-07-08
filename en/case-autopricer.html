@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Case Study: Marketplace Repricing Bot for 5,500 SKUs — Re:dnd</title>
-<meta name="description" content="Prices for ~5,500 SKUs recalculate automatically from cost, target margin and a price corridor. Own product. Live pricing dashboard inside.">
+<title>Case Study: Autopricer & P&L for a Marketplace — Re:dnd</title>
+<meta name="description" content="A system for a marketplace: from actual transactions it builds a P&L for each of ~5,500 products, finds loss-making items and reprices the catalogue into profit. Own product. Live demo inside.">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <link rel="alternate" hreflang="ru" href="https://rednd.ru/case-autopricer.html">
 <link rel="alternate" hreflang="en" href="https://rednd.ru/en/case-autopricer.html">
@@ -29,11 +29,11 @@
 
   <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:28px">
     <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
-      <span style="font:500 13px JetBrains Mono,monospace;color:var(--accent)">[Automation]</span>
+      <span style="font:500 13px JetBrains Mono,monospace;color:var(--accent)">[Automation · Analytics]</span>
       <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:var(--online)"></span>own product</span>
     </div>
-    <h1 style="margin:0;font:700 clamp(28px,4vw,42px)/1.15 Sora,sans-serif;letter-spacing:-0.02em">Marketplace autopricer</h1>
-    <p style="margin:0;font:400 clamp(15.5px,1.6vw,18px)/1.55 Inter,system-ui,sans-serif;color:var(--text-body);max-width:640px">The service computes prices from cost, target margin and a price corridor on its own — and keeps them updated across ~5,500 SKUs.</p>
+    <h1 style="margin:0;font:700 clamp(28px,4vw,42px)/1.15 Sora,sans-serif;letter-spacing:-0.02em">Autopricer &amp; P&amp;L for a marketplace</h1>
+    <p style="margin:0;font:400 clamp(15.5px,1.6vw,18px)/1.55 Inter,system-ui,sans-serif;color:var(--text-body);max-width:720px">A system that uses the marketplace's real money to find which of thousands of products earn and which quietly burn budget — and reprices the catalogue so every active product turns a profit.</p>
   </div>
 
   <!-- ============ DEMO ============ -->
@@ -121,25 +121,39 @@
   </section>
 
   <!-- ============ CASE STORY ============ -->
-  <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:24px">
+  <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,470px),1fr));gap:16px;margin-top:24px">
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
       <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">01 · problem</span>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">Keeping prices current on thousands of products by hand is impossible: costs, fees and logistics keep shifting — and margin quietly drifts away.</p>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">A store with ~5,500 products, one operator. For the question “is this product selling at a profit or a loss?” there was no answer for a single item: the marketplace withholds about half the price, applies its own discounts, and writes off some costs at the account level without tying them to specific products. Managing that by hand is impossible.</p>
     </div>
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
       <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">02 · solution</span>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">A Python service: it pulls products and fees from the Ozon API, computes each price from cost, target margin and the corridor, updates on a schedule and writes a change report.</p>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">I built a system in Python that pulls actual financial transactions from the marketplace API — payouts, commissions, logistics, returns, penalties — and rolls them up into a P&amp;L for every product sold. Items are then classified: profitable, thin, loss-making on price, loss-making on returns. For repricing it computes a “price floor” from cost using the real commission, not the stated one.</p>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">Every change goes through a dry-run first: the system shows a “before → after” plan, and only after a human confirms does it write prices back, keeping a snapshot for rollback.</p>
     </div>
-    <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
-      <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">03 · result</span>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty"><strong style="color:var(--accent)">~5,500 SKUs</strong> reprice automatically. Manual price work shrank to tuning the parameters.</p>
+    <div style="grid-column:1/-1;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
+      <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">03 · what was hard</span>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px">The first version of the unit economics relied on the marketplace's stated rates and showed the store deeply in the red, most sales at a loss. Shutting it down looked like the obvious call. Instead I reconciled the calculation against actual transactions — and the picture was the opposite. The breakdown exposed systematic skews: the real commission was noticeably lower than stated, real logistics far below the maximum rates, and the analytics endpoint undercounted sales versus the financial one.</p>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-body);text-wrap:pretty;max-width:760px;border-left:2px solid var(--border-hover);padding-left:14px">Hence the principle baked into the system: the predictive model is only for future prices, the financial result comes only from actual transactions.</p>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px">A second finding of the same kind: the price the buyer sees and the price the seller is credited are different numbers. The whole competitiveness assessment had been built on the wrong one. After reconciling shipments against payouts the rule became strict: each product's economics must add up to a profit on its own payout, without the marketplace's external discounts.</p>
+    </div>
+    <div style="grid-column:1/-1;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
+      <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">04 · result</span>
+      <ul style="margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px;font:400 15px/1.55 Inter,system-ui,sans-serif;color:var(--text-strong);max-width:760px">
+        <li>~5,500 products in the catalogue, 8.5 months of history rolled up into a P&amp;L per item.</li>
+        <li>Hidden account-level leaks that were eating the entire product-level profit were found and switched off.</li>
+        <li>Dozens of products with pathological return rates (up to 87% returns on an item) were surfaced — pulled or neutralised with a prohibitive price.</li>
+        <li>1,561 products repriced in a single day; the largest write was 1,304 prices at once, zero errors, verified by reading back.</li>
+        <li>No “the script took the store down” incidents: dry-run → rollback → manual gate → verification.</li>
+      </ul>
     </div>
   </section>
 
   <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:20px">
     <span style="font:500 13px JetBrains Mono,monospace;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 11px">Python</span>
-    <span style="font:500 13px JetBrains Mono,monospace;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 11px">Ozon API</span>
-    <span style="font:500 13px JetBrains Mono,monospace;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 11px">automation</span>
+    <span style="font:500 13px JetBrains Mono,monospace;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 11px">pandas</span>
+    <span style="font:500 13px JetBrains Mono,monospace;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 11px">Ozon Seller API</span>
+    <span style="font:500 13px JetBrains Mono,monospace;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 11px">supplier API</span>
   </div>
 
   <dc-import name="CaseCTA" hint-size="100%,170px"></dc-import>

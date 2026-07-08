@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Кейс: бот-автопрайсер для маркетплейса на 5500 товаров — Re:dnd</title>
-<meta name="description" content="Автоматическое ценообразование для маркетплейса: цены на ~5500 товаров пересчитываются от себестоимости, маржи и коридора. Собственный продукт. Живое демо внутри.">
+<title>Кейс: автопрайсер и P&L для маркетплейса — Re:dnd</title>
+<meta name="description" content="Система для маркетплейса: по фактическим транзакциям сводит P&L по каждому из ~5500 товаров, находит убыточные позиции и переоценивает каталог в плюс. Собственный продукт. Живое демо внутри.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="alternate" hreflang="ru" href="https://rednd.ru/case-autopricer.html">
 <link rel="alternate" hreflang="en" href="https://rednd.ru/en/case-autopricer.html">
@@ -29,11 +29,11 @@
 
   <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:28px">
     <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
-      <span style="font:500 13px JetBrains Mono,monospace;color:var(--accent)">[Автоматизация]</span>
+      <span style="font:500 13px JetBrains Mono,monospace;color:var(--accent)">[Автоматизация · Аналитика]</span>
       <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:var(--online)"></span>собственный продукт</span>
     </div>
-    <h1 style="margin:0;font:700 clamp(28px,4vw,42px)/1.15 Sora,sans-serif;letter-spacing:-0.02em">Автопрайсер для маркетплейса</h1>
-    <p style="margin:0;font:400 clamp(15.5px,1.6vw,18px)/1.55 Inter,system-ui,sans-serif;color:var(--text-body);max-width:640px">Сервис сам считает цены от себестоимости, маржи и коридора — и обновляет их на ~5500 товарах.</p>
+    <h1 style="margin:0;font:700 clamp(28px,4vw,42px)/1.15 Sora,sans-serif;letter-spacing:-0.02em">Автопрайсер и P&amp;L для маркетплейса</h1>
+    <p style="margin:0;font:400 clamp(15.5px,1.6vw,18px)/1.55 Inter,system-ui,sans-serif;color:var(--text-body);max-width:720px">Система, которая по фактическим деньгам маркетплейса находит, какие из тысяч товаров зарабатывают, а какие тихо жгут бюджет — и переоценивает каталог так, чтобы каждый активный товар был в плюсе.</p>
   </div>
 
   <!-- ============ DEMO ============ -->
@@ -121,25 +121,39 @@
   </section>
 
   <!-- ============ CASE STORY ============ -->
-  <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:24px">
+  <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,470px),1fr));gap:16px;margin-top:24px">
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
       <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">01 · задача</span>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">Держать актуальные цены на тысячах товаров вручную невозможно: меняются себестоимость, комиссии и логистика — маржа уплывает незаметно.</p>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">Магазин на ~5500 товаров, один оператор. На вопрос «этот товар продаётся в плюс или в минус?» не было ответа ни по одной позиции: маркетплейс удерживает около половины цены, сам навешивает скидки, а часть расходов списывает на уровне аккаунта, не привязывая к конкретным товарам. Управлять этим вручную невозможно.</p>
     </div>
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
       <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">02 · как решал</span>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">Сервис на Python: тянет товары и комиссии из Ozon API, считает цену от себестоимости, желаемой маржи и коридора, обновляет по расписанию и пишет отчёт об изменениях.</p>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">Собрал систему на Python, которая тянет из API маркетплейса фактические финансовые транзакции — начисления, комиссии, логистику, возвраты, штрафы — и сводит их в P&amp;L по каждому проданному товару. Дальше позиции классифицируются: прибыльные, тонкие, убыточные из-за цены, убыточные из-за возвратов. Для переоценки считается «пол цены» от закупки с реальной, а не заявленной комиссией.</p>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">Любое изменение сначала проходит dry-run: система показывает план «было → станет», и только после подтверждения человеком пишет цены обратно, сохранив снимок для отката.</p>
     </div>
-    <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
-      <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">03 · результат</span>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty"><strong style="color:var(--accent)">~5500 товаров</strong> переоцениваются автоматически. Ручная работа с ценами свелась к настройке параметров.</p>
+    <div style="grid-column:1/-1;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
+      <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">03 · что оказалось сложным</span>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px">Первая версия юнит-экономики опиралась на заявленные тарифы маркетплейса и показала: магазин глубоко убыточен, большинство продаж в минус. Напрашивалось закрытие. Вместо этого я сверил расчёт с фактическими транзакциями — и картина оказалась противоположной. Разбор вскрыл систематические перекосы: реальная комиссия заметно ниже заявленной, реальная логистика — существенно ниже максимальных тарифов, а аналитический эндпоинт недосчитывал продажи против финансового.</p>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-body);text-wrap:pretty;max-width:760px;border-left:2px solid var(--border-hover);padding-left:14px">Отсюда принцип, зашитый в систему: прогнозная модель — только для будущих цен, финансовый результат — только из фактических транзакций.</p>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px">Вторая находка того же порядка: цена, которую видит покупатель, и цена, которую начисляют продавцу, — разные числа. Вся оценка конкурентности была построена на неверном из них. После сверки отправлений с начислениями правило стало жёстким: экономика каждого товара обязана сходиться в плюс на собственном начислении, без учёта внешних скидок маркетплейса.</p>
+    </div>
+    <div style="grid-column:1/-1;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
+      <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">04 · результат</span>
+      <ul style="margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px;font:400 15px/1.55 Inter,system-ui,sans-serif;color:var(--text-strong);max-width:760px">
+        <li>~5500 товаров в каталоге, 8,5 месяцев истории сведены в P&amp;L по каждой позиции.</li>
+        <li>Найдены и отключены скрытые утечки на уровне аккаунта, съедавшие весь товарный плюс.</li>
+        <li>Обнаружены десятки товаров с патологической возвратностью (до 87% возвратов на позицию) — сняты или нейтрализованы заградительной ценой.</li>
+        <li>За один день переоценено 1561 товар; крупнейшая запись — 1304 цены за раз, ноль ошибок, результат верифицирован обратным чтением.</li>
+        <li>Инцидентов «скрипт положил магазин» не было: dry-run → откат → ручной гейт → верификация.</li>
+      </ul>
     </div>
   </section>
 
   <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:20px">
     <span style="font:500 13px JetBrains Mono,monospace;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 11px">Python</span>
-    <span style="font:500 13px JetBrains Mono,monospace;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 11px">Ozon API</span>
-    <span style="font:500 13px JetBrains Mono,monospace;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 11px">automation</span>
+    <span style="font:500 13px JetBrains Mono,monospace;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 11px">pandas</span>
+    <span style="font:500 13px JetBrains Mono,monospace;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 11px">Ozon Seller API</span>
+    <span style="font:500 13px JetBrains Mono,monospace;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 11px">API поставщика</span>
   </div>
 
   <dc-import name="CaseCTA" hint-size="100%,170px"></dc-import>

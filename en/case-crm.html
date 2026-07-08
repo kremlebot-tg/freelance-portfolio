@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Case Study: AI Networking CRM in Telegram — Re:dnd</title>
-<meta name="description" content="Notes about people turn into a relationship graph and extracted facts — an LLM in production, not in a slide deck. Own product. Live demo inside.">
+<title>Case Study: Personal CRM for Networking — Re:dnd</title>
+<meta name="description" content="A personal CRM in Telegram for networking: auto-capture of new contacts, fact extraction via an LLM, AI reminders of who's waiting for a reply. Own product, closed beta. Live demo inside.">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <link rel="alternate" hreflang="ru" href="https://rednd.ru/case-crm.html">
 <link rel="alternate" hreflang="en" href="https://rednd.ru/en/case-crm.html">
@@ -36,9 +36,10 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
     <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
       <span style="font:500 13px JetBrains Mono,monospace;color:var(--accent)">[AI · CRM]</span>
       <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:var(--online)"></span>own product</span>
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--surface-2);color:var(--text-meta);border:1px solid var(--border);font:500 12.5px Inter,system-ui,sans-serif">closed beta</span>
     </div>
-    <h1 style="margin:0;font:700 clamp(28px,4vw,42px)/1.15 Sora,sans-serif;letter-spacing:-0.02em">Networking CRM (AI)</h1>
-    <p style="margin:0;font:400 clamp(15.5px,1.6vw,18px)/1.55 Inter,system-ui,sans-serif;color:var(--text-body);max-width:640px">AI extracts facts from notes about people and builds a relationship graph — contacts never get lost.</p>
+    <h1 style="margin:0;font:700 clamp(28px,4vw,42px)/1.15 Sora,sans-serif;letter-spacing:-0.02em">Personal CRM for networking</h1>
+    <p style="margin:0;font:400 clamp(15.5px,1.6vw,18px)/1.55 Inter,system-ui,sans-serif;color:var(--text-body);max-width:720px">A CRM in Telegram for people who earn through their connections but forget to keep them warm — with auto-capture of new contacts and AI reminders of who's waiting for a reply.</p>
   </div>
 
   <!-- ============ DEMO A: GRAPH ============ -->
@@ -142,25 +143,42 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
   </section>
 
   <!-- ============ CASE STORY ============ -->
-  <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:24px">
+  <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,470px),1fr));gap:16px;margin-top:24px">
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
       <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">01 · problem</span>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">Contacts and connections slip away: where you met, what you agreed on, who introduced whom. A regular CRM is far too heavy for this.</p>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">People who work with people — founders, consultants, investors — pile up hundreds of business conversations in their messenger over a year. Most are forgotten: “that investor was looking for SaaS deals, but that was three months ago.” Keeping a list by hand in Notion gets abandoned within a week and a half. Western personal CRMs are built around LinkedIn, which is blocked in Russia — the Russian-speaking market was left without a solution.</p>
     </div>
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
       <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">02 · solution</span>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">Free-form notes straight into the bot. An LLM extracts the facts — name, how you met, interests, agreements — and links people into a graph. A mini app for browsing and search.</p>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">A Telegram bot plus a mini app and a desktop web client on one database. You forward the bot a message about a meeting — an AI extracts structured facts into the contact card. Phone-book import via VCF, hierarchical tags, “haven't talked in a while” and birthday reminders, calendar export via an .ics subscription, a morning digest of who's waiting for a reply. Stack: Python, aiogram, FastAPI, SQLite, an LLM for fact extraction and semantic search.</p>
     </div>
-    <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
-      <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">03 · result</span>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty"><strong style="color:var(--accent)">Working version.</strong> I use it myself: AI fact extraction runs in production, not in a slide deck.</p>
+    <div style="grid-column:1/-1;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
+      <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">03 · what was hard</span>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px"><strong style="color:var(--text)">The feature that was killing the product's economics.</strong> I designed an automatic fact extractor over all incoming conversations — it ran stably on the prototype. After three days of live use the billing showed about 83 ₽ per day per user. That works out to roughly 2,500 ₽ per user per month against a subscription ten times cheaper. The product would have been fundamentally loss-making.</p>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px">I worked through the options: trim the prompt (~30% saved, still negative), cache by text hash (the real stream barely repeats), a two-stage gate — a cheap model decides “is there a fact here?”, the expensive one extracts only on “yes” (~40%, still not enough).</p>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px">The fix — cut auto-extraction entirely. I kept the free metadata: who wrote and when, that's plain SQL. The automation now creates a card for a new correspondent and updates the last-contact date, and the expensive AI only kicks in when the user forwards a message themselves — an explicit action that pays for itself. A side bonus: it removed the legal risk of automatically reading other people's conversations without consent.</p>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-body);text-wrap:pretty;max-width:760px;border-left:2px solid var(--border-hover);padding-left:14px">The principle that came out of it: you measure unit economics on day three, not after launch. A feature you love gets cut if it doesn't add up in money.</p>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px"><strong style="color:var(--text)">A silent breakage after every deploy.</strong> After a bot update the link to Telegram Business would break — the user reconnected, it didn't help, the logs were empty. Two hours of diagnosis. The cause: on startup the framework dropped the queue of unprocessed updates for a clean start, and Telegram sends the Business-connection notification exactly once — if the bot restarts at that moment, it's lost. The connection exists, but the bot doesn't know about it. I went through the options and chose not to drop the queue on startup — as a bonus, updates accumulated during the update reach the bot, and for a CRM that's a plus: facts about new contacts aren't lost. I also added a startup log of active connections so the silent breakage becomes visible.</p>
+    </div>
+    <div style="grid-column:1/-1;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
+      <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">04 · result</span>
+      <ul style="margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px;font:400 15px/1.55 Inter,system-ui,sans-serif;color:var(--text-strong);max-width:760px">
+        <li>Three contact-capture channels: forwarding to the bot, auto-creation from metadata, import from the phone book.</li>
+        <li>Two standalone interfaces — a Telegram mini app and a desktop web client — on a shared database.</li>
+        <li>523 automated tests, all green.</li>
+        <li>Payments via Telegram Stars, a 14-day trial.</li>
+        <li>Status: closed beta, all key systems running live, preparing for public launch.</li>
+      </ul>
     </div>
   </section>
 
   <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:20px">
-    <span style="font:500 13px JetBrains Mono,monospace;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 11px">LLM</span>
-    <span style="font:500 13px JetBrains Mono,monospace;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 11px">Mini App</span>
     <span style="font:500 13px JetBrains Mono,monospace;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 11px">Python</span>
+    <span style="font:500 13px JetBrains Mono,monospace;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 11px">aiogram</span>
+    <span style="font:500 13px JetBrains Mono,monospace;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 11px">FastAPI</span>
+    <span style="font:500 13px JetBrains Mono,monospace;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 11px">SQLite</span>
+    <span style="font:500 13px JetBrains Mono,monospace;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 11px">LLM</span>
+    <span style="font:500 13px JetBrains Mono,monospace;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 11px">Telegram Mini App</span>
   </div>
 
   <dc-import name="CaseCTA" hint-size="100%,170px"></dc-import>

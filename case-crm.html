@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Кейс: ИИ-CRM в Telegram — извлечение фактов из заметок — Re:dnd</title>
-<meta name="description" content="Разработка ИИ-CRM: заметки о людях превращаются в граф связей и извлечённые факты. Собственный продукт, LLM в проде. Живое демо внутри.">
+<title>Кейс: персональный CRM для нетворкинга — Re:dnd</title>
+<meta name="description" content="Персональный CRM в Telegram для нетворкинга: автозахват новых контактов, извлечение фактов через LLM, ИИ-напоминания «кто ждёт ответа». Собственный продукт, закрытая бета. Живое демо внутри.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="alternate" hreflang="ru" href="https://rednd.ru/case-crm.html">
 <link rel="alternate" hreflang="en" href="https://rednd.ru/en/case-crm.html">
@@ -36,9 +36,10 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
     <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
       <span style="font:500 13px JetBrains Mono,monospace;color:var(--accent)">[ИИ · CRM]</span>
       <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:var(--online)"></span>собственный продукт</span>
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--surface-2);color:var(--text-meta);border:1px solid var(--border);font:500 12.5px Inter,system-ui,sans-serif">закрытая бета</span>
     </div>
-    <h1 style="margin:0;font:700 clamp(28px,4vw,42px)/1.15 Sora,sans-serif;letter-spacing:-0.02em">CRM для нетворкинга</h1>
-    <p style="margin:0;font:400 clamp(15.5px,1.6vw,18px)/1.55 Inter,system-ui,sans-serif;color:var(--text-body);max-width:640px">ИИ извлекает факты из заметок о людях и строит граф связей — контакты не теряются.</p>
+    <h1 style="margin:0;font:700 clamp(28px,4vw,42px)/1.15 Sora,sans-serif;letter-spacing:-0.02em">Персональный CRM для нетворкинга</h1>
+    <p style="margin:0;font:400 clamp(15.5px,1.6vw,18px)/1.55 Inter,system-ui,sans-serif;color:var(--text-body);max-width:720px">CRM в Telegram для тех, кто зарабатывает через связи, но забывает их поддерживать — с автозахватом новых контактов и ИИ-напоминаниями, кто ждёт ответа.</p>
   </div>
 
   <!-- ============ DEMO A: GRAPH ============ -->
@@ -142,25 +143,42 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
   </section>
 
   <!-- ============ CASE STORY ============ -->
-  <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:24px">
+  <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,470px),1fr));gap:16px;margin-top:24px">
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
       <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">01 · задача</span>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">Контакты и связи теряются: где познакомились, о чём договорились, кто кого представил. Обычная CRM для этого слишком тяжёлая.</p>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">Люди, работающие с людьми — фаундеры, консультанты, инвесторы — за год накапливают в мессенджере сотни деловых переписок. Большинство забывается: «тот инвестор искал сделки в SaaS, но это было три месяца назад». Ведение списка вручную в Notion бросают через полторы недели. Западные персональные CRM построены вокруг LinkedIn, который в РФ заблокирован, — русскоязычный рынок остался без решения.</p>
     </div>
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
       <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">02 · как решал</span>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">Заметки свободным текстом прямо в бота. LLM извлекает факты — имя, контекст знакомства, интересы, договорённости — и связывает людей в граф. Мини-апп для просмотра и поиска.</p>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">Бот в Telegram плюс мини-апп и десктоп-веб на одной базе. Пересылаешь боту сообщение о встрече — ИИ извлекает структурированные факты в карточку контакта. Подключение телефонной книги через VCF, иерархические теги, напоминания «давно не общался» и о днях рождения, экспорт в календарь через .ics-подписку, утренний дайджест «кто ждёт ответа». Стек: Python, aiogram, FastAPI, SQLite, LLM для извлечения фактов и семантического поиска.</p>
     </div>
-    <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
-      <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">03 · результат</span>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty"><strong style="color:var(--accent)">Рабочая версия.</strong> Использую сам: ИИ-извлечение фактов работает в проде, а не в презентации.</p>
+    <div style="grid-column:1/-1;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
+      <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">03 · что оказалось сложным</span>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px"><strong style="color:var(--text)">Фича, которая убивала экономику продукта.</strong> Спроектировал автоматический извлекатель фактов из всех входящих переписок — работал стабильно на прототипе. Через три дня обкатки биллинг показал: около 83 ₽ в день на одного пользователя. В пересчёте — примерно 2500 ₽ на пользователя в месяц против подписки в десять раз дешевле. Продукт был бы фундаментально убыточным.</p>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px">Перебрал варианты: урезать промпт (экономия ~30%, всё равно минус), кэшировать по хешу текста (реальный поток почти не повторяется), двухступенчатый гейт — дешёвая модель решает «есть ли тут факт», дорогая извлекает только при «да» (~40%, всё равно недостаточно).</p>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px">Решение — вырезать автоизвлечение целиком. Оставил бесплатные метаданные: кто написал и когда, это обычный SQL. Автомат теперь заводит карточку нового собеседника и обновляет дату последнего контакта, а дорогой ИИ подключается только когда пользователь сам пересылает сообщение — явное действие, окупается. Побочный бонус: снялся юридический риск автоматического чтения чужих переписок без согласия.</p>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-body);text-wrap:pretty;max-width:760px;border-left:2px solid var(--border-hover);padding-left:14px">Принцип, который из этого вырос: unit-экономику измеряют на третий день, а не после запуска. Фича, которую любишь, вырезается, если она не сходится в деньгах.</p>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px"><strong style="color:var(--text)">Тихая поломка после каждого деплоя.</strong> После обновления бота ломалась связь с Telegram Business — пользователь переподключал, не помогало, в логах пусто. Два часа диагностики. Причина: фреймворк при старте сбрасывал очередь необработанных событий для чистого запуска, а Telegram шлёт уведомление о подключении Business ровно один раз — если бот в этот момент рестартует, оно теряется. Связь есть, но бот о ней не знает. Перебрал варианты, выбрал не сбрасывать очередь при старте — как бонус, события, накопленные за время обновления, доходят до бота, а для CRM это плюс: не теряются факты о новых контактах. Плюс добавил стартовый лог активных связей, чтобы тихая поломка стала видимой.</p>
+    </div>
+    <div style="grid-column:1/-1;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
+      <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">04 · результат</span>
+      <ul style="margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px;font:400 15px/1.55 Inter,system-ui,sans-serif;color:var(--text-strong);max-width:760px">
+        <li>Три канала захвата контактов: пересылка боту, автосоздание по метаданным, импорт из телефонной книги.</li>
+        <li>Два самостоятельных интерфейса — мини-апп в Telegram и десктоп-веб — на общей базе.</li>
+        <li>523 автотеста, все зелёные.</li>
+        <li>Приём оплат через Telegram Stars, пробный период 14 дней.</li>
+        <li>Статус: закрытая бета, все ключевые системы работают вживую, идёт подготовка к публичному запуску.</li>
+      </ul>
     </div>
   </section>
 
   <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:20px">
-    <span style="font:500 13px JetBrains Mono,monospace;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 11px">LLM</span>
-    <span style="font:500 13px JetBrains Mono,monospace;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 11px">Mini App</span>
     <span style="font:500 13px JetBrains Mono,monospace;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 11px">Python</span>
+    <span style="font:500 13px JetBrains Mono,monospace;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 11px">aiogram</span>
+    <span style="font:500 13px JetBrains Mono,monospace;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 11px">FastAPI</span>
+    <span style="font:500 13px JetBrains Mono,monospace;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 11px">SQLite</span>
+    <span style="font:500 13px JetBrains Mono,monospace;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 11px">LLM</span>
+    <span style="font:500 13px JetBrains Mono,monospace;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 11px">Telegram Mini App</span>
   </div>
 
   <dc-import name="CaseCTA" hint-size="100%,170px"></dc-import>

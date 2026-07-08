@@ -9,21 +9,41 @@
 <x-dc>
 <helmet>
 <link href="../fonts/fonts.css" rel="stylesheet">
-<style>*,*::before,*::after{box-sizing:border-box} body{margin:0}</style>
+<style>
+*,*::before,*::after{box-sizing:border-box} body{margin:0}
+/* Responsive header: burger only <768px. Desktop (>=768px) unchanged. */
+.hdr-burger{display:none}
+@media (max-width:767px){
+  .hdr-bar{flex-wrap:nowrap!important;gap:8px!important;position:relative}
+  .hdr-nav{
+    display:none!important;position:absolute;top:100%;left:0;right:0;margin:0!important;
+    flex-direction:column;align-items:stretch;gap:2px;
+    background:#FFFFFF;border-bottom:1px solid #D9E3EB;
+    padding:8px 12px 12px;box-shadow:0 12px 24px -12px rgba(19,35,47,0.22)
+  }
+  header[data-open="true"] .hdr-nav{display:flex!important}
+  .hdr-nav a{padding:12px!important;font-size:16px!important;line-height:1.1!important;border-radius:10px}
+  .hdr-burger{display:inline-flex;margin-left:auto}
+  .hdr-cta{padding:10px 14px!important;font-size:14.5px!important}
+}
+</style>
 </helmet>
-<header style="position:sticky;top:0;z-index:60;background:rgba(255,255,255,0.9);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid #D9E3EB;font-family:Inter,system-ui,sans-serif">
-  <div style="max-width:1140px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;gap:6px 18px;flex-wrap:wrap">
+<header data-open="{{ openAttr }}" style="position:sticky;top:0;z-index:60;background:rgba(255,255,255,0.9);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid #D9E3EB;font-family:Inter,system-ui,sans-serif">
+  <div class="hdr-bar" style="max-width:1140px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;gap:6px 18px;flex-wrap:wrap">
     <a href="index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:#13232F;border-radius:10px;padding:4px 6px 4px 2px" style-focus="outline:2px solid #1A79C7;outline-offset:2px">
       <span style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#38AEE5,#1A79C7);color:#FFFFFF;display:grid;place-items:center;font:600 13px Sora,sans-serif;letter-spacing:0.02em">{{ initials }}</span>
       <span style="font:600 17px/1 Sora,sans-serif;white-space:nowrap">{{ brandName }}</span>
     </a>
-    <nav aria-label="Main navigation" style="display:flex;gap:2px;margin-left:auto;flex-wrap:wrap;align-items:center">
+    <nav id="hdr-nav-menu" class="hdr-nav" aria-label="Main navigation" style="display:flex;gap:2px;margin-left:auto;flex-wrap:wrap;align-items:center">
       <sc-for list="{{ navItems }}" as="item" hint-placeholder-count="3">
         <a href="{{ item.href }}" aria-current="{{ item.current }}" style="padding:9px 13px;border-radius:10px;text-decoration:none;font-size:15px;line-height:1;font-weight:{{ item.weight }};color:{{ item.color }};background:{{ item.bg }};white-space:nowrap" style-hover="background:#EAF4FB;color:#1A79C7" style-focus="outline:2px solid #1A79C7;outline-offset:2px">{{ item.label }}</a>
       </sc-for>
       <a href="{{ langHref }}" hreflang="ru" aria-label="Переключить на русский" style="padding:9px 11px;border-radius:10px;text-decoration:none;font:500 13px JetBrains Mono,monospace;color:#5A7284;white-space:nowrap" style-hover="background:#EAF4FB;color:#1A79C7" style-focus="outline:2px solid #1A79C7;outline-offset:2px">RU</a>
     </nav>
-    <a href="https://t.me/re_dnd" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:#229ED9;color:#FFFFFF;text-decoration:none;font:600 15px/1 Inter,system-ui,sans-serif;padding:11px 18px;border-radius:12px;white-space:nowrap" style-hover="background:#1A79C7" style-focus="outline:2px solid #13232F;outline-offset:2px">
+    <button type="button" class="hdr-burger" onClick="{{ onToggle }}" aria-label="Menu" aria-controls="hdr-nav-menu" aria-expanded="{{ openAttr }}" style="align-items:center;justify-content:center;width:40px;height:40px;padding:0;border:1px solid #D9E3EB;border-radius:10px;background:#FFFFFF;color:#13232F;cursor:pointer" style-hover="background:#EAF4FB;border-color:#B9D6EA" style-focus="outline:2px solid #1A79C7;outline-offset:2px">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
+    </button>
+    <a href="https://t.me/re_dnd" target="_blank" rel="noopener" class="hdr-cta" style="display:inline-flex;align-items:center;gap:8px;background:#229ED9;color:#FFFFFF;text-decoration:none;font:600 15px/1 Inter,system-ui,sans-serif;padding:11px 18px;border-radius:12px;white-space:nowrap" style-hover="background:#1A79C7" style-focus="outline:2px solid #13232F;outline-offset:2px">
       <span style="width:8px;height:8px;border-radius:50%;background:#31B545;box-shadow:0 0 0 3px rgba(49,181,69,0.25);flex:none"></span>
       Contact
     </a>
@@ -32,6 +52,7 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;1200px&quot;,&quot;height&quot;:&quot;80px&quot;},&quot;brandName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Re:dnd&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;active&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;&quot;,&quot;projects&quot;,&quot;services&quot;,&quot;about&quot;],&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
 class Component extends DCLogic {
+  state = { open: false };
   renderVals() {
     const name = this.props.brandName ?? 'Re:dnd';
     const parts = String(name).trim().split(/\s+/);
@@ -52,7 +73,11 @@ class Component extends DCLogic {
     // link to the Russian counterpart of the current page
     const page = (typeof location !== 'undefined' && location.pathname.split('/').pop()) || 'index.html';
     const langHref = '../' + (page || 'index.html');
-    return { brandName: name, initials, navItems, langHref };
+    return {
+      brandName: name, initials, navItems, langHref,
+      openAttr: this.state.open ? 'true' : 'false',
+      onToggle: () => this.setState({ open: !this.state.open }),
+    };
   }
 }
 </script>

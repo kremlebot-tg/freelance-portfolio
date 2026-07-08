@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Case Study: Faith App — Duolingo-style Mobile Learning App — Re:dnd</title>
-<meta name="description" content="An Orthodox Christian learning app built with Flutter: short lessons, instant feedback, progress and streaks. My role — development. Live lesson demo inside.">
+<title>Case Study: Faith App — Duolingo-style Learning App — Re:dnd</title>
+<meta name="description" content="A learning app built with Flutter: short lessons with quizzes, day streaks, a glossary and an offline library of books verified by checksum. Own product, in active development. Live lesson demo inside.">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <link rel="alternate" hreflang="ru" href="https://rednd.ru/case-faith.html">
 <link rel="alternate" hreflang="en" href="https://rednd.ru/en/case-faith.html">
@@ -32,10 +32,13 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
   <a href="projects.html" style="display:inline-flex;align-items:center;gap:6px;font:500 14.5px Inter,system-ui,sans-serif;color:var(--accent);text-decoration:none;border-radius:8px;padding:4px 6px;margin:0 0 18px -6px" style-hover="background:var(--accent-tint)" style-focus="outline:2px solid var(--accent);outline-offset:2px">← All projects</a>
 
   <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:28px">
-    <span style="font:500 13px JetBrains Mono,monospace;color:var(--accent)">[Mobile]</span>
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+      <span style="font:500 13px JetBrains Mono,monospace;color:var(--accent)">[Mobile · Flutter]</span>
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:var(--online)"></span>own product</span>
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--surface-2);color:var(--text-meta);border:1px solid var(--border);font:500 12.5px Inter,system-ui,sans-serif">in development</span>
+    </div>
     <h1 style="margin:0;font:700 clamp(28px,4vw,42px)/1.15 Sora,sans-serif;letter-spacing:-0.02em">Faith App — Duolingo-style learning</h1>
-    <p style="margin:0;font:400 clamp(15.5px,1.6vw,18px)/1.55 Inter,system-ui,sans-serif;color:var(--text-body);max-width:640px">An Orthodox Christian learning app: short lessons, answers checked instantly, progress and a day streak.</p>
-    <span style="font:500 13px JetBrains Mono,monospace;color:var(--text-muted)">My role: development · design — Svetlana · testing — Egor</span>
+    <p style="margin:0;font:400 clamp(15.5px,1.6vw,18px)/1.55 Inter,system-ui,sans-serif;color:var(--text-body);max-width:720px">A learning app that carries someone from their first question to understanding a topic — through short lessons with quizzes, day streaks and a library of books in their pocket.</p>
   </div>
 
   <!-- ============ DEMO ============ -->
@@ -103,24 +106,40 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
   </section>
 
   <!-- ============ CASE STORY ============ -->
-  <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:24px">
+  <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,470px),1fr));gap:16px;margin-top:24px">
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
       <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">01 · problem</span>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">An Orthodox Christian learning app with Duolingo mechanics: short lessons, instant answer checking, progress and a day streak — habit instead of willpower.</p>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">The topic has a high barrier to entry: the sources are either texts from two centuries ago that you have to decode first, or reference sites built like a library rather than a course. Someone ready to take a step googles their first question, gets three screens with twenty unfamiliar words, and closes the tab. A format that leads you from zero step by step doesn't exist in mobile form.</p>
     </div>
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
       <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">02 · solution</span>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">Flutter on iOS: course and lesson structure, answer mechanics, XP and day streaks. The demo above mirrors the production lesson screen.</p>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">Flutter on iOS, fully offline-first: no backend, no servers, no auth — progress lives on the device. The content is a tree of courses where a lesson is theory slides plus a quiz. Any term in the text becomes a glossary card and unlocks as you read. Progress runs on XP, day streaks and “freezes” that don't reset the streak over a single missed day. Separately, a library of books: the manifest is pulled over the network, books download for offline use with sha256 integrity checks and stay on the device. The daily reminder is scheduled locally.</p>
     </div>
-    <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
-      <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">03 · result</span>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty"><strong style="color:var(--accent)">In active development.</strong> The lesson core is up and running; next come course content and the App Store launch.</p>
+    <div style="grid-column:1/-1;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
+      <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">03 · what was hard</span>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px"><strong style="color:var(--text)">Green checks over a dead feature.</strong> I implemented the day-streak “freeze” — edits in four places, the analyzer returned zero errors, the iOS build passed. Formally done. In fact the key edit never got written at all: the editing tool aborted, and the other three referenced a value that was saved nowhere. The analyzer stayed silent — the field was formally used in the UI, and the compiler doesn't care that it's never written. The feature was dead with a fully green check. Caught only by reading the function body line by line.</p>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-body);text-wrap:pretty;max-width:760px;border-left:2px solid var(--border-hover);padding-left:14px">Hence the rule: green checks prove the code compiles, not that it does what was intended. Now no change report is accepted without a verbatim dump of the changed fragment.</p>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px"><strong style="color:var(--text)">The correct answer is always first.</strong> The lesson quizzes had two defects, and neither was in the code. The right option was systematically the longest — the author padded it with an explanation and left the wrong ones terse, so a sharp reader could guess by shape without knowing the topic. The second, found on the device: the correct answer stood first in every question, because options rendered strictly by index.</p>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px">Fixed in two layers. In code — shuffling the options, but not in the render method: it's called on every state update, and the buttons would jump under your finger. I had to find every transition between questions and shuffle there, and at the same time move five correctness checks from list position to the answer object itself. In content — a rule: options of equal length and grammatical form, the correct position spread evenly, wrong options are real beginner misconceptions, not straw men. Verified by a script at content build time.</p>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px">Why both layers: shuffling makes the order in the source harmless for the app, but drafts are read by real people — author, reviewer, editor. A document where the correct answer is always first breeds blindness in everyone who proofreads it.</p>
+    </div>
+    <div style="grid-column:1/-1;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
+      <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">04 · result</span>
+      <ul style="margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px;font:400 15px/1.55 Inter,system-ui,sans-serif;color:var(--text-strong);max-width:760px">
+        <li>17 course branches, a glossary of 178 terms and 52 figures with inflected forms.</li>
+        <li>Flagship branch: 13 lessons, 52 slides, 39 quiz questions; the correct answers spread across positions — exactly a third each.</li>
+        <li>Every lesson passed an external expert review before publishing: 13 of 13, two mandatory fixes across the whole branch.</li>
+        <li>A library of six books with offline download and file-integrity checks.</li>
+        <li>Status: active development, no release yet.</li>
+      </ul>
     </div>
   </section>
 
   <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:20px">
     <span style="font:500 13px JetBrains Mono,monospace;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 11px">Flutter</span>
+    <span style="font:500 13px JetBrains Mono,monospace;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 11px">Dart</span>
     <span style="font:500 13px JetBrains Mono,monospace;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 11px">iOS</span>
+    <span style="font:500 13px JetBrains Mono,monospace;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 11px">offline-first</span>
   </div>
 
   <dc-import name="CaseCTA" hint-size="100%,170px"></dc-import>

@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Кейс: мобильное приложение Faith App на Flutter — Re:dnd</title>
-<meta name="description" content="Разработка обучающего мобильного приложения в стиле Duolingo: уроки, прогресс, серия дней. Моя роль — разработка. Живое демо урока внутри.">
+<title>Кейс: Faith App — обучение в стиле Duolingo — Re:dnd</title>
+<meta name="description" content="Обучающее приложение на Flutter: короткие уроки с тестами, серия дней, глоссарий и офлайн-библиотека книг с проверкой целостности. Собственный продукт в активной разработке. Живое демо урока внутри.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="alternate" hreflang="ru" href="https://rednd.ru/case-faith.html">
 <link rel="alternate" hreflang="en" href="https://rednd.ru/en/case-faith.html">
@@ -32,10 +32,13 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
   <a href="projects.html" style="display:inline-flex;align-items:center;gap:6px;font:500 14.5px Inter,system-ui,sans-serif;color:var(--accent);text-decoration:none;border-radius:8px;padding:4px 6px;margin:0 0 18px -6px" style-hover="background:var(--accent-tint)" style-focus="outline:2px solid var(--accent);outline-offset:2px">← Все проекты</a>
 
   <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:28px">
-    <span style="font:500 13px JetBrains Mono,monospace;color:var(--accent)">[Мобильное]</span>
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+      <span style="font:500 13px JetBrains Mono,monospace;color:var(--accent)">[Мобильное · Flutter]</span>
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:var(--online)"></span>собственный продукт</span>
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--surface-2);color:var(--text-meta);border:1px solid var(--border);font:500 12.5px Inter,system-ui,sans-serif">в разработке</span>
+    </div>
     <h1 style="margin:0;font:700 clamp(28px,4vw,42px)/1.15 Sora,sans-serif;letter-spacing:-0.02em">Faith App — обучение в стиле Duolingo</h1>
-    <p style="margin:0;font:400 clamp(15.5px,1.6vw,18px)/1.55 Inter,system-ui,sans-serif;color:var(--text-body);max-width:640px">Православное обучающее приложение: короткие уроки, ответы с мгновенной проверкой, прогресс и серия дней.</p>
-    <span style="font:500 13px JetBrains Mono,monospace;color:var(--text-muted)">Моя роль: разработка · дизайн — Светлана · тестирование — Егор</span>
+    <p style="margin:0;font:400 clamp(15.5px,1.6vw,18px)/1.55 Inter,system-ui,sans-serif;color:var(--text-body);max-width:720px">Обучающее приложение, которое ведёт человека от первого вопроса до понимания темы — короткими уроками с тестами, серией дней и библиотекой книг в кармане.</p>
   </div>
 
   <!-- ============ DEMO ============ -->
@@ -103,24 +106,40 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
   </section>
 
   <!-- ============ CASE STORY ============ -->
-  <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:24px">
+  <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,470px),1fr));gap:16px;margin-top:24px">
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
-      <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">01 · суть</span>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">Православное обучающее приложение в механике Duolingo: короткие уроки, мгновенная проверка ответов, прогресс и серия дней — привычка вместо силы воли.</p>
+      <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">01 · задача</span>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">У темы высокий порог входа: источники — либо тексты позапрошлого века, которые надо сначала расшифровать, либо сайты-справочники, устроенные как библиотека, а не как курс. Человек, готовый сделать шаг, гуглит первый вопрос, получает три экрана с двадцатью незнакомыми словами и закрывает вкладку. Формата, который ведёт от нуля шаг за шагом, в мобильном виде не существует.</p>
     </div>
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
       <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">02 · как решал</span>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">Flutter под iOS: структура курсов и уроков, механика ответов, XP и серия дней. Демо выше повторяет боевой экран урока.</p>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">Flutter под iOS, полностью офлайн-first: ни бэкенда, ни серверов, ни авторизации — прогресс живёт на устройстве. Контент — дерево курсов, где урок это слайды теории плюс тест. Любой термин в тексте становится карточкой из глоссария и разблокируется по мере чтения. Прогресс держится на XP, серии дней и «заморозках», которые не обнуляют серию за один пропущенный день. Отдельно — библиотека книг: манифест подтягивается по сети, книги качаются в офлайн с проверкой целостности по sha256 и остаются на устройстве. Ежедневное напоминание планируется локально.</p>
     </div>
-    <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
-      <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">03 · результат</span>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty"><strong style="color:var(--accent)">В активной разработке.</strong> Ядро урока работает; впереди — контент курсов и запуск в App Store.</p>
+    <div style="grid-column:1/-1;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
+      <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">03 · что оказалось сложным</span>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px"><strong style="color:var(--text)">Зелёные проверки при мёртвой фиче.</strong> Реализовал «заморозку» серии дней — правки в четырёх местах, анализатор вернул ноль ошибок, сборка iOS прошла. Формально готово. По факту ключевая правка не записалась вовсе: инструмент редактирования прервался, а остальные три ссылались на значение, которое нигде не сохранялось. Анализатор молчал — поле формально использовалось в интерфейсе, и компилятору неважно, что оно никогда не пишется. Фича была мертва при полностью зелёной проверке. Поймал только дословным чтением тела функции.</p>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-body);text-wrap:pretty;max-width:760px;border-left:2px solid var(--border-hover);padding-left:14px">Отсюда правило: зелёные проверки доказывают, что код компилируется, а не что он делает то, что задумано. Теперь ни один отчёт об изменении не принимается без дословного дампа изменённого фрагмента.</p>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px"><strong style="color:var(--text)">Правильный ответ всегда первый.</strong> В тестах уроков нашлись два дефекта, и ни один не был в коде. Верный вариант систематически оказывался самым длинным — автор дописывал его пояснением, а неверные бросал куцыми, и сообразительный человек угадывал ответ по форме, не зная темы. Второй, найденный уже на устройстве: верный ответ стоял первым в каждом вопросе, потому что варианты рендерились строго по индексу.</p>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px">Чинил в двух слоях. В коде — перемешивание вариантов, но не в методе отрисовки: он вызывается на каждое обновление состояния, и кнопки прыгали бы под пальцем. Пришлось найти все точки перехода между вопросами и тасовать там, а заодно перевести пять мест проверки правильности с позиции в списке на сам объект ответа. В контенте — правило: варианты одной длины и одного грамматического строя, позиция верного распределена равномерно, неверные варианты это реальные заблуждения новичка, а не соломенные чучела. Проверяется скриптом при сборке контента.</p>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px">Почему оба слоя: перемешивание делает порядок в исходнике безвредным для приложения, но черновики читают живые люди — автор, рецензент, редактор. Документ, где верный ответ всегда первый, порождает слепоту у всех, кто его вычитывает.</p>
+    </div>
+    <div style="grid-column:1/-1;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
+      <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">04 · результат</span>
+      <ul style="margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px;font:400 15px/1.55 Inter,system-ui,sans-serif;color:var(--text-strong);max-width:760px">
+        <li>17 курсов-веток, глоссарий на 178 терминов и 52 персоналии с падежными формами.</li>
+        <li>Флагманская ветка: 13 уроков, 52 слайда, 39 тестовых вопросов; распределение верных ответов по позициям — ровно по трети на каждую.</li>
+        <li>Каждый урок прошёл внешнюю экспертную рецензию до публикации: 13 из 13, две обязательные правки на всю ветку.</li>
+        <li>Библиотека из шести книг с офлайн-загрузкой и проверкой целостности файлов.</li>
+        <li>Статус: активная разработка, релиза не было.</li>
+      </ul>
     </div>
   </section>
 
   <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:20px">
     <span style="font:500 13px JetBrains Mono,monospace;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 11px">Flutter</span>
+    <span style="font:500 13px JetBrains Mono,monospace;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 11px">Dart</span>
     <span style="font:500 13px JetBrains Mono,monospace;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 11px">iOS</span>
+    <span style="font:500 13px JetBrains Mono,monospace;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 11px">офлайн-first</span>
   </div>
 
   <dc-import name="CaseCTA" hint-size="100%,170px"></dc-import>

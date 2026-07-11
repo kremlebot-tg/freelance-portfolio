@@ -77,7 +77,11 @@ window.SITE_CONFIG = {
     "Telegram Mini Apps": { ru: "Полноценные приложения прямо внутри Telegram.", en: "Full apps that run right inside Telegram." },
     "YooKassa": { ru: "Российский сервис приёма онлайн-платежей картами.", en: "Russian service for accepting online card payments." },
     "LLM / ИИ": { ru: "ИИ-модель, понимающая и генерирующая текст, как ChatGPT.", en: "AI model that understands and writes text, like ChatGPT." },
-    "LLM / AI": { ru: "ИИ-модель, понимающая и генерирующая текст, как ChatGPT.", en: "AI model that understands and writes text, like ChatGPT." }
+    "LLM / AI": { ru: "ИИ-модель, понимающая и генерирующая текст, как ChatGPT.", en: "AI model that understands and writes text, like ChatGPT." },
+    "SQLAlchemy": { ru: "Инструмент Python для работы с базой данных через объекты.", en: "Python toolkit for working with a database through objects." },
+    "Vetmanager API": { ru: "Программный интерфейс ветеринарной учётной системы Vetmanager.", en: "The API of the Vetmanager veterinary practice system." },
+    "мультиарендность": { ru: "Один сервис обслуживает много клиник, данные изолированы.", en: "One service serves many clinics with fully isolated data." },
+    "multi-tenancy": { ru: "Один сервис обслуживает много клиник, данные изолированы.", en: "One service serves many clinics with fully isolated data." }
   };
   var lang = (location.pathname.indexOf('/en/') !== -1) ? 'en' : 'ru';
   function apply() {

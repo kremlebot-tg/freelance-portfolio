@@ -1,0 +1,533 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Кабинет клиники «Айболит» — демо ВетПульс</title>
+<meta name="description" content="Живой демо-кабинет ВетПульс на вымышленной ветклинике «Айболит»: дашборд «₽ возвращено», входящие с чат-ботом, записи, напоминания и кампания возврата спящей базы.">
+<meta name="theme-color" content="#0a544b">
+
+<!-- Open Graph / Twitter -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ВетПульс">
+<meta property="og:url" content="https://rednd.ru/vetpulse/demo.html">
+<meta property="og:title" content="Кабинет клиники «Айболит» — демо ВетПульс">
+<meta property="og:description" content="Мини-кабинет: дашборд «₽ возвращено», входящие с чат-ботом, записи, напоминания и кампания возврата. На вымышленных данных — тыкайте что угодно.">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:image" content="https://rednd.ru/vetpulse/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Кабинет клиники «Айболит» — демо ВетПульс">
+<meta name="twitter:description" content="Дашборд, входящие с чат-ботом, записи, напоминания и кампания возврата.">
+<meta name="twitter:image" content="https://rednd.ru/vetpulse/og-cover.png">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%230a544b'/%3E%3Cg fill='%23e8734a'%3E%3Cellipse cx='6.3' cy='10' rx='2' ry='2.6'/%3E%3Cellipse cx='10.2' cy='7.2' rx='2' ry='2.7'/%3E%3Cellipse cx='14.6' cy='7.2' rx='2' ry='2.7'/%3E%3Cellipse cx='18.4' cy='10.3' rx='1.9' ry='2.5'/%3E%3Cpath d='M12.3 12.4c-3.1 0-5.6 2.2-5.6 4.6 0 2 1.7 3.1 3.6 2.8l2-.4 2 .4c1.9.3 3.6-.8 3.6-2.8 0-2.4-2.5-4.6-5.6-4.6z'/%3E%3C/g%3E%3Cpath d='M7.6 17.1h1.7l1-2.1 1.7 3.5 1.2-2 .9 1.2h2' fill='none' stroke='%230a544b' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+
+<style>
+  :root{
+    --ground:#f3f7f5; --surface:#ffffff; --surface-2:#eaf1ee;
+    --ink:#122320; --slate:#566a64; --slate-2:#7e908a;
+    --petrol:#0e7c6f; --petrol-deep:#0a544b; --petrol-tint:#e1efeb;
+    --coral:#e8734a; --coral-deep:#c85a34; --coral-tint:#fbe9e1;
+    --good:#1c8a57; --good-tint:#e2f2ea;
+    --line:rgba(18,35,32,.11); --line-soft:rgba(18,35,32,.06);
+    --sh-sm:0 1px 2px rgba(18,35,32,.05);
+    --sh-md:0 2px 6px rgba(18,35,32,.04), 0 14px 32px -18px rgba(18,35,32,.22);
+    --r-sm:8px; --r-md:12px; --r-lg:16px;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+  :focus-visible{outline:2.5px solid var(--petrol);outline-offset:2px;border-radius:6px}
+
+  .topbar{background:rgba(243,247,245,.86);backdrop-filter:saturate(1.4) blur(12px);border-bottom:1px solid var(--line-soft);position:sticky;top:0;z-index:20}
+  .topbar-in{display:flex;align-items:center;justify-content:space-between;height:60px;gap:12px}
+  .back{display:inline-flex;align-items:center;gap:8px;font-size:.92rem;color:var(--slate);font-weight:600;transition:color .15s}
+  .back:hover{color:var(--petrol-deep)}
+  .back svg{width:16px;height:16px}
+  .clinic{display:flex;align-items:center;gap:10px;font-weight:700;font-size:.98rem}
+  .clinic .av{width:30px;height:30px;border-radius:8px;background:var(--petrol);color:#fff;display:flex;align-items:center;justify-content:center}
+  .clinic .av svg{width:17px;height:17px}
+  .demo-tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--coral-deep);background:var(--coral-tint);border:1px solid #f3cbb9;border-radius:20px;padding:4px 11px;font-weight:600;white-space:nowrap}
+  @media(max-width:560px){.clinic .nm{display:none}}
+
+  .banner{background:var(--petrol-tint);border-bottom:1px solid var(--line-soft)}
+  .banner .wrap{padding:10px 20px;font-size:.85rem;color:var(--petrol-deep);text-align:center;text-wrap:pretty}
+  .banner b{font-weight:700}
+
+  /* ── App shell: боковая навигация + разделы ── */
+  .app{display:grid;grid-template-columns:214px 1fr;gap:22px;padding:24px 0 64px;align-items:start}
+  .app>*{min-width:0}
+  .main{min-width:0}
+  @media(max-width:820px){.app{grid-template-columns:1fr;gap:14px}}
+  .side{position:sticky;top:76px;display:flex;flex-direction:column;gap:4px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:8px;box-shadow:var(--sh-sm)}
+  .nav-item{display:flex;align-items:center;gap:11px;padding:10px 12px;border-radius:10px;font-size:.92rem;font-weight:600;color:var(--slate);cursor:pointer;transition:background .15s ease,color .15s ease;border:none;background:none;text-align:left;width:100%;font-family:inherit;white-space:nowrap}
+  .nav-item svg{width:18px;height:18px;flex-shrink:0}
+  .nav-item:hover{background:var(--surface-2);color:var(--ink)}
+  .nav-item.active{background:var(--petrol-tint);color:var(--petrol-deep)}
+  .nav-item .cnt{margin-left:auto;font-family:var(--mono);font-size:.68rem;background:var(--coral);color:#fff;border-radius:10px;padding:1px 6px;font-weight:600}
+  @media(max-width:820px){
+    .side{position:static;top:auto;flex-direction:row;overflow-x:auto;gap:6px;padding:6px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+    .side::-webkit-scrollbar{display:none}
+    .nav-item{flex-shrink:0;padding:9px 13px}
+  }
+  .section{display:none}
+  .section.active{display:block;animation:sfade .3s ease}
+  @media(prefers-reduced-motion:reduce){.section.active{animation:none}}
+  @keyframes sfade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  .section-head{margin-bottom:16px}
+  .section-head h1{font-size:1.3rem;font-weight:780;letter-spacing:-.02em}
+  .section-head .sub{color:var(--slate);font-size:.88rem;margin-top:3px;text-wrap:pretty}
+  .ex{font-family:var(--mono);font-size:.66rem;text-transform:uppercase;letter-spacing:.04em;color:var(--slate-2);font-weight:600;background:var(--surface);border:1px solid var(--line-soft);border-radius:8px;padding:1px 6px;white-space:nowrap}
+
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--sh-sm)}
+  .card-pad{padding:20px}
+  .card + .card{margin-top:16px}
+  h2{font-size:1.05rem;font-weight:730;letter-spacing:-.01em}
+  .sub{color:var(--slate);font-size:.9rem}
+  .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--petrol);font-weight:600}
+  .btn{font-family:var(--sans);font-weight:600;font-size:.9rem;padding:11px 18px;border-radius:var(--r-sm);border:none;cursor:pointer;background:var(--coral);color:#fff;transition:background .15s, opacity .15s, transform .12s;box-shadow:0 1px 2px rgba(200,90,52,.3), 0 8px 18px -10px rgba(200,90,52,.6);display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
+  .btn:hover:not(:disabled){background:var(--coral-deep);transform:translateY(-1px)}
+  .btn:active:not(:disabled){transform:translateY(0)}
+  .btn:disabled{opacity:.55;cursor:default;box-shadow:none}
+  .btn svg{width:16px;height:16px}
+  .btn.sm{padding:7px 13px;font-size:.82rem;box-shadow:none}
+  .btn.ghost{background:var(--petrol-tint);color:var(--petrol-deep);box-shadow:none}
+  .btn.ghost:hover:not(:disabled){background:#d3e9e3;background-color:#d3e9e3}
+  .pill{font-family:var(--mono);font-size:10px;letter-spacing:.03em;text-transform:uppercase;padding:4px 9px;border-radius:14px;white-space:nowrap;font-weight:600;background:var(--surface-2);color:var(--slate)}
+  .pill.ok{background:var(--good);color:#fff}
+  .pill.blue{background:#eef2f7;color:#4a6b90}
+  .pill.wait{background:var(--surface-2);color:var(--slate)}
+  .src{font-family:var(--mono);font-size:9.5px;letter-spacing:.03em;text-transform:uppercase;color:var(--petrol-deep);background:var(--petrol-tint);border:1px solid #cfe6e0;border-radius:12px;padding:3px 8px;font-weight:600;white-space:nowrap}
+
+  /* headline metric + sparkline */
+  .metric{padding:22px 22px 18px;border-bottom:1px solid var(--line-soft);position:relative;overflow:hidden}
+  .metric-top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
+  .metric .big{font-family:var(--mono);font-size:2.5rem;font-weight:600;color:var(--petrol-deep);letter-spacing:-.03em;font-variant-numeric:tabular-nums;line-height:1;margin-top:10px;transition:color .3s}
+  .metric .big small{font-size:1.15rem;color:var(--slate);font-weight:500}
+  .metric .cap{color:var(--good);font-weight:600;font-size:.86rem;margin-top:9px;display:flex;align-items:center;gap:6px}
+  .metric .cap svg{width:15px;height:15px}
+  .spark{width:120px;height:46px;color:var(--petrol);flex-shrink:0;opacity:.9}
+  .spark svg{width:100%;height:100%}
+  @media(max-width:420px){.spark{width:90px}}
+
+  .stats3{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line-soft)}
+  .st{background:var(--surface);padding:16px}
+  .st .n{font-family:var(--mono);font-size:1.5rem;font-weight:600;font-variant-numeric:tabular-nums;color:var(--ink);transition:color .3s}
+  .st .t{font-size:.76rem;color:var(--slate);margin-top:4px;text-wrap:pretty}
+  .st.bump{background:var(--good-tint)}
+  .st.bump .n{color:var(--good)}
+
+  /* feed «последние возвраты» */
+  .feed h2{margin-bottom:4px}
+  .feed-rows{margin-top:14px;display:flex;flex-direction:column;gap:8px}
+  .frow{display:flex;align-items:center;gap:11px;padding:10px 12px;border:1px solid var(--line-soft);border-radius:11px}
+  .frow .pet{width:34px;height:34px;border-radius:9px;background:var(--surface-2);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
+  .frow .fi{flex:1;min-width:0}
+  .frow .fi b{font-size:.9rem;font-weight:600}
+  .frow .fi span{display:block;font-size:.76rem;color:var(--slate);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .frow .amt{font-family:var(--mono);font-size:.9rem;font-weight:600;color:var(--good);flex-shrink:0}
+
+  /* inbox: список диалогов + чат */
+  .inbox-grid{display:grid;grid-template-columns:210px 1fr;gap:16px;align-items:start}
+  .inbox-grid>*{min-width:0}
+  @media(max-width:720px){.inbox-grid{grid-template-columns:1fr}}
+  .dialogs{display:flex;flex-direction:column;gap:6px}
+  @media(max-width:720px){.dialogs{flex-direction:row;overflow-x:auto;gap:8px;-webkit-overflow-scrolling:touch;scrollbar-width:none}.dialogs::-webkit-scrollbar{display:none}}
+  .dlg{display:block;text-align:left;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:11px 13px;cursor:pointer;font-family:inherit;transition:background .15s,border-color .15s;flex-shrink:0}
+  .dlg:hover{background:var(--surface-2)}
+  .dlg.active{border-color:var(--petrol);background:var(--petrol-tint)}
+  .dlg b{font-size:.88rem;font-weight:600}
+  .dlg span{display:block;font-size:.76rem;color:var(--slate);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .dlg .tag{display:inline-block;margin-top:6px;font-family:var(--mono);font-size:9px;text-transform:uppercase;letter-spacing:.04em;padding:2px 6px;border-radius:8px;background:var(--surface-2);color:var(--slate);font-weight:600}
+  .dlg .tag.sos{background:var(--coral-tint);color:var(--coral-deep)}
+
+  /* chat */
+  .chat{display:flex;flex-direction:column;height:512px;overflow:hidden}
+  .chat-head{padding:13px 18px;border-bottom:1px solid var(--line-soft);display:flex;align-items:center;gap:12px}
+  .chat-head .av{width:36px;height:36px;border-radius:50%;background:var(--surface-2);border:1px solid var(--line);color:var(--slate);display:flex;align-items:center;justify-content:center;font-size:.92rem;font-weight:700;flex-shrink:0}
+  .chat-head b{font-size:.95rem}
+  .chat-head .st-sub{font-size:.76rem;color:var(--slate);margin-top:1px}
+  .chat-head .st-sub b{color:var(--petrol-deep);font-weight:600}
+  .msgs{flex:1;overflow-y:auto;overscroll-behavior:contain;padding:18px;display:flex;flex-direction:column;gap:10px;background:var(--surface-2);scroll-behavior:smooth}
+  /* строки-сообщения: перспектива КЛИНИКИ — владелец слева (входящие), AI справа (мы) */
+  .mrow{display:flex;gap:8px;align-items:flex-end;max-width:90%;animation:pop .28s cubic-bezier(.2,.7,.2,1) both}
+  .mrow.owner{align-self:flex-start}
+  .mrow.ai{align-self:flex-end;flex-direction:row-reverse}
+  @keyframes pop{from{opacity:0;transform:translateY(6px) scale(.98)}to{opacity:1;transform:none}}
+  @media(prefers-reduced-motion:reduce){.mrow{animation:none}.msgs{scroll-behavior:auto}}
+  .mav{width:26px;height:26px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700}
+  .mav.owner{background:var(--surface);border:1px solid var(--line);color:var(--slate)}
+  .mav.ai{background:var(--petrol-tint);color:var(--petrol-deep)}
+  .mav.ai svg{width:15px;height:15px}
+  .msg{padding:10px 14px;border-radius:15px;font-size:.92rem;line-height:1.45;white-space:pre-wrap;word-wrap:break-word}
+  .msg.owner{background:var(--surface);border:1px solid var(--line-soft);border-bottom-left-radius:5px;box-shadow:var(--sh-sm)}
+  .msg.ai{background:var(--petrol);color:#fff;border-bottom-right-radius:5px}
+  .msg.sys{align-self:center;background:var(--coral-tint);color:var(--coral-deep);font-size:.84rem;border-radius:12px;text-align:center;max-width:94%;border:1px solid #f3cbb9;font-weight:500;animation:pop .28s both}
+  .chips{display:flex;gap:7px;flex-wrap:wrap;padding:11px 16px 3px}
+  .chip{font-size:.81rem;color:var(--petrol-deep);background:var(--petrol-tint);border:1px solid #cfe6e0;border-radius:16px;padding:7px 13px;cursor:pointer;transition:background .15s, transform .12s;font-weight:500}
+  .chip:hover{background:#d3e9e3;transform:translateY(-1px)}
+  .composer-hint{font-size:.74rem;color:var(--slate-2);padding:9px 16px 0;display:flex;align-items:center;gap:6px}
+  .composer-hint svg{width:13px;height:13px;flex-shrink:0;color:var(--petrol)}
+  .composer{display:flex;gap:8px;padding:8px 16px 13px;border-top:1px solid var(--line-soft)}
+  .composer input{flex:1;border:1.5px solid var(--line);border-radius:var(--r-sm);padding:11px 14px;font-family:var(--sans);font-size:.92rem;outline:none;transition:border-color .15s, box-shadow .15s;color:var(--ink);min-width:0}
+  .composer input:focus{border-color:var(--petrol);box-shadow:0 0 0 3px rgba(14,124,111,.12)}
+  .composer button{border:none;background:var(--petrol);color:#fff;border-radius:var(--r-sm);width:46px;cursor:pointer;transition:background .15s;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .composer button:hover{background:var(--petrol-deep)}
+  .composer button svg{width:20px;height:20px}
+  .typing{background:var(--surface);border:1px solid var(--line-soft);border-radius:15px;border-bottom-right-radius:5px;padding:12px 15px;display:flex;gap:4px;box-shadow:var(--sh-sm)}
+  .typing i{width:7px;height:7px;border-radius:50%;background:var(--slate-2);display:inline-block;animation:blink 1.25s infinite ease-in-out both}
+  .typing i:nth-child(2){animation-delay:.18s}
+  .typing i:nth-child(3){animation-delay:.36s}
+  @keyframes blink{0%,80%,100%{opacity:.25;transform:translateY(0)}40%{opacity:1;transform:translateY(-3px)}}
+  @media(prefers-reduced-motion:reduce){.typing i{animation:none}}
+
+  /* записи */
+  .arow{display:flex;align-items:center;gap:12px;padding:12px 4px;border-top:1px solid var(--line-soft);flex-wrap:wrap}
+  .arow:first-child{border-top:none}
+  .arow .tm{font-family:var(--mono);font-size:.9rem;font-weight:600;color:var(--ink);width:46px;flex-shrink:0}
+  .arow .ai{flex:1;min-width:120px}
+  .arow .ai b{font-size:.92rem;font-weight:600}
+  .arow .ai span{display:block;font-size:.77rem;color:var(--slate)}
+  .arow .aa{display:flex;align-items:center;gap:8px;flex-shrink:0;margin-left:auto}
+  .arow.done{background:var(--good-tint);border-radius:10px;border-color:transparent}
+  .arow.done + .arow{border-top-color:transparent}
+
+  /* напоминания */
+  .rem-summary{font-size:.86rem;color:var(--petrol-deep);background:var(--petrol-tint);border:1px solid rgba(14,124,111,.16);border-radius:11px;padding:11px 14px;margin-bottom:14px;font-weight:600;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  .rlist{display:flex;flex-direction:column;gap:9px}
+  .rrow{display:flex;align-items:center;gap:12px;padding:11px 13px;border:1px solid var(--line-soft);border-radius:11px}
+  .rrow .ri{flex:1;min-width:0}
+  .rrow .ri b{font-size:.89rem;font-weight:600}
+  .rrow .ri span{display:block;font-size:.76rem;color:var(--slate)}
+  .rrow .btn.sm{margin-left:auto}
+
+  /* реактивация */
+  .react-head{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:12px}
+  .react-head h2{font-size:1.05rem;font-weight:730}
+  .rows{display:flex;flex-direction:column;gap:9px}
+  .prow{display:flex;align-items:center;gap:12px;padding:12px 14px;border:1px solid var(--line-soft);border-radius:var(--r-md);background:var(--surface);transition:background .35s, border-color .35s}
+  .prow .pet{font-size:1.3rem;width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:var(--surface-2);border-radius:9px;flex-shrink:0}
+  .prow .info{flex:1;min-width:0}
+  .prow .info b{font-size:.92rem}
+  .prow .info span{display:block;font-size:.79rem;color:var(--slate);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .prow .status{font-family:var(--mono);font-size:10px;letter-spacing:.03em;text-transform:uppercase;padding:5px 10px;border-radius:16px;white-space:nowrap;background:var(--surface-2);color:var(--slate);font-weight:600;flex-shrink:0;transition:background .35s,color .35s}
+  .prow.sent{border-color:#d3ddec}
+  .prow.sent .status{background:#eef2f7;color:#4a6b90}
+  .prow.booked{background:var(--good-tint);border-color:#bfe0cd}
+  .prow.booked .pet{background:#cdead9}
+  .prow.booked .status{background:var(--good);color:#fff}
+  .react-summary{margin-top:16px;padding:14px 16px;border-radius:var(--r-md);background:var(--petrol-tint);border:1px solid rgba(14,124,111,.16);color:var(--petrol-deep);font-size:.9rem;font-weight:600;display:none;align-items:center;gap:10px;text-wrap:pretty}
+  .react-summary.show{display:flex;animation:rise .4s ease both}
+  .react-summary svg{width:18px;height:18px;flex-shrink:0}
+  @keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  @media(prefers-reduced-motion:reduce){.react-summary.show{animation:none}}
+</style>
+</head>
+<body>
+
+<div class="topbar"><div class="wrap topbar-in">
+  <a class="back" href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>ВетПульс</a>
+  <div class="clinic"><span class="av"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><ellipse cx="6.3" cy="10" rx="2" ry="2.6"/><ellipse cx="10.2" cy="7.2" rx="2" ry="2.7"/><ellipse cx="14.6" cy="7.2" rx="2" ry="2.7"/><ellipse cx="18.4" cy="10.3" rx="1.9" ry="2.5"/><path d="M12.3 12.4c-3.1 0-5.6 2.2-5.6 4.6 0 2 1.7 3.1 3.6 2.8l2-.4 2 .4c1.9.3 3.6-.8 3.6-2.8 0-2.4-2.5-4.6-5.6-4.6z"/></svg></span><span class="nm">Кабинет «Айболит»</span></div>
+  <span class="demo-tag">демо · вымышленные данные</span>
+</div></div>
+<div class="banner"><div class="wrap"><b>Это живой демо-кабинет.</b> Переключайте разделы слева, пишите боту, подтверждайте записи и запускайте кампанию — всё на вымышленных данных.</div></div>
+
+<div class="wrap app">
+
+  <!-- LEFT NAV -->
+  <nav class="side" aria-label="Разделы кабинета">
+    <button class="nav-item active" data-sec="dash"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="8" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="11" width="7" height="10" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/></svg><span>Дашборд</span></button>
+    <button class="nav-item" data-sec="inbox"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H8l-4 4z"/></svg><span>Входящие</span><span class="cnt">3</span></button>
+    <button class="nav-item" data-sec="appts"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 9.5h17M8 3.5v3M16 3.5v3"/></svg><span>Записи</span><span class="cnt" id="apptCnt">2</span></button>
+    <button class="nav-item" data-sec="reminders"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9a6 6 0 0 1 12 0c0 5 2 6 2 6H4s2-1 2-6"/><path d="M10 20a2 2 0 0 0 4 0"/></svg><span>Напоминания</span></button>
+    <button class="nav-item" data-sec="react"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg><span>Реактивация</span></button>
+  </nav>
+
+  <main class="main">
+
+    <!-- ДАШБОРД -->
+    <section class="section active" id="sec-dash">
+      <div class="section-head"><h1>Дашборд</h1><div class="sub">Клиника «Айболит» · за месяц · <span class="ex">цифры иллюстративные</span></div></div>
+      <div class="card">
+        <div class="metric">
+          <div class="metric-top">
+            <div>
+              <div class="lbl">Возвращённая выручка · за месяц</div>
+              <div class="big" id="revenue">128 400 <small>₽</small></div>
+            </div>
+            <div class="spark" aria-hidden="true"><svg viewBox="0 0 120 46" preserveAspectRatio="none" fill="none">
+              <path d="M2 40 L18 36 L34 37 L50 30 L66 24 L82 25 L98 14 L118 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M2 40 L18 36 L34 37 L50 30 L66 24 L82 25 L98 14 L118 6 L118 46 L2 46 Z" fill="currentColor" opacity=".08"/>
+            </svg></div>
+          </div>
+          <div class="cap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15l5-5 4 3 6-7"/><path d="M19 6h-4M19 6v4"/></svg>за счёт записей, напоминаний и возврата спящей базы</div>
+        </div>
+        <div class="stats3">
+          <div class="st" id="st-inbox"><div class="n" id="s-inbox">187</div><div class="t">обращений принято 24/7</div></div>
+          <div class="st" id="st-noshow"><div class="n" id="s-noshow">31</div><div class="t">неявок предотвращено</div></div>
+          <div class="st" id="st-return"><div class="n" id="s-return">42</div><div class="t">пациентов возвращено</div></div>
+        </div>
+      </div>
+      <div class="card card-pad feed">
+        <h2>Последние возвраты</h2>
+        <div class="sub">Кто вернулся на приём — и на какую сумму</div>
+        <div class="feed-rows">
+          <div class="frow"><span class="pet">🐈</span><span class="fi"><b>Барсик · Ирина П.</b><span>вакцинация от бешенства · через ВетПульс</span></span><span class="amt">+1 800 ₽</span></div>
+          <div class="frow"><span class="pet">🐕</span><span class="fi"><b>Рекс · Андрей С.</b><span>комплексная вакцина · через ВетПульс</span></span><span class="amt">+2 600 ₽</span></div>
+          <div class="frow"><span class="pet">🐈</span><span class="fi"><b>Соня · Дмитрий Л.</b><span>ежегодный осмотр · через ВетПульс</span></span><span class="amt">+1 500 ₽</span></div>
+          <div class="frow"><span class="pet">🐕</span><span class="fi"><b>Граф · Мария Н.</b><span>вакцинация · через ВетПульс</span></span><span class="amt">+2 600 ₽</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ВХОДЯЩИЕ -->
+    <section class="section" id="sec-inbox">
+      <div class="section-head"><h1>Входящие</h1><div class="sub">Клиника видит переписку клиентов. Владелец — слева, AI-ассистент (вы) — справа.</div></div>
+      <div class="inbox-grid">
+        <div class="dialogs" id="dialogs">
+          <button class="dlg active" data-q="Сколько стоит вакцинация?" data-name="Ирина П." data-init="И" data-pet="Барсик" data-ch="сайт-виджет"><b>Ирина П.</b><span>Барсик · цена вакцинации</span><span class="tag">сайт-виджет</span></button>
+          <button class="dlg" data-q="Хочу записаться на приём" data-name="Андрей С." data-init="А" data-pet="Рекс" data-ch="Telegram"><b>Андрей С.</b><span>Рекс · запись на приём</span><span class="tag">Telegram</span></button>
+          <button class="dlg" data-q="Собаку срочно рвёт, ей плохо" data-name="Елена В." data-init="Е" data-pet="Джек" data-ch="экстренное"><b>Елена В.</b><span>Джек · срочно, плохо</span><span class="tag sos">экстренное</span></button>
+        </div>
+        <div class="card chat">
+          <div class="chat-head">
+            <span class="av" id="chAv">И</span>
+            <div><b id="chName">Ирина П. · Барсик</b><div class="st-sub">отвечает <b>AI-ассистент</b> · <span id="chCh">сайт-виджет</span></div></div>
+          </div>
+          <div class="msgs" id="msgs" aria-live="polite" aria-label="Переписка с клиентом"></div>
+          <div class="chips" id="chips">
+            <span class="chip" data-q="Сколько стоит вакцинация?" role="button" tabindex="0">Цена вакцинации</span>
+            <span class="chip" data-q="Какие у вас часы работы?" role="button" tabindex="0">Часы работы</span>
+            <span class="chip" data-q="Хочу записаться на приём" role="button" tabindex="0">Записаться</span>
+            <span class="chip" data-q="Собаку срочно рвёт, ей плохо" role="button" tabindex="0">Срочная помощь</span>
+          </div>
+          <div class="composer-hint" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.2"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0"/></svg>Пишете от лица владельца — посмотрите, как ответит AI</div>
+          <div class="composer">
+            <input id="inp" placeholder="Сообщение от владельца…" autocomplete="off" aria-label="Сообщение от лица владельца питомца">
+            <button id="send" aria-label="Отправить"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15M13 6l6 6-6 6"/></svg></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ЗАПИСИ -->
+    <section class="section" id="sec-appts">
+      <div class="section-head"><h1>Записи на сегодня</h1><div class="sub">Часть пришла через ВетПульс со статусом «на подтверждении» — подтвердите приём.</div></div>
+      <div class="card card-pad">
+        <div class="arows" id="arows">
+          <div class="arow done"><span class="tm">10:00</span><span class="ai"><b>Рекс · осмотр</b><span>врач Иванова А.</span></span><span class="aa"><span class="pill ok">подтверждён</span></span></div>
+          <div class="arow" data-appt><span class="tm">11:30</span><span class="ai"><b>Барсик · вакцинация</b><span>врач Петров С.</span></span><span class="aa"><span class="src">через ВетПульс</span><button class="btn sm" data-confirm>Подтвердить</button></span></div>
+          <div class="arow done"><span class="tm">13:00</span><span class="ai"><b>Мурка · чистка зубов</b><span>врач Иванова А.</span></span><span class="aa"><span class="pill ok">подтверждён</span></span></div>
+          <div class="arow" data-appt><span class="tm">15:00</span><span class="ai"><b>Джек · стерилизация</b><span>врач Петров С.</span></span><span class="aa"><span class="src">через ВетПульс</span><button class="btn sm" data-confirm>Подтвердить</button></span></div>
+          <div class="arow done"><span class="tm">16:30</span><span class="ai"><b>Граф · осмотр</b><span>врач Иванова А.</span></span><span class="aa"><span class="pill ok">подтверждён</span></span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- НАПОМИНАНИЯ -->
+    <section class="section" id="sec-reminders">
+      <div class="section-head"><h1>Напоминания</h1><div class="sub">Автоматически за день и за час до приёма — с кнопками «подтвердить / перенести».</div></div>
+      <div class="card card-pad">
+        <div class="rem-summary">За неделю: <b>34</b> подтверждено · <b>3</b> перенесено · <b>1</b> отмена <span class="ex">пример</span></div>
+        <div class="rlist" id="rlist">
+          <div class="rrow"><span class="pet" style="width:34px;height:34px;border-radius:9px;background:var(--surface-2);display:flex;align-items:center;justify-content:center;font-size:1.15rem;flex-shrink:0">🐈</span><span class="ri"><b>Барсик · Ирина П.</b><span>завтра, 15:00 · вакцинация</span></span><span class="pill ok">подтверждено</span></div>
+          <div class="rrow"><span class="pet" style="width:34px;height:34px;border-radius:9px;background:var(--surface-2);display:flex;align-items:center;justify-content:center;font-size:1.15rem;flex-shrink:0">🐕</span><span class="ri"><b>Рекс · Андрей С.</b><span>перенесён на среду, 11:00</span></span><span class="pill blue">перенесено</span></div>
+          <div class="rrow" id="remWait"><span class="pet" style="width:34px;height:34px;border-radius:9px;background:var(--surface-2);display:flex;align-items:center;justify-content:center;font-size:1.15rem;flex-shrink:0">🐈</span><span class="ri"><b>Мурка · Елена В.</b><span id="remWaitSub">сегодня, 18:00 · напоминание отправлено</span></span><button class="btn sm ghost" id="remWaitBtn">Ждём ответа…</button></div>
+          <div class="rrow"><span class="pet" style="width:34px;height:34px;border-radius:9px;background:var(--surface-2);display:flex;align-items:center;justify-content:center;font-size:1.15rem;flex-shrink:0">🐕</span><span class="ri"><b>Джек · Ольга К.</b><span>послезавтра, 12:30 · осмотр</span></span><span class="pill ok">подтверждено</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- РЕАКТИВАЦИЯ -->
+    <section class="section" id="sec-react">
+      <div class="section-head"><h1>Реактивация спящей базы</h1><div class="sub">AI находит просроченных и мягко зовёт обратно от имени клиники.</div></div>
+      <div class="react card card-pad">
+        <div class="react-head">
+          <div><h2>Спящая база · просроченные визиты</h2><div class="sub">Питомцы, которых пора вернуть на приём</div></div>
+          <button class="btn" id="run"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l14 9-14 9z"/></svg>Запустить кампанию возврата</button>
+        </div>
+        <div class="rows" id="rows"></div>
+        <div class="react-summary" id="summary" role="status"></div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var fmt=function(n){ return Math.round(n).toLocaleString('ru-RU'); };
+  var sleep=function(ms){ return new Promise(function(r){ setTimeout(r, reduceMotion?Math.min(ms,120):ms); }); };
+
+  /* ── Навигация по разделам (+ deep-link по hash) ── */
+  var SEC=['dash','inbox','appts','reminders','react'];
+  var items=[].slice.call(document.querySelectorAll('.nav-item'));
+  function show(sec){
+    if(SEC.indexOf(sec)<0) sec='dash';
+    SEC.forEach(function(s){
+      var el=document.getElementById('sec-'+s); if(el) el.classList.toggle('active', s===sec);
+    });
+    items.forEach(function(b){ b.classList.toggle('active', b.getAttribute('data-sec')===sec); });
+    var nav=document.querySelector('.side');
+    if(nav && nav.scrollWidth>nav.clientWidth+2){ var act=nav.querySelector('.nav-item.active'); if(act&&act.scrollIntoView){ try{ act.scrollIntoView({block:'nearest',inline:'center'}); }catch(e){} } }
+    if(location.hash!=='#'+sec){ try{ history.replaceState(null,'','#'+sec); }catch(e){} }
+    if(sec==='inbox' && !inboxSeen){ inboxSeen=true; loadDialog(document.querySelector('.dlg.active')); }
+  }
+  items.forEach(function(b){ b.addEventListener('click',function(){ show(b.getAttribute('data-sec')); }); });
+
+  /* ── dashboard state (общий для всех разделов) ── */
+  var revenue=128400, inbox=187, ret=42;
+  var $rev=document.getElementById('revenue'), $inbox=document.getElementById('s-inbox'), $ret=document.getElementById('s-return');
+  function paintRevenue(flash){
+    $rev.innerHTML=fmt(revenue)+' <small>₽</small>';
+    if(flash && !reduceMotion){ $rev.style.color='#e8734a'; setTimeout(function(){ $rev.style.color=''; },360); }
+  }
+  function bump(id){ var el=document.getElementById(id); if(!el||reduceMotion) return; el.classList.add('bump'); setTimeout(function(){ el.classList.remove('bump'); },600); }
+
+  /* ── Реактивация: список + кампания ── */
+  var pets=[
+    {emoji:'🐈',name:'Барсик',owner:'Ирина П.',what:'бешенство',days:24,check:1800},
+    {emoji:'🐕',name:'Рекс',owner:'Андрей С.',what:'комплексная вакцина',days:40,check:2600},
+    {emoji:'🐈',name:'Мурка',owner:'Елена В.',what:'ежегодный осмотр',days:60,check:1500},
+    {emoji:'🐕',name:'Джек',owner:'Ольга К.',what:'обработка от клещей',days:12,check:900},
+    {emoji:'🐈',name:'Соня',owner:'Дмитрий Л.',what:'бешенство',days:33,check:1800},
+    {emoji:'🐕',name:'Граф',owner:'Мария Н.',what:'вакцинация',days:51,check:2600}
+  ];
+  var rowsEl=document.getElementById('rows');
+  pets.forEach(function(p,i){
+    var el=document.createElement('div'); el.className='prow'; el.id='p'+i;
+    el.innerHTML='<div class="pet">'+p.emoji+'</div><div class="info"><b>'+p.name+'</b> · '+p.owner+'<span>'+p.what+' — просрочено '+p.days+' дн.</span></div><div class="status">ожидает</div>';
+    rowsEl.appendChild(el);
+  });
+  var runBtn=document.getElementById('run'), summary=document.getElementById('summary');
+  runBtn.addEventListener('click', async function(){
+    runBtn.disabled=true; runBtn.textContent='Отправляем…';
+    var willBook=[true,true,false,true,false,true], booked=0, earned=0;
+    for(var i=0;i<pets.length;i++){
+      var el=document.getElementById('p'+i); el.classList.add('sent');
+      el.querySelector('.status').textContent='написали';
+      await sleep(400);
+    }
+    await sleep(320);
+    for(var j=0;j<pets.length;j++){
+      if(!willBook[j]) continue;
+      var e2=document.getElementById('p'+j); e2.classList.remove('sent'); e2.classList.add('booked');
+      e2.querySelector('.status').textContent='записался';
+      revenue+=pets[j].check; ret+=1; booked+=1; earned+=pets[j].check;
+      $ret.textContent=ret; bump('st-return'); paintRevenue(true);
+      await sleep(560);
+    }
+    runBtn.textContent='Кампания завершена ✓';
+    summary.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Отправлено 6 · записалось '+booked+' · +'+fmt(earned)+' ₽ к возвращённой выручке';
+    summary.classList.add('show');
+  });
+
+  /* ── Записи: подтверждение приёмов ── */
+  var apptCnt=document.getElementById('apptCnt'), apptLeft=2;
+  [].slice.call(document.querySelectorAll('[data-confirm]')).forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var row=btn.closest('.arow'); var aa=row.querySelector('.aa');
+      row.classList.add('done');
+      aa.innerHTML='<span class="pill ok">подтверждён</span>';
+      apptLeft=Math.max(0,apptLeft-1);
+      if(apptLeft>0){ apptCnt.textContent=apptLeft; } else { apptCnt.style.display='none'; }
+    });
+  });
+
+  /* ── Напоминания: ожидающий отвечает по «тапу» ── */
+  var remBtn=document.getElementById('remWaitBtn');
+  if(remBtn) remBtn.addEventListener('click', function(){
+    var row=document.getElementById('remWait');
+    document.getElementById('remWaitSub').textContent='сегодня, 18:00 · подтверждено владельцем';
+    remBtn.outerHTML='<span class="pill ok">подтверждено</span>';
+  });
+
+  /* ── Чат (рабочий, на моках) ── */
+  var msgs=document.getElementById('msgs'), inp=document.getElementById('inp');
+  var awaitBooking=false, busy=false, inboxSeen=false, chatToken=0;
+  // Перспектива КАБИНЕТА: владелец (owner) — слева, входящие; AI-ассистент (ai, «мы») — справа.
+  var AIAV='<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><ellipse cx="6.3" cy="10" rx="2" ry="2.6"/><ellipse cx="10.2" cy="7.2" rx="2" ry="2.7"/><ellipse cx="14.6" cy="7.2" rx="2" ry="2.7"/><ellipse cx="18.4" cy="10.3" rx="1.9" ry="2.5"/><path d="M12.3 12.4c-3.1 0-5.6 2.2-5.6 4.6 0 2 1.7 3.1 3.6 2.8l2-.4 2 .4c1.9.3 3.6-.8 3.6-2.8 0-2.4-2.5-4.6-5.6-4.6z"/></svg>';
+  var currentOwner={name:'Ирина П.',init:'И',pet:'Барсик',ch:'сайт-виджет'};
+  var chAv=document.getElementById('chAv'), chName=document.getElementById('chName'), chCh=document.getElementById('chCh');
+  function setThread(o){ currentOwner=o; if(chAv)chAv.textContent=o.init; if(chName)chName.textContent=o.name+' · '+o.pet; if(chCh)chCh.textContent=o.ch; }
+  function add(text,role){
+    if(role==='sys'){ var s=document.createElement('div'); s.className='msg sys'; s.textContent=text; msgs.appendChild(s); msgs.scrollTop=msgs.scrollHeight; return s; }
+    var row=document.createElement('div'); row.className='mrow '+role;
+    var av=document.createElement('span'); av.className='mav '+role;
+    if(role==='owner'){ av.textContent=currentOwner.init||'?'; } else { av.innerHTML=AIAV; }
+    var b=document.createElement('div'); b.className='msg '+role; b.textContent=text;
+    row.appendChild(av); row.appendChild(b);
+    msgs.appendChild(row); msgs.scrollTop=msgs.scrollHeight; return b;
+  }
+  function resetChat(){ awaitBooking=false; busy=false; chatToken++; msgs.innerHTML=''; }
+  async function botSay(text,cls){
+    var tok=chatToken;
+    var row=document.createElement('div'); row.className='mrow ai';
+    var av=document.createElement('span'); av.className='mav ai'; av.innerHTML=AIAV;
+    var t=document.createElement('div'); t.className='typing'; t.innerHTML='<i></i><i></i><i></i>';
+    row.appendChild(av); row.appendChild(t);
+    msgs.appendChild(row); msgs.scrollTop=msgs.scrollHeight;
+    await sleep(680);
+    if(tok!==chatToken){ if(row.parentNode) row.remove(); throw 'cancelled'; } // диалог переключили — прерываем всю цепочку reply
+    row.remove(); add(text, cls==='sys'?'sys':'ai');
+  }
+  var prices='Наши цены:\n• Ежегодная вакцинация — 1 800 ₽\n• Комплексная вакцина — 2 600 ₽\n• Осмотр врача — 1 500 ₽\n• Стерилизация кошки — от 4 500 ₽\n• Обработка от паразитов — 900 ₽';
+  async function reply(text){
+    var q=text.toLowerCase();
+    if(/срочн|экстрен|плохо|рвёт|рвет|кровь|умира|задыха|не дыш|отрав|проглот/.test(q)){
+      await botSay('Похоже, это может быть экстренная ситуация. Не жду — соединяю вас с дежурным врачом прямо сейчас ☎️','sys');
+      await botSay('Администратор уже видит ваше обращение и перезвонит в течение минуты. Если питомцу совсем плохо — выезжайте к нам, мы работаем и предупредим врача.');
+      return;
+    }
+    if(awaitBooking){
+      awaitBooking=false; inbox+=1; $inbox.textContent=inbox; bump('st-inbox');
+      await botSay('Записал вас 🐾 Статус — на подтверждении администратором (перезвонит уточнить время). Придёт напоминание за день и за час до приёма. Что-то ещё?');
+      return;
+    }
+    if(/привет|здравств|добр(ый|ое)/.test(q)){ await botSay('Здравствуйте! Чем помочь — рассказать про услуги и цены или записать на приём?'); return; }
+    if(/цен|стоит|стоим|сколько|прайс|тариф/.test(q)){ await botSay(prices+'\n\nХотите записаться?'); return; }
+    if(/час|врем|график|открыт|когда вы|адрес/.test(q)){ await botSay('Мы работаем ежедневно с 9:00 до 21:00, без выходных. Адрес: ул. Пушкина, 12. Записать вас?'); return; }
+    if(/привив|вакцин/.test(q)){ await botSay('Ежегодная вакцинация — 1 800 ₽, комплексная — 2 600 ₽. Занимает ~20 минут. На какой день вас записать?'); awaitBooking=true; return; }
+    if(/запис|приём|прием|прийти|попаст|талон/.test(q)){ await botSay('С удовольствием запишу. На какую услугу и когда вам удобно — день и примерное время?'); awaitBooking=true; return; }
+    if(/стерил|кастрац/.test(q)){ await botSay('Стерилизация кошки — от 4 500 ₽, включая наркоз и наблюдение. Нужен предварительный осмотр. Записать на консультацию?'); awaitBooking=true; return; }
+    if(/спасиб|благодар/.test(q)){ await botSay('Всегда рады помочь! Здоровья вашему питомцу 🐾'); return; }
+    await botSay('Хороший вопрос — уточню у администратора и вернусь с ответом. А пока могу рассказать про услуги и цены или записать вас на приём. Что удобнее?');
+  }
+  async function submit(text){
+    if(busy || !text.trim()) return;
+    busy=true; add(text,'owner'); inp.value='';
+    try{ await reply(text); } catch(e){} finally{ busy=false; }
+  }
+  document.getElementById('send').addEventListener('click',function(){ submit(inp.value); });
+  inp.addEventListener('keydown',function(e){ if(e.key==='Enter') submit(inp.value); });
+  document.getElementById('chips').addEventListener('click',function(e){ var c=e.target.closest('.chip'); if(c) submit(c.dataset.q); });
+  document.getElementById('chips').addEventListener('keydown',function(e){ var c=e.target.closest('.chip'); if(c && (e.key==='Enter'||e.key===' ')){ e.preventDefault(); submit(c.dataset.q); } });
+
+  /* Список диалогов: клик загружает сценарий в рабочий чат */
+  function loadDialog(btn){
+    if(!btn) return;
+    [].slice.call(document.querySelectorAll('.dlg')).forEach(function(d){ d.classList.remove('active'); });
+    btn.classList.add('active');
+    setThread({name:btn.getAttribute('data-name'), init:btn.getAttribute('data-init'), pet:btn.getAttribute('data-pet'), ch:btn.getAttribute('data-ch')});
+    resetChat();
+    var q=btn.getAttribute('data-q'), tok=chatToken;
+    if(q) setTimeout(function(){ if(tok===chatToken) submit(q); }, 350);
+  }
+  document.getElementById('dialogs').addEventListener('click',function(e){ var b=e.target.closest('.dlg'); if(b) loadDialog(b); });
+  resetChat();
+
+  /* Инициализация раздела из hash (шаринг конкретного раздела) */
+  var start=(location.hash||'').replace('#','');
+  show(SEC.indexOf(start)>=0 ? start : 'dash');
+  window.addEventListener('hashchange',function(){ var s=(location.hash||'').replace('#',''); if(SEC.indexOf(s)>=0) show(s); });
+})();
+</script>
+</body>
+</html>

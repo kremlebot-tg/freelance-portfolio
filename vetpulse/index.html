@@ -1,0 +1,1269 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ВетПульс — возвращаем пациентов, которых теряет ваша ветклиника</title>
+<meta name="description" content="AI-помощник для ветклиник: принимает обращения 24/7, напоминает о приёме и возвращает пациентов с просроченными прививками. Надстройка над Vetmanager — данные остаются у вас, соответствие 152-ФЗ.">
+<meta name="theme-color" content="#0a544b">
+
+<!-- Open Graph / Twitter -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ВетПульс">
+<meta property="og:url" content="https://rednd.ru/vetpulse/">
+<meta property="og:title" content="ВетПульс — возвращаем пациентов, которых теряет ваша ветклиника">
+<meta property="og:description" content="AI-помощник для ветклиник: приём обращений 24/7, напоминания о приёме и возврат спящей базы. Надстройка над Vetmanager, данные остаются у вас.">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:image" content="https://rednd.ru/vetpulse/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="ВетПульс — дашборд возвращённой выручки ветклиники">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ВетПульс — возвращаем пациентов, которых теряет ваша ветклиника">
+<meta name="twitter:description" content="AI-помощник для ветклиник: приём 24/7, напоминания и возврат спящей базы. Надстройка над Vetmanager.">
+<meta name="twitter:image" content="https://rednd.ru/vetpulse/og-cover.png">
+
+<!-- Инлайновый favicon: лапа с пульсом (data-URI, без внешних запросов) -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%230a544b'/%3E%3Cg fill='%23e8734a'%3E%3Cellipse cx='6.3' cy='10' rx='2' ry='2.6'/%3E%3Cellipse cx='10.2' cy='7.2' rx='2' ry='2.7'/%3E%3Cellipse cx='14.6' cy='7.2' rx='2' ry='2.7'/%3E%3Cellipse cx='18.4' cy='10.3' rx='1.9' ry='2.5'/%3E%3Cpath d='M12.3 12.4c-3.1 0-5.6 2.2-5.6 4.6 0 2 1.7 3.1 3.6 2.8l2-.4 2 .4c1.9.3 3.6-.8 3.6-2.8 0-2.4-2.5-4.6-5.6-4.6z'/%3E%3C/g%3E%3Cpath d='M7.6 17.1h1.7l1-2.1 1.7 3.5 1.2-2 .9 1.2h2' fill='none' stroke='%230a544b' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+
+<style>
+  /* ─────────────────────────────────────────────────────────────
+     ВетПульс — рабочее название. Переименовать: заменить «ВетПульс»
+     по тексту и в .wordmark. Палитра: петроль + тёплый коралл.
+     ───────────────────────────────────────────────────────────── */
+  :root{
+    /* нейтрали с лёгким петролевым уклоном (не серые по умолчанию) */
+    --ground:#f3f7f5; --surface:#ffffff; --surface-2:#eaf1ee;
+    --ink:#122320; --slate:#566a64; --slate-2:#7e908a;
+    /* фирменные */
+    --petrol:#0e7c6f; --petrol-deep:#0a544b; --petrol-tint:#e1efeb; --petrol-glow:#0e7c6f;
+    --coral:#e8734a; --coral-deep:#c85a34; --coral-tint:#fbe9e1;
+    --good:#1c8a57;
+    /* линии */
+    --line:rgba(18,35,32,.11); --line-soft:rgba(18,35,32,.06);
+    /* тени — деликатные, слоистые */
+    --sh-sm:0 1px 2px rgba(18,35,32,.05);
+    --sh-md:0 2px 6px rgba(18,35,32,.04), 0 14px 32px -18px rgba(18,35,32,.22);
+    --sh-lg:0 4px 10px rgba(18,35,32,.05), 0 30px 60px -26px rgba(18,35,32,.30);
+    /* радиусы */
+    --r-sm:8px; --r-md:12px; --r-lg:16px; --r-xl:22px;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--ground);color:var(--ink);font-family:var(--sans);
+    font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  a{color:inherit;text-decoration:none}
+  img,svg{display:block}
+  .wrap{width:100%;max-width:1080px;margin:0 auto;padding:0 24px}
+  .col{max-width:70ch}
+
+  /* focus — видимые состояния для доступности */
+  :focus-visible{outline:2.5px solid var(--petrol);outline-offset:2px;border-radius:4px}
+  .btn:focus-visible{outline:2.5px solid var(--petrol-deep);outline-offset:3px}
+
+  /* buttons */
+  .btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:9px;font-weight:600;font-size:.98rem;padding:13px 22px;border-radius:var(--r-sm);border:1.5px solid transparent;cursor:pointer;transition:transform .12s ease, background .16s ease, box-shadow .2s ease, border-color .16s ease;white-space:nowrap;line-height:1}
+  .btn svg{width:18px;height:18px}
+  .btn-primary{background:var(--coral);color:#fff;box-shadow:0 1px 2px rgba(200,90,52,.35), 0 10px 22px -12px rgba(200,90,52,.6)}
+  .btn-primary:hover{background:var(--coral-deep);transform:translateY(-1px);box-shadow:0 2px 4px rgba(200,90,52,.35), 0 16px 30px -12px rgba(200,90,52,.7)}
+  .btn-primary:active{transform:translateY(0)}
+  .btn-ghost{background:var(--surface);color:var(--petrol-deep);border-color:var(--line)}
+  .btn-ghost:hover{border-color:var(--petrol);color:var(--petrol-deep);transform:translateY(-1px);box-shadow:var(--sh-sm)}
+  .btn-dark{background:var(--petrol-deep);color:#eaf3f1}
+  .btn-dark:hover{background:var(--petrol);transform:translateY(-1px)}
+
+  /* nav */
+  nav{position:sticky;top:0;z-index:50;background:rgba(243,247,245,.82);backdrop-filter:saturate(1.4) blur(12px);border-bottom:1px solid transparent;transition:border-color .25s, box-shadow .25s, background .25s}
+  nav.scrolled{border-bottom-color:var(--line-soft);box-shadow:0 1px 0 rgba(18,35,32,.03), 0 8px 24px -20px rgba(18,35,32,.4)}
+  .nav-in{display:flex;align-items:center;justify-content:space-between;height:66px}
+  .wordmark{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.16rem;letter-spacing:-.02em}
+  .wordmark .mark{position:relative;width:26px;height:26px;border-radius:7px;background:var(--petrol-deep);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .wordmark .mark svg{width:17px;height:17px}
+  .nav-links{display:flex;align-items:center;gap:28px}
+  .nav-links a{font-size:.95rem;color:var(--slate);font-weight:500;transition:color .15s}
+  .nav-links a:hover{color:var(--ink)}
+  @media(max-width:760px){.nav-links a:not(.btn){display:none}}
+
+  /* type helpers */
+  .eyebrow,.sec-label{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--petrol);font-weight:600;display:inline-flex;align-items:center;gap:9px}
+  .eyebrow::before,.sec-label::before{content:"";width:16px;height:15px;flex-shrink:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230e7c6f'%3E%3Cellipse cx='6.3' cy='10' rx='2' ry='2.6'/%3E%3Cellipse cx='10.2' cy='7.2' rx='2' ry='2.7'/%3E%3Cellipse cx='14.6' cy='7.2' rx='2' ry='2.7'/%3E%3Cellipse cx='18.4' cy='10.3' rx='1.9' ry='2.5'/%3E%3Cpath d='M12.3 12.4c-3.1 0-5.6 2.2-5.6 4.6 0 2 1.7 3.1 3.6 2.8l2-.4 2 .4c1.9.3 3.6-.8 3.6-2.8 0-2.4-2.5-4.6-5.6-4.6z'/%3E%3C/svg%3E") center/contain no-repeat}
+  h1{font-size:clamp(2.15rem,5.4vw,3.5rem);line-height:1.04;letter-spacing:-.03em;font-weight:830;text-wrap:balance}
+  h1 .accent{color:var(--petrol);position:relative;white-space:nowrap}
+  h2{font-size:clamp(1.72rem,3.9vw,2.4rem);line-height:1.1;letter-spacing:-.025em;font-weight:790;text-wrap:balance}
+  .lede{font-size:1.2rem;color:var(--slate);margin-top:22px;max-width:36ch;text-wrap:pretty;line-height:1.5}
+  .sec-intro{color:var(--slate);font-size:1.08rem;margin-top:16px;max-width:58ch;text-wrap:pretty}
+
+  /* hero */
+  .hero{padding:clamp(56px,8vw,88px) 0 clamp(48px,7vw,72px)}
+  .eyebrow{margin-bottom:22px}
+  .hero-cta{display:flex;gap:12px;margin-top:32px;flex-wrap:wrap}
+  .hero-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:48px;align-items:center}
+  @media(max-width:860px){.hero-grid{grid-template-columns:1fr;gap:36px}}
+  /* доверие-чипы под CTA */
+  .trust-chips{display:flex;flex-wrap:wrap;gap:8px 10px;margin-top:26px}
+  .tchip{display:inline-flex;align-items:center;gap:7px;font-size:.82rem;color:var(--slate);font-weight:500;background:var(--surface);border:1px solid var(--line-soft);border-radius:20px;padding:6px 13px 6px 10px;box-shadow:var(--sh-sm)}
+  .tchip svg{width:15px;height:15px;color:var(--petrol)}
+
+  /* герой-визуал: монолайн кот+пёс над дашбордом (мгновенный сигнал «ветеринария») */
+  .hero-visual{display:flex;flex-direction:column;align-items:center;gap:0}
+  .hero-pets{width:min(300px,74%);color:var(--petrol);opacity:.9;margin-bottom:-8px;position:relative;z-index:1;pointer-events:none}
+  .hero-pets svg{width:100%;height:auto;display:block}
+  .hero-visual .card{width:100%;position:relative}
+  @media(max-width:860px){.hero-pets{width:min(264px,60%);margin-bottom:-6px}}
+
+  /* card + hero mini-dashboard */
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--sh-md)}
+  .mini{padding:24px;position:relative;overflow:hidden}
+  .mini-head{display:flex;align-items:center;justify-content:space-between;padding-bottom:15px;border-bottom:1px solid var(--line-soft);margin-bottom:18px}
+  .mini-head b{font-size:.96rem}
+  .mini-live{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--slate-2)}
+  .mini-big{font-family:var(--mono);font-size:2.55rem;font-weight:600;letter-spacing:-.03em;color:var(--petrol-deep);font-variant-numeric:tabular-nums;line-height:1}
+  .mini-big small{font-size:1.1rem;color:var(--slate);font-weight:500}
+  .mini-sub{color:var(--good);font-size:.9rem;font-weight:600;margin-top:7px;display:flex;align-items:center;gap:6px}
+  .mini-sub svg{width:15px;height:15px}
+  .ecg{margin-top:16px;color:var(--petrol);opacity:.5}
+  .ecg svg{width:100%;height:26px}
+  .mini-rows{margin-top:14px;display:flex;flex-direction:column;gap:11px}
+  .mini-row{display:flex;align-items:center;justify-content:space-between;font-size:.92rem}
+  .mini-row span{color:var(--slate)}
+  .mini-row b{font-family:var(--mono);font-variant-numeric:tabular-nums;font-weight:600}
+
+  /* sections */
+  section{padding:clamp(56px,8vw,84px) 0}
+  .sec-label{margin-bottom:16px}
+
+  /* problem cards */
+  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:38px;align-items:start}
+  @media(max-width:820px){.grid-3{grid-template-columns:1fr}}
+  .leak{position:relative;cursor:pointer;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:28px;box-shadow:var(--sh-sm);transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease}
+  .leak:hover{transform:translateY(-3px);box-shadow:var(--sh-md);border-color:var(--line)}
+  .leak:focus-visible{outline:2.5px solid var(--petrol);outline-offset:3px}
+  .leak .ico{width:46px;height:46px;border-radius:12px;background:var(--petrol-tint);color:var(--petrol-deep);display:flex;align-items:center;justify-content:center;margin-bottom:18px}
+  .leak .ico svg{width:24px;height:24px}
+  .leak h3{font-size:1.12rem;font-weight:730;letter-spacing:-.015em}
+  .leak p{color:var(--slate);font-size:.96rem;margin-top:9px;text-wrap:pretty}
+  .leak .stat{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.79rem;color:var(--coral-deep);font-weight:600;margin-top:16px;letter-spacing:.01em;padding-top:14px;border-top:1px dashed var(--line-soft)}
+  .leak .stat::before{content:"";width:14px;height:13px;flex-shrink:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23e8734a'%3E%3Cellipse cx='6.3' cy='10' rx='2' ry='2.6'/%3E%3Cellipse cx='10.2' cy='7.2' rx='2' ry='2.7'/%3E%3Cellipse cx='14.6' cy='7.2' rx='2' ry='2.7'/%3E%3Cellipse cx='18.4' cy='10.3' rx='1.9' ry='2.5'/%3E%3Cpath d='M12.3 12.4c-3.1 0-5.6 2.2-5.6 4.6 0 2 1.7 3.1 3.6 2.8l2-.4 2 .4c1.9.3 3.6-.8 3.6-2.8 0-2.4-2.5-4.6-5.6-4.6z'/%3E%3C/svg%3E") center/contain no-repeat}
+
+  /* how / trust panel */
+  .panel{position:relative;background:var(--petrol-deep);
+    color:#eaf3f1;border-radius:var(--r-xl);padding:clamp(30px,5vw,52px);overflow:hidden;box-shadow:var(--sh-lg)}
+  .panel::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.05),transparent 30%);pointer-events:none}
+  .panel h2{color:#fff;position:relative}
+  .panel .sec-label{color:#84d6ca}
+  .panel .sec-label::before{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2384d6ca'%3E%3Cellipse cx='6.3' cy='10' rx='2' ry='2.6'/%3E%3Cellipse cx='10.2' cy='7.2' rx='2' ry='2.7'/%3E%3Cellipse cx='14.6' cy='7.2' rx='2' ry='2.7'/%3E%3Cellipse cx='18.4' cy='10.3' rx='1.9' ry='2.5'/%3E%3Cpath d='M12.3 12.4c-3.1 0-5.6 2.2-5.6 4.6 0 2 1.7 3.1 3.6 2.8l2-.4 2 .4c1.9.3 3.6-.8 3.6-2.8 0-2.4-2.5-4.6-5.6-4.6z'/%3E%3C/svg%3E") center/contain no-repeat}
+  .panel .sec-intro{color:#bfe0da}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:36px}
+  @media(max-width:820px){.steps{grid-template-columns:1fr}}
+  .step{position:relative;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:var(--r-md);padding:22px}
+  .step .sn{font-family:var(--mono);font-size:11.5px;color:#84d6ca;letter-spacing:.1em;font-weight:600}
+  .step h4{font-size:1.06rem;margin:10px 0 7px;color:#fff;font-weight:680;letter-spacing:-.01em}
+  .step p{color:#bfe0da;font-size:.93rem;text-wrap:pretty}
+
+  .trust{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:16px}
+  @media(max-width:820px){.trust{grid-template-columns:1fr}}
+  .tr{display:flex;gap:14px;align-items:flex-start;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.11);border-radius:var(--r-md);padding:18px 20px;transition:background .2s, border-color .2s}
+  .tr:hover{background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.18)}
+  .tr .ck{flex-shrink:0;color:#84d6ca;margin-top:1px}
+  .tr .ck svg{width:22px;height:22px}
+  .tr b{color:#fff;font-size:.99rem;font-weight:650;letter-spacing:-.01em}
+  .tr p{color:#bfe0da;font-size:.9rem;margin-top:4px;text-wrap:pretty}
+
+  /* ROI calculator */
+  .roi{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-xl);padding:clamp(26px,4vw,40px);margin-top:34px;box-shadow:var(--sh-md)}
+  @media(max-width:820px){.roi{grid-template-columns:1fr;gap:26px}}
+  .roi .field{margin-bottom:24px}
+  .roi .field:last-of-type{margin-bottom:14px}
+  .roi label{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-size:.92rem;color:var(--slate);font-weight:600;margin-bottom:11px}
+  .roi .val{font-family:var(--mono);font-weight:600;color:var(--petrol-deep);font-variant-numeric:tabular-nums;font-size:1rem}
+  /* кастомный слайдер */
+  input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:6px;border-radius:6px;background:linear-gradient(90deg,var(--petrol) var(--fill,40%),var(--surface-2) var(--fill,40%));outline-offset:5px;cursor:pointer}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:22px;height:22px;border-radius:50%;background:#fff;border:2px solid var(--petrol);box-shadow:0 2px 6px rgba(18,35,32,.22);transition:transform .12s, box-shadow .12s}
+  input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.12);box-shadow:0 3px 10px rgba(14,124,111,.4)}
+  input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:#fff;border:2px solid var(--petrol);box-shadow:0 2px 6px rgba(18,35,32,.22)}
+  input[type=range]::-moz-range-track{height:6px;border-radius:6px;background:var(--surface-2)}
+  .roi .note{color:var(--slate-2);font-size:.84rem;text-wrap:pretty}
+  .roi-out{text-align:center;background:var(--petrol-tint);
+    border-radius:var(--r-lg);padding:34px 26px;border:1px solid rgba(14,124,111,.14)}
+  .roi-out .big{font-family:var(--mono);font-size:clamp(2.1rem,4.5vw,2.7rem);font-weight:600;color:var(--petrol-deep);letter-spacing:-.03em;font-variant-numeric:tabular-nums;line-height:1}
+  .roi-out .cap{color:var(--slate);font-size:.92rem;margin-top:12px;text-wrap:balance}
+  .roi-out .foot{margin-top:16px;padding-top:14px;border-top:1px dashed rgba(14,124,111,.2);font-size:.82rem;color:var(--petrol-deep);font-weight:600}
+
+  /* demo band */
+  .demo-band{position:relative;background:var(--surface);
+    border:1px solid var(--line);border-radius:var(--r-xl);padding:clamp(34px,5vw,52px);text-align:center;box-shadow:var(--sh-md);overflow:hidden}
+  .demo-band .sec-label{justify-content:center;margin-bottom:14px}
+  .demo-band h2{margin-bottom:12px}
+  .demo-band p{color:var(--slate);max-width:52ch;margin:0 auto 28px;text-wrap:pretty}
+  .demo-band .peek{margin-top:30px;color:var(--slate-2);font-size:.84rem;font-family:var(--mono);letter-spacing:.03em}
+
+  /* FAQ */
+  details{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);padding:0;margin-top:12px;overflow:hidden;transition:border-color .18s, box-shadow .18s}
+  details[open]{box-shadow:var(--sh-sm);border-color:var(--line)}
+  summary{cursor:pointer;list-style:none;padding:20px 22px;font-weight:640;font-size:1.03rem;display:flex;justify-content:space-between;align-items:center;gap:16px;transition:color .15s}
+  summary:hover{color:var(--petrol-deep)}
+  summary::-webkit-details-marker{display:none}
+  summary .pm{position:relative;width:18px;height:18px;flex-shrink:0}
+  summary .pm::before,summary .pm::after{content:"";position:absolute;background:var(--petrol);border-radius:2px;transition:transform .22s ease, opacity .22s ease}
+  summary .pm::before{top:8px;left:1px;width:16px;height:2px}
+  summary .pm::after{left:8px;top:1px;width:2px;height:16px}
+  details[open] summary .pm::after{transform:rotate(90deg);opacity:0}
+  details p{padding:0 22px 20px;color:var(--slate);font-size:.98rem;max-width:64ch;text-wrap:pretty}
+
+  /* final cta */
+  .badge{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--coral-deep);background:var(--coral-tint);border:1px solid #f3cbb9;border-radius:20px;padding:6px 14px;margin-bottom:24px;font-weight:600}
+  .badge::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--coral)}
+
+  footer{border-top:1px solid var(--line-soft);padding:34px 0 56px;color:var(--slate-2);font-size:.88rem}
+  .foot-in{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;align-items:center}
+  .foot-in .wordmark{font-size:1rem}
+  .foot-in .wordmark .mark{width:22px;height:22px}
+  .foot-in .wordmark .mark svg{width:14px;height:14px}
+
+  /* ── Bento-сетка «три работы» (тренд 2026: асимметричные самодостаточные ячейки) ── */
+  .bento{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;margin-top:36px}
+  .bento .cell{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:26px;box-shadow:var(--sh-sm);transition:transform .22s ease, box-shadow .22s ease, border-color .22s ease;display:flex;flex-direction:column;overflow:hidden}
+  .bento .cell:hover{transform:translateY(-3px);box-shadow:var(--sh-md)}
+  .c4{grid-column:span 4}.c3{grid-column:span 3}.c2{grid-column:span 2}
+  @media(max-width:820px){.bento{grid-template-columns:1fr;gap:14px}.bento .cell{grid-column:auto}}
+  .cell .klabel{font-family:var(--mono);font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:var(--petrol);font-weight:600;margin-bottom:12px}
+  .cell h3{font-size:1.16rem;font-weight:730;letter-spacing:-.015em}
+  .cell p{color:var(--slate);font-size:.95rem;margin-top:8px;text-wrap:pretty}
+  .cell.star{background:linear-gradient(180deg,#ffffff,var(--petrol-tint));border-color:rgba(14,124,111,.2)}
+  .cell.star .klabel{color:var(--coral-deep)}
+  .cell .grow{flex:1}
+  /* мини-превью реального UI внутри ячеек (CSS-only, в стиле demo.html) */
+  .peekbox{margin-top:18px;background:var(--surface-2);border:1px solid var(--line-soft);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:8px}
+  .cell.star .peekbox{background:rgba(255,255,255,.72)}
+  .prow-mini{display:flex;align-items:center;gap:10px}
+  .prow-mini .dot{width:26px;height:26px;border-radius:7px;background:#fff;border:1px solid var(--line-soft);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--petrol)}
+  .prow-mini .dot svg{width:15px;height:15px}
+  .prow-mini .nm{flex:1;min-width:0;font-size:.82rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .prow-mini .pill{font-family:var(--mono);font-size:9.5px;letter-spacing:.03em;text-transform:uppercase;padding:3px 8px;border-radius:12px;font-weight:600;white-space:nowrap}
+  .pill.book{background:var(--good);color:#fff}
+  .pill.wait{background:#eef2f7;color:#4a6b90}
+  .bub{max-width:88%;font-size:.83rem;line-height:1.4;padding:8px 12px;border-radius:13px}
+  .bub.b{align-self:flex-start;background:#fff;border:1px solid var(--line-soft);border-bottom-left-radius:4px}
+  .bub.m{align-self:flex-end;background:var(--petrol);color:#fff;border-bottom-right-radius:4px}
+  .remind{display:flex;flex-direction:column;gap:9px}
+  .remind .rt{font-size:.83rem;color:var(--ink)}
+  .remind .rt b{font-weight:700}
+  .remind .ra{display:flex;gap:7px}
+  .remind .ra span{font-size:.76rem;font-weight:600;padding:5px 11px;border-radius:8px}
+  .remind .ra .yes{background:var(--petrol);color:#fff}
+  .remind .ra .no{background:#fff;border:1px solid var(--line);color:var(--slate)}
+  /* пруф-ячейка */
+  .cell.proof{justify-content:center;background:var(--petrol-deep);color:#eaf3f1;border-color:transparent}
+  .cell.proof .klabel{color:#84d6ca}
+  .cell.proof .num{font-family:var(--mono);font-size:2.3rem;font-weight:600;letter-spacing:-.02em;color:#fff;font-variant-numeric:tabular-nums;line-height:1;margin-top:4px}
+  .cell.proof .num small{font-size:1.1rem;color:#bfe0da;font-weight:500}
+  .cell.proof .pt{color:#bfe0da;font-size:.9rem;margin-top:10px;text-wrap:pretty}
+
+  /* ── Тёмный «кинематографичный» финальный CTA (тёмные секции как ритм) ── */
+  .final-dark{position:relative;overflow:hidden;text-align:center;border-radius:var(--r-xl);padding:clamp(48px,7vw,72px) clamp(24px,5vw,56px);color:#eaf3f1;box-shadow:var(--sh-lg);background:var(--petrol-deep)}
+  .final-dark::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.05),transparent 26%);pointer-events:none}
+  .final-dark .ecg-wide{color:#e8734a;opacity:.55;max-width:340px;margin:0 auto 26px}
+  .final-dark .ecg-wide svg{width:100%;height:22px}
+  .final-dark h2{color:#fff;position:relative}
+  .final-dark p{color:#bfe0da;max-width:50ch;margin:14px auto 30px;position:relative;text-wrap:pretty}
+  .final-dark .badge{background:rgba(232,115,74,.16);border-color:rgba(232,115,74,.4);color:#f4b39a}
+  .final-dark .badge::before{background:var(--coral)}
+  .btn-ghost-dark{background:rgba(255,255,255,.06);color:#eaf3f1;border-color:rgba(255,255,255,.2)}
+  .btn-ghost-dark:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.35);transform:translateY(-1px)}
+  .final-dark .alt{margin-top:24px;font-size:.9rem;color:#9fc4bc;position:relative}
+  .final-dark .alt a{color:#fff;font-weight:600;border-bottom:1px solid rgba(255,255,255,.3);padding-bottom:1px}
+  .final-dark .alt a:hover{border-color:#fff}
+  /* бледные вотермарк-лапы как текстура (несколько секций, очень тонко) */
+  .final-dark .pawmark{position:absolute;right:-28px;bottom:-52px;width:220px;height:220px;color:#fff;opacity:.05;z-index:0;pointer-events:none}
+  .final-dark .pawmark svg{width:100%;height:100%}
+  .panel .pawmark{position:absolute;left:-46px;bottom:-58px;width:230px;height:230px;color:#fff;opacity:.045;z-index:0;pointer-events:none}
+  .panel .pawmark svg{width:100%;height:100%}
+  .panel>*{position:relative;z-index:1}
+  .demo-band .pawmark{position:absolute;left:-40px;top:-46px;width:190px;height:190px;color:var(--petrol);opacity:.05;z-index:0;pointer-events:none}
+  .demo-band .pawmark svg{width:100%;height:100%}
+  .demo-band>*{position:relative;z-index:1}
+
+  /* ── Кликабельные карточки + аффорданс «Подробнее →» ── */
+  [data-modal]{cursor:pointer}
+  [data-modal]:focus-visible{outline:2.5px solid var(--petrol);outline-offset:3px}
+  .more{display:inline-flex;align-items:center;gap:6px;margin-top:16px;font-size:.85rem;font-weight:600;color:var(--petrol-deep);transition:gap .18s ease}
+  .more svg{width:14px;height:14px;transition:transform .18s ease}
+  [data-modal]:hover .more{gap:10px}
+  [data-modal]:hover .more svg{transform:translateX(2px)}
+  .bento .cell .more{margin-top:auto;padding-top:16px}
+  /* панель «Как это устроено»: шаги и доверие тоже кликабельны */
+  .panel [data-modal]:focus-visible{outline-color:#84d6ca}
+  .step{cursor:pointer;transition:background .2s ease, border-color .2s ease, transform .2s ease}
+  .step:hover{background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.2);transform:translateY(-2px)}
+  .step .more,.tr .more{color:#84d6ca;margin-top:14px}
+  .tr .more{margin-top:10px}
+
+  /* ── Модальное окно (одно на страницу, контент из JS-мапы; полная a11y) ── */
+  .modal{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;padding:24px;visibility:hidden;opacity:0;transition:opacity .25s ease, visibility .25s ease}
+  .modal.open{visibility:visible;opacity:1}
+  .modal-backdrop{position:absolute;inset:0;background:rgba(8,40,35,.55);backdrop-filter:blur(3px)}
+  .modal-dialog{position:relative;z-index:1;width:min(600px,100%);max-height:calc(100vh - 48px);max-height:calc(100dvh - 48px);overflow-y:auto;background:var(--surface);border-radius:var(--r-xl);box-shadow:var(--sh-lg);padding:clamp(26px,4vw,40px);transform:translateY(14px) scale(.985);opacity:0;transition:transform .3s cubic-bezier(.2,.7,.2,1), opacity .3s ease;-webkit-overflow-scrolling:touch}
+  .modal.open .modal-dialog{transform:none;opacity:1}
+  .modal-x{position:absolute;top:14px;right:14px;width:38px;height:38px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--slate);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .15s ease, color .15s ease;z-index:2}
+  .modal-x:hover{background:var(--surface-2);color:var(--ink)}
+  .modal-x svg{width:18px;height:18px}
+  .m-kicker{font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--petrol);font-weight:600;display:inline-flex;align-items:center;gap:8px}
+  .m-kicker::before{content:"";width:15px;height:14px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230e7c6f'%3E%3Cellipse cx='6.3' cy='10' rx='2' ry='2.6'/%3E%3Cellipse cx='10.2' cy='7.2' rx='2' ry='2.7'/%3E%3Cellipse cx='14.6' cy='7.2' rx='2' ry='2.7'/%3E%3Cellipse cx='18.4' cy='10.3' rx='1.9' ry='2.5'/%3E%3Cpath d='M12.3 12.4c-3.1 0-5.6 2.2-5.6 4.6 0 2 1.7 3.1 3.6 2.8l2-.4 2 .4c1.9.3 3.6-.8 3.6-2.8 0-2.4-2.5-4.6-5.6-4.6z'/%3E%3C/svg%3E") center/contain no-repeat}
+  .m-title{font-size:clamp(1.35rem,3vw,1.6rem);font-weight:790;letter-spacing:-.02em;margin-top:12px;padding-right:34px;text-wrap:balance}
+  .m-stat{margin-top:20px;background:var(--coral-tint);border:1px solid #f3cbb9;border-radius:14px;padding:15px 18px}
+  .m-stat .l{font-family:var(--mono);font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;color:var(--coral-deep);font-weight:600;margin-bottom:5px}
+  .m-stat p{color:var(--ink);font-size:.98rem;font-weight:600;line-height:1.5}
+  .m-sec{margin-top:20px}
+  .m-sec .l{display:flex;align-items:center;gap:7px;font-family:var(--mono);font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;color:var(--petrol);font-weight:600;margin-bottom:7px}
+  .m-sec .l::before{content:"";width:13px;height:12px;flex-shrink:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230e7c6f'%3E%3Cellipse cx='6.3' cy='10' rx='2' ry='2.6'/%3E%3Cellipse cx='10.2' cy='7.2' rx='2' ry='2.7'/%3E%3Cellipse cx='14.6' cy='7.2' rx='2' ry='2.7'/%3E%3Cellipse cx='18.4' cy='10.3' rx='1.9' ry='2.5'/%3E%3Cpath d='M12.3 12.4c-3.1 0-5.6 2.2-5.6 4.6 0 2 1.7 3.1 3.6 2.8l2-.4 2 .4c1.9.3 3.6-.8 3.6-2.8 0-2.4-2.5-4.6-5.6-4.6z'/%3E%3C/svg%3E") center/contain no-repeat}
+  .m-sec .l.solve{color:var(--good)}
+  .m-sec .l.solve::before{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%231c8a57'%3E%3Cellipse cx='6.3' cy='10' rx='2' ry='2.6'/%3E%3Cellipse cx='10.2' cy='7.2' rx='2' ry='2.7'/%3E%3Cellipse cx='14.6' cy='7.2' rx='2' ry='2.7'/%3E%3Cellipse cx='18.4' cy='10.3' rx='1.9' ry='2.5'/%3E%3Cpath d='M12.3 12.4c-3.1 0-5.6 2.2-5.6 4.6 0 2 1.7 3.1 3.6 2.8l2-.4 2 .4c1.9.3 3.6-.8 3.6-2.8 0-2.4-2.5-4.6-5.6-4.6z'/%3E%3C/svg%3E")}
+  .m-sec p{color:var(--slate);font-size:.96rem;line-height:1.55;text-wrap:pretty}
+  .m-sec.example p{background:var(--surface-2);border-radius:12px;padding:13px 15px;color:var(--ink)}
+  .modal-foot{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px;padding-top:22px;border-top:1px solid var(--line-soft)}
+
+  /* ── Живое анимированное демо внутри модалок «работ» (B1-B3) ── */
+  .m-lead{color:var(--slate);font-size:.98rem;margin-top:14px;text-wrap:pretty}
+  .m-note{color:var(--slate);font-size:.86rem;margin-top:14px;display:flex;align-items:flex-start;gap:8px;text-wrap:pretty}
+  .m-note::before{content:"";width:13px;height:12px;margin-top:3px;flex-shrink:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230e7c6f'%3E%3Cellipse cx='6.3' cy='10' rx='2' ry='2.6'/%3E%3Cellipse cx='10.2' cy='7.2' rx='2' ry='2.7'/%3E%3Cellipse cx='14.6' cy='7.2' rx='2' ry='2.7'/%3E%3Cellipse cx='18.4' cy='10.3' rx='1.9' ry='2.5'/%3E%3Cpath d='M12.3 12.4c-3.1 0-5.6 2.2-5.6 4.6 0 2 1.7 3.1 3.6 2.8l2-.4 2 .4c1.9.3 3.6-.8 3.6-2.8 0-2.4-2.5-4.6-5.6-4.6z'/%3E%3C/svg%3E") center/contain no-repeat}
+  .m-demo{margin-top:16px;border:1px solid var(--line);border-radius:var(--r-lg);background:var(--surface-2);overflow:hidden}
+  .m-demo-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 12px;background:var(--surface);border-bottom:1px solid var(--line-soft)}
+  .m-demo-tag{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--petrol);font-weight:600;display:inline-flex;align-items:center;gap:7px}
+  .m-demo-tag::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--good);flex-shrink:0}
+  .m-replay{display:inline-flex;align-items:center;gap:6px;font-family:var(--sans);font-size:.78rem;font-weight:600;color:var(--petrol-deep);background:var(--petrol-tint);border:1px solid #cfe6e0;border-radius:16px;padding:5px 11px;cursor:pointer;transition:background .15s ease}
+  .m-replay:hover{background:#d3e9e3}
+  .m-replay svg{width:13px;height:13px}
+  /* B1 — чат */
+  .m-chat{height:238px;overflow-y:auto;overscroll-behavior:contain;padding:14px;display:flex;flex-direction:column;gap:9px;scroll-behavior:smooth}
+  .m-chat .cmsg{max-width:85%;padding:9px 13px;border-radius:14px;font-size:.88rem;line-height:1.4;white-space:pre-wrap;word-wrap:break-word;animation:mpop .28s cubic-bezier(.2,.7,.2,1) both}
+  .m-chat .cmsg.bot{align-self:flex-start;background:#fff;border:1px solid var(--line-soft);border-bottom-left-radius:4px}
+  .m-chat .cmsg.me{align-self:flex-end;background:var(--petrol);color:#fff;border-bottom-right-radius:4px}
+  @keyframes mpop{from{opacity:0;transform:translateY(6px) scale(.98)}to{opacity:1;transform:none}}
+  .m-typing{align-self:flex-start;background:#fff;border:1px solid var(--line-soft);border-radius:14px;border-bottom-left-radius:4px;padding:10px 14px;display:flex;gap:4px}
+  .m-typing i{width:6px;height:6px;border-radius:50%;background:var(--slate-2);animation:mblink 1.25s infinite ease-in-out both}
+  .m-typing i:nth-child(2){animation-delay:.18s}
+  .m-typing i:nth-child(3){animation-delay:.36s}
+  @keyframes mblink{0%,80%,100%{opacity:.25;transform:translateY(0)}40%{opacity:1;transform:translateY(-3px)}}
+  /* B2 — напоминание */
+  .m-rem{padding:14px;display:flex;flex-direction:column;gap:10px;align-items:stretch}
+  .rem-msg{align-self:flex-start;max-width:94%;background:#fff;border:1px solid var(--line-soft);border-radius:14px;border-bottom-left-radius:4px;padding:11px 13px;animation:mpop .28s both}
+  .rem-from{font-size:.72rem;font-weight:700;color:var(--petrol-deep);margin-bottom:4px}
+  .rem-text{font-size:.88rem;line-height:1.4}
+  .rem-actions{display:flex;gap:8px;margin-top:10px}
+  .rem-btn{font-size:.8rem;font-weight:600;padding:7px 13px;border-radius:8px;border:1px solid var(--line);background:#fff;color:var(--slate);transition:opacity .3s ease}
+  .rem-btn.yes{background:var(--petrol);color:#fff;border-color:transparent}
+  .rem-btn.tap{animation:mtap .45s ease}
+  @keyframes mtap{0%{transform:scale(1)}30%{transform:scale(.94);box-shadow:0 0 0 4px rgba(14,124,111,.28)}100%{transform:scale(1)}}
+  .rem-actions.chosen .rem-btn.no{opacity:.4}
+  .rem-flow{display:flex;flex-direction:column;gap:10px}
+  .rem-flow:empty{display:none}
+  .rem-reply{align-self:flex-end;background:var(--petrol);color:#fff;border-radius:14px;border-bottom-right-radius:4px;padding:9px 13px;font-size:.88rem;font-weight:600;display:inline-flex;align-items:center;gap:6px;animation:mpop .28s both}
+  .rem-reply svg{width:15px;height:15px}
+  .rem-c2{align-self:flex-start;max-width:94%;background:#fff;border:1px solid var(--line-soft);border-radius:14px;border-bottom-left-radius:4px;padding:10px 13px;font-size:.88rem;animation:mpop .28s both}
+  .rem-slot{align-self:flex-start;font-family:var(--mono);font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.03em;color:var(--slate);background:var(--surface);border:1px solid var(--line-soft);border-radius:16px;padding:6px 11px;transition:background .4s ease,color .4s ease,border-color .4s ease}
+  .rem-slot.ok{background:var(--good-tint);color:var(--good);border-color:#bfe0cd}
+  /* B3 — кампания */
+  .m-camp{padding:14px}
+  .camp-status{font-family:var(--mono);font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--petrol);font-weight:600;margin-bottom:12px;min-height:14px}
+  .camp-rows{display:flex;flex-direction:column;gap:8px}
+  .crow{display:flex;align-items:center;gap:10px;padding:9px 11px;border:1px solid var(--line-soft);border-radius:10px;background:#fff;transition:background .35s ease,border-color .35s ease}
+  .crow .cpet{width:30px;height:30px;border-radius:8px;background:var(--surface-2);display:flex;align-items:center;justify-content:center;font-size:1.05rem;flex-shrink:0;transition:background .35s ease}
+  .crow .cinfo{flex:1;min-width:0;font-size:.83rem}
+  .crow .cinfo b{font-weight:600}
+  .crow .cinfo span{display:block;font-size:.74rem;color:var(--slate);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .crow .cstat{font-family:var(--mono);font-size:9.5px;letter-spacing:.03em;text-transform:uppercase;padding:4px 8px;border-radius:12px;white-space:nowrap;background:var(--surface-2);color:var(--slate);font-weight:600;flex-shrink:0;transition:background .35s ease,color .35s ease}
+  .crow.sent{border-color:#d3ddec}
+  .crow.sent .cstat{background:#eef2f7;color:#4a6b90}
+  .crow.booked{background:var(--good-tint);border-color:#bfe0cd}
+  .crow.booked .cpet{background:#cdead9}
+  .crow.booked .cstat{background:var(--good);color:#fff}
+  .camp-sum{margin-top:14px;padding:12px 14px;border-radius:12px;background:var(--petrol-tint);border:1px solid rgba(14,124,111,.16);color:var(--petrol-deep);font-size:.9rem;font-weight:600;display:flex;align-items:center;gap:8px;flex-wrap:wrap;opacity:0;transition:opacity .3s ease}
+  .camp-sum.show{opacity:1}
+  .camp-sum svg{width:17px;height:17px;flex-shrink:0;color:var(--good)}
+  .camp-sum b{font-family:var(--mono);font-variant-numeric:tabular-nums}
+  .camp-sum .ex{font-family:var(--mono);font-size:.66rem;text-transform:uppercase;letter-spacing:.05em;color:var(--slate-2);font-weight:600;background:var(--surface);border:1px solid var(--line-soft);border-radius:10px;padding:2px 7px}
+
+  /* ── Общие мини-виджеты модалок A1-A3 / C1-C7 ── */
+  .wg{padding:14px;display:flex;flex-direction:column;gap:10px}
+  .wg-status{font-family:var(--mono);font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--petrol);font-weight:600;min-height:13px}
+  .wg-flow{display:flex;flex-direction:column;gap:10px}
+  .wg-bub{max-width:88%;padding:9px 12px;border-radius:13px;font-size:.86rem;line-height:1.4;word-wrap:break-word;animation:mpop .28s cubic-bezier(.2,.7,.2,1) both}
+  .wg-bub.l{align-self:flex-start;background:#fff;border:1px solid var(--line-soft);border-bottom-left-radius:4px}
+  .wg-bub.r{align-self:flex-end;background:var(--petrol);color:#fff;border-bottom-right-radius:4px}
+  .wg-bub .who{display:block;font-size:.68rem;font-weight:700;opacity:.7;margin-bottom:3px}
+  .wg-pill{font-family:var(--mono);font-size:9.5px;letter-spacing:.03em;text-transform:uppercase;font-weight:600;padding:4px 8px;border-radius:12px;white-space:nowrap;background:var(--surface-2);color:var(--slate);flex-shrink:0}
+  .wg-pill.ok{background:var(--good);color:#fff}
+  .wg-pill.blue{background:#eef2f7;color:#4a6b90}
+  .wg-pill.warn{background:var(--coral-tint);color:var(--coral-deep);border:1px solid #f3cbb9}
+  .wg-row{display:flex;align-items:center;gap:10px;padding:9px 11px;border:1px solid var(--line-soft);border-radius:10px;background:#fff;transition:background .35s ease,border-color .35s ease,opacity .4s ease;animation:mpop .28s both}
+  .wg-row.ok{background:var(--good-tint);border-color:#bfe0cd}
+  .wg-row .rl{flex:1;min-width:0;font-size:.85rem;font-weight:600}
+  .wg-row .rl span{display:block;font-weight:400;font-size:.74rem;color:var(--slate);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .wg-row .wg-rt{font-family:var(--mono);font-size:.8rem;font-weight:600;color:var(--slate);flex-shrink:0}
+  .wg-ex{font-family:var(--mono);font-size:.64rem;text-transform:uppercase;letter-spacing:.05em;color:var(--slate-2);font-weight:600;background:var(--surface);border:1px solid var(--line-soft);border-radius:8px;padding:1px 6px;white-space:nowrap}
+  .wg-remind{font-size:.78rem;color:var(--coral-deep);background:var(--coral-tint);border:1px solid #f3cbb9;border-radius:9px;padding:8px 11px}
+  /* A1 */
+  .wg-eve-head{display:flex;align-items:center;gap:8px;font-size:.82rem;color:var(--slate);font-weight:600}
+  .wg-eve-head svg{width:16px;height:16px;color:var(--slate-2);flex-shrink:0}
+  .wg-ai{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;font-size:.82rem;font-weight:600;color:var(--slate-2);background:#fff;border:1px solid var(--line-soft);border-radius:16px;padding:6px 12px;animation:mpop .28s both;transition:color .3s ease,border-color .3s ease,background .3s ease}
+  .wg-ai .ai-badge{font-family:var(--mono);font-size:9px;font-weight:700;padding:2px 6px;border-radius:6px;background:var(--surface-2);color:var(--slate);transition:background .3s ease,color .3s ease}
+  .wg-ai.on{color:var(--petrol-deep);border-color:#cfe6e0;background:var(--petrol-tint)}
+  .wg-ai.on .ai-badge{background:var(--petrol);color:#fff}
+  .wg-compare{display:flex;flex-direction:column;gap:8px;animation:mpop .28s both}
+  .wg-oc{display:flex;align-items:center;gap:9px;font-size:.82rem}
+  .wg-oc.mut{color:var(--slate-2)}
+  /* A3 grid */
+  .wg-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:6px;padding:2px 0}
+  .wg-dot{aspect-ratio:1;border-radius:50%;background:var(--line);transition:background .4s ease,transform .4s ease}
+  .wg-dot.on{background:var(--good);transform:scale(1.12)}
+  .wg-gridsum{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:.86rem;font-weight:600;color:var(--petrol-deep)}
+  .wg-gridsum b{font-family:var(--mono);font-variant-numeric:tabular-nums}
+  .wg-gridsum .ret{color:var(--good);display:inline-flex;align-items:center;gap:6px}
+  /* C1 app mockup */
+  .wg-app{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  .wg-app-bar{display:flex;align-items:center;gap:8px;padding:8px 12px;background:var(--surface-2);border-bottom:1px solid var(--line-soft);font-size:.75rem;color:var(--slate)}
+  .wg-app-bar .dot3{display:flex;gap:4px}.wg-app-bar .dot3 i{width:7px;height:7px;border-radius:50%;background:var(--line)}
+  .wg-crumb{font-size:.76rem;color:var(--slate);padding:10px 12px;border-bottom:1px solid var(--line-soft)}
+  .wg-crumb b{color:var(--ink);font-weight:600}
+  .wg-appline{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 12px}
+  .wg-key{font-family:var(--mono);font-size:.82rem;color:var(--ink);letter-spacing:.08em}
+  .wg-copied{font-size:.7rem;color:var(--good);font-weight:600;opacity:0;transition:opacity .3s ease}
+  .wg-copied.show{opacity:1}
+  .wg-reveal{max-height:0;overflow:hidden;transition:max-height .4s ease}
+  .wg-reveal.show{max-height:70px}
+  .wg-tog{width:38px;height:22px;border-radius:12px;background:var(--slate-2);position:relative;transition:background .3s ease;flex-shrink:0}
+  .wg-tog::after{content:"";position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:#fff;transition:transform .3s ease}
+  .wg-tog.on{background:var(--good)}
+  .wg-tog.on::after{transform:translateX(16px)}
+  .wg-badge{display:inline-flex;align-items:center;gap:6px;font-size:.78rem;font-weight:600;padding:6px 11px;border-radius:16px;background:var(--good-tint);color:var(--good);border:1px solid #bfe0cd;opacity:0;transform:translateY(4px);transition:opacity .3s ease,transform .3s ease}
+  .wg-badge.show{opacity:1;transform:none}
+  .wg-badge svg{width:14px;height:14px}
+  .wg-badge.grey{background:var(--surface-2);color:var(--slate);border-color:var(--line-soft)}
+  /* C2 route */
+  .wg-route{display:flex;align-items:center;gap:8px}
+  .wg-route .node{flex:1;min-width:0;text-align:center;font-size:.76rem;font-weight:600;padding:10px 8px;border-radius:10px;border:1px solid var(--line-soft);background:#fff;transition:opacity .3s ease,background .3s ease,border-color .3s ease;opacity:.4}
+  .wg-route .node small{font-weight:400;color:var(--slate);font-size:.7rem}
+  .wg-route .node.on{opacity:1}
+  .wg-route .node.ai{background:var(--petrol-tint);border-color:#cfe6e0;color:var(--petrol-deep)}
+  .wg-route .arr{color:var(--slate-2);flex-shrink:0;opacity:.6}.wg-route .arr svg{width:16px;height:16px}
+  @media(max-width:440px){.wg-route{flex-direction:column;align-items:stretch}.wg-route .arr{transform:rotate(90deg);align-self:center}.wg-route .node{text-align:left}}
+  /* C3 dash */
+  .wg-dash-big{font-family:var(--mono);font-size:1.9rem;font-weight:600;color:var(--petrol-deep);letter-spacing:-.02em;font-variant-numeric:tabular-nums;line-height:1}
+  .wg-dash-big small{font-size:1rem;color:var(--slate)}
+  .wg-dash-cap{color:var(--good);font-size:.8rem;font-weight:600;margin-top:6px;display:flex;align-items:center;gap:7px}
+  .wg-spark{margin-top:8px;color:var(--petrol)}
+  .wg-spark svg{width:100%;height:34px;display:block}
+  .wg-spark path.ln{stroke-dasharray:420;stroke-dashoffset:420;transition:stroke-dashoffset 1.1s ease}
+  .wg-spark.draw path.ln{stroke-dashoffset:0}
+  .wg-dstats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+  .wg-dstat{background:#fff;border:1px solid var(--line-soft);border-radius:10px;padding:10px}
+  .wg-dstat b{font-family:var(--mono);font-size:1.15rem;font-weight:600;font-variant-numeric:tabular-nums;display:block}
+  .wg-dstat span{font-size:.66rem;color:var(--slate);display:block;margin-top:2px}
+  /* C4 access */
+  .wg-line{height:2px;background:var(--good);border-radius:2px;transition:background .3s ease}
+  .wg-line.cut{background:repeating-linear-gradient(90deg,var(--slate-2) 0 6px,transparent 6px 12px)}
+  .wg-btn-ghost{align-self:flex-start;font-size:.8rem;font-weight:600;color:var(--coral-deep);background:var(--coral-tint);border:1px solid #f3cbb9;border-radius:8px;padding:7px 13px}
+  .wg-btn-ghost.tap{animation:mtap .45s ease}
+  /* C5 rf */
+  .wg-rf{position:relative;border:2px dashed var(--petrol);border-radius:12px;padding:18px 16px 16px;display:flex;align-items:center;justify-content:center;gap:12px;overflow:hidden;background:var(--petrol-tint)}
+  .wg-rf .rf-tag{position:absolute;top:6px;left:10px;font-family:var(--mono);font-size:10px;font-weight:700;color:var(--petrol-deep)}
+  .wg-rf .server{color:var(--petrol-deep);display:flex}.wg-rf .server svg{width:34px;height:34px}
+  .wg-rf .esc{width:13px;height:13px;border-radius:50%;background:var(--coral);transition:transform .5s cubic-bezier(.3,1.5,.6,1)}
+  .wg-rf .esc.bounce{transform:translateX(64px)}
+  .wg-shieldrow{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  /* C6 align */
+  .wg-chart{width:100%;height:112px;color:var(--petrol)}
+  .wg-chart svg{width:100%;height:100%;display:block}
+  .wg-chart path.grow{stroke-dasharray:320;stroke-dashoffset:320;transition:stroke-dashoffset 1.2s ease}
+  .wg-chart path.g2{stroke-dasharray:310;stroke-dashoffset:310;transition:stroke-dashoffset 1.2s ease .12s}
+  .wg-chart.draw path.grow{stroke-dashoffset:0}
+  .wg-legend{display:flex;gap:16px;flex-wrap:wrap;font-size:.78rem;font-weight:600;color:var(--ink)}
+  .wg-legend i{width:14px;height:3px;border-radius:2px;display:inline-block;margin-right:6px;vertical-align:middle}
+  /* C7 human */
+  .hh{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .hh svg{width:16px;height:16px}
+  .hh.ai{background:var(--petrol-tint);color:var(--petrol-deep)}
+  .hh.hum{background:var(--coral-tint);color:var(--coral-deep)}
+
+  @media(max-width:560px){
+    .modal{align-items:flex-end;padding:0}
+    .modal-dialog{width:100%;min-width:0;max-width:100%;max-height:92dvh;border-radius:20px 20px 0 0;transform:translateY(100%);padding:26px 20px 24px}
+    .modal.open .modal-dialog{transform:none}
+    .modal-foot{flex-direction:column}
+    .modal-foot .btn{width:100%;justify-content:center}
+    .m-chat{height:212px}
+  }
+
+  /* scroll-reveal */
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .65s cubic-bezier(.2,.7,.2,1), transform .65s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none!important;scroll-behavior:auto!important}
+    .reveal{opacity:1;transform:none;transition:none}
+    .btn:hover,.leak:hover,.bento .cell:hover,.step:hover{transform:none}
+    .modal,.modal-dialog{transition:none}
+    .more,.more svg{transition:none}
+    .m-demo *{transition:none!important}
+  }
+</style>
+
+<!-- Структурированные данные (schema.org) для поиска и AI-ассистентов -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "name": "ВетПульс",
+      "description": "AI-помощник для ветеринарных клиник: приём обращений 24/7, напоминания о приёме и возврат спящей базы. Надстройка над Vetmanager.",
+      "areaServed": "RU",
+      "slogan": "Возвращаем пациентов, которых теряет ваша ветклиника"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "ВетПульс",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "offers": { "@type": "Offer", "description": "Помесячная подписка, без платы за подключение. Первым клиникам — бесплатный пилот." }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "Нужно ли менять нашу систему учёта?", "acceptedAnswer": { "@type": "Answer", "text": "Нет. ВетПульс надстраивается над Vetmanager и работает поверх вашего расписания и базы. Вы ничего не переносите и не переучиваете персонал." } },
+        { "@type": "Question", "name": "Вы получаете доступ к нашей базе пациентов?", "acceptedAnswer": { "@type": "Answer", "text": "Мы работаем через ограниченный доступ вашего Vetmanager, ключ остаётся у вас, вы можете отозвать его в любой момент. Мы не выгружаем и не храним вашу базу. Всё оформляется договором поручения на обработку по 152-ФЗ." } },
+        { "@type": "Question", "name": "А если бот ошибётся или не поймёт пациента?", "acceptedAnswer": { "@type": "Answer", "text": "Записи подтверждает ваш администратор — двойной записи не будет. Всё, в чём бот не уверен, и все экстренные случаи сразу передаются живому сотруднику." } },
+        { "@type": "Question", "name": "Сколько это стоит?", "acceptedAnswer": { "@type": "Answer", "text": "Подписка помесячно, без платы за подключение. Точную цену обсуждаем после бесплатного пилота, когда вы уже увидите возвращённую выручку на своих данных." } },
+        { "@type": "Question", "name": "Что такое бесплатный пилот?", "acceptedAnswer": { "@type": "Answer", "text": "Мы поднимаем вашу спящую базу и показываем, сколько пациентов реально возвращается, — вы ничего не платите и почти ничего не делаете. Понравится результат — продолжаем." } }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body id="top">
+
+<nav id="nav">
+  <div class="wrap nav-in">
+    <a class="wordmark" href="#top" aria-label="ВетПульс — на главную">
+      <span class="mark" aria-hidden="true"><svg viewBox="0 0 24 24"><g fill="#e8734a"><ellipse cx="6.3" cy="10" rx="2" ry="2.6"/><ellipse cx="10.2" cy="7.2" rx="2" ry="2.7"/><ellipse cx="14.6" cy="7.2" rx="2" ry="2.7"/><ellipse cx="18.4" cy="10.3" rx="1.9" ry="2.5"/><path d="M12.3 12.4c-3.1 0-5.6 2.2-5.6 4.6 0 2 1.7 3.1 3.6 2.8l2-.4 2 .4c1.9.3 3.6-.8 3.6-2.8 0-2.4-2.5-4.6-5.6-4.6z"/></g><path d="M7.6 17.1h1.7l1-2.1 1.7 3.5 1.2-2 .9 1.2h2" fill="none" stroke="#0a544b" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      ВетПульс
+    </a>
+    <div class="nav-links">
+      <a href="#problem">Проблема</a>
+      <a href="#how">Как работает</a>
+      <a href="#roi">Выгода</a>
+      <a href="#faq">Вопросы</a>
+      <a class="btn btn-dark" href="demo.html">Смотреть демо →</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow">AI-помощник для ветклиник · надстройка над Vetmanager</p>
+      <h1>Ваша ветклиника теряет пациентов каждый день. <span class="accent">Мы их возвращаем.</span></h1>
+      <p class="lede">Круглосуточно отвечаем на обращения, напоминаем о приёме, возвращаем питомцев с просроченными прививками. Всё поверх вашего Vetmanager — учётную систему менять не нужно.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="demo.html">Потыкать демо-клинику</a>
+        <a class="btn btn-ghost" href="#contact">Бесплатный пилот</a>
+      </div>
+      <div class="trust-chips">
+        <span class="tchip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6z"/></svg>Данные остаются у вас</span>
+        <span class="tchip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg>Соответствие 152-ФЗ</span>
+        <span class="tchip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h10"/></svg>Не меняем вашу систему</span>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-pets" aria-hidden="true"><svg viewBox="88 40 300 182" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><g transform="translate(16,14)"><path d="M120 60 L108 30 L96 54"/><path d="M150 58 L162 30 L172 56"/><path d="M96 54 Q86 78 92 100 Q74 118 78 160 Q82 200 135 200 Q188 200 190 158 Q192 118 176 100 Q182 76 172 56"/><path d="M190 165 Q220 168 214 130 Q212 116 200 112"/><circle cx="120" cy="96" r="2.6" fill="currentColor" stroke="none"/><circle cx="150" cy="96" r="2.6" fill="currentColor" stroke="none"/><path d="M129 104 L141 104 L135 110 Z" fill="#e8734a" stroke="none"/><path d="M135 110 q-5 4 -10 2 M135 110 q5 4 10 2" stroke-width="2.2"/><path d="M127 106 l-22 -3 M127 110 l-22 4 M143 106 l22 -3 M143 110 l22 4" stroke-width="1.4" opacity=".6"/></g><g transform="translate(178,14)"><path d="M96 54 Q86 78 92 100 Q74 118 78 160 Q82 200 135 200 Q188 200 190 158 Q192 118 176 100 Q182 76 172 54 Q182 34 135 32 Q88 34 96 54 Z"/><path d="M100 50 Q72 50 68 88 Q66 112 92 104"/><path d="M170 52 Q198 52 202 90 Q204 114 178 106"/><circle cx="118" cy="74" r="2.6" fill="currentColor" stroke="none"/><circle cx="152" cy="74" r="2.6" fill="currentColor" stroke="none"/><path d="M120 92 Q135 106 150 92"/><circle cx="135" cy="90" r="4.6" fill="#e8734a" stroke="none"/><path d="M135 94 v7"/></g></svg></div>
+      <div class="card mini" role="img" aria-label="Пример дашборда клиники «Айболит»: 184 200 ₽ возвращённой выручки за месяц, 212 обращений принято, 38 неявок предотвращено, 57 пациентов возвращено">
+      <div class="mini-head">
+        <b>Клиника «Айболит»</b>
+        <span class="mini-live" aria-hidden="true">за месяц</span>
+      </div>
+      <div class="mini-big" data-count="184200" data-suffix=" ₽">184 200 <small>₽</small></div>
+      <div class="mini-sub" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15l5-5 4 3 6-7"/><path d="M19 6h-4M19 6v4"/></svg>
+        возвращённая выручка
+      </div>
+      <div class="ecg" aria-hidden="true"><svg viewBox="0 0 300 26" preserveAspectRatio="none" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M0 13h40l8-9 12 20 9-16 6 11h26l7-5 10 5h30l8-11 11 18 8-13 6 9h68"/></svg></div>
+      <div class="mini-rows">
+        <div class="mini-row"><span>Обращений принято 24/7</span><b data-count="212">212</b></div>
+        <div class="mini-row"><span>Неявок предотвращено</span><b data-count="38">38</b></div>
+        <div class="mini-row"><span>Пациентов возвращено</span><b data-count="57">57</b></div>
+      </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="problem">
+  <div class="wrap">
+    <p class="sec-label reveal">Где утекают деньги</p>
+    <h2 class="reveal">Три дыры, за которыми никто не успевает</h2>
+    <p class="sec-intro reveal">Администратор не робот: он занят с посетителем, ушёл домой или просто не успевает обзванивать базу. Каждая из этих дыр — прямые деньги мимо кассы.</p>
+    <div class="grid-3">
+      <div class="leak reveal" role="button" tabindex="0" data-modal="A1" aria-label="Пропущенные обращения — подробнее">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3.5 9 4l1 4-2 1.5a12 12 0 0 0 6 6L15.5 14l4 1 .5 2.5a2 2 0 0 1-2 2.3A16 16 0 0 1 4.2 5.5a2 2 0 0 1 2.3-2Z"/><path d="M15 3l5 5M20 3l-5 5" opacity=".55"/></svg></div>
+        <h3>Пропущенные обращения</h3>
+        <p>Владелец звонит вечером или пишет в мессенджер, когда ресепшн занят, — и уходит в соседнюю клинику за 30 секунд.</p>
+        <div class="stat">до 30% звонков — вне рабочего окна</div>
+        <div class="more" aria-hidden="true">Подробнее <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      </div>
+      <div class="leak reveal" role="button" tabindex="0" data-modal="A2" aria-label="Неявки на приём — подробнее">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 9.5h17M8 3.5v3M16 3.5v3"/><path d="M9 15h6"/></svg></div>
+        <h3>Неявки на приём</h3>
+        <p>Пациент записался и забыл. Кресло и время врача простаивают — этот час уже не продать повторно.</p>
+        <div class="stat">неявки в клиниках: 12–42%</div>
+        <div class="more" aria-hidden="true">Подробнее <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      </div>
+      <div class="leak reveal" role="button" tabindex="0" data-modal="A3" aria-label="Спящая база — подробнее">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 15.5 Q3.5 19.5 9 19.5 L15 19.5 Q20.5 19.5 20 15 Q19.6 11.5 15 12"/><path d="M4.5 15.5 Q4 12 8 12 Q11 12 10.8 15"/><path d="M5.2 12.6 l.7-2.3 1.9 1.5"/><path d="M5.5 14 q1 .7 2 0"/><path d="M20 15 Q22.2 12 19.2 10.4"/></svg></div>
+        <h3>Спящая база</h3>
+        <p>Сотни кошек и собак с просроченной прививкой или подошедшим осмотром. Их никто не зовёт — не хватает рук.</p>
+        <div class="stat">готовые деньги лежат мёртвым грузом</div>
+        <div class="more" aria-hidden="true">Подробнее <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="solution" style="padding-top:8px">
+  <div class="wrap">
+    <p class="sec-label reveal">Что делает ВетПульс</p>
+    <h2 class="reveal">Три работы, которые приносят выручку</h2>
+    <p class="sec-intro reveal">Берём на себя рутину вокруг хвостатых пациентов — от первого вопроса владельца до возврата на приём.</p>
+    <div class="bento reveal">
+
+      <div class="cell c3" role="button" tabindex="0" data-modal="B1" aria-label="Принимает обращения 24/7 — подробнее">
+        <div class="klabel">Работа 1 · приём</div>
+        <h3>Принимает обращения 24/7</h3>
+        <p class="grow">Отвечает про услуги, цены и часы, оценивает срочность и записывает — в любое время. Экстренное сразу переводит на живого администратора.</p>
+        <div class="peekbox" aria-hidden="true">
+          <div class="bub b">Сколько стоит вакцинация?</div>
+          <div class="bub m">Комплексная — 2 600 ₽. Записать вас?</div>
+        </div>
+        <div class="more" aria-hidden="true">Подробнее <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      </div>
+
+      <div class="cell c3" role="button" tabindex="0" data-modal="B2" aria-label="Напоминает о приёме — подробнее">
+        <div class="klabel">Работа 2 · напоминания</div>
+        <h3>Напоминает о приёме</h3>
+        <p class="grow">За день и за час: «подтвердите или перенесите». Питомец не забудет, кресло не простаивает — неявок ощутимо меньше.</p>
+        <div class="peekbox remind" aria-hidden="true">
+          <div class="rt">Завтра в <b>15:00</b> приём в «Айболит»</div>
+          <div class="ra"><span class="yes">Подтвердить</span><span class="no">Перенести</span></div>
+        </div>
+        <div class="more" aria-hidden="true">Подробнее <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      </div>
+
+      <div class="cell c4 star" role="button" tabindex="0" data-modal="B3" aria-label="Возвращает спящую базу — подробнее">
+        <div class="klabel">Работа 3 · сердце продукта</div>
+        <h3>Возвращает спящую базу</h3>
+        <p class="grow">Сам находит питомцев с просроченной прививкой или осмотром и мягко зовёт обратно. Самая быстрая и заметная выручка — деньги, которые уже были вашими.</p>
+        <div class="peekbox" aria-hidden="true">
+          <div class="prow-mini"><span class="dot"><svg viewBox="0 0 24 24" fill="currentColor"><ellipse cx="7" cy="11" rx="1.8" ry="2.4"/><ellipse cx="11" cy="8" rx="1.8" ry="2.5"/><ellipse cx="15.5" cy="8.5" rx="1.8" ry="2.5"/><ellipse cx="18.5" cy="12" rx="1.7" ry="2.2"/><path d="M12.5 12.5c-2.7 0-4.9 2-4.9 4.1 0 1.7 1.4 2.7 3.1 2.4l1.8-.35 1.8.35c1.7.3 3.1-.7 3.1-2.4 0-2.1-2.2-4.1-4.9-4.1z"/></svg></span><span class="nm">Барсик · кот · бешенство</span><span class="pill book">записался</span></div>
+          <div class="prow-mini"><span class="dot"><svg viewBox="0 0 24 24" fill="currentColor"><ellipse cx="7" cy="11" rx="1.8" ry="2.4"/><ellipse cx="11" cy="8" rx="1.8" ry="2.5"/><ellipse cx="15.5" cy="8.5" rx="1.8" ry="2.5"/><ellipse cx="18.5" cy="12" rx="1.7" ry="2.2"/><path d="M12.5 12.5c-2.7 0-4.9 2-4.9 4.1 0 1.7 1.4 2.7 3.1 2.4l1.8-.35 1.8.35c1.7.3 3.1-.7 3.1-2.4 0-2.1-2.2-4.1-4.9-4.1z"/></svg></span><span class="nm">Рекс · лабрадор · вакцина</span><span class="pill book">записался</span></div>
+          <div class="prow-mini"><span class="dot"><svg viewBox="0 0 24 24" fill="currentColor"><ellipse cx="7" cy="11" rx="1.8" ry="2.4"/><ellipse cx="11" cy="8" rx="1.8" ry="2.5"/><ellipse cx="15.5" cy="8.5" rx="1.8" ry="2.5"/><ellipse cx="18.5" cy="12" rx="1.7" ry="2.2"/><path d="M12.5 12.5c-2.7 0-4.9 2-4.9 4.1 0 1.7 1.4 2.7 3.1 2.4l1.8-.35 1.8.35c1.7.3 3.1-.7 3.1-2.4 0-2.1-2.2-4.1-4.9-4.1z"/></svg></span><span class="nm">Мурка · кошка · осмотр</span><span class="pill wait">написали</span></div>
+        </div>
+        <div class="more" aria-hidden="true">Подробнее <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      </div>
+
+      <div class="cell c2 proof">
+        <div class="klabel">В демо «Айболит» · за месяц</div>
+        <div class="num">184 200 <small>₽</small></div>
+        <div class="pt">57 питомцев вернулись на приём. Каждого видно в дашборде: кто и на какую сумму.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <div class="panel reveal">
+      <div class="pawmark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><ellipse cx="6.3" cy="10" rx="2" ry="2.6"/><ellipse cx="10.2" cy="7.2" rx="2" ry="2.7"/><ellipse cx="14.6" cy="7.2" rx="2" ry="2.7"/><ellipse cx="18.4" cy="10.3" rx="1.9" ry="2.5"/><path d="M12.3 12.4c-3.1 0-5.6 2.2-5.6 4.6 0 2 1.7 3.1 3.6 2.8l2-.4 2 .4c1.9.3 3.6-.8 3.6-2.8 0-2.4-2.5-4.6-5.6-4.6z"/></svg></div>
+      <p class="sec-label">Как это устроено</p>
+      <h2>Мы надстраиваемся над вашей системой, а не заменяем её</h2>
+      <p class="sec-intro">Ничего не переносите и не переучиваете персонал. Подключение занимает один разговор.</p>
+      <div class="steps">
+        <div class="step" role="button" tabindex="0" data-modal="C1" aria-label="Шаг 1: подключаемся к Vetmanager — подробнее"><div class="sn">ШАГ 1</div><h4>Подключаемся к Vetmanager</h4><p>Вы включаете доступ в настройках и выдаёте ключ. Учётная система остаётся прежней — мы работаем поверх неё.</p><div class="more" aria-hidden="true">Подробнее <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div></div>
+        <div class="step" role="button" tabindex="0" data-modal="C2" aria-label="Шаг 2: AI ведёт общение и запись — подробнее"><div class="sn">ШАГ 2</div><h4>AI ведёт общение и запись</h4><p>Отвечает пациентам, записывает в ваше расписание, напоминает и возвращает спящих — всё в одном контуре.</p><div class="more" aria-hidden="true">Подробнее <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div></div>
+        <div class="step" role="button" tabindex="0" data-modal="C3" aria-label="Шаг 3: вы видите деньги — подробнее"><div class="sn">ШАГ 3</div><h4>Вы видите деньги</h4><p>В дашборде видно, сколько пациентов вернулось и на какую сумму. В рублях, помесячно.</p><div class="more" aria-hidden="true">Подробнее <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div></div>
+      </div>
+      <div class="trust">
+        <div class="tr" role="button" tabindex="0" data-modal="C4" aria-label="Вы держите ключ у себя — подробнее"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6z"/><path d="M9 12l2 2 4-4.5"/></svg></span><div><b>Вы держите ключ у себя</b><p>Мы получаем ограниченный доступ через ваш Vetmanager — не выгружаем и не храним вашу базу. Отзываете ключ в любой момент.</p><div class="more" aria-hidden="true">Подробнее <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div></div></div>
+        <div class="tr" role="button" tabindex="0" data-modal="C5" aria-label="Данные остаются в России — подробнее"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6z"/><path d="M9 12l2 2 4-4.5"/></svg></span><div><b>Данные остаются в России</b><p>Соответствие 152-ФЗ и договор поручения на обработку. Работаем как легальный подрядчик, по документам.</p><div class="more" aria-hidden="true">Подробнее <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div></div></div>
+        <div class="tr" role="button" tabindex="0" data-modal="C6" aria-label="Мы не конкурент — подробнее"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6z"/><path d="M9 12l2 2 4-4.5"/></svg></span><div><b>Мы не конкурент</b><p>ВетПульс — это софт. Ваши пациенты нам не нужны: нам нужно, чтобы у вас их было больше.</p><div class="more" aria-hidden="true">Подробнее <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div></div></div>
+        <div class="tr" role="button" tabindex="0" data-modal="C7" aria-label="Человек в контуре — подробнее"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6z"/><path d="M9 12l2 2 4-4.5"/></svg></span><div><b>Человек в контуре</b><p>Записи подтверждает администратор, экстренное сразу передаётся живому сотруднику. Ошибке неоткуда взяться.</p><div class="more" aria-hidden="true">Подробнее <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="roi">
+  <div class="wrap">
+    <p class="sec-label reveal">Посчитайте выгоду</p>
+    <h2 class="reveal">Одна возвращённая неявка окупает месяц</h2>
+    <div class="roi reveal">
+      <div>
+        <div class="field">
+          <label for="r-appt">Приёмов в день <span class="val" id="v-appt">30</span></label>
+          <input type="range" id="r-appt" min="10" max="120" value="30" aria-label="Приёмов в день">
+        </div>
+        <div class="field">
+          <label for="r-check">Средний чек, ₽ <span class="val" id="v-check">2 500</span></label>
+          <input type="range" id="r-check" min="800" max="8000" step="100" value="2500" aria-label="Средний чек в рублях">
+        </div>
+        <div class="field">
+          <label for="r-noshow">Доля неявок сейчас <span class="val" id="v-noshow">20%</span></label>
+          <input type="range" id="r-noshow" min="5" max="40" value="20" aria-label="Доля неявок в процентах">
+        </div>
+        <p class="note">Оценка: возврат ~40% неявок плюс подъём спящей базы. Прикидка для разговора, не гарантия.</p>
+      </div>
+      <div class="roi-out">
+        <div class="big" id="roi-sum" aria-live="polite">— ₽</div>
+        <div class="cap">потенциально возвращаемая выручка в месяц</div>
+        <div class="foot" id="roi-foot">≈ окупает подписку многократно</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="demo-band reveal">
+      <div class="pawmark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><ellipse cx="6.3" cy="10" rx="2" ry="2.6"/><ellipse cx="10.2" cy="7.2" rx="2" ry="2.7"/><ellipse cx="14.6" cy="7.2" rx="2" ry="2.7"/><ellipse cx="18.4" cy="10.3" rx="1.9" ry="2.5"/><path d="M12.3 12.4c-3.1 0-5.6 2.2-5.6 4.6 0 2 1.7 3.1 3.6 2.8l2-.4 2 .4c1.9.3 3.6-.8 3.6-2.8 0-2.4-2.5-4.6-5.6-4.6z"/></svg></div>
+      <p class="sec-label">Живая демонстрация</p>
+      <h2>Загляните в клинику, где всё уже работает</h2>
+      <p>Полностью внедрённая демо-клиника «Айболит»: напишите боту, посмотрите дашборд, запустите кампанию возврата. Всё на вымышленных данных — тыкайте что угодно.</p>
+      <a class="btn btn-primary" href="demo.html">Открыть демо-клинику →</a>
+      <div class="peek">чат-бот · дашборд «₽ возвращено» · кампания возврата — работает прямо в браузере</div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap col">
+    <p class="sec-label reveal">Частые вопросы</p>
+    <h2 class="reveal">Коротко о главном</h2>
+    <div class="reveal" style="margin-top:26px">
+      <details><summary>Нужно ли менять нашу систему учёта?<span class="pm" aria-hidden="true"></span></summary><p>Нет. ВетПульс надстраивается над Vetmanager и работает поверх вашего расписания и базы. Вы ничего не переносите и не переучиваете персонал.</p></details>
+      <details><summary>Вы получаете доступ к нашей базе пациентов?<span class="pm" aria-hidden="true"></span></summary><p>Мы работаем через ограниченный доступ вашего Vetmanager, ключ остаётся у вас, вы можете отозвать его в любой момент. Мы не выгружаем и не храним вашу базу и не передаём её третьим лицам. Всё оформляется договором поручения на обработку по 152-ФЗ.</p></details>
+      <details><summary>А если бот ошибётся или не поймёт пациента?<span class="pm" aria-hidden="true"></span></summary><p>Записи подтверждает ваш администратор — двойной записи не будет. Всё, в чём бот не уверен, и все экстренные случаи сразу передаются живому сотруднику.</p></details>
+      <details><summary>Сколько это стоит?<span class="pm" aria-hidden="true"></span></summary><p>Подписка помесячно, без платы за подключение. Точную цену обсуждаем после бесплатного пилота, когда вы уже увидите возвращённую выручку на своих данных.</p></details>
+      <details><summary>Что такое бесплатный пилот?<span class="pm" aria-hidden="true"></span></summary><p>Мы поднимаем вашу спящую базу и показываем, сколько пациентов реально возвращается, — вы ничего не платите и почти ничего не делаете. Понравится результат — продолжаем.</p></details>
+    </div>
+  </div>
+</section>
+
+<section id="contact" style="padding:clamp(48px,7vw,72px) 0 clamp(40px,6vw,56px)">
+  <div class="wrap">
+    <div class="final-dark reveal">
+      <div class="pawmark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><ellipse cx="6.3" cy="10" rx="2" ry="2.6"/><ellipse cx="10.2" cy="7.2" rx="2" ry="2.7"/><ellipse cx="14.6" cy="7.2" rx="2" ry="2.7"/><ellipse cx="18.4" cy="10.3" rx="1.9" ry="2.5"/><path d="M12.3 12.4c-3.1 0-5.6 2.2-5.6 4.6 0 2 1.7 3.1 3.6 2.8l2-.4 2 .4c1.9.3 3.6-.8 3.6-2.8 0-2.4-2.5-4.6-5.6-4.6z"/></svg></div>
+      <div class="ecg-wide" aria-hidden="true"><svg viewBox="0 0 300 22" preserveAspectRatio="none" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M0 11h34l8-9 12 20 9-16 6 11h32l7-6 10 6h34l8-11 11 18 8-13 6 9h90"/></svg></div>
+      <span class="badge">Первым клиникам — бесплатный пилот</span>
+      <h2>Посмотрим, сколько выручки вернём именно вам</h2>
+      <p>Один разговор и демо на ваших цифрах — без обязательств. Напишите удобным способом, ответим в тот же день.</p>
+      <div class="hero-cta" style="justify-content:center">
+        <a class="btn btn-primary" href="https://t.me/re_dnd" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.9 4.3 18.6 20c-.25 1.1-.9 1.37-1.83.85l-5.05-3.72-2.44 2.35c-.27.27-.5.5-1 .5l.36-5.13 9.3-8.4c.4-.36-.09-.56-.63-.2L4.16 13.1l-4.96-1.56c-1.08-.34-1.1-1.08.23-1.6L20.5 2.4c.9-.33 1.68.2 1.4 1.9Z"/></svg>
+          Написать в Telegram
+        </a>
+        <a class="btn btn-ghost-dark" href="mailto:politushkin@gmail.com?subject=Заявка%20на%20пилот%20ВетПульс&body=Здравствуйте!%20Хочу%20обсудить%20пилот%20ВетПульс%20для%20нашей%20клиники.">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M4 7l8 6 8-6"/></svg>
+          Написать на почту
+        </a>
+      </div>
+      <p class="alt">Ещё не готовы к разговору? <a href="demo.html">Сначала посмотрите живое демо →</a></p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-in">
+    <a class="wordmark" href="#top">
+      <span class="mark" aria-hidden="true"><svg viewBox="0 0 24 24"><g fill="#e8734a"><ellipse cx="6.3" cy="10" rx="2" ry="2.6"/><ellipse cx="10.2" cy="7.2" rx="2" ry="2.7"/><ellipse cx="14.6" cy="7.2" rx="2" ry="2.7"/><ellipse cx="18.4" cy="10.3" rx="1.9" ry="2.5"/><path d="M12.3 12.4c-3.1 0-5.6 2.2-5.6 4.6 0 2 1.7 3.1 3.6 2.8l2-.4 2 .4c1.9.3 3.6-.8 3.6-2.8 0-2.4-2.5-4.6-5.6-4.6z"/></g><path d="M7.6 17.1h1.7l1-2.1 1.7 3.5 1.2-2 .9 1.2h2" fill="none" stroke="#0a544b" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      ВетПульс
+    </a>
+    <div>
+      AI-помощник для ветеринарных клиник · демо на вымышленных данных · © 2026
+      <!-- TODO(юр-инфо): впишите реквизиты ИП — ФИО, ОГРНИП, ИНН -->
+      <br><span style="opacity:.75">ИП [ФИО] · ОГРНИП [—] · ИНН [—]</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Модальное окно (одно на страницу; тело инжектится из JS-мапы content) -->
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-hidden="true">
+  <div class="modal-backdrop" data-close></div>
+  <div class="modal-dialog" role="document" tabindex="-1">
+    <button class="modal-x" type="button" aria-label="Закрыть" data-close><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var fmt = function(n){ return Math.round(n).toLocaleString('ru-RU'); };
+
+  /* ── ROI-калькулятор ── */
+  var rAppt=document.getElementById('r-appt'), rCheck=document.getElementById('r-check'), rNo=document.getElementById('r-noshow');
+  var vAppt=document.getElementById('v-appt'), vCheck=document.getElementById('v-check'), vNo=document.getElementById('v-noshow');
+  var out=document.getElementById('roi-sum'), foot=document.getElementById('roi-foot');
+  var SUBSCRIPTION=20000; // ориентир месячной подписки для строки окупаемости
+
+  function setFill(el){ var min=+el.min, max=+el.max, p=(+el.value-min)/(max-min)*100; el.style.setProperty('--fill', p+'%'); }
+
+  function calc(){
+    var appt=+rAppt.value, check=+rCheck.value, no=+rNo.value/100;
+    vAppt.textContent=appt; vCheck.textContent=fmt(check); vNo.textContent=Math.round(no*100)+'%';
+    [rAppt,rCheck,rNo].forEach(setFill);
+    // ~22 рабочих дня; возврат 40% неявок + консервативная надбавка спящей базы (0.03 приёма/день)
+    var monthlyNoShows=appt*22*no;
+    var recovered=(monthlyNoShows*0.40 + appt*22*0.03)*check;
+    out.textContent=fmt(recovered)+' ₽';
+    var x=recovered/SUBSCRIPTION;
+    foot.textContent = x>=2 ? ('≈ окупает подписку в '+Math.round(x)+'× раз') : 'ориентир для разговора';
+  }
+  [rAppt,rCheck,rNo].forEach(function(el){ el.addEventListener('input',calc); });
+  calc();
+
+  /* ── Тень навбара при скролле ── */
+  var nav=document.getElementById('nav');
+  var onScroll=function(){ nav.classList.toggle('scrolled', window.scrollY>8); };
+  onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+
+  /* ── Scroll-reveal ── */
+  var reveals=[].slice.call(document.querySelectorAll('.reveal'));
+  if(reduceMotion || !('IntersectionObserver' in window)){
+    reveals.forEach(function(el){ el.classList.add('in'); });
+  } else {
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, {threshold:0.12, rootMargin:'0px 0px -8% 0px'});
+    reveals.forEach(function(el){ io.observe(el); });
+  }
+
+  /* ── Счётчики в мини-дашборде (один раз) ── */
+  function countUp(el){
+    var target=+el.getAttribute('data-count'), suffix=el.getAttribute('data-suffix')||'';
+    var isMoney=/mini-big/.test(el.className);
+    if(reduceMotion){ el.innerHTML = fmt(target)+(isMoney?' <small>₽</small>':''); return; }
+    var start=performance.now(), dur=1100;
+    function tick(now){
+      var p=Math.min((now-start)/dur,1), e=1-Math.pow(1-p,3), v=target*e;
+      if(isMoney){ el.innerHTML = fmt(v)+' <small>₽</small>'; }
+      else { el.textContent = fmt(v); }
+      if(p<1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+  var counters=[].slice.call(document.querySelectorAll('[data-count]'));
+  if('IntersectionObserver' in window){
+    var cio=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ countUp(e.target); cio.unobserve(e.target); } });
+    }, {threshold:0.5});
+    counters.forEach(function(el){ cio.observe(el); });
+  } else { counters.forEach(countUp); }
+
+  /* ── Модальные окна: одна модалка на страницу, контент из мапы (DRY) ── */
+  var CONTENT = {
+    A1:{kicker:'Проблема',title:'Пропущенные обращения',demo:'evening',
+      lead:'Обращение приходит вечером или в выходной — а администратор уже ушёл. AI отвечает и записывает сам, круглосуточно.',
+      note:'До 30% обращений — вне рабочего окна. Без ответа человек за 30 секунд уходит в клинику напротив.'},
+    A2:{kicker:'Проблема',title:'Неявки на приём',demo:'schedule',
+      lead:'Напоминание за день и за час, владелец подтверждает одним тапом — слот не простаивает.',
+      note:'Неявки в клиниках — 12–42% приёмов. Каждая — прямой недополученный доход.'},
+    A3:{kicker:'Проблема',title:'Спящая база',demo:'grid',
+      lead:'Сотни питомцев с просроченной прививкой или осмотром тихо лежат в базе. AI находит их и мягко зовёт обратно.',
+      note:'Готовые деньги, которые уже были вашими — база оживает без обзвона вручную.'},
+    B1:{kicker:'Что делает ВетПульс',title:'Принимает обращения 24/7',demo:'chat',
+      lead:'AI отвечает и записывает во всех каналах — сайт, VK, Telegram, WhatsApp — строго по вашим данным, ничего не выдумывая.',
+      note:'Экстренное («питомцу плохо», «отравился») сразу передаётся живому врачу — AI не играет во врача.'},
+    B2:{kicker:'Что делает ВетПульс',title:'Напоминает о приёме',demo:'reminder',
+      lead:'Напоминания за день и за час — владелец подтверждает или переносит одним тапом, расписание обновляется само.',
+      note:'Меньше неявок — меньше простоя кресел. Освободившийся слот уходит следующему из очереди.'},
+    B3:{kicker:'Что делает ВетПульс',title:'Возвращает спящую базу',demo:'campaign',
+      lead:'Сам находит просроченных (прививка, осмотр, обработка) и мягко зовёт обратно — от имени клиники.',
+      note:'Это не разовая чистка: база пополняется новыми «уснувшими» каждый месяц.'},
+    C1:{kicker:'Как это устроено',title:'Шаг 1 · Подключаемся к Vetmanager',demo:'vm',
+      lead:'В настройках Vetmanager включаете доступ по API и выдаёте ключ — пара минут, без установки и переноса данных.',
+      note:'Учётная система остаётся вашей, мы работаем поверх неё. Ключ отзываете в любой момент.'},
+    C2:{kicker:'Как это устроено',title:'Шаг 2 · AI ведёт общение и запись',demo:'route',
+      lead:'Входящее сообщение → AI обрабатывает → запись появляется прямо в вашем расписании, во всех каналах.',
+      note:'Записи приходят со статусом «на подтверждении» — последнее слово за администратором.'},
+    C3:{kicker:'Как это устроено',title:'Шаг 3 · Вы видите деньги',demo:'dash',
+      lead:'В дашборде — не «сообщения бота», а результат в рублях: возвращённая выручка и откуда она.',
+      note:'У каждой записи видно, что она пришла через ВетПульс — вы знаете, за что платите.'},
+    C4:{kicker:'Доверие',title:'Вы держите ключ у себя',demo:'access',
+      lead:'Доступ идёт через ваш Vetmanager по ключу, который вы выдаёте — и в любой момент отзываете.',
+      note:'Не выгружаем, не копируем и не храним вашу базу у себя. Отозвали ключ — доступ закрыт.'},
+    C5:{kicker:'Доверие',title:'Данные остаются в России',demo:'rf',
+      lead:'Всё хранится и обрабатывается в РФ, по 152-ФЗ. С клиникой — договор поручения на обработку.',
+      note:'Легальный подрядчик по документам, а не «бот на коленке». Персональные данные под защитой.'},
+    C6:{kicker:'Доверие',title:'Мы не конкурент',demo:'align',
+      lead:'ВетПульс — это софт, а не вторая клиника. Наш заработок — подписка: он растёт, только когда растёте вы.',
+      note:'Мы не лечим животных и не переманиваем клиентов. Нам нужно, чтобы пациентов у вас было больше.'},
+    C7:{kicker:'Доверие',title:'Человек в контуре',demo:'human',
+      lead:'AI берёт рутину, а всё спорное и экстренное сразу передаёт живому сотруднику.',
+      note:'Записи подтверждает администратор. Ошибке «на автопилоте» неоткуда взяться.'}
+  };
+
+  var modal=document.getElementById('modal');
+  var dialog=modal.querySelector('.modal-dialog');
+  var mbody=document.getElementById('modal-body');
+  var lastTrigger=null, isOpen=false, pushed=false;
+  var ARROW='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+
+  function esc(s){ return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+  var REPLAY='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg>';
+  function build(key){
+    var c=CONTENT[key]; if(!c) return false;
+    var h='<p class="m-kicker">'+esc(c.kicker)+'</p><h2 class="m-title" id="modal-title">'+esc(c.title)+'</h2>';
+    if(c.demo){
+      h+='<p class="m-lead">'+esc(c.lead)+'</p>';
+      h+='<div class="m-demo"><div class="m-demo-bar"><span class="m-demo-tag">Живое демо</span>'+
+         '<button type="button" class="m-replay" aria-label="Повторить демонстрацию">'+REPLAY+'Повторить</button></div>'+
+         '<div class="m-demo-stage" aria-hidden="true" data-demo="'+c.demo+'"></div></div>';
+      if(c.note) h+='<p class="m-note">'+esc(c.note)+'</p>';
+    } else {
+      c.sections.forEach(function(s){
+        if(s.k==='stat'){ h+='<div class="m-stat"><div class="l">'+esc(s.l)+'</div><p>'+esc(s.t)+'</p></div>'; return; }
+        var cls='m-sec'+(s.k==='example'?' example':'');
+        var lcls='l'+(s.k==='solve'?' solve':'');
+        h+='<div class="'+cls+'"><div class="'+lcls+'">'+esc(s.l)+'</div><p>'+esc(s.t)+'</p></div>';
+      });
+    }
+    h+='<div class="modal-foot"><a class="btn btn-primary" href="https://t.me/re_dnd" target="_blank" rel="noopener">Обсудить пилот в Telegram</a>'+
+       '<a class="btn btn-ghost" href="demo.html">Открыть демо '+ARROW+'</a></div>';
+    mbody.innerHTML=h;
+    return true;
+  }
+
+  /* ── Движок живого демо в модалках работ (механика из demo.html) ── */
+  var demoSleep=function(ms){ return new Promise(function(r){ setTimeout(r, reduceMotion?0:ms); }); };
+  var currentDemo=null, demoToken=0;
+
+  function dChat(stage,t){
+    var L=[['me','Сколько стоит стерилизация кошки?'],
+      ['bot','Стерилизация кошки — от 4 500 ₽, включая наркоз и наблюдение. Нужен предварительный осмотр. Записать на консультацию?'],
+      ['me','Да, можно на четверг'],
+      ['bot','Записала на четверг 🐾 Статус — на подтверждении администратором. Пришлю напоминание за день и за час.']];
+    stage.innerHTML='';
+    function bub(w,x){ var d=document.createElement('div'); d.className='cmsg '+w; d.textContent=x; return d; }
+    function down(){ stage.scrollTop=stage.scrollHeight; }
+    if(reduceMotion){ L.forEach(function(x){ stage.appendChild(bub(x[0],x[1])); }); down(); return; }
+    (async function(){
+      await demoSleep(350); if(t!==demoToken)return;
+      for(var i=0;i<L.length;i++){
+        if(L[i][0]==='bot'){
+          var ty=document.createElement('div'); ty.className='m-typing'; ty.innerHTML='<i></i><i></i><i></i>';
+          stage.appendChild(ty); down();
+          await demoSleep(760); if(t!==demoToken)return; ty.remove();
+        } else { await demoSleep(i===0?250:560); if(t!==demoToken)return; }
+        stage.appendChild(bub(L[i][0],L[i][1])); down();
+        await demoSleep(140);
+      }
+    })();
+  }
+
+  function dReminder(stage,t){
+    stage.innerHTML='<div class="rem-msg"><div class="rem-from">Ветклиника «Айболит»</div>'+
+      '<div class="rem-text">🐾 Напоминаем: Барсик записан на приём завтра в 15:00. Подтвердить или перенести?</div>'+
+      '<div class="rem-actions"><span class="rem-btn yes">Подтвердить</span><span class="rem-btn no">Перенести</span></div></div>'+
+      '<div class="rem-flow"></div>'+
+      '<div class="rem-slot">Слот: завтра, 15:00 — ожидает</div>';
+    var flow=stage.querySelector('.rem-flow'), slot=stage.querySelector('.rem-slot'),
+        yes=stage.querySelector('.rem-btn.yes'), acts=stage.querySelector('.rem-actions');
+    function reply(){ var d=document.createElement('div'); d.className='rem-reply'; d.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 6"/></svg>Подтверждаю'; flow.appendChild(d); }
+    function c2(){ var d=document.createElement('div'); d.className='rem-c2'; d.textContent='Готово, ждём вас. Слот закреплён.'; flow.appendChild(d); }
+    function ok(){ slot.classList.add('ok'); slot.textContent='Слот: завтра, 15:00 — закреплён'; }
+    if(reduceMotion){ acts.classList.add('chosen'); reply(); c2(); ok(); return; }
+    (async function(){
+      await demoSleep(1200); if(t!==demoToken)return;
+      yes.classList.add('tap'); acts.classList.add('chosen');
+      await demoSleep(430); if(t!==demoToken)return; reply();
+      await demoSleep(720); if(t!==demoToken)return; c2();
+      await demoSleep(520); if(t!==demoToken)return; ok();
+    })();
+  }
+
+  function dCampaign(stage,t){
+    var pets=[{e:'🐈',n:'Барсик',b:'кот',w:'просрочена прививка',book:true,rub:1800},
+      {e:'🐕',n:'Рекс',b:'лабрадор',w:'вакцина',book:true,rub:2600},
+      {e:'🐈',n:'Мурка',b:'кошка',w:'осмотр',book:false,rub:1500},
+      {e:'🐕',n:'Граф',b:'собака',w:'вакцинация',book:true,rub:2600}];
+    var rows=pets.map(function(p,i){ return '<div class="crow" id="cr'+i+'"><span class="cpet">'+p.e+'</span>'+
+      '<span class="cinfo"><b>'+p.n+'</b> · '+p.b+'<span>'+p.w+'</span></span><span class="cstat">ожидает</span></div>'; }).join('');
+    stage.innerHTML='<div class="camp-status">Готово к запуску</div><div class="camp-rows">'+rows+'</div>'+
+      '<div class="camp-sum"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>'+
+      '<span>Возвращено: <b class="cs-n">0</b> питомца · ≈ <b class="cs-r">0</b> ₽</span><span class="ex">пример</span></div>';
+    var status=stage.querySelector('.camp-status'), sum=stage.querySelector('.camp-sum'),
+        csn=stage.querySelector('.cs-n'), csr=stage.querySelector('.cs-r');
+    function set(i,cls,txt){ var el=stage.querySelector('#cr'+i); el.classList.remove('sent','booked'); if(cls)el.classList.add(cls); el.querySelector('.cstat').textContent=txt; }
+    var tN=0,tR=0; pets.forEach(function(p){ if(p.book){tN++;tR+=p.rub;} });
+    if(reduceMotion){ status.textContent='Кампания завершена'; pets.forEach(function(p,i){ set(i,p.book?'booked':'sent',p.book?'записался':'написали'); }); csn.textContent=tN; csr.textContent=fmt(tR); sum.classList.add('show'); return; }
+    (async function(){
+      await demoSleep(300); if(t!==demoToken)return; status.textContent='Запускаем кампанию…';
+      await demoSleep(420); if(t!==demoToken)return;
+      for(var i=0;i<pets.length;i++){ set(i,'sent','написали'); await demoSleep(380); if(t!==demoToken)return; }
+      await demoSleep(320); if(t!==demoToken)return;
+      var n=0,r=0;
+      for(var j=0;j<pets.length;j++){ if(!pets[j].book) continue;
+        set(j,'booked','записался'); n++; r+=pets[j].rub; csn.textContent=n; csr.textContent=fmt(r);
+        if(!sum.classList.contains('show')) sum.classList.add('show');
+        await demoSleep(560); if(t!==demoToken)return; }
+      status.textContent='Кампания завершена';
+    })();
+  }
+
+  /* хелперы для виджетов A/C */
+  function el(html){ var d=document.createElement('div'); d.innerHTML=html.trim(); return d.firstChild; }
+  function tween(node,from,to,dur,t,suf){ suf=suf||'';
+    if(reduceMotion){ node.textContent=fmt(to)+suf; return; }
+    var s=performance.now();
+    (function f(now){ if(t!==demoToken)return; var p=Math.min((now-s)/dur,1),e=1-Math.pow(1-p,3);
+      node.textContent=fmt(from+(to-from)*e)+suf; if(p<1) requestAnimationFrame(f); })(performance.now());
+  }
+  var IC={check:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>',
+    arrow:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
+    lock:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>',
+    person:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.2"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0"/></svg>',
+    shield:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6z"/><path d="M9 12l2 2 4-4.5"/></svg>',
+    server:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="7" rx="1.5"/><rect x="4" y="13" width="16" height="7" rx="1.5"/><path d="M7.5 7.5h.01M7.5 16.5h.01"/></svg>',
+    clock:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>'};
+
+  /* A1 — сцена «вечер»: сообщение → AI отвечает → записан → контраст «без нас» */
+  function dEvening(stage,t){
+    stage.innerHTML='<div class="wg-eve-head">'+IC.clock+'21:40 · клиника закрыта</div><div class="wg-flow"></div>';
+    var f=stage.querySelector('.wg-flow');
+    var owner=function(){ f.appendChild(el('<div class="wg-bub l"><span class="who">Владелец</span>Здравствуйте! Кот приболел, можно записаться завтра?</div>')); };
+    var ai=function(){ f.appendChild(el('<div class="wg-ai"><span class="ai-badge">AI</span>Отвечу сейчас</div>')); };
+    var bot=function(){ f.appendChild(el('<div class="wg-bub r">Записываю Барсика на завтра, 10:00. Администратор подтвердит.</div>')); };
+    var cmp=function(){ f.appendChild(el('<div class="wg-compare"><div class="wg-oc"><span class="wg-pill ok">записан</span>С ВетПульсом — пациент остаётся у вас</div><div class="wg-oc mut"><span class="wg-pill">ушёл</span>Без нас — уехал в клинику напротив</div></div>')); };
+    if(reduceMotion){ owner(); ai(); f.querySelector('.wg-ai').classList.add('on'); bot(); cmp(); return; }
+    (async function(){
+      await demoSleep(500); if(t!==demoToken)return; owner();
+      await demoSleep(650); if(t!==demoToken)return; ai();
+      await demoSleep(650); if(t!==demoToken)return; f.querySelector('.wg-ai').classList.add('on');
+      await demoSleep(560); if(t!==demoToken)return; bot();
+      await demoSleep(750); if(t!==demoToken)return; cmp();
+    })();
+  }
+
+  /* A2 — расписание дня: слот 15:00 → напоминание → подтверждён, зеленеет */
+  function dSchedule(stage,t){
+    stage.innerHTML='<div class="wg-status">Расписание · вторник</div>'+
+      '<div class="wg-row"><span class="wg-rt">12:30</span><span class="rl">Рекс · осмотр<span>подтверждён</span></span><span class="wg-pill ok">готов</span></div>'+
+      '<div class="wg-row" id="tgt"><span class="wg-rt">15:00</span><span class="rl">Барсик · вакцинация<span class="ss">ожидает подтверждения</span></span><span class="wg-pill blue st">ожидает</span></div>'+
+      '<div class="wg-remind" id="rem" style="display:none">Напоминание отправлено: «подтвердить / перенести»</div>'+
+      '<div class="wg-row"><span class="wg-rt">16:30</span><span class="rl">Мурка · чистка<span>подтверждён</span></span><span class="wg-pill ok">готов</span></div>';
+    var tgt=stage.querySelector('#tgt'), rem=stage.querySelector('#rem'), st=tgt.querySelector('.st'), ss=tgt.querySelector('.ss');
+    var done=function(){ st.textContent='подтверждён'; st.className='wg-pill ok st'; tgt.classList.add('ok'); ss.textContent='слот закреплён — не простаивает'; rem.style.display='none'; };
+    if(reduceMotion){ done(); return; }
+    (async function(){
+      await demoSleep(750); if(t!==demoToken)return; rem.style.display='block'; rem.style.animation='mpop .3s both';
+      await demoSleep(1100); if(t!==demoToken)return; done();
+    })();
+  }
+
+  /* A3 — сетка спящих: волна оживления, счётчик возвращённых */
+  function dGrid(stage,t){
+    var N=36, dots=''; for(var i=0;i<N;i++) dots+='<span class="wg-dot" id="wd'+i+'"></span>';
+    stage.innerHTML='<div class="wg-status">База спящих питомцев</div><div class="wg-grid">'+dots+'</div>'+
+      '<div class="wg-gridsum"><span>Спящих: <b>340</b></span><span class="ret">Возвращено: <b class="rn">0</b> <span class="wg-ex">пример</span></span></div>';
+    var idx=[]; for(var k=0;k<N;k++){ if(k%4===1) idx.push(k); }
+    var rn=stage.querySelector('.rn');
+    if(reduceMotion){ idx.forEach(function(i){ stage.querySelector('#wd'+i).classList.add('on'); }); rn.textContent='57'; return; }
+    (async function(){
+      await demoSleep(500); if(t!==demoToken)return;
+      for(var j=0;j<idx.length;j++){ stage.querySelector('#wd'+idx[j]).classList.add('on');
+        rn.textContent=Math.round(57*(j+1)/idx.length); await demoSleep(170); if(t!==demoToken)return; }
+      rn.textContent='57';
+    })();
+  }
+
+  /* C1 — мокап Vetmanager: тумблер OFF→ON, поле ключа, «Подключено» */
+  function dVetmanager(stage,t){
+    stage.innerHTML='<div class="wg-app"><div class="wg-app-bar"><span class="dot3"><i></i><i></i><i></i></span>Vetmanager · настройки</div>'+
+      '<div class="wg-crumb">Настройки → Интеграция с сервисами → <b>Rest API</b></div>'+
+      '<div class="wg-appline"><span>Доступ по API</span><span class="wg-tog" id="tog"></span></div>'+
+      '<div class="wg-reveal" id="rev"><div class="wg-appline" style="border-top:1px solid var(--line-soft)"><span class="wg-key" id="key">—&nbsp;—&nbsp;—&nbsp;—</span><span class="wg-copied" id="cop">скопировано</span></div></div></div>'+
+      '<div class="wg-badge" id="bdg">'+IC.check+'Подключено</div>';
+    var tog=stage.querySelector('#tog'),rev=stage.querySelector('#rev'),key=stage.querySelector('#key'),cop=stage.querySelector('#cop'),bdg=stage.querySelector('#bdg');
+    var fin=function(){ tog.classList.add('on'); rev.classList.add('show'); key.textContent='••••••••••••'; cop.classList.add('show'); bdg.classList.add('show'); };
+    if(reduceMotion){ fin(); return; }
+    (async function(){
+      await demoSleep(650); if(t!==demoToken)return; tog.classList.add('on');
+      await demoSleep(450); if(t!==demoToken)return; rev.classList.add('show'); key.textContent='••••••••••••';
+      await demoSleep(520); if(t!==demoToken)return; cop.classList.add('show');
+      await demoSleep(450); if(t!==demoToken)return; bdg.classList.add('show');
+    })();
+  }
+
+  /* C2 — маршрут: входящее → AI → строка в расписании */
+  function dRoute(stage,t){
+    stage.innerHTML='<div class="wg-route"><div class="node" id="n1">Входящее<br><small>«Запишите Мурку»</small></div>'+
+      '<span class="arr">'+IC.arrow+'</span><div class="node ai" id="n2">AI ВетПульс</div>'+
+      '<span class="arr">'+IC.arrow+'</span><div class="node" id="n3">Расписание</div></div>'+
+      '<div class="wg-row" id="row" style="opacity:0;transition:opacity .35s ease"><span class="wg-rt">16:00</span><span class="rl">Мурка · осмотр<span>через ВетПульс</span></span><span class="wg-pill warn">на подтверждении</span></div>';
+    var n1=stage.querySelector('#n1'),n2=stage.querySelector('#n2'),n3=stage.querySelector('#n3'),row=stage.querySelector('#row');
+    var fin=function(){ n1.classList.add('on'); n2.classList.add('on'); n3.classList.add('on'); row.style.opacity='1'; };
+    if(reduceMotion){ fin(); return; }
+    (async function(){
+      await demoSleep(450); if(t!==demoToken)return; n1.classList.add('on');
+      await demoSleep(560); if(t!==demoToken)return; n2.classList.add('on');
+      await demoSleep(620); if(t!==demoToken)return; n3.classList.add('on');
+      await demoSleep(360); if(t!==demoToken)return; row.style.opacity='1';
+    })();
+  }
+
+  /* C3 — мини-дашборд: счётчик ₽, sparkline, три стата */
+  function dDash(stage,t){
+    stage.innerHTML='<div class="wg-dash-big"><span class="rev">0</span> <small>₽</small></div>'+
+      '<div class="wg-dash-cap">возвращённая выручка · за месяц <span class="wg-ex">пример</span></div>'+
+      '<div class="wg-spark"><svg viewBox="0 0 300 34" preserveAspectRatio="none" fill="none"><path class="ln" d="M2 30 L40 26 L80 27 L120 18 L160 20 L200 12 L240 9 L298 4" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>'+
+      '<div class="wg-dstats"><div class="wg-dstat"><b class="s1">0</b><span>обращений 24/7</span></div><div class="wg-dstat"><b class="s2">0</b><span>неявок предотвр.</span></div><div class="wg-dstat"><b class="s3">0</b><span>возвращено</span></div></div>';
+    var rev=stage.querySelector('.rev'),spark=stage.querySelector('.wg-spark'),s1=stage.querySelector('.s1'),s2=stage.querySelector('.s2'),s3=stage.querySelector('.s3');
+    if(reduceMotion){ rev.textContent=fmt(184200); spark.classList.add('draw'); s1.textContent='212'; s2.textContent='38'; s3.textContent='57'; return; }
+    requestAnimationFrame(function(){ if(t===demoToken) spark.classList.add('draw'); });
+    tween(rev,0,184200,1200,t); tween(s1,0,212,1200,t); tween(s2,0,38,1200,t); tween(s3,0,57,1200,t);
+  }
+
+  /* C4 — панель доступа: активен → «Отозвать» → закрыт, линия рвётся */
+  function dAccess(stage,t){
+    stage.innerHTML='<div class="wg-status">Доступ к Vetmanager</div>'+
+      '<div class="wg-appline" style="border:1px solid var(--line-soft);border-radius:10px;background:#fff"><span class="wg-badge show" id="abd">'+IC.check+'Доступ активен</span><span class="wg-tog on" id="atog"></span></div>'+
+      '<div class="wg-line" id="aln"></div>'+
+      '<button type="button" class="wg-btn-ghost" id="arev" tabindex="-1">Отозвать ключ</button>';
+    var bd=stage.querySelector('#abd'),tog=stage.querySelector('#atog'),ln=stage.querySelector('#aln'),btn=stage.querySelector('#arev');
+    var revoke=function(){ btn.classList.add('tap'); tog.classList.remove('on'); ln.classList.add('cut'); bd.className='wg-badge grey show'; bd.innerHTML=IC.lock+'Доступ закрыт'; };
+    if(reduceMotion){ revoke(); return; }
+    (async function(){ await demoSleep(1300); if(t!==demoToken)return; revoke(); })();
+  }
+
+  /* C5 — рамка РФ: данные не уходят (отскок), штампы 152-ФЗ и договор */
+  function dRF(stage,t){
+    stage.innerHTML='<div class="wg-rf"><span class="rf-tag">РФ</span><span class="server">'+IC.server+'</span><span class="esc" id="esc"></span></div>'+
+      '<div class="wg-shieldrow"><span class="wg-badge" id="st1">'+IC.check+'Договор поручения</span><span class="wg-badge" id="st2">'+IC.shield+'152-ФЗ</span></div>';
+    var esc=stage.querySelector('#esc'),st1=stage.querySelector('#st1'),st2=stage.querySelector('#st2');
+    if(reduceMotion){ st1.classList.add('show'); st2.classList.add('show'); return; }
+    (async function(){
+      await demoSleep(600); if(t!==demoToken)return; esc.classList.add('bounce');
+      await demoSleep(520); if(t!==demoToken)return; esc.classList.remove('bounce');
+      await demoSleep(480); if(t!==demoToken)return; st1.classList.add('show');
+      await demoSleep(380); if(t!==demoToken)return; st2.classList.add('show');
+    })();
+  }
+
+  /* C6 — две линии растут вместе */
+  function dAlign(stage,t){
+    stage.innerHTML='<div class="wg-chart"><svg viewBox="0 0 300 110" fill="none" preserveAspectRatio="none">'+
+      '<path class="grow" d="M6 96 C 90 86, 150 58, 294 18" stroke="#0e7c6f" stroke-width="3" stroke-linecap="round"/>'+
+      '<path class="grow g2" d="M6 101 C 95 96, 165 76, 294 42" stroke="#e8734a" stroke-width="3" stroke-linecap="round"/></svg></div>'+
+      '<div class="wg-legend"><span><i style="background:#0e7c6f"></i>Ваша выручка ↑</span><span><i style="background:#e8734a"></i>Наша подписка ↑</span></div>';
+    var chart=stage.querySelector('.wg-chart');
+    if(reduceMotion){ chart.classList.add('draw'); return; }
+    requestAnimationFrame(function(){ if(t===demoToken) chart.classList.add('draw'); });
+  }
+
+  /* C7 — человек в контуре: рутина AI, экстренное → сотруднику → подтверждено */
+  function dHuman(stage,t){
+    stage.innerHTML='<div class="wg-flow"></div>';
+    var f=stage.querySelector('.wg-flow');
+    var R=[
+      '<div class="wg-row"><span class="hh ai">'+IC.check+'</span><span class="rl">Цена и часы работы<span>ответил AI</span></span><span class="wg-pill ok">готово</span></div>',
+      '<div class="wg-row"><span class="hh ai">'+IC.check+'</span><span class="rl">Запись на осмотр<span>ответил AI</span></span><span class="wg-pill ok">готово</span></div>',
+      '<div class="wg-row"><span class="hh hum">'+IC.person+'</span><span class="rl">«Питомцу плохо» — экстренное<span>передано администратору</span></span><span class="wg-pill warn">человек</span></div>',
+      '<div class="wg-row ok"><span class="hh hum">'+IC.person+'</span><span class="rl">Запись подтверждена<span>решил администратор</span></span><span class="wg-pill ok">готово</span></div>'];
+    if(reduceMotion){ R.forEach(function(h){ f.appendChild(el(h)); }); return; }
+    (async function(){
+      for(var i=0;i<R.length;i++){ await demoSleep(i===0?450:640); if(t!==demoToken)return; f.appendChild(el(R[i])); }
+    })();
+  }
+
+  function runDemo(d){
+    if(!d) return; demoToken++; var t=demoToken, s=d.stage;
+    if(d.type==='chat'){ s.className='m-demo-stage m-chat'; return dChat(s,t); }
+    if(d.type==='reminder'){ s.className='m-demo-stage m-rem'; return dReminder(s,t); }
+    if(d.type==='campaign'){ s.className='m-demo-stage m-camp'; return dCampaign(s,t); }
+    s.className='m-demo-stage wg';
+    var M={evening:dEvening,schedule:dSchedule,grid:dGrid,vm:dVetmanager,route:dRoute,dash:dDash,access:dAccess,rf:dRF,align:dAlign,human:dHuman};
+    if(M[d.type]) M[d.type](s,t);
+  }
+
+  function focusables(){
+    return [].slice.call(modal.querySelectorAll('a[href],button:not([disabled]),[tabindex]:not([tabindex="-1"])'))
+      .filter(function(el){ return el.offsetWidth>0 || el.offsetHeight>0 || el===document.activeElement; });
+  }
+  function openModal(key,trigger,fromHistory){
+    if(!build(key)) return;
+    if(!isOpen){ lastTrigger=trigger||document.activeElement; }
+    isOpen=true;
+    modal.classList.add('open'); modal.setAttribute('aria-hidden','false');
+    document.documentElement.style.overflow='hidden'; document.body.style.overflow='hidden';
+    dialog.scrollTop=0;
+    // форсируем пересчёт стилей (visibility:visible) и фокусируем диалог синхронно; rAF — бэкап
+    void dialog.offsetWidth;
+    try{ dialog.focus(); }catch(e){}
+    if(window.requestAnimationFrame){ requestAnimationFrame(function(){ if(!modal.contains(document.activeElement)){ try{dialog.focus();}catch(e){} } }); }
+    // запускаем живое демо, если модалка «работы» (B1-B3)
+    var stg=mbody.querySelector('.m-demo-stage');
+    currentDemo = stg ? {type:stg.getAttribute('data-demo'), stage:stg} : null;
+    if(currentDemo) runDemo(currentDemo);
+    if(!fromHistory){ try{ history.pushState({vetmodal:key},'','#p-'+key); pushed=true; }catch(e){} }
+  }
+  function closeModal(fromHistory){
+    if(!isOpen) return;
+    isOpen=false;
+    demoToken++; currentDemo=null; /* остановить любую идущую анимацию демо */
+    modal.classList.remove('open'); modal.setAttribute('aria-hidden','true');
+    document.documentElement.style.overflow=''; document.body.style.overflow='';
+    if(lastTrigger && lastTrigger.focus){ lastTrigger.focus(); }
+    lastTrigger=null;
+    if(!fromHistory){
+      try{
+        if(pushed){ pushed=false; history.back(); }
+        else { history.replaceState(null,'',location.pathname+location.search); }
+      }catch(e){}
+    }
+  }
+
+  [].slice.call(document.querySelectorAll('[data-modal]')).forEach(function(t){
+    t.addEventListener('click',function(){ openModal(t.getAttribute('data-modal'),t); });
+    t.addEventListener('keydown',function(e){
+      if(e.key==='Enter'||e.key===' '||e.key==='Spacebar'){ e.preventDefault(); openModal(t.getAttribute('data-modal'),t); }
+    });
+  });
+  modal.addEventListener('click',function(e){ if(e.target.hasAttribute('data-close')) closeModal(); });
+  mbody.addEventListener('click',function(e){ if(e.target.closest('.m-replay') && currentDemo){ runDemo(currentDemo); } });
+  document.addEventListener('keydown',function(e){
+    if(!isOpen) return;
+    if(e.key==='Escape'){ e.preventDefault(); closeModal(); return; }
+    if(e.key==='Tab'){
+      var f=focusables(); if(!f.length) return;
+      var first=f[0], last=f[f.length-1];
+      if(e.shiftKey && document.activeElement===first){ e.preventDefault(); last.focus(); }
+      else if(!e.shiftKey && document.activeElement===last){ e.preventDefault(); first.focus(); }
+      else if(!modal.contains(document.activeElement)){ e.preventDefault(); first.focus(); }
+    }
+  });
+  window.addEventListener('popstate',function(){
+    var st=history.state;
+    if(st && st.vetmodal){ if(!isOpen) openModal(st.vetmodal,null,true); }
+    else if(isOpen){ pushed=false; closeModal(true); }
+  });
+  (function(){ var m=(location.hash||'').match(/^#p-([ABC]\d)$/); if(m && CONTENT[m[1]]) openModal(m[1],null,true); })();
+})();
+</script>
+</body>
+</html>

@@ -108,12 +108,9 @@
   .tchip{display:inline-flex;align-items:center;gap:7px;font-size:.82rem;color:var(--slate);font-weight:500;background:var(--surface);border:1px solid var(--line-soft);border-radius:20px;padding:6px 13px 6px 10px;box-shadow:var(--sh-sm)}
   .tchip svg{width:15px;height:15px;color:var(--petrol)}
 
-  /* герой-визуал: монолайн кот+пёс над дашбордом (мгновенный сигнал «ветеринария») */
+  /* герой-визуал: дашборд-карточка */
   .hero-visual{display:flex;flex-direction:column;align-items:center;gap:0}
-  .hero-pets{width:min(300px,74%);color:var(--petrol);opacity:.9;margin-bottom:-8px;position:relative;z-index:1;pointer-events:none}
-  .hero-pets svg{width:100%;height:auto;display:block}
   .hero-visual .card{width:100%;position:relative}
-  @media(max-width:860px){.hero-pets{width:min(264px,60%);margin-bottom:-6px}}
 
   /* card + hero mini-dashboard */
   .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--sh-md)}
@@ -581,7 +578,6 @@
     </div>
 
     <div class="hero-visual">
-      <div class="hero-pets" aria-hidden="true"><svg viewBox="88 40 300 182" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><g transform="translate(16,14)"><path d="M120 60 L108 30 L96 54"/><path d="M150 58 L162 30 L172 56"/><path d="M96 54 Q86 78 92 100 Q74 118 78 160 Q82 200 135 200 Q188 200 190 158 Q192 118 176 100 Q182 76 172 56"/><path d="M190 165 Q220 168 214 130 Q212 116 200 112"/><circle cx="120" cy="96" r="2.6" fill="currentColor" stroke="none"/><circle cx="150" cy="96" r="2.6" fill="currentColor" stroke="none"/><path d="M129 104 L141 104 L135 110 Z" fill="#e8734a" stroke="none"/><path d="M135 110 q-5 4 -10 2 M135 110 q5 4 10 2" stroke-width="2.2"/><path d="M127 106 l-22 -3 M127 110 l-22 4 M143 106 l22 -3 M143 110 l22 4" stroke-width="1.4" opacity=".6"/></g><g transform="translate(178,14)"><path d="M96 54 Q86 78 92 100 Q74 118 78 160 Q82 200 135 200 Q188 200 190 158 Q192 118 176 100 Q182 76 172 54 Q182 34 135 32 Q88 34 96 54 Z"/><path d="M100 50 Q72 50 68 88 Q66 112 92 104"/><path d="M170 52 Q198 52 202 90 Q204 114 178 106"/><circle cx="118" cy="74" r="2.6" fill="currentColor" stroke="none"/><circle cx="152" cy="74" r="2.6" fill="currentColor" stroke="none"/><path d="M120 92 Q135 106 150 92"/><circle cx="135" cy="90" r="4.6" fill="#e8734a" stroke="none"/><path d="M135 94 v7"/></g></svg></div>
       <div class="card mini" role="img" aria-label="Пример дашборда клиники «Айболит»: 184 200 ₽ возвращённой выручки за месяц, 212 обращений принято, 38 неявок предотвращено, 57 пациентов возвращено">
       <div class="mini-head">
         <b>Клиника «Айболит»</b>

@@ -14,7 +14,7 @@
 <style>*,*::before,*::after{box-sizing:border-box} body{margin:0}</style>
 </helmet>
 <div style="margin-top:clamp(32px,5vw,52px);display:flex;flex-direction:column;gap:16px;align-items:flex-start;max-width:640px;font-family:Inter,system-ui,sans-serif">
-  <div style="align-self:stretch;background:var(--surface);border-radius:18px 18px 18px 5px;padding:16px 20px;box-shadow:0 2px 6px var(--shadow-2);font:400 17px/1.5 Inter,system-ui,sans-serif">Нужно что-то похожее? Напишите — расскажу, как собрал бы такое под вас, и сколько это стоит.</div>
+  <div style="align-self:stretch;background:var(--surface);border-radius:18px 18px 18px 5px;padding:16px 20px;box-shadow:0 2px 6px var(--shadow-2);font:400 17px/1.5 Inter,system-ui,sans-serif">{{ q }} Напишите — расскажу, как собрал бы такое под вас, и сколько это стоит.</div>
   <a href="contact.html" style="display:inline-flex;align-items:center;gap:9px;background:var(--accent-cta);color:var(--surface);text-decoration:none;font:600 15.5px/1 Inter,system-ui,sans-serif;padding:13px 22px;border-radius:12px" style-hover="background:var(--accent)" style-focus-visible="outline:2px solid var(--text);outline-offset:2px">
     <span style="width:8px;height:8px;border-radius:50%;background:var(--online);box-shadow:0 0 0 3px rgba(49,181,69,0.25)"></span>
     Написать
@@ -24,7 +24,7 @@
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;800px&quot;,&quot;height&quot;:&quot;180px&quot;}}">
 class Component extends DCLogic {
   renderVals() {
-    return {};
+    return { q: (this.props.q && String(this.props.q).trim()) || 'Нужно что-то похожее?' };
   }
 }
 </script>

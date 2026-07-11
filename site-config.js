@@ -44,3 +44,55 @@ window.SITE_CONFIG = {
   aboutLines: [],    // ← 1–2 личные строки на русской странице
   aboutLinesEn: [],  // ← то же для английской (иначе скрыто)
 };
+
+// ============================================================
+// Тултипы на тег-чипы стека. Находит span'ы моноширинного стека
+// (JetBrains Mono) с текстом-термином и вешает пояснение по наведению/
+// фокусу/тапу. Ноль внешних запросов, работает на всех страницах.
+// ============================================================
+(function () {
+  var TT = {
+    "Python": { ru: "Язык программирования, на котором пишут ботов и логику.", en: "General-purpose programming language used to build bots and backends." },
+    "pandas": { ru: "Библиотека Python для работы с таблицами и расчётами.", en: "Python library for crunching tables of numbers and data." },
+    "Ozon Seller API": { ru: "Канал, по которому программа читает данные магазина на Ozon.", en: "Ozon's data channel a program uses to read shop data." },
+    "API поставщика": { ru: "Способ автоматически получать данные из системы поставщика.", en: "A supplier's data channel that programs read stock and prices from." },
+    "Flutter": { ru: "Набор инструментов Google для создания мобильных приложений.", en: "Google's toolkit for building mobile apps from one codebase." },
+    "Dart": { ru: "Язык программирования, на котором работает Flutter.", en: "Programming language that Flutter apps are written in." },
+    "iOS": { ru: "Операционная система айфонов и айпадов от Apple.", en: "Apple's operating system for iPhones and iPads." },
+    "офлайн-first": { ru: "Приложение работает без интернета, данные хранятся на устройстве.", en: "App works without internet; data lives on the device." },
+    "aiogram": { ru: "Библиотека Python для создания Telegram-ботов.", en: "Python library for building Telegram bots." },
+    "FastAPI": { ru: "Инструмент Python для создания веб-сервисов и API.", en: "Python tool for building web services and APIs." },
+    "SQLite": { ru: "Компактная база данных, хранящаяся в одном файле.", en: "Lightweight database stored as a single file." },
+    "LLM": { ru: "ИИ-модель, понимающая и генерирующая текст, как ChatGPT.", en: "AI model that understands and writes text, like ChatGPT." },
+    "Telegram Mini App": { ru: "Полноценное приложение, открывающееся прямо внутри Telegram.", en: "A full app that opens right inside Telegram." },
+    "Mini App": { ru: "Полноценное приложение, открывающееся прямо внутри Telegram.", en: "A full app that opens right inside Telegram." },
+    "Bot API": { ru: "Интерфейс Telegram, через который программы управляют ботами.", en: "Telegram's interface for programs to control bots." },
+    "ЮКасса": { ru: "Российский сервис приёма онлайн-платежей картами.", en: "Russian service for accepting online card payments." },
+    "VPS": { ru: "Арендованный сервер в интернете, где работает приложение.", en: "Rented internet server that keeps an app running." },
+    "UX-прототип": { ru: "Кликабельный макет приложения, собранный до написания кода.", en: "Clickable mockup of an app before real code exists." },
+    "продуктовый дизайн": { ru: "Проектирование того, как продукт работает и ощущается.", en: "Designing how a product works and feels for users." },
+    "ИИ": { ru: "Искусственный интеллект, выполняющий задачи вместо человека.", en: "Artificial intelligence that performs tasks in a person's place." },
+    "CRM": { ru: "Система для учёта контактов и отношений с клиентами.", en: "System for tracking contacts and customer relationships." }
+  };
+  var lang = (location.pathname.indexOf('/en/') !== -1) ? 'en' : 'ru';
+  function apply() {
+    var s = document.getElementsByTagName('span'), i, el, t, d, ff;
+    for (i = 0; i < s.length; i++) {
+      el = s[i];
+      if (el.getAttribute('data-tt')) continue;
+      if (el.children.length) continue;
+      t = (el.textContent || '').trim();
+      d = TT[t];
+      if (!d) continue;
+      try { ff = getComputedStyle(el).fontFamily || ''; } catch (e) { ff = ''; }
+      if (ff.indexOf('JetBrains') === -1) continue;
+      el.setAttribute('data-tt', '1');
+      el.className = (el.className ? el.className + ' ' : '') + 'tt';
+      el.setAttribute('tabindex', '0');
+      el.setAttribute('data-tip', d[lang] || d.ru);
+      el.setAttribute('aria-label', t + ' — ' + (d[lang] || d.ru));
+    }
+  }
+  function boot() { apply(); var n = 0, iv = setInterval(function () { apply(); if (++n > 16) clearInterval(iv); }, 250); }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
+})();

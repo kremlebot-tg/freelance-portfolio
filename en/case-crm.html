@@ -41,7 +41,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
 
 <main style="font-family:Inter,system-ui,sans-serif;max-width:1140px;margin:0 auto;padding:clamp(32px,4vw,52px) 20px clamp(56px,7vw,88px)">
 
-  <a href="projects.html" style="display:inline-flex;align-items:center;gap:6px;font:500 14.5px Inter,system-ui,sans-serif;color:var(--accent);text-decoration:none;border-radius:8px;padding:4px 6px;margin:0 0 18px -6px" style-hover="background:var(--accent-tint)" style-focus="outline:2px solid var(--accent);outline-offset:2px">← All projects</a>
+  <a href="projects.html" style="display:inline-flex;align-items:center;gap:6px;font:500 14.5px Inter,system-ui,sans-serif;color:var(--accent);text-decoration:none;border-radius:8px;padding:4px 6px;margin:0 0 18px -6px" style-hover="background:var(--accent-tint)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">← All projects</a>
 
   <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:28px">
     <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
@@ -104,7 +104,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
             <span style="font:500 11.5px JetBrains Mono,monospace;color:var(--text-muted)">connections</span>
             <div style="display:flex;flex-wrap:wrap;gap:6px">
               <sc-for list="{{ selLinks }}" as="l" hint-placeholder-count="2">
-                <button type="button" onClick="{{ l.open }}" style="font:500 13px Inter,system-ui,sans-serif;color:var(--accent);background:var(--accent-tint);border:none;cursor:pointer;padding:6px 11px;border-radius:99px" style-hover="background:var(--accent-tint-2)" style-focus="outline:2px solid var(--accent);outline-offset:2px">{{ l.name }}</button>
+                <button type="button" onClick="{{ l.open }}" style="font:500 13px Inter,system-ui,sans-serif;color:var(--accent);background:var(--accent-tint);border:none;cursor:pointer;padding:6px 11px;border-radius:99px" style-hover="background:var(--accent-tint-2)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">{{ l.name }}</button>
               </sc-for>
             </div>
           </div>
@@ -123,11 +123,11 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
       <div style="display:flex;flex-direction:column;gap:10px">
         <div style="display:flex;flex-wrap:wrap;gap:6px">
           <sc-for list="{{ examples }}" as="ex" hint-placeholder-count="3">
-            <button type="button" onClick="{{ ex.use }}" style="font:500 13px Inter,system-ui,sans-serif;color:{{ ex.color }};background:{{ ex.bg }};border:1px solid {{ ex.border }};cursor:pointer;padding:7px 12px;border-radius:99px" style-hover="border-color:var(--accent-cta)" style-focus="outline:2px solid var(--accent);outline-offset:2px">{{ ex.label }}</button>
+            <button type="button" onClick="{{ ex.use }}" style="font:500 13px Inter,system-ui,sans-serif;color:{{ ex.color }};background:{{ ex.bg }};border:1px solid {{ ex.border }};cursor:pointer;padding:7px 12px;border-radius:99px" style-hover="border-color:var(--accent-cta)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">{{ ex.label }}</button>
           </sc-for>
         </div>
-        <textarea rows="4" value="{{ note }}" onChange="{{ onNote }}" placeholder="Paste a note about someone — or pick an example above" style="font:400 15px/1.55 Inter,system-ui,sans-serif;color:var(--text);border:1px solid var(--border-input);border-radius:12px;padding:12px 14px;resize:vertical;background:var(--input-bg);outline:none" style-focus="border-color:var(--accent-cta);box-shadow:0 0 0 3px rgba(34,158,217,0.18)"></textarea>
-        <button type="button" onClick="{{ onExtract }}" style="display:inline-flex;align-items:center;gap:8px;background:var(--accent-cta);color:var(--surface);border:none;cursor:pointer;font:600 15px/1 Inter,system-ui,sans-serif;padding:12px 20px;border-radius:12px;width:fit-content" style-hover="background:var(--accent)" style-focus="outline:2px solid var(--text);outline-offset:2px">Extract facts</button>
+        <textarea rows="4" value="{{ note }}" onChange="{{ onNote }}" placeholder="Paste a note about someone — or pick an example above" style="font:400 15px/1.55 Inter,system-ui,sans-serif;color:var(--text);border:1px solid var(--border-input);border-radius:12px;padding:12px 14px;resize:vertical;background:var(--input-bg);outline:none" style-focus-visible="border-color:var(--accent-cta);box-shadow:0 0 0 3px rgba(34,158,217,0.18)"></textarea>
+        <button type="button" onClick="{{ onExtract }}" style="display:inline-flex;align-items:center;gap:8px;background:var(--accent-cta);color:var(--surface);border:none;cursor:pointer;font:600 15px/1 Inter,system-ui,sans-serif;padding:12px 20px;border-radius:12px;width:fit-content" style-hover="background:var(--accent)" style-focus-visible="outline:2px solid var(--text);outline-offset:2px">Extract facts</button>
         <span style="font:400 12px/1.5 JetBrains Mono,monospace;color:var(--text-muted)">// in this prototype extraction is scripted on the examples; in production an LLM does it</span>
       </div>
       <div style="background:var(--demo-canvas);border:1px solid var(--border-soft);border-radius:16px;padding:18px;min-height:180px;display:flex;flex-direction:column;gap:10px">
@@ -205,7 +205,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
   <dc-import name="CaseCTA" hint-size="100%,170px"></dc-import>
 
   <div style="display:flex;align-items:center;gap:12px;margin-top:18px;flex-wrap:wrap">
-    <a href="case-autopricer.html" style="margin-left:auto;font:500 15px Inter,system-ui,sans-serif;color:var(--accent);text-decoration:none;border-radius:8px;padding:6px 8px" style-hover="background:var(--accent-tint)" style-focus="outline:2px solid var(--accent);outline-offset:2px">next case: marketplace autopricer →</a>
+    <a href="case-autopricer.html" style="margin-left:auto;font:500 15px Inter,system-ui,sans-serif;color:var(--accent);text-decoration:none;border-radius:8px;padding:6px 8px" style-hover="background:var(--accent-tint)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">next case: marketplace autopricer →</a>
   </div>
 </main>
 

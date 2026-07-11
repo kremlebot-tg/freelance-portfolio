@@ -91,21 +91,21 @@
 
           <label style="display:flex;flex-direction:column;gap:8px">
             <span style="font:600 14.5px Inter,system-ui,sans-serif">What do you need automated</span>
-            <textarea rows="4" value="{{ task }}" onChange="{{ onTask }}" placeholder="E.g.: collect leads from Telegram and push them to a Google Sheet" style="font:400 15px/1.55 Inter,system-ui,sans-serif;color:var(--text);border:1px solid var(--border-input);border-radius:12px;padding:12px 14px;resize:vertical;background:var(--input-bg);outline:none" style-focus="border-color:var(--accent-cta);box-shadow:0 0 0 3px rgba(34,158,217,0.18)"></textarea>
+            <textarea rows="4" value="{{ task }}" onChange="{{ onTask }}" placeholder="E.g.: collect leads from Telegram and push them to a Google Sheet" style="font:400 15px/1.55 Inter,system-ui,sans-serif;color:var(--text);border:1px solid var(--border-input);border-radius:12px;padding:12px 14px;resize:vertical;background:var(--input-bg);outline:none" style-focus-visible="border-color:var(--accent-cta);box-shadow:0 0 0 3px rgba(34,158,217,0.18)"></textarea>
           </label>
 
           <div style="display:flex;flex-direction:column;gap:8px">
             <span style="font:600 14.5px Inter,system-ui,sans-serif">Task type</span>
             <div role="radiogroup" aria-label="Task type" style="display:flex;flex-wrap:wrap;gap:8px">
               <sc-for list="{{ typeChips }}" as="chip" hint-placeholder-count="5">
-                <button type="button" role="radio" aria-checked="{{ chip.checked }}" onClick="{{ chip.pick }}" style="font:500 14px Inter,system-ui,sans-serif;padding:9px 14px;border-radius:99px;cursor:pointer;border:1px solid {{ chip.border }};background:{{ chip.bg }};color:{{ chip.color }}" style-hover="border-color:var(--accent-cta)" style-focus="outline:2px solid var(--accent);outline-offset:2px">{{ chip.label }}</button>
+                <button type="button" role="radio" aria-checked="{{ chip.checked }}" onClick="{{ chip.pick }}" style="font:500 14px Inter,system-ui,sans-serif;padding:9px 14px;border-radius:99px;cursor:pointer;border:1px solid {{ chip.border }};background:{{ chip.bg }};color:{{ chip.color }}" style-hover="border-color:var(--accent-cta)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">{{ chip.label }}</button>
               </sc-for>
             </div>
           </div>
 
           <label style="display:flex;flex-direction:column;gap:8px">
             <span style="font:600 14.5px Inter,system-ui,sans-serif">Budget range <span style="font-weight:400;color:var(--text-muted)">· optional</span></span>
-            <select value="{{ budget }}" onChange="{{ onBudget }}" style="font:400 15px Inter,system-ui,sans-serif;color:var(--text);border:1px solid var(--border-input);border-radius:12px;padding:12px 14px;background:var(--input-bg);outline:none;appearance:auto" style-focus="border-color:var(--accent-cta);box-shadow:0 0 0 3px rgba(34,158,217,0.18)">
+            <select value="{{ budget }}" onChange="{{ onBudget }}" style="font:400 15px Inter,system-ui,sans-serif;color:var(--text);border:1px solid var(--border-input);border-radius:12px;padding:12px 14px;background:var(--input-bg);outline:none;appearance:auto" style-focus-visible="border-color:var(--accent-cta);box-shadow:0 0 0 3px rgba(34,158,217,0.18)">
               <option value="">Not sure yet</option>
               <option value="under $500">Under $500</option>
               <option value="$500–1,500">$500–1,500</option>
@@ -115,7 +115,7 @@
 
           <label style="display:flex;flex-direction:column;gap:8px">
             <span style="font:600 14.5px Inter,system-ui,sans-serif">How to reach you</span>
-            <input type="text" value="{{ contact }}" onChange="{{ onContact }}" placeholder="@telegram handle or email" style="font:400 15px Inter,system-ui,sans-serif;color:var(--text);border:1px solid var(--border-input);border-radius:12px;padding:12px 14px;background:var(--input-bg);outline:none" style-focus="border-color:var(--accent-cta);box-shadow:0 0 0 3px rgba(34,158,217,0.18)">
+            <input type="text" value="{{ contact }}" onChange="{{ onContact }}" placeholder="@telegram handle or email" style="font:400 15px Inter,system-ui,sans-serif;color:var(--text);border:1px solid var(--border-input);border-radius:12px;padding:12px 14px;background:var(--input-bg);outline:none" style-focus-visible="border-color:var(--accent-cta);box-shadow:0 0 0 3px rgba(34,158,217,0.18)">
           </label>
           <input type="text" name="website" value="{{ website }}" onChange="{{ onWebsite }}" autocomplete="off" tabindex="-1" aria-hidden="true" style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;opacity:0.01;pointer-events:none">
 
@@ -124,11 +124,11 @@
           </sc-if>
 
           <div style="display:flex;flex-direction:column;gap:10px">
-            <button type="button" onClick="{{ onSubmit }}" aria-busy="{{ sending }}" style="display:inline-flex;align-items:center;justify-content:center;gap:9px;background:var(--accent-cta);color:var(--surface);border:none;cursor:pointer;font:600 16px/1 Inter,system-ui,sans-serif;padding:14px 24px;border-radius:13px;width:fit-content" style-hover="background:var(--accent)" style-focus="outline:2px solid var(--text);outline-offset:2px">{{ submitLabel }}</button>
+            <button type="button" onClick="{{ onSubmit }}" aria-busy="{{ sending }}" style="display:inline-flex;align-items:center;justify-content:center;gap:9px;background:var(--accent-cta);color:var(--surface);border:none;cursor:pointer;font:600 16px/1 Inter,system-ui,sans-serif;padding:14px 24px;border-radius:13px;width:fit-content" style-hover="background:var(--accent)" style-focus-visible="outline:2px solid var(--text);outline-offset:2px">{{ submitLabel }}</button>
             <sc-if value="{{ demoMode }}" hint-placeholder-val="{{ true }}">
               <span style="font:400 12.5px/1.5 JetBrains Mono,monospace;color:var(--text-muted)">// prototype: real submission will be wired by Claude Code</span>
             </sc-if>
-            <span style="font:400 12.5px/1.5 Inter,system-ui,sans-serif;color:var(--text-muted)">By submitting, you agree to the <a href="privacy.html" style="color:var(--accent);text-decoration:none;border-radius:4px" style-hover="text-decoration:underline" style-focus="outline:2px solid var(--accent);outline-offset:1px">privacy policy</a>.</span>
+            <span style="font:400 12.5px/1.5 Inter,system-ui,sans-serif;color:var(--text-muted)">By submitting, you agree to the <a href="privacy.html" style="color:var(--accent);text-decoration:none;border-radius:4px" style-hover="text-decoration:underline" style-focus-visible="outline:2px solid var(--accent);outline-offset:1px">privacy policy</a>.</span>
           </div>
         </div>
       </sc-if>
@@ -139,7 +139,7 @@
           <sc-if value="{{ demoMode }}" hint-placeholder-val="{{ false }}">
             <div style="font:400 13px/1.5 JetBrains Mono,monospace;color:var(--text-muted)">// this is a demo: server submission will be wired by Claude Code</div>
           </sc-if>
-          <button type="button" onClick="{{ onReset }}" style="font:500 14px Inter,system-ui,sans-serif;color:var(--accent);background:var(--accent-tint);border:none;cursor:pointer;padding:10px 16px;border-radius:10px;width:fit-content" style-hover="background:var(--accent-tint-2)" style-focus="outline:2px solid var(--accent);outline-offset:2px">Fill in again</button>
+          <button type="button" onClick="{{ onReset }}" style="font:500 14px Inter,system-ui,sans-serif;color:var(--accent);background:var(--accent-tint);border:none;cursor:pointer;padding:10px 16px;border-radius:10px;width:fit-content" style-hover="background:var(--accent-tint-2)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">Fill in again</button>
         </div>
       </sc-if>
     </div>
@@ -148,14 +148,14 @@
     <div style="display:flex;flex-direction:column;gap:16px">
       <div style="background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(20px,3vw,26px);display:flex;flex-direction:column;gap:14px">
         <h2 style="margin:0;font:600 18px/1.3 Sora,sans-serif">Or directly</h2>
-        <a href="{{ tgHref }}" style="display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--text);border:1px solid var(--border-soft);border-radius:13px;padding:12px 14px" style-hover="border-color:var(--border-hover);background:var(--input-bg)" style-focus="outline:2px solid var(--accent);outline-offset:2px">
+        <a href="{{ tgHref }}" style="display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--text);border:1px solid var(--border-soft);border-radius:13px;padding:12px 14px" style-hover="border-color:var(--border-hover);background:var(--input-bg)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
           <span style="width:38px;height:38px;border-radius:50%;background:var(--accent-cta);display:grid;place-items:center;flex:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M3 11L21 3.5L17 20.5L10.5 15L8 19L7.5 13.5L3 11Z" fill="#FFFFFF"></path></svg></span>
           <span style="display:flex;flex-direction:column;gap:2px">
             <span style="font:600 15px Inter,system-ui,sans-serif">Telegram</span>
             <span style="font:500 13.5px JetBrains Mono,monospace;color:var(--accent)">{{ telegram }}</span>
           </span>
         </a>
-        <a href="{{ mailtoHref }}" style="display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--text);border:1px solid var(--border-soft);border-radius:13px;padding:12px 14px" style-hover="border-color:var(--border-hover);background:var(--input-bg)" style-focus="outline:2px solid var(--accent);outline-offset:2px">
+        <a href="{{ mailtoHref }}" style="display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--text);border:1px solid var(--border-soft);border-radius:13px;padding:12px 14px" style-hover="border-color:var(--border-hover);background:var(--input-bg)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
           <span class="mail-ic" style="width:38px;height:38px;border-radius:50%;display:grid;place-items:center;flex:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2.5" stroke="#FFFFFF" stroke-width="1.8"></rect><path d="M4 7L12 13L20 7" stroke="#FFFFFF" stroke-width="1.8"></path></svg></span>
           <span style="display:flex;flex-direction:column;gap:2px">
             <span style="font:600 15px Inter,system-ui,sans-serif">Email</span>

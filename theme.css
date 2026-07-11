@@ -178,3 +178,22 @@ body { background: var(--bg); color: var(--text); }
   .hdr-logo-mark { transition: none; }
   .hdr-logo:hover .hdr-logo-mark, .hdr-logo:focus-visible .hdr-logo-mark { transform: none; }
 }
+
+/* Плавные ховеры/состояния на всех интерактивных элементах (снимает «щелчок»
+   мгновенной смены цвета). Уважает prefers-reduced-motion. */
+@media (prefers-reduced-motion: no-preference) {
+  a, button, summary, .tt, input, select, textarea {
+    transition: background-color .16s ease, border-color .16s ease, color .16s ease, box-shadow .16s ease, transform .16s ease, opacity .16s ease;
+  }
+}
+
+/* Универсальный сброс движения для тех, кто просит меньше анимаций —
+   ловит всё, что не покрыто точечно (в т.ч. спиннер оплаты, «печатающиеся» точки). */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

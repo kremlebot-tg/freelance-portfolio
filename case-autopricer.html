@@ -36,7 +36,7 @@
 
 <main style="font-family:Inter,system-ui,sans-serif;max-width:1140px;margin:0 auto;padding:clamp(32px,4vw,52px) 20px clamp(56px,7vw,88px)">
 
-  <a href="projects.html" style="display:inline-flex;align-items:center;gap:6px;font:500 14.5px Inter,system-ui,sans-serif;color:var(--accent);text-decoration:none;border-radius:8px;padding:4px 6px;margin:0 0 18px -6px" style-hover="background:var(--accent-tint)" style-focus="outline:2px solid var(--accent);outline-offset:2px">← Все проекты</a>
+  <a href="projects.html" style="display:inline-flex;align-items:center;gap:6px;font:500 14.5px Inter,system-ui,sans-serif;color:var(--accent);text-decoration:none;border-radius:8px;padding:4px 6px;margin:0 0 18px -6px" style-hover="background:var(--accent-tint)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">← Все проекты</a>
 
   <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:28px">
     <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
@@ -62,28 +62,28 @@
 
         <label style="display:flex;flex-direction:column;gap:8px">
           <span style="display:flex;justify-content:space-between;font:500 13.5px Inter,system-ui,sans-serif;color:var(--text-strong)">Изменение себестоимости<span style="font:500 13px JetBrains Mono,monospace;color:var(--accent)">{{ costDeltaLabel }}</span></span>
-          <input type="range" min="-20" max="30" step="1" value="{{ costDelta }}" onChange="{{ onCostDelta }}" style="width:100%;accent-color:var(--accent-cta)" style-focus="outline:2px solid var(--accent);outline-offset:3px">
+          <input type="range" min="-20" max="30" step="1" value="{{ costDelta }}" onChange="{{ onCostDelta }}" style="width:100%;accent-color:var(--accent-cta)" style-focus-visible="outline:2px solid var(--accent);outline-offset:3px">
         </label>
 
         <label style="display:flex;flex-direction:column;gap:8px">
           <span style="display:flex;justify-content:space-between;font:500 13.5px Inter,system-ui,sans-serif;color:var(--text-strong)">Фулфилмент и логистика<span style="font:500 13px JetBrains Mono,monospace;color:var(--accent)">+{{ fulfil }} ₽/шт</span></span>
-          <input type="range" min="0" max="300" step="5" value="{{ fulfil }}" onChange="{{ onFulfil }}" style="width:100%;accent-color:var(--accent-cta)" style-focus="outline:2px solid var(--accent);outline-offset:3px">
+          <input type="range" min="0" max="300" step="5" value="{{ fulfil }}" onChange="{{ onFulfil }}" style="width:100%;accent-color:var(--accent-cta)" style-focus-visible="outline:2px solid var(--accent);outline-offset:3px">
         </label>
 
         <label style="display:flex;flex-direction:column;gap:8px">
           <span style="display:flex;justify-content:space-between;font:500 13.5px Inter,system-ui,sans-serif;color:var(--text-strong)">Желаемая маржа<span style="font:500 13px JetBrains Mono,monospace;color:var(--accent)">{{ margin }} % от цены</span></span>
-          <input type="range" min="5" max="45" step="1" value="{{ margin }}" onChange="{{ onMargin }}" style="width:100%;accent-color:var(--accent-cta)" style-focus="outline:2px solid var(--accent);outline-offset:3px">
+          <input type="range" min="5" max="45" step="1" value="{{ margin }}" onChange="{{ onMargin }}" style="width:100%;accent-color:var(--accent-cta)" style-focus-visible="outline:2px solid var(--accent);outline-offset:3px">
         </label>
 
         <div style="display:flex;flex-direction:column;gap:14px;border-top:1px dashed var(--border-input);padding-top:16px">
           <span style="font:500 13px Inter,system-ui,sans-serif;color:var(--text-meta)">Коридор цен — защита от крайностей</span>
           <label style="display:flex;flex-direction:column;gap:8px">
             <span style="display:flex;justify-content:space-between;font:500 13.5px Inter,system-ui,sans-serif;color:var(--text-strong)">Не ниже, наценка к себестоимости<span style="font:500 13px JetBrains Mono,monospace;color:var(--accent)">+{{ floorPct }} %</span></span>
-            <input type="range" min="10" max="100" step="5" value="{{ floorPct }}" onChange="{{ onFloor }}" style="width:100%;accent-color:var(--accent-cta)" style-focus="outline:2px solid var(--accent);outline-offset:3px">
+            <input type="range" min="10" max="100" step="5" value="{{ floorPct }}" onChange="{{ onFloor }}" style="width:100%;accent-color:var(--accent-cta)" style-focus-visible="outline:2px solid var(--accent);outline-offset:3px">
           </label>
           <label style="display:flex;flex-direction:column;gap:8px">
             <span style="display:flex;justify-content:space-between;font:500 13.5px Inter,system-ui,sans-serif;color:var(--text-strong)">Не выше<span style="font:500 13px JetBrains Mono,monospace;color:var(--accent)">×{{ maxMult }} себестоимости</span></span>
-            <input type="range" min="1.5" max="5" step="0.1" value="{{ maxMultRaw }}" onChange="{{ onMaxMult }}" style="width:100%;accent-color:var(--accent-cta)" style-focus="outline:2px solid var(--accent);outline-offset:3px">
+            <input type="range" min="1.5" max="5" step="0.1" value="{{ maxMultRaw }}" onChange="{{ onMaxMult }}" style="width:100%;accent-color:var(--accent-cta)" style-focus-visible="outline:2px solid var(--accent);outline-offset:3px">
           </label>
         </div>
 
@@ -180,7 +180,7 @@
   <dc-import name="CaseCTA" hint-size="100%,170px"></dc-import>
 
   <div style="display:flex;align-items:center;gap:12px;margin-top:18px;flex-wrap:wrap">
-    <a href="case-mutual.html" style="margin-left:auto;font:500 15px Inter,system-ui,sans-serif;color:var(--accent);text-decoration:none;border-radius:8px;padding:6px 8px" style-hover="background:var(--accent-tint)" style-focus="outline:2px solid var(--accent);outline-offset:2px">следующий кейс: MUTUAL →</a>
+    <a href="case-mutual.html" style="margin-left:auto;font:500 15px Inter,system-ui,sans-serif;color:var(--accent);text-decoration:none;border-radius:8px;padding:6px 8px" style-hover="background:var(--accent-tint)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">следующий кейс: MUTUAL →</a>
   </div>
 </main>
 

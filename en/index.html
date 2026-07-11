@@ -23,6 +23,47 @@
 body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
 @keyframes bubbleIn{from{opacity:0;transform:translateY(8px) scale(0.98)}to{opacity:1;transform:none}}
 @keyframes tgDot{0%,60%,100%{opacity:0.35;transform:translateY(0)}30%{opacity:1;transform:translateY(-2px)}}
+/* expandable cards (services + process) */
+.ex-sum{display:flex;flex-direction:column;gap:9px;width:100%;text-align:left;background:none;border:none;padding:0;margin:0;font:inherit;color:inherit;cursor:pointer}
+.ex-sum:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:8px}
+.ex-more{display:inline-flex;align-items:center;gap:5px;font:500 12.5px Inter,system-ui,sans-serif;color:var(--accent);margin-top:1px}
+.ex-chev{display:inline-block;font-size:0.82em;transition:transform .3s ease}
+.ex[data-state="open"] .ex-chev{transform:rotate(180deg)}
+.ex[data-state="open"] .ex-more{color:var(--text-muted)}
+.ex-body{display:none}
+.ex[data-state="open"] .ex-body{display:block;animation:exIn .3s ease both}
+.ex-inner{padding-top:12px}
+.ex-detail{margin:0;font:400 14px/1.6 Inter,system-ui,sans-serif;color:var(--text-body);text-wrap:pretty}
+@keyframes exIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.wk-scene{height:64px;margin-bottom:11px;border-radius:12px;background:var(--surface-2);border:1px solid var(--border-soft);display:flex;align-items:center;justify-content:center;padding:0 16px;overflow:hidden}
+.wk-chat{width:100%;max-width:210px;display:flex;flex-direction:column;gap:6px}
+.wk-bub{border-radius:8px;opacity:0;animation:wkUp .42s ease both}
+.wk-bub.out{align-self:flex-end;width:58%;height:14px;background:var(--accent-tint-2)}
+.wk-bub.in{align-self:flex-start;width:64%;height:16px;background:var(--surface);border:1px solid var(--border);display:flex;align-items:center;gap:3px;padding:0 8px}
+.wk-bub.in i{width:4px;height:4px;border-radius:50%;background:var(--text-muted);animation:wkDot 1.1s infinite}
+.wk-bub.in i:nth-child(2){animation-delay:.18s}.wk-bub.in i:nth-child(3){animation-delay:.36s}
+.wk-offer{width:100%;max-width:200px;display:flex;flex-direction:column;gap:6px}
+.wk-offer-row{display:flex;align-items:center;gap:10px}
+.wk-line{height:8px;border-radius:4px;background:var(--border-hover);opacity:0;animation:wkUp .42s ease both}
+.wk-price{height:12px;width:42%;border-radius:4px;background:var(--accent);opacity:0;animation:wkUp .42s ease both}
+.wk-check{color:var(--status-green-fg);font:700 19px Inter,sans-serif;line-height:1;opacity:0;animation:wkPop .42s ease both}
+.wk-code{width:100%;max-width:200px;display:flex;flex-direction:column;gap:7px}
+.wk-cl{height:7px;border-radius:3px;background:var(--accent);transform:scaleX(0);transform-origin:left;animation:wkGrow .5s ease both;position:relative}
+.wk-cl.alt{background:var(--text-muted)}
+.wk-cur{position:absolute;right:-7px;top:-3px;width:2px;height:13px;background:var(--text);animation:wkBlink 1s step-end infinite}
+.wk-launch{display:flex;align-items:center;gap:11px}
+.wk-dot{width:12px;height:12px;border-radius:50%;background:var(--online);opacity:0;animation:wkPop .42s ease both,wkPulse 1.9s ease-out .5s infinite}
+.wk-live{font:700 12px JetBrains Mono,monospace;letter-spacing:.1em;color:var(--status-green-fg);background:var(--status-green-bg);padding:4px 10px;border-radius:99px;opacity:0;animation:wkPop .46s ease .12s both}
+.wk-guard{display:flex;align-items:center;gap:11px}
+.wk-shield{display:grid;place-items:center;width:38px;height:42px;border-radius:9px 9px 15px 15px;background:var(--accent-tint);color:var(--accent);font:700 15px Sora,sans-serif;border:1.5px solid var(--accent-cta);opacity:0;animation:wkPop .46s ease both}
+.wk-check2{color:var(--status-green-fg);font:700 20px Inter,sans-serif;opacity:0;animation:wkPop .42s ease .12s both}
+@keyframes wkUp{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+@keyframes wkGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes wkBlink{0%,100%{opacity:1}50%{opacity:0}}
+@keyframes wkPop{0%{opacity:0;transform:scale(.6)}60%{transform:scale(1.08)}100%{opacity:1;transform:scale(1)}}
+@keyframes wkPulse{0%,100%{box-shadow:0 0 0 0 rgba(49,181,69,.45)}70%{box-shadow:0 0 0 8px rgba(49,181,69,0)}}
+@keyframes wkDot{0%,60%,100%{opacity:.3}30%{opacity:1}}
+@media (prefers-reduced-motion:reduce){.ex-body,.wk-scene *{animation:none!important}.ex-chev{transition:none}.wk-scene *{opacity:1!important;transform:none!important}}
 </style>
 </helmet>
 
@@ -84,6 +125,60 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
     </div>
   </section>
 
+  <!-- ============ SERVICES ============ -->
+  <section style="max-width:1140px;margin:0 auto;padding:clamp(28px,4vw,48px) 20px">
+    <div style="display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:24px">
+      <h2 style="margin:0;font:600 clamp(26px,3.2vw,36px)/1.15 Sora,sans-serif;letter-spacing:-0.01em">Services</h2>
+      <a href="services.html" style="font:500 15px Inter,system-ui,sans-serif;color:var(--accent);text-decoration:none;border-radius:8px;padding:2px 4px" style-hover="text-decoration:underline" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">learn more →</a>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;align-items:start">
+      <div class="ex" data-state="{{ serv0 }}" style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px">
+        <button type="button" class="ex-sum" onClick="{{ onServ0 }}" aria-expanded="{{ servExp0 }}" aria-controls="serv-0">
+          <span style="font:500 13px JetBrains Mono,monospace;color:var(--text-muted)">/leads</span>
+          <span style="font:600 17.5px/1.3 Sora,sans-serif">Lead capture and sales</span>
+          <span style="font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">A lead comes in from a form or chat → the bot replies, logs it to a spreadsheet or CRM and notifies you.</span>
+          <span class="ex-more">more<span class="ex-chev">▾</span></span>
+        </button>
+        <div id="serv-0" class="ex-body"><div class="ex-inner">
+          <p class="ex-detail">A lead comes in from a website form, a chat or Telegram — the bot replies instantly, asks the right questions, logs everything to a Google Sheet or CRM, and notifies you. Nothing slips away — even at night or on a weekend.</p>
+        </div></div>
+      </div>
+      <div class="ex" data-state="{{ serv1 }}" style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px">
+        <button type="button" class="ex-sum" onClick="{{ onServ1 }}" aria-expanded="{{ servExp1 }}" aria-controls="serv-1">
+          <span style="font:500 13px JetBrains Mono,monospace;color:var(--text-muted)">/payments</span>
+          <span style="font:600 17.5px/1.3 Sora,sans-serif">Payments and subscriptions</span>
+          <span style="font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Paid access, recurring payments via YooKassa, free trials, referral programs.</span>
+          <span class="ex-more">more<span class="ex-chev">▾</span></span>
+        </button>
+        <div id="serv-1" class="ex-body"><div class="ex-inner">
+          <p class="ex-detail">Paid access and subscriptions: tariffs as buttons, payments via YooKassa, recurring charges, trial periods, promo codes and referrals. Access is granted and revoked automatically, renewal reminders included.</p>
+        </div></div>
+      </div>
+      <div class="ex" data-state="{{ serv2 }}" style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px">
+        <button type="button" class="ex-sum" onClick="{{ onServ2 }}" aria-expanded="{{ servExp2 }}" aria-controls="serv-2">
+          <span style="font:500 13px JetBrains Mono,monospace;color:var(--text-muted)">/ai</span>
+          <span style="font:600 17.5px/1.3 Sora,sans-serif">AI agents and automation</span>
+          <span style="font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">AI inside the bot: answers questions, qualifies leads, hands off to a manager.</span>
+          <span class="ex-more">more<span class="ex-chev">▾</span></span>
+        </button>
+        <div id="serv-2" class="ex-body"><div class="ex-inner">
+          <p class="ex-detail">The AI inside the bot answers from your own materials (it doesn't make things up), qualifies the lead, and hands anything complex or urgent to a human. Under the hood — an LLM checked against your knowledge base, not a chatterbox.</p>
+        </div></div>
+      </div>
+      <div class="ex" data-state="{{ serv3 }}" style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px">
+        <button type="button" class="ex-sum" onClick="{{ onServ3 }}" aria-expanded="{{ servExp3 }}" aria-controls="serv-3">
+          <span style="font:500 13px JetBrains Mono,monospace;color:var(--text-muted)">/miniapps</span>
+          <span style="font:600 17.5px/1.3 Sora,sans-serif">Telegram mini apps</span>
+          <span style="font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Real apps inside Telegram: dashboards, catalogs, tools.</span>
+          <span class="ex-more">more<span class="ex-chev">▾</span></span>
+        </button>
+        <div id="serv-3" class="ex-body"><div class="ex-inner">
+          <p class="ex-detail">A full web app right inside Telegram, no install: catalogue, cart, dashboard, booking, a personal account. Looks and works like a native app, but lives in the messenger.</p>
+        </div></div>
+      </div>
+    </div>
+  </section>
+
   <!-- ============ PROJECTS ============ -->
   <section style="max-width:1140px;margin:0 auto;padding:clamp(28px,4vw,48px) 20px">
     <div style="display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:24px">
@@ -106,6 +201,16 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
         <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--accent)">[AI · CRM]</span>
         <span style="font:600 20px/1.3 Sora,sans-serif">CRM for networking</span>
         <span style="font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Notes about people turn into a relationship graph and extracted facts — nothing gets lost.</span>
+        <span style="margin-top:auto;display:flex;align-items:center;gap:8px">
+          <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:var(--online)"></span>live demo inside</span>
+          <span aria-hidden="true" style="margin-left:auto;color:var(--accent);font-size:18px">→</span>
+        </span>
+      </a>
+
+      <a href="case-vetpulse.html" style="display:flex;flex-direction:column;gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 14px 34px -14px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
+        <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--accent)">[AI · CRM]</span>
+        <span style="font:600 20px/1.3 Sora,sans-serif">VetPulse — AI-CRM for vet clinics</span>
+        <span style="font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">An AI dispatcher answers clients and books patients; reminders and win-back of the «dormant» base. A prototype.</span>
         <span style="margin-top:auto;display:flex;align-items:center;gap:8px">
           <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:var(--online)"></span>live demo inside</span>
           <span aria-hidden="true" style="margin-left:auto;color:var(--accent);font-size:18px">→</span>
@@ -145,66 +250,71 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
     </div>
   </section>
 
-  <!-- ============ SERVICES ============ -->
-  <section style="max-width:1140px;margin:0 auto;padding:clamp(28px,4vw,48px) 20px">
-    <div style="display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:24px">
-      <h2 style="margin:0;font:600 clamp(26px,3.2vw,36px)/1.15 Sora,sans-serif;letter-spacing:-0.01em">Services</h2>
-      <a href="services.html" style="font:500 15px Inter,system-ui,sans-serif;color:var(--accent);text-decoration:none;border-radius:8px;padding:2px 4px" style-hover="text-decoration:underline" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">learn more →</a>
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px">
-      <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:9px">
-        <span style="font:500 13px JetBrains Mono,monospace;color:var(--text-muted)">/leads</span>
-        <span style="font:600 17.5px/1.3 Sora,sans-serif">Lead capture and sales</span>
-        <span style="font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">A lead comes in from a form or chat → the bot replies, logs it to a spreadsheet or CRM and notifies you.</span>
-      </div>
-      <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:9px">
-        <span style="font:500 13px JetBrains Mono,monospace;color:var(--text-muted)">/payments</span>
-        <span style="font:600 17.5px/1.3 Sora,sans-serif">Payments and subscriptions</span>
-        <span style="font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Paid access, recurring payments via YooKassa, free trials, referral programs.</span>
-      </div>
-      <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:9px">
-        <span style="font:500 13px JetBrains Mono,monospace;color:var(--text-muted)">/ai</span>
-        <span style="font:600 17.5px/1.3 Sora,sans-serif">AI agents and automation</span>
-        <span style="font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">AI inside the bot: answers questions, qualifies leads, hands off to a manager.</span>
-      </div>
-      <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:9px">
-        <span style="font:500 13px JetBrains Mono,monospace;color:var(--text-muted)">/miniapps</span>
-        <span style="font:600 17.5px/1.3 Sora,sans-serif">Telegram mini apps</span>
-        <span style="font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Real apps inside Telegram: dashboards, catalogs, tools.</span>
-      </div>
-    </div>
-  </section>
-
   <!-- ============ PROCESS ============ -->
   <section style="max-width:1140px;margin:0 auto;padding:clamp(28px,4vw,48px) 20px">
     <div style="display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:24px">
       <h2 style="margin:0;font:600 clamp(26px,3.2vw,36px)/1.15 Sora,sans-serif;letter-spacing:-0.01em">How I work</h2>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px">
-      <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:9px">
-        <span style="font:500 13px JetBrains Mono,monospace;color:var(--text-muted)">01</span>
-        <span style="font:600 16.5px/1.3 Sora,sans-serif">You describe the task</span>
-        <span style="font:400 14px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">In your own words, no spec needed. I ask clarifying questions.</span>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px;align-items:start">
+      <div class="ex" data-state="{{ proc0 }}" style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px">
+        <button type="button" class="ex-sum" onClick="{{ onProc0 }}" aria-expanded="{{ procExp0 }}" aria-controls="proc-0">
+          <span style="font:500 13px JetBrains Mono,monospace;color:var(--text-muted)">01</span>
+          <span style="font:600 16.5px/1.3 Sora,sans-serif">You describe the task</span>
+          <span style="font:400 14px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">In your own words, no spec needed. I ask clarifying questions.</span>
+          <span class="ex-more">more<span class="ex-chev">▾</span></span>
+        </button>
+        <div id="proc-0" class="ex-body"><div class="ex-inner">
+          <div class="wk-scene" aria-hidden="true"><div class="wk-chat"><span class="wk-bub out" style="animation-delay:.05s"></span><span class="wk-bub in" style="animation-delay:.4s"><i></i><i></i><i></i></span></div></div>
+          <p class="ex-detail">Describe it in your own words — voice notes, screenshots, «like this competitor». No spec needed. I ask questions to understand not just the «what» but the «why»: who the user is and where they get stuck.</p>
+        </div></div>
       </div>
-      <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:9px">
-        <span style="font:500 13px JetBrains Mono,monospace;color:var(--text-muted)">02</span>
-        <span style="font:600 16.5px/1.3 Sora,sans-serif">I send a proposal</span>
-        <span style="font:400 14px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Solution, price and timeline — locked in before work starts.</span>
+      <div class="ex" data-state="{{ proc1 }}" style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px">
+        <button type="button" class="ex-sum" onClick="{{ onProc1 }}" aria-expanded="{{ procExp1 }}" aria-controls="proc-1">
+          <span style="font:500 13px JetBrains Mono,monospace;color:var(--text-muted)">02</span>
+          <span style="font:600 16.5px/1.3 Sora,sans-serif">I send a proposal</span>
+          <span style="font:400 14px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Solution, price and timeline — locked in before work starts.</span>
+          <span class="ex-more">more<span class="ex-chev">▾</span></span>
+        </button>
+        <div id="proc-1" class="ex-body"><div class="ex-inner">
+          <div class="wk-scene" aria-hidden="true"><div class="wk-offer"><span class="wk-line" style="width:72%;animation-delay:.05s"></span><span class="wk-line" style="width:50%;animation-delay:.18s"></span><div class="wk-offer-row"><span class="wk-price" style="animation-delay:.34s"></span><span class="wk-check" style="animation-delay:.55s">✓</span></div></div></div>
+          <p class="ex-detail">Within a day or two — a short proposal: what I'll build, what it costs, when it's ready. The price is fixed and doesn't drift. If I see a simpler, cheaper way, I'll say so.</p>
+        </div></div>
       </div>
-      <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:9px">
-        <span style="font:500 13px JetBrains Mono,monospace;color:var(--text-muted)">03</span>
-        <span style="font:600 16.5px/1.3 Sora,sans-serif">Development</span>
-        <span style="font:400 14px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">With interim demos, so you can see it taking shape.</span>
+      <div class="ex" data-state="{{ proc2 }}" style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px">
+        <button type="button" class="ex-sum" onClick="{{ onProc2 }}" aria-expanded="{{ procExp2 }}" aria-controls="proc-2">
+          <span style="font:500 13px JetBrains Mono,monospace;color:var(--text-muted)">03</span>
+          <span style="font:600 16.5px/1.3 Sora,sans-serif">Development</span>
+          <span style="font:400 14px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">With interim demos, so you can see it taking shape.</span>
+          <span class="ex-more">more<span class="ex-chev">▾</span></span>
+        </button>
+        <div id="proc-2" class="ex-body"><div class="ex-inner">
+          <div class="wk-scene" aria-hidden="true"><div class="wk-code"><span class="wk-cl" style="width:60%;animation-delay:.05s"></span><span class="wk-cl alt" style="width:82%;animation-delay:.25s"></span><span class="wk-cl" style="width:46%;animation-delay:.45s"><i class="wk-cur"></i></span></div></div>
+          <p class="ex-detail">I don't vanish for weeks: I show working pieces as they're ready, you steer while it's cheap, not at the very end. We keep everything in Telegram, no calls for the sake of calls.</p>
+        </div></div>
       </div>
-      <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:9px">
-        <span style="font:500 13px JetBrains Mono,monospace;color:var(--text-muted)">04</span>
-        <span style="font:600 16.5px/1.3 Sora,sans-serif">Launch and handover</span>
-        <span style="font:400 14px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">The bot runs on your side, and every credential is yours.</span>
+      <div class="ex" data-state="{{ proc3 }}" style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px">
+        <button type="button" class="ex-sum" onClick="{{ onProc3 }}" aria-expanded="{{ procExp3 }}" aria-controls="proc-3">
+          <span style="font:500 13px JetBrains Mono,monospace;color:var(--text-muted)">04</span>
+          <span style="font:600 16.5px/1.3 Sora,sans-serif">Launch and handover</span>
+          <span style="font:400 14px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">The bot runs on your side, and every credential is yours.</span>
+          <span class="ex-more">more<span class="ex-chev">▾</span></span>
+        </button>
+        <div id="proc-3" class="ex-body"><div class="ex-inner">
+          <div class="wk-scene" aria-hidden="true"><div class="wk-launch"><span class="wk-dot" style="animation-delay:.3s"></span><span class="wk-live" style="animation-delay:.5s">LIVE</span></div></div>
+          <p class="ex-detail">I put the bot on a server, wire up payments and domains, and test it on a real scenario. Access — payment provider, hosting, the bot — is registered in your name: the project is yours from day one.</p>
+        </div></div>
       </div>
-      <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:9px">
-        <span style="font:500 13px JetBrains Mono,monospace;color:var(--text-muted)">05</span>
-        <span style="font:600 16.5px/1.3 Sora,sans-serif">30 days of fixes</span>
-        <span style="font:400 14px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Free of charge after project delivery.</span>
+      <div class="ex" data-state="{{ proc4 }}" style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px">
+        <button type="button" class="ex-sum" onClick="{{ onProc4 }}" aria-expanded="{{ procExp4 }}" aria-controls="proc-4">
+          <span style="font:500 13px JetBrains Mono,monospace;color:var(--text-muted)">05</span>
+          <span style="font:600 16.5px/1.3 Sora,sans-serif">30 days of fixes</span>
+          <span style="font:400 14px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Free of charge after project delivery.</span>
+          <span class="ex-more">more<span class="ex-chev">▾</span></span>
+        </button>
+        <div id="proc-4" class="ex-body"><div class="ex-inner">
+          <div class="wk-scene" aria-hidden="true"><div class="wk-guard"><span class="wk-shield">30</span><span class="wk-check2" style="animation-delay:.35s">✓</span></div></div>
+          <p class="ex-detail">For a month after delivery I fix anything that comes up, free. After that — support by agreement or a full handover: the code and access are yours.</p>
+        </div></div>
       </div>
     </div>
     <div style="display:flex;align-items:center;gap:8px;margin-top:16px;font:500 13.5px JetBrains Mono,monospace;color:var(--text-meta)">
@@ -273,7 +383,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;brandName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Re:dnd&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Brand&quot;},&quot;animateHero&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Hero&quot;}}">
 class Component extends DCLogic {
-  state = { step: 0, typing: false };
+  state = { step: 0, typing: false, proc: ['closed','closed','closed','closed','closed'], serv: ['closed','closed','closed','closed'] };
   componentDidMount() {
     this._timers = [];
     const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -296,7 +406,21 @@ class Component extends DCLogic {
     const reduced = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const { step, typing } = this.state;
     const testimonials = (typeof window !== 'undefined' && window.SITE_CONFIG && window.SITE_CONFIG.testimonials) || [];
+    const procVals = {};
+    this.state.proc.forEach((s, i) => {
+      procVals['proc' + i] = s;
+      procVals['procExp' + i] = s === 'open' ? 'true' : 'false';
+      procVals['onProc' + i] = () => { const arr = this.state.proc.slice(); arr[i] = arr[i] === 'open' ? 'closed' : 'open'; this.setState({ proc: arr }); };
+    });
+    const servVals = {};
+    this.state.serv.forEach((s, i) => {
+      servVals['serv' + i] = s;
+      servVals['servExp' + i] = s === 'open' ? 'true' : 'false';
+      servVals['onServ' + i] = () => { const arr = this.state.serv.slice(); arr[i] = arr[i] === 'open' ? 'closed' : 'open'; this.setState({ serv: arr }); };
+    });
     return {
+      ...procVals,
+      ...servVals,
       testimonials,
       hasTestimonials: testimonials.length > 0,
       brandName: this.props.brandName ?? 'Re:dnd',

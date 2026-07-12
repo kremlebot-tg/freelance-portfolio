@@ -9,6 +9,16 @@ window.SITE_CONFIG = {
   formEndpoint: 'https://d5d7olk60q94hjb111lj.kocrdvxt.apigw.yandexcloud.net/submit',
   // Если endpoint пустой — форма показывает демо-режим. Сейчас задан.
 
+  // --- Веб-аналитика (Яндекс Метрика, данные в РФ) ---
+  // Вставьте НОМЕР счётчика (только цифры, напр. 98765432). Создать счётчик:
+  // https://metrika.yandex.ru → «Добавить счётчик». Пока пусто — Метрика НЕ
+  // подключается (ни cookie, ни запросов). Политику конфиденциальности уже
+  // обновил под использование Метрики.
+  metrikaId: '',
+  // Вебвизор — запись сессий (движения мыши, ввод). Выключен: формы с
+  // персональными данными не записываются. Включать осознанно.
+  metrikaWebvisor: false,
+
   // --- Прямые контакты (страницы «Связаться» / Contact) ---
   telegram: '@re_dnd',
   email: 'politushkin@gmail.com',
@@ -44,6 +54,30 @@ window.SITE_CONFIG = {
   aboutLines: [],    // ← 1–2 личные строки на русской странице
   aboutLinesEn: [],  // ← то же для английской (иначе скрыто)
 };
+
+// ============================================================
+// Яндекс Метрика — подключается ТОЛЬКО если задан metrikaId.
+// Обезличенная аналитика, данные обрабатываются в РФ. Чтобы отключить —
+// очистите metrikaId в SITE_CONFIG выше.
+// ============================================================
+(function () {
+  var cfg = window.SITE_CONFIG || {};
+  var id = String(cfg.metrikaId || '').trim();
+  if (!id) return;
+  (function (m, e, t, r, i, k, a) {
+    m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments); };
+    m[i].l = 1 * new Date();
+    for (var j = 0; j < e.scripts.length; j++) { if (e.scripts[j].src === r) { return; } }
+    k = e.createElement(t); a = e.getElementsByTagName(t)[0];
+    k.async = 1; k.src = r; a.parentNode.insertBefore(k, a);
+  })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js', 'ym');
+  window.ym(id, 'init', {
+    clickmap: true,
+    trackLinks: true,
+    accurateTrackBounce: true,
+    webvisor: !!cfg.metrikaWebvisor
+  });
+})();
 
 // ============================================================
 // Тултипы на тег-чипы стека. Находит span'ы моноширинного стека

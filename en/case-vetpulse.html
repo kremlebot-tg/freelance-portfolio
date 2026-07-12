@@ -33,7 +33,22 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
 .acc-inner{display:flex;flex-direction:column;gap:10px;padding-top:10px}
 @keyframes accIn{from{opacity:0;transform:translateY(-7px)}to{opacity:1;transform:none}}
 .acc[data-state="open"] .acc-body{animation:accIn .3s ease both}
-@media (prefers-reduced-motion:reduce){.acc-body{animation:none!important}.acc-chev{transition:none}}
+.flow{display:flex;flex-direction:column;gap:0;max-width:720px}
+.flow-stage{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:13px 17px;display:flex;align-items:center;gap:13px}
+.flow-num{width:30px;height:30px;flex:none;border-radius:9px;background:var(--accent-tint);color:var(--accent);display:grid;place-items:center;font:600 13px JetBrains Mono,monospace}
+.flow-t{font:600 15px/1.3 Sora,sans-serif;color:var(--text)}
+.flow-d{font:400 13px/1.4 Inter,system-ui,sans-serif;color:var(--text-muted);margin-top:2px}
+.flow-link{width:2px;height:24px;margin:3px 0 3px 33px;background:var(--border-hover);position:relative;overflow:hidden;border-radius:2px}
+.flow-link::after{content:"";position:absolute;left:-1px;width:4px;height:11px;border-radius:2px;background:var(--accent);top:-12px;animation:flowDown 2.2s cubic-bezier(.6,0,.4,1) infinite}
+.flow-branch{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:4px}
+.flow-out{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:11px 13px;display:flex;flex-direction:column;gap:4px}
+.flow-out .oi{font:600 12px JetBrains Mono,monospace}
+.flow-out .ot{font:400 12.5px/1.35 Inter,system-ui,sans-serif;color:var(--text-body)}
+.flow-auto{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:14px;max-width:720px}
+.flow-acard{background:var(--surface-2);border:1px solid var(--border-soft);border-radius:14px;padding:14px 16px}
+@keyframes flowDown{0%{top:-12px;opacity:0}18%{opacity:1}82%{opacity:1}100%{top:24px;opacity:0}}
+@media(max-width:560px){.flow-branch{grid-template-columns:1fr}.flow-auto{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.acc-body{animation:none!important}.acc-chev{transition:none}.flow-link::after{animation:none;opacity:0}}
 </style>
 </helmet>
 
@@ -121,6 +136,31 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
     <p style="margin:0;font:400 12.5px/1.5 JetBrains Mono,monospace;color:var(--text-muted);text-align:center">// in the prototype the replies are scripted on three examples; in production this is done by an LLM + RAG over the clinic's services and prices</p>
   </section>
 
+  <!-- ============ INFOGRAPHIC: process ============ -->
+  <section aria-label="How it works" style="margin-top:28px">
+    <div style="display:flex;flex-direction:column;gap:5px;margin-bottom:18px">
+      <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--accent)">how it works</span>
+      <h2 style="margin:0;font:600 clamp(20px,2.6vw,26px)/1.2 Sora,sans-serif;letter-spacing:-0.01em">From the owner's message to a booking in the clinic</h2>
+    </div>
+    <div class="flow">
+      <div class="flow-stage"><span class="flow-num">01</span><div><div class="flow-t">Enquiry</div><div class="flow-d">Website widget or Telegram, around the clock</div></div></div>
+      <div class="flow-link"></div>
+      <div class="flow-stage"><span class="flow-num">02</span><div><div class="flow-t">Understands the context</div><div class="flow-d">RAG over the clinic's services, prices and schedule</div></div></div>
+      <div class="flow-link"></div>
+      <div class="flow-stage"><span class="flow-num">03</span><div><div class="flow-t">Decides what to do</div><div class="flow-d">An LLM picks the action from the meaning of the request</div></div></div>
+      <div class="flow-link"></div>
+      <div class="flow-branch">
+        <div class="flow-out"><span class="oi" style="color:var(--accent)">→ answers</span><span class="ot">Price, service, hours — from the clinic's own data</span></div>
+        <div class="flow-out"><span class="oi" style="color:var(--status-green-fg)">→ books</span><span class="ot">Creates an appointment marked «pending review»</span></div>
+        <div class="flow-out"><span class="oi" style="color:var(--status-amber-fg)">→ hands off</span><span class="ot">Urgent or unsure — to a vet or the front desk</span></div>
+      </div>
+    </div>
+    <div class="flow-auto">
+      <div class="flow-acard"><div class="flow-t" style="font-size:14px">Reminders</div><div class="flow-d">24h and 2h before — fewer no-shows and idle vet time</div></div>
+      <div class="flow-acard"><div class="flow-t" style="font-size:14px">Base reactivation</div><div class="flow-d">Finds overdue vaccinations and wins back «dormant» patients</div></div>
+    </div>
+  </section>
+
   <!-- ============ CASE STORY ============ -->
   <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,470px),1fr));gap:16px;margin-top:24px">
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
@@ -129,7 +169,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
     </div>
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
       <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">02 · solution</span>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">I built a multi-tenant AI-SaaS (clinic_id everywhere). The AI dispatcher: incoming message → RAG over the clinic's services and prices → LLM → an answer, a patient booking, or a handoff to a human if the case is urgent or the model isn't sure. Plus a reminder engine (24h and 2h before) and a reactivation engine: import the base → find overdue vaccinations → a campaign batched under rate limits. On top — self-serve clinic sign-up, an onboarding wizard, connecting your own practice system (Vetmanager) with encrypted keys, and a dashboard with «₽ recovered». Stack: Python, FastAPI, SQLAlchemy, a scheduler, an LLM behind a single provider interface.</p>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">I built a multi-tenant AI-SaaS (clinic_id everywhere): the AI dispatcher handles enquiries and books patients, and two background engines send appointment reminders and win back the «dormant» base on their own — as in the diagram above. On top — self-serve clinic sign-up, an onboarding wizard, connecting your own practice system (Vetmanager) with encrypted keys, and a dashboard with «₽ recovered». Stack: Python, FastAPI, SQLAlchemy, a scheduler, an LLM behind a single provider interface.</p>
     </div>
     <div style="grid-column:1/-1;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
       <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">03 · what was hard</span>

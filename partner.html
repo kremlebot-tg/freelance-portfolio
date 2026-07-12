@@ -160,6 +160,13 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
   .sc *{opacity:1!important;transform:none!important}
   .split-you{animation:none;width:20%}
 }
+/* Always-visible infographic elements render in their final state: their CSS
+   entrance animations get restarted by the calculator's mount re-renders and
+   freeze at the start frame, so keeping them static guarantees visibility. */
+.sc-face,.sc-plus,.sc-live,.sc-coin,.sc-check{opacity:1;animation:none}
+.sc-bar{transform:none;animation:none}
+.split-you{animation:none}
+.trig-card{opacity:1;animation:none}
 </style>
 </helmet>
 

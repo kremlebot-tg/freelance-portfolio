@@ -202,3 +202,7 @@ body { background: var(--bg); color: var(--text); }
     scroll-behavior: auto !important;
   }
 }
+
+/* FAQ-аккордеоны в грид-раскладке не растягивают соседей по ряду при
+   раскрытии одного вопроса — каждая карточка держит свою высоту. */
+.acc { align-self: start; }

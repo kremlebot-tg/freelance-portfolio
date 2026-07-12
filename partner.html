@@ -60,6 +60,23 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
 @keyframes pPop{0%{opacity:0;transform:scale(.6)}60%{transform:scale(1.08)}100%{opacity:1;transform:scale(1)}}
 @keyframes pGrow{to{transform:scaleX(1)}}
 
+/* guide: how to spot a client */
+.trig{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:22px}
+@media(max-width:820px){.trig{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.trig{grid-template-columns:1fr}}
+.trig-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px 18px;opacity:0;animation:pRise .5s ease both}
+.trig-card:nth-child(2){animation-delay:.06s}.trig-card:nth-child(3){animation-delay:.12s}.trig-card:nth-child(4){animation-delay:.18s}.trig-card:nth-child(5){animation-delay:.24s}.trig-card:nth-child(6){animation-delay:.3s}
+.trig-say{font:500 14.5px/1.45 Inter,system-ui,sans-serif;color:var(--text);position:relative;padding-left:13px}
+.trig-say::before{content:'';position:absolute;left:0;top:3px;bottom:3px;width:3px;border-radius:2px;background:var(--accent-cta)}
+.trig-sol{margin-top:11px;font:600 12px 'JetBrains Mono',monospace;color:var(--accent);display:inline-flex;align-items:center;gap:6px;line-height:1.35}
+.trig-sol::before{content:'→';font-weight:700;flex:none}
+.tmpl{margin-top:16px;background:var(--accent-tint);border:1px solid var(--border-hover);border-radius:16px;padding:clamp(16px,2.5vw,22px)}
+.tmpl-label{font:600 12px 'JetBrains Mono',monospace;color:var(--text-muted);letter-spacing:.03em;margin-bottom:11px}
+.tmpl-msg{background:var(--surface);border:1px solid var(--border-soft);border-radius:14px 14px 14px 5px;padding:14px 16px;font:400 15px/1.55 Inter,system-ui,sans-serif;color:var(--text);max-width:520px}
+.tmpl-hint{margin-top:12px;font:400 13px/1.5 Inter,system-ui,sans-serif;color:var(--text-muted);text-wrap:pretty}
+@keyframes pRise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.trig-card{animation:none!important;opacity:1!important}}
+
 /* calculator */
 .calc{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(18px,3vw,26px);display:grid;grid-template-columns:1fr;gap:20px}
 @media(min-width:760px){.calc{grid-template-columns:1.05fr .95fr;align-items:center}}
@@ -201,6 +218,25 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
         <div class="step-t">Получаете долю</div>
         <div class="step-d">Клиент оплатил — вы получаете свою часть. Процент и порядок выплаты фиксируем письменно ещё до старта работ.</div>
       </div>
+    </div>
+  </section>
+
+  <!-- ============ GUIDE: SPOT A CLIENT ============ -->
+  <section class="p-wrap p-sec">
+    <h2 class="p-h2">Как заметить клиента</h2>
+    <p class="p-sub">Ничего продавать не нужно. Достаточно услышать одну из таких фраз — и свести нас.</p>
+    <div class="trig">
+      <div class="trig-card"><div class="trig-say">«Не успеваю отвечать на заявки, теряю людей»</div><div class="trig-sol">бот приёма заявок 24/7</div></div>
+      <div class="trig-card"><div class="trig-say">«Клиенты пишут одно и то же по сто раз»</div><div class="trig-sol">ИИ-ответы по вашей базе</div></div>
+      <div class="trig-card"><div class="trig-say">«Принимаю оплату вручную, через переводы»</div><div class="trig-sol">оплаты и подписки</div></div>
+      <div class="trig-card"><div class="trig-say">«Веду клиентов в тетрадке и заметках»</div><div class="trig-sol">мини-апп или CRM</div></div>
+      <div class="trig-card"><div class="trig-say">«Забываю напомнить о продлении и записи»</div><div class="trig-sol">автоматические напоминания</div></div>
+      <div class="trig-card"><div class="trig-say">«Хочу бота или приложение, но не знаю, с чего начать»</div><div class="trig-sol">просто свести со мной</div></div>
+    </div>
+    <div class="tmpl">
+      <div class="tmpl-label">Готовый текст, чтобы нас свести</div>
+      <div class="tmpl-msg">«Привет! Ты говорил, что [задача]. Знаю разработчика — делает такие боты и мини-аппы под ключ, сам всё ведёт. Скинуть контакт?»</div>
+      <div class="tmpl-hint">Дальше всё на мне: расспрошу, оценю, назову цену и срок, сделаю. Вам остаётся получить свою долю.</div>
     </div>
   </section>
 

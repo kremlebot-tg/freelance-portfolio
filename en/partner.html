@@ -60,6 +60,23 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
 @keyframes pPop{0%{opacity:0;transform:scale(.6)}60%{transform:scale(1.08)}100%{opacity:1;transform:scale(1)}}
 @keyframes pGrow{to{transform:scaleX(1)}}
 
+/* guide: how to spot a client */
+.trig{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:22px}
+@media(max-width:820px){.trig{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.trig{grid-template-columns:1fr}}
+.trig-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px 18px;opacity:0;animation:pRise .5s ease both}
+.trig-card:nth-child(2){animation-delay:.06s}.trig-card:nth-child(3){animation-delay:.12s}.trig-card:nth-child(4){animation-delay:.18s}.trig-card:nth-child(5){animation-delay:.24s}.trig-card:nth-child(6){animation-delay:.3s}
+.trig-say{font:500 14.5px/1.45 Inter,system-ui,sans-serif;color:var(--text);position:relative;padding-left:13px}
+.trig-say::before{content:'';position:absolute;left:0;top:3px;bottom:3px;width:3px;border-radius:2px;background:var(--accent-cta)}
+.trig-sol{margin-top:11px;font:600 12px 'JetBrains Mono',monospace;color:var(--accent);display:inline-flex;align-items:center;gap:6px;line-height:1.35}
+.trig-sol::before{content:'→';font-weight:700;flex:none}
+.tmpl{margin-top:16px;background:var(--accent-tint);border:1px solid var(--border-hover);border-radius:16px;padding:clamp(16px,2.5vw,22px)}
+.tmpl-label{font:600 12px 'JetBrains Mono',monospace;color:var(--text-muted);letter-spacing:.03em;margin-bottom:11px}
+.tmpl-msg{background:var(--surface);border:1px solid var(--border-soft);border-radius:14px 14px 14px 5px;padding:14px 16px;font:400 15px/1.55 Inter,system-ui,sans-serif;color:var(--text);max-width:520px}
+.tmpl-hint{margin-top:12px;font:400 13px/1.5 Inter,system-ui,sans-serif;color:var(--text-muted);text-wrap:pretty}
+@keyframes pRise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.trig-card{animation:none!important;opacity:1!important}}
+
 /* calculator */
 .calc{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(18px,3vw,26px);display:grid;grid-template-columns:1fr;gap:20px}
 @media(min-width:760px){.calc{grid-template-columns:1.05fr .95fr;align-items:center}}
@@ -201,6 +218,25 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
         <div class="step-t">You get your share</div>
         <div class="step-d">The client pays — you get your cut. The percentage and payout terms are agreed in writing before the work starts.</div>
       </div>
+    </div>
+  </section>
+
+  <!-- ============ GUIDE: SPOT A CLIENT ============ -->
+  <section class="p-wrap p-sec">
+    <h2 class="p-h2">How to spot a client</h2>
+    <p class="p-sub">You don't have to sell anything. Just catch one of these lines — and connect us.</p>
+    <div class="trig">
+      <div class="trig-card"><div class="trig-say">"I can't keep up with the leads, I'm losing people"</div><div class="trig-sol">24/7 lead-capture bot</div></div>
+      <div class="trig-card"><div class="trig-say">"Clients ask me the same thing a hundred times"</div><div class="trig-sol">AI answers from your knowledge base</div></div>
+      <div class="trig-card"><div class="trig-say">"I take payments by hand, over transfers"</div><div class="trig-sol">payments &amp; subscriptions</div></div>
+      <div class="trig-card"><div class="trig-say">"I keep clients in a notebook and notes"</div><div class="trig-sol">mini-app or CRM</div></div>
+      <div class="trig-card"><div class="trig-say">"I forget to remind people about renewals and bookings"</div><div class="trig-sol">automatic reminders</div></div>
+      <div class="trig-card"><div class="trig-say">"I want a bot or an app but don't know where to start"</div><div class="trig-sol">just connect them to me</div></div>
+    </div>
+    <div class="tmpl">
+      <div class="tmpl-label">A ready message to connect us</div>
+      <div class="tmpl-msg">"Hey! You mentioned [the task]. I know a developer who builds exactly these bots and mini-apps end-to-end and handles everything himself. Want his contact?"</div>
+      <div class="tmpl-hint">The rest is on me: I ask the details, scope it, name a price and deadline, and build it. You just collect your share.</div>
     </div>
   </section>
 

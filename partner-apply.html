@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Заявка в партнёры — Re:dnd</title>
+<meta name="description" content="Хотите приводить клиентов на разработку ботов, мини-аппов и автоматизацию и получать долю с каждого заказа? Коротко расскажите о себе — отвечу и обсудим условия.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="alternate" hreflang="ru" href="https://rednd.ru/partner-apply.html">
+<link rel="alternate" hreflang="en" href="https://rednd.ru/en/partner-apply.html">
+<link rel="alternate" hreflang="x-default" href="https://rednd.ru/partner-apply.html">
+<script src="./site-config.js"></script>
+<script>(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<link rel="stylesheet" href="./theme.css">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="fonts/fonts.css" rel="stylesheet">
+<style>*,*::before,*::after{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
+.mail-ic{background:var(--text)}
+[data-theme="dark"] .mail-ic{background:#46586B}
+.pa-step{display:flex;gap:12px;align-items:flex-start}
+.pa-step-n{flex:none;width:26px;height:26px;border-radius:8px;background:var(--accent-tint);color:var(--accent);display:grid;place-items:center;font:700 12px Sora,sans-serif}
+.pa-step-t{font:400 14px/1.5 Inter,system-ui,sans-serif;color:var(--text-body)}
+.pa-step-t b{color:var(--text);font-weight:600}
+.pa-line{height:14px;width:1px;background:var(--border);margin:2px 0 2px 12px}</style>
+</helmet>
+
+<dc-import name="Header" active="" brand-name="{{ brandName }}" hint-size="100%,64px"></dc-import>
+
+<main style="font-family:Inter,system-ui,sans-serif;max-width:1000px;margin:0 auto;padding:clamp(40px,5vw,64px) 20px clamp(56px,7vw,88px)">
+  <a href="partner.html" style="display:inline-flex;align-items:center;gap:6px;font:500 13.5px Inter,system-ui,sans-serif;color:var(--text-muted);text-decoration:none;margin-bottom:18px" style-hover="color:var(--accent)">← О партнёрской программе</a>
+  <h1 style="margin:0 0 12px;font:700 clamp(30px,4vw,44px)/1.15 Sora,sans-serif;letter-spacing:-0.02em">Заявка в партнёры</h1>
+  <p style="margin:0 0 36px;font:400 clamp(15.5px,1.6vw,18px)/1.6 Inter,system-ui,sans-serif;color:var(--text-body);max-width:620px;text-wrap:pretty">Коротко расскажите о себе и кого можете привести. Отвечу сам, обычно за пару часов, и обсудим условия. Это не оформление на работу в штат — свободное партнёрство: приводите клиента, получаете долю.</p>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px;align-items:start">
+
+    <!-- Form -->
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(22px,3vw,30px)">
+      <sc-if value="{{ notSubmitted }}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex;flex-direction:column;gap:20px">
+
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <span style="font:600 14.5px Inter,system-ui,sans-serif">Кто вы</span>
+            <div role="radiogroup" aria-label="Кто вы" style="display:flex;flex-wrap:wrap;gap:8px">
+              <sc-for list="{{ roleChips }}" as="chip" hint-placeholder-count="5">
+                <button type="button" role="radio" aria-checked="{{ chip.checked }}" onClick="{{ chip.pick }}" style="font:500 14px Inter,system-ui,sans-serif;padding:9px 14px;border-radius:99px;cursor:pointer;border:1px solid {{ chip.border }};background:{{ chip.bg }};color:{{ chip.color }}" style-hover="border-color:var(--accent-cta)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">{{ chip.label }}</button>
+              </sc-for>
+            </div>
+          </div>
+
+          <label style="display:flex;flex-direction:column;gap:8px">
+            <span style="font:600 14.5px Inter,system-ui,sans-serif">О себе и кого можете привести</span>
+            <textarea rows="4" value="{{ about }}" onChange="{{ onAbout }}" placeholder="Например: веду Telegram-канал для локального бизнеса, вокруг много кафе и салонов — думаю, кому-то нужен бот приёма заявок и оплаты" style="font:400 15px/1.55 Inter,system-ui,sans-serif;color:var(--text);border:1px solid var(--border-input);border-radius:12px;padding:12px 14px;resize:vertical;background:var(--input-bg);outline:none" style-focus-visible="border-color:var(--accent-cta);box-shadow:0 0 0 3px rgba(34,158,217,0.18)"></textarea>
+          </label>
+
+          <label style="display:flex;flex-direction:column;gap:8px">
+            <span style="font:600 14.5px Inter,system-ui,sans-serif">Как с вами связаться</span>
+            <input type="text" value="{{ contact }}" onChange="{{ onContact }}" placeholder="@ник в Telegram или email" style="font:400 15px Inter,system-ui,sans-serif;color:var(--text);border:1px solid var(--border-input);border-radius:12px;padding:12px 14px;background:var(--input-bg);outline:none" style-focus-visible="border-color:var(--accent-cta);box-shadow:0 0 0 3px rgba(34,158,217,0.18)">
+          </label>
+          <input type="text" name="website" value="{{ website }}" onChange="{{ onWebsite }}" autocomplete="off" tabindex="-1" aria-hidden="true" style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;opacity:0.01;pointer-events:none">
+
+          <sc-if value="{{ showError }}" hint-placeholder-val="{{ false }}">
+            <div role="alert" style="font:500 14px Inter,system-ui,sans-serif;color:var(--error-text);background:var(--error-bg);border-radius:10px;padding:10px 14px">{{ errorText }}</div>
+          </sc-if>
+
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <button type="button" onClick="{{ onSubmit }}" aria-busy="{{ sending }}" style="display:inline-flex;align-items:center;justify-content:center;gap:9px;background:var(--accent-cta);color:var(--surface);border:none;cursor:pointer;font:600 16px/1 Inter,system-ui,sans-serif;padding:14px 24px;border-radius:13px;width:fit-content" style-hover="background:var(--accent)" style-focus-visible="outline:2px solid var(--text);outline-offset:2px">{{ submitLabel }}</button>
+            <sc-if value="{{ demoMode }}" hint-placeholder-val="{{ true }}">
+              <span style="font:400 12.5px/1.5 JetBrains Mono,monospace;color:var(--text-muted)">// прототип: реальную отправку подключит Claude Code</span>
+            </sc-if>
+            <span style="font:400 12.5px/1.5 Inter,system-ui,sans-serif;color:var(--text-muted)">Отправляя, вы соглашаетесь с <a href="privacy.html" style="color:var(--accent);text-decoration:none;border-radius:4px" style-hover="text-decoration:underline" style-focus-visible="outline:2px solid var(--accent);outline-offset:1px">политикой конфиденциальности</a> и <a href="consent.html" style="color:var(--accent);text-decoration:none;border-radius:4px" style-hover="text-decoration:underline" style-focus-visible="outline:2px solid var(--accent);outline-offset:1px">обработкой персональных данных</a>.</span>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ submitted }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div style="background:var(--chat-area);border-radius:16px 16px 16px 5px;padding:14px 18px;font:400 15.5px/1.55 Inter,system-ui,sans-serif;max-width:480px">Заявка в партнёры принята ✓ Обычно отвечаю за пару часов — напишу вам в {{ echoContact }} и обсудим условия.</div>
+          <sc-if value="{{ demoMode }}" hint-placeholder-val="{{ false }}">
+            <div style="font:400 13px/1.5 JetBrains Mono,monospace;color:var(--text-muted)">// это демонстрация: отправку на сервер подключит Claude Code</div>
+          </sc-if>
+          <button type="button" onClick="{{ onReset }}" style="font:500 14px Inter,system-ui,sans-serif;color:var(--accent);background:var(--accent-tint);border:none;cursor:pointer;padding:10px 16px;border-radius:10px;width:fit-content" style-hover="background:var(--accent-tint-2)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">Отправить ещё одну</button>
+        </div>
+      </sc-if>
+    </div>
+
+    <!-- Side column -->
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(20px,3vw,26px);display:flex;flex-direction:column;gap:14px">
+        <h2 style="margin:0;font:600 18px/1.3 Sora,sans-serif">Как устроено партнёрство</h2>
+        <div style="display:flex;flex-direction:column">
+          <div class="pa-step"><span class="pa-step-n">1</span><span class="pa-step-t"><b>Вы приводите клиента.</b> Кого-то с реальной задачей: заявки, оплаты, ИИ-бот, мини-апп.</span></div>
+          <div class="pa-line"></div>
+          <div class="pa-step"><span class="pa-step-n">2</span><span class="pa-step-t"><b>Я делаю проект.</b> Оцениваю, называю цену и срок, веду разработку и общение с клиентом.</span></div>
+          <div class="pa-line"></div>
+          <div class="pa-step"><span class="pa-step-n">3</span><span class="pa-step-t"><b>Вы получаете долю.</b> С каждого оплаченного заказа. Процент фиксируем заранее.</span></div>
+        </div>
+        <a href="partner.html" style="font:500 13.5px Inter,system-ui,sans-serif;color:var(--accent);text-decoration:none" style-hover="text-decoration:underline" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">Все условия и калькулятор дохода →</a>
+      </div>
+
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(20px,3vw,26px);display:flex;flex-direction:column;gap:14px">
+        <h2 style="margin:0;font:600 18px/1.3 Sora,sans-serif">Или напрямую</h2>
+        <a href="{{ tgHref }}" style="display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--text);border:1px solid var(--border-soft);border-radius:13px;padding:12px 14px" style-hover="border-color:var(--border-hover);background:var(--input-bg)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
+          <span style="width:38px;height:38px;border-radius:50%;background:var(--accent-cta);display:grid;place-items:center;flex:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M3 11L21 3.5L17 20.5L10.5 15L8 19L7.5 13.5L3 11Z" fill="#FFFFFF"></path></svg></span>
+          <span style="display:flex;flex-direction:column;gap:2px">
+            <span style="font:600 15px Inter,system-ui,sans-serif">Telegram</span>
+            <span style="font:500 13.5px JetBrains Mono,monospace;color:var(--accent)">{{ telegram }}</span>
+          </span>
+        </a>
+        <a href="{{ mailtoHref }}" style="display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--text);border:1px solid var(--border-soft);border-radius:13px;padding:12px 14px" style-hover="border-color:var(--border-hover);background:var(--input-bg)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
+          <span class="mail-ic" style="width:38px;height:38px;border-radius:50%;display:grid;place-items:center;flex:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2.5" stroke="#FFFFFF" stroke-width="1.8"></rect><path d="M4 7L12 13L20 7" stroke="#FFFFFF" stroke-width="1.8"></path></svg></span>
+          <span style="display:flex;flex-direction:column;gap:2px">
+            <span style="font:600 15px Inter,system-ui,sans-serif">Email</span>
+            <span style="font:500 13.5px JetBrains Mono,monospace;color:var(--accent)">{{ email }}</span>
+          </span>
+        </a>
+        <span style="display:flex;align-items:center;gap:8px;font:500 12.5px JetBrains Mono,monospace;color:var(--text-meta)"><span style="width:8px;height:8px;border-radius:50%;background:var(--online);flex:none"></span>работаю официально: ИП, договор, безнал</span>
+      </div>
+
+      <div style="display:flex;align-items:center;gap:10px;font:500 14px Inter,system-ui,sans-serif;color:var(--text-body);padding:0 6px">
+        <span style="width:8px;height:8px;border-radius:50%;background:var(--online);box-shadow:0 0 0 3px rgba(49,181,69,0.25);flex:none"></span>
+        онлайн · отвечаю обычно за пару часов
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<dc-import name="Footer" brand-name="{{ brandName }}" hint-size="100%,110px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;brandName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Re:dnd&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Бренд&quot;},&quot;telegram&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;@ваш_ник&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Контакты&quot;},&quot;email&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;you@example.com&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Контакты&quot;}}">
+class Component extends DCLogic {
+  state = { role: 'Предприниматель', about: '', contact: '', website: '', submitted: false, error: false, errorKind: '', sending: false };
+  renderVals() {
+    const cfg = (typeof window !== 'undefined' && window.SITE_CONFIG) || {};
+    const endpoint = (cfg.formEndpoint || '').trim();
+    const demoMode = !endpoint;
+    const roles = ['Предприниматель', 'Маркетолог / SMM', 'Фрилансер', 'Агентство / студия', 'Другое'];
+    const roleChips = roles.map(label => {
+      const on = this.state.role === label;
+      return {
+        label,
+        checked: on,
+        pick: () => this.setState({ role: label }),
+        bg: on ? 'var(--accent-tint)' : 'var(--surface)',
+        color: on ? 'var(--accent)' : 'var(--text)',
+        border: on ? 'var(--accent-cta)' : 'var(--border-input)',
+      };
+    });
+    const tg = cfg.telegram || this.props.telegram || '@ваш_ник';
+    const email = cfg.email || this.props.email || 'you@example.com';
+    const tgHref = /^@[\w\d_]+$/.test(tg) ? 'https://t.me/' + tg.slice(1) : '#';
+    return {
+      brandName: this.props.brandName ?? 'Re:dnd',
+      telegram: tg,
+      email,
+      mailtoHref: 'mailto:' + email,
+      tgHref,
+      demoMode,
+      about: this.state.about,
+      contact: this.state.contact,
+      roleChips,
+      notSubmitted: !this.state.submitted,
+      submitted: this.state.submitted,
+      showError: this.state.error,
+      errorText: this.state.errorKind === 'network'
+        ? 'Не получилось отправить — попробуйте ещё раз или напишите напрямую в Telegram.'
+        : 'Заполните пару слов о себе и контакт — иначе не смогу ответить.',
+      sending: this.state.sending,
+      submitLabel: this.state.sending ? 'Отправляю…' : 'Отправить заявку',
+      echoContact: this.state.contact || 'Telegram',
+      website: this.state.website,
+      onWebsite: e => this.setState({ website: e.target.value }),
+      onAbout: e => this.setState({ about: e.target.value, error: false }),
+      onContact: e => this.setState({ contact: e.target.value, error: false }),
+      onSubmit: () => {
+        if (this.state.sending) return;
+        if (!this.state.about.trim() || !this.state.contact.trim()) { this.setState({ error: true, errorKind: '' }); return; }
+        const task = '🤝 ЗАЯВКА В ПАРТНЁРЫ\n\nКто: ' + this.state.role + '\nО себе / кого может приводить: ' + this.state.about.trim();
+        if (demoMode) {
+          this.setState({ submitted: true, error: false });
+          return;
+        }
+        this.setState({ sending: true, error: false });
+        fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({
+            lang: 'ru',
+            kind: 'partner',
+            task,
+            type: 'партнёрство',
+            budget: '',
+            contact: this.state.contact,
+            website: this.state.website || '',
+          }),
+        }).then(res => {
+          if (!res.ok) throw new Error('HTTP ' + res.status);
+          this.setState({ sending: false, submitted: true, error: false });
+        }).catch(() => {
+          this.setState({ sending: false, error: true, errorKind: 'network' });
+        });
+      },
+      onReset: () => this.setState({ role: 'Предприниматель', about: '', contact: '', website: '', submitted: false, error: false, errorKind: '', sending: false }),
+    };
+  }
+}
+</script>
+</body>
+</html>

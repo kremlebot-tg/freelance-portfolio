@@ -26,16 +26,16 @@ window.SITE_CONFIG = {
   // --- Цены услуг ---
   // Только стартовые «от», точная цена обсуждается — так и подписано на сайте.
   prices: {
-    leads: 'от 3 900 ₽',
-    payments: 'от 6 900 ₽',
-    ai: 'от 5 900 ₽',
-    miniapps: 'от 11 900 ₽',
+    leads: 'от 4 900 ₽',
+    payments: 'от 8 900 ₽',
+    ai: 'от 9 900 ₽',
+    miniapps: 'от 16 900 ₽',
   },
   pricesEn: {
-    leads: 'from $39',
-    payments: 'from $69',
-    ai: 'from $59',
-    miniapps: 'from $119',
+    leads: 'from $49',
+    payments: 'from $89',
+    ai: 'from $99',
+    miniapps: 'from $179',
   },
 
   // --- Реквизиты (подвал) ---

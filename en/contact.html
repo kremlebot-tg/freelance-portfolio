@@ -381,6 +381,7 @@ class Component extends DCLogic {
         }).then(res => {
           if (!res.ok) throw new Error('HTTP ' + res.status);
           this.setState({ sending: false, submitted: true, error: false });
+          try { var _m = window.SITE_CONFIG && window.SITE_CONFIG.metrikaId; if (window.ym && _m) window.ym(_m, 'reachGoal', 'form_submit'); } catch (e) {}
         }).catch(() => {
           this.setState({ sending: false, error: true, errorKind: 'network' });
         });

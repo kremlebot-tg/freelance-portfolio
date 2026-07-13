@@ -77,8 +77,8 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
       <span style="display:inline-flex;align-items:center;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif">AI-SaaS</span>
       <span style="display:inline-flex;align-items:center;padding:5px 10px;border-radius:99px;background:var(--surface-2);color:var(--text-meta);border:1px solid var(--border);font:500 12.5px Inter,system-ui,sans-serif">multi-tenant</span>
     </div>
-    <h1 style="margin:0;font:700 clamp(28px,4vw,42px)/1.15 Sora,sans-serif;letter-spacing:-0.02em">VetPulse — AI-CRM for vet clinics</h1>
-    <p style="margin:0;font:400 clamp(15.5px,1.6vw,18px)/1.55 Inter,system-ui,sans-serif;color:var(--text-body);max-width:720px">A multi-tenant SaaS for vet clinics: an AI dispatcher answers clients and books patients, the system sends appointment reminders and wins back the «dormant» base. Designed and built end-to-end as a team — both the backend and a premium site with an interactive demo office.</p>
+    <h1 style="margin:0;font:700 clamp(28px,4vw,42px)/1.15 Sora,sans-serif;letter-spacing:-0.02em">VetPulse: AI-CRM for vet clinics</h1>
+    <p style="margin:0;font:400 clamp(15.5px,1.6vw,18px)/1.55 Inter,system-ui,sans-serif;color:var(--text-body);max-width:720px">A multi-tenant SaaS for vet clinics: an AI dispatcher answers clients and books patients, the system sends appointment reminders and wins back the «dormant» base. Designed and built end-to-end as a team: both the backend and a premium site with an interactive demo office.</p>
     <div style="margin-top:6px;display:flex;gap:10px;flex-wrap:wrap;align-items:center">
       <a href="../vetpulse/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:var(--accent-cta);color:var(--surface);text-decoration:none;font:600 15px/1 Inter,system-ui,sans-serif;padding:12px 20px;min-height:44px;border-radius:12px" style-hover="background:var(--accent)" style-focus-visible="outline:2px solid var(--text);outline-offset:2px">Open the live demo ↗</a>
       <span style="font:400 13px/1.4 Inter,system-ui,sans-serif;color:var(--text-muted)">premium landing + demo office, fictional data</span>
@@ -171,13 +171,13 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
       <div class="flow-stage"><span class="flow-num">03</span><div><div class="flow-t">Decides what to do</div><div class="flow-d">An LLM picks the action from the meaning of the request</div></div></div>
       <div class="flow-link"></div>
       <div class="flow-branch">
-        <div class="flow-out"><span class="oi" style="color:var(--accent)">→ answers</span><span class="ot">Price, service, hours — from the clinic's own data</span></div>
+        <div class="flow-out"><span class="oi" style="color:var(--accent)">→ answers</span><span class="ot">Price, service, hours: from the clinic's own data</span></div>
         <div class="flow-out"><span class="oi" style="color:var(--status-green-fg)">→ books</span><span class="ot">Creates an appointment marked «pending review»</span></div>
-        <div class="flow-out"><span class="oi" style="color:var(--status-amber-fg)">→ hands off</span><span class="ot">Urgent or unsure — to a vet or the front desk</span></div>
+        <div class="flow-out"><span class="oi" style="color:var(--status-amber-fg)">→ hands off</span><span class="ot">Urgent or unsure, to a vet or the front desk</span></div>
       </div>
     </div>
     <div class="flow-auto">
-      <div class="flow-acard"><div class="flow-t" style="font-size:14px">Reminders</div><div class="flow-d">24h and 2h before — fewer no-shows and idle vet time</div></div>
+      <div class="flow-acard"><div class="flow-t" style="font-size:14px">Reminders</div><div class="flow-d">24h and 2h before, so fewer no-shows and idle vet time</div></div>
       <div class="flow-acard"><div class="flow-t" style="font-size:14px">Base reactivation</div><div class="flow-d">Finds overdue vaccinations and wins back «dormant» patients</div></div>
     </div>
   </section>
@@ -190,24 +190,24 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
     </div>
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
       <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">02 · solution</span>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">We built a multi-tenant AI-SaaS (clinic_id everywhere): the AI dispatcher handles enquiries and books patients, and two background engines send appointment reminders and win back the «dormant» base on their own — as in the diagram above. On top — self-serve clinic sign-up, an onboarding wizard, connecting your own practice system (Vetmanager) with encrypted keys, and a dashboard with «₽ recovered». Stack: Python, FastAPI, SQLAlchemy, a scheduler, an LLM behind a single provider interface.</p>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">We built a multi-tenant AI-SaaS (clinic_id everywhere): the AI dispatcher handles enquiries and books patients, and two background engines send appointment reminders and win back the «dormant» base on their own, as in the diagram above. On top of that: self-serve clinic sign-up, an onboarding wizard, connecting your own practice system (Vetmanager) with encrypted keys, and a dashboard with «₽ recovered». Stack: Python, FastAPI, SQLAlchemy, a scheduler, an LLM behind a single provider interface.</p>
     </div>
     <div style="grid-column:1/-1;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
       <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">03 · what was hard</span>
       <div class="acc" data-state="open">
         <button type="button" class="acc-sum" aria-expanded="true" aria-controls="vp-h1" style="font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);max-width:760px"><strong style="color:var(--text)">A production client for someone else's API without a single live key.</strong> The integration with the veterinary practice system had to be written as real code, but no real account or key existed at all.<span class="acc-chev" aria-hidden="true">▾</span></button>
         <div id="vp-h1" class="acc-body"><div class="acc-inner">
-          <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px">The public docs didn't unambiguously give the filter serialization, the field keys, or — most importantly — where to get vaccination dates: a dedicated field, or compute them from the appointment history. We implemented both strategies behind a flag, isolated every ambiguous spot into separate helpers marked «verify on the first real response», and covered the client itself with tests via simulated HTTP responses — no network, no key.</p>
+          <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px">The public docs didn't unambiguously give the filter serialization, the field keys, or, most importantly, where to get vaccination dates: a dedicated field, or compute them from the appointment history. We implemented both strategies behind a flag, isolated every ambiguous spot into separate helpers marked «verify on the first real response», and covered the client itself with tests via simulated HTTP responses: no network, no key.</p>
           <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px">A hard limit of 20 requests per minute forced a batching design and a local cache of the base for reactivation. The point: build against a spec you can't fully verify, but in a way where the touch-up after the first live response is one or two lines in one place.</p>
         </div></div>
       </div>
       <div class="acc" data-state="closed">
-        <button type="button" class="acc-sum" aria-expanded="false" aria-controls="vp-h2" style="font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);max-width:760px"><strong style="color:var(--text)">A layout bug hiding behind a green check.</strong> On mobile, the dashboard and modal content was clipped on the right — while the automated «no horizontal scroll» check stayed green.<span class="acc-chev" aria-hidden="true">▾</span></button>
+        <button type="button" class="acc-sum" aria-expanded="false" aria-controls="vp-h2" style="font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);max-width:760px"><strong style="color:var(--text)">A layout bug hiding behind a green check.</strong> On mobile, the dashboard and modal content was clipped on the right, while the automated «no horizontal scroll» check stayed green.<span class="acc-chev" aria-hidden="true">▾</span></button>
         <div id="vp-h2" class="acc-body"><div class="acc-inner">
-          <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px">A false negative: on a position:fixed modal, overflow:hidden clips the overflow instead of scrolling it — «no scroll», but the text is cut off. The root cause is min-width:auto on a flex/grid child that won't shrink below its own content; the fix is min-width:0. The lesson we reused afterwards: measure scrollWidth against clientWidth, don't rely on the document's scroll.</p>
+          <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px">A false negative: on a position:fixed modal, overflow:hidden clips the overflow instead of scrolling it: «no scroll», but the text is cut off. The root cause is min-width:auto on a flex/grid child that won't shrink below its own content; the fix is min-width:0. The lesson we reused afterwards: measure scrollWidth against clientWidth, don't rely on the document's scroll.</p>
         </div></div>
       </div>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-body);text-wrap:pretty;max-width:760px;border-left:2px solid var(--border-hover);padding-left:14px">The main principle of this case isn't an engineering one: check whether an existing tool already covers the job — and whether there's demand — before you build, not after. Validation showed that reminders and win-back are largely covered by the built-in features of the vet CRMs themselves — and that's a lesson we now build in from the very start.</p>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-body);text-wrap:pretty;max-width:760px;border-left:2px solid var(--border-hover);padding-left:14px">The main principle of this case isn't an engineering one: check whether an existing tool already covers the job, and whether there's demand, before you build, not after. Validation showed that reminders and win-back are largely covered by the built-in features of the vet CRMs themselves. That's a lesson we now build in from the very start.</p>
     </div>
     <div style="grid-column:1/-1;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
       <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">04 · result</span>
@@ -217,7 +217,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
         <li>Multi-tenant security baked in from the start: passwords via bcrypt, integration keys encrypted in the database and never handed to the frontend.</li>
         <li>Separately designed and built a premium landing and an interactive product demo (a clinic «office»): pure static with zero dependencies, a custom design system, animated interactive components, full responsiveness and accessibility.</li>
         <li>Built in roughly 2 days of AI-assisted development (an estimate, not a stopwatch figure).</li>
-        <li>External services are mocked and the integration code is written for real — that's how the whole end-to-end flow is assembled, from clinic sign-up to reminders.</li>
+        <li>External services are mocked and the integration code is written for real: that's how the whole end-to-end flow is assembled, from clinic sign-up to reminders.</li>
       </ul>
     </div>
   </section>

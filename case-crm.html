@@ -63,13 +63,13 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
       <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--surface-2);color:var(--text-meta);border:1px solid var(--border);font:500 12.5px Inter,system-ui,sans-serif">для фаундеров и консультантов</span>
     </div>
     <h1 style="margin:0;font:700 clamp(28px,4vw,42px)/1.15 Sora,sans-serif;letter-spacing:-0.02em">Персональный CRM для нетворкинга</h1>
-    <p style="margin:0;font:400 clamp(15.5px,1.6vw,18px)/1.55 Inter,system-ui,sans-serif;color:var(--text-body);max-width:720px">CRM в Telegram для тех, кто зарабатывает через связи, но забывает их поддерживать — с автозахватом новых контактов и ИИ-напоминаниями, кто ждёт ответа.</p>
+    <p style="margin:0;font:400 clamp(15.5px,1.6vw,18px)/1.55 Inter,system-ui,sans-serif;color:var(--text-body);max-width:720px">CRM в Telegram для тех, кто зарабатывает через связи, но забывает их поддерживать. Автозахват новых контактов и ИИ-напоминания, кто ждёт ответа.</p>
   </div>
 
   <!-- ============ DEMO A: GRAPH ============ -->
   <section aria-label="Демо: граф связей" style="background:var(--surface);border:1px solid var(--border);border-radius:22px;padding:clamp(18px,3vw,32px);display:flex;flex-direction:column;gap:16px">
     <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
-      <span style="display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 13px Inter,system-ui,sans-serif"><span style="width:7px;height:7px;border-radius:50%;background:var(--online)"></span>живое демо · граф можно двигать, узлы — кликать</span>
+      <span style="display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 13px Inter,system-ui,sans-serif"><span style="width:7px;height:7px;border-radius:50%;background:var(--online)"></span>живое демо · двигайте граф, кликайте узлы</span>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px;align-items:stretch">
       <div style="position:relative;grid-column:span 1;min-width:0;background:var(--demo-canvas);border:1px solid var(--border-soft);border-radius:16px;overflow:hidden">
@@ -94,7 +94,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
         <sc-if value="{{ noSelection }}" hint-placeholder-val="{{ false }}">
           <div style="margin:auto;text-align:center;display:flex;flex-direction:column;gap:8px;color:var(--text-muted)">
             <span style="font-size:26px" aria-hidden="true">↖</span>
-            <span style="font:400 14.5px/1.5 Inter,system-ui,sans-serif;max-width:240px">Кликните по узлу — откроется карточка с фактами, которые извлёк ИИ</span>
+            <span style="font:400 14.5px/1.5 Inter,system-ui,sans-serif;max-width:240px">Кликните по узлу. Откроется карточка с фактами, которые извлёк ИИ</span>
           </div>
         </sc-if>
         <sc-if value="{{ hasSelection }}" hint-placeholder-val="{{ true }}">
@@ -130,7 +130,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
   <section aria-label="Демо: извлечение фактов" style="background:var(--surface);border:1px solid var(--border);border-radius:22px;padding:clamp(18px,3vw,32px);display:flex;flex-direction:column;gap:16px;margin-top:20px">
     <div style="display:flex;flex-direction:column;gap:6px">
       <span style="display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 13px Inter,system-ui,sans-serif;width:fit-content"><span style="width:7px;height:7px;border-radius:50%;background:var(--online)"></span>живое демо · заметка → факты</span>
-      <p style="margin:6px 0 0;font:400 14.5px/1.5 Inter,system-ui,sans-serif;color:var(--text-meta)">Так это работает в боте: пишете заметку о человеке как попало — ИИ раскладывает её по полочкам.</p>
+      <p style="margin:6px 0 0;font:400 14.5px/1.5 Inter,system-ui,sans-serif;color:var(--text-meta)">Так это работает в боте: пишете заметку о человеке как попало, а ИИ раскладывает её по полочкам.</p>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px;align-items:start">
       <div style="display:flex;flex-direction:column;gap:10px">
@@ -139,7 +139,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
             <button type="button" onClick="{{ ex.use }}" style="font:500 13px Inter,system-ui,sans-serif;color:{{ ex.color }};background:{{ ex.bg }};border:1px solid {{ ex.border }};cursor:pointer;padding:7px 12px;min-height:44px;display:inline-flex;align-items:center;border-radius:99px" style-hover="border-color:var(--accent-cta)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">{{ ex.label }}</button>
           </sc-for>
         </div>
-        <textarea rows="4" value="{{ note }}" onChange="{{ onNote }}" placeholder="Вставьте заметку о человеке — или возьмите пример выше" style="font:400 15px/1.55 Inter,system-ui,sans-serif;color:var(--text);border:1px solid var(--border-input);border-radius:12px;padding:12px 14px;resize:vertical;background:var(--input-bg);outline:none" style-focus-visible="border-color:var(--accent-cta);box-shadow:0 0 0 3px rgba(34,158,217,0.18)"></textarea>
+        <textarea rows="4" value="{{ note }}" onChange="{{ onNote }}" placeholder="Вставьте заметку о человеке или возьмите пример выше" style="font:400 15px/1.55 Inter,system-ui,sans-serif;color:var(--text);border:1px solid var(--border-input);border-radius:12px;padding:12px 14px;resize:vertical;background:var(--input-bg);outline:none" style-focus-visible="border-color:var(--accent-cta);box-shadow:0 0 0 3px rgba(34,158,217,0.18)"></textarea>
         <button type="button" onClick="{{ onExtract }}" style="display:inline-flex;align-items:center;gap:8px;background:var(--accent-cta);color:var(--surface);border:none;cursor:pointer;font:600 15px/1 Inter,system-ui,sans-serif;padding:12px 20px;min-height:44px;border-radius:12px;width:fit-content" style-hover="background:var(--accent)" style-focus-visible="outline:2px solid var(--text);outline-offset:2px">Извлечь факты</button>
         <span style="font:400 12px/1.5 JetBrains Mono,monospace;color:var(--text-muted)">// в этом демо извлечение заскриптовано на примерах, в проде это делает LLM</span>
       </div>
@@ -160,7 +160,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
           </sc-for>
         </sc-if>
         <sc-if value="{{ unknownNote }}" hint-placeholder-val="{{ false }}">
-          <div style="margin:auto 0;font:400 14px/1.55 Inter,system-ui,sans-serif;color:var(--text-meta);background:var(--surface);border:1px solid var(--border-soft);border-radius:11px;padding:12px 14px">В этом демо извлечение заскриптовано на трёх примерах — возьмите один из них. В рабочей версии любой текст разбирает LLM.</div>
+          <div style="margin:auto 0;font:400 14px/1.55 Inter,system-ui,sans-serif;color:var(--text-meta);background:var(--surface);border:1px solid var(--border-soft);border-radius:11px;padding:12px 14px">В этом демо извлечение заскриптовано на трёх примерах, возьмите один из них. В рабочей версии любой текст разбирает LLM.</div>
         </sc-if>
       </div>
     </div>
@@ -170,27 +170,27 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
   <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,470px),1fr));gap:16px;margin-top:24px">
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
       <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">01 · задача</span>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">Люди, работающие с людьми — фаундеры, консультанты, инвесторы — за год накапливают в мессенджере сотни деловых переписок. Большинство забывается: «тот инвестор искал сделки в SaaS, но это было три месяца назад». Ведение списка вручную в Notion бросают через полторы недели. Западные персональные CRM построены вокруг LinkedIn, который в РФ заблокирован, — русскоязычный рынок остался без решения.</p>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">Люди, работающие с людьми (фаундеры, консультанты, инвесторы), за год накапливают в мессенджере сотни деловых переписок. Большинство забывается: «тот инвестор искал сделки в SaaS, но это было три месяца назад». Ведение списка вручную в Notion бросают через полторы недели. Западные персональные CRM построены вокруг LinkedIn, который в РФ заблокирован, поэтому русскоязычный рынок остался без решения.</p>
     </div>
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
       <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">02 · как решали</span>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">Бот в Telegram плюс мини-апп и десктоп-веб на одной базе. Пересылаешь боту сообщение о встрече — ИИ извлекает структурированные факты в карточку контакта. Подключение телефонной книги через VCF, иерархические теги, напоминания «давно не общался» и о днях рождения, экспорт в календарь через .ics-подписку, утренний дайджест «кто ждёт ответа». Стек: Python, aiogram, FastAPI, SQLite, LLM для извлечения фактов и семантического поиска.</p>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">Бот в Telegram плюс мини-апп и десктоп-веб на одной базе. Пересылаешь боту сообщение о встрече, и ИИ извлекает структурированные факты в карточку контакта. Подключение телефонной книги через VCF, иерархические теги, напоминания «давно не общался» и о днях рождения, экспорт в календарь через .ics-подписку, утренний дайджест «кто ждёт ответа». Стек: Python, aiogram, FastAPI, SQLite, LLM для извлечения фактов и семантического поиска.</p>
     </div>
     <div style="grid-column:1/-1;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
       <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">03 · что оказалось сложным</span>
       <div class="acc" data-state="{{ hardAState }}">
-        <button type="button" class="acc-sum" onClick="{{ onHardA }}" aria-expanded="{{ hardAExp }}" aria-controls="crm-h1" style="font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);max-width:760px"><strong style="color:var(--text)">Фича, которая убивала экономику продукта.</strong> Спроектировали автоматический извлекатель фактов из всех входящих переписок — работал стабильно на обкатке.<span class="acc-chev" aria-hidden="true">▾</span></button>
+        <button type="button" class="acc-sum" onClick="{{ onHardA }}" aria-expanded="{{ hardAExp }}" aria-controls="crm-h1" style="font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);max-width:760px"><strong style="color:var(--text)">Фича, которая убивала экономику продукта.</strong> Спроектировали автоматический извлекатель фактов из всех входящих переписок, на обкатке работал стабильно.<span class="acc-chev" aria-hidden="true">▾</span></button>
         <div id="crm-h1" class="acc-body" style="animation:{{ hardAAnim }}"><div class="acc-inner">
-          <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px">Через три дня обкатки биллинг показал: около 83 ₽ в день на одного пользователя. В пересчёте — примерно 2500 ₽ на пользователя в месяц против подписки в десять раз дешевле. Продукт был бы фундаментально убыточным.</p>
-          <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px">Перебрали варианты: урезать промпт (экономия ~30%, всё равно минус), кэшировать по хешу текста (реальный поток почти не повторяется), двухступенчатый гейт — дешёвая модель решает «есть ли тут факт», дорогая извлекает только при «да» (~40%, всё равно недостаточно).</p>
-          <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px">Решение — вырезать автоизвлечение целиком. Оставили бесплатные метаданные: кто написал и когда, это обычный SQL. Автомат теперь заводит карточку нового собеседника и обновляет дату последнего контакта, а дорогой ИИ подключается только когда пользователь сам пересылает сообщение — явное действие, окупается. Побочный бонус: снялся юридический риск автоматического чтения чужих переписок без согласия.</p>
+          <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px">Через три дня обкатки биллинг показал: около 83 ₽ в день на одного пользователя. В пересчёте это примерно 2500 ₽ на пользователя в месяц против подписки в десять раз дешевле. Продукт был бы фундаментально убыточным.</p>
+          <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px">Перебрали варианты: урезать промпт (экономия ~30%, всё равно минус), кэшировать по хешу текста (реальный поток почти не повторяется), двухступенчатый гейт: дешёвая модель решает «есть ли тут факт», дорогая извлекает только при «да» (~40%, всё равно недостаточно).</p>
+          <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px">В итоге вырезали автоизвлечение целиком. Оставили бесплатные метаданные: кто написал и когда, это обычный SQL. Автомат теперь заводит карточку нового собеседника и обновляет дату последнего контакта, а дорогой ИИ подключается только когда пользователь сам пересылает сообщение: это явное действие, оно окупается. Побочный бонус: снялся юридический риск автоматического чтения чужих переписок без согласия.</p>
         </div></div>
       </div>
       <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-body);text-wrap:pretty;max-width:760px;border-left:2px solid var(--border-hover);padding-left:14px">Принцип, который из этого вырос: unit-экономику измеряют на третий день, а не после запуска. Фича, которую любишь, вырезается, если она не сходится в деньгах.</p>
       <div class="acc" data-state="{{ hardBState }}">
-        <button type="button" class="acc-sum" onClick="{{ onHardB }}" aria-expanded="{{ hardBExp }}" aria-controls="crm-h2" style="font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);max-width:760px"><strong style="color:var(--text)">Тихая поломка после каждого деплоя.</strong> После обновления бота ломалась связь с Telegram Business — пользователь переподключал, не помогало, в логах пусто.<span class="acc-chev" aria-hidden="true">▾</span></button>
+        <button type="button" class="acc-sum" onClick="{{ onHardB }}" aria-expanded="{{ hardBExp }}" aria-controls="crm-h2" style="font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);max-width:760px"><strong style="color:var(--text)">Тихая поломка после каждого деплоя.</strong> После обновления бота ломалась связь с Telegram Business: пользователь переподключал, не помогало, в логах пусто.<span class="acc-chev" aria-hidden="true">▾</span></button>
         <div id="crm-h2" class="acc-body" style="animation:{{ hardBAnim }}"><div class="acc-inner">
-          <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px">Два часа диагностики. Причина: фреймворк при старте сбрасывал очередь необработанных событий для чистого запуска, а Telegram шлёт уведомление о подключении Business ровно один раз — если бот в этот момент рестартует, оно теряется. Связь есть, но бот о ней не знает. Перебрали варианты, выбрали не сбрасывать очередь при старте — как бонус, события, накопленные за время обновления, доходят до бота, а для CRM это плюс: не теряются факты о новых контактах. Плюс добавили стартовый лог активных связей, чтобы тихая поломка стала видимой.</p>
+          <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px">Два часа диагностики. Причина: фреймворк при старте сбрасывал очередь необработанных событий для чистого запуска, а Telegram шлёт уведомление о подключении Business ровно один раз. Если бот в этот момент рестартует, оно теряется. Связь есть, но бот о ней не знает. Перебрали варианты, выбрали не сбрасывать очередь при старте. Как бонус, события, накопленные за время обновления, доходят до бота, а для CRM это плюс: не теряются факты о новых контактах. Плюс добавили стартовый лог активных связей, чтобы тихая поломка стала видимой.</p>
         </div></div>
       </div>
     </div>
@@ -198,7 +198,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
       <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">04 · результат</span>
       <ul style="margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px;font:400 15px/1.55 Inter,system-ui,sans-serif;color:var(--text-strong);max-width:760px">
         <li>Три канала захвата контактов: пересылка боту, автосоздание по метаданным, импорт из телефонной книги.</li>
-        <li>Два самостоятельных интерфейса — мини-апп в Telegram и десктоп-веб — на общей базе.</li>
+        <li>Два самостоятельных интерфейса на общей базе: мини-апп в Telegram и десктоп-веб.</li>
         <li>Код покрыт автотестами.</li>
         <li>Приём оплат через Telegram Stars, пробный период 14 дней.</li>
         <li>Семантический поиск по контактам: находит человека по смыслу заметки, а не только по имени.</li>

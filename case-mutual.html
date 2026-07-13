@@ -237,7 +237,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
   <!-- ============ DEMO ============ -->
   <section aria-label="Живое демо мини-аппа" style="background:var(--surface);border:1px solid var(--border);border-radius:22px;padding:clamp(18px,3vw,32px);display:flex;flex-direction:column;gap:18px">
     <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
-      <span style="display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 13px Inter,system-ui,sans-serif"><span style="width:7px;height:7px;border-radius:50%;background:var(--online)"></span>живое демо — пройдите путь целиком</span>
+      <span style="display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 13px Inter,system-ui,sans-serif"><span style="width:7px;height:7px;border-radius:50%;background:var(--online)"></span>живое демо, пройдите путь целиком</span>
       <button type="button" onClick="{{ onReset }}" style="margin-left:auto;font:500 13.5px Inter,system-ui,sans-serif;color:var(--text-meta);background:var(--surface-2);border:none;cursor:pointer;padding:11px 16px;min-height:44px;display:inline-flex;align-items:center;border-radius:10px" style-hover="background:var(--border-soft);color:var(--text)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">⟳ сбросить демо</button>
     </div>
 
@@ -294,7 +294,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
               <span class="m-pin" style="top:36%;left:74%;animation-delay:.25s" aria-hidden="true">Н</span>
               <sc-if value="{{ mapHidden }}" hint-placeholder-val="{{ false }}"><div class="m-hidden" role="status"><div style="text-align:center"><b>Ты скрыт</b><i>Тебя тут никто не видит.<br>Сканировать других можно.</i></div></div></sc-if>
             </div>
-            <div class="m-mapnote"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#D6FF3D" stroke-width="2" aria-hidden="true" focusable="false" style="flex:none;margin-top:1px"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><span><b>Профиль откроется только после скана вещи.</b> Здесь — только те, кто сам разрешил показ.</span></div>
+            <div class="m-mapnote"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#D6FF3D" stroke-width="2" aria-hidden="true" focusable="false" style="flex:none;margin-top:1px"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><span><b>Профиль откроется только после скана вещи.</b> Здесь только те, кто сам разрешил показ.</span></div>
             <sc-for list="{{ nearby }}" as="p" hint-placeholder-count="3"><div class="m-person"><span class="m-ini" aria-hidden="true">{{ p.ini }}</span><span class="t"><b>{{ p.name }}</b><i>{{ p.drop }}</i></span><span class="m-dist"><b>{{ p.dist }}</b><span class="m-on" style="display:{{ p.onDisp }}"><i aria-hidden="true"></i>онлайн</span><span class="m-off" style="display:{{ p.offDisp }}">{{ p.last }}</span></span></div></sc-for>
             <div class="m-fill"></div>
             <button type="button" class="m-btn m-btn--acc" onClick="{{ onToScan }}">Сканировать код →</button>
@@ -337,7 +337,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
             <div class="m-wait">
               <div class="m-orb" aria-hidden="true"><span class="r"></span><span class="r"></span><span class="r"></span><span class="core">Л</span></div>
               <h1 class="m-h1" style="font-size:34px;margin-bottom:12px">Пинг<br>отправлен</h1>
-              <p class="m-sub" style="margin:0 auto" role="status" aria-live="polite">Лена смотрит твой профиль. Дальше — её решение.</p>
+              <p class="m-sub" style="margin:0 auto" role="status" aria-live="polite">Лена смотрит твой профиль. Дальше слово за ней.</p>
               <div class="m-locked"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5C5C56" stroke-width="2" aria-hidden="true" focusable="false" style="flex:none"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><span class="t"><b>Чат закрыт</b><i>Откроется, только если Лена примет пинг</i></span></div>
             </div>
           </section>
@@ -348,7 +348,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
             <div class="m-match">
               <div class="m-conv" aria-hidden="true"><span class="ring"></span><span class="ring"></span><span class="a">А</span><span class="b">Л</span></div>
               <div class="m-big">Взаимно</div>
-              <p role="status" aria-live="polite">Лена приняла твой пинг. Теперь чат открыт — для вас обоих.</p>
+              <p role="status" aria-live="polite">Лена приняла твой пинг. Теперь чат открыт. Для вас обоих.</p>
             </div>
             <button type="button" class="m-btn m-btn--acc" onClick="{{ onChat }}">Открыть чат →</button>
           </section>
@@ -373,9 +373,9 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
             <h1 class="m-h1" style="font-size:34px">Вот как<br>это работает</h1>
             <div class="m-steps">
               <div class="m-step"><b>01</b><span class="t"><p>Код на вещи = личность</p><i>Один код — один человек. Профиль редактируется, вещь остаётся.</i></span></div>
-              <div class="m-step"><b>02</b><span class="t"><p>Скан открывает профиль</p><i>Не из карты, не из ленты — только со скана реальной вещи.</i></span></div>
+              <div class="m-step"><b>02</b><span class="t"><p>Скан открывает профиль</p><i>Открывается только со скана реальной вещи. Ни из карты, ни из ленты.</i></span></div>
               <div class="m-step"><b>03</b><span class="t"><p>Пинг — это вопрос</p><i>Отказ никому не виден. Просто ничего не происходит.</i></span></div>
-              <div class="m-step"><b>04</b><span class="t"><p>Чат — только взаимно</p><i>Оба сказали «да» — тогда открывается разговор.</i></span></div>
+              <div class="m-step"><b>04</b><span class="t"><p>Чат — только взаимно</p><i>Оба сказали «да», и открывается разговор.</i></span></div>
             </div>
             <div class="m-seal"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D6FF3D" stroke-width="2" aria-hidden="true" focusable="false" style="flex:none;margin-top:1px"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><p><b>Согласие — не настройка, а правило</b>Его нельзя выключить ни одной из сторон.</p></div>
             <div class="m-fill"></div>
@@ -394,35 +394,35 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
   <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,470px),1fr));gap:16px;margin-top:24px">
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
       <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">01 · задача</span>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">Знакомства в оффлайне — это случай и неловкость: увидел человека, чей стиль зацепил, а моста от «заметил в толпе» к «списались» нет, и подойти первым неудобно обоим. MUTUAL превращает в этот мост саму вещь: стритвир-бренд, где на каждой одежде — QR, и скан открывает не карточку товара, а личность владельца и его согласие на контакт. Продуктовая задача была не в коде, а в том, чтобы спроектировать весь флоу полезным — и так, чтобы он не превращался в слежку.</p>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">Знакомства в оффлайне — это случай и неловкость: увидел человека, чей стиль зацепил, а моста от «заметил в толпе» к «списались» нет, и подойти первым неудобно обоим. MUTUAL превращает в этот мост саму вещь: стритвир-бренд, где на каждой одежде есть QR, и скан открывает личность владельца и его согласие на контакт, а не карточку товара. Продуктовая задача была не в коде: надо было спроектировать весь флоу полезным, и так, чтобы он не превращался в слежку.</p>
     </div>
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
       <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">02 · как решал</span>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">Ключевое решение — инверсия: на вещи неизменный указатель, личность живёт онлайн. QR напечатан на физической одежде, перепечатать его нельзя, поэтому в нём не данные человека, а стабильная ссылка; всё изменчивое — имя, интересы, приватность и даже владелец при перепродаже — правится в онлайн-профиле в любой момент. Поверх этого — флоу знакомства через согласие: скан → пинг владельцу → чат открывается только при взаимном интересе. Собрали интерактивный Telegram Mini App: онбординг, активация вещи, личный QR, скан, карта «кто рядом», профиль, пинги, чат — весь путь проходится целиком.</p>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">Ключевое решение — инверсия: на вещи неизменный указатель, личность живёт онлайн. QR напечатан на физической одежде, перепечатать его нельзя, поэтому в нём лежит стабильная ссылка, а не данные человека; всё изменчивое — имя, интересы, приватность и даже владелец при перепродаже — правится в онлайн-профиле в любой момент. Поверх этого построен флоу знакомства через согласие: скан → пинг владельцу → чат открывается только при взаимном интересе. Собрали интерактивный Telegram Mini App: онбординг, активация вещи, личный QR, скан, карта «кто рядом», профиль, пинги, чат. Весь путь проходится целиком.</p>
     </div>
     <div style="grid-column:1/-1;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
       <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">03 · что оказалось сложным</span>
       <div class="acc" data-state="{{ hardAState }}">
-        <button type="button" class="acc-sum" onClick="{{ onHardA }}" aria-expanded="{{ hardAExp }}" aria-controls="mu-h1" style="font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);max-width:760px"><strong style="color:var(--text)">Что сканирующий видит до согласия.</strong> Первая версия флоу вела от скана сразу в профиль с кнопкой «написать» — и ломалась о приватность: любой скан = прямой доступ к человеку.<span class="acc-chev" aria-hidden="true">▾</span></button>
+        <button type="button" class="acc-sum" onClick="{{ onHardA }}" aria-expanded="{{ hardAExp }}" aria-controls="mu-h1" style="font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);max-width:760px"><strong style="color:var(--text)">Что сканирующий видит до согласия.</strong> Первая версия флоу вела от скана сразу в профиль с кнопкой «написать» и ломалась о приватность: любой скан = прямой доступ к человеку.<span class="acc-chev" aria-hidden="true">▾</span></button>
         <div id="mu-h1" class="acc-body" style="animation:{{ hardAAnim }}"><div class="acc-inner">
-          <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px">Переделал так: до согласия сканирующий видит только публичную витрину — вещь, никнейм, пару тегов-интересов, — но не контакты, не точную гео и не может написать. Между профилем и чатом встал гейт: единственное действие — «пинг», а чат вообще не существует, пока владелец не ответил взаимностью. Согласие здесь — не галочка в настройках, а сам жест ответа на пинг.</p>
+          <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px">Переделал так: до согласия сканирующий видит только публичную витрину — вещь, никнейм, пару тегов-интересов, — но не контакты, не точную гео и не может написать. Между профилем и чатом встал гейт: единственное действие — «пинг», а чат вообще не существует, пока владелец не ответил взаимностью. Согласие здесь — сам жест ответа на пинг, а не галочка в настройках.</p>
         </div></div>
       </div>
       <div class="acc" data-state="{{ hardBState }}">
         <button type="button" class="acc-sum" onClick="{{ onHardB }}" aria-expanded="{{ hardBExp }}" aria-controls="mu-h2" style="font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);max-width:760px"><strong style="color:var(--text)">Карта «кто рядом» без слежки.</strong> Карта полезна, но геолокация людей — самый опасный экран продукта.<span class="acc-chev" aria-hidden="true">▾</span></button>
         <div id="mu-h2" class="acc-body" style="animation:{{ hardBAnim }}"><div class="acc-inner">
-          <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px">Развилки решал так: попасть на карту можно только по явному согласию быть видимым; расстояние — приблизительное («~40 м», а не координаты); и человек виден только после того, как скан уже связал вас, а не всем подряд. Точная гео, адрес и постоянное положение не раскрываются никогда — карта показывает факт близости, а не место.</p>
+          <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px">Развилки решал так: попасть на карту можно только по явному согласию быть видимым; расстояние приблизительное («~40 м», а не координаты); и человек виден только после того, как скан уже связал вас, а не всем подряд. Точная гео, адрес и постоянное положение не раскрываются никогда. Карта показывает факт близости, а не место.</p>
         </div></div>
       </div>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-body);text-wrap:pretty;max-width:760px;border-left:2px solid var(--border-hover);padding-left:14px">Принцип, вокруг которого собран весь флоу: в продукте про знакомства приватность — не экран настроек, а направление самого флоу. Каждый шаг сперва отвечает на «что человек раскрывает и дал ли он на это согласие» и только потом — «как это выглядит».</p>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-body);text-wrap:pretty;max-width:760px;border-left:2px solid var(--border-hover);padding-left:14px">Принцип, вокруг которого собран весь флоу: в продукте про знакомства приватность — это направление самого флоу, а не экран настроек. Каждый шаг сперва отвечает на «что человек раскрывает и дал ли он на это согласие» и только потом — «как это выглядит».</p>
     </div>
     <div style="grid-column:1/-1;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
       <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">04 · результат</span>
       <ul style="margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px;font:400 15px/1.55 Inter,system-ui,sans-serif;color:var(--text-strong);max-width:760px">
-        <li>Спроектированы идея, механика согласия и приватность — весь путь от скана до чата.</li>
-        <li>Собран интерактивный Telegram Mini App: 8 экранов (онбординг, активация вещи, личный QR, скан, карта «кто рядом», профиль, пинги, чат) — все переходы проходятся целиком.</li>
-        <li>Продуманы состояния и переходы — от онбординга и активации вещи до пингов и чата.</li>
-        <li>Готовы дизайн, флоу и все экраны — продукт можно собирать и запускать.</li>
+        <li>Спроектированы идея, механика согласия и приватность. Весь путь от скана до чата.</li>
+        <li>Собран интерактивный Telegram Mini App: 8 экранов (онбординг, активация вещи, личный QR, скан, карта «кто рядом», профиль, пинги, чат). Все переходы проходятся целиком.</li>
+        <li>Продуманы состояния и переходы: от онбординга и активации вещи до пингов и чата.</li>
+        <li>Готовы дизайн, флоу и все экраны. Продукт можно собирать и запускать.</li>
       </ul>
     </div>
   </section>

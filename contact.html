@@ -150,7 +150,7 @@
 
       <sc-if value="{{ submitted }}" hint-placeholder-val="{{ false }}">
         <div style="display:flex;flex-direction:column;gap:14px">
-          <div style="background:var(--chat-area);border-radius:16px 16px 16px 5px;padding:14px 18px;font:400 15.5px/1.55 Inter,system-ui,sans-serif;max-width:480px">Заявка принята ✓ Обычно отвечаем за пару часов — напишем вам в {{ echoContact }}.</div>
+          <div style="background:var(--chat-area);border-radius:16px 16px 16px 5px;padding:14px 18px;font:400 15.5px/1.55 Inter,system-ui,sans-serif;max-width:480px">Заявка принята ✓ Обычно отвечаем за пару часов. Напишем вам в {{ echoContact }}.</div>
           <sc-if value="{{ demoMode }}" hint-placeholder-val="{{ false }}">
             <div style="font:400 13px/1.5 JetBrains Mono,monospace;color:var(--text-muted)">// это демонстрация: отправку на сервер подключит Claude Code</div>
           </sc-if>
@@ -188,35 +188,35 @@
             <button type="button" class="wk-sum" onClick="{{ onStep0 }}" aria-expanded="{{ stepExp0 }}" aria-controls="wk-0"><span class="wk-num">01</span><span class="wk-lbl">Вы описываете задачу</span><span class="acc-chev" aria-hidden="true">▾</span></button>
             <div id="wk-0" class="wk-body" style="animation:{{ stepAnim0 }}"><div class="wk-body-in">
               <div class="wk-scene" aria-hidden="true"><div class="wk-chat"><span class="wk-bub out" style="animation-delay:.05s"></span><span class="wk-bub in" style="animation-delay:.4s"><i></i><i></i><i></i></span></div></div>
-              <p class="wk-detail">Опишите своими словами, что нужно — можно голосом, скринами, «как у конкурента». ТЗ не требуется. Мы задаём уточняющие вопросы, чтобы понять не только «что», но и «зачем»: кто пользователь, где он сейчас теряется, что для вас будет успехом.</p>
+              <p class="wk-detail">Опишите своими словами, что нужно. Можно голосом, скринами, «как у конкурента». ТЗ не требуется. Мы задаём уточняющие вопросы, чтобы понять и «что», и «зачем»: кто пользователь, где он сейчас теряется, что для вас будет успехом.</p>
             </div></div>
           </div>
           <div class="wk-step" data-state="{{ stepState1 }}">
             <button type="button" class="wk-sum" onClick="{{ onStep1 }}" aria-expanded="{{ stepExp1 }}" aria-controls="wk-1"><span class="wk-num">02</span><span class="wk-lbl">Присылаем предложение</span><span class="acc-chev" aria-hidden="true">▾</span></button>
             <div id="wk-1" class="wk-body" style="animation:{{ stepAnim1 }}"><div class="wk-body-in">
               <div class="wk-scene" aria-hidden="true"><div class="wk-offer"><span class="wk-line" style="width:72%;animation-delay:.05s"></span><span class="wk-line" style="width:50%;animation-delay:.18s"></span><div class="wk-offer-row"><span class="wk-price" style="animation-delay:.34s"></span><span class="wk-check" style="animation-delay:.55s">✓</span></div></div></div>
-              <p class="wk-detail">Через день-два — короткое предложение: что именно делаем, сколько это стоит и когда будет готово. Цена фиксированная и не меняется по ходу. Если видим, что задачу можно решить проще и дешевле — скажем об этом прямо.</p>
+              <p class="wk-detail">Через день-два присылаем короткое предложение: что именно делаем, сколько это стоит и когда будет готово. Цена фиксированная и не меняется по ходу. Если видим, что задачу можно решить проще и дешевле, скажем об этом прямо.</p>
             </div></div>
           </div>
           <div class="wk-step" data-state="{{ stepState2 }}">
             <button type="button" class="wk-sum" onClick="{{ onStep2 }}" aria-expanded="{{ stepExp2 }}" aria-controls="wk-2"><span class="wk-num">03</span><span class="wk-lbl">Разработка с показами</span><span class="acc-chev" aria-hidden="true">▾</span></button>
             <div id="wk-2" class="wk-body" style="animation:{{ stepAnim2 }}"><div class="wk-body-in">
               <div class="wk-scene" aria-hidden="true"><div class="wk-code"><span class="wk-cl" style="width:60%;animation-delay:.05s"></span><span class="wk-cl alt" style="width:82%;animation-delay:.25s"></span><span class="wk-cl" style="width:46%;animation-delay:.45s"><i class="wk-cur"></i></span></div></div>
-              <p class="wk-detail">Не пропадаем на недели. Показываем рабочие куски по мере готовности — вы видите прогресс и правите курс, пока это дёшево, а не в самом конце. Всё обсуждаем в Telegram, без созвонов ради созвонов.</p>
+              <p class="wk-detail">Не пропадаем на недели. Показываем рабочие куски по мере готовности: вы видите прогресс и правите курс, пока это дёшево, а не в самом конце. Всё обсуждаем в Telegram, без созвонов ради созвонов.</p>
             </div></div>
           </div>
           <div class="wk-step" data-state="{{ stepState3 }}">
             <button type="button" class="wk-sum" onClick="{{ onStep3 }}" aria-expanded="{{ stepExp3 }}" aria-controls="wk-3"><span class="wk-num">04</span><span class="wk-lbl">Запуск и передача</span><span class="acc-chev" aria-hidden="true">▾</span></button>
             <div id="wk-3" class="wk-body" style="animation:{{ stepAnim3 }}"><div class="wk-body-in">
               <div class="wk-scene" aria-hidden="true"><div class="wk-launch"><span class="wk-dot" style="animation-delay:.3s"></span><span class="wk-live" style="animation-delay:.5s">LIVE</span></div></div>
-              <p class="wk-detail">Ставим проект на сервер, подключаем оплату и домены, проверяем на реальном сценарии. Доступы — платёжка, хостинг, серверы — оформлены на вас: проект ваш с первого дня, а не «привязан» к нам.</p>
+              <p class="wk-detail">Ставим проект на сервер, подключаем оплату и домены, проверяем на реальном сценарии. Доступы (платёжка, хостинг, серверы) оформлены на вас: проект ваш с первого дня, а не «привязан» к нам.</p>
             </div></div>
           </div>
           <div class="wk-step" data-state="{{ stepState4 }}">
             <button type="button" class="wk-sum" onClick="{{ onStep4 }}" aria-expanded="{{ stepExp4 }}" aria-controls="wk-4"><span class="wk-num">05</span><span class="wk-lbl">Бесплатные исправления после сдачи</span><span class="acc-chev" aria-hidden="true">▾</span></button>
             <div id="wk-4" class="wk-body" style="animation:{{ stepAnim4 }}"><div class="wk-body-in">
               <div class="wk-scene" aria-hidden="true"><div class="wk-guard"><span class="wk-shield">30</span><span class="wk-check2" style="animation-delay:.35s">✓</span></div></div>
-              <p class="wk-detail">После сдачи правим всё, что всплывёт, бесплатно. Дальше — поддержка по договорённости или полная передача: код и доступы у вас, можете вести сами или отдать кому угодно.</p>
+              <p class="wk-detail">После сдачи правим всё, что всплывёт, бесплатно. Дальше либо поддержка по договорённости, либо полная передача: код и доступы у вас, можете вести сами или отдать кому угодно.</p>
             </div></div>
           </div>
         </div>
@@ -237,31 +237,31 @@
       <div class="acc" data-state="{{ faqState0 }}" style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:8px">
         <h3 style="margin:0"><button type="button" class="acc-sum" onClick="{{ onFaq0 }}" aria-expanded="{{ faqExp0 }}" aria-controls="faq-0" style="font:600 16.5px/1.35 Sora,sans-serif;color:var(--text)"><span class="faq-ic" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.5 3H7v9H5v2h2v2H5v2h2v3h2v-3h4v-2H9v-2h4.5c3.04 0 5.5-2.46 5.5-5.5S16.54 3 13.5 3m0 9H9V5h4.5C15.43 5 17 6.57 17 8.5S15.43 12 13.5 12"/></svg></span>Сколько стоит проект?<span class="acc-chev" aria-hidden="true">▾</span></button></h3>
         <div id="faq-0" class="acc-body" style="animation:{{ faqAnim0 }}"><div class="acc-inner">
-          <p style="margin:0;font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Зависит от задачи: приём заявок — от 4 900 ₽, оплаты и подписки — от 8 900 ₽, мини-аппы — от 16 900 ₽. Точную цену называем после обсуждения — до старта работ, и она не меняется.</p>
+          <p style="margin:0;font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Зависит от задачи: приём заявок от 4 900 ₽, оплаты и подписки от 8 900 ₽, мини-аппы от 16 900 ₽. Точную цену называем после обсуждения, до старта работ, и она не меняется.</p>
         </div></div>
       </div>
       <div class="acc" data-state="{{ faqState1 }}" style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:8px">
         <h3 style="margin:0"><button type="button" class="acc-sum" onClick="{{ onFaq1 }}" aria-expanded="{{ faqExp1 }}" aria-controls="faq-1" style="font:600 16.5px/1.35 Sora,sans-serif;color:var(--text)"><span class="faq-ic" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 20a8 8 0 0 0 8-8a8 8 0 0 0-8-8a8 8 0 0 0-8 8a8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10a10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67l-.75 1.23L11 13V7z"/></svg></span>Сколько времени занимает типовой проект?<span class="acc-chev" aria-hidden="true">▾</span></button></h3>
         <div id="faq-1" class="acc-body" style="animation:{{ faqAnim1 }}"><div class="acc-inner">
-          <p style="margin:0;font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Бот приёма заявок — от нескольких дней до пары недель. Проекты с оплатами и ИИ — обычно 2–4 недели. Срок фиксируем в предложении вместе с ценой.</p>
+          <p style="margin:0;font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Бот приёма заявок: от нескольких дней до пары недель. Проекты с оплатами и ИИ обычно занимают 2–4 недели. Срок фиксируем в предложении вместе с ценой.</p>
         </div></div>
       </div>
       <div class="acc" data-state="{{ faqState2 }}" style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:8px">
         <h3 style="margin:0"><button type="button" class="acc-sum" onClick="{{ onFaq2 }}" aria-expanded="{{ faqExp2 }}" aria-controls="faq-2" style="font:600 16.5px/1.35 Sora,sans-serif;color:var(--text)"><span class="faq-ic" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M19 3h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2m-7 0a1 1 0 0 1 1 1a1 1 0 0 1-1 1a1 1 0 0 1-1-1a1 1 0 0 1 1-1M7 7h10V5h2v14H5V5h2zm.5 6.5L9 12l2 2l4.5-4.5L17 11l-6 6z"/></svg></span>Что нужно от меня как заказчика?<span class="acc-chev" aria-hidden="true">▾</span></button></h3>
         <div id="faq-2" class="acc-body" style="animation:{{ faqAnim2 }}"><div class="acc-inner">
-          <p style="margin:0;font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Описать задачу своими словами и быть на связи для уточнений — ТЗ не обязательно. Доступы (платёжка, хостинг) оформляются на вас, поможем всё завести.</p>
+          <p style="margin:0;font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Описать задачу своими словами и быть на связи для уточнений. ТЗ не обязательно. Доступы (платёжка, хостинг) оформляются на вас, поможем всё завести.</p>
         </div></div>
       </div>
       <div class="acc" data-state="{{ faqState3 }}" style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:8px">
         <h3 style="margin:0"><button type="button" class="acc-sum" onClick="{{ onFaq3 }}" aria-expanded="{{ faqExp3 }}" aria-controls="faq-3" style="font:600 16.5px/1.35 Sora,sans-serif;color:var(--text)"><span class="faq-ic" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="m13.16 22.19l-1.66-3.84c1.6-.58 3.07-1.35 4.43-2.27l-2.78 6.11m-7.5-9.69l-3.84-1.65l6.11-2.78C7 9.43 6.23 10.91 5.65 12.5M20 4c-2.96-.22-5.2.83-7.55 3.31c-2.36 2.47-3.36 4.5-3.95 6.04l2.17 2.1c2.29-.87 4.33-2.18 6.03-3.89C20 8.27 20.17 5.4 20 4m-9 1.9c2.63-2.8 7-4.82 10.66-3.55c0 0 2.12 4.96-3.55 10.65c-2.2 2.17-4.58 3.5-6.72 4.34c-.24.09-1.15.39-2.13-.46l-2.13-2.13c-.56-.56-.74-1.38-.47-2.13C7.5 10.5 8.41 8.69 11 5.9M6.25 22H4.84l4.09-4.1c.3.21.63.36.97.45zM2 22v-1.41l4.77-4.78l1.43 1.42L3.41 22zm0-2.83v-1.42l3.65-3.65c.09.35.24.68.45.97zM16 6a2 2 0 0 1 2 2c0 1.11-.89 2-2 2a2 2 0 1 1 0-4"/></svg></span>Что после запуска?<span class="acc-chev" aria-hidden="true">▾</span></button></h3>
         <div id="faq-3" class="acc-body" style="animation:{{ faqAnim3 }}"><div class="acc-inner">
-          <p style="margin:0;font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Бесплатные исправления после сдачи. Дальше — поддержка по договорённости, либо передаём проект целиком: всё работает у вас, доступы ваши.</p>
+          <p style="margin:0;font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Бесплатные исправления после сдачи. Дальше либо поддержка по договорённости, либо передаём проект целиком: всё работает у вас, доступы ваши.</p>
         </div></div>
       </div>
       <div class="acc" data-state="{{ faqState4 }}" style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:8px">
         <h3 style="margin:0"><button type="button" class="acc-sum" onClick="{{ onFaq4 }}" aria-expanded="{{ faqExp4 }}" aria-controls="faq-4" style="font:600 16.5px/1.35 Sora,sans-serif;color:var(--text)"><span class="faq-ic" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20 8H4V6h16m0 12H4v-6h16m0-8H4c-1.11 0-2 .89-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2"/></svg></span>Как проходит оплата?<span class="acc-chev" aria-hidden="true">▾</span></button></h3>
         <div id="faq-4" class="acc-body" style="animation:{{ faqAnim4 }}"><div class="acc-inner">
-          <p style="margin:0;font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Официально: ИП, договор, безналичная оплата. Этапами — часть на старте, остальное по факту сдачи работающего продукта.</p>
+          <p style="margin:0;font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Официально: ИП, договор, безналичная оплата. Этапами: часть на старте, остальное по факту сдачи работающего продукта.</p>
         </div></div>
       </div>
       <div class="acc" data-state="{{ faqState5 }}" style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:8px">

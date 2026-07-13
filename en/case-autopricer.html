@@ -61,13 +61,13 @@
       <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:var(--online)"></span>pricing system</span>
     </div>
     <h1 style="margin:0;font:700 clamp(28px,4vw,42px)/1.15 Sora,sans-serif;letter-spacing:-0.02em">Autopricer &amp; P&amp;L for a marketplace</h1>
-    <p style="margin:0;font:400 clamp(15.5px,1.6vw,18px)/1.55 Inter,system-ui,sans-serif;color:var(--text-body);max-width:720px">A system that uses the marketplace's real money to find which of thousands of products earn and which quietly burn budget — and reprices the catalogue so every active product turns a profit.</p>
+    <p style="margin:0;font:400 clamp(15.5px,1.6vw,18px)/1.55 Inter,system-ui,sans-serif;color:var(--text-body);max-width:720px">A system that uses the marketplace's real money to find which of thousands of products earn and which quietly burn budget, then reprices the catalogue so every active product turns a profit.</p>
   </div>
 
   <!-- ============ DEMO ============ -->
   <section aria-label="Live demo: pricing dashboard" style="background:var(--surface);border:1px solid var(--border);border-radius:22px;padding:clamp(18px,3vw,32px);display:flex;flex-direction:column;gap:18px">
     <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
-      <span style="display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 13px Inter,system-ui,sans-serif"><span style="width:7px;height:7px;border-radius:50%;background:var(--online)"></span>live demo — move the sliders, prices recalculate instantly</span>
+      <span style="display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 13px Inter,system-ui,sans-serif"><span style="width:7px;height:7px;border-radius:50%;background:var(--online)"></span>live demo: move the sliders, prices recalculate instantly</span>
       <span style="margin-left:auto;font:400 12px JetBrains Mono,monospace;color:var(--text-muted)">// real math on mock products</span>
     </div>
 
@@ -93,7 +93,7 @@
         </label>
 
         <div style="display:flex;flex-direction:column;gap:14px;border-top:1px dashed var(--border-input);padding-top:16px">
-          <span style="font:500 13px Inter,system-ui,sans-serif;color:var(--text-meta)">Price corridor — protection from extremes</span>
+          <span style="font:500 13px Inter,system-ui,sans-serif;color:var(--text-meta)">Price corridor: protection from extremes</span>
           <label style="display:flex;flex-direction:column;gap:8px">
             <span style="display:flex;justify-content:space-between;font:500 13.5px Inter,system-ui,sans-serif;color:var(--text-strong)">Floor, markup over cost<span style="font:500 13px JetBrains Mono,monospace;color:var(--accent)">+{{ floorPct }} %</span></span>
             <input type="range" min="10" max="100" step="5" value="{{ floorPct }}" onChange="{{ onFloor }}" style="width:100%;accent-color:var(--accent-cta)" style-focus-visible="outline:2px solid var(--accent);outline-offset:3px">
@@ -156,7 +156,7 @@
     </div>
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
       <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">02 · solution</span>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">We built a system in Python that pulls actual financial transactions from the marketplace API — payouts, commissions, logistics, returns, penalties — and rolls them up into a P&amp;L for every product sold. Items are then classified: profitable, thin, loss-making on price, loss-making on returns. For repricing it computes a “price floor” from cost using the real commission, not the stated one.</p>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">We built a system in Python that pulls actual financial transactions from the marketplace API (payouts, commissions, logistics, returns, penalties) and rolls them up into a P&amp;L for every product sold. Items are then classified: profitable, thin, loss-making on price, loss-making on returns. For repricing it computes a “price floor” from cost using the real commission, not the stated one.</p>
       <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">Every change goes through a dry-run first: the system shows a “before → after” plan, and only after a human confirms does it write prices back, keeping a snapshot for rollback.</p>
     </div>
     <div style="grid-column:1/-1;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
@@ -164,7 +164,7 @@
       <div class="acc" data-state="{{ hardAState }}">
         <button type="button" class="acc-sum" onClick="{{ onHardA }}" aria-expanded="{{ hardAExp }}" aria-controls="ap-h1" style="font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);max-width:760px">The first version of the unit economics relied on the marketplace's stated rates and showed the store deeply in the red, most sales at a loss.<span class="acc-chev" aria-hidden="true">▾</span></button>
         <div id="ap-h1" class="acc-body" style="animation:{{ hardAAnim }}"><div class="acc-inner">
-          <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px">Shutting it down looked like the obvious call. Instead we reconciled the calculation against actual transactions — and the picture was the opposite. The breakdown exposed systematic skews: the real commission was noticeably lower than stated, real logistics far below the maximum rates, and the analytics endpoint undercounted sales versus the financial one.</p>
+          <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px">Shutting it down looked like the obvious call. Instead we reconciled the calculation against actual transactions. The picture was the opposite. The breakdown exposed systematic skews: the real commission was noticeably lower than stated, real logistics far below the maximum rates, and the analytics endpoint undercounted sales versus the financial one.</p>
         </div></div>
       </div>
       <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-body);text-wrap:pretty;max-width:760px;border-left:2px solid var(--border-hover);padding-left:14px">Hence the principle baked into the system: the predictive model is only for future prices, the financial result comes only from actual transactions.</p>

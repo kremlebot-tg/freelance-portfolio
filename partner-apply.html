@@ -46,7 +46,7 @@
 <main style="font-family:Inter,system-ui,sans-serif;max-width:1000px;margin:0 auto;padding:clamp(40px,5vw,64px) 22px clamp(56px,7vw,88px)">
   <a href="partner.html" style="display:inline-flex;align-items:center;gap:6px;font:500 13.5px Inter,system-ui,sans-serif;color:var(--text-muted);text-decoration:none;min-height:44px;margin-bottom:6px" style-hover="color:var(--accent)">← О партнёрской программе</a>
   <h1 style="margin:0 0 12px;font:700 clamp(30px,4vw,44px)/1.15 Sora,sans-serif;letter-spacing:-0.02em">Заявка в партнёры</h1>
-  <p style="margin:0 0 36px;font:400 clamp(15.5px,1.6vw,18px)/1.6 Inter,system-ui,sans-serif;color:var(--text-body);max-width:620px;text-wrap:pretty">Коротко расскажите о себе и кого можете привести. Ответим сами, обычно за пару часов, и обсудим условия. Это не оформление на работу в штат — свободное партнёрство: приводите клиента, получаете долю.</p>
+  <p style="margin:0 0 36px;font:400 clamp(15.5px,1.6vw,18px)/1.6 Inter,system-ui,sans-serif;color:var(--text-body);max-width:620px;text-wrap:pretty">Коротко расскажите о себе и кого можете привести. Ответим сами, обычно за пару часов, и обсудим условия. В штат оформлять не будем, это свободное партнёрство: приводите клиента, получаете долю.</p>
 
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:24px;align-items:start">
 
@@ -91,7 +91,7 @@
 
       <sc-if value="{{ submitted }}" hint-placeholder-val="{{ false }}">
         <div style="display:flex;flex-direction:column;gap:14px">
-          <div style="background:var(--chat-area);border-radius:16px 16px 16px 5px;padding:14px 18px;font:400 15.5px/1.55 Inter,system-ui,sans-serif;max-width:480px">Заявка в партнёры принята ✓ Обычно отвечаем за пару часов — напишем вам в {{ echoContact }} и обсудим условия.</div>
+          <div style="background:var(--chat-area);border-radius:16px 16px 16px 5px;padding:14px 18px;font:400 15.5px/1.55 Inter,system-ui,sans-serif;max-width:480px">Заявка в партнёры принята ✓ Обычно отвечаем за пару часов, напишем вам в {{ echoContact }} и обсудим условия.</div>
           <sc-if value="{{ demoMode }}" hint-placeholder-val="{{ false }}">
             <div style="font:400 13px/1.5 JetBrains Mono,monospace;color:var(--text-muted)">// это демонстрация: отправку на сервер подключит Claude Code</div>
           </sc-if>
@@ -107,7 +107,7 @@
         <div style="display:flex;flex-direction:column">
           <div class="pa-step"><span class="pa-step-n">1</span><span class="pa-step-t"><b>Вы приводите клиента.</b> Кого-то с реальной задачей: заявки и оплаты, бот, приложение или автоматизация.</span></div>
           <div class="pa-line"></div>
-          <div class="pa-step"><span class="pa-step-n">2</span><span class="pa-step-t"><b>Проект берёт команда.</b> Оцениваем задачу, называем цену и срок — разработку, дизайн и общение с клиентом ведут разные люди.</span></div>
+          <div class="pa-step"><span class="pa-step-n">2</span><span class="pa-step-t"><b>Проект берёт команда.</b> Оцениваем задачу, называем цену и срок. Разработку, дизайн и общение с клиентом ведут разные люди.</span></div>
           <div class="pa-line"></div>
           <div class="pa-step"><span class="pa-step-n">3</span><span class="pa-step-t"><b>Вы получаете долю.</b> С каждого оплаченного заказа. Процент фиксируем заранее.</span></div>
         </div>

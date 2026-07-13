@@ -61,13 +61,13 @@
       <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:var(--online)"></span>система ценообразования</span>
     </div>
     <h1 style="margin:0;font:700 clamp(28px,4vw,42px)/1.15 Sora,sans-serif;letter-spacing:-0.02em">Автопрайсер и P&amp;L для маркетплейса</h1>
-    <p style="margin:0;font:400 clamp(15.5px,1.6vw,18px)/1.55 Inter,system-ui,sans-serif;color:var(--text-body);max-width:720px">Система, которая по фактическим деньгам маркетплейса находит, какие из тысяч товаров зарабатывают, а какие тихо жгут бюджет — и переоценивает каталог так, чтобы каждый активный товар был в плюсе.</p>
+    <p style="margin:0;font:400 clamp(15.5px,1.6vw,18px)/1.55 Inter,system-ui,sans-serif;color:var(--text-body);max-width:720px">Система, которая по фактическим деньгам маркетплейса находит, какие из тысяч товаров зарабатывают, а какие тихо жгут бюджет, и переоценивает каталог так, чтобы каждый активный товар был в плюсе.</p>
   </div>
 
   <!-- ============ DEMO ============ -->
   <section aria-label="Живое демо: дашборд ценообразования" style="background:var(--surface);border:1px solid var(--border);border-radius:22px;padding:clamp(18px,3vw,32px);display:flex;flex-direction:column;gap:18px">
     <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
-      <span style="display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 13px Inter,system-ui,sans-serif"><span style="width:7px;height:7px;border-radius:50%;background:var(--online)"></span>живое демо — двигайте параметры, цены пересчитываются сразу</span>
+      <span style="display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 13px Inter,system-ui,sans-serif"><span style="width:7px;height:7px;border-radius:50%;background:var(--online)"></span>живое демо: двигайте параметры, цены пересчитываются сразу</span>
       <span style="margin-left:auto;font:400 12px JetBrains Mono,monospace;color:var(--text-muted)">// настоящая математика на моковых товарах</span>
     </div>
 
@@ -145,7 +145,7 @@
       </div>
     </div>
 
-    <p style="margin:0;font:400 13.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-meta);max-width:720px">В демо — 8 товаров. В полном расчёте те же формулы работают по всему каталогу: себестоимость и комиссии подтягиваются из Ozon API, цены обновляются по расписанию.</p>
+    <p style="margin:0;font:400 13.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-meta);max-width:720px">В демо 8 товаров. В полном расчёте те же формулы работают по всему каталогу: себестоимость и комиссии подтягиваются из Ozon API, цены обновляются по расписанию.</p>
   </section>
 
   <!-- ============ CASE STORY ============ -->
@@ -164,10 +164,10 @@
       <div class="acc" data-state="{{ hardAState }}">
         <button type="button" class="acc-sum" onClick="{{ onHardA }}" aria-expanded="{{ hardAExp }}" aria-controls="ap-h1" style="font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);max-width:760px">Первая версия юнит-экономики опиралась на заявленные тарифы маркетплейса и показала: магазин глубоко убыточен, большинство продаж в минус.<span class="acc-chev" aria-hidden="true">▾</span></button>
         <div id="ap-h1" class="acc-body" style="animation:{{ hardAAnim }}"><div class="acc-inner">
-          <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px">Напрашивалось закрытие. Вместо этого мы сверили расчёт с фактическими транзакциями — и картина оказалась противоположной. Разбор вскрыл систематические перекосы: реальная комиссия заметно ниже заявленной, реальная логистика — существенно ниже максимальных тарифов, а аналитический эндпоинт недосчитывал продажи против финансового.</p>
+          <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px">Напрашивалось закрытие. Вместо этого мы сверили расчёт с фактическими транзакциями, и картина оказалась противоположной. Разбор вскрыл систематические перекосы: реальная комиссия заметно ниже заявленной, реальная логистика существенно ниже максимальных тарифов, а аналитический эндпоинт недосчитывал продажи против финансового.</p>
         </div></div>
       </div>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-body);text-wrap:pretty;max-width:760px;border-left:2px solid var(--border-hover);padding-left:14px">Отсюда принцип, зашитый в систему: прогнозная модель — только для будущих цен, финансовый результат — только из фактических транзакций.</p>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-body);text-wrap:pretty;max-width:760px;border-left:2px solid var(--border-hover);padding-left:14px">Отсюда принцип, зашитый в систему: прогнозную модель используем только для будущих цен, а финансовый результат берём только из фактических транзакций.</p>
       <div class="acc" data-state="{{ hardBState }}">
         <button type="button" class="acc-sum" onClick="{{ onHardB }}" aria-expanded="{{ hardBExp }}" aria-controls="ap-h2" style="font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);max-width:760px">Вторая находка того же порядка: цена, которую видит покупатель, и цена, которую начисляют продавцу, — разные числа.<span class="acc-chev" aria-hidden="true">▾</span></button>
         <div id="ap-h2" class="acc-body" style="animation:{{ hardBAnim }}"><div class="acc-inner">

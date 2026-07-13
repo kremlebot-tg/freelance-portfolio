@@ -230,14 +230,14 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
       <span style="display:inline-flex;align-items:center;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif">product design</span>
       <span style="display:inline-flex;align-items:center;padding:5px 10px;border-radius:99px;background:var(--surface-2);color:var(--text-meta);border:1px solid var(--border);font:500 12.5px Inter,system-ui,sans-serif">interactive demo</span>
     </div>
-    <h1 style="margin:0;font:700 clamp(28px,4vw,42px)/1.15 Sora,sans-serif;letter-spacing:-0.02em">MUTUAL — meet via QR</h1>
+    <h1 style="margin:0;font:700 clamp(28px,4vw,42px)/1.15 Sora,sans-serif;letter-spacing:-0.02em">MUTUAL: meet via QR</h1>
     <p style="margin:0;font:400 clamp(15.5px,1.6vw,18px)/1.55 Inter,system-ui,sans-serif;color:var(--text-body);max-width:720px">A streetwear brand where the clothes introduce people: a static QR on a garment stands for the owner’s identity, and the introduction only opens by mutual consent.</p>
   </div>
 
   <!-- ============ DEMO ============ -->
   <section aria-label="Live mini app demo" style="background:var(--surface);border:1px solid var(--border);border-radius:22px;padding:clamp(18px,3vw,32px);display:flex;flex-direction:column;gap:18px">
     <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
-      <span style="display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 13px Inter,system-ui,sans-serif"><span style="width:7px;height:7px;border-radius:50%;background:var(--online)"></span>live demo — walk the whole flow</span>
+      <span style="display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 13px Inter,system-ui,sans-serif"><span style="width:7px;height:7px;border-radius:50%;background:var(--online)"></span>live demo: walk the whole flow</span>
       <button type="button" onClick="{{ onReset }}" style="margin-left:auto;font:500 13.5px Inter,system-ui,sans-serif;color:var(--text-meta);background:var(--surface-2);border:none;cursor:pointer;padding:11px 16px;min-height:44px;display:inline-flex;align-items:center;border-radius:10px" style-hover="background:var(--border-soft);color:var(--text)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">⟳ reset demo</button>
     </div>
 
@@ -256,9 +256,9 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
             <div class="m-flow">
               <div class="m-fl"><b>01</b><span>Scan the code on an item</span></div>
               <div class="m-fl"><b>02</b><span>Ping the owner</span></div>
-              <div class="m-fl key"><b>03</b><span>They accept — chat opens</span></div>
+              <div class="m-fl key"><b>03</b><span>They accept, chat opens</span></div>
             </div>
-            <div class="m-consent"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#D6FF3D" stroke-width="2" aria-hidden="true" focusable="false" style="flex:none;margin-top:1px"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><p><b>Without mutual consent, no chat opens.</b> A decline is invisible to everyone — nothing just happens.</p></div>
+            <div class="m-consent"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#D6FF3D" stroke-width="2" aria-hidden="true" focusable="false" style="flex:none;margin-top:1px"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><p><b>Without mutual consent, no chat opens.</b> A decline is invisible to everyone. Nothing just happens.</p></div>
             <div class="m-fill"></div>
             <button type="button" class="m-btn m-btn--acc" onClick="{{ onStart }}">See the demo →</button>
           </section>
@@ -270,7 +270,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
             <h1 class="m-h1">Who can<br>find me</h1>
             <p class="m-sub">These are the defaults. Change them anytime.</p>
             <button type="button" class="m-row" role="switch" aria-checked="{{ find }}" onClick="{{ onToFind }}"><span class="t"><b>Findable by the code on my item</b><i>Whoever scans your item sees your profile</i></span><span class="{{ swFind }}" aria-hidden="true"><span></span></span></button>
-            <button type="button" class="m-row" role="switch" aria-checked="{{ onMap }}" onClick="{{ onToMap }}"><span class="t"><b>Show me nearby on the map</b><i>Approximate — the exact point is hidden</i></span><span class="{{ swMap }}" aria-hidden="true"><span></span></span></button>
+            <button type="button" class="m-row" role="switch" aria-checked="{{ onMap }}" onClick="{{ onToMap }}"><span class="t"><b>Show me nearby on the map</b><i>Approximate. The exact point is hidden</i></span><span class="{{ swMap }}" aria-hidden="true"><span></span></span></button>
             <div class="m-row" role="switch" aria-checked="true" aria-disabled="true" aria-label="Meeting only by consent. Always on."><span class="t"><b>Meeting only by consent</b><i>Chat opens only if you accept the ping</i><u>🔒 can't be turned off</u></span><span class="m-sw lock" aria-hidden="true"><span></span></span></div>
             <button type="button" class="m-row" role="switch" aria-checked="{{ hide }}" onClick="{{ onToHide }}"><span class="t"><b>Hide my profile entirely</b><i>The code stops leading to you</i></span><span class="{{ swHide }}" aria-hidden="true"><span></span></span></button>
             <div class="m-status" role="status" aria-live="polite"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#D6FF3D" stroke-width="2" aria-hidden="true" focusable="false" style="flex:none;margin-top:1px"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg><p><b>{{ visTitle }}</b><br>{{ visNote }}</p></div>
@@ -348,7 +348,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
             <div class="m-match">
               <div class="m-conv" aria-hidden="true"><span class="ring"></span><span class="ring"></span><span class="a">Y</span><span class="b">L</span></div>
               <div class="m-big">Mutual</div>
-              <p role="status" aria-live="polite">Lena accepted your ping. The chat is open now — for both of you.</p>
+              <p role="status" aria-live="polite">Lena accepted your ping. The chat is open now, for both of you.</p>
             </div>
             <button type="button" class="m-btn m-btn--acc" onClick="{{ onChat }}">Open chat →</button>
           </section>
@@ -373,14 +373,14 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
             <h1 class="m-h1" style="font-size:34px">Here's how<br>it works</h1>
             <div class="m-steps">
               <div class="m-step"><b>01</b><span class="t"><p>Code on the item = identity</p><i>One code, one person. The profile is editable; the item stays.</i></span></div>
-              <div class="m-step"><b>02</b><span class="t"><p>A scan opens the profile</p><i>Not from a map or a feed — only from scanning a real item.</i></span></div>
+              <div class="m-step"><b>02</b><span class="t"><p>A scan opens the profile</p><i>Not from a map or a feed, only from scanning a real item.</i></span></div>
               <div class="m-step"><b>03</b><span class="t"><p>A ping is a question</p><i>A decline is invisible to anyone. Nothing just happens.</i></span></div>
-              <div class="m-step"><b>04</b><span class="t"><p>Chat — only if mutual</p><i>Both said yes — then the conversation opens.</i></span></div>
+              <div class="m-step"><b>04</b><span class="t"><p>Chat only if mutual</p><i>Both said yes, then the conversation opens.</i></span></div>
             </div>
-            <div class="m-seal"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D6FF3D" stroke-width="2" aria-hidden="true" focusable="false" style="flex:none;margin-top:1px"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><p><b>Consent isn't a setting, it's a rule</b>Neither side can turn it off.</p></div>
+            <div class="m-seal"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D6FF3D" stroke-width="2" aria-hidden="true" focusable="false" style="flex:none;margin-top:1px"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><p><b>Consent is a rule, not a setting</b>Neither side can turn it off.</p></div>
             <div class="m-fill"></div>
             <button type="button" class="m-btn m-btn--acc" onClick="{{ onReset }}">Start over ↺</button>
-            <p class="m-disc">MUTUAL — meeting via a garment.</p>
+            <p class="m-disc">MUTUAL: meeting via a garment.</p>
           </section>
           </sc-if>
 
@@ -394,35 +394,35 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
   <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,470px),1fr));gap:16px;margin-top:24px">
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
       <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">01 · problem</span>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">Meeting people offline is chance and awkwardness: you notice someone whose style you vibe with, but there’s no bridge from “spotted them in a crowd” to “we’re chatting,” and making the first move is uncomfortable for both. MUTUAL turns the garment itself into that bridge: a streetwear brand where every item carries a QR, and scanning it opens not a product page but the owner’s identity and their consent to be contacted. The product problem wasn’t the code — it was designing the whole flow to stay useful without turning into surveillance.</p>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">Meeting people offline is chance and awkwardness: you notice someone whose style you vibe with, but there’s no bridge from “spotted them in a crowd” to “we’re chatting,” and making the first move is uncomfortable for both. MUTUAL turns the garment itself into that bridge: a streetwear brand where every item carries a QR, and scanning it opens the owner’s identity and their consent to be contacted, not a product page. The product problem wasn’t the code. It was designing the whole flow to stay useful without turning into surveillance.</p>
     </div>
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
       <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">02 · solution</span>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">The key decision is an inversion: the garment holds a fixed pointer, the identity lives online. The QR is printed on a physical garment and can’t be reprinted, so it carries not a person’s data but a stable link; everything mutable — name, interests, privacy, even the owner on resale — is edited in the online profile at any time. On top of that, a consent-based introduction flow: scan → ping the owner → chat opens only on mutual interest. We built an interactive Telegram Mini App: onboarding, item activation, personal QR, scan, a “who’s nearby” map, profile, pings, chat — the whole path is walkable end to end.</p>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">The key decision is an inversion: the garment holds a fixed pointer, the identity lives online. The QR is printed on a physical garment and can’t be reprinted, so it carries a stable link, not a person’s data; everything mutable (name, interests, privacy, even the owner on resale) is edited in the online profile at any time. On top of that, a consent-based introduction flow: scan → ping the owner → chat opens only on mutual interest. We built an interactive Telegram Mini App: onboarding, item activation, personal QR, scan, a “who’s nearby” map, profile, pings, chat. The whole path is walkable end to end.</p>
     </div>
     <div style="grid-column:1/-1;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
       <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">03 · what was hard</span>
       <div class="acc" data-state="{{ hardAState }}">
-        <button type="button" class="acc-sum" onClick="{{ onHardA }}" aria-expanded="{{ hardAExp }}" aria-controls="mu-h1" style="font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);max-width:760px"><strong style="color:var(--text)">What the scanner sees before consent.</strong> The first version of the flow went straight from scan to a profile with a “message” button — and it broke on privacy: any scan meant direct access to a person.<span class="acc-chev" aria-hidden="true">▾</span></button>
+        <button type="button" class="acc-sum" onClick="{{ onHardA }}" aria-expanded="{{ hardAExp }}" aria-controls="mu-h1" style="font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);max-width:760px"><strong style="color:var(--text)">What the scanner sees before consent.</strong> The first version of the flow went straight from scan to a profile with a “message” button, and it broke on privacy: any scan meant direct access to a person.<span class="acc-chev" aria-hidden="true">▾</span></button>
         <div id="mu-h1" class="acc-body" style="animation:{{ hardAAnim }}"><div class="acc-inner">
-          <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px">I reworked it: before consent the scanner sees only a public storefront — the item, a nickname, a couple of interest tags — but no contacts, no precise location, and can’t message. Between profile and chat sits a gate: the only action is a “ping,” and the chat doesn’t exist at all until the owner answers in kind. Consent here isn’t a checkbox in settings — it’s the act of replying to the ping.</p>
+          <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px">I reworked it: before consent the scanner sees only a public storefront (the item, a nickname, a couple of interest tags) but no contacts, no precise location, and can’t message. Between profile and chat sits a gate: the only action is a “ping,” and the chat doesn’t exist at all until the owner answers in kind. Consent here isn’t a checkbox in settings. It’s the act of replying to the ping.</p>
         </div></div>
       </div>
       <div class="acc" data-state="{{ hardBState }}">
         <button type="button" class="acc-sum" onClick="{{ onHardB }}" aria-expanded="{{ hardBExp }}" aria-controls="mu-h2" style="font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);max-width:760px"><strong style="color:var(--text)">A “who’s nearby” map without stalking.</strong> The map is useful, but people’s location is the most dangerous screen in the product.<span class="acc-chev" aria-hidden="true">▾</span></button>
         <div id="mu-h2" class="acc-body" style="animation:{{ hardBAnim }}"><div class="acc-inner">
-          <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px">I resolved the forks like this: you only appear on the map by explicitly opting in to be visible; distance is approximate (“~40 m,” not coordinates); and a person is shown only after a scan has already linked you, not to everyone. Precise geo, address and continuous position are never exposed — the map shows the fact of being close, not the place.</p>
+          <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px">I resolved the forks like this: you only appear on the map by explicitly opting in to be visible; distance is approximate (“~40 m,” not coordinates); and a person is shown only after a scan has already linked you, not to everyone. Precise geo, address and continuous position are never exposed. The map shows the fact of being close, not the place.</p>
         </div></div>
       </div>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-body);text-wrap:pretty;max-width:760px;border-left:2px solid var(--border-hover);padding-left:14px">The principle the whole flow is built around: in a product about meeting people, privacy isn’t a settings screen — it’s the direction of the flow itself. Every step first answers “what does this person reveal, and did they consent to it,” and only then “how does it look.”</p>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-body);text-wrap:pretty;max-width:760px;border-left:2px solid var(--border-hover);padding-left:14px">The principle the whole flow is built around: in a product about meeting people, privacy isn’t a settings screen. It’s the direction of the flow itself. Every step first answers “what does this person reveal, and did they consent to it,” and only then “how does it look.”</p>
     </div>
     <div style="grid-column:1/-1;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
       <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">04 · result</span>
       <ul style="margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px;font:400 15px/1.55 Inter,system-ui,sans-serif;color:var(--text-strong);max-width:760px">
-        <li>The idea, the consent mechanics and the privacy are designed — the whole path from scan to chat.</li>
-        <li>An interactive Telegram Mini App: 8 screens (onboarding, item activation, personal QR, scan, a nearby map, profile, pings, chat) — every transition is walkable end to end.</li>
-        <li>The states and transitions are worked out — from onboarding and item activation to pings and chat.</li>
-        <li>The design, flow and all screens are ready — the product is ready to build and launch.</li>
+        <li>The idea, the consent mechanics and the privacy are designed: the whole path from scan to chat.</li>
+        <li>An interactive Telegram Mini App: 8 screens (onboarding, item activation, personal QR, scan, a nearby map, profile, pings, chat). Every transition is walkable end to end.</li>
+        <li>The states and transitions are worked out, from onboarding and item activation to pings and chat.</li>
+        <li>The design, flow and all screens are done. The product is ready to build and launch.</li>
       </ul>
     </div>
   </section>

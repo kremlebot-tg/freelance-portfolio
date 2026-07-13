@@ -44,7 +44,7 @@
 <dc-import name="Header" active="" brand-name="{{ brandName }}" hint-size="100%,64px"></dc-import>
 
 <main style="font-family:Inter,system-ui,sans-serif;max-width:1000px;margin:0 auto;padding:clamp(40px,5vw,64px) 22px clamp(56px,7vw,88px)">
-  <a href="partner.html" style="display:inline-flex;align-items:center;gap:6px;font:500 13.5px Inter,system-ui,sans-serif;color:var(--text-muted);text-decoration:none;margin-bottom:18px" style-hover="color:var(--accent)">← О партнёрской программе</a>
+  <a href="partner.html" style="display:inline-flex;align-items:center;gap:6px;font:500 13.5px Inter,system-ui,sans-serif;color:var(--text-muted);text-decoration:none;min-height:44px;margin-bottom:6px" style-hover="color:var(--accent)">← О партнёрской программе</a>
   <h1 style="margin:0 0 12px;font:700 clamp(30px,4vw,44px)/1.15 Sora,sans-serif;letter-spacing:-0.02em">Заявка в партнёры</h1>
   <p style="margin:0 0 36px;font:400 clamp(15.5px,1.6vw,18px)/1.6 Inter,system-ui,sans-serif;color:var(--text-body);max-width:620px;text-wrap:pretty">Коротко расскажите о себе и кого можете привести. Ответим сами, обычно за пару часов, и обсудим условия. Это не оформление на работу в штат — свободное партнёрство: приводите клиента, получаете долю.</p>
 
@@ -59,7 +59,7 @@
             <span style="font:600 14.5px Inter,system-ui,sans-serif">Кто вы</span>
             <div role="radiogroup" aria-label="Кто вы" style="display:flex;flex-wrap:wrap;gap:8px">
               <sc-for list="{{ roleChips }}" as="chip" hint-placeholder-count="5">
-                <button type="button" role="radio" aria-checked="{{ chip.checked }}" onClick="{{ chip.pick }}" style="font:500 14px Inter,system-ui,sans-serif;padding:9px 14px;border-radius:99px;cursor:pointer;border:1px solid {{ chip.border }};background:{{ chip.bg }};color:{{ chip.color }}" style-hover="border-color:var(--accent-cta)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">{{ chip.label }}</button>
+                <button type="button" role="radio" aria-checked="{{ chip.checked }}" onClick="{{ chip.pick }}" style="font:500 14px Inter,system-ui,sans-serif;padding:9px 14px;min-height:44px;display:inline-flex;align-items:center;border-radius:99px;cursor:pointer;border:1px solid {{ chip.border }};background:{{ chip.bg }};color:{{ chip.color }}" style-hover="border-color:var(--accent-cta)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">{{ chip.label }}</button>
               </sc-for>
             </div>
           </div>
@@ -111,7 +111,7 @@
           <div class="pa-line"></div>
           <div class="pa-step"><span class="pa-step-n">3</span><span class="pa-step-t"><b>Вы получаете долю.</b> С каждого оплаченного заказа. Процент фиксируем заранее.</span></div>
         </div>
-        <a href="partner.html" style="font:500 13.5px Inter,system-ui,sans-serif;color:var(--accent);text-decoration:none" style-hover="text-decoration:underline" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">Все условия и калькулятор дохода →</a>
+        <a href="partner.html" style="display:inline-flex;align-items:center;min-height:44px;font:500 13.5px Inter,system-ui,sans-serif;color:var(--accent);text-decoration:none" style-hover="text-decoration:underline" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">Все условия и калькулятор дохода →</a>
       </div>
 
       <div style="background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(20px,3vw,26px);display:flex;flex-direction:column;gap:14px">

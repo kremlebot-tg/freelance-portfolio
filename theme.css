@@ -206,3 +206,20 @@ body { background: var(--bg); color: var(--text); }
 /* FAQ-аккордеоны в грид-раскладке не растягивают соседей по ряду при
    раскрытии одного вопроса — каждая карточка держит свою высоту. */
 .acc { align-self: start; }
+
+/* Скрытый тултип тег-чипа (.tt::after, position:absolute, max-width:230px) у
+   правого края вылезал за вьюпорт и давал горизонтальный скролл — страница
+   «шаталась» влево-вправо на телефоне. Обрезаем вынос по X на уровне <main>:
+   — overflow-x:clip не создаёт scroll-контейнер (в отличие от hidden);
+   — overflow-y:visible оставляет тултипы, всплывающие ВВЕРХ, видимыми;
+   — <header> лежит вне <main>, поэтому sticky-шапка не затрагивается;
+   — внутренний overflow-x:auto (таблица автопрайсера) продолжает скроллиться. */
+main { overflow-x: clip; overflow-y: visible; }
+
+/* Тач-таргеты на мобильном ≥44px (WCAG 2.5.5, Apple HIG). Чипы центрируют
+   контент, аккордеоны-заголовки и чипы-фильтры дотягиваются до 44px по высоте.
+   Только <768px — на десктопе указатель, layout не трогаем. */
+@media (max-width: 767px) {
+  .pchip { min-height: 44px; min-width: 44px; display: inline-flex; align-items: center; justify-content: center; }
+  .acc-sum, .wk-sum, .ex-sum { min-height: 44px; }
+}

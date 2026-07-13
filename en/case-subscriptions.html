@@ -44,7 +44,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
 
 <main style="font-family:Inter,system-ui,sans-serif;max-width:1140px;margin:0 auto;padding:clamp(32px,4vw,52px) 22px clamp(56px,7vw,88px)">
 
-  <a href="projects.html" style="display:inline-flex;align-items:center;gap:6px;font:500 14.5px Inter,system-ui,sans-serif;color:var(--accent);text-decoration:none;border-radius:8px;padding:10px 6px;margin:0 0 12px -6px" style-hover="background:var(--accent-tint)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">← All projects</a>
+  <a href="projects.html" style="display:inline-flex;align-items:center;gap:6px;font:500 14.5px Inter,system-ui,sans-serif;color:var(--accent);text-decoration:none;border-radius:8px;padding:10px 6px;min-height:44px;margin:0 0 12px -6px" style-hover="background:var(--accent-tint)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">← All projects</a>
 
   <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:28px">
     <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
@@ -59,7 +59,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
   <section data-theme-lock aria-label="Live bot demo" style="background:var(--surface);border:1px solid var(--border);border-radius:22px;padding:clamp(18px,3vw,32px);display:flex;flex-direction:column;gap:18px">
     <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
       <span style="display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 13px Inter,system-ui,sans-serif"><span style="width:7px;height:7px;border-radius:50%;background:var(--online)"></span>live demo — click around like in the real bot</span>
-      <button type="button" onClick="{{ onResetDemo }}" style="margin-left:auto;font:500 13.5px Inter,system-ui,sans-serif;color:var(--text-meta);background:var(--surface-2);border:none;cursor:pointer;padding:11px 16px;border-radius:10px" style-hover="background:var(--border-soft);color:var(--text)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">⟳ reset demo</button>
+      <button type="button" onClick="{{ onResetDemo }}" style="margin-left:auto;font:500 13.5px Inter,system-ui,sans-serif;color:var(--text-meta);background:var(--surface-2);border:none;cursor:pointer;padding:11px 16px;min-height:44px;display:inline-flex;align-items:center;border-radius:10px" style-hover="background:var(--border-soft);color:var(--text)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">⟳ reset demo</button>
     </div>
 
     <div style="display:flex;justify-content:center">
@@ -135,7 +135,7 @@ status:  active · auto-renew</pre>
         <!-- input bar -->
         <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-top:1px solid var(--border-soft);background:var(--surface)">
           <sc-if value="{{ showStartChip }}" hint-placeholder-val="{{ true }}">
-            <button type="button" onClick="{{ onStart }}" style="font:500 14px JetBrains Mono,monospace;color:var(--accent);background:var(--accent-tint);border:1px solid rgba(26,121,199,0.25);cursor:pointer;padding:9px 16px;border-radius:18px" style-hover="background:var(--accent-tint-2)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">/start</button>
+            <button type="button" onClick="{{ onStart }}" style="font:500 14px JetBrains Mono,monospace;color:var(--accent);background:var(--accent-tint);border:1px solid rgba(26,121,199,0.25);cursor:pointer;padding:9px 16px;min-height:44px;display:inline-flex;align-items:center;border-radius:18px" style-hover="background:var(--accent-tint-2)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">/start</button>
           </sc-if>
           <span aria-hidden="true" style="flex:1;padding:9px 14px;border-radius:18px;background:var(--surface-2);color:var(--text-muted);font:400 14px Inter,system-ui,sans-serif">Message</span>
         </div>
@@ -194,7 +194,7 @@ status:  active · auto-renew</pre>
   <dc-import name="CaseCTA" q="Need a subscription bot like this?" hint-size="100%,170px"></dc-import>
 
   <div style="display:flex;align-items:center;gap:12px;margin-top:18px;flex-wrap:wrap">
-    <a href="case-crm.html" style="margin-left:auto;font:500 15px Inter,system-ui,sans-serif;color:var(--accent);text-decoration:none;border-radius:8px;padding:6px 8px" style-hover="background:var(--accent-tint)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">next case: networking CRM →</a>
+    <a href="case-crm.html" style="margin-left:auto;display:inline-flex;align-items:center;min-height:44px;font:500 15px Inter,system-ui,sans-serif;color:var(--accent);text-decoration:none;border-radius:8px;padding:6px 8px" style-hover="background:var(--accent-tint)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">next case: networking CRM →</a>
   </div>
 </main>
 

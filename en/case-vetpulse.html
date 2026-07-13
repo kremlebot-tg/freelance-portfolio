@@ -69,7 +69,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
 
 <main style="font-family:Inter,system-ui,sans-serif;max-width:1140px;margin:0 auto;padding:clamp(32px,4vw,52px) 22px clamp(56px,7vw,88px)">
 
-  <a href="projects.html" style="display:inline-flex;align-items:center;gap:6px;font:500 14.5px Inter,system-ui,sans-serif;color:var(--accent);text-decoration:none;border-radius:8px;padding:10px 6px;margin:0 0 12px -6px" style-hover="background:var(--accent-tint)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">← All projects</a>
+  <a href="projects.html" style="display:inline-flex;align-items:center;gap:6px;font:500 14.5px Inter,system-ui,sans-serif;color:var(--accent);text-decoration:none;border-radius:8px;padding:10px 6px;min-height:44px;margin:0 0 12px -6px" style-hover="background:var(--accent-tint)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">← All projects</a>
 
   <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:28px">
     <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
@@ -80,7 +80,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
     <h1 style="margin:0;font:700 clamp(28px,4vw,42px)/1.15 Sora,sans-serif;letter-spacing:-0.02em">VetPulse — AI-CRM for vet clinics</h1>
     <p style="margin:0;font:400 clamp(15.5px,1.6vw,18px)/1.55 Inter,system-ui,sans-serif;color:var(--text-body);max-width:720px">A multi-tenant SaaS for vet clinics: an AI dispatcher answers clients and books patients, the system sends appointment reminders and wins back the «dormant» base. Designed and built end-to-end as a team — both the backend and a premium site with an interactive demo office.</p>
     <div style="margin-top:6px;display:flex;gap:10px;flex-wrap:wrap;align-items:center">
-      <a href="../vetpulse/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:var(--accent-cta);color:var(--surface);text-decoration:none;font:600 15px/1 Inter,system-ui,sans-serif;padding:12px 20px;border-radius:12px" style-hover="background:var(--accent)" style-focus-visible="outline:2px solid var(--text);outline-offset:2px">Open the live demo ↗</a>
+      <a href="../vetpulse/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:var(--accent-cta);color:var(--surface);text-decoration:none;font:600 15px/1 Inter,system-ui,sans-serif;padding:12px 20px;min-height:44px;border-radius:12px" style-hover="background:var(--accent)" style-focus-visible="outline:2px solid var(--text);outline-offset:2px">Open the live demo ↗</a>
       <span style="font:400 13px/1.4 Inter,system-ui,sans-serif;color:var(--text-muted)">premium landing + demo office, fictional data</span>
     </div>
   </div>
@@ -89,7 +89,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
   <section aria-label="Live demo: AI dispatcher" style="background:var(--surface);border:1px solid var(--border);border-radius:22px;padding:clamp(18px,3vw,32px);display:flex;flex-direction:column;gap:18px">
     <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
       <span style="display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 13px Inter,system-ui,sans-serif"><span style="width:7px;height:7px;border-radius:50%;background:var(--online)"></span>{{ demoCaption }}</span>
-      <button type="button" onClick="{{ onReset }}" style="margin-left:auto;font:500 13.5px Inter,system-ui,sans-serif;color:var(--text-meta);background:var(--surface-2);border:none;cursor:pointer;padding:11px 16px;border-radius:10px" style-hover="background:var(--border-soft);color:var(--text)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">⟳ reset</button>
+      <button type="button" onClick="{{ onReset }}" style="margin-left:auto;font:500 13.5px Inter,system-ui,sans-serif;color:var(--text-meta);background:var(--surface-2);border:none;cursor:pointer;padding:11px 16px;min-height:44px;display:inline-flex;align-items:center;border-radius:10px" style-hover="background:var(--border-soft);color:var(--text)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">⟳ reset</button>
     </div>
 
     <div role="tablist" aria-label="Demo perspective" style="display:inline-flex;gap:4px;padding:4px;background:var(--surface-2);border:1px solid var(--border);border-radius:12px;width:fit-content">
@@ -234,7 +234,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
   <dc-import name="CaseCTA" q="Need an AI-CRM for your niche?" hint-size="100%,170px"></dc-import>
 
   <div style="display:flex;align-items:center;gap:12px;margin-top:18px;flex-wrap:wrap">
-    <a href="case-crm.html" style="margin-left:auto;font:500 15px Inter,system-ui,sans-serif;color:var(--accent);text-decoration:none;border-radius:8px;padding:6px 8px" style-hover="background:var(--accent-tint)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">next case: personal CRM →</a>
+    <a href="case-crm.html" style="margin-left:auto;display:inline-flex;align-items:center;min-height:44px;font:500 15px Inter,system-ui,sans-serif;color:var(--accent);text-decoration:none;border-radius:8px;padding:6px 8px" style-hover="background:var(--accent-tint)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">next case: personal CRM →</a>
   </div>
 </main>
 

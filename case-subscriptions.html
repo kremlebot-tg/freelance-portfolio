@@ -4,19 +4,19 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Кейс: подписочный Telegram-бот с оплатой ЮКасса — Re:dnd</title>
-<meta name="description" content="Разработка подписочного Telegram-бота: тарифы, рекуррентная оплата через ЮКассу, автовыдача доступа. Собственный продукт, ~200 платящих. Живое демо внутри.">
+<meta name="description" content="Разработка подписочного Telegram-бота: тарифы, рекуррентная оплата через ЮКассу, автовыдача доступа. Живое демо внутри.">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Re:dnd">
 <meta property="og:locale" content="ru_RU">
 <meta property="og:url" content="https://rednd.ru/case-subscriptions.html">
 <meta property="og:title" content="Кейс: подписочный Telegram-бот с оплатой ЮКасса — Re:dnd">
-<meta property="og:description" content="Разработка подписочного Telegram-бота: тарифы, рекуррентная оплата через ЮКассу, автовыдача доступа. Собственный продукт, ~200 платящих. Живое демо внутри.">
+<meta property="og:description" content="Разработка подписочного Telegram-бота: тарифы, рекуррентная оплата через ЮКассу, автовыдача доступа. Живое демо внутри.">
 <meta property="og:image" content="https://rednd.ru/og-case-subscriptions.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Кейс: подписочный Telegram-бот с оплатой ЮКасса — Re:dnd">
-<meta name="twitter:description" content="Разработка подписочного Telegram-бота: тарифы, рекуррентная оплата через ЮКассу, автовыдача доступа. Собственный продукт, ~200 платящих. Живое демо внутри.">
+<meta name="twitter:description" content="Разработка подписочного Telegram-бота: тарифы, рекуррентная оплата через ЮКассу, автовыдача доступа. Живое демо внутри.">
 <meta name="twitter:image" content="https://rednd.ru/og-case-subscriptions.png">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="alternate" hreflang="ru" href="https://rednd.ru/case-subscriptions.html">
@@ -49,10 +49,10 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
   <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:28px">
     <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
       <span style="font:500 13px JetBrains Mono,monospace;color:var(--accent)">[Подписки · Оплаты]</span>
-      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:var(--online)"></span>собственный продукт</span>
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:var(--online)"></span>автоматизация платежей</span>
     </div>
     <h1 style="margin:0;font:700 clamp(28px,4vw,42px)/1.15 Sora,sans-serif;letter-spacing:-0.02em">Подписочный Telegram-сервис</h1>
-    <p style="margin:0;font:400 clamp(15.5px,1.6vw,18px)/1.55 Inter,system-ui,sans-serif;color:var(--text-body);max-width:640px">Бот принимает регулярную оплату через ЮКассу и сам выдаёт платный доступ. ~200 платящих, в проде.</p>
+    <p style="margin:0;font:400 clamp(15.5px,1.6vw,18px)/1.55 Inter,system-ui,sans-serif;color:var(--text-body);max-width:640px">Бот принимает регулярную оплату через ЮКассу и сам выдаёт платный доступ.</p>
   </div>
 
   <!-- ============ DEMO ============ -->
@@ -175,12 +175,12 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
       <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">Принимать регулярную оплату и управлять платным доступом без ручной работы: выдача, продление, отзыв.</p>
     </div>
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
-      <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">02 · как решал</span>
+      <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">02 · как решали</span>
       <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">Бот на Bot API: тарифы, счета и вебхуки ЮКассы, автовыдача и отзыв доступа, напоминания о продлении, админка со статистикой. Хостинг и мониторинг на VPS.</p>
     </div>
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
       <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">03 · результат</span>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty"><strong style="color:var(--accent)">~200 платящих пользователей.</strong> Сервис в проде и приносит выручку, оплата и доступ работают без моего участия.</p>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty"><strong style="color:var(--accent)">Оплата и доступ — на автомате.</strong> Выдача, продление и отзыв доступа идут без нашего участия.</p>
     </div>
   </section>
 

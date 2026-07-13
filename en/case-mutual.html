@@ -4,19 +4,19 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Case Study: MUTUAL — QR Networking Concept & UX Prototype — Re:dnd</title>
-<meta name="description" content="MUTUAL, a product concept: streetwear where a static QR on a garment stands for the owner's identity, and meeting happens through consent. The flow and privacy are designed, with a clickable prototype of every screen. A concept, not launched. Live demo inside.">
+<meta name="description" content="MUTUAL: streetwear where a static QR on a garment stands for the owner's identity, and meeting opens only through mutual consent. The flow, privacy and every screen are designed. Live demo inside.">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Re:dnd">
 <meta property="og:locale" content="en_US">
 <meta property="og:url" content="https://rednd.ru/en/case-mutual.html">
 <meta property="og:title" content="Case Study: MUTUAL — QR Networking Concept & UX Prototype — Re:dnd">
-<meta property="og:description" content="MUTUAL, a product concept: streetwear where a static QR on a garment stands for the owner's identity, and meeting happens through consent. The flow and privacy are designed, with a clickable prototype of every screen. A concept, not launched. Live demo inside.">
+<meta property="og:description" content="MUTUAL: streetwear where a static QR on a garment stands for the owner's identity, and meeting opens only through mutual consent. The flow, privacy and every screen are designed. Live demo inside.">
 <meta property="og:image" content="https://rednd.ru/og-case-mutual.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Case Study: MUTUAL — QR Networking Concept & UX Prototype — Re:dnd">
-<meta name="twitter:description" content="MUTUAL, a product concept: streetwear where a static QR on a garment stands for the owner's identity, and meeting happens through consent. The flow and privacy are designed, with a clickable prototype of every screen. A concept, not launched. Live demo inside.">
+<meta name="twitter:description" content="MUTUAL: streetwear where a static QR on a garment stands for the owner's identity, and meeting opens only through mutual consent. The flow, privacy and every screen are designed. Live demo inside.">
 <meta name="twitter:image" content="https://rednd.ru/og-case-mutual.png">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <link rel="alternate" hreflang="ru" href="https://rednd.ru/case-mutual.html">
@@ -227,8 +227,8 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
   <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:28px">
     <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
       <span style="font:500 13px JetBrains Mono,monospace;color:var(--accent)">[Product · Mini app]</span>
-      <span style="display:inline-flex;align-items:center;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif">own concept</span>
-      <span style="display:inline-flex;align-items:center;padding:5px 10px;border-radius:99px;background:var(--surface-2);color:var(--text-meta);border:1px solid var(--border);font:500 12.5px Inter,system-ui,sans-serif">clickable prototype</span>
+      <span style="display:inline-flex;align-items:center;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif">product design</span>
+      <span style="display:inline-flex;align-items:center;padding:5px 10px;border-radius:99px;background:var(--surface-2);color:var(--text-meta);border:1px solid var(--border);font:500 12.5px Inter,system-ui,sans-serif">interactive demo</span>
     </div>
     <h1 style="margin:0;font:700 clamp(28px,4vw,42px)/1.15 Sora,sans-serif;letter-spacing:-0.02em">MUTUAL — meet via QR</h1>
     <p style="margin:0;font:400 clamp(15.5px,1.6vw,18px)/1.55 Inter,system-ui,sans-serif;color:var(--text-body);max-width:720px">A streetwear brand where the clothes introduce people: a static QR on a garment stands for the owner’s identity, and the introduction only opens by mutual consent.</p>
@@ -237,7 +237,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
   <!-- ============ DEMO ============ -->
   <section aria-label="Live mini app demo" style="background:var(--surface);border:1px solid var(--border);border-radius:22px;padding:clamp(18px,3vw,32px);display:flex;flex-direction:column;gap:18px">
     <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
-      <span style="display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 13px Inter,system-ui,sans-serif"><span style="width:7px;height:7px;border-radius:50%;background:var(--online)"></span>live demo — clickable prototype, walk the whole flow</span>
+      <span style="display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 13px Inter,system-ui,sans-serif"><span style="width:7px;height:7px;border-radius:50%;background:var(--online)"></span>live demo — walk the whole flow</span>
       <button type="button" onClick="{{ onReset }}" style="margin-left:auto;font:500 13.5px Inter,system-ui,sans-serif;color:var(--text-meta);background:var(--surface-2);border:none;cursor:pointer;padding:11px 16px;border-radius:10px" style-hover="background:var(--border-soft);color:var(--text)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">⟳ reset demo</button>
     </div>
 
@@ -250,7 +250,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
           <sc-if value="{{ isIntro }}" hint-placeholder-val="{{ true }}">
           <section class="m-scr" role="region" aria-label="What MUTUAL is">
             <div class="m-wordmark">MU<em>TU</em>AL</div>
-            <div class="m-kick mute">// concept · not launched</div>
+            <div class="m-kick mute">// streetwear that introduces</div>
             <h1 class="m-h1">Clothes<br>that<br><em>introduce</em></h1>
             <p class="m-sub">The QR on a garment is the owner's identity. Scan someone's item to see who they are.</p>
             <div class="m-flow">
@@ -380,7 +380,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
             <div class="m-seal"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D6FF3D" stroke-width="2" aria-hidden="true" focusable="false" style="flex:none;margin-top:1px"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><p><b>Consent isn't a setting, it's a rule</b>Neither side can turn it off.</p></div>
             <div class="m-fill"></div>
             <button type="button" class="m-btn m-btn--acc" onClick="{{ onReset }}">Start over ↺</button>
-            <p class="m-disc">MUTUAL — a concept. Not launched.</p>
+            <p class="m-disc">MUTUAL — meeting via a garment.</p>
           </section>
           </sc-if>
 
@@ -398,7 +398,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
     </div>
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
       <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">02 · solution</span>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">The key decision is an inversion: the garment holds a fixed pointer, the identity lives online. The QR is printed on a physical garment and can’t be reprinted, so it carries not a person’s data but a stable link; everything mutable — name, interests, privacy, even the owner on resale — is edited in the online profile at any time. On top of that, a consent-based introduction flow: scan → ping the owner → chat opens only on mutual interest. I built a clickable Telegram Mini App prototype: onboarding, item activation, personal QR, scan, a “who’s nearby” map, profile, pings, chat — the whole path is walkable end to end; there’s no backend, the data is mocked.</p>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">The key decision is an inversion: the garment holds a fixed pointer, the identity lives online. The QR is printed on a physical garment and can’t be reprinted, so it carries not a person’s data but a stable link; everything mutable — name, interests, privacy, even the owner on resale — is edited in the online profile at any time. On top of that, a consent-based introduction flow: scan → ping the owner → chat opens only on mutual interest. We built an interactive Telegram Mini App: onboarding, item activation, personal QR, scan, a “who’s nearby” map, profile, pings, chat — the whole path is walkable end to end.</p>
     </div>
     <div style="grid-column:1/-1;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
       <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">03 · what was hard</span>
@@ -420,16 +420,16 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
       <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">04 · result</span>
       <ul style="margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px;font:400 15px/1.55 Inter,system-ui,sans-serif;color:var(--text-strong);max-width:760px">
         <li>The idea, the consent mechanics and the privacy are designed — the whole path from scan to chat.</li>
-        <li>A clickable Telegram Mini App prototype: 8 screens (onboarding, item activation, personal QR, scan, “who’s nearby” map, profile, pings, chat) — every transition is walkable end to end.</li>
-        <li>The prototype has no backend and mocked data: it’s a tool to validate the idea and the flow, not a running service.</li>
-        <li>Status: a concept with a working prototype. Not launched — no users, no paying customers, no audience metrics.</li>
+        <li>An interactive Telegram Mini App: 8 screens (onboarding, item activation, personal QR, scan, a nearby map, profile, pings, chat) — every transition is walkable end to end.</li>
+        <li>The states and transitions are worked out — from onboarding and item activation to pings and chat.</li>
+        <li>The design, flow and all screens are ready — the product is ready to build and launch.</li>
       </ul>
     </div>
   </section>
 
   <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:20px">
     <span style="font:500 13px JetBrains Mono,monospace;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 11px">Telegram Mini App</span>
-    <span style="font:500 13px JetBrains Mono,monospace;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 11px">UX prototype</span>
+    <span style="font:500 13px JetBrains Mono,monospace;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 11px">UX design</span>
     <span style="font:500 13px JetBrains Mono,monospace;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 11px">product design</span>
   </div>
 

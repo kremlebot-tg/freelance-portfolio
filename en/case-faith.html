@@ -4,19 +4,19 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Case Study: Faith App — Duolingo-style Learning App — Re:dnd</title>
-<meta name="description" content="A learning app built with Flutter: short lessons with quizzes, day streaks, a glossary and an offline library of books verified by checksum. Own product, in active development. Live lesson demo inside.">
+<meta name="description" content="A learning app built with Flutter: short lessons with quizzes, day streaks, a glossary and an offline library of books verified by checksum. Live lesson demo inside.">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Re:dnd">
 <meta property="og:locale" content="en_US">
 <meta property="og:url" content="https://rednd.ru/en/case-faith.html">
 <meta property="og:title" content="Case Study: Faith App — Duolingo-style Learning App — Re:dnd">
-<meta property="og:description" content="A learning app built with Flutter: short lessons with quizzes, day streaks, a glossary and an offline library of books verified by checksum. Own product, in active development. Live lesson demo inside.">
+<meta property="og:description" content="A learning app built with Flutter: short lessons with quizzes, day streaks, a glossary and an offline library of books verified by checksum. Live lesson demo inside.">
 <meta property="og:image" content="https://rednd.ru/og-case-faith.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Case Study: Faith App — Duolingo-style Learning App — Re:dnd">
-<meta name="twitter:description" content="A learning app built with Flutter: short lessons with quizzes, day streaks, a glossary and an offline library of books verified by checksum. Own product, in active development. Live lesson demo inside.">
+<meta name="twitter:description" content="A learning app built with Flutter: short lessons with quizzes, day streaks, a glossary and an offline library of books verified by checksum. Live lesson demo inside.">
 <meta name="twitter:image" content="https://rednd.ru/og-case-faith.png">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <link rel="alternate" hreflang="ru" href="https://rednd.ru/case-faith.html">
@@ -58,8 +58,8 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
   <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:28px">
     <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
       <span style="font:500 13px JetBrains Mono,monospace;color:var(--accent)">[Mobile · Flutter]</span>
-      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:var(--online)"></span>own product</span>
-      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--surface-2);color:var(--text-meta);border:1px solid var(--border);font:500 12.5px Inter,system-ui,sans-serif">in development</span>
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:var(--online)"></span>learning app</span>
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--surface-2);color:var(--text-meta);border:1px solid var(--border);font:500 12.5px Inter,system-ui,sans-serif">lessons with quizzes</span>
     </div>
     <h1 style="margin:0;font:700 clamp(28px,4vw,42px)/1.15 Sora,sans-serif;letter-spacing:-0.02em">Faith App — Duolingo-style learning</h1>
     <p style="margin:0;font:400 clamp(15.5px,1.6vw,18px)/1.55 Inter,system-ui,sans-serif;color:var(--text-body);max-width:720px">A learning app that carries someone from their first question to understanding a topic — through short lessons with quizzes, day streaks and a library of books in their pocket.</p>
@@ -142,7 +142,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
     <div style="grid-column:1/-1;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
       <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">03 · what was hard</span>
       <div class="acc" data-state="{{ hardAState }}">
-        <button type="button" class="acc-sum" onClick="{{ onHardA }}" aria-expanded="{{ hardAExp }}" aria-controls="fa-h1" style="font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);max-width:760px"><strong style="color:var(--text)">Green checks over a dead feature.</strong> I implemented the day-streak “freeze” — edits in four places, the analyzer returned zero errors, the iOS build passed.<span class="acc-chev" aria-hidden="true">▾</span></button>
+        <button type="button" class="acc-sum" onClick="{{ onHardA }}" aria-expanded="{{ hardAExp }}" aria-controls="fa-h1" style="font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);max-width:760px"><strong style="color:var(--text)">Green checks over a dead feature.</strong> We implemented the day-streak “freeze” — edits in four places, the analyzer returned zero errors, the iOS build passed.<span class="acc-chev" aria-hidden="true">▾</span></button>
         <div id="fa-h1" class="acc-body" style="animation:{{ hardAAnim }}"><div class="acc-inner">
           <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px">Formally done. In fact the key edit never got written at all: the editing tool aborted, and the other three referenced a value that was saved nowhere. The analyzer stayed silent — the field was formally used in the UI, and the compiler doesn't care that it's never written. The feature was dead with a fully green check. Caught only by reading the function body line by line.</p>
         </div></div>
@@ -152,7 +152,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
         <button type="button" class="acc-sum" onClick="{{ onHardB }}" aria-expanded="{{ hardBExp }}" aria-controls="fa-h2" style="font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);max-width:760px"><strong style="color:var(--text)">The correct answer is always first.</strong> The lesson quizzes had two defects, and neither was in the code.<span class="acc-chev" aria-hidden="true">▾</span></button>
         <div id="fa-h2" class="acc-body" style="animation:{{ hardBAnim }}"><div class="acc-inner">
           <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px">The right option was systematically the longest — the author padded it with an explanation and left the wrong ones terse, so a sharp reader could guess by shape without knowing the topic. The second, found on the device: the correct answer stood first in every question, because options rendered strictly by index.</p>
-          <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px">Fixed in two layers. In code — shuffling the options, but not in the render method: it's called on every state update, and the buttons would jump under your finger. I had to find every transition between questions and shuffle there, and at the same time move five correctness checks from list position to the answer object itself. In content — a rule: options of equal length and grammatical form, the correct position spread evenly, wrong options are real beginner misconceptions, not straw men. Verified by a script at content build time.</p>
+          <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px">Fixed in two layers. In code — shuffling the options, but not in the render method: it's called on every state update, and the buttons would jump under your finger. We had to find every transition between questions and shuffle there, and at the same time move five correctness checks from list position to the answer object itself. In content — a rule: options of equal length and grammatical form, the correct position spread evenly, wrong options are real beginner misconceptions, not straw men. Verified by a script at content build time.</p>
           <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px">Why both layers: shuffling makes the order in the source harmless for the app, but drafts are read by real people — author, reviewer, editor. A document where the correct answer is always first breeds blindness in everyone who proofreads it.</p>
         </div></div>
       </div>
@@ -160,11 +160,11 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
     <div style="grid-column:1/-1;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
       <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">04 · result</span>
       <ul style="margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px;font:400 15px/1.55 Inter,system-ui,sans-serif;color:var(--text-strong);max-width:760px">
-        <li>17 course branches, a glossary of 178 terms and 52 figures with inflected forms.</li>
-        <li>Flagship branch: 13 lessons, 52 slides, 39 quiz questions; the correct answers spread across positions — exactly a third each.</li>
-        <li>Every lesson passed an external expert review before publishing: 13 of 13, two mandatory fixes across the whole branch.</li>
-        <li>A library of six books with offline download and file-integrity checks.</li>
-        <li>Status: active development, no release yet.</li>
+        <li>Course branches with a glossary and figures in inflected forms.</li>
+        <li>Lessons built from theory slides and quizzes; answer order is shuffled so the correct one isn't tied to a position.</li>
+        <li>Every lesson goes through external expert review before publishing.</li>
+        <li>A library of books with offline download and file-integrity checks.</li>
+        <li>Everything runs offline: progress and downloaded books stay on the device, with no backend.</li>
       </ul>
     </div>
   </section>

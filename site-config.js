@@ -23,19 +23,21 @@ window.SITE_CONFIG = {
   telegram: '@re_dnd',
   email: 'politushkin@gmail.com',
 
-  // --- Цены услуг ---
-  // Только стартовые «от», точная цена обсуждается — так и подписано на сайте.
+  // --- Цены услуг (5 направлений) ---
+  // Стартовые «от»; веб и мобильные — «по задаче» (кратно дороже, считаем индивидуально).
   prices: {
-    leads: 'от 4 900 ₽',
-    payments: 'от 8 900 ₽',
+    telegram: 'от 4 900 ₽',
     ai: 'от 9 900 ₽',
-    miniapps: 'от 16 900 ₽',
+    automation: 'от 8 900 ₽',
+    web: 'по задаче',
+    mobile: 'по задаче',
   },
   pricesEn: {
-    leads: 'from $49',
-    payments: 'from $89',
+    telegram: 'from $49',
     ai: 'from $99',
-    miniapps: 'from $179',
+    automation: 'from $89',
+    web: 'custom quote',
+    mobile: 'custom quote',
   },
 
   // --- Реквизиты (подвал) ---

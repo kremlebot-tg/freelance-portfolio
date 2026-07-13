@@ -61,7 +61,8 @@
         { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Разработка ботов и мини-аппов" } },
         { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Веб-сервисы и приложения" } },
         { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Автоматизация и CRM" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "ИИ-ассистенты" } }
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "ИИ-ассистенты и агенты" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Мобильные приложения (Flutter)" } }
       ]
     }
   ]
@@ -196,50 +197,62 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:16px;align-items:start">
       <div class="ex" data-state="{{ serv0 }}" style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px">
         <button type="button" class="ex-sum" onClick="{{ onServ0 }}" aria-expanded="{{ servExp0 }}" aria-controls="serv-0">
-          <span style="font:500 13px JetBrains Mono,monospace;color:var(--text-muted)">/leads</span>
-          <span style="font:600 17.5px/1.3 Sora,sans-serif">Приём заявок и продажи</span>
-          <span style="font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Заявка из формы или чата → бот отвечает, пишет в таблицу или CRM и уведомляет вас.</span>
+          <span style="font:500 13px JetBrains Mono,monospace;color:var(--text-muted)">/telegram</span>
+          <span style="font:600 17.5px/1.3 Sora,sans-serif">Telegram-боты и мини-аппы</span>
+          <span style="font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Приём заявок, продажи, оплаты и подписки, каталог, запись и личный кабинет прямо внутри Telegram.</span>
           <span class="ex-more">подробнее<span class="ex-chev">▾</span></span>
         </button>
         <div id="serv-0" class="ex-body"><div class="ex-inner">
           <div class="wk-scene" aria-hidden="true"><div class="wk-chat"><span class="wk-bub out" style="animation-delay:.05s"></span><span class="wk-bub in" style="animation-delay:.4s"><i></i><i></i><i></i></span></div></div>
-          <p class="ex-detail">Заявка приходит из формы на сайте, чата или Telegram. Бот отвечает мгновенно, задаёт нужные вопросы, складывает всё в Google-таблицу или CRM и уведомляет вас. Ни одно обращение не теряется, даже ночью и в выходной.</p>
+          <p class="ex-detail">От простого бота приёма заявок до полноценного мини-аппа с каталогом и оплатой. Заявка приходит из формы, чата или Telegram, бот отвечает мгновенно и складывает всё в CRM. Ни одно обращение не теряется, даже ночью и в выходной.</p>
         </div></div>
       </div>
-      <div class="ex" data-state="{{ serv1 }}" style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px">
+      <div class="ex" data-state="{{ serv1 }}" style="background:var(--surface);border:1px solid var(--accent-cta);border-radius:16px;padding:20px">
         <button type="button" class="ex-sum" onClick="{{ onServ1 }}" aria-expanded="{{ servExp1 }}" aria-controls="serv-1">
-          <span style="font:500 13px JetBrains Mono,monospace;color:var(--text-muted)">/payments</span>
-          <span style="font:600 17.5px/1.3 Sora,sans-serif">Оплаты и подписки</span>
-          <span style="font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Платный доступ, рекуррентные платежи через ЮКассу, пробные периоды, рефералки.</span>
+          <span style="display:inline-flex;align-items:center;gap:7px;font:500 13px JetBrains Mono,monospace;color:var(--accent)">/ai<span style="font:600 10px Inter,system-ui,sans-serif;letter-spacing:.04em;text-transform:uppercase;background:var(--accent-tint);color:var(--accent);padding:2px 6px;border-radius:99px">спрос 2026</span></span>
+          <span style="font:600 17.5px/1.3 Sora,sans-serif">ИИ-ассистенты и агенты</span>
+          <span style="font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Ассистент отвечает по вашей базе и документам, квалифицирует заявку, сложное отдаёт человеку.</span>
           <span class="ex-more">подробнее<span class="ex-chev">▾</span></span>
         </button>
         <div id="serv-1" class="ex-body"><div class="ex-inner">
-          <div class="wk-scene" aria-hidden="true"><div class="wk-offer"><span class="wk-line" style="width:72%;animation-delay:.05s"></span><span class="wk-line" style="width:50%;animation-delay:.18s"></span><div class="wk-offer-row"><span class="wk-price" style="animation-delay:.34s"></span><span class="wk-check" style="animation-delay:.55s">✓</span></div></div></div>
-          <p class="ex-detail">Платный доступ и подписки: тарифы кнопками, оплата через ЮКассу, рекуррентные списания, пробные периоды, промокоды и реферальная механика. Доступ выдаётся и отзывается автоматически, напоминания о продлении приходят сами.</p>
+          <div class="wk-scene" aria-hidden="true"><div class="wk-ai"><span class="wk-aipill" style="animation-delay:.05s">AI</span><span class="wk-aidots"><i></i><i></i><i></i></span><span class="wk-check" style="animation-delay:.6s">✓</span></div></div>
+          <p class="ex-detail">Внутри настоящая LLM, но отвечает она строго по вашим материалам: ценам, услугам, документам, частым вопросам. Ассистент снимает первую линию поддержки и передаёт человеку то, что реально требует человека. Клиент не получит выдумку вместо факта.</p>
         </div></div>
       </div>
-      <div class="ex" data-state="{{ serv2 }}" style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px">
+      <div class="ex" data-state="{{ serv2 }}" style="background:var(--surface);border:1px solid var(--accent-cta);border-radius:16px;padding:20px">
         <button type="button" class="ex-sum" onClick="{{ onServ2 }}" aria-expanded="{{ servExp2 }}" aria-controls="serv-2">
-          <span style="font:500 13px JetBrains Mono,monospace;color:var(--text-muted)">/ai</span>
-          <span style="font:600 17.5px/1.3 Sora,sans-serif">ИИ-агенты и автоматизация</span>
-          <span style="font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">ИИ внутри бота: отвечает клиентам, сортирует заявки, сложное отдаёт менеджеру.</span>
+          <span style="display:inline-flex;align-items:center;gap:7px;font:500 13px JetBrains Mono,monospace;color:var(--accent)">/automation<span style="font:600 10px Inter,system-ui,sans-serif;letter-spacing:.04em;text-transform:uppercase;background:var(--accent-tint);color:var(--accent);padding:2px 6px;border-radius:99px">спрос 2026</span></span>
+          <span style="font:600 17.5px/1.3 Sora,sans-serif">Интеграции и автоматизация</span>
+          <span style="font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">CRM, 1С, маркетплейсы и любые сервисы через API. Парсинг, отчёты, выгрузки, пересчёт цен.</span>
           <span class="ex-more">подробнее<span class="ex-chev">▾</span></span>
         </button>
         <div id="serv-2" class="ex-body"><div class="ex-inner">
-          <div class="wk-scene" aria-hidden="true"><div class="wk-ai"><span class="wk-aipill" style="animation-delay:.05s">AI</span><span class="wk-aidots"><i></i><i></i><i></i></span><span class="wk-check" style="animation-delay:.6s">✓</span></div></div>
-          <p class="ex-detail">Бот отвечает по вашим материалам: ценам, услугам, частым вопросам. Если чего-то не знает или дело срочное, переключает на вас или менеджера. Внутри настоящая LLM, но отвечает она строго по вашей базе, поэтому клиент не получит выдумку вместо факта.</p>
+          <div class="wk-scene" aria-hidden="true"><div class="wk-offer"><span class="wk-line" style="width:72%;animation-delay:.05s"></span><span class="wk-line" style="width:50%;animation-delay:.18s"></span><div class="wk-offer-row"><span class="wk-price" style="animation-delay:.34s"></span><span class="wk-check" style="animation-delay:.55s">✓</span></div></div></div>
+          <p class="ex-detail">Связываем CRM, 1С, маркетплейсы (Ozon, Wildberries) и любые сервисы через API. Ручная рутина уходит на автопилот: парсинг, отчёты, выгрузки, пересчёт цен, синхронизация данных. То, что делаете руками каждый день, начинает работать само.</p>
         </div></div>
       </div>
       <div class="ex" data-state="{{ serv3 }}" style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px">
         <button type="button" class="ex-sum" onClick="{{ onServ3 }}" aria-expanded="{{ servExp3 }}" aria-controls="serv-3">
-          <span style="font:500 13px JetBrains Mono,monospace;color:var(--text-muted)">/miniapps</span>
-          <span style="font:600 17.5px/1.3 Sora,sans-serif">Мини-аппы в Telegram</span>
-          <span style="font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Полноценные приложения внутри Telegram: дашборды, каталоги, инструменты.</span>
+          <span style="font:500 13px JetBrains Mono,monospace;color:var(--text-muted)">/web</span>
+          <span style="font:600 17.5px/1.3 Sora,sans-serif">Веб-сервисы и приложения</span>
+          <span style="font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Личные кабинеты, дашборды, админки, внутренние сервисы и SaaS под вашу задачу.</span>
           <span class="ex-more">подробнее<span class="ex-chev">▾</span></span>
         </button>
         <div id="serv-3" class="ex-body"><div class="ex-inner">
+          <div class="wk-scene" aria-hidden="true"><div class="wk-code"><span class="wk-cl" style="width:60%;animation-delay:.05s"></span><span class="wk-cl alt" style="width:82%;animation-delay:.25s"></span><span class="wk-cl" style="width:46%;animation-delay:.45s"><i class="wk-cur"></i></span></div></div>
+          <p class="ex-detail">Личные кабинеты, дашборды, админки и SaaS-сервисы под вашу задачу. Берём весь цикл: база данных, логика, интерфейс, запуск на сервере. Один сервис обслуживает много клиентов с изолированными данными.</p>
+        </div></div>
+      </div>
+      <div class="ex" data-state="{{ serv4 }}" style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px">
+        <button type="button" class="ex-sum" onClick="{{ onServ4 }}" aria-expanded="{{ servExp4 }}" aria-controls="serv-4">
+          <span style="font:500 13px JetBrains Mono,monospace;color:var(--text-muted)">/mobile</span>
+          <span style="font:600 17.5px/1.3 Sora,sans-serif">Мобильные приложения</span>
+          <span style="font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">iOS и Android из одной базы на Flutter. Офлайн, платежи, пуши, публикация в сторах.</span>
+          <span class="ex-more">подробнее<span class="ex-chev">▾</span></span>
+        </button>
+        <div id="serv-4" class="ex-body"><div class="ex-inner">
           <div class="wk-scene" aria-hidden="true"><div class="wk-apps"><span class="wk-tile" style="animation-delay:.05s"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span><span class="wk-tile" style="animation-delay:.15s"><svg viewBox="0 0 24 24"><path d="M3 4h2l2.2 11h9.6l2.2-8H6.2"/><circle cx="9" cy="19.5" r="1.3"/><circle cx="17" cy="19.5" r="1.3"/></svg></span><span class="wk-tile" style="animation-delay:.25s"><svg viewBox="0 0 24 24"><path d="M4 20h16"/><path d="M7 20v-6"/><path d="M12 20V6"/><path d="M17 20v-9"/></svg></span><span class="wk-tile" style="animation-delay:.35s"><svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="2.2"/><path d="M3.5 9.5h17M8 3.5v3.5M16 3.5v3.5"/></svg></span></div></div>
-          <p class="ex-detail">Полноценное веб-приложение прямо внутри Telegram, без установки: каталог, корзина, дашборд, запись, личный кабинет. Выглядит и работает как нативное приложение, а живёт в мессенджере.</p>
+          <p class="ex-detail">iOS и Android из одной кодовой базы на Flutter: быстрее и дешевле двух отдельных разработок. Офлайн-режим, платежи, пуш-уведомления и публикация в App Store и Google Play.</p>
         </div></div>
       </div>
     </div>
@@ -449,7 +462,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;brandName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Re:dnd&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Бренд&quot;},&quot;animateHero&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Герой&quot;}}">
 class Component extends DCLogic {
-  state = { step: 0, typing: false, proc: ['closed','closed','closed','closed','closed'], serv: ['closed','closed','closed','closed'] };
+  state = { step: 0, typing: false, proc: ['closed','closed','closed','closed','closed'], serv: ['closed','closed','closed','closed','closed'] };
   componentDidMount() {
     this._timers = [];
     const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;

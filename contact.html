@@ -237,7 +237,7 @@
       <div class="acc" data-state="{{ faqState0 }}" style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:8px">
         <h3 style="margin:0"><button type="button" class="acc-sum" onClick="{{ onFaq0 }}" aria-expanded="{{ faqExp0 }}" aria-controls="faq-0" style="font:600 16.5px/1.35 Sora,sans-serif;color:var(--text)"><span class="faq-ic" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.5 3H7v9H5v2h2v2H5v2h2v3h2v-3h4v-2H9v-2h4.5c3.04 0 5.5-2.46 5.5-5.5S16.54 3 13.5 3m0 9H9V5h4.5C15.43 5 17 6.57 17 8.5S15.43 12 13.5 12"/></svg></span>Сколько стоит проект?<span class="acc-chev" aria-hidden="true">▾</span></button></h3>
         <div id="faq-0" class="acc-body" style="animation:{{ faqAnim0 }}"><div class="acc-inner">
-          <p style="margin:0;font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Зависит от задачи: приём заявок от 4 900 ₽, оплаты и подписки от 8 900 ₽, мини-аппы от 16 900 ₽. Точную цену называем после обсуждения, до старта работ, и она не меняется.</p>
+          <p style="margin:0;font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Зависит от задачи: Telegram-боты от 4 900 ₽, ИИ-ассистенты от 9 900 ₽, интеграции и автоматизация от 8 900 ₽, веб и мобильные — по задаче. Точную цену называем после обсуждения, до старта работ, и она не меняется.</p>
         </div></div>
       </div>
       <div class="acc" data-state="{{ faqState1 }}" style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:8px">
@@ -284,12 +284,12 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;brandName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Re:dnd&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Бренд&quot;},&quot;telegram&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;@ваш_ник&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Контакты&quot;},&quot;email&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;you@example.com&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Контакты&quot;}}">
 class Component extends DCLogic {
-  state = { task: '', type: 'боты', budget: '', contact: '', website: '', submitted: false, error: false, errorKind: '', sending: false, faq: ['closed','closed','closed','closed','closed','closed','closed'], steps: ['closed','closed','closed','closed','closed'] };
+  state = { task: '', type: 'Telegram-бот', budget: '', contact: '', website: '', submitted: false, error: false, errorKind: '', sending: false, faq: ['closed','closed','closed','closed','closed','closed','closed'], steps: ['closed','closed','closed','closed','closed'] };
   renderVals() {
     const cfg = (typeof window !== 'undefined' && window.SITE_CONFIG) || {};
     const endpoint = (cfg.formEndpoint || '').trim();
     const demoMode = !endpoint;
-    const types = ['боты', 'оплаты и подписки', 'ИИ', 'мини-апп', 'другое'];
+    const types = ['Telegram-бот', 'ИИ-ассистент', 'Автоматизация', 'Веб-сервис', 'Мобильное', 'другое'];
     const typeChips = types.map(label => {
       const on = this.state.type === label;
       return {

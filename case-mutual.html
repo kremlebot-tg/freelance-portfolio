@@ -53,7 +53,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
 .m-app::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:50;opacity:.35;background:repeating-linear-gradient(0deg,rgba(255,255,255,.012) 0 1px,transparent 1px 3px)}
 .m-rail{height:2px;background:rgba(255,255,255,.06);flex:none;z-index:20}
 .m-rail i{display:block;height:100%;background:var(--acc);transition:width .45s cubic-bezier(.2,.8,.2,1)}
-.m-scr{flex:1;display:flex;flex-direction:column;min-height:0;padding:calc(var(--safe-top) - 26px) 20px var(--safe-bot);animation:mIn .38s cubic-bezier(.2,.8,.2,1) both}
+.m-scr{flex:1;display:flex;flex-direction:column;min-height:0;padding:72px 20px var(--safe-bot);animation:mIn .38s cubic-bezier(.2,.8,.2,1) both}
 @keyframes mIn{from{opacity:0;transform:translate3d(16px,0,0)}to{opacity:1;transform:none}}
 .m-fill{flex:1 1 auto;min-height:8px}
 .m-kick{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--acc);margin-bottom:14px}
@@ -471,7 +471,7 @@ class Component extends DCLogic {
       { ini:'Т', name:'Тимур, 28', drop:'DROP 02 · «ТВОЙ ХОД»',      dist:'этот бар', online:false, last:'5 мин назад' },
       { ini:'Н', name:'Ника, 25',  drop:'DROP 01 · «SCAN ME»',       dist:'350 м',    online:true,  last:'' }
     ].map(function (p) { return { ini:p.ini, name:p.name, drop:p.drop, dist:p.dist, last:p.last, onDisp: p.online ? 'inline-flex' : 'none', offDisp: p.online ? 'none' : 'block' }; });
-    const chat = st.messages.map(function (m) { return { text:m.text, at:m.at || '', cls:m.cls || '', sysDisp: m.isSys ? 'block' : 'none', msgDisp: m.isSys ? 'none' : 'flex' }; });
+    const chat = st.messages.slice().reverse().map(function (m) { return { text:m.text, at:m.at || '', cls:m.cls || '', sysDisp: m.isSys ? 'block' : 'none', msgDisp: m.isSys ? 'none' : 'flex' }; });
     return {
       brandName: this.props.brandName ?? 'Re:dnd',
       hardAState: st.hardA, hardAAnim: st.hardA === 'open' ? 'accIn .3s ease both' : (st.hardA === 'closing' ? 'accOut .22s ease both' : 'none'), hardAExp: st.hardA === 'open' ? 'true' : 'false',

@@ -42,7 +42,11 @@
 .acc[data-state="closed"] .acc-body{display:none}
 @keyframes accIn{from{opacity:0;transform:translateY(-7px)}to{opacity:1;transform:none}}
 @keyframes accOut{from{opacity:1;transform:none}to{opacity:0;transform:translateY(-5px)}}
-@media (prefers-reduced-motion:reduce){.acc-body{animation:none!important}.acc-chev{transition:none}} body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}</style>
+@media (prefers-reduced-motion:reduce){.acc-body{animation:none!important}.acc-chev{transition:none}} body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
+.pnl-wrap{-webkit-overflow-scrolling:touch}
+.pnl th:first-child,.pnl td:first-child{position:sticky;left:0;border-right:1px solid var(--border-soft)}
+.pnl thead th:first-child{background:var(--demo-canvas);z-index:3}
+.pnl tbody td:first-child{background:var(--surface);z-index:2}</style>
 </helmet>
 
 <dc-import name="Header" active="projects" brand-name="{{ brandName }}" hint-size="100%,64px"></dc-import>
@@ -113,8 +117,8 @@
       </div>
 
       <!-- Table -->
-      <div style="min-width:0;overflow-x:auto;border:1px solid var(--border-soft);border-radius:16px">
-        <table style="width:100%;border-collapse:collapse;font:400 14px Inter,system-ui,sans-serif;min-width:540px">
+      <div class="pnl-wrap" style="min-width:0;overflow-x:auto;border:1px solid var(--border-soft);border-radius:16px">
+        <table class="pnl" style="width:100%;border-collapse:separate;border-spacing:0;font:400 14px Inter,system-ui,sans-serif;min-width:540px">
           <thead>
             <tr style="background:var(--demo-canvas)">
               <th scope="col" style="text-align:left;padding:12px 14px;font:600 12.5px Inter,system-ui,sans-serif;color:var(--text-meta);border-bottom:1px solid var(--border-soft)">Product</th>

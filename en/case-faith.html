@@ -66,7 +66,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
   </div>
 
   <!-- ============ DEMO ============ -->
-  <section data-theme-lock aria-label="Live demo: a lesson excerpt" style="background:var(--surface);border:1px solid var(--border);border-radius:22px;padding:clamp(18px,3vw,32px);display:flex;flex-direction:column;gap:18px">
+  <section aria-label="Live demo: a lesson excerpt" style="background:var(--surface);border:1px solid var(--border);border-radius:22px;padding:clamp(18px,3vw,32px);display:flex;flex-direction:column;gap:18px">
     <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
       <span style="display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 13px Inter,system-ui,sans-serif"><span style="width:7px;height:7px;border-radius:50%;background:var(--online)"></span>live demo — try a lesson excerpt by answering the questions</span>
       <button type="button" onClick="{{ onReset }}" style="margin-left:auto;font:500 13.5px Inter,system-ui,sans-serif;color:var(--text-meta);background:var(--surface-2);border:none;cursor:pointer;padding:8px 14px;border-radius:10px" style-hover="background:var(--border-soft);color:var(--text)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">⟳ reset demo</button>
@@ -102,7 +102,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
                   <div style="border-radius:18px;padding:16px 18px;background:{{ fbBg }};display:flex;flex-direction:column;gap:10px;animation:{{ anim }}">
                     <span aria-live="polite" style="font:700 16px Sora,sans-serif;color:{{ fbColor }}">{{ fbTitle }}</span>
                     <span style="font:400 13.5px/1.45 Inter,system-ui,sans-serif;color:{{ fbColor }}">{{ fbText }}</span>
-                    <button type="button" onClick="{{ onNext }}" style="padding:13px;border-radius:13px;border:none;background:{{ fbBtnBg }};color:var(--surface);font:700 15px Sora,sans-serif;cursor:pointer" style-hover="filter:brightness(1.06)" style-focus-visible="outline:2px solid #2B2417;outline-offset:2px">{{ nextLabel }}</button>
+                    <button type="button" onClick="{{ onNext }}" style="padding:13px;border-radius:13px;border:none;background:{{ fbBtnBg }};color:#FFFFFF;font:700 15px Sora,sans-serif;cursor:pointer" style-hover="filter:brightness(1.06)" style-focus-visible="outline:2px solid #2B2417;outline-offset:2px">{{ nextLabel }}</button>
                   </div>
                 </sc-if>
               </div>
@@ -119,7 +119,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
                 <span style="display:flex;flex-direction:column;gap:2px;background:#F6EFDD;border-radius:13px;padding:12px 18px"><span style="font:700 18px Sora,sans-serif;color:#C99A2E">+{{ xp }} XP</span><span style="font:500 11.5px Inter,system-ui,sans-serif;color:#8A7F68">experience</span></span>
                 <span style="display:flex;flex-direction:column;gap:2px;background:#F6EFDD;border-radius:13px;padding:12px 18px"><span style="font:700 18px Sora,sans-serif;color:#D9822B">🔥 4</span><span style="font:500 11.5px Inter,system-ui,sans-serif;color:#8A7F68">day streak</span></span>
               </div>
-              <button type="button" onClick="{{ onReset }}" style="margin-top:18px;width:100%;padding:15px;border-radius:14px;border:none;background:#C99A2E;color:var(--surface);font:700 16px Sora,sans-serif;cursor:pointer" style-hover="filter:brightness(1.06)" style-focus-visible="outline:2px solid #2B2417;outline-offset:3px">Try again</button>
+              <button type="button" onClick="{{ onReset }}" style="margin-top:18px;width:100%;padding:15px;border-radius:14px;border:none;background:#C99A2E;color:#FFFFFF;font:700 16px Sora,sans-serif;cursor:pointer" style-hover="filter:brightness(1.06)" style-focus-visible="outline:2px solid #2B2417;outline-offset:3px">Try again</button>
             </div>
           </sc-if>
 

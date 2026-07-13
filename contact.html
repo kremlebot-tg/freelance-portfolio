@@ -347,7 +347,7 @@ class Component extends DCLogic {
       showError: this.state.error,
       errorText: this.state.errorKind === 'network'
         ? 'Не получилось отправить — попробуйте ещё раз или напишите напрямую в Telegram.'
-        : 'Заполните описание задачи и контакт — иначе не смогу ответить.',
+        : 'Заполните описание задачи и контакт, иначе не сможем ответить.',
       sending: this.state.sending,
       submitLabel: this.state.sending ? 'Отправляю…' : 'Отправить',
       echoContact: this.state.contact || 'Telegram',

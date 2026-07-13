@@ -181,7 +181,7 @@ class Component extends DCLogic {
       showError: this.state.error,
       errorText: this.state.errorKind === 'network'
         ? "Couldn't send — try again or message me directly on Telegram."
-        : 'Add a couple of words about yourself and a contact — otherwise I can\'t reply.',
+        : 'Add a couple of words about yourself and a contact, otherwise we can\'t reply.',
       sending: this.state.sending,
       submitLabel: this.state.sending ? 'Sending…' : 'Send application',
       echoContact: this.state.contact || 'Telegram',

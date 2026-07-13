@@ -52,7 +52,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
 
 <dc-import name="Header" active="projects" brand-name="{{ brandName }}" hint-size="100%,64px"></dc-import>
 
-<main style="font-family:Inter,system-ui,sans-serif;max-width:1140px;margin:0 auto;padding:clamp(32px,4vw,52px) 20px clamp(56px,7vw,88px)">
+<main style="font-family:Inter,system-ui,sans-serif;max-width:1140px;margin:0 auto;padding:clamp(32px,4vw,52px) 22px clamp(56px,7vw,88px)">
 
   <a href="projects.html" style="display:inline-flex;align-items:center;gap:6px;font:500 14.5px Inter,system-ui,sans-serif;color:var(--accent);text-decoration:none;border-radius:8px;padding:4px 6px;margin:0 0 18px -6px" style-hover="background:var(--accent-tint)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">← All projects</a>
 
@@ -71,7 +71,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
     <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
       <span style="display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 13px Inter,system-ui,sans-serif"><span style="width:7px;height:7px;border-radius:50%;background:var(--online)"></span>live demo · drag the graph, click the nodes</span>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;align-items:stretch">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px;align-items:stretch">
       <div style="position:relative;grid-column:span 1;min-width:0;background:var(--demo-canvas);border:1px solid var(--border-soft);border-radius:16px;overflow:hidden">
         <svg viewBox="0 0 640 460" role="application" aria-label="Contact graph" style="display:block;width:100%;height:auto;touch-action:none;user-select:none;cursor:{{ svgCursor }}" onPointerMove="{{ onMove }}" onPointerUp="{{ onUp }}" onPointerLeave="{{ onUp }}" ref="{{ svgRef }}">
           <sc-for list="{{ edges }}" as="e" hint-placeholder-count="8">
@@ -132,7 +132,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
       <span style="display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 13px Inter,system-ui,sans-serif;width:fit-content"><span style="width:7px;height:7px;border-radius:50%;background:var(--online)"></span>live demo · note → facts</span>
       <p style="margin:6px 0 0;font:400 14.5px/1.5 Inter,system-ui,sans-serif;color:var(--text-meta)">This is how it works: jot down a messy note about someone — AI sorts it into tidy fields.</p>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;align-items:start">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px;align-items:start">
       <div style="display:flex;flex-direction:column;gap:10px">
         <div style="display:flex;flex-wrap:wrap;gap:6px">
           <sc-for list="{{ examples }}" as="ex" hint-placeholder-count="3">

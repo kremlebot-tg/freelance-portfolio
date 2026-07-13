@@ -134,7 +134,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
 <main style="font-family:Inter,system-ui,sans-serif">
 
   <!-- ============ HERO ============ -->
-  <section style="max-width:1140px;margin:0 auto;padding:clamp(48px,7vw,88px) 20px clamp(40px,6vw,72px);display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:clamp(28px,5vw,64px);align-items:center">
+  <section style="max-width:1140px;margin:0 auto;padding:clamp(48px,7vw,88px) 22px clamp(40px,6vw,72px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:clamp(28px,5vw,64px);align-items:center">
     <div style="display:flex;flex-direction:column;gap:20px;max-width:560px">
       <h1 style="margin:0;font:700 clamp(34px,4.6vw,54px)/1.12 Sora,sans-serif;letter-spacing:-0.02em;text-wrap:balance">Боты и мини-аппы, которые работают в проде</h1>
       <p style="margin:0;font:400 clamp(16px,1.6vw,19px)/1.6 Inter,system-ui,sans-serif;color:var(--text-body);text-wrap:pretty">Приём заявок, оплаты и подписки, ИИ-ассистенты — под ключ. Свои продукты в проде, а не учебные демо.</p>
@@ -188,12 +188,12 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
   </section>
 
   <!-- ============ SERVICES ============ -->
-  <section style="max-width:1140px;margin:0 auto;padding:clamp(28px,4vw,48px) 20px">
+  <section style="max-width:1140px;margin:0 auto;padding:clamp(28px,4vw,48px) 22px">
     <div style="display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:24px">
       <h2 style="margin:0;font:600 clamp(26px,3.2vw,36px)/1.15 Sora,sans-serif;letter-spacing:-0.01em">Услуги</h2>
       <a href="services.html" style="font:500 15px Inter,system-ui,sans-serif;color:var(--accent);text-decoration:none;border-radius:8px;padding:2px 4px" style-hover="text-decoration:underline" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">подробнее →</a>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;align-items:start">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:16px;align-items:start">
       <div class="ex" data-state="{{ serv0 }}" style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px">
         <button type="button" class="ex-sum" onClick="{{ onServ0 }}" aria-expanded="{{ servExp0 }}" aria-controls="serv-0">
           <span style="font:500 13px JetBrains Mono,monospace;color:var(--text-muted)">/leads</span>
@@ -246,12 +246,12 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
   </section>
 
   <!-- ============ PROJECTS ============ -->
-  <section style="max-width:1140px;margin:0 auto;padding:clamp(28px,4vw,48px) 20px">
+  <section style="max-width:1140px;margin:0 auto;padding:clamp(28px,4vw,48px) 22px">
     <div style="display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:24px">
       <h2 style="margin:0;font:600 clamp(26px,3.2vw,36px)/1.15 Sora,sans-serif;letter-spacing:-0.01em">Проекты</h2>
       <p style="margin:0;font:400 15.5px/1.5 Inter,system-ui,sans-serif;color:var(--text-meta)">Живые демо встроены прямо в страницы кейсов. Можно потыкать самому.</p>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px">
 
       <a href="case-subscriptions.html" style="display:flex;flex-direction:column;gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 14px 34px -14px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
         <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--accent)">[Подписки · Оплаты]</span>
@@ -317,11 +317,11 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
   </section>
 
   <!-- ============ PROCESS ============ -->
-  <section style="max-width:1140px;margin:0 auto;padding:clamp(28px,4vw,48px) 20px">
+  <section style="max-width:1140px;margin:0 auto;padding:clamp(28px,4vw,48px) 22px">
     <div style="display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:24px">
       <h2 style="margin:0;font:600 clamp(26px,3.2vw,36px)/1.15 Sora,sans-serif;letter-spacing:-0.01em">Как я работаю</h2>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px;align-items:start">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));gap:16px;align-items:start">
       <div class="ex" data-state="{{ proc0 }}" style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px">
         <button type="button" class="ex-sum" onClick="{{ onProc0 }}" aria-expanded="{{ procExp0 }}" aria-controls="proc-0">
           <span style="font:500 13px JetBrains Mono,monospace;color:var(--text-muted)">01</span>
@@ -391,9 +391,9 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
 
   <!-- ============ TRUST ============ -->
   <section style="background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-top:clamp(28px,4vw,48px)">
-    <div style="max-width:1140px;margin:0 auto;padding:clamp(40px,5vw,64px) 20px;display:flex;flex-direction:column;gap:28px">
+    <div style="max-width:1140px;margin:0 auto;padding:clamp(40px,5vw,64px) 22px;display:flex;flex-direction:column;gap:28px">
       <h2 style="margin:0;font:600 clamp(24px,3vw,34px)/1.2 Sora,sans-serif;letter-spacing:-0.01em;text-wrap:balance">Продукты, которые уже зарабатывают</h2>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:16px">
         <div style="display:flex;flex-direction:column;gap:6px;border-left:2px solid var(--accent-cta);padding-left:18px">
           <span style="font:700 clamp(30px,3.4vw,42px)/1 Sora,sans-serif;color:var(--accent)">~200</span>
           <span style="font:400 14.5px/1.5 Inter,system-ui,sans-serif;color:var(--text-body)">платящих пользователей в своём подписочном сервисе</span>
@@ -416,11 +416,11 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
 
   <!-- ============ TESTIMONIALS (скрыто, пока в site-config.js нет отзывов) ============ -->
   <sc-if value="{{ hasTestimonials }}" hint-placeholder-val="{{ false }}">
-    <section style="max-width:1140px;margin:0 auto;padding:clamp(28px,4vw,48px) 20px">
+    <section style="max-width:1140px;margin:0 auto;padding:clamp(28px,4vw,48px) 22px">
       <div style="display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:24px">
         <h2 style="margin:0;font:600 clamp(26px,3.2vw,36px)/1.15 Sora,sans-serif;letter-spacing:-0.01em">Отзывы</h2>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;align-items:start">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:20px;align-items:start">
         <sc-for list="{{ testimonials }}" as="t" hint-placeholder-count="2">
           <div style="display:flex;flex-direction:column;gap:10px">
             <div style="background:var(--surface);border-radius:18px 18px 18px 5px;padding:16px 20px;box-shadow:0 2px 6px var(--shadow-2);font:400 15px/1.55 Inter,system-ui,sans-serif">{{ t.text }}</div>
@@ -435,7 +435,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
   </sc-if>
 
   <!-- ============ CTA ============ -->
-  <section style="max-width:760px;margin:0 auto;padding:clamp(48px,6vw,80px) 20px;display:flex;flex-direction:column;gap:18px;align-items:flex-start">
+  <section style="max-width:760px;margin:0 auto;padding:clamp(48px,6vw,80px) 22px;display:flex;flex-direction:column;gap:18px;align-items:flex-start">
     <div style="align-self:stretch;background:var(--surface);border-radius:18px 18px 18px 5px;padding:18px 22px;box-shadow:0 2px 6px var(--shadow-2);font:400 clamp(17px,2vw,20px)/1.5 Inter,system-ui,sans-serif">Расскажите, что нужно автоматизировать. Отвечу сам — с планом и ценой, без менеджеров.</div>
     <a href="contact.html" style="display:inline-flex;align-items:center;gap:9px;background:var(--accent-cta);color:var(--surface);text-decoration:none;font:600 16px/1 Inter,system-ui,sans-serif;padding:14px 24px;border-radius:13px" style-hover="background:var(--accent)" style-focus-visible="outline:2px solid var(--text);outline-offset:2px">
       <span style="width:8px;height:8px;border-radius:50%;background:var(--online);box-shadow:0 0 0 3px rgba(49,181,69,0.25)"></span>

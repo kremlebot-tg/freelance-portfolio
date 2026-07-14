@@ -229,7 +229,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
         </div>
         <div class="step-num">01</div>
         <div class="step-t">Bring a client</div>
-        <div class="step-d">Someone with a real task: lead capture, payments, an AI bot, a mini-app. An introduction is enough. You can just connect us in Telegram.</div>
+        <div class="step-d">Someone with a real task: a bot, an AI assistant, automation, a web service or an app. An introduction is enough. You can just connect us in Telegram.</div>
       </div>
       <div class="step">
         <div class="sc" aria-hidden="true">
@@ -297,10 +297,11 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
       <div>
         <div class="calc-label">Project type</div>
         <div class="pgroup">
-          <button type="button" class="{{ projCls0 }}" onClick="{{ onProj0 }}">Lead capture</button>
-          <button type="button" class="{{ projCls1 }}" onClick="{{ onProj1 }}">Payments &amp; subscriptions</button>
-          <button type="button" class="{{ projCls2 }}" onClick="{{ onProj2 }}">AI bot</button>
-          <button type="button" class="{{ projCls3 }}" onClick="{{ onProj3 }}">Mini-app / complex</button>
+          <button type="button" class="{{ projCls0 }}" onClick="{{ onProj0 }}">Telegram bot</button>
+          <button type="button" class="{{ projCls1 }}" onClick="{{ onProj1 }}">AI assistant</button>
+          <button type="button" class="{{ projCls2 }}" onClick="{{ onProj2 }}">Automation</button>
+          <button type="button" class="{{ projCls3 }}" onClick="{{ onProj3 }}">Web service</button>
+          <button type="button" class="{{ projCls4 }}" onClick="{{ onProj4 }}">Mobile</button>
         </div>
         <div class="calc-label">Clients per month</div>
         <div class="pgroup">
@@ -473,8 +474,8 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;brandName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Re:dnd&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Brand&quot;}}">
 class Component extends DCLogic {
-  state = { faq: ['closed','closed','closed','closed','closed','closed','closed','closed'], proj: 2, cnt: 0, shown: 0 };
-  PRICES = [8000, 15000, 25000, 50000];
+  state = { faq: ['closed','closed','closed','closed','closed','closed','closed','closed'], proj: 1, cnt: 0, shown: 0 };
+  PRICES = [12000, 20000, 18000, 60000, 120000];
   COUNTS = [1, 2, 3, 5];
   RATE = 0.2;
   componentDidMount() {

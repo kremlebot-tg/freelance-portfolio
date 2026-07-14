@@ -229,7 +229,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
         </div>
         <div class="step-num">01</div>
         <div class="step-t">Приводите клиента</div>
-        <div class="step-d">Кого-то с реальной задачей: приём заявок, оплаты, ИИ-бот, мини-апп. Достаточно знакомства, можно просто свести нас в Telegram.</div>
+        <div class="step-d">Кого-то с реальной задачей: бот, ИИ-ассистент, автоматизация, веб-сервис или приложение. Достаточно знакомства, можно просто свести нас в Telegram.</div>
       </div>
       <div class="step">
         <div class="sc" aria-hidden="true">
@@ -297,10 +297,11 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
       <div>
         <div class="calc-label">Тип проекта</div>
         <div class="pgroup">
-          <button type="button" class="{{ projCls0 }}" onClick="{{ onProj0 }}">Приём заявок</button>
-          <button type="button" class="{{ projCls1 }}" onClick="{{ onProj1 }}">Оплаты и подписки</button>
-          <button type="button" class="{{ projCls2 }}" onClick="{{ onProj2 }}">ИИ-бот</button>
-          <button type="button" class="{{ projCls3 }}" onClick="{{ onProj3 }}">Мини-апп / комплекс</button>
+          <button type="button" class="{{ projCls0 }}" onClick="{{ onProj0 }}">Telegram-бот</button>
+          <button type="button" class="{{ projCls1 }}" onClick="{{ onProj1 }}">ИИ-ассистент</button>
+          <button type="button" class="{{ projCls2 }}" onClick="{{ onProj2 }}">Автоматизация</button>
+          <button type="button" class="{{ projCls3 }}" onClick="{{ onProj3 }}">Веб-сервис</button>
+          <button type="button" class="{{ projCls4 }}" onClick="{{ onProj4 }}">Мобильное</button>
         </div>
         <div class="calc-label">Клиентов в месяц</div>
         <div class="pgroup">
@@ -473,8 +474,8 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;brandName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Re:dnd&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Бренд&quot;}}">
 class Component extends DCLogic {
-  state = { faq: ['closed','closed','closed','closed','closed','closed','closed','closed'], proj: 2, cnt: 0, shown: 0 };
-  PRICES = [8000, 15000, 25000, 50000];
+  state = { faq: ['closed','closed','closed','closed','closed','closed','closed','closed'], proj: 1, cnt: 0, shown: 0 };
+  PRICES = [12000, 20000, 18000, 60000, 120000];
   COUNTS = [1, 2, 3, 5];
   RATE = 0.2;
   componentDidMount() {

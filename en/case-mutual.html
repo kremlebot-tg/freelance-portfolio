@@ -251,7 +251,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
           <section class="m-scr" role="region" aria-label="What MUTUAL is">
             <div class="m-wordmark">MU<em>TU</em>AL</div>
             <div class="m-kick mute">// streetwear that introduces</div>
-            <h1 class="m-h1">Clothes<br>that<br><em>introduce</em></h1>
+            <h2 class="m-h1">Clothes<br>that<br><em>introduce</em></h2>
             <p class="m-sub">The QR on a garment is the owner's identity. Scan someone's item to see who they are.</p>
             <div class="m-flow">
               <div class="m-fl"><b>01</b><span>Scan the code on an item</span></div>
@@ -267,7 +267,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
           <sc-if value="{{ isPrivacy }}" hint-placeholder-val="{{ false }}">
           <section class="m-scr" role="region" aria-label="Privacy settings">
             <div class="m-kick">// step 1 · privacy</div>
-            <h1 class="m-h1">Who can<br>find me</h1>
+            <h2 class="m-h1">Who can<br>find me</h2>
             <p class="m-sub">These are the defaults. Change them anytime.</p>
             <button type="button" class="m-row" role="switch" aria-checked="{{ find }}" onClick="{{ onToFind }}"><span class="t"><b>Findable by the code on my item</b><i>Whoever scans your item sees your profile</i></span><span class="{{ swFind }}" aria-hidden="true"><span></span></span></button>
             <button type="button" class="m-row" role="switch" aria-checked="{{ onMap }}" onClick="{{ onToMap }}"><span class="t"><b>Show me nearby on the map</b><i>Approximate. The exact point is hidden</i></span><span class="{{ swMap }}" aria-hidden="true"><span></span></span></button>
@@ -282,7 +282,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
           <sc-if value="{{ isNearby }}" hint-placeholder-val="{{ false }}">
           <section class="m-scr" role="region" aria-label="Who is nearby">
             <div class="m-kick">// step 2 · nearby</div>
-            <h1 class="m-h1" style="font-size:34px;margin-bottom:14px">Who's nearby</h1>
+            <h2 class="m-h1" style="font-size:34px;margin-bottom:14px">Who's nearby</h2>
             <div class="m-map">
               <svg class="bgmap" viewBox="0 0 300 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><g stroke="#22261B" stroke-width="8" fill="none"><path d="M-10 48H310"/><path d="M-10 128H310"/><path d="M70-10V210"/><path d="M180-10V210"/><path d="M255-10V210"/></g><g fill="#181C13"><rect x="80" y="58" width="88" height="58"/><rect x="192" y="58" width="50" height="58"/><rect x="80" y="140" width="88" height="52"/></g></svg>
               <div class="m-sweep" aria-hidden="true"></div>
@@ -320,7 +320,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
           <section class="m-scr" role="region" aria-label="Item owner profile">
             <span class="m-chip">MUTUAL · code #7K2-QF9</span>
             <div class="m-wm" aria-hidden="true">L</div>
-            <h1 class="m-name">Lena <span>22</span></h1>
+            <h2 class="m-name">Lena <span>22</span></h2>
             <div class="m-meta"><span class="m-on" style="margin:0"><i aria-hidden="true"></i>online</span><span>200 m away</span></div>
             <div class="m-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#D6FF3D" stroke-width="1.6" aria-hidden="true" focusable="false" style="flex:none"><path d="M8 3 4 5.5 5.5 9 7 8.3V21h10V8.3L18.5 9 20 5.5 16 3a4 4 0 0 1-8 0z"/></svg><span class="t"><b>DROP 01 · "LET'S MEET?"</b><i>the item you scanned</i></span></div>
             <p class="m-bio">Moved here a month ago, barely know anyone. Climbing, ramen, bad horror films.</p>
@@ -336,7 +336,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
           <section class="m-scr" role="region" aria-label="Waiting for consent">
             <div class="m-wait">
               <div class="m-orb" aria-hidden="true"><span class="r"></span><span class="r"></span><span class="r"></span><span class="core">L</span></div>
-              <h1 class="m-h1" style="font-size:34px;margin-bottom:12px">Ping<br>sent</h1>
+              <h2 class="m-h1" style="font-size:34px;margin-bottom:12px">Ping<br>sent</h2>
               <p class="m-sub" style="margin:0 auto" role="status" aria-live="polite">Lena is looking at your profile. It's her call now.</p>
               <div class="m-locked"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5C5C56" stroke-width="2" aria-hidden="true" focusable="false" style="flex:none"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><span class="t"><b>Chat closed</b><i>Opens only if Lena accepts the ping</i></span></div>
             </div>
@@ -370,7 +370,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
           <sc-if value="{{ isOutro }}" hint-placeholder-val="{{ false }}">
           <section class="m-scr" role="region" aria-label="How it works">
             <div class="m-kick">// summary</div>
-            <h1 class="m-h1" style="font-size:34px">Here's how<br>it works</h1>
+            <h2 class="m-h1" style="font-size:34px">Here's how<br>it works</h2>
             <div class="m-steps">
               <div class="m-step"><b>01</b><span class="t"><p>Code on the item = identity</p><i>One code, one person. The profile is editable; the item stays.</i></span></div>
               <div class="m-step"><b>02</b><span class="t"><p>A scan opens the profile</p><i>Not from a map or a feed, only from scanning a real item.</i></span></div>

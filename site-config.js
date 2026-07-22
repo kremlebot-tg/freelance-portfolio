@@ -24,12 +24,12 @@ window.SITE_CONFIG = {
   email: 'politushkin@gmail.com',
 
   // --- Цены услуг (5 направлений) ---
-  // Стартовые «от»; веб и мобильные — «по задаче» (кратно дороже, считаем индивидуально).
+  // Стартовые «от»; мобильные приложения считаем индивидуально.
   prices: {
-    telegram: 'от 4 900 ₽',
-    ai: 'от 9 900 ₽',
-    automation: 'от 8 900 ₽',
-    web: 'по задаче',
+    telegram: 'от 7 000 ₽',
+    ai: 'от 20 000 ₽',
+    automation: 'от 15 000 ₽',
+    web: 'от 40 000 ₽',
     mobile: 'по задаче',
   },
   pricesEn: {
@@ -140,4 +140,191 @@ window.SITE_CONFIG = {
   }
   function boot() { apply(); var n = 0, iv = setInterval(function () { apply(); if (++n > 16) clearInterval(iv); }, 250); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
+})();
+
+// ============================================================
+// Общая полировка интерфейса: единые карточки и CTA, активная шапка,
+// прогресс чтения и спокойные появления при скролле. Всё progressive
+// enhancement: при ошибке JS исходная разметка остаётся полностью рабочей.
+// ============================================================
+(function () {
+  var started = false;
+  var revealObserver = null;
+  var mutationObserver = null;
+  var mutationQueued = false;
+  var reduceMotion = false;
+  var isHome = /(?:^|\/)index\.html$/.test(location.pathname) || /\/$/.test(location.pathname);
+
+  function hasCyrillic(text) { return /[А-Яа-яЁё]/.test(text || ''); }
+
+  function markDisplayType(root) {
+    var list = (root || document).querySelectorAll('[style]');
+    for (var i = 0; i < list.length; i++) {
+      var el = list[i];
+      if (el.classList.contains('rd-cyr-display')) continue;
+      if (isHeroElement(el)) continue;
+      if (!hasCyrillic(el.textContent)) continue;
+      if ((el.style.fontFamily || '').indexOf('Sora') !== -1) el.classList.add('rd-cyr-display');
+    }
+  }
+
+  function isHeroElement(el) {
+    if (!isHome) return false;
+    var first = document.querySelector('main > section');
+    return !!(first && first.contains(el));
+  }
+
+  function markCards(root) {
+    var scope = root || document;
+    var fixed = scope.querySelectorAll('.ex,.acc,.ch-stat,.ch-copy');
+    var i;
+    for (i = 0; i < fixed.length; i++) fixed[i].classList.add('rd-card');
+
+    var nodes = scope.querySelectorAll('main a[style],main article[style],main div[style]');
+    for (i = 0; i < nodes.length; i++) {
+      var el = nodes[i];
+      if (el.classList.contains('rd-card') || isHeroElement(el)) continue;
+      if (el.closest('[data-theme-lock],.ph-fit,.ch-browser')) continue;
+      if (el.parentElement && el.parentElement.closest('.rd-card')) continue;
+      var raw = el.getAttribute('style') || '';
+      var background = el.style.background || el.style.backgroundColor || '';
+      var border = el.style.border || '';
+      var surface = background.indexOf('var(--surface)') !== -1 || raw.indexOf('background:var(--surface)') !== -1;
+      var bordered = border.indexOf('solid') !== -1 || raw.indexOf('border:1px solid') !== -1;
+      if (!surface || !bordered || el.children.length < 2) continue;
+      el.classList.add('rd-card');
+      if (border.indexOf('var(--accent-cta)') !== -1 || raw.indexOf('var(--accent-cta)') !== -1) el.classList.add('rd-featured');
+    }
+  }
+
+  function markChrome(root) {
+    var scope = root || document;
+    var headings = scope.querySelectorAll('main h2');
+    for (var i = 0; i < headings.length; i++) {
+      var h = headings[i];
+      if (h.closest('.rd-card,[data-theme-lock],.ph-fit')) {
+        h.classList.remove('rd-section-title');
+      } else if (!h.classList.contains('rd-section-title')) {
+        h.classList.add('rd-section-title');
+      }
+    }
+    var ctas = scope.querySelectorAll('.hdr-cta,a[href$="contact.html"],button[type="submit"],button[aria-busy]');
+    for (i = 0; i < ctas.length; i++) {
+      var el = ctas[i];
+      if (isHeroElement(el) && !el.classList.contains('hdr-cta')) continue;
+      var bg = el.style.background || '';
+      if (el.classList.contains('hdr-cta') || bg.indexOf('accent') !== -1 || el.tagName === 'BUTTON') el.classList.add('rd-cta');
+    }
+  }
+
+  function markLayouts(root) {
+    var scope = root || document;
+    var newest = scope.querySelectorAll('a[href$="case-chainya.html"]');
+    var i;
+    for (i = 0; i < newest.length; i++) {
+      if (newest[i].classList.contains('rd-card')) newest[i].classList.add('rd-featured', 'rd-latest-case');
+    }
+
+    var parents = [];
+    var cards = scope.querySelectorAll('main .rd-card');
+    for (i = 0; i < cards.length; i++) {
+      var parent = cards[i].parentElement;
+      if (parent && parents.indexOf(parent) === -1) parents.push(parent);
+    }
+    for (i = 0; i < parents.length; i++) {
+      var p = parents[i];
+      var direct = Array.prototype.filter.call(p.children, function (n) { return n.classList && n.classList.contains('rd-card'); });
+      if (direct.length === 5 && getComputedStyle(p).display === 'grid') p.classList.add('rd-five-grid');
+      if (direct.length === 7 && getComputedStyle(p).display === 'grid') p.classList.add('rd-seven-grid');
+    }
+  }
+
+  function observeReveals(root) {
+    if (!revealObserver || reduceMotion) return;
+    var scope = root || document;
+    var items = scope.querySelectorAll('main h2,.rd-card,main > article');
+    for (var i = 0; i < items.length; i++) {
+      var el = items[i];
+      if (el.classList.contains('rd-reveal') || isHeroElement(el) || el.closest('[data-theme-lock],.ph-fit')) continue;
+      if (el.tagName === 'H2' && el.closest('.rd-card')) continue;
+      el.classList.add('rd-reveal');
+      var siblings = el.parentElement ? Array.prototype.filter.call(el.parentElement.children, function (n) {
+        return n.matches && (n.matches('.rd-card') || n.tagName === 'ARTICLE');
+      }) : [];
+      var idx = siblings.indexOf(el);
+      if (idx > -1) el.style.setProperty('--rd-delay', String(Math.min(idx % 4, 3) * 65) + 'ms');
+      revealObserver.observe(el);
+    }
+  }
+
+  function enhance(root) {
+    if (!document.body) return;
+    markDisplayType(root);
+    markCards(root);
+    markChrome(root);
+    markLayouts(root);
+    observeReveals(root);
+  }
+
+  function updateChrome() {
+    var header = document.querySelector('header');
+    if (header) header.classList.toggle('is-scrolled', window.scrollY > 10);
+    var progress = document.querySelector('.rd-scroll-progress');
+    if (progress) {
+      var max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+      progress.style.transform = 'scaleX(' + Math.min(1, Math.max(0, window.scrollY / max)) + ')';
+    }
+  }
+
+  function bootPolish() {
+    if (started || !document.body) return;
+    started = true;
+    try { reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
+
+    var progress = document.createElement('div');
+    progress.className = 'rd-scroll-progress';
+    progress.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(progress);
+
+    if (!reduceMotion && 'IntersectionObserver' in window) {
+      document.documentElement.classList.add('rd-motion-ready');
+      revealObserver = new IntersectionObserver(function (entries) {
+        for (var i = 0; i < entries.length; i++) {
+          if (!entries[i].isIntersecting) continue;
+          entries[i].target.classList.add('is-visible');
+          revealObserver.unobserve(entries[i].target);
+        }
+      }, { rootMargin: '0px 0px -7% 0px', threshold: .08 });
+    }
+
+    enhance(document);
+    updateChrome();
+    window.addEventListener('scroll', updateChrome, { passive: true });
+    window.addEventListener('resize', updateChrome, { passive: true });
+    document.addEventListener('keydown', function (event) {
+      if (event.key !== 'Escape') return;
+      var header = document.querySelector('header[data-open="true"]');
+      var burger = header && header.querySelector('.hdr-burger');
+      if (burger) burger.click();
+    });
+
+    mutationObserver = new MutationObserver(function (records) {
+      if (mutationQueued) return;
+      var useful = false;
+      for (var i = 0; i < records.length; i++) {
+        if (records[i].addedNodes && records[i].addedNodes.length) { useful = true; break; }
+      }
+      if (!useful) return;
+      mutationQueued = true;
+      requestAnimationFrame(function () {
+        mutationQueued = false;
+        enhance(document);
+        updateChrome();
+      });
+    });
+    mutationObserver.observe(document.body, { childList: true, subtree: true });
+    setTimeout(function () { if (mutationObserver) mutationObserver.disconnect(); }, 8000);
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', bootPolish); else bootPolish();
 })();

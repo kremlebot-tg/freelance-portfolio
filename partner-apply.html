@@ -53,7 +53,7 @@
     <!-- Form -->
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(22px,3vw,30px)">
       <sc-if value="{{ notSubmitted }}" hint-placeholder-val="{{ true }}">
-        <div style="display:flex;flex-direction:column;gap:20px">
+        <form onSubmit="{{ onSubmit }}" style="display:flex;flex-direction:column;gap:20px">
 
           <div style="display:flex;flex-direction:column;gap:8px">
             <span style="font:600 14.5px Inter,system-ui,sans-serif">Кто вы</span>
@@ -66,27 +66,27 @@
 
           <label style="display:flex;flex-direction:column;gap:8px">
             <span style="font:600 14.5px Inter,system-ui,sans-serif">О себе и кого можете привести</span>
-            <textarea rows="4" value="{{ about }}" onChange="{{ onAbout }}" placeholder="Например: веду Telegram-канал для локального бизнеса, вокруг много кафе и салонов — думаю, кому-то нужен бот приёма заявок и оплаты" style="font:400 15px/1.55 Inter,system-ui,sans-serif;color:var(--text);border:1px solid var(--border-input);border-radius:12px;padding:12px 14px;resize:vertical;background:var(--input-bg);outline:none" style-focus-visible="border-color:var(--accent-cta);box-shadow:0 0 0 3px rgba(34,158,217,0.18)"></textarea>
+            <textarea data-form-about rows="4" value="{{ about }}" onChange="{{ onAbout }}" aria-invalid="{{ aboutInvalid }}" aria-describedby="{{ formErrorId }}" placeholder="Например: веду Telegram-канал для локального бизнеса, вокруг много кафе и салонов — думаю, кому-то нужен бот приёма заявок и оплаты" style="font:400 15px/1.55 Inter,system-ui,sans-serif;color:var(--text);border:1px solid var(--border-input);border-radius:12px;padding:12px 14px;resize:vertical;background:var(--input-bg);outline:none" style-focus-visible="border-color:var(--accent-cta);box-shadow:0 0 0 3px rgba(34,158,217,0.18)"></textarea>
           </label>
 
           <label style="display:flex;flex-direction:column;gap:8px">
             <span style="font:600 14.5px Inter,system-ui,sans-serif">Как с вами связаться</span>
-            <input type="text" value="{{ contact }}" onChange="{{ onContact }}" placeholder="@ник в Telegram или email" style="font:400 15px Inter,system-ui,sans-serif;color:var(--text);border:1px solid var(--border-input);border-radius:12px;padding:12px 14px;background:var(--input-bg);outline:none" style-focus-visible="border-color:var(--accent-cta);box-shadow:0 0 0 3px rgba(34,158,217,0.18)">
+            <input data-form-contact type="text" value="{{ contact }}" onChange="{{ onContact }}" aria-invalid="{{ contactInvalid }}" aria-describedby="{{ formErrorId }}" placeholder="@ник в Telegram или email" style="font:400 15px Inter,system-ui,sans-serif;color:var(--text);border:1px solid var(--border-input);border-radius:12px;padding:12px 14px;background:var(--input-bg);outline:none" style-focus-visible="border-color:var(--accent-cta);box-shadow:0 0 0 3px rgba(34,158,217,0.18)">
           </label>
           <input type="text" name="website" value="{{ website }}" onChange="{{ onWebsite }}" autocomplete="off" tabindex="-1" aria-hidden="true" style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;opacity:0.01;pointer-events:none">
 
           <sc-if value="{{ showError }}" hint-placeholder-val="{{ false }}">
-            <div role="alert" style="font:500 14px Inter,system-ui,sans-serif;color:var(--error-text);background:var(--error-bg);border-radius:10px;padding:10px 14px">{{ errorText }}</div>
+            <div id="form-error" role="alert" style="font:500 14px Inter,system-ui,sans-serif;color:var(--error-text);background:var(--error-bg);border-radius:10px;padding:10px 14px">{{ errorText }}</div>
           </sc-if>
 
           <div style="display:flex;flex-direction:column;gap:10px">
-            <button type="button" onClick="{{ onSubmit }}" aria-busy="{{ sending }}" style="display:inline-flex;align-items:center;justify-content:center;gap:9px;background:var(--accent-cta);color:var(--surface);border:none;cursor:pointer;font:600 16px/1 Inter,system-ui,sans-serif;padding:14px 24px;border-radius:13px;width:fit-content" style-hover="background:var(--accent)" style-focus-visible="outline:2px solid var(--text);outline-offset:2px">{{ submitLabel }}</button>
+            <button type="submit" aria-busy="{{ sending }}" style="display:inline-flex;align-items:center;justify-content:center;gap:9px;background:var(--accent-cta);color:var(--surface);border:none;cursor:pointer;font:600 16px/1 Inter,system-ui,sans-serif;padding:14px 24px;border-radius:13px;width:fit-content" style-hover="background:var(--accent)" style-focus-visible="outline:2px solid var(--text);outline-offset:2px">{{ submitLabel }}</button>
             <sc-if value="{{ demoMode }}" hint-placeholder-val="{{ true }}">
               <span style="font:400 12.5px/1.5 JetBrains Mono,monospace;color:var(--text-muted)">// прототип: реальную отправку подключит Claude Code</span>
             </sc-if>
             <span style="font:400 12.5px/1.5 Inter,system-ui,sans-serif;color:var(--text-muted)">Отправляя, вы соглашаетесь с <a href="privacy.html" style="color:var(--accent);text-decoration:none;border-radius:4px" style-hover="text-decoration:underline" style-focus-visible="outline:2px solid var(--accent);outline-offset:1px">политикой конфиденциальности</a> и <a href="consent.html" style="color:var(--accent);text-decoration:none;border-radius:4px" style-hover="text-decoration:underline" style-focus-visible="outline:2px solid var(--accent);outline-offset:1px">обработкой персональных данных</a>.</span>
           </div>
-        </div>
+        </form>
       </sc-if>
 
       <sc-if value="{{ submitted }}" hint-placeholder-val="{{ false }}">
@@ -179,6 +179,9 @@ class Component extends DCLogic {
       notSubmitted: !this.state.submitted,
       submitted: this.state.submitted,
       showError: this.state.error,
+      aboutInvalid: this.state.error && !this.state.about.trim() ? 'true' : 'false',
+      contactInvalid: this.state.error && !this.state.contact.trim() ? 'true' : 'false',
+      formErrorId: this.state.error ? 'form-error' : '',
       errorText: this.state.errorKind === 'network'
         ? 'Не получилось отправить — попробуйте ещё раз или напишите напрямую в Telegram.'
         : 'Заполните пару слов о себе и контакт, иначе не сможем ответить.',
@@ -189,9 +192,19 @@ class Component extends DCLogic {
       onWebsite: e => this.setState({ website: e.target.value }),
       onAbout: e => this.setState({ about: e.target.value, error: false }),
       onContact: e => this.setState({ contact: e.target.value, error: false }),
-      onSubmit: () => {
+      onSubmit: (e) => {
+        if (e) e.preventDefault();
         if (this.state.sending) return;
-        if (!this.state.about.trim() || !this.state.contact.trim()) { this.setState({ error: true, errorKind: '' }); return; }
+        const missingAbout = !this.state.about.trim();
+        const missingContact = !this.state.contact.trim();
+        if (missingAbout || missingContact) {
+          this.setState({ error: true, errorKind: '' });
+          setTimeout(() => {
+            const target = document.querySelector(missingAbout ? '[data-form-about]' : '[data-form-contact]');
+            if (target) target.focus();
+          }, 0);
+          return;
+        }
         const task = '🤝 ЗАЯВКА В ПАРТНЁРЫ\n\nКто: ' + this.state.role + '\nО себе / кого может приводить: ' + this.state.about.trim();
         if (demoMode) {
           this.setState({ submitted: true, error: false });

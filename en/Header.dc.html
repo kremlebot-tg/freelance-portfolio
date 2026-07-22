@@ -14,7 +14,13 @@
 <style>
 *,*::before,*::after{box-sizing:border-box} body{margin:0}
 /* Responsive header: burger only <768px. Desktop (>=768px) unchanged. */
-.hdr-burger{display:none}
+.hdr-burger{display:none;flex:none}
+.hdr-burger-lines{position:relative;width:20px;height:16px;display:block}
+.hdr-burger-lines i{position:absolute;left:1px;right:1px;height:2px;border-radius:99px;background:currentColor;transform-origin:center;transition:top .24s ease,transform .24s ease,opacity .18s ease}
+.hdr-burger-lines i:nth-child(1){top:1px}.hdr-burger-lines i:nth-child(2){top:7px}.hdr-burger-lines i:nth-child(3){top:13px}
+header[data-open="true"] .hdr-burger-lines i:nth-child(1){top:7px;transform:rotate(45deg)}
+header[data-open="true"] .hdr-burger-lines i:nth-child(2){opacity:0;transform:scaleX(.2)}
+header[data-open="true"] .hdr-burger-lines i:nth-child(3){top:7px;transform:rotate(-45deg)}
 @media (max-width:767px){
   .hdr-bar{flex-wrap:nowrap!important;gap:8px!important;position:relative}
   .hdr-nav{
@@ -29,11 +35,16 @@
   .hdr-cta{padding:11px 16px!important;font-size:14.5px!important;min-height:44px}
   .hdr-theme{width:44px!important;height:44px!important}
 }
+@media (max-width:360px){
+  .hdr-bar{padding:10px 12px!important;gap:6px!important}
+  .hdr-logo{gap:7px!important}
+  .hdr-cta{padding:11px 12px!important}
+}
 </style>
 </helmet>
 <header data-open="{{ openAttr }}" style="position:sticky;top:0;z-index:60;background:var(--header-bg);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--border);font-family:Inter,system-ui,sans-serif">
   <div class="hdr-bar" style="max-width:1140px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;gap:6px 18px;flex-wrap:wrap">
-    <a href="index.html" class="hdr-logo" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);border-radius:10px;padding:4px 6px 4px 2px" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
+    <a href="index.html" class="hdr-logo" aria-current="{{ logoCurrent }}" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);border-radius:10px;padding:4px 6px 4px 2px" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
       <span class="hdr-logo-mark" style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#38AEE5,var(--accent));color:var(--surface);display:grid;place-items:center;font:600 13px Sora,sans-serif;letter-spacing:0.02em">{{ initials }}</span>
       <span style="font:600 17px/1 Sora,sans-serif;white-space:nowrap">{{ brandName }}</span>
     </a>
@@ -42,15 +53,15 @@
         <a href="{{ item.href }}" aria-current="{{ item.current }}" style="padding:9px 13px;border-radius:10px;text-decoration:none;font-size:15px;line-height:1;font-weight:{{ item.weight }};color:{{ item.color }};background:{{ item.bg }};white-space:nowrap" style-hover="background:var(--accent-tint);color:var(--accent)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">{{ item.label }}</a>
       </sc-for>
       <a href="{{ langHref }}" hreflang="ru" aria-label="Переключить на русский" title="Русский" style="display:inline-flex;align-items:center;padding:7px 10px;border-radius:10px;text-decoration:none;font-size:20px;line-height:1;white-space:nowrap" style-hover="background:var(--accent-tint)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">🇷🇺</a>
-      <button type="button" class="hdr-theme" onClick="{{ onThemeToggle }}" aria-label="Toggle dark theme" aria-pressed="{{ themePressed }}" style="display:inline-flex;align-items:center;justify-content:center;align-self:center;width:38px;height:38px;padding:0;border:1px solid var(--border);border-radius:10px;background:transparent;color:var(--text-meta);cursor:pointer;flex:none" style-hover="background:var(--accent-tint);color:var(--accent);border-color:var(--border-hover)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
+      <button type="button" class="hdr-theme" onClick="{{ onThemeToggle }}" aria-label="{{ themeLabel }}" style="display:inline-flex;align-items:center;justify-content:center;align-self:center;width:38px;height:38px;padding:0;border:1px solid var(--border);border-radius:10px;background:transparent;color:var(--text-meta);cursor:pointer;flex:none" style-hover="background:var(--accent-tint);color:var(--accent);border-color:var(--border-hover)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
         <sc-if value="{{ isLight }}" hint-placeholder-val="{{ true }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path></svg></sc-if>
         <sc-if value="{{ isDark }}" hint-placeholder-val="{{ false }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="2"></circle><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.2 5.2l1.6 1.6M17.2 17.2l1.6 1.6M18.8 5.2l-1.6 1.6M6.8 17.2l-1.6 1.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg></sc-if>
       </button>
     </nav>
-    <button type="button" class="hdr-burger" onClick="{{ onToggle }}" aria-label="Menu" aria-controls="hdr-nav-menu" aria-expanded="{{ openAttr }}" style="align-items:center;justify-content:center;width:44px;height:44px;padding:0;border:1px solid var(--border);border-radius:10px;background:var(--surface);color:var(--text);cursor:pointer" style-hover="background:var(--accent-tint);border-color:var(--border-hover)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
+    <button type="button" class="hdr-burger" onClick="{{ onToggle }}" aria-label="{{ menuLabel }}" aria-controls="hdr-nav-menu" aria-expanded="{{ openAttr }}" style="align-items:center;justify-content:center;width:44px;height:44px;padding:0;border:1px solid var(--border);border-radius:10px;background:var(--surface);color:var(--text);cursor:pointer" style-hover="background:var(--accent-tint);border-color:var(--border-hover)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
+      <span class="hdr-burger-lines" aria-hidden="true"><i></i><i></i><i></i></span>
     </button>
-    <a href="contact.html" class="hdr-cta" style="display:inline-flex;align-items:center;gap:8px;background:var(--accent-cta);color:var(--surface);text-decoration:none;font:600 15px/1 Inter,system-ui,sans-serif;padding:11px 18px;border-radius:12px;white-space:nowrap" style-hover="background:var(--accent)" style-focus-visible="outline:2px solid var(--text);outline-offset:2px">
+    <a href="contact.html" class="hdr-cta" aria-current="{{ ctaCurrent }}" style="display:inline-flex;align-items:center;gap:8px;background:var(--accent-cta);color:var(--surface);text-decoration:none;font:600 15px/1 Inter,system-ui,sans-serif;padding:11px 18px;border-radius:12px;white-space:nowrap" style-hover="background:var(--accent)" style-focus-visible="outline:2px solid var(--text);outline-offset:2px">
       <span style="width:8px;height:8px;border-radius:50%;background:var(--online);box-shadow:0 0 0 3px rgba(49,181,69,0.25);flex:none"></span>
       Contact
     </a>
@@ -83,9 +94,12 @@ class Component extends DCLogic {
     const theme = this.state.theme;
     return {
       brandName: name, initials, navItems, langHref,
+      logoCurrent: page === 'index.html' ? 'page' : undefined,
+      ctaCurrent: page === 'contact.html' ? 'page' : undefined,
       openAttr: this.state.open ? 'true' : 'false',
+      menuLabel: this.state.open ? 'Close menu' : 'Open menu',
       onToggle: () => this.setState({ open: !this.state.open }),
-      themePressed: theme === 'dark' ? 'true' : 'false',
+      themeLabel: theme === 'dark' ? 'Use light theme' : 'Use dark theme',
       isLight: theme !== 'dark',
       isDark: theme === 'dark',
       onThemeToggle: () => {

@@ -53,7 +53,7 @@
     <!-- Form -->
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(22px,3vw,30px)">
       <sc-if value="{{ notSubmitted }}" hint-placeholder-val="{{ true }}">
-        <div style="display:flex;flex-direction:column;gap:20px">
+        <form onSubmit="{{ onSubmit }}" style="display:flex;flex-direction:column;gap:20px">
 
           <div style="display:flex;flex-direction:column;gap:8px">
             <span style="font:600 14.5px Inter,system-ui,sans-serif">Who you are</span>
@@ -66,27 +66,27 @@
 
           <label style="display:flex;flex-direction:column;gap:8px">
             <span style="font:600 14.5px Inter,system-ui,sans-serif">About you and who you could bring</span>
-            <textarea rows="4" value="{{ about }}" onChange="{{ onAbout }}" placeholder="e.g. I run a Telegram channel for local businesses, lots of cafes and salons around me who probably need a lead or payment bot" style="font:400 15px/1.55 Inter,system-ui,sans-serif;color:var(--text);border:1px solid var(--border-input);border-radius:12px;padding:12px 14px;resize:vertical;background:var(--input-bg);outline:none" style-focus-visible="border-color:var(--accent-cta);box-shadow:0 0 0 3px rgba(34,158,217,0.18)"></textarea>
+            <textarea data-form-about rows="4" value="{{ about }}" onChange="{{ onAbout }}" aria-invalid="{{ aboutInvalid }}" aria-describedby="{{ formErrorId }}" placeholder="e.g. I run a Telegram channel for local businesses, lots of cafes and salons around me who probably need a lead or payment bot" style="font:400 15px/1.55 Inter,system-ui,sans-serif;color:var(--text);border:1px solid var(--border-input);border-radius:12px;padding:12px 14px;resize:vertical;background:var(--input-bg);outline:none" style-focus-visible="border-color:var(--accent-cta);box-shadow:0 0 0 3px rgba(34,158,217,0.18)"></textarea>
           </label>
 
           <label style="display:flex;flex-direction:column;gap:8px">
             <span style="font:600 14.5px Inter,system-ui,sans-serif">How to reach you</span>
-            <input type="text" value="{{ contact }}" onChange="{{ onContact }}" placeholder="@handle on Telegram or email" style="font:400 15px Inter,system-ui,sans-serif;color:var(--text);border:1px solid var(--border-input);border-radius:12px;padding:12px 14px;background:var(--input-bg);outline:none" style-focus-visible="border-color:var(--accent-cta);box-shadow:0 0 0 3px rgba(34,158,217,0.18)">
+            <input data-form-contact type="text" value="{{ contact }}" onChange="{{ onContact }}" aria-invalid="{{ contactInvalid }}" aria-describedby="{{ formErrorId }}" placeholder="@handle on Telegram or email" style="font:400 15px Inter,system-ui,sans-serif;color:var(--text);border:1px solid var(--border-input);border-radius:12px;padding:12px 14px;background:var(--input-bg);outline:none" style-focus-visible="border-color:var(--accent-cta);box-shadow:0 0 0 3px rgba(34,158,217,0.18)">
           </label>
           <input type="text" name="website" value="{{ website }}" onChange="{{ onWebsite }}" autocomplete="off" tabindex="-1" aria-hidden="true" style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;opacity:0.01;pointer-events:none">
 
           <sc-if value="{{ showError }}" hint-placeholder-val="{{ false }}">
-            <div role="alert" style="font:500 14px Inter,system-ui,sans-serif;color:var(--error-text);background:var(--error-bg);border-radius:10px;padding:10px 14px">{{ errorText }}</div>
+            <div id="form-error" role="alert" style="font:500 14px Inter,system-ui,sans-serif;color:var(--error-text);background:var(--error-bg);border-radius:10px;padding:10px 14px">{{ errorText }}</div>
           </sc-if>
 
           <div style="display:flex;flex-direction:column;gap:10px">
-            <button type="button" onClick="{{ onSubmit }}" aria-busy="{{ sending }}" style="display:inline-flex;align-items:center;justify-content:center;gap:9px;background:var(--accent-cta);color:var(--surface);border:none;cursor:pointer;font:600 16px/1 Inter,system-ui,sans-serif;padding:14px 24px;border-radius:13px;width:fit-content" style-hover="background:var(--accent)" style-focus-visible="outline:2px solid var(--text);outline-offset:2px">{{ submitLabel }}</button>
+            <button type="submit" aria-busy="{{ sending }}" style="display:inline-flex;align-items:center;justify-content:center;gap:9px;background:var(--accent-cta);color:var(--surface);border:none;cursor:pointer;font:600 16px/1 Inter,system-ui,sans-serif;padding:14px 24px;border-radius:13px;width:fit-content" style-hover="background:var(--accent)" style-focus-visible="outline:2px solid var(--text);outline-offset:2px">{{ submitLabel }}</button>
             <sc-if value="{{ demoMode }}" hint-placeholder-val="{{ true }}">
               <span style="font:400 12.5px/1.5 JetBrains Mono,monospace;color:var(--text-muted)">// prototype: Claude Code will wire real sending</span>
             </sc-if>
             <span style="font:400 12.5px/1.5 Inter,system-ui,sans-serif;color:var(--text-muted)">By submitting, you agree to the <a href="privacy.html" style="color:var(--accent);text-decoration:none;border-radius:4px" style-hover="text-decoration:underline" style-focus-visible="outline:2px solid var(--accent);outline-offset:1px">privacy policy</a> and <a href="consent.html" style="color:var(--accent);text-decoration:none;border-radius:4px" style-hover="text-decoration:underline" style-focus-visible="outline:2px solid var(--accent);outline-offset:1px">processing of personal data</a>.</span>
           </div>
-        </div>
+        </form>
       </sc-if>
 
       <sc-if value="{{ submitted }}" hint-placeholder-val="{{ false }}">
@@ -107,7 +107,7 @@
         <div style="display:flex;flex-direction:column">
           <div class="pa-step"><span class="pa-step-n">1</span><span class="pa-step-t"><b>You bring a client.</b> Someone with a real task: leads, payments, a bot, an app, or automation.</span></div>
           <div class="pa-line"></div>
-          <div class="pa-step"><span class="pa-step-n">2</span><span class="pa-step-t"><b>The team builds it.</b> We scope it, name a price and deadline. Development, design, and the client are handled by different people.</span></div>
+          <div class="pa-step"><span class="pa-step-n">2</span><span class="pa-step-t"><b>The team builds it.</b> We scope it, name a price and deadline. Development, design, and client communication are handled by different people.</span></div>
           <div class="pa-line"></div>
           <div class="pa-step"><span class="pa-step-n">3</span><span class="pa-step-t"><b>You get your share.</b> Of every paid order. The percentage is fixed in advance.</span></div>
         </div>
@@ -179,6 +179,9 @@ class Component extends DCLogic {
       notSubmitted: !this.state.submitted,
       submitted: this.state.submitted,
       showError: this.state.error,
+      aboutInvalid: this.state.error && !this.state.about.trim() ? 'true' : 'false',
+      contactInvalid: this.state.error && !this.state.contact.trim() ? 'true' : 'false',
+      formErrorId: this.state.error ? 'form-error' : '',
       errorText: this.state.errorKind === 'network'
         ? "Couldn't send — try again or message us directly on Telegram."
         : 'Add a couple of words about yourself and a contact, otherwise we can\'t reply.',
@@ -189,9 +192,19 @@ class Component extends DCLogic {
       onWebsite: e => this.setState({ website: e.target.value }),
       onAbout: e => this.setState({ about: e.target.value, error: false }),
       onContact: e => this.setState({ contact: e.target.value, error: false }),
-      onSubmit: () => {
+      onSubmit: (e) => {
+        if (e) e.preventDefault();
         if (this.state.sending) return;
-        if (!this.state.about.trim() || !this.state.contact.trim()) { this.setState({ error: true, errorKind: '' }); return; }
+        const missingAbout = !this.state.about.trim();
+        const missingContact = !this.state.contact.trim();
+        if (missingAbout || missingContact) {
+          this.setState({ error: true, errorKind: '' });
+          setTimeout(() => {
+            const target = document.querySelector(missingAbout ? '[data-form-about]' : '[data-form-contact]');
+            if (target) target.focus();
+          }, 0);
+          return;
+        }
         const task = '🤝 PARTNER APPLICATION\n\nWho: ' + this.state.role + '\nAbout / who they can bring: ' + this.state.about.trim();
         if (demoMode) {
           this.setState({ submitted: true, error: false });

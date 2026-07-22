@@ -4,19 +4,19 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Разработка и автоматизация для бизнеса: услуги и цены — Re:dnd</title>
-<meta name="description" content="Что делаем под ключ: Telegram-боты и мини-аппы от 4 900 ₽, ИИ-ассистенты и агенты от 9 900 ₽, интеграции и автоматизация от 8 900 ₽, веб-сервисы и мобильные приложения — по задаче. Точную цену называем до старта. Бесплатные правки после сдачи.">
+<meta name="description" content="Что делаем под ключ: Telegram-боты и мини-аппы от 7 000 ₽, ИИ-ассистенты и агенты от 20 000 ₽, интеграции и автоматизация от 15 000 ₽, веб-сервисы от 40 000 ₽. Точную цену называем до старта.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Re:dnd">
 <meta property="og:locale" content="ru_RU">
 <meta property="og:url" content="https://rednd.ru/services.html">
 <meta property="og:title" content="Разработка и автоматизация для бизнеса: услуги и цены — Re:dnd">
-<meta property="og:description" content="Что делаем под ключ: Telegram-боты и мини-аппы от 4 900 ₽, ИИ-ассистенты и агенты от 9 900 ₽, интеграции и автоматизация от 8 900 ₽, веб-сервисы и мобильные приложения — по задаче. Точную цену называем до старта. Бесплатные правки после сдачи.">
+<meta property="og:description" content="Telegram-боты от 7 000 ₽, ИИ-ассистенты от 20 000 ₽, автоматизация от 15 000 ₽ и веб-сервисы от 40 000 ₽. Фиксируем цену до старта.">
 <meta property="og:image" content="https://rednd.ru/og-default.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Разработка и автоматизация для бизнеса: услуги и цены — Re:dnd">
-<meta name="twitter:description" content="Что делаем под ключ: Telegram-боты и мини-аппы от 4 900 ₽, ИИ-ассистенты и агенты от 9 900 ₽, интеграции и автоматизация от 8 900 ₽, веб-сервисы и мобильные приложения — по задаче.">
+<meta name="twitter:description" content="Telegram-боты от 7 000 ₽, ИИ-ассистенты от 20 000 ₽, автоматизация от 15 000 ₽ и веб-сервисы от 40 000 ₽.">
 <meta name="twitter:image" content="https://rednd.ru/og-default.png">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="alternate" hreflang="ru" href="https://rednd.ru/services.html">
@@ -85,8 +85,8 @@
   </div>
 
   <div style="display:flex;flex-direction:column;gap:8px;margin-top:16px">
-    <span style="font:400 13.5px/1.5 Inter,system-ui,sans-serif;color:var(--text-muted)">«От» — это цена за простую версию под ключ. Веб и мобильные считаем по задаче. Что бы вы ни выбрали, цену фиксируем до старта работ, и она не плывёт.</span>
-    <span style="display:flex;align-items:center;gap:8px;font:500 13.5px JetBrains Mono,monospace;color:var(--text-meta)"><span style="width:8px;height:8px;border-radius:50%;background:var(--online);flex:none"></span>Бесплатные исправления после сдачи проекта</span>
+    <span style="font:400 13.5px/1.5 Inter,system-ui,sans-serif;color:var(--text-muted)">«От» — это цена за простую версию под ключ; мобильные приложения считаем по задаче. Итоговую цену фиксируем до старта работ, и она не меняется по ходу.</span>
+    <span style="display:flex;align-items:center;gap:8px;font:500 13.5px JetBrains Mono,monospace;color:var(--text-meta)"><span style="width:8px;height:8px;border-radius:50%;background:var(--online);flex:none"></span>7 дней исправления ошибок после сдачи</span>
   </div>
 
   <div style="margin-top:clamp(36px,5vw,56px);display:flex;flex-direction:column;gap:18px;align-items:flex-start;max-width:640px">
@@ -106,10 +106,10 @@ class Component extends DCLogic {
     const prices = (typeof window !== 'undefined' && window.SITE_CONFIG && window.SITE_CONFIG.prices) || {};
     return {
       brandName: this.props.brandName ?? 'Re:dnd',
-      priceTelegram: prices.telegram || 'от 4 900 ₽',
-      priceAi: prices.ai || 'от 9 900 ₽',
-      priceAutomation: prices.automation || 'от 8 900 ₽',
-      priceWeb: prices.web || 'по задаче',
+      priceTelegram: prices.telegram || 'от 7 000 ₽',
+      priceAi: prices.ai || 'от 20 000 ₽',
+      priceAutomation: prices.automation || 'от 15 000 ₽',
+      priceWeb: prices.web || 'от 40 000 ₽',
       priceMobile: prices.mobile || 'по задаче',
     };
   }

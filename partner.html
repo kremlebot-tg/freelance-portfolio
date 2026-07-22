@@ -310,7 +310,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
           <button type="button" class="{{ cntCls2 }}" onClick="{{ onCnt2 }}">3</button>
           <button type="button" class="{{ cntCls3 }}" onClick="{{ onCnt3 }}">5</button>
         </div>
-        <p class="calc-note">Суммы — грубый ориентир при доле ≈20%. Реальные проекты и процент обсуждаем индивидуально. Платим только за заказы, доведённые до оплаты клиентом.</p>
+        <p class="calc-note">Суммы — грубый ориентир при доле ≈20% от наших публичных стартовых цен. Для мобильного проекта в расчёте используем условный бюджет 80 000 ₽. Реальные проекты и процент обсуждаем индивидуально. Платим только за заказы, доведённые до оплаты клиентом.</p>
       </div>
       <div class="calc-out" aria-live="polite">
         <div class="calc-big">≈ {{ shownFmt }} ₽</div>
@@ -475,7 +475,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
 <script type="text/x-dc" data-dc-script data-props="{&quot;brandName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Re:dnd&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Бренд&quot;}}">
 class Component extends DCLogic {
   state = { faq: ['closed','closed','closed','closed','closed','closed','closed','closed'], proj: 1, cnt: 0, shown: 0 };
-  PRICES = [12000, 20000, 18000, 60000, 120000];
+  PRICES = [7000, 20000, 15000, 40000, 80000];
   COUNTS = [1, 2, 3, 5];
   RATE = 0.2;
   componentDidMount() {

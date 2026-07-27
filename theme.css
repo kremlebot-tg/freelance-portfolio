@@ -346,18 +346,7 @@ header.is-scrolled {
   box-shadow: 0 14px 36px -30px var(--shadow-3);
   border-color: rgba(var(--accent-rgb), .22) !important;
 }
-.hdr-nav a { position: relative; }
 .hdr-nav a[aria-current="page"] { box-shadow: inset 0 0 0 1px rgba(var(--accent-rgb), .24); }
-.hdr-nav a[aria-current="page"]::after {
-  content: "";
-  position: absolute;
-  left: 13px;
-  right: 13px;
-  bottom: 4px;
-  height: 2px;
-  border-radius: 99px;
-  background: var(--accent);
-}
 .hdr-cta > span { animation: rd-online 2.4s ease-out infinite; }
 .hdr-cta[aria-current="page"] { box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px rgba(var(--accent-rgb), .52); }
 .hdr-logo-mark { box-shadow: 0 9px 24px -14px rgba(var(--accent-rgb), .95); }
@@ -441,7 +430,6 @@ footer::after {
   .rd-section-title::after { width: 34px; height: 2px; }
   header[data-open="true"] { box-shadow: 0 20px 44px -24px var(--shadow-3); }
   header[data-open="true"] .hdr-nav { animation: rd-menu-in .28s var(--ease-out) both; }
-  .hdr-nav a[aria-current="page"]::after { left: 12px; right: auto; width: 26px; bottom: 7px; }
   .rd-card { border-radius: min(18px, 4.5vw) !important; }
 }
 @keyframes rd-menu-in {

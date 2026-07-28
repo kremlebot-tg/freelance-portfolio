@@ -279,21 +279,13 @@ footer { view-transition-name: rd-footer; }
   .rd-card:hover::after { opacity: .82; }
 }
 
-/* Заголовки разделов получают короткий фирменный маркер. */
 .rd-section-title {
   position: relative;
   width: fit-content;
-  padding-bottom: 10px;
+  padding-bottom: 0;
 }
 .rd-section-title::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 42px;
-  height: 3px;
-  border-radius: 99px;
-  background: linear-gradient(90deg, var(--accent), var(--brand-violet));
+  display: none;
 }
 
 /* Основные CTA: лёгкий световой проход без постоянного движения. */
@@ -426,8 +418,7 @@ footer::after {
 @media (max-width:767px) {
   html { scroll-padding-top: 74px; }
   body::before { background: radial-gradient(30rem 23rem at 12% -4%, rgba(var(--accent-rgb), .12), transparent 70%); }
-  .rd-section-title { padding-bottom: 8px; }
-  .rd-section-title::after { width: 34px; height: 2px; }
+  .rd-section-title { padding-bottom: 0; }
   header[data-open="true"] { box-shadow: 0 20px 44px -24px var(--shadow-3); }
   header[data-open="true"] .hdr-nav { animation: rd-menu-in .28s var(--ease-out) both; }
   .rd-card { border-radius: min(18px, 4.5vw) !important; }

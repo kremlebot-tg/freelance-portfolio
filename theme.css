@@ -61,6 +61,14 @@
   color-scheme: light;
 }
 
+/* Ссылки различаются цветом, кнопками и фокусом — без текстовых подчёркиваний. */
+a,
+a:hover,
+a:focus,
+a:active {
+  text-decoration: none !important;
+}
+
 [data-theme="dark"] {
   --bg: #0F1720;
   --surface: #1E2B36;

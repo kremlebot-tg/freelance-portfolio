@@ -165,7 +165,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
 .ex-sum{display:flex;align-items:center;gap:11px;width:100%;text-align:left;background:none;border:none;padding:0;margin:0;font:600 15.5px/1.4 Sora,sans-serif;color:var(--text);cursor:pointer}
 .ex-sum:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:8px}
 .ex-chev{flex:none;margin-left:auto;font-size:.8em;color:var(--text-muted);transition:transform .3s ease}
-.faq-ic{flex:none;width:30px;height:30px;border-radius:9px;background:var(--accent-tint);color:var(--accent);display:grid;place-items:center}.faq-ic svg{width:16px;height:16px}
+.faq-ic{flex:none;width:30px;height:30px;border-radius:9px;background:var(--accent-tint);color:var(--accent);display:grid;place-items:center;font:700 10px/1 'JetBrains Mono',monospace}.faq-ic svg{width:16px;height:16px}
 .ex[data-state="open"] .ex-chev{transform:rotate(180deg)}
 .ex-body{display:none}
 .ex[data-state="open"] .ex-body{display:block;animation:exIn .3s ease both}
@@ -423,8 +423,9 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
   </section>
 
   <!-- ============ FAQ ============ -->
-  <section class="p-wrap p-sec">
-    <h2 class="p-h2" style="margin-bottom:22px">Частые вопросы</h2>
+  <section class="p-wrap p-sec" id="team-rules">
+    <h2 class="p-h2" style="margin-bottom:10px">Правила работы и частые вопросы</h2>
+    <p class="p-lead" style="margin:0 0 22px;max-width:760px">Договорённости о ролях, деньгах и технической части фиксируем в карточке сделки до того, как назвать клиенту цену и срок.</p>
 
     <div class="ex" data-state="{{ faq0 }}">
       <button type="button" class="ex-sum" onClick="{{ onFaq0 }}" aria-expanded="{{ faqExp0 }}" aria-controls="faq-0"><span class="faq-ic" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M5 6h18v12H5zm9 3a3 3 0 0 1 3 3a3 3 0 0 1-3 3a3 3 0 0 1-3-3a3 3 0 0 1 3-3M9 8a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2v-4a2 2 0 0 1-2-2zm-8 2h2v10h16v2H1z"/></svg></span>Сколько я получу?<span class="ex-chev">▾</span></button>
@@ -458,6 +459,39 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
       <button type="button" class="ex-sum" onClick="{{ onFaq7 }}" aria-expanded="{{ faqExp7 }}" aria-controls="faq-7"><span class="faq-ic" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3C6.5 3 2 6.58 2 11a7.22 7.22 0 0 0 2.75 5.5c0 .6-.42 2.17-2.75 4.5c2.37-.11 4.64-1 6.47-2.5c1.14.33 2.34.5 3.53.5c5.5 0 10-3.58 10-8s-4.5-8-10-8m0 14c-4.42 0-8-2.69-8-6s3.58-6 8-6s8 2.69 8 6s-3.58 6-8 6"/></svg></span>Могу ли я сам общаться с клиентом?<span class="ex-chev">▾</span></button>
       <div id="faq-7" class="ex-body"><p class="ex-detail">Как удобнее. Можете свести нас и отойти, а можете остаться на связи и держать руку на пульсе. Мешать не будем.</p></div>
     </div>
+    <div class="ex" data-state="{{ faq8 }}">
+      <button type="button" class="ex-sum" onClick="{{ onFaq8 }}" aria-expanded="{{ faqExp8 }}" aria-controls="faq-8"><span class="faq-ic" aria-hidden="true">01</span>Можно продать проект и передать разработку другому?<span class="ex-chev">▾</span></button>
+      <div id="faq-8" class="ex-body"><p class="ex-detail">Да — так и должна работать команда. До предложения клиенту назначаем ответственных за продажу и исполнение. Ориентир по деньгам после прямых расходов: 10% за тёплую рекомендацию; 20% тому, кто нашёл, квалифицировал и довёл клиента до оплаты; 10% остаётся Re:dnd на договор, контроль качества, инфраструктуру и гарантийную работу; остальное получает команда исполнения. Точный расклад фиксируем до сделки и задним числом не меняем.</p></div>
+    </div>
+    <div class="ex" data-state="{{ faq9 }}">
+      <button type="button" class="ex-sum" onClick="{{ onFaq9 }}" aria-expanded="{{ faqExp9 }}" aria-controls="faq-9"><span class="faq-ic" aria-hidden="true">02</span>На чьём сервере размещается продукт?<span class="ex-chev">▾</span></button>
+      <div id="faq-9" class="ex-body"><p class="ex-detail">По умолчанию домен, VPS, облако, платные API и платёжные кабинеты принадлежат клиенту и оплачиваются им напрямую — мы всё настраиваем. Прототип можно временно разместить на нашей инфраструктуре. Для постоянного размещения на Re:dnd заранее согласуем отдельную ежемесячную оплату, лимиты, резервные копии и поддержку.</p></div>
+    </div>
+    <div class="ex" data-state="{{ faq10 }}">
+      <button type="button" class="ex-sum" onClick="{{ onFaq10 }}" aria-expanded="{{ faqExp10 }}" aria-controls="faq-10"><span class="faq-ic" aria-hidden="true">03</span>Если я сам нашёл, продал и сделал проект — какая комиссия?<span class="ex-chev">▾</span></button>
+      <div id="faq-10" class="ex-body"><p class="ex-detail">Если заказ ведётся от имени Re:dnd, ориентир — 90% вам и 10% Re:dnd после прямых расходов проекта. В эту долю входят бренд, договорная и административная часть, техническая проверка, инфраструктура и гарантийный контур. Условия всё равно подтверждаем в карточке сделки до выставления предложения.</p></div>
+    </div>
+    <div class="ex" data-state="{{ faq11 }}">
+      <button type="button" class="ex-sum" onClick="{{ onFaq11 }}" aria-expanded="{{ faqExp11 }}" aria-controls="faq-11"><span class="faq-ic" aria-hidden="true">04</span>Что мы технически можем обещать клиенту?<span class="ex-chev">▾</span></button>
+      <div id="faq-11" class="ex-body"><p class="ex-detail">Уверенно оцениваем сайты и каталоги, личные кабинеты, Telegram-ботов и Mini Apps, внутренние CRM и панели, API-интеграции, автоматизацию и ИИ-ассистентов на базе готовых моделей. Без отдельного технического разбора не обещаем банковские и медицинские системы, собственную фундаментальную ИИ-модель, нагрузку в миллионы пользователей, сложное оборудование, обход защит, гарантированную выручку или позицию в поиске. Правило простое: сначала короткий технический пресейл, затем цена и срок.</p></div>
+    </div>
+    <div class="ex" data-state="{{ faq12 }}">
+      <button type="button" class="ex-sum" onClick="{{ onFaq12 }}" aria-expanded="{{ faqExp12 }}" aria-controls="faq-12"><span class="faq-ic" aria-hidden="true">05</span>Правда ли, что Re:dnd продал больше ста проектов за два месяца?<span class="ex-chev">▾</span></button>
+      <div id="faq-12" class="ex-body"><p class="ex-detail">Мы не используем цифру, которую не можем подтвердить CRM, договорами и оплатами. В разговоре с клиентом показываем только реальные кейсы, рабочие демо и проверяемые результаты. Доверие важнее громкой статистики; когда появится подтверждённый отчёт, опубликуем его отдельно.</p></div>
+    </div>
+    <div class="ex" data-state="{{ faq13 }}">
+      <button type="button" class="ex-sum" onClick="{{ onFaq13 }}" aria-expanded="{{ faqExp13 }}" aria-controls="faq-13"><span class="faq-ic" aria-hidden="true">06</span>Как заслужить доверие клиента?<span class="ex-chev">▾</span></button>
+      <div id="faq-13" class="ex-body"><p class="ex-detail">Не обещайте всё сразу. Покажите релевантный кейс или честно помеченное демо, предложите небольшой аудит или первый этап, зафиксируйте объём и критерии готовности. Мы работаем официально, показываем процесс по этапам, а домен, сервер и ключевые кабинеты по умолчанию оформляем на клиента. <a href="projects.html">Открыть портфолио →</a></p></div>
+    </div>
+    <div class="ex" data-state="{{ faq14 }}">
+      <button type="button" class="ex-sum" onClick="{{ onFaq14 }}" aria-expanded="{{ faqExp14 }}" aria-controls="faq-14"><span class="faq-ic" aria-hidden="true">07</span>Можно работать с иностранными компаниями?<span class="ex-chev">▾</span></button>
+      <div id="faq-14" class="ex-body"><p class="ex-detail">Да, после проверки страны, договора, способа оплаты, требований банка и правил обработки данных. Расчёты проводим официально через разрешённые каналы; ограничения не обходим. Перед обещанием цены и срока согласуйте такую сделку с руководителем. Основа проверки: <a href="https://www.nalog.gov.ru/rn77/ip/interest/world_price/foreign_currency/" target="_blank" rel="noopener">правила ФНС по валютным операциям ↗</a>.</p></div>
+    </div>
+    <div class="ex" data-state="{{ faq15 }}">
+      <button type="button" class="ex-sum" onClick="{{ onFaq15 }}" aria-expanded="{{ faqExp15 }}" aria-controls="faq-15"><span class="faq-ic" aria-hidden="true">08</span>Будут ли созвоны и собрания команды?<span class="ex-chev">▾</span></button>
+      <div id="faq-15" class="ex-body"><p class="ex-detail">Основная работа идёт асинхронно в Scout и Telegram. Планируем короткий командный созвон раз в неделю, отдельный старт и демонстрацию по активному проекту, а раз в месяц — разбор результатов. Встреча проводится только с повесткой и решениями, которые затем фиксируются в системе.</p></div>
+    </div>
+    <div style="margin-top:22px"><a href="https://scout.rednd.ru/" class="p-ghost" target="_blank" rel="noopener">Открыть рабочую систему Scout →</a></div>
   </section>
 
   <!-- ============ FINAL CTA ============ -->
@@ -479,7 +513,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;brandName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Re:dnd&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Бренд&quot;}}">
 class Component extends DCLogic {
-  state = { faq: ['closed','closed','closed','closed','closed','closed','closed','closed'], proj: 1, cnt: 0, shown: 0 };
+  state = { faq: Array(16).fill('closed'), proj: 1, cnt: 0, shown: 0 };
   PRICES = [7000, 20000, 15000, 40000, 80000];
   COUNTS = [1, 2, 3, 5];
   RATE = 0.2;

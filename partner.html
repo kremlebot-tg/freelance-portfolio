@@ -121,9 +121,10 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
 
 /* transparency + split */
 .split{height:48px;border-radius:12px;overflow:hidden;display:flex;border:1px solid var(--border);margin:4px 0 6px}
-.split-you{background:var(--accent-cta);color:#fff;display:grid;place-items:center;font:600 13px Inter,system-ui,sans-serif;white-space:nowrap;width:20%;animation:splitYou 1.1s cubic-bezier(.5,0,.2,1) both}
-.split-me{background:var(--surface-2);color:var(--text-muted);display:grid;place-items:center;font:500 13px Inter,system-ui,sans-serif;flex:1;white-space:nowrap}
-@keyframes splitYou{from{width:0}to{width:20%}}
+.split-you{background:var(--accent-cta);color:#fff;display:grid;place-items:center;font:600 13px Inter,system-ui,sans-serif;white-space:nowrap;width:45%;animation:splitYou 1.1s cubic-bezier(.5,0,.2,1) both}
+.split-me{background:var(--surface-2);color:var(--text-muted);display:grid;place-items:center;font:500 13px Inter,system-ui,sans-serif;width:45%;white-space:nowrap}
+.split-fund{background:var(--accent-tint);color:var(--accent);display:grid;place-items:center;font:700 11px/1.15 Inter,system-ui,sans-serif;width:10%;text-align:center}
+@keyframes splitYou{from{width:0}to{width:45%}}
 .tlist{display:flex;flex-direction:column;gap:12px;margin-top:20px}
 .tli{display:flex;gap:11px;align-items:flex-start}
 .tli-ic{width:26px;height:26px;flex:none;border-radius:8px;background:var(--accent-tint);color:var(--accent);display:grid;place-items:center;margin-top:1px}
@@ -183,7 +184,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
   .ex-body,.sc *{animation:none!important}
   .ex-chev{transition:none}
   .sc *{opacity:1!important;transform:none!important}
-  .split-you{animation:none;width:20%}
+  .split-you{animation:none;width:45%}
 }
 /* Always-visible infographic elements render in their final state: their CSS
    entrance animations get restarted by the calculator's mount re-renders and
@@ -315,7 +316,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
           <button type="button" class="{{ cntCls2 }}" onClick="{{ onCnt2 }}">3</button>
           <button type="button" class="{{ cntCls3 }}" onClick="{{ onCnt3 }}">5</button>
         </div>
-        <p class="calc-note">Суммы — грубый ориентир при доле ≈20% от наших публичных стартовых цен. Для мобильного проекта в расчёте используем условный бюджет 80 000 ₽. Реальные проекты и процент обсуждаем индивидуально. Платим только за заказы, доведённые до оплаты клиентом.</p>
+        <p class="calc-note">Суммы — грубый ориентир при доле 45% за найденного и доведённого до заказа клиента. Для мобильного проекта используем условный бюджет 80 000 ₽. Расчёт ведётся до вычета возможных прямых расходов конкретного проекта. Платим только за заказы, оплаченные клиентом.</p>
       </div>
       <div class="calc-out" aria-live="polite">
         <div class="calc-big">≈ {{ shownFmt }} ₽</div>
@@ -333,10 +334,11 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
     <p class="p-sub">Никаких «золотых гор». Сколько привели, столько и заработали.</p>
     <div style="margin-top:22px;max-width:640px">
       <div class="split" aria-hidden="true">
-        <div class="split-you">вам ≈20%</div>
-        <div class="split-me">разработка ≈80%</div>
+        <div class="split-you">привлечение 45%</div>
+        <div class="split-me">исполнение 45%</div>
+        <div class="split-fund">фонд<br>10%</div>
       </div>
-      <div style="font:400 12.5px Inter,system-ui,sans-serif;color:var(--text-muted)">Как делится оплата клиента (пропорция — ориентир, фиксируем индивидуально)</div>
+      <div style="font:400 12.5px Inter,system-ui,sans-serif;color:var(--text-muted)">Как делится распределяемая сумма после заранее согласованных прямых расходов проекта</div>
       <div class="tlist">
         <div class="tli"><span class="tli-ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span class="tli-t"><b>Платим по факту оплаты клиентом.</b> Если проект идёт этапами, переводим долю по мере их оплаты.</span></div>
         <div class="tli"><span class="tli-ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span class="tli-t"><b>Процент фиксируем письменно до старта.</b> Он не меняется задним числом.</span></div>
@@ -429,7 +431,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
 
     <div class="ex" data-state="{{ faq0 }}">
       <button type="button" class="ex-sum" onClick="{{ onFaq0 }}" aria-expanded="{{ faqExp0 }}" aria-controls="faq-0"><span class="faq-ic" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M5 6h18v12H5zm9 3a3 3 0 0 1 3 3a3 3 0 0 1-3 3a3 3 0 0 1-3-3a3 3 0 0 1 3-3M9 8a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2v-4a2 2 0 0 1-2-2zm-8 2h2v10h16v2H1z"/></svg></span>Сколько я получу?<span class="ex-chev">▾</span></button>
-      <div id="faq-0" class="ex-body"><p class="ex-detail">Заметную долю с каждого оплаченного заказа. Точный процент зависит от типа проекта и вашего участия, фиксируем до старта. Ориентир — около 20%; прикинуть можно в калькуляторе выше.</p></div>
+      <div id="faq-0" class="ex-body"><p class="ex-detail">Если один участник находит и доводит клиента до заказа, а другой выполняет работу, распределяемая сумма делится так: 45% — тому, кто привёл заказчика; 45% — исполнителю; 10% — в общее хранилище Re:dnd. Если вы и нашли клиента, и полностью выполнили проект, получаете обе доли — 90%. Распределяемая сумма считается после заранее согласованных прямых расходов проекта.</p></div>
     </div>
     <div class="ex" data-state="{{ faq1 }}">
       <button type="button" class="ex-sum" onClick="{{ onFaq1 }}" aria-expanded="{{ faqExp1 }}" aria-controls="faq-1"><span class="faq-ic" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14a2 2 0 0 0 2 2h14c1.11 0 2-.89 2-2V5a2 2 0 0 0-2-2m0 16H5V9h14zM5 7V5h14v2zm5.56 10.46l5.94-5.93l-1.07-1.06l-4.87 4.87l-2.11-2.11l-1.06 1.06z"/></svg></span>Когда приходит выплата?<span class="ex-chev">▾</span></button>
@@ -461,7 +463,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
     </div>
     <div class="ex" data-state="{{ faq8 }}">
       <button type="button" class="ex-sum" onClick="{{ onFaq8 }}" aria-expanded="{{ faqExp8 }}" aria-controls="faq-8"><span class="faq-ic" aria-hidden="true">01</span>Можно продать проект и передать разработку другому?<span class="ex-chev">▾</span></button>
-      <div id="faq-8" class="ex-body"><p class="ex-detail">Да — так и должна работать команда. До предложения клиенту назначаем ответственных за продажу и исполнение. Ориентир по деньгам после прямых расходов: 10% за тёплую рекомендацию; 20% тому, кто нашёл, квалифицировал и довёл клиента до оплаты; 10% остаётся Re:dnd на договор, контроль качества, инфраструктуру и гарантийную работу; остальное получает команда исполнения. Точный расклад фиксируем до сделки и задним числом не меняем.</p></div>
+      <div id="faq-8" class="ex-body"><p class="ex-detail">Да — так и должна работать команда. До предложения клиенту назначаем ответственных за привлечение и исполнение. После заранее согласованных прямых расходов 45% получает тот, кто нашёл заказчика и довёл его до заказа, 45% — исполнитель, 10% направляются в общее хранилище Re:dnd. Расклад фиксируем в карточке сделки до старта и задним числом не меняем.</p></div>
     </div>
     <div class="ex" data-state="{{ faq9 }}">
       <button type="button" class="ex-sum" onClick="{{ onFaq9 }}" aria-expanded="{{ faqExp9 }}" aria-controls="faq-9"><span class="faq-ic" aria-hidden="true">02</span>На чьём сервере размещается продукт?<span class="ex-chev">▾</span></button>
@@ -469,7 +471,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
     </div>
     <div class="ex" data-state="{{ faq10 }}">
       <button type="button" class="ex-sum" onClick="{{ onFaq10 }}" aria-expanded="{{ faqExp10 }}" aria-controls="faq-10"><span class="faq-ic" aria-hidden="true">03</span>Если я сам нашёл, продал и сделал проект — какая комиссия?<span class="ex-chev">▾</span></button>
-      <div id="faq-10" class="ex-body"><p class="ex-detail">Если заказ ведётся от имени Re:dnd, ориентир — 90% вам и 10% Re:dnd после прямых расходов проекта. В эту долю входят бренд, договорная и административная часть, техническая проверка, инфраструктура и гарантийный контур. Условия всё равно подтверждаем в карточке сделки до выставления предложения.</p></div>
+      <div id="faq-10" class="ex-body"><p class="ex-detail">Если заказ ведётся от имени Re:dnd, вы получаете обе рабочие доли: 45% за привлечение клиента и 45% за исполнение — итого 90% после заранее согласованных прямых расходов проекта. Оставшиеся 10% направляются в общее хранилище Re:dnd. Условия подтверждаем в карточке сделки до выставления предложения.</p></div>
     </div>
     <div class="ex" data-state="{{ faq11 }}">
       <button type="button" class="ex-sum" onClick="{{ onFaq11 }}" aria-expanded="{{ faqExp11 }}" aria-controls="faq-11"><span class="faq-ic" aria-hidden="true">04</span>Что мы технически можем обещать клиенту?<span class="ex-chev">▾</span></button>
@@ -491,6 +493,9 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
       <button type="button" class="ex-sum" onClick="{{ onFaq15 }}" aria-expanded="{{ faqExp15 }}" aria-controls="faq-15"><span class="faq-ic" aria-hidden="true">08</span>Будут ли созвоны и собрания команды?<span class="ex-chev">▾</span></button>
       <div id="faq-15" class="ex-body"><p class="ex-detail">Основная работа идёт асинхронно в Scout и Telegram. Планируем короткий командный созвон раз в неделю, отдельный старт и демонстрацию по активному проекту, а раз в месяц — разбор результатов. Встреча проводится только с повесткой и решениями, которые затем фиксируются в системе.</p></div>
     </div>
+    <div class="ex" data-state="{{ faq16 }}">
+      <button type="button" class="ex-sum" onClick="{{ onFaq16 }}" aria-expanded="{{ faqExp16 }}" aria-controls="faq-16"><span class="faq-ic" aria-hidden="true">10</span>Для чего нужно общее хранилище Re:dnd?<span class="ex-chev">▾</span></button>
+      <div id="faq-16" class="ex-body"><p class="ex-detail">Это резервный фонд команды, а не личная комиссия одного человека. Из него оплачиваются компенсации и дополнительные работы, если в проекте возникла наша ошибка; поддержание общих серверов, мониторинга, резервных копий и безопасности; домены, лицензии, API, тестовые аккаунты и другие ресурсы; срочное привлечение специалиста для исправления проблемы; создание общих демо, прототипов и материалов портфолио. Хранилище учитывается отдельно и расходуется только на задачи Re:dnd — так отдельному исполнителю не приходится одному оплачивать общий риск и инфраструктуру.</p></div>
     <div style="margin-top:22px"><a href="https://scout.rednd.ru/" class="p-ghost" target="_blank" rel="noopener">Открыть рабочую систему Scout →</a></div>
   </section>
 
@@ -513,10 +518,10 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;brandName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Re:dnd&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Бренд&quot;}}">
 class Component extends DCLogic {
-  state = { faq: Array(16).fill('closed'), proj: 1, cnt: 0, shown: 0 };
+  state = { faq: Array(17).fill('closed'), proj: 1, cnt: 0, shown: 0 };
   PRICES = [7000, 20000, 15000, 40000, 80000];
   COUNTS = [1, 2, 3, 5];
-  RATE = 0.2;
+  RATE = 0.45;
   componentDidMount() {
     this._t = [];
     const monthly = this.PRICES[this.state.proj] * this.RATE * this.COUNTS[this.state.cnt];

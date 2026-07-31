@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Кейс: Чайня — сайт чайной и каталог 33 чаёв — Re:dnd</title>
-<meta name="description" content="Чайня: трёхъязычный сайт московской чайной с бронированием, каталогом 33 чаёв, розничными и B2B-заявками. Живой сайт внутри кейса.">
+<title>Кейс: Чайня — интернет-магазин и сайт чайной — Re:dnd</title>
+<meta name="description" content="Чайня: интернет-магазин китайского чая, бронирование, B2B-заявки и три языка в одном живом продукте. Каталог из 33 позиций можно открыть прямо в кейсе.">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Re:dnd">
 <meta property="og:locale" content="ru_RU">
 <meta property="og:url" content="https://rednd.ru/case-chainya.html">
-<meta property="og:title" content="Кейс: Чайня — цифровая витрина чайной — Re:dnd">
-<meta property="og:description" content="Три языка, 33 чая, бронирование столов, розница и B2B в одном быстром сайте без фреймворков.">
+<meta property="og:title" content="Кейс: Чайня — из чайной в онлайн-продукт — Re:dnd">
+<meta property="og:description" content="Каталог, корзина, избранное, бронирование и B2B на трёх языках — живой коммерческий продукт для московской чайной.">
 <meta property="og:image" content="https://chainya.ru/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -28,79 +28,148 @@
 <style>
 *,*::before,*::after{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
-.ch-browser{overflow:hidden;border:1px solid var(--border);border-radius:18px;background:#11100f;box-shadow:0 22px 55px -32px rgba(0,0,0,.55)}
+.ch-main{font-family:Inter,system-ui,sans-serif;max-width:1180px;margin:0 auto;padding:clamp(28px,4vw,52px) 22px clamp(56px,7vw,88px)}
+.ch-back{display:inline-flex;align-items:center;gap:6px;min-height:44px;margin:0 0 16px -8px;padding:8px;color:var(--accent);font:600 14px Inter,system-ui,sans-serif;text-decoration:none;border-radius:10px}
+.ch-hero{position:relative;display:grid;grid-template-columns:minmax(0,1.04fr) minmax(340px,.96fr);min-height:520px;overflow:hidden;border:1px solid var(--border);border-radius:28px;background:var(--surface)}
+.ch-hero-copy{position:relative;z-index:2;display:flex;flex-direction:column;justify-content:center;padding:clamp(30px,5vw,64px)}
+.ch-kicker{margin:0 0 18px;color:var(--accent);font:600 12.5px JetBrains Mono,monospace;letter-spacing:.04em;text-transform:uppercase}
+.ch-hero h1{max-width:670px;margin:0;font:700 clamp(38px,5.8vw,72px)/1.02 Sora,sans-serif;letter-spacing:-.045em;text-wrap:balance}
+.ch-hero h1 em{color:#c76545;font-style:normal}
+.ch-lead{max-width:660px;margin:24px 0 0;color:var(--text-body);font:400 clamp(16px,1.7vw,19px)/1.62 Inter,system-ui,sans-serif;text-wrap:pretty}
+.ch-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.ch-action{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:11px 17px;border:1px solid var(--border);border-radius:12px;color:var(--text);background:var(--surface-2);font:650 14px Inter,system-ui,sans-serif;text-decoration:none}
+.ch-action.primary{border-color:#c76545;background:#c76545;color:#fff}
+.ch-hero-media{position:relative;min-height:420px;overflow:hidden;background:#16110d}
+.ch-hero-media img{width:100%;height:100%;object-fit:cover;filter:saturate(.92) contrast(1.03)}
+.ch-hero-media::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--surface) 0,transparent 22%),linear-gradient(0deg,rgba(15,10,7,.54),transparent 48%)}
+.ch-live-badge{position:absolute;z-index:2;right:22px;bottom:22px;display:flex;align-items:center;gap:9px;padding:10px 13px;border:1px solid rgba(255,255,255,.24);border-radius:999px;color:#fff;background:rgba(12,10,8,.66);backdrop-filter:blur(12px);font:600 12.5px Inter,system-ui,sans-serif}
+.ch-live-badge i{width:8px;height:8px;border-radius:50%;background:#6ad98d;box-shadow:0 0 0 5px rgba(106,217,141,.14)}
+.ch-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin:18px 0 0;overflow:hidden;border:1px solid var(--border);border-radius:18px;background:var(--surface)}
 .ch-bar{height:48px;display:flex;align-items:center;gap:8px;padding:0 16px;background:var(--surface-2);border-bottom:1px solid var(--border)}
 .ch-dot{width:9px;height:9px;border-radius:50%;background:var(--border-hover)}
 .ch-dot:nth-child(1){background:#ff6b62}.ch-dot:nth-child(2){background:#f2bd45}.ch-dot:nth-child(3){background:#55c85b}
 .ch-url{min-width:0;margin-left:8px;padding:7px 12px;border-radius:8px;background:var(--surface);color:var(--text-meta);font:400 12px JetBrains Mono,monospace;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.ch-frame{display:block;width:100%;height:min(72vh,760px);border:0;background:#11100f}
-.ch-stat{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px}
-.ch-stat strong{display:block;color:var(--accent);font:700 clamp(27px,3vw,36px)/1 Sora,sans-serif;margin-bottom:8px}
-.ch-stat span{font:400 14px/1.5 Inter,system-ui,sans-serif;color:var(--text-body)}
-.ch-copy{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(20px,3vw,28px)}
-.ch-copy h2{margin:0 0 12px;font:600 clamp(21px,2.5vw,27px)/1.25 Sora,sans-serif}
-.ch-copy p{margin:0;font:400 15.5px/1.65 Inter,system-ui,sans-serif;color:var(--text-body)}
-@media(max-width:640px){.ch-frame{height:620px}.ch-bar{padding:0 12px}.ch-url{font-size:10px}}
+.ch-stat{min-width:0;padding:22px;border-right:1px solid var(--border)}
+.ch-stat:last-child{border-right:0}
+.ch-stat strong{display:block;margin-bottom:8px;color:#c76545;font:700 clamp(28px,3vw,40px)/1 Sora,sans-serif}
+.ch-stat span{display:block;color:var(--text-body);font:400 13.5px/1.48 Inter,system-ui,sans-serif}
+.ch-section{margin-top:clamp(52px,7vw,86px)}
+.ch-section-head{display:grid;grid-template-columns:minmax(0,.72fr) minmax(280px,.48fr);gap:32px;align-items:end;margin-bottom:24px}
+.ch-section-head h2{max-width:720px;margin:0;font:700 clamp(30px,4vw,48px)/1.1 Sora,sans-serif;letter-spacing:-.035em;text-wrap:balance}
+.ch-section-head p{margin:0;color:var(--text-body);font:400 16px/1.62 Inter,system-ui,sans-serif}
+.ch-routes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.ch-route{position:relative;min-height:290px;overflow:hidden;border:1px solid var(--border);border-radius:20px;background:var(--surface)}
+.ch-route img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ch-route::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(13,9,7,.89),rgba(13,9,7,.06) 75%)}
+.ch-route-copy{position:absolute;z-index:2;right:0;bottom:0;left:0;padding:24px;color:#fff}
+.ch-route-copy span{font:600 11px JetBrains Mono,monospace;letter-spacing:.05em;text-transform:uppercase;color:#f0b39f}
+.ch-route-copy h3{margin:8px 0 6px;font:650 clamp(21px,2.5vw,28px)/1.2 Sora,sans-serif}
+.ch-route-copy p{max-width:520px;margin:0;color:rgba(255,255,255,.78);font:400 14px/1.5 Inter,system-ui,sans-serif}
+.ch-story{display:grid;grid-template-columns:minmax(0,.86fr) minmax(0,1.14fr);gap:16px}
+.ch-story-copy,.ch-stack article{border:1px solid var(--border);border-radius:20px;background:var(--surface)}
+.ch-story-copy{padding:clamp(26px,4vw,42px)}
+.ch-story-copy .ch-kicker{margin-bottom:14px}
+.ch-story-copy h2{margin:0 0 18px;font:700 clamp(28px,3.5vw,42px)/1.12 Sora,sans-serif;letter-spacing:-.03em}
+.ch-story-copy p{margin:0;color:var(--text-body);font:400 15.5px/1.7 Inter,system-ui,sans-serif}
+.ch-stack{display:grid;gap:12px}
+.ch-stack article{display:grid;grid-template-columns:52px 1fr;gap:18px;padding:22px}
+.ch-stack b{display:grid;width:52px;height:52px;place-items:center;border-radius:15px;background:rgba(199,101,69,.12);color:#c76545;font:700 16px JetBrains Mono,monospace}
+.ch-stack h3{margin:1px 0 7px;font:650 18px/1.3 Sora,sans-serif}
+.ch-stack p{margin:0;color:var(--text-body);font:400 14px/1.55 Inter,system-ui,sans-serif}
+.ch-demo{padding:clamp(16px,2.6vw,28px);border:1px solid var(--border);border-radius:24px;background:var(--surface)}
+.ch-demo-top{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.ch-demo-top h2{margin:0;font:650 clamp(23px,3vw,32px)/1.2 Sora,sans-serif}
+.ch-demo-top p{flex:1 1 300px;margin:0;color:var(--text-body);font:400 14px/1.5 Inter,system-ui,sans-serif}
+.ch-browser{overflow:hidden;border:1px solid var(--border);border-radius:18px;background:#11100f;box-shadow:0 22px 55px -32px rgba(0,0,0,.55)}
+.ch-frame{display:block;width:100%;height:min(78vh,820px);border:0;background:#11100f}
+.ch-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.ch-tags span{padding:7px 11px;border:1px solid var(--border);border-radius:9px;background:var(--surface-2);color:var(--text-meta);font:500 12px JetBrains Mono,monospace}
+@media(max-width:860px){.ch-hero{grid-template-columns:1fr}.ch-hero-media{min-height:370px;order:-1}.ch-hero-media::after{background:linear-gradient(0deg,var(--surface) 0,transparent 25%),linear-gradient(0deg,rgba(15,10,7,.34),transparent 60%)}.ch-stats{grid-template-columns:repeat(2,1fr)}.ch-stat:nth-child(2){border-right:0}.ch-stat:nth-child(-n+2){border-bottom:1px solid var(--border)}.ch-section-head,.ch-story{grid-template-columns:1fr}}
+@media(max-width:640px){.ch-main{padding-inline:14px}.ch-hero{border-radius:20px}.ch-hero-copy{padding:24px 20px 30px}.ch-hero h1{font-size:clamp(36px,12vw,52px)}.ch-hero-media{min-height:300px}.ch-actions{display:grid}.ch-action{width:100%}.ch-stats{border-radius:16px}.ch-stat{padding:17px 15px}.ch-stat strong{font-size:28px}.ch-stat span{font-size:12.5px}.ch-section{margin-top:52px}.ch-section-head{gap:12px}.ch-routes{grid-template-columns:1fr}.ch-route{min-height:260px}.ch-stack article{grid-template-columns:42px 1fr;padding:18px}.ch-stack b{width:42px;height:42px}.ch-demo{padding:12px}.ch-frame{height:640px}.ch-bar{padding:0 12px}.ch-url{font-size:10px}}
 </style>
 </helmet>
 
 <dc-import name="Header" active="projects" brand-name="{{ brandName }}" hint-size="100%,64px"></dc-import>
 
-<main style="font-family:Inter,system-ui,sans-serif;max-width:1140px;margin:0 auto;padding:clamp(32px,4vw,52px) 22px clamp(56px,7vw,88px)">
-  <a href="projects.html" style="display:inline-flex;align-items:center;gap:6px;font:500 14.5px Inter,system-ui,sans-serif;color:var(--accent);text-decoration:none;border-radius:8px;padding:10px 6px;min-height:44px;margin:0 0 12px -6px">← Все проекты</a>
+<main class="ch-main">
+  <a class="ch-back" href="projects.html">← Все проекты</a>
 
-  <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:28px">
-    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
-      <span style="font:500 13px JetBrains Mono,monospace;color:var(--accent)">[Веб · Локальный бизнес]</span>
-      <span style="display:inline-flex;align-items:center;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif">живой коммерческий сайт</span>
-      <span style="display:inline-flex;align-items:center;padding:5px 10px;border-radius:99px;background:var(--surface-2);color:var(--text-meta);border:1px solid var(--border);font:500 12.5px Inter,system-ui,sans-serif">RU · EN · 中文</span>
+  <section class="ch-hero" aria-labelledby="case-title">
+    <div class="ch-hero-copy">
+      <p class="ch-kicker">E-commerce · локальный бизнес · Москва</p>
+      <h1 id="case-title">Чайня — из чайной в <em>онлайн-продукт</em></h1>
+      <p class="ch-lead">Не просто лендинг с адресом. Мы собрали магазин китайского чая, бронирование, корпоративные заявки и знакомство с чайной в одной цельной системе.</p>
+      <div class="ch-actions">
+        <a class="ch-action primary" href="https://chainya.ru/" target="_blank" rel="noopener">Открыть живой сайт ↗</a>
+        <a class="ch-action" href="#live-demo">Посмотреть внутри кейса ↓</a>
+      </div>
     </div>
-    <h1 style="margin:0;font:700 clamp(28px,4vw,42px)/1.15 Sora,sans-serif;letter-spacing:-0.02em">Чайня — цифровая витрина чайной</h1>
-    <p style="margin:0;font:400 clamp(15.5px,1.6vw,18px)/1.55 Inter,system-ui,sans-serif;color:var(--text-body);max-width:780px">Сайт московской чайной объединяет бронирование столов, каталог китайского чая, розничные заказы и заявки от бизнеса — без ощущения интернет-магазина из шаблона.</p>
-  </div>
+    <div class="ch-hero-media">
+      <img src="https://chainya.ru/img/hero-master.webp" alt="Чайный мастер Чайни разливает чай" fetchpriority="high">
+      <span class="ch-live-badge"><i></i>работает в production</span>
+    </div>
+  </section>
 
-  <section aria-label="Живой сайт Чайни" style="background:var(--surface);border:1px solid var(--border);border-radius:22px;padding:clamp(14px,2.5vw,26px);display:flex;flex-direction:column;gap:16px">
-    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
-      <span style="display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 13px Inter,system-ui,sans-serif"><span style="width:7px;height:7px;border-radius:50%;background:var(--online)"></span>живой сайт, можно пользоваться</span>
-      <a class="rd-cta" href="https://chainya.ru/" target="_blank" rel="noopener" style="margin-left:auto;display:inline-flex;align-items:center;min-height:44px;padding:10px 15px;border-radius:10px;background:var(--accent);color:var(--accent-contrast);text-decoration:none;font:600 13.5px Inter,system-ui,sans-serif" style-focus-visible="outline:2px solid var(--accent);outline-offset:3px">Открыть chainya.ru ↗</a>
+  <section class="ch-stats" aria-label="Проект в цифрах">
+    <div class="ch-stat"><strong>33</strong><span>позиции с фасовками, ценами и карточками</span></div>
+    <div class="ch-stat"><strong>3</strong><span>языка: русский, английский и китайский</span></div>
+    <div class="ch-stat"><strong>4</strong><span>коммерческих маршрута вместо одного общего CTA</span></div>
+    <div class="ch-stat"><strong>0 ₽</strong><span>ежемесячной лицензии конструктора или CMS</span></div>
+  </section>
+
+  <section class="ch-section" aria-labelledby="routes-title">
+    <div class="ch-section-head">
+      <h2 id="routes-title">Один бренд — четыре причины прийти</h2>
+      <p>Пользователь сразу попадает в свой сценарий, а не разбирается в длинной универсальной странице.</p>
+    </div>
+    <div class="ch-routes">
+      <article class="ch-route">
+        <img src="https://chainya.ru/img/tea-gaba-honey.webp" alt="Китайский чай из каталога Чайни" loading="lazy">
+        <div class="ch-route-copy"><span>Розница</span><h3>Выбрать чай домой</h3><p>Каталог, поиск, фильтры, избранное, фасовки 25–100 г и корзина.</p></div>
+      </article>
+      <article class="ch-route">
+        <img src="https://chainya.ru/img/hall-room.webp" alt="Зал чайной Чайня" loading="lazy">
+        <div class="ch-route-copy"><span>Офлайн</span><h3>Забронировать стол</h3><p>Понятный формат церемонии, вместимость зала, адрес и переход к выбору времени.</p></div>
+      </article>
+      <article class="ch-route">
+        <img src="https://chainya.ru/img/hall-shelf.webp" alt="Полки с китайским чаем" loading="lazy">
+        <div class="ch-route-copy"><span>B2B</span><h3>Заказать поставку</h3><p>Отдельная страница для кофеен, ресторанов и офисов с заявкой в Telegram.</p></div>
+      </article>
+      <article class="ch-route">
+        <img src="https://chainya.ru/img/master-pour.webp" alt="Выездная чайная церемония" loading="lazy">
+        <div class="ch-route-copy"><span>События</span><h3>Пригласить мастера</h3><p>Самостоятельные, авторские и выездные церемонии без смешения с магазином.</p></div>
+      </article>
+    </div>
+  </section>
+
+  <section class="ch-section ch-story" aria-label="Задача и устройство продукта">
+    <article class="ch-story-copy">
+      <p class="ch-kicker">Задача</p>
+      <h2>Продать атмосферу, не потеряв удобство магазина</h2>
+      <p>Чайня — камерное пространство, а не безликий интернет-магазин. Поэтому интерфейс должен был сохранить голос и визуальный характер чайной, но при этом дать обычные коммерческие инструменты: каталог, корзину, бронь и заявки. Мы не стали сводить разные аудитории к одной кнопке — для каждой собрали собственный путь.</p>
+    </article>
+    <div class="ch-stack">
+      <article><b>01</b><div><h3>Каталог как рабочий инструмент</h3><p>33 позиции разбиты по типам. Есть поиск, сортировка, избранное, быстрый выбор и отдельные карточки товаров.</p></div></article>
+      <article><b>02</b><div><h3>Контент помогает принять решение</h3><p>Посетителю объясняют церемонию, вкус листа, фасовку, доставку и формат зала — без чайного снобизма.</p></div></article>
+      <article><b>03</b><div><h3>Заявки приходят владельцу</h3><p>Бронирование и B2B-запросы уходят в Telegram, поэтому бизнес не обязан постоянно проверять отдельную админку.</p></div></article>
+      <article><b>04</b><div><h3>Сайт принадлежит бизнесу</h3><p>Собственный домен, исходники, SEO и юридические страницы без привязки к конструктору и ежемесячной лицензии.</p></div></article>
+    </div>
+  </section>
+
+  <section id="live-demo" class="ch-section ch-demo" aria-label="Живой сайт Чайни">
+    <div class="ch-demo-top">
+      <h2>Живой продукт</h2>
+      <p>Это production-версия: можно открыть каталог, карточки товаров, корзину, бронь и B2B-раздел прямо здесь.</p>
+      <a class="ch-action primary" href="https://chainya.ru/" target="_blank" rel="noopener">На весь экран ↗</a>
     </div>
     <div class="ch-browser" data-theme-lock>
       <div class="ch-bar" aria-hidden="true"><span class="ch-dot"></span><span class="ch-dot"></span><span class="ch-dot"></span><span class="ch-url">https://chainya.ru</span></div>
       <iframe class="ch-frame" src="https://chainya.ru/" title="Сайт чайной Чайня" loading="lazy"></iframe>
     </div>
+    <div class="ch-tags">
+      <span>HTML · CSS · JavaScript</span><span>Каталог · корзина · избранное</span><span>RU · EN · 中文</span><span>SEO · Schema.org</span><span>Telegram Bot API · VPS</span>
+    </div>
   </section>
-
-  <section aria-label="Результат в цифрах" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr));gap:14px;margin-top:24px">
-    <div class="ch-stat"><strong>33</strong><span>позиции чая с описаниями, фасовками и ценами</span></div>
-    <div class="ch-stat"><strong>3</strong><span>языка: русский, английский и китайский</span></div>
-    <div class="ch-stat"><strong>2</strong><span>темы оформления: светлая и тёмная</span></div>
-    <div class="ch-stat"><strong>4</strong><span>сценария: бронь, розница, опт и знакомство с чайной</span></div>
-  </section>
-
-  <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:16px;margin-top:24px">
-    <article class="ch-copy">
-      <h2>Задача</h2>
-      <p>У локальной чайной несколько разных аудиторий: гости зала, покупатели чая домой и бизнес-клиенты. Нужно было объяснить непривычный формат церемонии, показать ассортимент и привести каждого к своему действию, сохранив камерный характер бренда.</p>
-    </article>
-    <article class="ch-copy">
-      <h2>Решение</h2>
-      <p>Собрали одну быструю страницу с отдельными маршрутами: забронировать стол, выбрать чай, запросить поставку. Каталог фильтруется по типам, заявки уходят в Telegram, а язык и тема переключаются без перезагрузки.</p>
-    </article>
-    <article class="ch-copy">
-      <h2>Почему без фреймворка</h2>
-      <p>Для этого проекта важнее скорость загрузки и простое обслуживание, чем тяжёлая CMS. Весь интерфейс работает на HTML, CSS и JavaScript без внешних зависимостей; изображения и шрифты оптимизированы и кэшируются отдельно.</p>
-    </article>
-    <article class="ch-copy">
-      <h2>Что осталось у бизнеса</h2>
-      <p>Готовый сайт на собственном домене, адаптивная мобильная версия, SEO-разметка локального бизнеса, Telegram-бот для заявок и исходники без привязки к конструктору или ежемесячной лицензии.</p>
-    </article>
-  </section>
-
-  <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:20px">
-    <span style="padding:7px 11px;border-radius:9px;background:var(--surface-2);border:1px solid var(--border);font:500 12px JetBrains Mono,monospace;color:var(--text-meta)">HTML · CSS · JavaScript</span>
-    <span style="padding:7px 11px;border-radius:9px;background:var(--surface-2);border:1px solid var(--border);font:500 12px JetBrains Mono,monospace;color:var(--text-meta)">i18n · SEO · Schema.org</span>
-    <span style="padding:7px 11px;border-radius:9px;background:var(--surface-2);border:1px solid var(--border);font:500 12px JetBrains Mono,monospace;color:var(--text-meta)">Telegram Bot API · VPS</span>
-  </div>
 
   <dc-import name="CaseCTA" q="Нужен сайт, который приводит к заявке?" hint-size="100%,170px"></dc-import>
   <div style="display:flex;margin-top:18px"><a href="case-subscriptions.html" style="margin-left:auto;display:inline-flex;align-items:center;min-height:44px;font:500 15px Inter,system-ui,sans-serif;color:var(--accent);text-decoration:none;border-radius:8px;padding:6px 8px">следующий кейс: подписочный сервис →</a></div>

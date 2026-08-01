@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Кейс: Scout — CRM для поиска и работы с B2B-лидами — Re:dnd</title>
+<meta name="description" content="Scout объединяет поиск компаний по картам, проверку контактов, распределение лидов и работу команды в одной CRM. Веб-версия и приложения для macOS и Windows.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Re:dnd">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:url" content="https://rednd.ru/case-scout.html">
+<meta property="og:title" content="Scout — от списка компаний до следующего действия">
+<meta property="og:description" content="Поиск компаний, единая база, команда, статусы и аналитика — в веб-версии и настольном приложении.">
+<meta property="og:image" content="https://rednd.ru/og-default.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="alternate" hreflang="ru" href="https://rednd.ru/case-scout.html">
+<link rel="alternate" hreflang="x-default" href="https://rednd.ru/case-scout.html">
+<script src="./site-config.js"></script>
+<script>(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<link rel="stylesheet" href="./theme.css?v=20260728b">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="fonts/fonts.css" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
+.sc-main{font-family:Inter,system-ui,sans-serif;max-width:1180px;margin:0 auto;padding:clamp(28px,4vw,52px) 22px clamp(56px,7vw,88px)}
+.sc-back{display:inline-flex;align-items:center;min-height:44px;margin:0 0 16px -8px;padding:8px;color:var(--accent);font:600 14px Inter,system-ui,sans-serif;text-decoration:none;border-radius:10px}
+.sc-hero{position:relative;display:grid;grid-template-columns:minmax(0,.96fr) minmax(430px,1.04fr);min-height:560px;overflow:hidden;border:1px solid var(--border);border-radius:28px;background:var(--surface)}
+.sc-copy{display:flex;flex-direction:column;justify-content:center;padding:clamp(30px,5vw,64px)}
+.sc-kicker{margin:0 0 18px;color:#208656;font:700 12.5px JetBrains Mono,monospace;letter-spacing:.055em;text-transform:uppercase}
+.sc-copy h1{margin:0;font:700 clamp(38px,5.6vw,70px)/1.02 Sora,sans-serif;letter-spacing:-.05em;text-wrap:balance}
+.sc-copy h1 em{color:#208656;font-style:normal}
+.sc-lead{max-width:620px;margin:24px 0 0;color:var(--text-body);font:400 clamp(16px,1.7vw,19px)/1.62 Inter,system-ui,sans-serif;text-wrap:pretty}
+.sc-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.sc-action{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:11px 17px;border:1px solid var(--border);border-radius:12px;color:var(--text);background:var(--surface-2);font:700 14px Inter,system-ui,sans-serif;text-decoration:none}
+.sc-action.primary{border-color:#208656;background:#208656;color:#fff}
+.sc-stage{display:flex;align-items:center;min-width:0;padding:clamp(18px,3vw,34px);background:linear-gradient(145deg,#e7f2eb,#cfe6d7)}
+[data-theme="dark"] .sc-stage{background:linear-gradient(145deg,#0b1710,#163224)}
+.sc-window{width:100%;overflow:hidden;border:1px solid rgba(20,52,35,.2);border-radius:18px;background:#fbfdfb;box-shadow:0 28px 70px -34px rgba(8,38,22,.58);color:#122118}
+.sc-window-top{height:46px;display:flex;align-items:center;gap:8px;padding:0 14px;border-bottom:1px solid #dce8df;background:#fff}
+.sc-mark{display:grid;width:28px;height:28px;place-items:center;border-radius:8px;background:#0e3e2d;color:#fff;font:700 16px Sora,sans-serif}
+.sc-window-top b{font:700 13px Sora,sans-serif}.sc-mode{margin-left:auto;padding:5px 9px;border-radius:999px;background:#dff3e6;color:#166a43;font:700 10px Inter,sans-serif}
+.sc-app{display:grid;grid-template-columns:112px 1fr;min-height:370px}
+.sc-side{padding:16px 10px;border-right:1px solid #e3ebe5;background:#f1f5f2}
+.sc-nav{display:flex;align-items:center;gap:8px;margin-bottom:7px;padding:10px;border-radius:9px;color:#607068;font:600 10px Inter,sans-serif}.sc-nav.on{background:#fff;color:#173d2a;box-shadow:0 3px 12px rgba(18,61,39,.07)}
+.sc-nav i{width:7px;height:7px;border-radius:50%;background:#8f9d95}.sc-nav.on i{background:#208656}
+.sc-content{padding:24px 20px}.sc-label{color:#208656;font:700 9px JetBrains Mono,monospace;letter-spacing:.08em;text-transform:uppercase}.sc-content h2{margin:8px 0 4px;font:700 24px/1.1 Sora,sans-serif}.sc-sub{margin:0 0 18px;color:#708078;font:400 11px/1.4 Inter,sans-serif}
+.sc-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}.sc-metric{padding:11px;border:1px solid #e0e9e2;border-radius:10px}.sc-metric span{display:block;color:#7a8981;font:500 8px Inter,sans-serif}.sc-metric b{display:block;margin-top:5px;font:700 17px Sora,sans-serif}
+.sc-list{display:grid;gap:8px}.sc-row{display:grid;grid-template-columns:1fr auto auto;gap:10px;align-items:center;padding:11px 12px;border:1px solid #dfe9e1;border-radius:11px;background:#fff}.sc-row strong{display:block;font:700 11px Inter,sans-serif}.sc-row small{display:block;margin-top:3px;color:#7b8981;font:500 8px Inter,sans-serif}.sc-priority{padding:5px 7px;border-radius:7px;background:#fff0e8;color:#a64d2e;font:700 8px Inter,sans-serif}.sc-open{padding:6px 8px;border-radius:7px;background:#208656;color:#fff;font:700 8px Inter,sans-serif}
+.sc-facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin:18px 0 0;overflow:hidden;border:1px solid var(--border);border-radius:18px;background:var(--surface)}
+.sc-fact{min-width:0;padding:22px;border-right:1px solid var(--border)}.sc-fact:last-child{border-right:0}.sc-fact strong{display:block;margin-bottom:8px;color:#208656;font:700 clamp(25px,2.8vw,36px)/1 Sora,sans-serif}.sc-fact span{color:var(--text-body);font:400 13.5px/1.48 Inter,sans-serif}
+.sc-section{margin-top:clamp(52px,7vw,86px)}
+.sc-head{display:grid;grid-template-columns:minmax(0,.74fr) minmax(280px,.46fr);gap:32px;align-items:end;margin-bottom:24px}.sc-head h2{margin:0;font:700 clamp(30px,4vw,48px)/1.08 Sora,sans-serif;letter-spacing:-.04em;text-wrap:balance}.sc-head p{margin:0;color:var(--text-body);font:400 16px/1.62 Inter,sans-serif}
+.sc-flow{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.sc-step{position:relative;padding:26px;border:1px solid var(--border);border-radius:20px;background:var(--surface)}.sc-step b{display:grid;width:42px;height:42px;place-items:center;border-radius:13px;background:rgba(32,134,86,.12);color:#208656;font:700 13px JetBrains Mono,monospace}.sc-step h3{margin:22px 0 9px;font:700 20px/1.25 Sora,sans-serif}.sc-step p{margin:0;color:var(--text-body);font:400 14.5px/1.6 Inter,sans-serif}.sc-step:not(:last-child)::after{content:"→";position:absolute;z-index:2;top:32px;right:-22px;display:grid;width:30px;height:30px;place-items:center;border:1px solid var(--border);border-radius:50%;background:var(--bg);color:#208656;font-weight:800}
+.sc-arch{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.sc-arch article{padding:clamp(26px,4vw,42px);border:1px solid var(--border);border-radius:22px;background:var(--surface)}.sc-icon{display:grid;width:52px;height:52px;place-items:center;border-radius:15px;background:rgba(32,134,86,.12);color:#208656;font:700 23px Sora,sans-serif}.sc-arch h3{margin:22px 0 10px;font:700 clamp(22px,2.6vw,30px)/1.16 Sora,sans-serif}.sc-arch p{margin:0;color:var(--text-body);font:400 15px/1.65 Inter,sans-serif}.sc-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}.sc-tags span{padding:7px 10px;border:1px solid var(--border);border-radius:9px;background:var(--surface-2);color:var(--text-meta);font:500 11.5px JetBrains Mono,monospace}
+.sc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.sc-feature{display:grid;grid-template-columns:44px 1fr;gap:16px;padding:22px;border:1px solid var(--border);border-radius:18px;background:var(--surface)}.sc-feature b{display:grid;width:44px;height:44px;place-items:center;border-radius:13px;background:rgba(32,134,86,.12);color:#208656;font:700 13px JetBrains Mono,monospace}.sc-feature h3{margin:1px 0 7px;font:700 17px/1.3 Sora,sans-serif}.sc-feature p{margin:0;color:var(--text-body);font:400 14px/1.55 Inter,sans-serif}
+.sc-live{display:grid;grid-template-columns:1fr auto;gap:26px;align-items:center;padding:clamp(28px,5vw,52px);border:1px solid rgba(32,134,86,.38);border-radius:24px;background:linear-gradient(135deg,rgba(32,134,86,.12),var(--surface))}.sc-live h2{margin:0 0 10px;font:700 clamp(28px,3.8vw,46px)/1.1 Sora,sans-serif;letter-spacing:-.035em}.sc-live p{max-width:720px;margin:0;color:var(--text-body);font:400 15.5px/1.62 Inter,sans-serif}
+@media(max-width:900px){.sc-hero{grid-template-columns:1fr}.sc-stage{order:-1;min-height:480px}.sc-facts{grid-template-columns:repeat(2,1fr)}.sc-fact:nth-child(2){border-right:0}.sc-fact:nth-child(-n+2){border-bottom:1px solid var(--border)}.sc-head{grid-template-columns:1fr}.sc-flow{grid-template-columns:1fr}.sc-step:not(:last-child)::after{content:"↓";top:auto;right:50%;bottom:-23px;transform:translateX(50%)}.sc-live{grid-template-columns:1fr}}
+@media(max-width:650px){.sc-main{padding-inline:14px}.sc-hero{border-radius:20px}.sc-copy{padding:26px 20px 30px}.sc-copy h1{font-size:clamp(36px,12vw,52px)}.sc-actions{display:grid}.sc-action{width:100%}.sc-stage{min-height:auto;padding:14px}.sc-app{grid-template-columns:76px 1fr;min-height:340px}.sc-side{padding-inline:6px}.sc-nav{padding:9px 6px;font-size:0}.sc-nav::after{content:"Раздел";font-size:9px}.sc-content{padding:18px 12px}.sc-content h2{font-size:20px}.sc-metrics{grid-template-columns:1fr}.sc-metric:nth-child(n+2){display:none}.sc-row{grid-template-columns:1fr auto}.sc-priority{display:none}.sc-facts{border-radius:16px}.sc-fact{padding:17px 15px}.sc-fact strong{font-size:25px}.sc-fact span{font-size:12.5px}.sc-arch,.sc-grid{grid-template-columns:1fr}.sc-live{padding:26px 20px}}
+</style>
+</helmet>
+
+<dc-import name="Header" active="projects" brand-name="{{ brandName }}" hint-size="100%,64px"></dc-import>
+
+<main class="sc-main">
+  <a class="sc-back" href="projects.html">← Все проекты</a>
+
+  <section class="sc-hero" aria-labelledby="case-title">
+    <div class="sc-copy">
+      <p class="sc-kicker">SaaS · CRM · web + desktop</p>
+      <h1 id="case-title">Scout — от списка компаний до <em>следующего действия</em></h1>
+      <p class="sc-lead">Сервис собирает открытые карточки компаний, объединяет контакты в единую базу и помогает команде не потерять ни одного лида после поиска.</p>
+      <div class="sc-actions">
+        <a class="sc-action primary" href="https://scout.rednd.ru/" target="_blank" rel="noopener">Открыть Scout ↗</a>
+        <a class="sc-action" href="#how-it-works">Как устроен продукт ↓</a>
+      </div>
+    </div>
+    <div class="sc-stage" aria-label="Макет рабочего интерфейса Scout">
+      <div class="sc-window">
+        <div class="sc-window-top"><span class="sc-mark">S</span><b>Scout</b><span class="sc-mode">Работа</span></div>
+        <div class="sc-app">
+          <aside class="sc-side"><div class="sc-nav on"><i></i>Сегодня</div><div class="sc-nav"><i></i>База лидов</div><div class="sc-nav"><i></i>Команда</div><div class="sc-nav"><i></i>Аналитика</div><div class="sc-nav"><i></i>История</div></aside>
+          <div class="sc-content"><span class="sc-label">Рабочий день</span><h2>Лиды в работе</h2><p class="sc-sub">Только компании, назначенные сотруднику.</p><div class="sc-metrics"><div class="sc-metric"><span>В работе</span><b>12</b></div><div class="sc-metric"><span>Написал</span><b>7</b></div><div class="sc-metric"><span>Ответили</span><b>3</b></div></div><div class="sc-list"><div class="sc-row"><div><strong>Студия «Форма»</strong><small>Казань · сайт требует обновления</small></div><span class="sc-priority">Высокий</span><span class="sc-open">Открыть</span></div><div class="sc-row"><div><strong>Северные обжарщики</strong><small>Петрозаводск · нет сайта</small></div><span class="sc-priority">Высокий</span><span class="sc-open">Взять</span></div><div class="sc-row"><div><strong>Мастерская «Точка»</strong><small>Москва · есть телефон и Telegram</small></div><span class="sc-priority">Средний</span><span class="sc-open">Открыть</span></div></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sc-facts" aria-label="Формат Scout">
+    <div class="sc-fact"><strong>5+1</strong><span>сервисов поиска и импорт CSV/Excel</span></div>
+    <div class="sc-fact"><strong>3</strong><span>платформы: web, macOS и Windows</span></div>
+    <div class="sc-fact"><strong>2</strong><span>контура: локальный поиск и общая CRM</span></div>
+    <div class="sc-fact"><strong>1</strong><span>карточка компании вместо дублей из источников</span></div>
+  </section>
+
+  <section id="how-it-works" class="sc-section" aria-labelledby="flow-title">
+    <div class="sc-head"><h2 id="flow-title">Поиск становится рабочим процессом</h2><p>Scout не заканчивается выгрузкой таблицы. Найденная компания сразу получает контекст, ответственного и следующий шаг.</p></div>
+    <div class="sc-flow">
+      <article class="sc-step"><b>01</b><h3>Найти компании</h3><p>Выбрать сегмент, географию и источники: Яндекс Карты, 2ГИС, OpenStreetMap и подключаемые каталоги.</p></article>
+      <article class="sc-step"><b>02</b><h3>Отобрать сильные лиды</h3><p>Сопоставить сайт, рейтинг, контакты и реквизиты. Дубли из разных источников объединяются.</p></article>
+      <article class="sc-step"><b>03</b><h3>Довести до действия</h3><p>Сотрудник берёт свободный лид, меняет статус одним кликом и фиксирует следующий контакт.</p></article>
+    </div>
+  </section>
+
+  <section class="sc-section" aria-labelledby="architecture-title">
+    <div class="sc-head"><h2 id="architecture-title">Тяжёлая работа — на компьютере. Команда — в облаке.</h2><p>Так поиск не нагружает общий сервер, а проекты, лиды и история остаются доступными всей команде.</p></div>
+    <div class="sc-arch">
+      <article><span class="sc-icon">⌁</span><h3>Локальный поисковый агент</h3><p>Настольное приложение выполняет ресурсоёмкий сбор на устройстве пользователя. Можно выбирать источники, глубину поиска и географию.</p><div class="sc-tags"><span>macOS Apple Silicon</span><span>macOS Intel</span><span>Windows x64</span></div></article>
+      <article><span class="sc-icon">◎</span><h3>Общее рабочее пространство</h3><p>Веб-версия хранит проекты, роли, базу лидов, задачи и аналитику. У каждой компании изолированное пространство и своя команда.</p><div class="sc-tags"><span>проекты</span><span>роли</span><span>история</span><span>аналитика</span></div></article>
+    </div>
+  </section>
+
+  <section class="sc-section" aria-labelledby="features-title">
+    <div class="sc-head"><h2 id="features-title">Не парсер, а полноценная CRM</h2><p>Главная ценность появляется после поиска — когда база превращается в понятную очередь работы.</p></div>
+    <div class="sc-grid">
+      <article class="sc-feature"><b>01</b><div><h3>Проекты и изоляция данных</h3><p>Отдельная база, настройки, история и участники для каждого рабочего пространства.</p></div></article>
+      <article class="sc-feature"><b>02</b><div><h3>Распределение без конфликтов</h3><p>Лид сначала свободен. Сотрудник забирает его в работу, а система защищает от одновременной обработки.</p></div></article>
+      <article class="sc-feature"><b>03</b><div><h3>Карточка с полным контекстом</h3><p>Контакты, социальные сети, этап, звонок, ответственный, следующий шаг, бюджет, заметки и история.</p></div></article>
+      <article class="sc-feature"><b>04</b><div><h3>Интеграции и экспорт</h3><p>Google Sheets, CSV и Excel для привычной работы; DaData — для проверки реквизитов компаний.</p></div></article>
+      <article class="sc-feature"><b>05</b><div><h3>Интерфейс по роли</h3><p>Владелец управляет базой и аналитикой, сотрудник видит собственные лиды, быстрые действия и базу знаний.</p></div></article>
+      <article class="sc-feature"><b>06</b><div><h3>Без автоматического спама</h3><p>Scout помогает найти и организовать лиды, но решение о контакте и отправку сообщения оставляет человеку.</p></div></article>
+    </div>
+  </section>
+
+  <section class="sc-section sc-live" aria-labelledby="live-title">
+    <div><p class="sc-kicker">Закрытая beta</p><h2 id="live-title">Посмотреть живой Scout</h2><p>На публичном сайте — возможности, FAQ и загрузки. После входа можно создать отдельный проект, пригласить команду и начать работу с базой.</p></div>
+    <a class="sc-action primary" href="https://scout.rednd.ru/" target="_blank" rel="noopener">Открыть продукт ↗</a>
+  </section>
+
+  <dc-import name="CaseCTA" q="Нужен внутренний сервис под ваш процесс?" hint-size="100%,170px"></dc-import>
+  <div style="display:flex;margin-top:18px"><a href="case-chainya.html" style="margin-left:auto;display:inline-flex;align-items:center;min-height:44px;font:500 15px Inter,system-ui,sans-serif;color:var(--accent);text-decoration:none;border-radius:8px;padding:6px 8px">следующий кейс: Чайня →</a></div>
+</main>
+
+<dc-import name="Footer" brand-name="{{ brandName }}" hint-size="100%,110px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;brandName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Re:dnd&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  renderVals() { return { brandName: this.props.brandName ?? 'Re:dnd' }; }
+}
+</script>
+</body>
+</html>

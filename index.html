@@ -18,6 +18,7 @@
 <meta name="twitter:title" content="Re:dnd — разработка и автоматизация для бизнеса">
 <meta name="twitter:description" content="Разработка и автоматизация для бизнеса: боты, приложения, веб-сервисы, ИИ-ассистенты, CRM. Проектируем и собираем под задачу. Работаем официально (ИП, договор), 7 дней исправляем ошибки после сдачи.">
 <meta name="twitter:image" content="https://rednd.ru/og-default.png">
+<link rel="canonical" href="https://rednd.ru/">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="alternate" hreflang="ru" href="https://rednd.ru/">
 <link rel="alternate" hreflang="en" href="https://rednd.ru/en/">
@@ -262,7 +263,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
   <section style="max-width:1140px;margin:0 auto;padding:clamp(28px,4vw,48px) 22px">
     <div style="display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:24px">
       <h2 style="margin:0;font:600 clamp(26px,3.2vw,36px)/1.15 Sora,sans-serif;letter-spacing:-0.01em">Проекты</h2>
-      <p style="margin:0;font:400 15.5px/1.5 Inter,system-ui,sans-serif;color:var(--text-meta)">Живые демо встроены прямо в страницы кейсов. Можно потыкать самому.</p>
+      <p style="margin:0;font:400 15.5px/1.5 Inter,system-ui,sans-serif;color:var(--text-meta)">Откройте живой продукт или изучите интерактивное демо внутри кейса.</p>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px">
 
@@ -531,7 +532,7 @@ class Component extends DCLogic {
       showKeys: step >= 4,
       showTyping: typing,
       statusText: typing ? 'печатает…' : 'онлайн',
-      statusColor: typing ? '#1A79C7' : '#31B545',
+      statusColor: typing ? '#58B9FF' : '#31B545',
       bubbleAnim: reduced ? 'none' : 'bubbleIn 0.28s ease both',
     };
   }

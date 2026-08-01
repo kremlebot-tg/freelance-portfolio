@@ -168,6 +168,16 @@ window.SITE_CONFIG = {
     }
   }
 
+  /* Не ставим {{ photoSrc }} прямо в src: браузер успевал запросить
+     буквальный mustache-URL до запуска DC-рантайма. */
+  function hydrateDeferredImages(root) {
+    var images = (root || document).querySelectorAll('img[data-photo-src]');
+    for (var i = 0; i < images.length; i++) {
+      var src = (images[i].getAttribute('data-photo-src') || '').trim();
+      if (src && src.indexOf('{{') === -1 && images[i].getAttribute('src') !== src) images[i].setAttribute('src', src);
+    }
+  }
+
   function isHeroElement(el) {
     if (!isHome) return false;
     var first = document.querySelector('main > section');
@@ -259,6 +269,7 @@ window.SITE_CONFIG = {
 
   function enhance(root) {
     if (!document.body) return;
+    hydrateDeferredImages(root);
     markDisplayType(root);
     markCards(root);
     markChrome(root);
@@ -269,22 +280,12 @@ window.SITE_CONFIG = {
   function updateChrome() {
     var header = document.querySelector('header');
     if (header) header.classList.toggle('is-scrolled', window.scrollY > 10);
-    var progress = document.querySelector('.rd-scroll-progress');
-    if (progress) {
-      var max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
-      progress.style.transform = 'scaleX(' + Math.min(1, Math.max(0, window.scrollY / max)) + ')';
-    }
   }
 
   function bootPolish() {
     if (started || !document.body) return;
     started = true;
     try { reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
-
-    var progress = document.createElement('div');
-    progress.className = 'rd-scroll-progress';
-    progress.setAttribute('aria-hidden', 'true');
-    document.body.appendChild(progress);
 
     if (!reduceMotion && 'IntersectionObserver' in window) {
       document.documentElement.classList.add('rd-motion-ready');

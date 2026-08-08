@@ -3,16 +3,19 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Кейс: Чайня — интернет-магазин и сайт чайной — Re:dnd</title>
-<meta name="description" content="Чайня: интернет-магазин китайского чая, бронирование, B2B-заявки и три языка в одном живом продукте. Каталог из 33 позиций можно открыть прямо в кейсе.">
+<title>Кейс: Чайня — интернет-магазин и цифровая система чайной — Re:dnd</title>
+<meta name="description" content="Чайня: production-система чайной и интернет-магазина — 32 позиции, оформление заказов, бронирование, B2B и личный кабинет на трёх языках.">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Re:dnd">
 <meta property="og:locale" content="ru_RU">
 <meta property="og:url" content="https://rednd.ru/case-chainya.html">
-<meta property="og:title" content="Кейс: Чайня — из чайной в онлайн-продукт — Re:dnd">
-<meta property="og:description" content="Каталог, корзина, избранное, бронирование и B2B на трёх языках — живой коммерческий продукт для московской чайной.">
-<meta property="og:image" content="https://chainya.ru/og.jpg">
+<meta property="og:title" content="Кейс: Чайня — интернет-магазин и цифровая система чайной — Re:dnd">
+<meta property="og:description" content="Каталог, оформление заказов, бронирование, B2B и личный кабинет на трёх языках — production-продукт для московской чайной.">
+<meta property="og:image" content="https://rednd.ru/assets/cases/chainya/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://rednd.ru/assets/cases/chainya/og.jpg">
 <link rel="canonical" href="https://rednd.ru/case-chainya.html">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="alternate" hreflang="ru" href="https://rednd.ru/case-chainya.html">
@@ -81,12 +84,20 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
 .ch-demo-top{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px}
 .ch-demo-top h2{margin:0;font:650 clamp(23px,3vw,32px)/1.2 Sora,sans-serif}
 .ch-demo-top p{flex:1 1 300px;margin:0;color:var(--text-body);font:400 14px/1.5 Inter,system-ui,sans-serif}
-.ch-browser{overflow:hidden;border:1px solid var(--border);border-radius:18px;background:#11100f;box-shadow:0 22px 55px -32px rgba(0,0,0,.55)}
-.ch-frame{display:block;width:100%;height:min(78vh,820px);border:0;background:#11100f}
+.ch-showcase{display:grid;grid-template-columns:minmax(0,1.48fr) minmax(250px,.52fr);gap:14px;align-items:stretch}
+.ch-shot{min-width:0;margin:0;overflow:hidden;border:1px solid var(--border);border-radius:18px;background:#11100f;box-shadow:0 22px 55px -32px rgba(0,0,0,.55)}
+.ch-shot-media{overflow:hidden;background:#11100f}
+.ch-shot-media img{display:block;width:100%;height:auto}
+.ch-shot.mobile{max-width:390px;justify-self:center}
+.ch-shot figcaption{padding:13px 16px;border-top:1px solid var(--border);color:var(--text-meta);font:400 12.5px/1.45 Inter,system-ui,sans-serif}
+.ch-tech{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:18px}
+.ch-tech article{padding:22px;border:1px solid var(--border);border-radius:18px;background:var(--surface)}
+.ch-tech h3{margin:0 0 8px;font:650 17px/1.3 Sora,sans-serif}
+.ch-tech p{margin:0;color:var(--text-body);font:400 14px/1.58 Inter,system-ui,sans-serif}
 .ch-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
 .ch-tags span{padding:7px 11px;border:1px solid var(--border);border-radius:9px;background:var(--surface-2);color:var(--text-meta);font:500 12px JetBrains Mono,monospace}
-@media(max-width:860px){.ch-hero{grid-template-columns:1fr}.ch-hero-media{min-height:370px;order:-1}.ch-hero-media::after{background:linear-gradient(0deg,var(--surface) 0,transparent 25%),linear-gradient(0deg,rgba(15,10,7,.34),transparent 60%)}.ch-stats{grid-template-columns:repeat(2,1fr)}.ch-stat:nth-child(2){border-right:0}.ch-stat:nth-child(-n+2){border-bottom:1px solid var(--border)}.ch-section-head,.ch-story{grid-template-columns:1fr}}
-@media(max-width:640px){.ch-main{padding-inline:14px}.ch-hero{border-radius:20px}.ch-hero-copy{padding:24px 20px 30px}.ch-hero h1{font-size:clamp(36px,12vw,52px)}.ch-hero-media{min-height:300px}.ch-actions{display:grid}.ch-action{width:100%}.ch-stats{border-radius:16px}.ch-stat{padding:17px 15px}.ch-stat strong{font-size:28px}.ch-stat span{font-size:12.5px}.ch-section{margin-top:52px}.ch-section-head{gap:12px}.ch-routes{grid-template-columns:1fr}.ch-route{min-height:260px}.ch-stack article{grid-template-columns:42px 1fr;padding:18px}.ch-stack b{width:42px;height:42px}.ch-demo{padding:12px}.ch-frame{height:640px}.ch-bar{padding:0 12px}.ch-url{font-size:10px}}
+@media(max-width:860px){.ch-hero{grid-template-columns:1fr}.ch-hero-media{min-height:370px;order:-1}.ch-hero-media::after{background:linear-gradient(0deg,var(--surface) 0,transparent 25%),linear-gradient(0deg,rgba(15,10,7,.34),transparent 60%)}.ch-stats{grid-template-columns:repeat(2,1fr)}.ch-stat:nth-child(2){border-right:0}.ch-stat:nth-child(-n+2){border-bottom:1px solid var(--border)}.ch-section-head,.ch-story,.ch-showcase{grid-template-columns:1fr}.ch-tech{grid-template-columns:1fr}.ch-shot.mobile{width:min(100%,390px)}}
+@media(max-width:640px){.ch-main{padding-inline:14px}.ch-hero{border-radius:20px}.ch-hero-copy{padding:24px 20px 30px}.ch-hero h1{font-size:clamp(36px,12vw,52px)}.ch-hero-media{min-height:300px}.ch-actions{display:grid}.ch-action{width:100%}.ch-stats{border-radius:16px}.ch-stat{padding:17px 15px}.ch-stat strong{font-size:28px}.ch-stat span{font-size:12.5px}.ch-section{margin-top:52px}.ch-section-head{gap:12px}.ch-routes{grid-template-columns:1fr}.ch-route{min-height:260px}.ch-stack article{grid-template-columns:42px 1fr;padding:18px}.ch-stack b{width:42px;height:42px}.ch-demo{padding:12px}.ch-bar{padding:0 12px}.ch-url{font-size:10px}}
 </style>
 </helmet>
 
@@ -98,11 +109,11 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
   <section class="ch-hero" aria-labelledby="case-title">
     <div class="ch-hero-copy">
       <p class="ch-kicker">E-commerce · локальный бизнес · Москва</p>
-      <h1 id="case-title">Чайня — из чайной в <em>онлайн-продукт</em></h1>
-      <p class="ch-lead">Не просто лендинг с адресом. Мы собрали магазин китайского чая, бронирование, корпоративные заявки и знакомство с чайной в одной цельной системе.</p>
+      <h1 id="case-title">Чайня — интернет-магазин и <em>цифровая система чайной</em></h1>
+      <p class="ch-lead">Production-продукт для московской чайной: каталог китайского чая, оформление заказов, бронирование единственного стола, B2B-заявки и личный кабинет клиента на трёх языках.</p>
       <div class="ch-actions">
         <a class="ch-action primary" href="https://chainya.ru/" target="_blank" rel="noopener">Открыть живой сайт ↗</a>
-        <a class="ch-action" href="#live-demo">Посмотреть внутри кейса ↓</a>
+        <a class="ch-action" href="#product">Как устроен продукт ↓</a>
       </div>
     </div>
     <div class="ch-hero-media">
@@ -112,10 +123,10 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
   </section>
 
   <section class="ch-stats" aria-label="Проект в цифрах">
-    <div class="ch-stat"><strong>33</strong><span>позиции с фасовками, ценами и карточками</span></div>
+    <div class="ch-stat"><strong>32</strong><span>опубликованные позиции с ценами и наличием</span></div>
     <div class="ch-stat"><strong>3</strong><span>языка: русский, английский и китайский</span></div>
     <div class="ch-stat"><strong>4</strong><span>коммерческих маршрута вместо одного общего CTA</span></div>
-    <div class="ch-stat"><strong>0 ₽</strong><span>ежемесячной лицензии конструктора или CMS</span></div>
+    <div class="ch-stat"><strong>254</strong><span>автоматических backend-теста проходят сейчас</span></div>
   </section>
 
   <section class="ch-section" aria-labelledby="routes-title">
@@ -126,7 +137,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
     <div class="ch-routes">
       <article class="ch-route">
         <img src="https://chainya.ru/img/tea-gaba-honey.webp" alt="Китайский чай из каталога Чайни" width="800" height="800" loading="lazy" decoding="async">
-        <div class="ch-route-copy"><span>Розница</span><h3>Выбрать чай домой</h3><p>Каталог, поиск, фильтры, избранное, фасовки 25–100 г и корзина.</p></div>
+        <div class="ch-route-copy"><span>Розница</span><h3>Выбрать чай домой</h3><p>Каталог, поиск, фильтры, избранное, фасовки 10–100 г, штучные товары и корзина.</p></div>
       </article>
       <article class="ch-route">
         <img src="https://chainya.ru/img/hall-room.webp" alt="Зал чайной Чайня" width="1600" height="1065" loading="lazy" decoding="async">
@@ -150,25 +161,48 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
       <p>Чайня — камерное пространство, а не безликий интернет-магазин. Поэтому интерфейс должен был сохранить голос и визуальный характер чайной, но при этом дать обычные коммерческие инструменты: каталог, корзину, бронь и заявки. Мы не стали сводить разные аудитории к одной кнопке — для каждой собрали собственный путь.</p>
     </article>
     <div class="ch-stack">
-      <article><b>01</b><div><h3>Каталог как рабочий инструмент</h3><p>33 позиции разбиты по типам. Есть поиск, сортировка, избранное, быстрый выбор и отдельные карточки товаров.</p></div></article>
-      <article><b>02</b><div><h3>Контент помогает принять решение</h3><p>Посетителю объясняют церемонию, вкус листа, фасовку, доставку и формат зала — без чайного снобизма.</p></div></article>
-      <article><b>03</b><div><h3>Заявки приходят владельцу</h3><p>Бронирование и B2B-запросы уходят в Telegram, поэтому бизнес не обязан постоянно проверять отдельную админку.</p></div></article>
-      <article><b>04</b><div><h3>Сайт принадлежит бизнесу</h3><p>Собственный домен, исходники, SEO и юридические страницы без привязки к конструктору и ежемесячной лицензии.</p></div></article>
+      <article><b>01</b><div><h3>Каталог как рабочий инструмент</h3><p>32 позиции разбиты по 11 типам. Есть поиск, сортировка, избранное, наличие и отдельные карточки товаров.</p></div></article>
+      <article><b>02</b><div><h3>Заказ проверяет сервер</h3><p>Перед оформлением система повторно проверяет цены, наличие и состав корзины, а оплату подтверждает только подписанный callback.</p></div></article>
+      <article><b>03</b><div><h3>Бронь без пересечений</h3><p>Один стол бронируется на два часа; сервер рассчитывает свободное время и не допускает конфликтующих заявок.</p></div></article>
+      <article><b>04</b><div><h3>Клиент возвращается в кабинет</h3><p>Заказы и бронирования собраны в личном кабинете, а гостевой заказ можно безопасно присоединить к своему аккаунту.</p></div></article>
     </div>
   </section>
 
-  <section id="live-demo" class="ch-section ch-demo" aria-label="Живой сайт Чайни">
+  <section id="product" class="ch-section ch-demo" aria-label="Интерфейс живого продукта">
     <div class="ch-demo-top">
-      <h2>Живой продукт</h2>
-      <p>Это production-версия: можно открыть каталог, карточки товаров, корзину, бронь и B2B-раздел прямо здесь.</p>
-      <a class="ch-action primary" href="https://chainya.ru/" target="_blank" rel="noopener">На весь экран ↗</a>
+      <h2>Интерфейс живого продукта</h2>
+      <p>Снимки production без заказов и персональных данных. Каталог адаптируется от редакционной desktop-сетки к компактному мобильному сценарию бронирования.</p>
+      <a class="ch-action primary" href="https://chainya.ru/" target="_blank" rel="noopener">Открыть сайт ↗</a>
     </div>
-    <div class="ch-browser" data-theme-lock>
-      <div class="ch-bar" aria-hidden="true"><span class="ch-dot"></span><span class="ch-dot"></span><span class="ch-dot"></span><span class="ch-url">https://chainya.ru</span></div>
-      <iframe class="ch-frame" src="https://chainya.ru/" title="Сайт чайной Чайня" loading="lazy"></iframe>
+    <div class="ch-showcase">
+      <figure class="ch-shot" data-theme-lock>
+        <div class="ch-bar" aria-hidden="true"><span class="ch-dot"></span><span class="ch-dot"></span><span class="ch-dot"></span><span class="ch-url">chainya.ru/shop</span></div>
+        <div class="ch-shot-media"><img src="assets/cases/chainya/shop-desktop.webp" alt="Каталог Чайни на широком экране: фильтры, поиск, сортировка и карточки товаров" width="1440" height="900" loading="lazy" decoding="async"></div>
+        <figcaption>Каталог · desktop · 32 позиции</figcaption>
+      </figure>
+      <figure class="ch-shot mobile" data-theme-lock>
+        <div class="ch-bar" aria-hidden="true"><span class="ch-dot"></span><span class="ch-dot"></span><span class="ch-dot"></span><span class="ch-url">chainya.ru/booking</span></div>
+        <div class="ch-shot-media"><img src="assets/cases/chainya/booking-mobile.webp" alt="Форма бронирования чайной церемонии на мобильном экране" width="390" height="844" loading="lazy" decoding="async"></div>
+        <figcaption>Бронирование · mobile · без заполненных данных</figcaption>
+      </figure>
     </div>
     <div class="ch-tags">
-      <span>HTML · CSS · JavaScript</span><span>Каталог · корзина · избранное</span><span>RU · EN · 中文</span><span>SEO · Schema.org</span><span>Telegram Bot API · VPS</span>
+      <span>HTML · CSS · JavaScript</span><span>Python · FastAPI · SQLite</span><span>RU · EN · 中文</span><span>SEO · Schema.org</span><span>Telegram Bot API · VPS</span>
+    </div>
+  </section>
+
+  <section class="ch-section" aria-labelledby="tech-title">
+    <div class="ch-section-head">
+      <h2 id="tech-title">Красивый фасад держится на операционной системе</h2>
+      <p>Сайт не заканчивается на витрине: за ней работают личный кабинет, административная часть, платёжный и логистический контуры, наблюдаемость и безопасный выпуск обновлений.</p>
+    </div>
+    <div class="ch-tech">
+      <article><h3>Один пишущий backend</h3><p>Публичный edge отделён от origin, а с общей SQLite работает только один backend. Так релиз не создаёт две конкурирующие точки записи.</p></article>
+      <article><h3>Интеграции под контролем</h3><p>Оплата, доставка и кассовый контур разделены. Сверка внешнего каталога работает только на чтение и ничего не исправляет автоматически.</p></article>
+      <article><h3>Релиз можно остановить</h3><p>Перед переключением создаётся snapshot, затем проверяются конфигурация и health. При ошибке предусмотрен возврат к предыдущему release.</p></article>
+    </div>
+    <div class="ch-tags" aria-label="Проверяемый результат">
+      <span>32 позиции · 28 в наличии</span><span>11 типов каталога</span><span>254 backend-теста</span><span>web-сборка ≈ 5,65 МБ</span><span>production · health OK</span>
     </div>
   </section>
 

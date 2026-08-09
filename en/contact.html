@@ -25,7 +25,7 @@
 <link rel="alternate" hreflang="x-default" href="https://rednd.ru/contact.html">
 <script src="../site-config.js?v=20260801a"></script>
 <script>(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
-<link rel="stylesheet" href="../theme.css?v=20260801a">
+<link rel="stylesheet" href="../theme.css?v=20260809b">
 <script src="../support.js"></script>
 </head>
 <body>
@@ -268,7 +268,7 @@
       <div class="acc" data-state="{{ faqState5 }}" style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:8px">
         <h3 style="margin:0"><button type="button" class="acc-sum" onClick="{{ onFaq5 }}" aria-expanded="{{ faqExp5 }}" aria-controls="faq-5" style="font:600 16.5px/1.35 Sora,sans-serif;color:var(--text)"><span class="faq-ic" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 4a4 4 0 0 1 4 4a4 4 0 0 1-4 4a4 4 0 0 1-4-4a4 4 0 0 1 4-4m0 2a2 2 0 0 0-2 2a2 2 0 0 0 2 2a2 2 0 0 0 2-2a2 2 0 0 0-2-2m0 7c2.67 0 8 1.33 8 4v3H4v-3c0-2.67 5.33-4 8-4m0 1.9c-2.97 0-6.1 1.46-6.1 2.1v1.1h12.2V17c0-.64-3.13-2.1-6.1-2.1"/></svg></span>Who will build my project?<span class="acc-chev" aria-hidden="true">▾</span></button></h3>
         <div id="faq-5" class="acc-body" style="animation:{{ faqAnim5 }}"><div class="acc-inner">
-          <p style="margin:0;font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Our team handles the project: development, design, and communication with you are done by different people. Nothing is handed off to outsiders.</p>
+          <p style="margin:0;font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">One accountable person handles the task and communication from the first message through final verification. Modern tools and AI assistants support the work, while decisions and accountability remain human.</p>
         </div></div>
       </div>
       <div class="acc" data-state="{{ faqState6 }}" style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:8px">
@@ -351,9 +351,11 @@ class Component extends DCLogic {
       taskInvalid: this.state.error && !this.state.task.trim() ? 'true' : 'false',
       contactInvalid: this.state.error && !this.state.contact.trim() ? 'true' : 'false',
       formErrorId: this.state.error ? 'form-error' : '',
-      errorText: this.state.errorKind === 'network'
-        ? 'Sending failed — try again or message us directly on Telegram.'
-        : 'Please fill in the task description and a contact, otherwise we can\'t reply.',
+      errorText: this.state.errorKind === 'stored'
+        ? 'Your request was saved, but the notification is delayed. If it is urgent, message us directly on Telegram.'
+        : this.state.errorKind === 'network'
+          ? 'Sending failed — try again or message us directly on Telegram.'
+          : 'Please fill in the task description and a contact, otherwise we can\'t reply.',
       sending: this.state.sending,
       submitLabel: this.state.sending ? 'Sending…' : 'Send',
       echoContact: this.state.contact || 'Telegram',
@@ -392,12 +394,18 @@ class Component extends DCLogic {
             contact: this.state.contact,
             website: this.state.website || '',
           }),
-        }).then(res => {
-          if (!res.ok) throw new Error('HTTP ' + res.status);
+        }).then(async res => {
+          let payload = {};
+          try { payload = await res.json(); } catch (e) {}
+          if (!res.ok) {
+            const error = new Error('HTTP ' + res.status);
+            error.stored = payload.stored === true;
+            throw error;
+          }
           this.setState({ sending: false, submitted: true, error: false });
           try { var _m = window.SITE_CONFIG && window.SITE_CONFIG.metrikaId; if (window.ym && _m) window.ym(_m, 'reachGoal', 'form_submit'); } catch (e) {}
-        }).catch(() => {
-          this.setState({ sending: false, error: true, errorKind: 'network' });
+        }).catch(error => {
+          this.setState({ sending: false, error: true, errorKind: error.stored ? 'stored' : 'network' });
         });
       },
       onReset: () => this.setState({ task: '', budget: '', contact: '', website: '', submitted: false, error: false, errorKind: '', sending: false }),

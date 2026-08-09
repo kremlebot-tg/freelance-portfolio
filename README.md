@@ -30,6 +30,8 @@ POST → API Gateway → Cloud Function → (1) запись заявки в Obj
 Порядок (1)→(2) обязателен по ч.5 ст.18 152-ФЗ: первичная запись ПДн граждан
 РФ — в базе на территории РФ, и лишь затем возможна трансграничная передача
 (Telegram). Упала запись в бакет → `502`, в Telegram ничего не уходит.
+Если запись прошла, а Telegram недоступен, функция возвращает `502` с
+`stored: true`: форма сообщает, что заявка сохранена, но уведомление задержано.
 
 Исходник функции — [yandex-function/index.py](yandex-function/index.py)
 (только stdlib; SigV4 к Object Storage вручную; секреты читаются из Lockbox
@@ -67,8 +69,9 @@ cd yandex-function && zip -j /tmp/fn.zip index.py
   --environment TG_SECRET_ID=e6quh6r1v7fv7h6bidkt
 ```
 
-Защита от спама: honeypot + rate-limit 5 заявок / 10 минут с IP (per-instance
-best-effort). Другой домен формы в будущем — в env функции `ALLOWED_ORIGINS`
+Защита от спама: honeypot + rate-limit 5 заявок / 10 минут по IP (per-instance
+best-effort). IP используется только в краткоживущей памяти инстанса для
+ограничения частоты и не записывается вместе с заявкой. Другой домен формы в будущем — в env функции `ALLOWED_ORIGINS`
 (через запятую) или в белый список `ALLOWED_ORIGINS` в `index.py`.
 
 > **TODO (владельцу, не инженеру):** как оператор ПДн, ИП Яценко, возможно,
@@ -86,9 +89,9 @@ best-effort). Другой домен формы в будущем — в env ф
 ### 2а. Старый эндпоинт на VPS — ПОГАШЕН
 
 Форма раньше жила на VPS (`server/`, сервис `rednd-form`, vhost
-`form.rednd.ru`) и на Vercel (`api/form.js`) — оба выведены из работы, фронт
-использует только Yandex Cloud. Код `server/` и `api/` оставлен в репо как
-история. VPS-сервис погашен (`systemctl disable --now rednd-form` + снят
+`form.rednd.ru`) и на Vercel — оба варианта выведены из работы, фронт
+использует только Yandex Cloud. В репозитории сохранён исторический код
+`server/`; старого Vercel-каталога в актуальном дереве нет. VPS-сервис погашен (`systemctl disable --now rednd-form` + снят
 симлинк vhost). VPN-стек не затронут.
 
 ### 3. Юридические страницы — показать юристу
@@ -106,12 +109,12 @@ cookie и обезличенные технические данные, вебв
 | Файл | Что это |
 |---|---|
 | `index.html`, `projects.html`, `services.html`, `about.html`, `contact.html`, `case-*.html`, `privacy.html`, `consent.html` | Русские страницы |
-| `en/*` | Английская версия (те же имена файлов; свои Header/Footer/CaseCTA; consent-страницы нет) |
+| `en/*` | Английская версия (те же имена файлов; свои Header/Footer/CaseCTA и consent-страница) |
 | `Header.dc.html`, `Footer.dc.html`, `CaseCTA.dc.html` | Общие компоненты — подгружаются рантаймом по имени, **не переименовывать** (в `/en/` — свои копии) |
 | `support.js` | Рантайм Claude Design (изменены: пути React → `vendor/` относительно самого скрипта) |
 | `site-config.js` | ✏️ Всё редактируемое |
 | `yandex-function/index.py` | Бэкенд формы (Cloud Function, Yandex Cloud) |
-| `api/`, `server/` | История: прежние бэкенды формы (Vercel, VPS) — не используются |
+| `server/` | История: прежний VPS-бэкенд формы — не используется |
 | `vendor/`, `fonts/` | React 18.3.1 UMD и шрифты локально — сайт без внешних запросов |
 | `ios-frame.jsx` → `ios-frame.js` | Исходник и прекомпилированная iOS-рамка для демо |
 
@@ -126,28 +129,28 @@ python3 -m http.server 8788
 
 ## Деплой
 
-GitHub Pages собирает сайт прямо из ветки `main` (branch-based сборка,
-`.nojekyll` в корне) — автоматически при каждом пуше:
+GitHub Pages публикует безопасный артефакт через `.github/workflows/pages.yml`
+после тестов — автоматически при каждом пуше в `main`:
 
 ```bash
 git push
 ```
 
-Примечание: раньше деплой шёл через Actions (`.github/workflows/deploy.yml`),
-но 2026-07-02 очередь Actions-деплоев Pages весь вечер висела — переключил
-на ветковую сборку, она идёт другим пайплайном. Workflow оставлен на ручной
-запуск; как вернуть его — комментарий внутри файла.
+Ручной резервный workflow `.github/workflows/deploy.yml` собирает тот же
+отфильтрованный артефакт. В публикацию не попадают backend, тесты, инструменты,
+README, package-файлы и исходный JSX.
 
 ## Если правите ios-frame.jsx
 
 ```bash
-npm i @babel/standalone@7.29.0
-node -e "const B=require('@babel/standalone'),fs=require('fs');fs.writeFileSync('ios-frame.js',B.transform(fs.readFileSync('ios-frame.jsx','utf8'),{filename:'ios-frame.jsx',presets:['react','typescript']}).code)"
+npm ci
+npm run build:ios-frame
 ```
 
 ## Демо в кейсах
 
-Все 5 демо (обе языковые версии) — клиентские, на моковых данных.
+Интерактивные демо в кейсах — клиентские, на моковых данных. Исключения и
+ссылки на отдельные живые продукты явно подписаны на соответствующих страницах.
 
 **TODO (хуки под будущие бэкенды):**
 - `case-subscriptions.html` — «оплата» это мок-экран ЮKassa; живая оплата =
@@ -155,9 +158,16 @@ node -e "const B=require('@babel/standalone'),fs=require('fs');fs.writeFileSync(
 - `case-crm.html` — «извлечение фактов» заскриптовано на 3 примерах;
   живой вариант — вызов LLM через серверный прокси
 
+## Проверки перед публикацией
+
+```bash
+npm test
+npm run launch:check
+npm audit --omit=dev --audit-level=high
+git diff --check
+```
+
 ## Известные особенности
 
-- Варнинги `[dc-runtime] {{ r.* }} never resolved` на автопрайсере —
-  поведение рантайма Claude Design, есть и в оригинальном экспорте.
 - У шрифта Sora нет кириллицы — русские заголовки рендерятся системным
   fallback-шрифтом (так было и в оригинале; латиница в `/en/` — настоящей Sora).

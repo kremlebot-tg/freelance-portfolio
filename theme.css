@@ -17,10 +17,10 @@
   --text-body: #45596A;
   --text-strong: #2C4254;
   --text-meta: #5A7284;
-  --text-muted: #8FA4B3;
+  --text-muted: #63798A;
   --accent: #1A79C7;
   --accent-hover: #1A79C7;
-  --accent-cta: #229ED9;
+  --accent-cta: #176FAE;
   --accent-tint: #EAF4FB;
   --accent-tint-2: #DBEDF9;
   --online: #31B545;
@@ -58,12 +58,19 @@
   color-scheme: light;
 }
 
-/* Ссылки различаются цветом, кнопками и фокусом — без текстовых подчёркиваний. */
+/* Навигация и кнопки не подчёркиваются; обычные ссылки в тексте остаются
+   узнаваемыми без необходимости различать близкие оттенки. */
 a,
 a:hover,
 a:focus,
 a:active {
   text-decoration: none !important;
+}
+
+main :where(p, li) a:not([role="button"]):not([style*="display:inline-flex"]):not([style*="display: inline-flex"]) {
+  text-decoration: underline !important;
+  text-decoration-thickness: .08em !important;
+  text-underline-offset: .18em;
 }
 
 [data-theme="dark"] {
@@ -132,10 +139,10 @@ a:active {
   --text-body: #45596A;
   --text-strong: #2C4254;
   --text-meta: #5A7284;
-  --text-muted: #8FA4B3;
+  --text-muted: #63798A;
   --accent: #1A79C7;
   --accent-hover: #1A79C7;
-  --accent-cta: #229ED9;
+  --accent-cta: #176FAE;
   --accent-tint: #EAF4FB;
   --accent-tint-2: #DBEDF9;
   --online: #31B545;

@@ -1,0 +1,144 @@
+#!/usr/bin/env python3
+"""Fast, dependency-free checks for the static site and its public surface."""
+
+from __future__ import annotations
+
+from collections import Counter
+from html.parser import HTMLParser
+from pathlib import Path
+from urllib.parse import unquote, urlparse
+import sys
+import xml.etree.ElementTree as ET
+
+
+ROOT = Path(__file__).resolve().parent.parent
+SITE_ORIGIN = "https://rednd.ru"
+SKIP_SCHEMES = ("http://", "https://", "mailto:", "tel:", "data:", "javascript:")
+
+
+class PageParser(HTMLParser):
+    def __init__(self) -> None:
+        super().__init__(convert_charrefs=True)
+        self.ids: list[str] = []
+        self.refs: list[tuple[str, str]] = []
+        self.lang = ""
+        self.title_depth = 0
+        self.title = ""
+        self.descriptions: list[str] = []
+        self.canonicals: list[str] = []
+        self.h1_count = 0
+
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        values = {key: value or "" for key, value in attrs}
+        if tag == "html":
+            self.lang = values.get("lang", "")
+        if tag == "title":
+            self.title_depth += 1
+        if tag == "h1":
+            self.h1_count += 1
+        if values.get("id"):
+            self.ids.append(values["id"])
+        if tag == "meta" and values.get("name", "").lower() == "description":
+            self.descriptions.append(values.get("content", "").strip())
+        if tag == "link" and values.get("rel", "").lower() == "canonical":
+            self.canonicals.append(values.get("href", "").strip())
+        for attr in ("href", "src"):
+            if values.get(attr):
+                self.refs.append((attr, values[attr]))
+
+    def handle_endtag(self, tag: str) -> None:
+        if tag == "title" and self.title_depth:
+            self.title_depth -= 1
+
+    def handle_data(self, data: str) -> None:
+        if self.title_depth:
+            self.title += data
+
+
+def page_for_url(url: str) -> Path:
+    path = unquote(urlparse(url).path)
+    if path.endswith("/"):
+        path += "index.html"
+    return ROOT / path.lstrip("/")
+
+
+def local_target(page: Path, raw: str) -> Path | None:
+    ref = raw.strip()
+    if not ref or ref.startswith(("#", "//")) or ref.startswith(SKIP_SCHEMES):
+        return None
+    if "{{" in ref or "}}" in ref:
+        return None
+    path = unquote(urlparse(ref).path)
+    if not path:
+        return None
+    target = ROOT / path.lstrip("/") if path.startswith("/") else page.parent / path
+    if target.is_dir() or path.endswith("/"):
+        target /= "index.html"
+    return target.resolve()
+
+
+def main() -> int:
+    failures: list[str] = []
+    parsed: dict[Path, PageParser] = {}
+
+    for page in sorted(ROOT.rglob("*.html")):
+        if any(part in {".git", "node_modules", "_site"} for part in page.parts):
+            continue
+        parser = PageParser()
+        try:
+            parser.feed(page.read_text(encoding="utf-8"))
+        except Exception as exc:  # pragma: no cover - diagnostic path
+            failures.append(f"{page.relative_to(ROOT)}: HTML parse failed: {exc}")
+            continue
+        parsed[page.resolve()] = parser
+        duplicates = [value for value, count in Counter(parser.ids).items() if count > 1]
+        if duplicates:
+            failures.append(f"{page.relative_to(ROOT)}: duplicate ids: {', '.join(duplicates)}")
+        for attr, ref in parser.refs:
+            target = local_target(page, ref)
+            if target is not None and not target.exists():
+                failures.append(f"{page.relative_to(ROOT)}: missing {attr} target {ref}")
+
+    ns = {"s": "http://www.sitemaps.org/schemas/sitemap/0.9"}
+    sitemap = ET.parse(ROOT / "sitemap.xml").getroot()
+    urls = [node.text or "" for node in sitemap.findall("s:url/s:loc", ns)]
+    if len(urls) != len(set(urls)):
+        failures.append("sitemap.xml: duplicate URLs")
+    for url in urls:
+        page = page_for_url(url).resolve()
+        parser = parsed.get(page)
+        if parser is None:
+            failures.append(f"sitemap.xml: missing page for {url}")
+            continue
+        rel = page.relative_to(ROOT)
+        if parser.lang not in {"ru", "en"}:
+            failures.append(f"{rel}: missing or unsupported html lang")
+        if not parser.title.strip():
+            failures.append(f"{rel}: missing title")
+        if len(parser.descriptions) != 1 or not parser.descriptions[0]:
+            failures.append(f"{rel}: expected one non-empty meta description")
+        if parser.canonicals != [url]:
+            failures.append(f"{rel}: canonical must be exactly {url}")
+        if parser.h1_count != 1:
+            failures.append(f"{rel}: expected one h1, found {parser.h1_count}")
+
+    for forbidden in ("README.md", "package.json", "package-lock.json", "ios-frame.jsx"):
+        if forbidden in {Path(urlparse(url).path).name for url in urls}:
+            failures.append(f"sitemap.xml: internal file listed: {forbidden}")
+
+    for relative in ("contact.html", "partner-apply.html", "en/contact.html", "en/partner-apply.html"):
+        source = (ROOT / relative).read_text(encoding="utf-8")
+        if "payload.stored === true" not in source or "error.stored ? 'stored' : 'network'" not in source:
+            failures.append(f"{relative}: missing stored-but-not-notified response handling")
+
+    if failures:
+        print("Site checks failed:")
+        for failure in failures:
+            print(f"- {failure}")
+        return 1
+    print(f"Site checks passed: {len(parsed)} HTML files, {len(urls)} sitemap URLs")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

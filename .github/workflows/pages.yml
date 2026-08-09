@@ -22,7 +22,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Verify source
+        run: |
+          npm ci
+          npm test
+          npm audit --omit=dev --audit-level=high
 
       - name: Build public artifact
         run: |
@@ -30,30 +42,35 @@ jobs:
           rsync -a ./ _site/ \
             --exclude '.git/' \
             --exclude '.github/' \
+            --exclude 'node_modules/' \
             --exclude '_site/' \
             --exclude 'server/' \
+            --exclude 'tests/' \
             --exclude 'tools/' \
             --exclude 'yandex-function/' \
             --exclude 'README.md' \
+            --exclude 'package.json' \
+            --exclude 'package-lock.json' \
             --exclude '*.py' \
             --exclude '*.pyc' \
             --exclude '*.jsx' \
             --exclude '.DS_Store'
           test -f _site/index.html
           test -f _site/CNAME
+          test ! -d _site/node_modules
           if find _site -type f \( -name '*.py' -o -name '*.pyc' -o -name '*.jsx' \) | grep -q .; then
             echo 'Internal source leaked into the Pages artifact.'
             exit 1
           fi
 
       - name: Configure Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: _site
 
       - name: Deploy
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5

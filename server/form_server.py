@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
-# DEPRECATED (2026-07-04): форма переехала на Vercel (api/form.js).
-# Причина: IP VPS совпадает с VPN-сервером — у клиентов под VPN
-# запросы к form.rednd.ru таймаутились. Сервис на VPS оставлен
-# работающим, но фронт его больше не использует.
+# DEPRECATED: исторический VPS-вариант формы. Текущий фронт использует
+# Yandex Cloud Function из yandex-function/index.py. VPS-сервис и vhost
+# form.rednd.ru отключены; этот файл хранится только как история реализации.
 """Эндпоинт формы Re:dnd: POST /submit → сообщение в Telegram.
 
 Только стандартная библиотека Python — на сервере не нужны pip/venv.

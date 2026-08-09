@@ -25,7 +25,7 @@
 <link rel="alternate" hreflang="x-default" href="https://rednd.ru/case-autopricer.html">
 <script src="../site-config.js?v=20260801a"></script>
 <script>(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
-<link rel="stylesheet" href="../theme.css?v=20260801a">
+<link rel="stylesheet" href="../theme.css?v=20260809b">
 <script src="../support.js"></script>
 </head>
 <body>
@@ -45,9 +45,14 @@
 @keyframes accOut{from{opacity:1;transform:none}to{opacity:0;transform:translateY(-5px)}}
 @media (prefers-reduced-motion:reduce){.acc-body{animation:none!important}.acc-chev{transition:none}} body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
 .pnl-wrap{-webkit-overflow-scrolling:touch}
-.pnl th:first-child,.pnl td:first-child{position:sticky;left:0;border-right:1px solid var(--border-soft)}
-.pnl thead th:first-child{background:var(--demo-canvas);z-index:3}
-.pnl tbody td:first-child{background:var(--surface);z-index:2}</style>
+.pnl{min-width:620px;font:400 14px Inter,system-ui,sans-serif}
+.pnl-row{display:grid;grid-template-columns:minmax(190px,1.5fr) repeat(4,minmax(78px,.7fr)) minmax(110px,.9fr)}
+.pnl-cell{min-width:0;padding:11px 14px;border-bottom:1px solid var(--demo-line)}
+.pnl-head .pnl-cell{padding-block:12px;background:var(--demo-canvas);color:var(--text-meta);font-size:12.5px;font-weight:600}
+.pnl-cell:first-child{position:sticky;left:0;z-index:2;border-right:1px solid var(--border-soft);background:var(--surface)}
+.pnl-head .pnl-cell:first-child{z-index:3;background:var(--demo-canvas)}
+.pnl-num{text-align:right;font-family:JetBrains Mono,monospace;font-size:13px}
+.pnl-badge{display:inline-block;padding:4px 9px;border-radius:99px;white-space:nowrap;font:500 12px Inter,system-ui,sans-serif}</style>
 </helmet>
 
 <dc-import name="Header" active="projects" brand-name="{{ brandName }}" hint-size="100%,64px"></dc-import>
@@ -119,30 +124,16 @@
 
       <!-- Table -->
       <div class="pnl-wrap" style="min-width:0;overflow-x:auto;border:1px solid var(--border-soft);border-radius:16px">
-        <table class="pnl" style="width:100%;border-collapse:separate;border-spacing:0;font:400 14px Inter,system-ui,sans-serif;min-width:540px">
-          <thead>
-            <tr style="background:var(--demo-canvas)">
-              <th scope="col" style="text-align:left;padding:12px 14px;font:600 12.5px Inter,system-ui,sans-serif;color:var(--text-meta);border-bottom:1px solid var(--border-soft)">Product</th>
-              <th scope="col" style="text-align:right;padding:12px 14px;font:600 12.5px Inter,system-ui,sans-serif;color:var(--text-meta);border-bottom:1px solid var(--border-soft)">Cost</th>
-              <th scope="col" style="text-align:right;padding:12px 14px;font:600 12.5px Inter,system-ui,sans-serif;color:var(--text-meta);border-bottom:1px solid var(--border-soft)">Fee</th>
-              <th scope="col" style="text-align:right;padding:12px 14px;font:600 12.5px Inter,system-ui,sans-serif;color:var(--text-meta);border-bottom:1px solid var(--border-soft)">Price</th>
-              <th scope="col" style="text-align:right;padding:12px 14px;font:600 12.5px Inter,system-ui,sans-serif;color:var(--text-meta);border-bottom:1px solid var(--border-soft)">Margin</th>
-              <th scope="col" style="text-align:left;padding:12px 14px;font:600 12.5px Inter,system-ui,sans-serif;color:var(--text-meta);border-bottom:1px solid var(--border-soft)">Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            <sc-for list="{{ rows }}" as="r" hint-placeholder-count="8">
-              <tr>
-                <td style="padding:11px 14px;border-bottom:1px solid var(--demo-line)">{{ r.name }}</td>
-                <td style="padding:11px 14px;border-bottom:1px solid var(--demo-line);text-align:right;font-family:JetBrains Mono,monospace;font-size:13px;color:var(--text-meta)">{{ r.cost }} ₽</td>
-                <td style="padding:11px 14px;border-bottom:1px solid var(--demo-line);text-align:right;font-family:JetBrains Mono,monospace;font-size:13px;color:var(--text-meta)">{{ r.comm }} %</td>
-                <td style="padding:11px 14px;border-bottom:1px solid var(--demo-line);text-align:right;font-family:JetBrains Mono,monospace;font-size:13.5px;font-weight:500;color:var(--text)">{{ r.price }} ₽</td>
-                <td style="padding:11px 14px;border-bottom:1px solid var(--demo-line);text-align:right;font-family:JetBrains Mono,monospace;font-size:13px;color:{{ r.marginColor }}">{{ r.marginPct }} %</td>
-                <td style="padding:11px 14px;border-bottom:1px solid var(--demo-line)"><span style="font:500 12px Inter,system-ui,sans-serif;padding:4px 9px;border-radius:99px;background:{{ r.badgeBg }};color:{{ r.badgeColor }};white-space:nowrap">{{ r.status }}</span></td>
-              </tr>
-            </sc-for>
-          </tbody>
-        </table>
+        <div class="pnl" role="table" aria-label="Price and margin calculation">
+          <div class="pnl-row pnl-head" role="row">
+            <div class="pnl-cell" role="columnheader">Product</div><div class="pnl-cell pnl-num" role="columnheader">Cost</div><div class="pnl-cell pnl-num" role="columnheader">Fee</div><div class="pnl-cell pnl-num" role="columnheader">Price</div><div class="pnl-cell pnl-num" role="columnheader">Margin</div><div class="pnl-cell" role="columnheader">Status</div>
+          </div>
+          <sc-for list="{{ rows }}" as="r">
+            <div class="pnl-row" role="row">
+              <div class="pnl-cell" role="cell">{{ r.name }}</div><div class="pnl-cell pnl-num" role="cell" style="color:var(--text-meta)">{{ r.cost }} ₽</div><div class="pnl-cell pnl-num" role="cell" style="color:var(--text-meta)">{{ r.comm }} %</div><div class="pnl-cell pnl-num" role="cell" style="color:var(--text);font-weight:500">{{ r.price }} ₽</div><div class="pnl-cell pnl-num" role="cell" style="color:{{ r.marginColor }}">{{ r.marginPct }} %</div><div class="pnl-cell" role="cell"><span class="pnl-badge" style="background:{{ r.badgeBg }};color:{{ r.badgeColor }}">{{ r.status }}</span></div>
+            </div>
+          </sc-for>
+        </div>
       </div>
     </div>
 

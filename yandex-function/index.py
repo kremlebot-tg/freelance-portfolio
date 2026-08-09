@@ -4,6 +4,7 @@
   honeypot → валидация → (1) запись заявки в Object Storage (РФ, ru-central1)
   → и ТОЛЬКО при успехе → (2) уведомление в Telegram.
 Упала запись в бакет → 502, в Telegram ничего не уходит.
+Упало уведомление после записи → 502 с stored=true, заявка остаётся в бакете.
 
 Только стандартная библиотека Python — без requirements/зависимостей.
 Секреты (S3-ключ бакета, токен/chat_id Telegram) НЕ в env и НЕ в коде:
@@ -34,6 +35,7 @@ ALLOWED_ORIGINS = ("https://rednd.ru", "https://www.rednd.ru")
 
 # rate-limit по IP: best-effort, память живёт в пределах одного тёплого
 # инстанса функции и сбрасывается при холодном старте/масштабировании.
+# IP не входит в сохраняемую заявку и не передаётся в Telegram.
 # Основная защита от ботов — honeypot; это лишь грубый предохранитель.
 RATE_MAX = 5
 RATE_WINDOW = 600  # сек
@@ -211,7 +213,7 @@ def handler(event, context):
     dt = datetime.now(timezone.utc)
     record = {
         "lang": lang, "task": task, "type": typ, "budget": budget,
-        "contact": contact, "ip": ip,
+        "contact": contact,
         "received_at": dt.strftime("%Y-%m-%dT%H:%M:%SZ"),
     }
     obj_key = f"leads/{dt:%Y/%m/%d}/{dt:%Y%m%dT%H%M%SZ}-{uuid.uuid4().hex}.json"
@@ -226,10 +228,10 @@ def handler(event, context):
         return _resp(502, {"error": "storage write failed"}, cors)
 
     # --- шаг 2: уведомление в Telegram (только после успешной записи). ---
-    # Заявка уже сохранена (152-ФЗ выполнен) — TG best-effort, его сбой
-    # не роняет ответ пользователю (данные в бакете = источник истины),
-    # но ошибку НЕ глушим: пишем код и описание от Telegram в лог.
+    # Заявка уже сохранена, но пользователь должен знать, если оперативное
+    # уведомление не доставлено. Источник истины — объект в бакете.
     import sys as _sys
+    telegram_ok = False
     try:
         tg = _lockbox(TG_SECRET_ID)
         tok = tg.get("TG_BOT_TOKEN", "")
@@ -250,9 +252,16 @@ def handler(event, context):
             f"Контакт: {contact}"
         )
         ok, status, desc = _send_telegram(tok, cid, text)
+        telegram_ok = ok
         if not ok:
             print(f"[rednd-form][tg] sendMessage FAILED http={status} resp={desc}", file=_sys.stderr)
     except Exception as e:  # noqa: BLE001
         print(f"[rednd-form][tg] step error: {type(e).__name__}: {e}", file=_sys.stderr)
 
+    if not telegram_ok:
+        return _resp(
+            502,
+            {"error": "notification delivery failed", "stored": True},
+            cors,
+        )
     return _resp(200, {"ok": True}, cors)

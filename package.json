@@ -1,0 +1,14 @@
+{
+  "name": "rednd-portfolio",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "build:ios-frame": "node --no-warnings tools/build-ios-frame.cjs",
+    "check:ios-frame": "node --no-warnings tools/build-ios-frame.cjs --check",
+    "launch:check": "python3 tools/check_site.py",
+    "test": "python3 tools/check_site.py && python3 -m unittest discover -s tests -v && node --check support.js && node --check site-config.js && npm run check:ios-frame"
+  },
+  "devDependencies": {
+    "@babel/standalone": "7.29.0"
+  }
+}

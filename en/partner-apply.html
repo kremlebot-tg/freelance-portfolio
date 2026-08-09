@@ -25,7 +25,7 @@
 <link rel="alternate" hreflang="x-default" href="https://rednd.ru/partner-apply.html">
 <script src="../site-config.js?v=20260801a"></script>
 <script>(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
-<link rel="stylesheet" href="../theme.css?v=20260801a">
+<link rel="stylesheet" href="../theme.css?v=20260809b">
 <script src="../support.js"></script>
 </head>
 <body>
@@ -183,9 +183,11 @@ class Component extends DCLogic {
       aboutInvalid: this.state.error && !this.state.about.trim() ? 'true' : 'false',
       contactInvalid: this.state.error && !this.state.contact.trim() ? 'true' : 'false',
       formErrorId: this.state.error ? 'form-error' : '',
-      errorText: this.state.errorKind === 'network'
-        ? "Couldn't send — try again or message us directly on Telegram."
-        : 'Add a couple of words about yourself and a contact, otherwise we can\'t reply.',
+      errorText: this.state.errorKind === 'stored'
+        ? 'Your request was saved, but the notification is delayed. If it is urgent, message us directly on Telegram.'
+        : this.state.errorKind === 'network'
+          ? "Couldn't send — try again or message us directly on Telegram."
+          : 'Add a couple of words about yourself and a contact, otherwise we can\'t reply.',
       sending: this.state.sending,
       submitLabel: this.state.sending ? 'Sending…' : 'Send application',
       echoContact: this.state.contact || 'Telegram',
@@ -224,12 +226,18 @@ class Component extends DCLogic {
             contact: this.state.contact,
             website: this.state.website || '',
           }),
-        }).then(res => {
-          if (!res.ok) throw new Error('HTTP ' + res.status);
+        }).then(async res => {
+          let payload = {};
+          try { payload = await res.json(); } catch (e) {}
+          if (!res.ok) {
+            const error = new Error('HTTP ' + res.status);
+            error.stored = payload.stored === true;
+            throw error;
+          }
           this.setState({ sending: false, submitted: true, error: false });
           try { var _m = window.SITE_CONFIG && window.SITE_CONFIG.metrikaId; if (window.ym && _m) window.ym(_m, 'reachGoal', 'partner_apply'); } catch (e) {}
-        }).catch(() => {
-          this.setState({ sending: false, error: true, errorKind: 'network' });
+        }).catch(error => {
+          this.setState({ sending: false, error: true, errorKind: error.stored ? 'stored' : 'network' });
         });
       },
       onReset: () => this.setState({ role: 'Entrepreneur', about: '', contact: '', website: '', submitted: false, error: false, errorKind: '', sending: false }),

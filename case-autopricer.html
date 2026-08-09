@@ -3,20 +3,20 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Кейс: автопрайсер и P&amp;L для маркетплейса — Re:dnd</title>
-<meta name="description" content="Система для маркетплейса: по фактическим транзакциям сводит P&amp;L по каждому товару каталога, находит убыточные позиции и переоценивает каталог в плюс. Живое демо внутри.">
+<title>Кейс: безопасный репрайсер и юнит-экономика Ozon — Re:dnd</title>
+<meta name="description" content="Внутренний операторский инструмент для Ozon: раздельные сценарии FBS и FBO, dry-run, canary, rollback и проверка ценовых записей. Интерактивное демо на синтетических данных.">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Re:dnd">
 <meta property="og:locale" content="ru_RU">
 <meta property="og:url" content="https://rednd.ru/case-autopricer.html">
-<meta property="og:title" content="Кейс: автопрайсер и P&amp;L для маркетплейса — Re:dnd">
-<meta property="og:description" content="Система для маркетплейса: по фактическим транзакциям сводит P&amp;L по каждому товару каталога, находит убыточные позиции и переоценивает каталог в плюс. Живое демо внутри.">
+<meta property="og:title" content="Кейс: безопасный репрайсер и юнит-экономика Ozon — Re:dnd">
+<meta property="og:description" content="Внутренний операторский инструмент для Ozon: раздельные сценарии FBS и FBO, dry-run, canary, rollback и проверка ценовых записей. Интерактивное демо на синтетических данных.">
 <meta property="og:image" content="https://rednd.ru/og-case-autopricer.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Кейс: автопрайсер и P&amp;L для маркетплейса — Re:dnd">
-<meta name="twitter:description" content="Система для маркетплейса: по фактическим транзакциям сводит P&amp;L по каждому товару каталога, находит убыточные позиции и переоценивает каталог в плюс. Живое демо внутри.">
+<meta name="twitter:title" content="Кейс: безопасный репрайсер и юнит-экономика Ozon — Re:dnd">
+<meta name="twitter:description" content="Внутренний операторский инструмент для Ozon: раздельные сценарии FBS и FBO, dry-run, canary, rollback и проверка ценовых записей. Интерактивное демо на синтетических данных.">
 <meta name="twitter:image" content="https://rednd.ru/og-case-autopricer.png">
 <link rel="canonical" href="https://rednd.ru/case-autopricer.html">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -63,18 +63,18 @@
 
   <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:28px">
     <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
-      <span style="font:500 13px JetBrains Mono,monospace;color:var(--accent)">[Автоматизация · Аналитика]</span>
-      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:var(--online)"></span>система ценообразования</span>
+      <span style="font:500 13px JetBrains Mono,monospace;color:var(--accent)">[Ozon · Автоматизация · Аналитика]</span>
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:var(--online)"></span>внутренний инструмент · human-in-the-loop</span>
     </div>
-    <h1 style="margin:0;font:700 clamp(28px,4vw,42px)/1.15 Sora,sans-serif;letter-spacing:-0.02em">Автопрайсер и P&amp;L для маркетплейса</h1>
-    <p style="margin:0;font:400 clamp(15.5px,1.6vw,18px)/1.55 Inter,system-ui,sans-serif;color:var(--text-body);max-width:720px">Система, которая по фактическим деньгам маркетплейса находит, какие из тысяч товаров зарабатывают, а какие тихо жгут бюджет, и переоценивает каталог так, чтобы каждый активный товар был в плюсе.</p>
+    <h1 style="margin:0;font:700 clamp(28px,4vw,42px)/1.15 Sora,sans-serif;letter-spacing:-0.02em">Безопасный репрайсер и юнит-экономика для Ozon</h1>
+    <p style="margin:0;font:400 clamp(15.5px,1.6vw,18px)/1.55 Inter,system-ui,sans-serif;color:var(--text-body);max-width:760px">Операторский инструмент для каталога в несколько тысяч SKU: объединяет данные Ozon и поставщика, рассчитывает защитную цену для FBS и отдельно управляет ликвидацией FBO. Цены меняются только после dry-run, проверки человеком и подготовки отката.</p>
   </div>
 
   <!-- ============ DEMO ============ -->
-  <section aria-label="Живое демо: дашборд ценообразования" style="background:var(--surface);border:1px solid var(--border);border-radius:22px;padding:clamp(18px,3vw,32px);display:flex;flex-direction:column;gap:18px">
+  <section aria-label="Интерактивное демо на синтетических данных" style="background:var(--surface);border:1px solid var(--border);border-radius:22px;padding:clamp(18px,3vw,32px);display:flex;flex-direction:column;gap:18px">
     <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
-      <span style="display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 13px Inter,system-ui,sans-serif"><span style="width:7px;height:7px;border-radius:50%;background:var(--online)"></span>живое демо: двигайте параметры, цены пересчитываются сразу</span>
-      <span style="margin-left:auto;font:400 12px JetBrains Mono,monospace;color:var(--text-muted)">// настоящая математика на моковых товарах</span>
+      <span style="display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 13px Inter,system-ui,sans-serif"><span style="width:7px;height:7px;border-radius:50%;background:var(--online)"></span>интерактивное демо · синтетические данные</span>
+      <span style="margin-left:auto;font:400 12px JetBrains Mono,monospace;color:var(--text-muted)">// упрощённая модель, не production-интерфейс</span>
     </div>
 
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr));gap:16px;align-items:start">
@@ -85,35 +85,35 @@
 
         <label style="display:flex;flex-direction:column;gap:8px">
           <span style="display:flex;justify-content:space-between;font:500 13.5px Inter,system-ui,sans-serif;color:var(--text-strong)">Изменение себестоимости<span style="font:500 13px JetBrains Mono,monospace;color:var(--accent)">{{ costDeltaLabel }}</span></span>
-          <input type="range" min="-20" max="30" step="1" value="{{ costDelta }}" onChange="{{ onCostDelta }}" style="width:100%;accent-color:var(--accent-cta)" style-focus-visible="outline:2px solid var(--accent);outline-offset:3px">
+          <input type="range" min="-20" max="30" step="1" value="{{ costDelta }}" onInput="{{ onCostDelta }}" style="width:100%;accent-color:var(--accent-cta)" style-focus-visible="outline:2px solid var(--accent);outline-offset:3px">
         </label>
 
         <label style="display:flex;flex-direction:column;gap:8px">
           <span style="display:flex;justify-content:space-between;font:500 13.5px Inter,system-ui,sans-serif;color:var(--text-strong)">Фулфилмент и логистика<span style="font:500 13px JetBrains Mono,monospace;color:var(--accent)">+{{ fulfil }} ₽/шт</span></span>
-          <input type="range" min="0" max="300" step="5" value="{{ fulfil }}" onChange="{{ onFulfil }}" style="width:100%;accent-color:var(--accent-cta)" style-focus-visible="outline:2px solid var(--accent);outline-offset:3px">
+          <input type="range" min="0" max="300" step="5" value="{{ fulfil }}" onInput="{{ onFulfil }}" style="width:100%;accent-color:var(--accent-cta)" style-focus-visible="outline:2px solid var(--accent);outline-offset:3px">
         </label>
 
         <label style="display:flex;flex-direction:column;gap:8px">
-          <span style="display:flex;justify-content:space-between;font:500 13.5px Inter,system-ui,sans-serif;color:var(--text-strong)">Желаемая маржа<span style="font:500 13px JetBrains Mono,monospace;color:var(--accent)">{{ margin }} % от цены</span></span>
-          <input type="range" min="5" max="45" step="1" value="{{ margin }}" onChange="{{ onMargin }}" style="width:100%;accent-color:var(--accent-cta)" style-focus-visible="outline:2px solid var(--accent);outline-offset:3px">
+          <span style="display:flex;justify-content:space-between;font:500 13.5px Inter,system-ui,sans-serif;color:var(--text-strong)">Целевая маржа демо<span style="font:500 13px JetBrains Mono,monospace;color:var(--accent)">{{ margin }} % от цены</span></span>
+          <input type="range" min="5" max="45" step="1" value="{{ margin }}" onInput="{{ onMargin }}" style="width:100%;accent-color:var(--accent-cta)" style-focus-visible="outline:2px solid var(--accent);outline-offset:3px">
         </label>
 
         <div style="display:flex;flex-direction:column;gap:14px;border-top:1px dashed var(--border-input);padding-top:16px">
           <span style="font:500 13px Inter,system-ui,sans-serif;color:var(--text-meta)">Коридор цен — защита от крайностей</span>
           <label style="display:flex;flex-direction:column;gap:8px">
             <span style="display:flex;justify-content:space-between;font:500 13.5px Inter,system-ui,sans-serif;color:var(--text-strong)">Не ниже, наценка к себестоимости<span style="font:500 13px JetBrains Mono,monospace;color:var(--accent)">+{{ floorPct }} %</span></span>
-            <input type="range" min="10" max="100" step="5" value="{{ floorPct }}" onChange="{{ onFloor }}" style="width:100%;accent-color:var(--accent-cta)" style-focus-visible="outline:2px solid var(--accent);outline-offset:3px">
+            <input type="range" min="10" max="100" step="5" value="{{ floorPct }}" onInput="{{ onFloor }}" style="width:100%;accent-color:var(--accent-cta)" style-focus-visible="outline:2px solid var(--accent);outline-offset:3px">
           </label>
           <label style="display:flex;flex-direction:column;gap:8px">
             <span style="display:flex;justify-content:space-between;font:500 13.5px Inter,system-ui,sans-serif;color:var(--text-strong)">Не выше<span style="font:500 13px JetBrains Mono,monospace;color:var(--accent)">×{{ maxMult }} себестоимости</span></span>
-            <input type="range" min="1.5" max="5" step="0.1" value="{{ maxMultRaw }}" onChange="{{ onMaxMult }}" style="width:100%;accent-color:var(--accent-cta)" style-focus-visible="outline:2px solid var(--accent);outline-offset:3px">
+            <input type="range" min="1.5" max="5" step="0.1" value="{{ maxMultRaw }}" onInput="{{ onMaxMult }}" style="width:100%;accent-color:var(--accent-cta)" style-focus-visible="outline:2px solid var(--accent);outline-offset:3px">
           </label>
         </div>
 
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;border-top:1px dashed var(--border-input);padding-top:16px">
           <div style="display:flex;flex-direction:column;gap:3px">
             <span style="font:700 22px Sora,sans-serif;color:var(--accent)">{{ avgMargin }} %</span>
-            <span style="font:400 12.5px/1.4 Inter,system-ui,sans-serif;color:var(--text-meta)">средняя фактическая маржа</span>
+            <span style="font:400 12.5px/1.4 Inter,system-ui,sans-serif;color:var(--text-meta)">средняя расчётная маржа</span>
           </div>
           <div style="display:flex;flex-direction:column;gap:3px">
             <span style="font:700 22px Sora,sans-serif;color:{{ clampedColor }}">{{ clampedCount }}</span>
@@ -137,56 +137,63 @@
       </div>
     </div>
 
-    <p style="margin:0;font:400 13.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-meta);max-width:720px">В демо 8 товаров. В полном расчёте те же формулы работают по всему каталогу: себестоимость и комиссии подтягиваются из Ozon API, цены обновляются по расписанию.</p>
+    <p style="margin:0;font:400 13.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-meta);max-width:800px">Демо показывает механику коридора цен на 8 вымышленных товарах. Production-модель FBS дополнительно учитывает эквайринг, ступени комиссии, базовый и стрессовый сценарии логистики и проверенную закупочную цену поставщика. Плановые мониторы читают данные автоматически; запись цен подтверждает оператор.</p>
   </section>
 
   <!-- ============ CASE STORY ============ -->
   <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,470px),1fr));gap:16px;margin-top:24px">
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
       <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">01 · задача</span>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">Магазин с большим каталогом, один оператор. На вопрос «этот товар продаётся в плюс или в минус?» не было ответа ни по одной позиции: маркетплейс удерживает около половины цены, сам навешивает скидки, а часть расходов списывает на уровне аккаунта, не привязывая к конкретным товарам. Управлять этим вручную невозможно.</p>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">Один оператор управляет большим каталогом Ozon. Закупочные цены, комиссии, логистика, остатки и состояние поставщика меняются независимо. Нужно рассчитывать безопасные цены, не смешивать разные цели FBS и FBO и не превращать массовую операцию в неконтролируемый риск.</p>
     </div>
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
       <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">02 · как решали</span>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">Собрали систему на Python, которая тянет из API маркетплейса фактические финансовые транзакции — начисления, комиссии, логистику, возвраты, штрафы — и сводит их в P&amp;L по каждому проданному товару. Дальше позиции классифицируются: прибыльные, тонкие, убыточные из-за цены, убыточные из-за возвратов. Для переоценки считается «пол цены» от закупки с реальной, а не заявленной комиссией.</p>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">Любое изменение сначала проходит dry-run: система показывает план «было → станет», и только после подтверждения человеком пишет цены обратно, сохранив снимок для отката.</p>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">Python-инструменты читают цены, остатки, заказы и финансовые операции из Ozon Seller API, а закупочную цену — из Sima-land API. Прогнозная модель FBS считает целевую цену с учётом комиссии, эквайринга, логистики и фулфилмента. Исторический P&amp;L строится только для проданных SKU и остаётся приблизительным там, где расходы нельзя надёжно отнести к товару.</p>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">Результат работы — проверяемый файловый план в CSV, JSON или XLSX. Автоматической записи без участия человека нет.</p>
     </div>
     <div style="grid-column:1/-1;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
-      <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">03 · что оказалось сложным</span>
+      <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">03 · безопасность изменений</span>
       <div class="acc" data-state="{{ hardAState }}">
-        <button type="button" class="acc-sum" onClick="{{ onHardA }}" aria-expanded="{{ hardAExp }}" aria-controls="ap-h1" style="font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);max-width:760px">Первая версия юнит-экономики опиралась на заявленные тарифы маркетплейса и показала: магазин глубоко убыточен, большинство продаж в минус.<span class="acc-chev" aria-hidden="true">▾</span></button>
+        <button type="button" class="acc-sum" onClick="{{ onHardA }}" aria-expanded="{{ hardAExp }}" aria-controls="ap-h1" style="font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);max-width:820px">У FBS и FBO одна карточка товара, но разные задачи ценообразования.<span class="acc-chev" aria-hidden="true">▾</span></button>
         <div id="ap-h1" class="acc-body" style="animation:{{ hardAAnim }}"><div class="acc-inner">
-          <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px">Напрашивалось закрытие. Вместо этого мы сверили расчёт с фактическими транзакциями, и картина оказалась противоположной. Разбор вскрыл систематические перекосы: реальная комиссия заметно ниже заявленной, реальная логистика существенно ниже максимальных тарифов, а аналитический эндпоинт недосчитывал продажи против финансового.</p>
+          <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:820px">Для FBS система защищает нижнюю границу цены и не предлагает снижение. Для FBO используется отдельный ликвидационный сценарий: снижение не более 20%, только когда есть остаток FBO и одновременно нет остатка FBS. Это не даёт распродаже склада случайно ухудшить экономику активного FBS.</p>
         </div></div>
       </div>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-body);text-wrap:pretty;max-width:760px;border-left:2px solid var(--border-hover);padding-left:14px">Отсюда принцип, зашитый в систему: прогнозную модель используем только для будущих цен, а финансовый результат берём только из фактических транзакций.</p>
+      <p style="margin:0;font:500 14px/1.65 JetBrains Mono,monospace;color:var(--text-body);text-wrap:pretty;max-width:900px;border-left:2px solid var(--border-hover);padding-left:14px">live read → dry-run → ручная проверка → подтверждение → rollback → canary → малая партия → перечитывание API → карантинная проверка</p>
       <div class="acc" data-state="{{ hardBState }}">
-        <button type="button" class="acc-sum" onClick="{{ onHardB }}" aria-expanded="{{ hardBExp }}" aria-controls="ap-h2" style="font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);max-width:760px">Вторая находка того же порядка: цена, которую видит покупатель, и цена, которую начисляют продавцу, — разные числа.<span class="acc-chev" aria-hidden="true">▾</span></button>
+        <button type="button" class="acc-sum" onClick="{{ onHardB }}" aria-expanded="{{ hardBExp }}" aria-controls="ap-h2" style="font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);max-width:820px">Перед записью система заново проверяет состояние товара и останавливается при сомнении.<span class="acc-chev" aria-hidden="true">▾</span></button>
         <div id="ap-h2" class="acc-body" style="animation:{{ hardBAnim }}"><div class="acc-inner">
-          <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px">Вся оценка конкурентности была построена на неверном из них. После сверки отправлений с начислениями правило стало жёстким: экономика каждого товара обязана сходиться в плюс на собственном начислении, без учёта внешних скидок маркетплейса.</p>
+          <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:820px">Проверяются актуальные цена и себестоимость, нижняя граница, рыночный индекс и стрессовая экономика. Партия ограничена 25 позициями, до записи сохраняется откат, после — цена перечитывается из API. Ошибка сети, расхождение данных или карантин останавливают следующую волну и требуют решения оператора.</p>
         </div></div>
       </div>
     </div>
     <div style="grid-column:1/-1;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
-      <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">04 · что делает система</span>
-      <ul style="margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px;font:400 15px/1.55 Inter,system-ui,sans-serif;color:var(--text-strong);max-width:760px">
-        <li>История продаж сводится в P&amp;L по каждой позиции каталога.</li>
-        <li>Скрытые расходы на уровне аккаунта, которые незаметно съедают товарный плюс, находятся и отключаются.</li>
-        <li>Товары с аномальной возвратностью выявляются и снимаются или гасятся заградительной ценой.</li>
-        <li>Массовая переоценка идёт пакетами, каждая запись проверяется обратным чтением.</li>
-        <li>Цепочка dry-run → откат → ручной гейт → верификация не даёт скрипту обвалить магазин.</li>
-      </ul>
+      <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">04 · подтверждённый результат</span>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));gap:10px">
+        <div style="background:var(--demo-canvas);border:1px solid var(--border-soft);border-radius:12px;padding:16px"><strong style="display:block;font:700 26px/1 Sora,sans-serif;color:var(--accent)">7 473 SKU</strong><span style="display:block;margin-top:7px;font:400 13.5px/1.5 Inter,system-ui,sans-serif;color:var(--text-meta)">в проверенном аудите 21 июля 2026 года</span></div>
+        <div style="background:var(--demo-canvas);border:1px solid var(--border-soft);border-radius:12px;padding:16px"><strong style="display:block;font:700 26px/1 Sora,sans-serif;color:var(--accent)">3 / 2 932</strong><span style="display:block;margin-top:7px;font:400 13.5px/1.5 Inter,system-ui,sans-serif;color:var(--text-meta)">прошли автоматически / отправлены на ручную проверку</span></div>
+        <div style="background:var(--demo-canvas);border:1px solid var(--border-soft);border-radius:12px;padding:16px"><strong style="display:block;font:700 26px/1 Sora,sans-serif;color:var(--accent)">19 SKU</strong><span style="display:block;margin-top:7px;font:400 13.5px/1.5 Inter,system-ui,sans-serif;color:var(--text-meta)">с подтверждёнными ценовыми записями достигли целевых значений</span></div>
+      </div>
+      <p style="margin:0;font:400 14px/1.6 Inter,system-ui,sans-serif;color:var(--text-body);text-wrap:pretty;max-width:860px">126 автоматических тестов проходят. Отдельный причинный замер финансового эффекта до/после не проводился, поэтому кейс не приписывает системе неподтверждённый рост прибыли.</p>
+    </div>
+    <div style="grid-column:1/-1;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:20px">
+      <div style="display:flex;flex-direction:column;gap:8px"><span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">05 · границы решения</span><p style="margin:0;font:400 14.5px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">Это production-assisted инструмент, а не автономный сервис: единой production-БД и общего планировщика пока нет. Налоги не включены в модель, часть P&amp;L приблизительна, сетевую устойчивость плановых мониторов нужно усиливать. Ценовые записи и выход из карантина остаются за оператором.</p></div>
+      <div style="display:flex;flex-direction:column;gap:8px"><span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">роль в проекте</span><p style="margin:0;font:400 14.5px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">Я определял бизнес-правила, стратегии FBS и FBO, допустимый риск и решения о каждой записи; сверял результат с заказами и начислениями. ИИ помогал с инженерной реализацией, тестами и rollback-механикой.</p></div>
     </div>
   </section>
 
   <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:20px">
     <span style="font:500 13px JetBrains Mono,monospace;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 11px">Python</span>
-    <span style="font:500 13px JetBrains Mono,monospace;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 11px">pandas</span>
+    <span style="font:500 13px JetBrains Mono,monospace;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 11px">httpx</span>
+    <span style="font:500 13px JetBrains Mono,monospace;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 11px">pydantic-settings</span>
+    <span style="font:500 13px JetBrains Mono,monospace;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 11px">pytest</span>
     <span style="font:500 13px JetBrains Mono,monospace;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 11px">Ozon Seller API</span>
-    <span style="font:500 13px JetBrains Mono,monospace;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 11px">API поставщика</span>
+    <span style="font:500 13px JetBrains Mono,monospace;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 11px">Sima-land API</span>
+    <span style="font:500 13px JetBrains Mono,monospace;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 11px">launchd</span>
+    <span style="font:500 13px JetBrains Mono,monospace;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 11px">CSV · JSON · XLSX</span>
   </div>
 
-  <dc-import name="CaseCTA" q="Нужен автопрайсер под ваш каталог?" hint-size="100%,170px"></dc-import>
+  <dc-import name="CaseCTA" q="Нужна безопасная автоматизация цен?" hint-size="100%,170px"></dc-import>
 
   <div style="display:flex;align-items:center;gap:12px;margin-top:18px;flex-wrap:wrap">
     <a href="case-mutual.html" style="margin-left:auto;display:inline-flex;align-items:center;min-height:44px;font:500 15px Inter,system-ui,sans-serif;color:var(--accent);text-decoration:none;border-radius:8px;padding:6px 8px" style-hover="background:var(--accent-tint)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">следующий кейс: MUTUAL →</a>

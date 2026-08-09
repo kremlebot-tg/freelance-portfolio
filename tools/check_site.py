@@ -131,6 +131,34 @@ def main() -> int:
         if "payload.stored === true" not in source or "error.stored ? 'stored' : 'network'" not in source:
             failures.append(f"{relative}: missing stored-but-not-notified response handling")
 
+    autopricer_pages = {
+        "case-autopricer.html": ("синтетических данных", "средняя расчётная маржа"),
+        "en/case-autopricer.html": ("synthetic data", "avg calculated margin"),
+    }
+    for relative, required_copy in autopricer_pages.items():
+        source = (ROOT / relative).read_text(encoding="utf-8")
+        if source.count('type="range"') != 5 or source.count('onInput="{{ on') != 5:
+            failures.append(f"{relative}: all five demo ranges must update continuously via onInput")
+        if 'onChange="{{ on' in source:
+            failures.append(f"{relative}: demo range still uses delayed onChange handling")
+        for copy in required_copy:
+            if copy not in source:
+                failures.append(f"{relative}: missing transparent demo label {copy!r}")
+
+    repricer_overclaims = (
+        "каждый активный товар был в плюсе",
+        "переоценивает каталог в плюс",
+        "reprices the catalogue into profit",
+        "every active product turns a profit",
+    )
+    for page in ROOT.rglob("*.html"):
+        if any(part in {".git", "node_modules", "_site"} for part in page.parts):
+            continue
+        source = page.read_text(encoding="utf-8")
+        for claim in repricer_overclaims:
+            if claim in source:
+                failures.append(f"{page.relative_to(ROOT)}: unsupported repricer claim {claim!r}")
+
     if failures:
         print("Site checks failed:")
         for failure in failures:

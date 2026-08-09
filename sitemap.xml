@@ -3,24 +3,28 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://rednd.ru/</loc>
+    <lastmod>2026-08-09</lastmod>
     <xhtml:link rel="alternate" hreflang="ru" href="https://rednd.ru/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://rednd.ru/en/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://rednd.ru/"/>
   </url>
   <url>
     <loc>https://rednd.ru/en/</loc>
+    <lastmod>2026-08-09</lastmod>
     <xhtml:link rel="alternate" hreflang="ru" href="https://rednd.ru/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://rednd.ru/en/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://rednd.ru/"/>
   </url>
   <url>
     <loc>https://rednd.ru/about.html</loc>
+    <lastmod>2026-08-09</lastmod>
     <xhtml:link rel="alternate" hreflang="ru" href="https://rednd.ru/about.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://rednd.ru/en/about.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://rednd.ru/about.html"/>
   </url>
   <url>
     <loc>https://rednd.ru/en/about.html</loc>
+    <lastmod>2026-08-09</lastmod>
     <xhtml:link rel="alternate" hreflang="ru" href="https://rednd.ru/about.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://rednd.ru/en/about.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://rednd.ru/about.html"/>
@@ -39,6 +43,7 @@
   </url>
   <url>
     <loc>https://rednd.ru/projects.html</loc>
+    <lastmod>2026-08-09</lastmod>
     <xhtml:link rel="alternate" hreflang="ru" href="https://rednd.ru/projects.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://rednd.ru/en/projects.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://rednd.ru/projects.html"/>
@@ -63,6 +68,7 @@
   </url>
   <url>
     <loc>https://rednd.ru/en/projects.html</loc>
+    <lastmod>2026-08-09</lastmod>
     <xhtml:link rel="alternate" hreflang="ru" href="https://rednd.ru/projects.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://rednd.ru/en/projects.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://rednd.ru/projects.html"/>
@@ -81,12 +87,14 @@
   </url>
   <url>
     <loc>https://rednd.ru/partner.html</loc>
+    <lastmod>2026-08-09</lastmod>
     <xhtml:link rel="alternate" hreflang="ru" href="https://rednd.ru/partner.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://rednd.ru/en/partner.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://rednd.ru/partner.html"/>
   </url>
   <url>
     <loc>https://rednd.ru/en/partner.html</loc>
+    <lastmod>2026-08-09</lastmod>
     <xhtml:link rel="alternate" hreflang="ru" href="https://rednd.ru/partner.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://rednd.ru/en/partner.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://rednd.ru/partner.html"/>
@@ -129,12 +137,14 @@
   </url>
   <url>
     <loc>https://rednd.ru/case-autopricer.html</loc>
+    <lastmod>2026-08-09</lastmod>
     <xhtml:link rel="alternate" hreflang="ru" href="https://rednd.ru/case-autopricer.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://rednd.ru/en/case-autopricer.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://rednd.ru/case-autopricer.html"/>
   </url>
   <url>
     <loc>https://rednd.ru/en/case-autopricer.html</loc>
+    <lastmod>2026-08-09</lastmod>
     <xhtml:link rel="alternate" hreflang="ru" href="https://rednd.ru/case-autopricer.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://rednd.ru/en/case-autopricer.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://rednd.ru/case-autopricer.html"/>

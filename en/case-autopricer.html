@@ -3,20 +3,20 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Case Study: Autopricer &amp; P&amp;L for a Marketplace — Re:dnd</title>
-<meta name="description" content="A system for a marketplace: from actual transactions it builds a P&amp;L for each product in the catalogue, finds loss-making items and reprices the catalogue into profit. Live demo inside.">
+<title>Case study: safe Ozon repricing and unit economics — Re:dnd</title>
+<meta name="description" content="An internal Ozon operations tool with separate FBS and FBO flows, dry-runs, canaries, rollbacks, and write verification. Interactive demo with synthetic data.">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Re:dnd">
 <meta property="og:locale" content="en_US">
 <meta property="og:url" content="https://rednd.ru/en/case-autopricer.html">
-<meta property="og:title" content="Case Study: Autopricer &amp; P&amp;L for a Marketplace — Re:dnd">
-<meta property="og:description" content="A system for a marketplace: from actual transactions it builds a P&amp;L for each product in the catalogue, finds loss-making items and reprices the catalogue into profit. Live demo inside.">
+<meta property="og:title" content="Case study: safe Ozon repricing and unit economics — Re:dnd">
+<meta property="og:description" content="An internal Ozon operations tool with separate FBS and FBO flows, dry-runs, canaries, rollbacks, and write verification. Interactive demo with synthetic data.">
 <meta property="og:image" content="https://rednd.ru/og-case-autopricer.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Case Study: Autopricer &amp; P&amp;L for a Marketplace — Re:dnd">
-<meta name="twitter:description" content="A system for a marketplace: from actual transactions it builds a P&amp;L for each product in the catalogue, finds loss-making items and reprices the catalogue into profit. Live demo inside.">
+<meta name="twitter:title" content="Case study: safe Ozon repricing and unit economics — Re:dnd">
+<meta name="twitter:description" content="An internal Ozon operations tool with separate FBS and FBO flows, dry-runs, canaries, rollbacks, and write verification. Interactive demo with synthetic data.">
 <meta name="twitter:image" content="https://rednd.ru/og-case-autopricer.png">
 <link rel="canonical" href="https://rednd.ru/en/case-autopricer.html">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
@@ -63,18 +63,18 @@
 
   <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:28px">
     <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
-      <span style="font:500 13px JetBrains Mono,monospace;color:var(--accent)">[Automation · Analytics]</span>
-      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:var(--online)"></span>pricing system</span>
+      <span style="font:500 13px JetBrains Mono,monospace;color:var(--accent)">[Ozon · Automation · Analytics]</span>
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:var(--online)"></span>internal tool · human-in-the-loop</span>
     </div>
-    <h1 style="margin:0;font:700 clamp(28px,4vw,42px)/1.15 Sora,sans-serif;letter-spacing:-0.02em">Autopricer &amp; P&amp;L for a marketplace</h1>
-    <p style="margin:0;font:400 clamp(15.5px,1.6vw,18px)/1.55 Inter,system-ui,sans-serif;color:var(--text-body);max-width:720px">A system that uses the marketplace's real money to find which of thousands of products earn and which quietly burn budget, then reprices the catalogue so every active product turns a profit.</p>
+    <h1 style="margin:0;font:700 clamp(28px,4vw,42px)/1.15 Sora,sans-serif;letter-spacing:-0.02em">Safe Ozon repricing and unit economics</h1>
+    <p style="margin:0;font:400 clamp(15.5px,1.6vw,18px)/1.55 Inter,system-ui,sans-serif;color:var(--text-body);max-width:760px">An operator tool for a catalogue with thousands of SKUs. It combines Ozon and supplier data, calculates a protective FBS price, and handles FBO liquidation separately. Prices change only after a dry-run, human review, and rollback preparation.</p>
   </div>
 
   <!-- ============ DEMO ============ -->
-  <section aria-label="Live demo: pricing dashboard" style="background:var(--surface);border:1px solid var(--border);border-radius:22px;padding:clamp(18px,3vw,32px);display:flex;flex-direction:column;gap:18px">
+  <section aria-label="Interactive demo with synthetic data" style="background:var(--surface);border:1px solid var(--border);border-radius:22px;padding:clamp(18px,3vw,32px);display:flex;flex-direction:column;gap:18px">
     <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
-      <span style="display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 13px Inter,system-ui,sans-serif"><span style="width:7px;height:7px;border-radius:50%;background:var(--online)"></span>live demo: move the sliders, prices recalculate instantly</span>
-      <span style="margin-left:auto;font:400 12px JetBrains Mono,monospace;color:var(--text-muted)">// real math on mock products</span>
+      <span style="display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 13px Inter,system-ui,sans-serif"><span style="width:7px;height:7px;border-radius:50%;background:var(--online)"></span>interactive demo · synthetic data</span>
+      <span style="margin-left:auto;font:400 12px JetBrains Mono,monospace;color:var(--text-muted)">// simplified model, not the production UI</span>
     </div>
 
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr));gap:16px;align-items:start">
@@ -85,35 +85,35 @@
 
         <label style="display:flex;flex-direction:column;gap:8px">
           <span style="display:flex;justify-content:space-between;font:500 13.5px Inter,system-ui,sans-serif;color:var(--text-strong)">Cost change<span style="font:500 13px JetBrains Mono,monospace;color:var(--accent)">{{ costDeltaLabel }}</span></span>
-          <input type="range" min="-20" max="30" step="1" value="{{ costDelta }}" onChange="{{ onCostDelta }}" style="width:100%;accent-color:var(--accent-cta)" style-focus-visible="outline:2px solid var(--accent);outline-offset:3px">
+          <input type="range" min="-20" max="30" step="1" value="{{ costDelta }}" onInput="{{ onCostDelta }}" style="width:100%;accent-color:var(--accent-cta)" style-focus-visible="outline:2px solid var(--accent);outline-offset:3px">
         </label>
 
         <label style="display:flex;flex-direction:column;gap:8px">
           <span style="display:flex;justify-content:space-between;font:500 13.5px Inter,system-ui,sans-serif;color:var(--text-strong)">Fulfilment &amp; logistics<span style="font:500 13px JetBrains Mono,monospace;color:var(--accent)">+{{ fulfil }} ₽/unit</span></span>
-          <input type="range" min="0" max="300" step="5" value="{{ fulfil }}" onChange="{{ onFulfil }}" style="width:100%;accent-color:var(--accent-cta)" style-focus-visible="outline:2px solid var(--accent);outline-offset:3px">
+          <input type="range" min="0" max="300" step="5" value="{{ fulfil }}" onInput="{{ onFulfil }}" style="width:100%;accent-color:var(--accent-cta)" style-focus-visible="outline:2px solid var(--accent);outline-offset:3px">
         </label>
 
         <label style="display:flex;flex-direction:column;gap:8px">
-          <span style="display:flex;justify-content:space-between;font:500 13.5px Inter,system-ui,sans-serif;color:var(--text-strong)">Target margin<span style="font:500 13px JetBrains Mono,monospace;color:var(--accent)">{{ margin }} % of price</span></span>
-          <input type="range" min="5" max="45" step="1" value="{{ margin }}" onChange="{{ onMargin }}" style="width:100%;accent-color:var(--accent-cta)" style-focus-visible="outline:2px solid var(--accent);outline-offset:3px">
+          <span style="display:flex;justify-content:space-between;font:500 13.5px Inter,system-ui,sans-serif;color:var(--text-strong)">Demo target margin<span style="font:500 13px JetBrains Mono,monospace;color:var(--accent)">{{ margin }} % of price</span></span>
+          <input type="range" min="5" max="45" step="1" value="{{ margin }}" onInput="{{ onMargin }}" style="width:100%;accent-color:var(--accent-cta)" style-focus-visible="outline:2px solid var(--accent);outline-offset:3px">
         </label>
 
         <div style="display:flex;flex-direction:column;gap:14px;border-top:1px dashed var(--border-input);padding-top:16px">
           <span style="font:500 13px Inter,system-ui,sans-serif;color:var(--text-meta)">Price corridor: protection from extremes</span>
           <label style="display:flex;flex-direction:column;gap:8px">
             <span style="display:flex;justify-content:space-between;font:500 13.5px Inter,system-ui,sans-serif;color:var(--text-strong)">Floor, markup over cost<span style="font:500 13px JetBrains Mono,monospace;color:var(--accent)">+{{ floorPct }} %</span></span>
-            <input type="range" min="10" max="100" step="5" value="{{ floorPct }}" onChange="{{ onFloor }}" style="width:100%;accent-color:var(--accent-cta)" style-focus-visible="outline:2px solid var(--accent);outline-offset:3px">
+            <input type="range" min="10" max="100" step="5" value="{{ floorPct }}" onInput="{{ onFloor }}" style="width:100%;accent-color:var(--accent-cta)" style-focus-visible="outline:2px solid var(--accent);outline-offset:3px">
           </label>
           <label style="display:flex;flex-direction:column;gap:8px">
             <span style="display:flex;justify-content:space-between;font:500 13.5px Inter,system-ui,sans-serif;color:var(--text-strong)">Ceiling<span style="font:500 13px JetBrains Mono,monospace;color:var(--accent)">×{{ maxMult }} cost</span></span>
-            <input type="range" min="1.5" max="5" step="0.1" value="{{ maxMultRaw }}" onChange="{{ onMaxMult }}" style="width:100%;accent-color:var(--accent-cta)" style-focus-visible="outline:2px solid var(--accent);outline-offset:3px">
+            <input type="range" min="1.5" max="5" step="0.1" value="{{ maxMultRaw }}" onInput="{{ onMaxMult }}" style="width:100%;accent-color:var(--accent-cta)" style-focus-visible="outline:2px solid var(--accent);outline-offset:3px">
           </label>
         </div>
 
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;border-top:1px dashed var(--border-input);padding-top:16px">
           <div style="display:flex;flex-direction:column;gap:3px">
             <span style="font:700 22px Sora,sans-serif;color:var(--accent)">{{ avgMargin }} %</span>
-            <span style="font:400 12.5px/1.4 Inter,system-ui,sans-serif;color:var(--text-meta)">avg actual margin</span>
+            <span style="font:400 12.5px/1.4 Inter,system-ui,sans-serif;color:var(--text-meta)">avg calculated margin</span>
           </div>
           <div style="display:flex;flex-direction:column;gap:3px">
             <span style="font:700 22px Sora,sans-serif;color:{{ clampedColor }}">{{ clampedCount }}</span>
@@ -137,56 +137,63 @@
       </div>
     </div>
 
-    <p style="margin:0;font:400 13.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-meta);max-width:720px">The demo shows 8 products. In the full calculation the same formulas run across the whole catalogue: costs and fees come from the Ozon API, and prices update on a schedule.</p>
+    <p style="margin:0;font:400 13.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-meta);max-width:800px">The demo illustrates price-corridor mechanics with 8 fictional products. The production FBS model also uses acquiring, tiered commission, base and stress logistics scenarios, and a verified supplier cost. Scheduled monitors read data automatically; the operator confirms every price write.</p>
   </section>
 
   <!-- ============ CASE STORY ============ -->
   <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,470px),1fr));gap:16px;margin-top:24px">
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
       <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">01 · problem</span>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">A store with a large catalogue, one operator. For the question “is this product selling at a profit or a loss?” there was no answer for a single item: the marketplace withholds about half the price, applies its own discounts, and writes off some costs at the account level without tying them to specific products. Managing that by hand is impossible.</p>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">One operator manages a large Ozon catalogue. Supplier costs, commissions, logistics, stock, and supplier availability change independently. The task is to calculate safe prices, keep FBS and FBO goals separate, and prevent a bulk operation from becoming an uncontrolled risk.</p>
     </div>
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
       <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">02 · solution</span>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">We built a system in Python that pulls actual financial transactions from the marketplace API (payouts, commissions, logistics, returns, penalties) and rolls them up into a P&amp;L for every product sold. Items are then classified: profitable, thin, loss-making on price, loss-making on returns. For repricing it computes a “price floor” from cost using the real commission, not the stated one.</p>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">Every change goes through a dry-run first: the system shows a “before → after” plan, and only after a human confirms does it write prices back, keeping a snapshot for rollback.</p>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">Python tools read prices, stock, orders, and financial operations from the Ozon Seller API and supplier costs from the Sima-land API. The FBS forecast calculates a target price from commission, acquiring, logistics, fulfilment, and cost. Historical P&amp;L covers sold SKUs only and remains approximate where account-level costs cannot be attributed reliably.</p>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">The output is an inspectable file-based plan in CSV, JSON, or XLSX. There is no unattended price-writing mode.</p>
     </div>
     <div style="grid-column:1/-1;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
-      <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">03 · what was hard</span>
+      <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">03 · change safety</span>
       <div class="acc" data-state="{{ hardAState }}">
-        <button type="button" class="acc-sum" onClick="{{ onHardA }}" aria-expanded="{{ hardAExp }}" aria-controls="ap-h1" style="font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);max-width:760px">The first version of the unit economics relied on the marketplace's stated rates and showed the store deeply in the red, most sales at a loss.<span class="acc-chev" aria-hidden="true">▾</span></button>
+        <button type="button" class="acc-sum" onClick="{{ onHardA }}" aria-expanded="{{ hardAExp }}" aria-controls="ap-h1" style="font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);max-width:820px">FBS and FBO share a product card but require different pricing goals.<span class="acc-chev" aria-hidden="true">▾</span></button>
         <div id="ap-h1" class="acc-body" style="animation:{{ hardAAnim }}"><div class="acc-inner">
-          <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px">Shutting it down looked like the obvious call. Instead we reconciled the calculation against actual transactions. The picture was the opposite. The breakdown exposed systematic skews: the real commission was noticeably lower than stated, real logistics far below the maximum rates, and the analytics endpoint undercounted sales versus the financial one.</p>
+          <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:820px">For FBS, the tool protects a minimum price and never proposes a reduction. FBO uses a separate liquidation flow: no more than a 20% reduction, and only when FBO stock exists while FBS stock is zero. This prevents a warehouse-clearance decision from weakening active FBS economics.</p>
         </div></div>
       </div>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-body);text-wrap:pretty;max-width:760px;border-left:2px solid var(--border-hover);padding-left:14px">Hence the principle baked into the system: the predictive model is only for future prices, the financial result comes only from actual transactions.</p>
+      <p style="margin:0;font:500 14px/1.65 JetBrains Mono,monospace;color:var(--text-body);text-wrap:pretty;max-width:900px;border-left:2px solid var(--border-hover);padding-left:14px">live read → dry-run → human review → confirmation → rollback → canary → small batch → API reread → quarantine check</p>
       <div class="acc" data-state="{{ hardBState }}">
-        <button type="button" class="acc-sum" onClick="{{ onHardB }}" aria-expanded="{{ hardBExp }}" aria-controls="ap-h2" style="font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);max-width:760px">A second finding of the same kind: the price the buyer sees and the price the seller is credited are different numbers.<span class="acc-chev" aria-hidden="true">▾</span></button>
+        <button type="button" class="acc-sum" onClick="{{ onHardB }}" aria-expanded="{{ hardBExp }}" aria-controls="ap-h2" style="font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);max-width:820px">Before every write, the tool rereads the product state and fails closed on uncertainty.<span class="acc-chev" aria-hidden="true">▾</span></button>
         <div id="ap-h2" class="acc-body" style="animation:{{ hardBAnim }}"><div class="acc-inner">
-          <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:760px">The whole competitiveness assessment had been built on the wrong one. After reconciling shipments against payouts the rule became strict: each product's economics must add up to a profit on its own payout, without the marketplace's external discounts.</p>
+          <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:820px">It checks current price and cost, the floor, market-index bounds, and stress economics. A batch is capped at 25 items; rollback is saved before writing and the API price is read back afterwards. A network error, data mismatch, or quarantine result stops the next wave for an operator decision.</p>
         </div></div>
       </div>
     </div>
     <div style="grid-column:1/-1;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
-      <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">04 · what it does</span>
-      <ul style="margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px;font:400 15px/1.55 Inter,system-ui,sans-serif;color:var(--text-strong);max-width:760px">
-        <li>Sales history is rolled up into a P&amp;L for every item in the catalogue.</li>
-        <li>Hidden account-level costs that quietly eat the product-level profit are found and switched off.</li>
-        <li>Products with abnormal return rates are surfaced and pulled or neutralised with a prohibitive price.</li>
-        <li>Bulk repricing runs in batches, with every write verified by reading back.</li>
-        <li>A dry-run → rollback → manual gate → verification chain keeps the script from taking the store down.</li>
-      </ul>
+      <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">04 · verified outcome</span>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));gap:10px">
+        <div style="background:var(--demo-canvas);border:1px solid var(--border-soft);border-radius:12px;padding:16px"><strong style="display:block;font:700 26px/1 Sora,sans-serif;color:var(--accent)">7,473 SKUs</strong><span style="display:block;margin-top:7px;font:400 13.5px/1.5 Inter,system-ui,sans-serif;color:var(--text-meta)">in the verified 21 July 2026 audit</span></div>
+        <div style="background:var(--demo-canvas);border:1px solid var(--border-soft);border-radius:12px;padding:16px"><strong style="display:block;font:700 26px/1 Sora,sans-serif;color:var(--accent)">3 / 2,932</strong><span style="display:block;margin-top:7px;font:400 13.5px/1.5 Inter,system-ui,sans-serif;color:var(--text-meta)">passed automatically / routed to manual review</span></div>
+        <div style="background:var(--demo-canvas);border:1px solid var(--border-soft);border-radius:12px;padding:16px"><strong style="display:block;font:700 26px/1 Sora,sans-serif;color:var(--accent)">19 SKUs</strong><span style="display:block;margin-top:7px;font:400 13.5px/1.5 Inter,system-ui,sans-serif;color:var(--text-meta)">with confirmed price writes reached their targets</span></div>
+      </div>
+      <p style="margin:0;font:400 14px/1.6 Inter,system-ui,sans-serif;color:var(--text-body);text-wrap:pretty;max-width:860px">All 126 automated tests pass. No isolated causal before-and-after financial study has been run, so this case does not attribute an unverified profit increase to the tool.</p>
+    </div>
+    <div style="grid-column:1/-1;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:20px">
+      <div style="display:flex;flex-direction:column;gap:8px"><span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">05 · current boundaries</span><p style="margin:0;font:400 14.5px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">This is a production-assisted tool, not an autonomous service: there is no unified production database or central scheduler yet. Taxes are outside the model, some P&amp;L attribution is approximate, and scheduled monitors need stronger network resilience. Price writes and quarantine release remain human decisions.</p></div>
+      <div style="display:flex;flex-direction:column;gap:8px"><span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">my role</span><p style="margin:0;font:400 14.5px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">I defined the business rules, FBS and FBO strategies, acceptable risk, and each write decision; I reconciled results against orders and settlements. AI assisted with engineering implementation, tests, and rollback mechanics.</p></div>
     </div>
   </section>
 
   <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:20px">
     <span style="font:500 13px JetBrains Mono,monospace;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 11px">Python</span>
-    <span style="font:500 13px JetBrains Mono,monospace;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 11px">pandas</span>
+    <span style="font:500 13px JetBrains Mono,monospace;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 11px">httpx</span>
+    <span style="font:500 13px JetBrains Mono,monospace;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 11px">pydantic-settings</span>
+    <span style="font:500 13px JetBrains Mono,monospace;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 11px">pytest</span>
     <span style="font:500 13px JetBrains Mono,monospace;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 11px">Ozon Seller API</span>
-    <span style="font:500 13px JetBrains Mono,monospace;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 11px">supplier API</span>
+    <span style="font:500 13px JetBrains Mono,monospace;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 11px">Sima-land API</span>
+    <span style="font:500 13px JetBrains Mono,monospace;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 11px">launchd</span>
+    <span style="font:500 13px JetBrains Mono,monospace;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 11px">CSV · JSON · XLSX</span>
   </div>
 
-  <dc-import name="CaseCTA" q="Need an autopricer for your catalogue?" hint-size="100%,170px"></dc-import>
+  <dc-import name="CaseCTA" q="Need safer pricing automation?" hint-size="100%,170px"></dc-import>
 
   <div style="display:flex;align-items:center;gap:12px;margin-top:18px;flex-wrap:wrap">
     <a href="case-mutual.html" style="margin-left:auto;display:inline-flex;align-items:center;min-height:44px;font:500 15px Inter,system-ui,sans-serif;color:var(--accent);text-decoration:none;border-radius:8px;padding:6px 8px" style-hover="background:var(--accent-tint)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">next case: MUTUAL →</a>

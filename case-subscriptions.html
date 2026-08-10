@@ -25,7 +25,7 @@
 <link rel="alternate" hreflang="x-default" href="https://rednd.ru/case-subscriptions.html">
 <script src="./site-config.js?v=20260810a"></script>
 <script>(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
-<link rel="stylesheet" href="./theme.css?v=20260810a">
+<link rel="stylesheet" href="./theme.css?v=20260810b">
 <script src="./support.js"></script>
 </head>
 <body>
@@ -168,6 +168,28 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
             </div>
           </div>
         </sc-if>
+      </div>
+    </div>
+  </section>
+
+  <section class="case-process" aria-labelledby="subscriptions-process-title">
+    <div class="case-process__head">
+      <div class="case-process__title-wrap"><span class="case-process__kicker">платёжный цикл</span><h2 id="subscriptions-process-title">От выбора тарифа до управляемого доступа</h2></div>
+      <p>Бот ведёт пользователя по сценарию, платёж принимает провайдер, а доступ меняется только после проверенного события оплаты.</p>
+    </div>
+    <div class="case-process__flow">
+      <article class="case-process__stage"><span class="case-process__num">01</span><div><h3>Пользователь выбирает тариф</h3><p>Telegram-бот показывает варианты, срок и итоговую сумму без перехода в отдельный личный кабинет.</p></div></article>
+      <div class="case-process__link" aria-hidden="true"></div>
+      <article class="case-process__stage"><span class="case-process__num">02</span><div><h3>ЮKassa принимает оплату</h3><p>Бот создаёт счёт, а банковские данные вводятся только на защищённой стороне платёжного провайдера.</p></div></article>
+      <div class="case-process__link" aria-hidden="true"></div>
+      <article class="case-process__stage"><span class="case-process__num">03</span><div><h3>Webhook запускает проверку</h3><p>Сервис перечитывает текущий статус платежа в ЮKassa и только затем связывает его с пользователем и тарифом.</p></div></article>
+      <div class="case-process__link" aria-hidden="true"></div>
+      <article class="case-process__stage"><span class="case-process__num">04</span><div><h3>Доступ синхронизируется</h3><p>Срок подписки обновляется, бот выдаёт доступ и заранее напоминает о следующем продлении.</p></div></article>
+      <div class="case-process__link" aria-hidden="true"></div>
+      <div class="case-process__outcomes">
+        <article class="case-process__outcome" data-tone="success"><span>→ ОПЛАЧЕНО</span><h3>Доступ активен</h3><p>Выдача или продление происходят без ручной обработки.</p></article>
+        <article class="case-process__outcome" data-tone="review"><span>→ СКОРО ОКОНЧАНИЕ</span><h3>Напоминание</h3><p>Пользователь получает понятный следующий шаг до завершения срока.</p></article>
+        <article class="case-process__outcome" data-tone="stop"><span>→ НЕ ОПЛАЧЕНО</span><h3>Доступ отозван</h3><p>Статус меняется предсказуемо, а событие остаётся в админке.</p></article>
       </div>
     </div>
   </section>

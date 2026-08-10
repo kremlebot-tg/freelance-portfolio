@@ -25,7 +25,7 @@
 <link rel="alternate" hreflang="x-default" href="https://rednd.ru/case-autopricer.html">
 <script src="../site-config.js?v=20260810a"></script>
 <script>(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
-<link rel="stylesheet" href="../theme.css?v=20260810a">
+<link rel="stylesheet" href="../theme.css?v=20260810b">
 <script src="../support.js"></script>
 </head>
 <body>
@@ -138,6 +138,28 @@
     </div>
 
     <p style="margin:0;font:400 13.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-meta);max-width:800px">The demo illustrates price-corridor mechanics with 8 fictional products. The production FBS model also uses acquiring, tiered commission, base and stress logistics scenarios, and a verified supplier cost. Scheduled monitors read data automatically; the operator confirms every price write.</p>
+  </section>
+
+  <section class="case-process" aria-labelledby="autopricer-process-title">
+    <div class="case-process__head">
+      <div class="case-process__title-wrap"><span class="case-process__kicker">decision and verification loop</span><h2 id="autopricer-process-title">From fresh data to a verified price</h2></div>
+      <p>The automation prepares a decision and its evidence, while the operator retains write authority. Any mismatch moves the SKU into a safe path.</p>
+    </div>
+    <div class="case-process__flow">
+      <article class="case-process__stage"><span class="case-process__num">01</span><div><h3>Collect current inputs</h3><p>Ozon prices and orders are matched with supplier cost, commissions and logistics.</p></div></article>
+      <div class="case-process__link" aria-hidden="true"></div>
+      <article class="case-process__stage"><span class="case-process__num">02</span><div><h3>Model FBS and FBO separately</h3><p>Each model gets base and stress scenarios, a price floor and an allowed corridor.</p></div></article>
+      <div class="case-process__link" aria-hidden="true"></div>
+      <article class="case-process__stage"><span class="case-process__num">03</span><div><h3>Show the operator a dry run</h3><p>The proposed price, margin, reason and every constrained SKU are visible before a write.</p></div></article>
+      <div class="case-process__link" aria-hidden="true"></div>
+      <article class="case-process__stage"><span class="case-process__num">04</span><div><h3>Write a small batch and verify</h3><p>A rollback is saved for up to 25 SKUs, then the new price is read back from the Ozon API.</p></div></article>
+      <div class="case-process__link" aria-hidden="true"></div>
+      <div class="case-process__outcomes">
+        <article class="case-process__outcome" data-tone="success"><span>→ VERIFIED</span><h3>Continue the wave</h3><p>The observed price matches the calculation.</p></article>
+        <article class="case-process__outcome" data-tone="review"><span>→ QUARANTINE</span><h3>Human review</h3><p>Incomplete data or doubtful economics never reach the write step.</p></article>
+        <article class="case-process__outcome" data-tone="stop"><span>→ ROLLBACK</span><h3>Stop and revert</h3><p>A network error or mismatch halts the process.</p></article>
+      </div>
+    </div>
   </section>
 
   <!-- ============ CASE STORY ============ -->

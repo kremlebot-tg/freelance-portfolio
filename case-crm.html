@@ -25,7 +25,7 @@
 <link rel="alternate" hreflang="x-default" href="https://rednd.ru/case-crm.html">
 <script src="./site-config.js?v=20260810a"></script>
 <script>(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
-<link rel="stylesheet" href="./theme.css?v=20260810a">
+<link rel="stylesheet" href="./theme.css?v=20260810b">
 <script src="./support.js"></script>
 </head>
 <body>
@@ -163,6 +163,28 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
         <sc-if value="{{ unknownNote }}" hint-placeholder-val="{{ false }}">
           <div style="margin:auto 0;font:400 14px/1.55 Inter,system-ui,sans-serif;color:var(--text-meta);background:var(--surface);border:1px solid var(--border-soft);border-radius:11px;padding:12px 14px">В этом демо извлечение заскриптовано на трёх примерах, возьмите один из них. В рабочей версии любой текст разбирает LLM.</div>
         </sc-if>
+      </div>
+    </div>
+  </section>
+
+  <section class="case-process" aria-labelledby="crm-process-title">
+    <div class="case-process__head">
+      <div class="case-process__title-wrap"><span class="case-process__kicker">контур полезного контекста</span><h2 id="crm-process-title">От разговора до следующего контакта</h2></div>
+      <p>CRM сохраняет бесплатный контекст автоматически, а затратный AI включается только по явному действию пользователя.</p>
+    </div>
+    <div class="case-process__flow">
+      <article class="case-process__stage"><span class="case-process__num">01</span><div><h3>Появляется новый контакт</h3><p>Telegram Business фиксирует собеседника и дату общения; контакты также можно импортировать из VCF.</p></div></article>
+      <div class="case-process__link" aria-hidden="true"></div>
+      <article class="case-process__stage"><span class="case-process__num">02</span><div><h3>Пользователь передаёт важный контекст</h3><p>Сообщение или заметка отправляются боту только тогда, когда их действительно нужно разобрать.</p></div></article>
+      <div class="case-process__link" aria-hidden="true"></div>
+      <article class="case-process__stage"><span class="case-process__num">03</span><div><h3>AI превращает текст в факты</h3><p>Имя, роль, интересы, договорённости и следующий шаг попадают в единую карточку контакта.</p></div></article>
+      <div class="case-process__link" aria-hidden="true"></div>
+      <article class="case-process__stage"><span class="case-process__num">04</span><div><h3>CRM возвращает контакт в работу</h3><p>Утренний дайджест, даты, давность общения и семантический поиск помогают не потерять продолжение.</p></div></article>
+      <div class="case-process__link" aria-hidden="true"></div>
+      <div class="case-process__outcomes">
+        <article class="case-process__outcome" data-tone="success"><span>→ СЛЕДУЮЩИЙ ШАГ</span><h3>Связаться вовремя</h3><p>Пользователь видит, кто ждёт ответа и почему контакт важен.</p></article>
+        <article class="case-process__outcome" data-tone="review"><span>→ ПРОВЕРИТЬ</span><h3>Факты редактируются</h3><p>AI предлагает структуру, но карточка остаётся под контролем человека.</p></article>
+        <article class="case-process__outcome" data-tone="stop"><span>→ НЕ ЧИТАТЬ ВСЁ</span><h3>Экономика защищена</h3><p>Автоматический анализ каждого сообщения отключён как дорогой и избыточный.</p></article>
       </div>
     </div>
   </section>

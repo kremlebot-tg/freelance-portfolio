@@ -145,6 +145,56 @@ def main() -> int:
             if copy not in source:
                 failures.append(f"{relative}: missing transparent demo label {copy!r}")
 
+    case_pages = sorted(ROOT.glob("case-*.html")) + sorted((ROOT / "en").glob("case-*.html"))
+    for page in case_pages:
+        source = page.read_text(encoding="utf-8")
+        has_shared_process = 'class="case-process__flow"' in source and 'class="case-process__link"' in source
+        has_vetpulse_process = 'class="flow"' in source and 'class="flow-link"' in source
+        if not (has_shared_process or has_vetpulse_process):
+            failures.append(f"{page.relative_to(ROOT)}: missing visual business-process flow")
+        if has_shared_process:
+            expected_counts = {
+                'class="case-process__kicker"': 1,
+                'class="case-process__stage"': 4,
+                'class="case-process__link"': 4,
+                'class="case-process__outcome"': 3,
+            }
+            for token, expected in expected_counts.items():
+                actual = source.count(token)
+                if actual != expected:
+                    failures.append(
+                        f"{page.relative_to(ROOT)}: expected {expected} process tokens {token!r}, found {actual}"
+                    )
+
+    templated_process_copy = ("как работает бизнес-процесс", "how the business workflow works")
+    for page in case_pages:
+        source = page.read_text(encoding="utf-8")
+        for copy in templated_process_copy:
+            if copy in source:
+                failures.append(f"{page.relative_to(ROOT)}: generic process kicker {copy!r}")
+
+    process_claim_regressions = {
+        "case-subscriptions.html": ("подписанное уведомление",),
+        "en/case-subscriptions.html": ("signed notification",),
+        "case-faith.html": ("Каждый урок проходит внешнюю экспертную рецензию",),
+        "en/case-faith.html": ("Every lesson goes through external expert review",),
+    }
+    for relative, forbidden_copy in process_claim_regressions.items():
+        source = (ROOT / relative).read_text(encoding="utf-8")
+        for copy in forbidden_copy:
+            if copy in source:
+                failures.append(f"{relative}: unsupported process claim {copy!r}")
+
+    scout_workflow_copy = {
+        "case-scout.html": ("общий неназначенный пул", "без автоматической раздачи", "чужая рабочая очередь не раскрывается"),
+        "en/case-scout.html": ("shared unassigned pool", "without automatic distribution", "without exposing another teammate's work queue"),
+    }
+    for relative, required_copy in scout_workflow_copy.items():
+        source = (ROOT / relative).read_text(encoding="utf-8")
+        for copy in required_copy:
+            if copy not in source:
+                failures.append(f"{relative}: missing multi-user workflow boundary {copy!r}")
+
     repricer_overclaims = (
         "каждый активный товар был в плюсе",
         "переоценивает каталог в плюс",
@@ -249,7 +299,7 @@ def main() -> int:
     for page, parser in parsed.items():
         source = page.read_text(encoding="utf-8")
         rel = page.relative_to(ROOT)
-        if "theme.css?v=" in source and "theme.css?v=20260810a" not in source:
+        if "theme.css?v=" in source and "theme.css?v=20260810b" not in source:
             failures.append(f"{rel}: stale theme.css cache token")
         if "site-config.js?v=" in source and "site-config.js?v=20260810a" not in source:
             failures.append(f"{rel}: stale site-config.js cache token")

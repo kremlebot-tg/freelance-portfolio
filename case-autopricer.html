@@ -25,7 +25,7 @@
 <link rel="alternate" hreflang="x-default" href="https://rednd.ru/case-autopricer.html">
 <script src="./site-config.js?v=20260810a"></script>
 <script>(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
-<link rel="stylesheet" href="./theme.css?v=20260810a">
+<link rel="stylesheet" href="./theme.css?v=20260810b">
 <script src="./support.js"></script>
 </head>
 <body>
@@ -138,6 +138,28 @@
     </div>
 
     <p style="margin:0;font:400 13.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-meta);max-width:800px">Демо показывает механику коридора цен на 8 вымышленных товарах. Production-модель FBS дополнительно учитывает эквайринг, ступени комиссии, базовый и стрессовый сценарии логистики и проверенную закупочную цену поставщика. Плановые мониторы читают данные автоматически; запись цен подтверждает оператор.</p>
+  </section>
+
+  <section class="case-process" aria-labelledby="autopricer-process-title">
+    <div class="case-process__head">
+      <div class="case-process__title-wrap"><span class="case-process__kicker">контур принятия решения</span><h2 id="autopricer-process-title">От новых данных до подтверждённой цены</h2></div>
+      <p>Автоматизация готовит решение и доказательства, но право записи остаётся у оператора. Любое расхождение переводит товар в безопасный сценарий.</p>
+    </div>
+    <div class="case-process__flow">
+      <article class="case-process__stage"><span class="case-process__num">01</span><div><h3>Собирает актуальные данные</h3><p>Цены и заказы Ozon сопоставляются с закупочной ценой поставщика, комиссиями и логистикой.</p></div></article>
+      <div class="case-process__link" aria-hidden="true"></div>
+      <article class="case-process__stage"><span class="case-process__num">02</span><div><h3>Считает экономику FBS и FBO отдельно</h3><p>Для каждой модели строятся базовый и стрессовый сценарии, нижняя граница и допустимый ценовой коридор.</p></div></article>
+      <div class="case-process__link" aria-hidden="true"></div>
+      <article class="case-process__stage"><span class="case-process__num">03</span><div><h3>Показывает dry-run оператору</h3><p>До записи видны новая цена, маржа, причина изменения и позиции, которые упёрлись в ограничения.</p></div></article>
+      <div class="case-process__link" aria-hidden="true"></div>
+      <article class="case-process__stage"><span class="case-process__num">04</span><div><h3>Пишет малой партией и перепроверяет</h3><p>Для партии до 25 SKU сохраняется откат, а записанная цена повторно читается из API Ozon.</p></div></article>
+      <div class="case-process__link" aria-hidden="true"></div>
+      <div class="case-process__outcomes">
+        <article class="case-process__outcome" data-tone="success"><span>→ ПОДТВЕРЖДЕНО</span><h3>Следующая партия</h3><p>Цена совпала с расчётом — оператор может продолжить волну.</p></article>
+        <article class="case-process__outcome" data-tone="review"><span>→ КАРАНТИН</span><h3>Нужна проверка</h3><p>Неполные данные или спорная экономика не доходят до записи.</p></article>
+        <article class="case-process__outcome" data-tone="stop"><span>→ ОТКАТ</span><h3>Изменение отменяется</h3><p>Ошибка сети или расхождение после записи останавливают процесс.</p></article>
+      </div>
+    </div>
   </section>
 
   <!-- ============ CASE STORY ============ -->

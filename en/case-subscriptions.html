@@ -25,7 +25,7 @@
 <link rel="alternate" hreflang="x-default" href="https://rednd.ru/case-subscriptions.html">
 <script src="../site-config.js?v=20260810a"></script>
 <script>(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
-<link rel="stylesheet" href="../theme.css?v=20260810a">
+<link rel="stylesheet" href="../theme.css?v=20260810b">
 <script src="../support.js"></script>
 </head>
 <body>
@@ -168,6 +168,28 @@ status:  active · auto-renew</pre>
             </div>
           </div>
         </sc-if>
+      </div>
+    </div>
+  </section>
+
+  <section class="case-process" aria-labelledby="subscriptions-process-title">
+    <div class="case-process__head">
+      <div class="case-process__title-wrap"><span class="case-process__kicker">payment and access loop</span><h2 id="subscriptions-process-title">From plan selection to managed access</h2></div>
+      <p>The bot guides the customer, the provider handles the payment, and access changes only after a verified payment event.</p>
+    </div>
+    <div class="case-process__flow">
+      <article class="case-process__stage"><span class="case-process__num">01</span><div><h3>The customer selects a plan</h3><p>The Telegram bot shows the options, billing period and total without a separate account area.</p></div></article>
+      <div class="case-process__link" aria-hidden="true"></div>
+      <article class="case-process__stage"><span class="case-process__num">02</span><div><h3>YooKassa handles payment</h3><p>The bot creates an invoice; bank details stay on the payment provider's protected page.</p></div></article>
+      <div class="case-process__link" aria-hidden="true"></div>
+      <article class="case-process__stage"><span class="case-process__num">03</span><div><h3>A webhook triggers verification</h3><p>The service reads the current payment status from YooKassa before connecting it to the customer and plan.</p></div></article>
+      <div class="case-process__link" aria-hidden="true"></div>
+      <article class="case-process__stage"><span class="case-process__num">04</span><div><h3>Access stays in sync</h3><p>The subscription period updates, access is issued and the bot reminds before renewal.</p></div></article>
+      <div class="case-process__link" aria-hidden="true"></div>
+      <div class="case-process__outcomes">
+        <article class="case-process__outcome" data-tone="success"><span>→ PAID</span><h3>Access is active</h3><p>Issuing and renewal need no manual processing.</p></article>
+        <article class="case-process__outcome" data-tone="review"><span>→ EXPIRING</span><h3>Send a reminder</h3><p>The customer sees a clear next step before access ends.</p></article>
+        <article class="case-process__outcome" data-tone="stop"><span>→ UNPAID</span><h3>Revoke access</h3><p>The status changes consistently and remains visible to the admin.</p></article>
       </div>
     </div>
   </section>

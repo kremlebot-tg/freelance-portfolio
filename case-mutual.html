@@ -25,7 +25,7 @@
 <link rel="alternate" hreflang="x-default" href="https://rednd.ru/case-mutual.html">
 <script src="./site-config.js?v=20260810a"></script>
 <script>(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
-<link rel="stylesheet" href="./theme.css?v=20260810a">
+<link rel="stylesheet" href="./theme.css?v=20260810b">
 <script src="./support.js"></script>
 </head>
 <body>
@@ -387,6 +387,28 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
 
         </div>
       </x-import>
+      </div>
+    </div>
+  </section>
+
+  <section class="case-process" aria-labelledby="mutual-process-title">
+    <div class="case-process__head">
+      <div class="case-process__title-wrap"><span class="case-process__kicker">путь взаимного согласия</span><h2 id="mutual-process-title">От QR на вещи до взаимного контакта</h2></div>
+      <p>Каждый шаг сначала проверяет границы приватности и согласие, а уже затем показывает человека или открывает общение.</p>
+    </div>
+    <div class="case-process__flow">
+      <article class="case-process__stage"><span class="case-process__num">01</span><div><h3>Человек замечает вещь и сканирует QR</h3><p>Код связывает конкретный drop с профилем владельца, а не ведёт на обычную карточку товара.</p></div></article>
+      <div class="case-process__link" aria-hidden="true"></div>
+      <article class="case-process__stage"><span class="case-process__num">02</span><div><h3>Система применяет режим приватности</h3><p>Видимость профиля и близость раскрываются только в пределах настроек самого владельца.</p></div></article>
+      <div class="case-process__link" aria-hidden="true"></div>
+      <article class="case-process__stage"><span class="case-process__num">03</span><div><h3>Владелец получает приватный пинг</h3><p>Отправитель выражает интерес, но не получает прямой доступ к человеку или его контактам.</p></div></article>
+      <div class="case-process__link" aria-hidden="true"></div>
+      <article class="case-process__stage"><span class="case-process__num">04</span><div><h3>Получатель сам решает</h3><p>Только взаимное согласие превращает пинг в чат и разрешает продолжить знакомство.</p></div></article>
+      <div class="case-process__link" aria-hidden="true"></div>
+      <div class="case-process__outcomes">
+        <article class="case-process__outcome" data-tone="success"><span>→ ВЗАИМНО</span><h3>Чат открывается</h3><p>Оба участника явно выбрали продолжить контакт.</p></article>
+        <article class="case-process__outcome" data-tone="review"><span>→ НЕТ ОТВЕТА</span><h3>Контакты скрыты</h3><p>Пинг не превращается в доступ к личным данным.</p></article>
+        <article class="case-process__outcome" data-tone="stop"><span>→ ПРИВАТНОСТЬ</span><h3>Владелец управляет видимостью</h3><p>Режим поиска можно ограничить до того, как кто-то отправит пинг.</p></article>
       </div>
     </div>
   </section>

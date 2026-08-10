@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script>(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
-<link rel="stylesheet" href="../theme.css?v=20260809b">
+<link rel="stylesheet" href="../theme.css?v=20260810a">
 <script src="../support.js"></script>
 </head>
 <body>
@@ -24,17 +24,20 @@ header[data-open="true"] .hdr-burger-lines i:nth-child(3){top:7px;transform:rota
 @media (max-width:767px){
   .hdr-bar{flex-wrap:nowrap!important;gap:8px!important;position:relative}
   .hdr-nav{
-    display:none!important;position:absolute;top:100%;left:0;right:0;margin:0!important;
+    display:flex!important;position:absolute;top:100%;left:0;right:0;margin:0!important;
     flex-direction:column;align-items:stretch;gap:2px;
     background:var(--surface);border-bottom:1px solid var(--border);
-    padding:8px 12px 12px;box-shadow:0 12px 24px -12px rgba(19,35,47,0.22)
+    padding:8px 12px 12px;box-shadow:0 12px 24px -12px rgba(19,35,47,0.22);
+    opacity:0;visibility:hidden;pointer-events:none;transform:translateY(-8px);
+    transition:opacity .2s ease,transform .24s var(--ease-out),visibility 0s linear .24s
   }
-  header[data-open="true"] .hdr-nav{display:flex!important}
+  header[data-open="true"] .hdr-nav{opacity:1;visibility:visible;pointer-events:auto;transform:none;transition-delay:0s}
   .hdr-nav a{padding:12px!important;font-size:16px!important;line-height:1.1!important;border-radius:10px;min-height:44px;display:flex;align-items:center}
   .hdr-burger{display:inline-flex;margin-left:auto}
   .hdr-cta{padding:11px 16px!important;font-size:14.5px!important;min-height:44px}
   .hdr-theme{width:44px!important;height:44px!important}
 }
+@media (max-width:767px) and (prefers-reduced-motion:reduce){.hdr-nav{transform:none;transition:none}}
 @media (max-width:360px){
   .hdr-bar{padding:10px 12px!important;gap:6px!important}
   .hdr-logo{gap:7px!important}

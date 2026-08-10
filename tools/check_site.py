@@ -204,6 +204,60 @@ def main() -> int:
             if claim in source:
                 failures.append(f"{relative}: unsupported VetPulse claim {claim!r}")
 
+    theme = (ROOT / "theme.css").read_text(encoding="utf-8")
+    site_config = (ROOT / "site-config.js").read_text(encoding="utf-8")
+    motion_contract = {
+        "theme.css": (
+            "html.rd-motion-ready .rd-motion-observed * { animation-play-state: paused !important; }",
+            "@media (prefers-reduced-motion: reduce)",
+            "transform: rotate(-8deg) scale(1.04)",
+        ),
+        "site-config.js": (
+            "function observeMotionScenes(root)",
+            "rd-motion-observed",
+            "observeMotionScenes(root);",
+        ),
+    }
+    for relative, required_tokens in motion_contract.items():
+        source = theme if relative == "theme.css" else site_config
+        for token in required_tokens:
+            if token not in source:
+                failures.append(f"{relative}: missing motion-safety contract {token!r}")
+    for forbidden in ("filter: saturate", "rotate(360deg)"):
+        if forbidden in theme:
+            failures.append(f"theme.css: avoid expensive or distracting motion {forbidden!r}")
+
+    for relative in ("Header.dc.html", "en/Header.dc.html"):
+        source = (ROOT / relative).read_text(encoding="utf-8")
+        for token in ("opacity:0", "visibility:hidden", "pointer-events:none", "transform:translateY(-8px)"):
+            if token not in source:
+                failures.append(f"{relative}: mobile menu lacks reversible close transition {token!r}")
+        if ".hdr-nav{display:none!important" in source:
+            failures.append(f"{relative}: mobile menu close still uses abrupt display:none")
+
+    infinite_scene_tokens = (
+        "wkDot 1.1s infinite",
+        "wkBlink 1s step-end infinite",
+        "wkPulse 1.9s ease-out .5s infinite",
+    )
+    for relative in ("index.html", "en/index.html", "contact.html", "en/contact.html"):
+        source = (ROOT / relative).read_text(encoding="utf-8")
+        for token in infinite_scene_tokens:
+            if token in source:
+                failures.append(f"{relative}: decorative scene animation must be finite: {token!r}")
+
+    for page, parser in parsed.items():
+        source = page.read_text(encoding="utf-8")
+        rel = page.relative_to(ROOT)
+        if "theme.css?v=" in source and "theme.css?v=20260810a" not in source:
+            failures.append(f"{rel}: stale theme.css cache token")
+        if "site-config.js?v=" in source and "site-config.js?v=20260810a" not in source:
+            failures.append(f"{rel}: stale site-config.js cache token")
+
+    vetpulse_demo = (ROOT / "vetpulse/demo.html").read_text(encoding="utf-8")
+    if "*,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}" not in vetpulse_demo:
+        failures.append("vetpulse/demo.html: missing universal reduced-motion fallback")
+
     if failures:
         print("Site checks failed:")
         for failure in failures:

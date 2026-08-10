@@ -219,10 +219,10 @@ main { position: relative; }
 @view-transition { navigation: auto; }
 header { view-transition-name: rd-header; }
 footer { view-transition-name: rd-footer; }
-::view-transition-old(root) { animation: rd-page-out .16s ease both; }
-::view-transition-new(root) { animation: rd-page-in .38s var(--ease-out) both; }
-@keyframes rd-page-out { to { opacity: 0; transform: translateY(-4px); } }
-@keyframes rd-page-in { from { opacity: 0; transform: translateY(7px); } }
+::view-transition-old(root) { animation: rd-page-out .14s ease both; }
+::view-transition-new(root) { animation: rd-page-in .28s var(--ease-out) both; }
+@keyframes rd-page-out { to { opacity: 0; transform: translateY(-2px); } }
+@keyframes rd-page-in { from { opacity: 0; transform: translateY(4px); } }
 
 /* Карточки остаются спокойными: без бликов, свечения и «парения». */
 .rd-card {
@@ -230,7 +230,7 @@ footer { view-transition-name: rd-footer; }
   overflow: clip;
   background-image: none !important;
   box-shadow: var(--card-shadow) !important;
-  transition: border-color .2s ease, background-color .2s ease !important;
+  transition: border-color .2s ease, background-color .2s ease, box-shadow .22s ease, transform .22s var(--ease-out) !important;
 }
 .rd-card::before,
 .rd-card::after { content: none !important; }
@@ -239,9 +239,9 @@ footer { view-transition-name: rd-footer; }
 
 @media (hover:hover) and (pointer:fine) {
   .rd-card:hover {
-    transform: none !important;
+    transform: translateY(-2px) !important;
     border-color: rgba(var(--accent-rgb), .5) !important;
-    box-shadow: var(--card-shadow) !important;
+    box-shadow: 0 14px 30px -26px var(--shadow-3) !important;
   }
 }
 
@@ -259,11 +259,11 @@ footer { view-transition-name: rd-footer; }
   position: relative !important;
   overflow: hidden;
   box-shadow: none;
-  transition: background-color .2s ease, border-color .2s ease !important;
+  transition: background-color .2s ease, border-color .2s ease, transform .18s var(--ease-out), box-shadow .2s ease !important;
 }
 .rd-cta::after { content: none !important; }
 @media (hover:hover) and (pointer:fine) {
-  .rd-cta:hover { transform: none; box-shadow: none; }
+  .rd-cta:hover { transform: translateY(-1px); box-shadow: 0 9px 20px -17px var(--shadow-3); }
 }
 .rd-cta:active { transform: translateY(0) scale(.985) !important; }
 
@@ -271,16 +271,28 @@ footer { view-transition-name: rd-footer; }
    всегда остаётся видимым. */
 html.rd-motion-ready .rd-reveal {
   opacity: 0;
-  transform: translateY(18px);
-  filter: saturate(.88);
-  transition: opacity .62s var(--ease-out), transform .68s var(--ease-out), filter .62s ease;
+  transform: translateY(12px);
+  transition: opacity .42s ease, transform .48s var(--ease-out);
   transition-delay: var(--rd-delay, 0ms);
+  will-change: opacity, transform;
 }
 html.rd-motion-ready .rd-reveal.is-visible {
   opacity: 1;
   transform: none;
-  filter: none;
+  will-change: auto;
 }
+
+/* Сценарные мини-интерфейсы начинают движение только при появлении на экране.
+   Бесконечные декоративные циклы ограничены несколькими повторами. */
+html.rd-motion-ready .rd-motion-observed * { animation-play-state: paused !important; }
+html.rd-motion-ready .rd-motion-observed.is-visible * { animation-play-state: running !important; }
+.wk-bub.in i, .wk-aidots i { animation-iteration-count: 3 !important; }
+.wk-cur { animation-iteration-count: 4 !important; }
+.wk-dot { animation-iteration-count: 1, 2 !important; }
+.m-sweep { animation-iteration-count: 1 !important; }
+.m-you, .m-orb .r { animation-iteration-count: 2 !important; }
+.m-on i { animation-iteration-count: 2 !important; }
+.flow-link::after { animation-iteration-count: 2 !important; }
 
 /* Шапка и навигация: активный раздел читается как вкладка. */
 header {
@@ -372,12 +384,7 @@ footer::after {
   html { scroll-padding-top: 74px; }
   .rd-section-title { padding-bottom: 0; }
   header[data-open="true"] { box-shadow: 0 20px 44px -24px var(--shadow-3); }
-  header[data-open="true"] .hdr-nav { animation: rd-menu-in .28s var(--ease-out) both; }
   .rd-card { border-radius: min(18px, 4.5vw) !important; }
-}
-@keyframes rd-menu-in {
-  from { opacity: 0; transform: translateY(-8px); }
-  to { opacity: 1; transform: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -429,9 +436,9 @@ footer::after {
   .tt::after, .tt::before { transition: none; }
 }
 
-/* Лого в шапке «перекатывается» как кубик при наведении (нод к D&D). */
-.hdr-logo-mark { transition: transform .55s cubic-bezier(.2, .8, .3, 1); will-change: transform; }
-.hdr-logo:hover .hdr-logo-mark, .hdr-logo:focus-visible .hdr-logo-mark { transform: rotate(360deg) scale(1.06); }
+/* Небольшой наклон логотипа сохраняет характер D&D без полного вращения. */
+.hdr-logo-mark { transition: transform .24s var(--ease-out); }
+.hdr-logo:hover .hdr-logo-mark, .hdr-logo:focus-visible .hdr-logo-mark { transform: rotate(-8deg) scale(1.04); }
 @media (prefers-reduced-motion: reduce) {
   .hdr-logo-mark { transition: none; }
   .hdr-logo:hover .hdr-logo-mark, .hdr-logo:focus-visible .hdr-logo-mark { transform: none; }

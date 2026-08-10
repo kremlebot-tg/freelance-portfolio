@@ -252,7 +252,7 @@ window.SITE_CONFIG = {
   function observeReveals(root) {
     if (!revealObserver || reduceMotion) return;
     var scope = root || document;
-    var items = scope.querySelectorAll('main h2,.rd-card,main > article');
+    var items = scope.querySelectorAll('main h2,.rd-card,main > article,.case-process,main .flow');
     for (var i = 0; i < items.length; i++) {
       var el = items[i];
       if (el.classList.contains('rd-reveal') || isHeroElement(el) || el.closest('[data-theme-lock],.ph-fit')) continue;
@@ -267,6 +267,17 @@ window.SITE_CONFIG = {
     }
   }
 
+  function observeMotionScenes(root) {
+    if (!revealObserver || reduceMotion) return;
+    var scope = root || document;
+    var scenes = scope.querySelectorAll('.wk-scene,.m-app,.case-process,main .flow');
+    for (var i = 0; i < scenes.length; i++) {
+      if (scenes[i].classList.contains('rd-motion-observed')) continue;
+      scenes[i].classList.add('rd-motion-observed');
+      revealObserver.observe(scenes[i]);
+    }
+  }
+
   function enhance(root) {
     if (!document.body) return;
     hydrateDeferredImages(root);
@@ -275,6 +286,7 @@ window.SITE_CONFIG = {
     markChrome(root);
     markLayouts(root);
     observeReveals(root);
+    observeMotionScenes(root);
   }
 
   function updateChrome() {

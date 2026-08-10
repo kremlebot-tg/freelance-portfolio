@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,follow">
-<title>Кабинет клиники «Айболит» — демо ВетПульс</title>
-<meta name="description" content="Живой демо-кабинет ВетПульс на вымышленной ветклинике «Айболит»: дашборд «₽ возвращено», входящие с чат-ботом, записи, напоминания и кампания возврата спящей базы.">
+<title>Кабинет клиники «Айболит» — интерактивный прототип ВетПульс</title>
+<meta name="description" content="Интерактивный сценарный кабинет ВетПульс: пять разделов, вымышленные пациенты и модельные показатели. Без отправки сообщений, AI и внешних интеграций.">
 <meta name="theme-color" content="#0a544b">
 <link rel="canonical" href="https://rednd.ru/vetpulse/demo.html">
 
@@ -13,15 +13,15 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="ВетПульс">
 <meta property="og:url" content="https://rednd.ru/vetpulse/demo.html">
-<meta property="og:title" content="Кабинет клиники «Айболит» — демо ВетПульс">
-<meta property="og:description" content="Мини-кабинет: дашборд «₽ возвращено», входящие с чат-ботом, записи, напоминания и кампания возврата. На вымышленных данных — тыкайте что угодно.">
+<meta property="og:title" content="Кабинет клиники «Айболит» — интерактивный прототип ВетПульс">
+<meta property="og:description" content="Пять сценарных разделов на вымышленных данных. Никакие сообщения и записи наружу не отправляются.">
 <meta property="og:locale" content="ru_RU">
 <meta property="og:image" content="https://rednd.ru/vetpulse/og-cover.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Кабинет клиники «Айболит» — демо ВетПульс">
-<meta name="twitter:description" content="Дашборд, входящие с чат-ботом, записи, напоминания и кампания возврата.">
+<meta name="twitter:title" content="Кабинет клиники «Айболит» — прототип ВетПульс">
+<meta name="twitter:description" content="Пять интерактивных разделов на вымышленных данных; без внешних отправок и интеграций.">
 <meta name="twitter:image" content="https://rednd.ru/vetpulse/og-cover.png">
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%230a544b'/%3E%3Cg fill='%23e8734a'%3E%3Cellipse cx='6.3' cy='10' rx='2' ry='2.6'/%3E%3Cellipse cx='10.2' cy='7.2' rx='2' ry='2.7'/%3E%3Cellipse cx='14.6' cy='7.2' rx='2' ry='2.7'/%3E%3Cellipse cx='18.4' cy='10.3' rx='1.9' ry='2.5'/%3E%3Cpath d='M12.3 12.4c-3.1 0-5.6 2.2-5.6 4.6 0 2 1.7 3.1 3.6 2.8l2-.4 2 .4c1.9.3 3.6-.8 3.6-2.8 0-2.4-2.5-4.6-5.6-4.6z'/%3E%3C/g%3E%3Cpath d='M7.6 17.1h1.7l1-2.1 1.7 3.5 1.2-2 .9 1.2h2' fill='none' stroke='%230a544b' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
@@ -62,7 +62,7 @@
   .banner b{font-weight:700}
 
   /* ── App shell: боковая навигация + разделы ── */
-  .app{display:grid;grid-template-columns:214px 1fr;gap:22px;padding:24px 0 64px;align-items:start}
+  .app{display:grid;grid-template-columns:214px 1fr;gap:22px;padding:24px 20px 64px;align-items:start}
   .app>*{min-width:0}
   .main{min-width:0}
   @media(max-width:820px){.app{grid-template-columns:1fr;gap:14px}}
@@ -73,9 +73,14 @@
   .nav-item.active{background:var(--petrol-tint);color:var(--petrol-deep)}
   .nav-item .cnt{margin-left:auto;font-family:var(--mono);font-size:.68rem;background:var(--coral);color:#fff;border-radius:10px;padding:1px 6px;font-weight:600}
   @media(max-width:820px){
-    .side{position:static;top:auto;flex-direction:row;overflow-x:auto;gap:6px;padding:6px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
-    .side::-webkit-scrollbar{display:none}
-    .nav-item{flex-shrink:0;padding:9px 13px}
+    .side{position:static;top:auto;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;padding:6px}
+    .nav-item{width:auto;min-width:0;padding:9px 10px;gap:8px}
+  }
+  @media(max-width:560px){
+    .side{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .nav-item{padding:9px 8px;gap:7px;font-size:.8rem}
+    .nav-item svg{width:16px;height:16px}
+    .nav-item:last-child{grid-column:1/-1}
   }
   .section{display:none}
   .section.active{display:block;animation:sfade .3s ease}
@@ -117,12 +122,18 @@
   .spark svg{width:100%;height:100%}
   @media(max-width:420px){.spark{width:90px}}
 
-  .stats3{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line-soft)}
-  .st{background:var(--surface);padding:16px}
+  .stats3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line-soft);min-width:0}
+  .st{background:var(--surface);padding:16px;min-width:0}
   .st .n{font-family:var(--mono);font-size:1.5rem;font-weight:600;font-variant-numeric:tabular-nums;color:var(--ink);transition:color .3s}
   .st .t{font-size:.76rem;color:var(--slate);margin-top:4px;text-wrap:pretty}
   .st.bump{background:var(--good-tint)}
   .st.bump .n{color:var(--good)}
+  @media(max-width:420px){
+    .metric-top{display:block}
+    .spark{display:none}
+    .stats3{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .st:last-child{grid-column:1/-1}
+  }
 
   /* feed «последние возвраты» */
   .feed h2{margin-bottom:4px}
@@ -139,7 +150,7 @@
   .inbox-grid>*{min-width:0}
   @media(max-width:720px){.inbox-grid{grid-template-columns:1fr}}
   .dialogs{display:flex;flex-direction:column;gap:6px}
-  @media(max-width:720px){.dialogs{flex-direction:row;overflow-x:auto;gap:8px;-webkit-overflow-scrolling:touch;scrollbar-width:none}.dialogs::-webkit-scrollbar{display:none}}
+  @media(max-width:720px){.dialogs{flex-direction:row;overflow-x:auto;gap:8px;-webkit-overflow-scrolling:touch;scrollbar-width:none}.dialogs::-webkit-scrollbar{display:none}.dlg{width:190px}}
   .dlg{display:block;text-align:left;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:11px 13px;cursor:pointer;font-family:inherit;transition:background .15s,border-color .15s;flex-shrink:0}
   .dlg:hover{background:var(--surface-2)}
   .dlg.active{border-color:var(--petrol);background:var(--petrol-tint)}
@@ -171,7 +182,7 @@
   .msg.ai{background:var(--petrol);color:#fff;border-bottom-right-radius:5px}
   .msg.sys{align-self:center;background:var(--coral-tint);color:var(--coral-deep);font-size:.84rem;border-radius:12px;text-align:center;max-width:94%;border:1px solid #f3cbb9;font-weight:500;animation:pop .28s both}
   .chips{display:flex;gap:7px;flex-wrap:wrap;padding:11px 16px 3px}
-  .chip{font-size:.81rem;color:var(--petrol-deep);background:var(--petrol-tint);border:1px solid #cfe6e0;border-radius:16px;padding:7px 13px;cursor:pointer;transition:background .15s, transform .12s;font-weight:500}
+  .chip{font-family:var(--sans);font-size:.81rem;line-height:1.2;color:var(--petrol-deep);background:var(--petrol-tint);border:1px solid #cfe6e0;border-radius:16px;padding:7px 13px;cursor:pointer;transition:background .15s, transform .12s;font-weight:500}
   .chip:hover{background:#d3e9e3;transform:translateY(-1px)}
   .composer-hint{font-size:.74rem;color:var(--slate-2);padding:9px 16px 0;display:flex;align-items:center;gap:6px}
   .composer-hint svg{width:13px;height:13px;flex-shrink:0;color:var(--petrol)}
@@ -235,9 +246,9 @@
 <div class="topbar"><div class="wrap topbar-in">
   <a class="back" href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>ВетПульс</a>
   <div class="clinic"><span class="av"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><ellipse cx="6.3" cy="10" rx="2" ry="2.6"/><ellipse cx="10.2" cy="7.2" rx="2" ry="2.7"/><ellipse cx="14.6" cy="7.2" rx="2" ry="2.7"/><ellipse cx="18.4" cy="10.3" rx="1.9" ry="2.5"/><path d="M12.3 12.4c-3.1 0-5.6 2.2-5.6 4.6 0 2 1.7 3.1 3.6 2.8l2-.4 2 .4c1.9.3 3.6-.8 3.6-2.8 0-2.4-2.5-4.6-5.6-4.6z"/></svg></span><span class="nm">Кабинет «Айболит»</span></div>
-  <span class="demo-tag">демо · вымышленные данные</span>
+  <span class="demo-tag">прототип</span>
 </div></div>
-<div class="banner"><div class="wrap"><b>Это живой демо-кабинет.</b> Переключайте разделы слева, пишите боту, подтверждайте записи и запускайте кампанию — всё на вымышленных данных.</div></div>
+<div class="banner"><div class="wrap"><b>Это сценарный прототип.</b> Все имена, цены и показатели вымышлены; действия меняют только интерфейс в этом браузере и ничего не отправляют наружу.</div></div>
 
 <div class="wrap app">
 
@@ -254,12 +265,12 @@
 
     <!-- ДАШБОРД -->
     <section class="section active" id="sec-dash">
-      <div class="section-head"><h1>Дашборд</h1><div class="sub">Клиника «Айболит» · за месяц · <span class="ex">цифры иллюстративные</span></div></div>
+      <div class="section-head"><h1>Дашборд</h1><div class="sub">Вымышленная клиника «Айболит» · синтетический месяц · <span class="ex">не реальные результаты</span></div></div>
       <div class="card">
         <div class="metric">
           <div class="metric-top">
             <div>
-              <div class="lbl">Возвращённая выручка · за месяц</div>
+              <div class="lbl">Модельный потенциал · за месяц</div>
               <div class="big" id="revenue">128 400 <small>₽</small></div>
             </div>
             <div class="spark" aria-hidden="true"><svg viewBox="0 0 120 46" preserveAspectRatio="none" fill="none">
@@ -267,17 +278,17 @@
               <path d="M2 40 L18 36 L34 37 L50 30 L66 24 L82 25 L98 14 L118 6 L118 46 L2 46 Z" fill="currentColor" opacity=".08"/>
             </svg></div>
           </div>
-          <div class="cap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15l5-5 4 3 6-7"/><path d="M19 6h-4M19 6v4"/></svg>за счёт записей, напоминаний и возврата спящей базы</div>
+          <div class="cap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15l5-5 4 3 6-7"/><path d="M19 6h-4M19 6v4"/></svg>сценарная оценка, не прогноз и не результат внедрения</div>
         </div>
         <div class="stats3">
-          <div class="st" id="st-inbox"><div class="n" id="s-inbox">187</div><div class="t">обращений принято 24/7</div></div>
-          <div class="st" id="st-noshow"><div class="n" id="s-noshow">31</div><div class="t">неявок предотвращено</div></div>
-          <div class="st" id="st-return"><div class="n" id="s-return">42</div><div class="t">пациентов возвращено</div></div>
+          <div class="st" id="st-inbox"><div class="n" id="s-inbox">187</div><div class="t">обращений в сценарии</div></div>
+          <div class="st" id="st-noshow"><div class="n" id="s-noshow">31</div><div class="t">подтверждений после напоминания</div></div>
+          <div class="st" id="st-return"><div class="n" id="s-return">42</div><div class="t">условных повторных визита</div></div>
         </div>
       </div>
       <div class="card card-pad feed">
-        <h2>Последние возвраты</h2>
-        <div class="sub">Кто вернулся на приём — и на какую сумму</div>
+        <h2>Синтетические события</h2>
+        <div class="sub">Так мог бы выглядеть проверяемый журнал результата</div>
         <div class="feed-rows">
           <div class="frow"><span class="pet">🐈</span><span class="fi"><b>Барсик · Ирина П.</b><span>вакцинация от бешенства · через ВетПульс</span></span><span class="amt">+1 800 ₽</span></div>
           <div class="frow"><span class="pet">🐕</span><span class="fi"><b>Рекс · Андрей С.</b><span>комплексная вакцина · через ВетПульс</span></span><span class="amt">+2 600 ₽</span></div>
@@ -289,7 +300,7 @@
 
     <!-- ВХОДЯЩИЕ -->
     <section class="section" id="sec-inbox">
-      <div class="section-head"><h1>Входящие</h1><div class="sub">Клиника видит переписку клиентов. Владелец — слева, AI-ассистент (вы) — справа.</div></div>
+      <div class="section-head"><h1>Входящие</h1><div class="sub">Заскриптованный чат: владелец — слева, сценарный ответ — справа. Сообщения не отправляются.</div></div>
       <div class="inbox-grid">
         <div class="dialogs" id="dialogs">
           <button class="dlg active" data-q="Сколько стоит вакцинация?" data-name="Ирина П." data-init="И" data-pet="Барсик" data-ch="сайт-виджет"><b>Ирина П.</b><span>Барсик · цена вакцинации</span><span class="tag">сайт-виджет</span></button>
@@ -299,16 +310,16 @@
         <div class="card chat">
           <div class="chat-head">
             <span class="av" id="chAv">И</span>
-            <div><b id="chName">Ирина П. · Барсик</b><div class="st-sub">отвечает <b>AI-ассистент</b> · <span id="chCh">сайт-виджет</span></div></div>
+            <div><b id="chName">Ирина П. · Барсик</b><div class="st-sub">отвечает <b>сценарный прототип</b> · <span id="chCh">сайт-виджет</span></div></div>
           </div>
           <div class="msgs" id="msgs" aria-live="polite" aria-label="Переписка с клиентом"></div>
           <div class="chips" id="chips">
-            <span class="chip" data-q="Сколько стоит вакцинация?" role="button" tabindex="0">Цена вакцинации</span>
-            <span class="chip" data-q="Какие у вас часы работы?" role="button" tabindex="0">Часы работы</span>
-            <span class="chip" data-q="Хочу записаться на приём" role="button" tabindex="0">Записаться</span>
-            <span class="chip" data-q="Собаку срочно рвёт, ей плохо" role="button" tabindex="0">Срочная помощь</span>
+            <button type="button" class="chip" data-q="Сколько стоит вакцинация?">Цена вакцинации</button>
+            <button type="button" class="chip" data-q="Какие у вас часы работы?">Часы работы</button>
+            <button type="button" class="chip" data-q="Хочу записаться на приём">Записаться</button>
+            <button type="button" class="chip" data-q="Собаку срочно рвёт, ей плохо">Срочная помощь</button>
           </div>
-          <div class="composer-hint" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.2"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0"/></svg>Пишете от лица владельца — посмотрите, как ответит AI</div>
+          <div class="composer-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.2"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0"/></svg>Введите сообщение и посмотрите один из локальных сценарных ответов</div>
           <div class="composer">
             <input id="inp" placeholder="Сообщение от владельца…" autocomplete="off" aria-label="Сообщение от лица владельца питомца">
             <button id="send" aria-label="Отправить"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15M13 6l6 6-6 6"/></svg></button>
@@ -319,7 +330,7 @@
 
     <!-- ЗАПИСИ -->
     <section class="section" id="sec-appts">
-      <div class="section-head"><h1>Записи на сегодня</h1><div class="sub">Часть пришла через ВетПульс со статусом «на подтверждении» — подтвердите приём.</div></div>
+      <div class="section-head"><h1>Черновики записей</h1><div class="sub">Подтверждение меняет только состояние макета и показывает роль администратора.</div></div>
       <div class="card card-pad">
         <div class="arows" id="arows">
           <div class="arow done"><span class="tm">10:00</span><span class="ai"><b>Рекс · осмотр</b><span>врач Иванова А.</span></span><span class="aa"><span class="pill ok">подтверждён</span></span></div>
@@ -333,7 +344,7 @@
 
     <!-- НАПОМИНАНИЯ -->
     <section class="section" id="sec-reminders">
-      <div class="section-head"><h1>Напоминания</h1><div class="sub">Автоматически за день и за час до приёма — с кнопками «подтвердить / перенести».</div></div>
+      <div class="section-head"><h1>Напоминания</h1><div class="sub">Макет очереди и ответов. Реальная отправка и изменение расписания не подключены.</div></div>
       <div class="card card-pad">
         <div class="rem-summary">За неделю: <b>34</b> подтверждено · <b>3</b> перенесено · <b>1</b> отмена <span class="ex">пример</span></div>
         <div class="rlist" id="rlist">
@@ -347,11 +358,11 @@
 
     <!-- РЕАКТИВАЦИЯ -->
     <section class="section" id="sec-react">
-      <div class="section-head"><h1>Реактивация спящей базы</h1><div class="sub">AI находит просроченных и мягко зовёт обратно от имени клиники.</div></div>
+      <div class="section-head"><h1>Реактивация</h1><div class="sub">Сценарная кампания на вымышленных данных; основание контакта в рабочем сервисе нужно проверять отдельно.</div></div>
       <div class="react card card-pad">
         <div class="react-head">
-          <div><h2>Спящая база · просроченные визиты</h2><div class="sub">Питомцы, которых пора вернуть на приём</div></div>
-          <button class="btn" id="run"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l14 9-14 9z"/></svg>Запустить кампанию возврата</button>
+          <div><h2>Синтетическая аудитория</h2><div class="sub">Пример списка для ручной проверки перед отправкой</div></div>
+          <button class="btn" id="run"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l14 9-14 9z"/></svg>Смоделировать кампанию</button>
         </div>
         <div class="rows" id="rows"></div>
         <div class="react-summary" id="summary" role="status"></div>
@@ -410,24 +421,24 @@
   });
   var runBtn=document.getElementById('run'), summary=document.getElementById('summary');
   runBtn.addEventListener('click', async function(){
-    runBtn.disabled=true; runBtn.textContent='Отправляем…';
+    runBtn.disabled=true; runBtn.textContent='Моделируем…';
     var willBook=[true,true,false,true,false,true], booked=0, earned=0;
     for(var i=0;i<pets.length;i++){
       var el=document.getElementById('p'+i); el.classList.add('sent');
-      el.querySelector('.status').textContent='написали';
+      el.querySelector('.status').textContent='условно отправлено';
       await sleep(400);
     }
     await sleep(320);
     for(var j=0;j<pets.length;j++){
       if(!willBook[j]) continue;
       var e2=document.getElementById('p'+j); e2.classList.remove('sent'); e2.classList.add('booked');
-      e2.querySelector('.status').textContent='записался';
+      e2.querySelector('.status').textContent='условный ответ';
       revenue+=pets[j].check; ret+=1; booked+=1; earned+=pets[j].check;
       $ret.textContent=ret; bump('st-return'); paintRevenue(true);
       await sleep(560);
     }
-    runBtn.textContent='Кампания завершена ✓';
-    summary.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Отправлено 6 · записалось '+booked+' · +'+fmt(earned)+' ₽ к возвращённой выручке';
+    runBtn.textContent='Сценарий завершён ✓';
+    summary.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Смоделировано 6 сообщений · '+booked+' условных ответа · '+fmt(earned)+' ₽ модельного потенциала';
     summary.classList.add('show');
   });
 
@@ -451,7 +462,7 @@
     remBtn.outerHTML='<span class="pill ok">подтверждено</span>';
   });
 
-  /* ── Чат (рабочий, на моках) ── */
+  /* ── Локальный сценарный чат без сети и AI ── */
   var msgs=document.getElementById('msgs'), inp=document.getElementById('inp');
   var awaitBooking=false, busy=false, inboxSeen=false, chatToken=0;
   // Перспектива КАБИНЕТА: владелец (owner) — слева, входящие; AI-ассистент (ai, «мы») — справа.
@@ -480,25 +491,25 @@
     if(tok!==chatToken){ if(row.parentNode) row.remove(); throw 'cancelled'; } // диалог переключили — прерываем всю цепочку reply
     row.remove(); add(text, cls==='sys'?'sys':'ai');
   }
-  var prices='Наши цены:\n• Ежегодная вакцинация — 1 800 ₽\n• Комплексная вакцина — 2 600 ₽\n• Осмотр врача — 1 500 ₽\n• Стерилизация кошки — от 4 500 ₽\n• Обработка от паразитов — 900 ₽';
+  var prices='Вымышленный прайс демо:\n• Ежегодная вакцинация — 1 800 ₽\n• Комплексная вакцина — 2 600 ₽\n• Осмотр врача — 1 500 ₽\n• Стерилизация кошки — от 4 500 ₽\n• Обработка от паразитов — 900 ₽';
   async function reply(text){
     var q=text.toLowerCase();
     if(/срочн|экстрен|плохо|рвёт|рвет|кровь|умира|задыха|не дыш|отрав|проглот/.test(q)){
-      await botSay('Похоже, это может быть экстренная ситуация. Не жду — соединяю вас с дежурным врачом прямо сейчас ☎️','sys');
-      await botSay('Администратор уже видит ваше обращение и перезвонит в течение минуты. Если питомцу совсем плохо — выезжайте к нам, мы работаем и предупредим врача.');
+      await botSay('Возможный срочный случай: прототип не даёт медицинский совет и показывает маршрут к сотруднику. Никакая передача сейчас не выполняется.','sys');
+      await botSay('В рабочем сервисе здесь нужен проверенный канал экстренной эскалации и понятная инструкция клиники. Сейчас это только макет состояния.');
       return;
     }
     if(awaitBooking){
       awaitBooking=false; inbox+=1; $inbox.textContent=inbox; bump('st-inbox');
-      await botSay('Записал вас 🐾 Статус — на подтверждении администратором (перезвонит уточнить время). Придёт напоминание за день и за час до приёма. Что-то ещё?');
+      await botSay('В сценарии создан черновик записи. Он ничего не меняет во внешнем расписании и требует подтверждения сотрудником.');
       return;
     }
     if(/привет|здравств|добр(ый|ое)/.test(q)){ await botSay('Здравствуйте! Чем помочь — рассказать про услуги и цены или записать на приём?'); return; }
     if(/цен|стоит|стоим|сколько|прайс|тариф/.test(q)){ await botSay(prices+'\n\nХотите записаться?'); return; }
-    if(/час|врем|график|открыт|когда вы|адрес/.test(q)){ await botSay('Мы работаем ежедневно с 9:00 до 21:00, без выходных. Адрес: ул. Пушкина, 12. Записать вас?'); return; }
-    if(/привив|вакцин/.test(q)){ await botSay('Ежегодная вакцинация — 1 800 ₽, комплексная — 2 600 ₽. Занимает ~20 минут. На какой день вас записать?'); awaitBooking=true; return; }
-    if(/запис|приём|прием|прийти|попаст|талон/.test(q)){ await botSay('С удовольствием запишу. На какую услугу и когда вам удобно — день и примерное время?'); awaitBooking=true; return; }
-    if(/стерил|кастрац/.test(q)){ await botSay('Стерилизация кошки — от 4 500 ₽, включая наркоз и наблюдение. Нужен предварительный осмотр. Записать на консультацию?'); awaitBooking=true; return; }
+    if(/час|врем|график|открыт|когда вы|адрес/.test(q)){ await botSay('Вымышленные данные демо: ежедневно с 9:00 до 21:00, адрес — ул. Пушкина, 12. В реальном продукте ответ нужен только из подтверждённого источника клиники.'); return; }
+    if(/привив|вакцин/.test(q)){ await botSay('По вымышленному прайсу демо: ежегодная вакцинация — 1 800 ₽, комплексная — 2 600 ₽. Подготовить черновик записи?'); awaitBooking=true; return; }
+    if(/запис|приём|прием|прийти|попаст|талон/.test(q)){ await botSay('Могу показать черновик: укажите услугу, день и примерное время. Реального расписания здесь нет.'); awaitBooking=true; return; }
+    if(/стерил|кастрац/.test(q)){ await botSay('В вымышленном прайсе демо стерилизация кошки — от 4 500 ₽. В рабочем сервисе цену и условия нужно получать из подтверждённого источника клиники. Подготовить черновик?'); awaitBooking=true; return; }
     if(/спасиб|благодар/.test(q)){ await botSay('Всегда рады помочь! Здоровья вашему питомцу 🐾'); return; }
     await botSay('Хороший вопрос — уточню у администратора и вернусь с ответом. А пока могу рассказать про услуги и цены или записать вас на приём. Что удобнее?');
   }
@@ -510,7 +521,6 @@
   document.getElementById('send').addEventListener('click',function(){ submit(inp.value); });
   inp.addEventListener('keydown',function(e){ if(e.key==='Enter') submit(inp.value); });
   document.getElementById('chips').addEventListener('click',function(e){ var c=e.target.closest('.chip'); if(c) submit(c.dataset.q); });
-  document.getElementById('chips').addEventListener('keydown',function(e){ var c=e.target.closest('.chip'); if(c && (e.key==='Enter'||e.key===' ')){ e.preventDefault(); submit(c.dataset.q); } });
 
   /* Список диалогов: клик загружает сценарий в рабочий чат */
   function loadDialog(btn){

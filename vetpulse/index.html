@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,follow">
-<title>ВетПульс — возвращаем пациентов, которых теряет ваша ветклиника</title>
-<meta name="description" content="AI-помощник для ветклиник: принимает обращения 24/7, напоминает о приёме и возвращает пациентов с просроченными прививками. Надстройка над Vetmanager — данные остаются у вас, соответствие 152-ФЗ.">
+<title>ВетПульс — интерактивный прототип для ветклиник</title>
+<meta name="description" content="Интерактивный продуктовый прототип для ветклиник: обращения, черновики записи, напоминания и реактивация на вымышленных данных. Без AI-модели и Vetmanager.">
 <meta name="theme-color" content="#0a544b">
 <link rel="canonical" href="https://rednd.ru/vetpulse/">
 
@@ -13,16 +13,16 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="ВетПульс">
 <meta property="og:url" content="https://rednd.ru/vetpulse/">
-<meta property="og:title" content="ВетПульс — возвращаем пациентов, которых теряет ваша ветклиника">
-<meta property="og:description" content="AI-помощник для ветклиник: приём обращений 24/7, напоминания о приёме и возврат спящей базы. Надстройка над Vetmanager, данные остаются у вас.">
+<meta property="og:title" content="ВетПульс — интерактивный прототип для ветклиник">
+<meta property="og:description" content="Сценарии обращений, черновиков записи, напоминаний и реактивации на вымышленных данных. Интеграции не подключены.">
 <meta property="og:locale" content="ru_RU">
 <meta property="og:image" content="https://rednd.ru/vetpulse/og-cover.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="ВетПульс — дашборд возвращённой выручки ветклиники">
+<meta property="og:image:alt" content="ВетПульс — интерфейс продуктового прототипа для ветклиники">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="ВетПульс — возвращаем пациентов, которых теряет ваша ветклиника">
-<meta name="twitter:description" content="AI-помощник для ветклиник: приём 24/7, напоминания и возврат спящей базы. Надстройка над Vetmanager.">
+<meta name="twitter:title" content="ВетПульс — интерактивный прототип для ветклиник">
+<meta name="twitter:description" content="Сценарии обращений, черновиков записи, напоминаний и реактивации на вымышленных данных.">
 <meta name="twitter:image" content="https://rednd.ru/vetpulse/og-cover.png">
 
 <!-- Инлайновый favicon: лапа с пульсом (data-URI, без внешних запросов) -->
@@ -75,7 +75,7 @@
   .btn-primary:active{transform:translateY(0)}
   .btn-ghost{background:var(--surface);color:var(--petrol-deep);border-color:var(--line)}
   .btn-ghost:hover{border-color:var(--petrol);color:var(--petrol-deep);transform:translateY(-1px);box-shadow:var(--sh-sm)}
-  .btn-dark{background:var(--petrol-deep);color:#eaf3f1}
+  .btn-dark{background:var(--petrol-deep);color:#fff}
   .btn-dark:hover{background:var(--petrol);transform:translateY(-1px)}
 
   /* nav */
@@ -88,13 +88,14 @@
   .nav-links{display:flex;align-items:center;gap:28px}
   .nav-links a{font-size:.95rem;color:var(--slate);font-weight:500;transition:color .15s}
   .nav-links a:hover{color:var(--ink)}
+  .nav-links .btn-dark,.nav-links .btn-dark:hover{color:#fff}
   @media(max-width:760px){.nav-links a:not(.btn){display:none}}
 
   /* type helpers */
   .eyebrow,.sec-label{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--petrol);font-weight:600;display:inline-flex;align-items:center;gap:9px}
   .eyebrow::before,.sec-label::before{content:"";width:16px;height:15px;flex-shrink:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230e7c6f'%3E%3Cellipse cx='6.3' cy='10' rx='2' ry='2.6'/%3E%3Cellipse cx='10.2' cy='7.2' rx='2' ry='2.7'/%3E%3Cellipse cx='14.6' cy='7.2' rx='2' ry='2.7'/%3E%3Cellipse cx='18.4' cy='10.3' rx='1.9' ry='2.5'/%3E%3Cpath d='M12.3 12.4c-3.1 0-5.6 2.2-5.6 4.6 0 2 1.7 3.1 3.6 2.8l2-.4 2 .4c1.9.3 3.6-.8 3.6-2.8 0-2.4-2.5-4.6-5.6-4.6z'/%3E%3C/svg%3E") center/contain no-repeat}
   h1{font-size:clamp(2.15rem,5.4vw,3.5rem);line-height:1.04;letter-spacing:-.03em;font-weight:830;text-wrap:balance}
-  h1 .accent{color:var(--petrol);position:relative;white-space:nowrap}
+  h1 .accent{color:var(--petrol);position:relative}
   h2{font-size:clamp(1.72rem,3.9vw,2.4rem);line-height:1.1;letter-spacing:-.025em;font-weight:790;text-wrap:balance}
   .lede{font-size:1.2rem;color:var(--slate);margin-top:22px;max-width:36ch;text-wrap:pretty;line-height:1.5}
   .sec-intro{color:var(--slate);font-size:1.08rem;margin-top:16px;max-width:58ch;text-wrap:pretty}
@@ -104,7 +105,9 @@
   .eyebrow{margin-bottom:22px}
   .hero-cta{display:flex;gap:12px;margin-top:32px;flex-wrap:wrap}
   .hero-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:48px;align-items:center}
+  .hero-grid>*{min-width:0}
   @media(max-width:860px){.hero-grid{grid-template-columns:1fr;gap:36px}}
+  @media(max-width:420px){.btn{max-width:100%;white-space:normal;line-height:1.25;text-align:center}.hero-cta .btn{width:100%}.eyebrow{max-width:100%}}
   /* доверие-чипы под CTA */
   .trust-chips{display:flex;flex-wrap:wrap;gap:8px 10px;margin-top:26px}
   .tchip{display:inline-flex;align-items:center;gap:7px;font-size:.82rem;color:var(--slate);font-weight:500;background:var(--surface);border:1px solid var(--line-soft);border-radius:20px;padding:6px 13px 6px 10px;box-shadow:var(--sh-sm)}
@@ -151,7 +154,7 @@
   /* how / trust panel */
   .panel{position:relative;background:var(--petrol-deep);
     color:#eaf3f1;border-radius:var(--r-xl);padding:clamp(30px,5vw,52px);overflow:hidden;box-shadow:var(--sh-lg)}
-  .panel::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.05),transparent 30%);pointer-events:none}
+  .panel::before{display:none}
   .panel h2{color:#fff;position:relative}
   .panel .sec-label{color:#84d6ca}
   .panel .sec-label::before{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2384d6ca'%3E%3Cellipse cx='6.3' cy='10' rx='2' ry='2.6'/%3E%3Cellipse cx='10.2' cy='7.2' rx='2' ry='2.7'/%3E%3Cellipse cx='14.6' cy='7.2' rx='2' ry='2.7'/%3E%3Cellipse cx='18.4' cy='10.3' rx='1.9' ry='2.5'/%3E%3Cpath d='M12.3 12.4c-3.1 0-5.6 2.2-5.6 4.6 0 2 1.7 3.1 3.6 2.8l2-.4 2 .4c1.9.3 3.6-.8 3.6-2.8 0-2.4-2.5-4.6-5.6-4.6z'/%3E%3C/svg%3E") center/contain no-repeat}
@@ -232,10 +235,10 @@
   .cell .klabel{font-family:var(--mono);font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:var(--petrol);font-weight:600;margin-bottom:12px}
   .cell h3{font-size:1.16rem;font-weight:730;letter-spacing:-.015em}
   .cell p{color:var(--slate);font-size:.95rem;margin-top:8px;text-wrap:pretty}
-  .cell.star{background:linear-gradient(180deg,#ffffff,var(--petrol-tint));border-color:rgba(14,124,111,.2)}
+  .cell.star{background:var(--petrol-tint);border-color:rgba(14,124,111,.2)}
   .cell.star .klabel{color:var(--coral-deep)}
   .cell .grow{flex:1}
-  /* мини-превью реального UI внутри ячеек (CSS-only, в стиле demo.html) */
+  /* мини-превью сценарного UI внутри ячеек (CSS-only, в стиле demo.html) */
   .peekbox{margin-top:18px;background:var(--surface-2);border:1px solid var(--line-soft);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:8px}
   .cell.star .peekbox{background:rgba(255,255,255,.72)}
   .prow-mini{display:flex;align-items:center;gap:10px}
@@ -251,7 +254,7 @@
   .remind{display:flex;flex-direction:column;gap:9px}
   .remind .rt{font-size:.83rem;color:var(--ink)}
   .remind .rt b{font-weight:700}
-  .remind .ra{display:flex;gap:7px}
+  .remind .ra{display:flex;gap:7px;flex-wrap:wrap}
   .remind .ra span{font-size:.76rem;font-weight:600;padding:5px 11px;border-radius:8px}
   .remind .ra .yes{background:var(--petrol);color:#fff}
   .remind .ra .no{background:#fff;border:1px solid var(--line);color:var(--slate)}
@@ -264,7 +267,7 @@
 
   /* ── Тёмный «кинематографичный» финальный CTA (тёмные секции как ритм) ── */
   .final-dark{position:relative;overflow:hidden;text-align:center;border-radius:var(--r-xl);padding:clamp(48px,7vw,72px) clamp(24px,5vw,56px);color:#eaf3f1;box-shadow:var(--sh-lg);background:var(--petrol-deep)}
-  .final-dark::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.05),transparent 26%);pointer-events:none}
+  .final-dark::before{display:none}
   .final-dark .ecg-wide{color:#e8734a;opacity:.55;max-width:340px;margin:0 auto 26px}
   .final-dark .ecg-wide svg{width:100%;height:22px}
   .final-dark h2{color:#fff;position:relative}
@@ -511,36 +514,14 @@
   }
 </style>
 
-<!-- Структурированные данные (schema.org) для поиска и AI-ассистентов -->
+<!-- Структурированные данные описывают именно прототип, а не работающий SaaS. -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Organization",
-      "name": "ВетПульс",
-      "description": "AI-помощник для ветеринарных клиник: приём обращений 24/7, напоминания о приёме и возврат спящей базы. Надстройка над Vetmanager.",
-      "areaServed": "RU",
-      "slogan": "Возвращаем пациентов, которых теряет ваша ветклиника"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "name": "ВетПульс",
-      "applicationCategory": "BusinessApplication",
-      "operatingSystem": "Web",
-      "offers": { "@type": "Offer", "description": "Помесячная подписка, без платы за подключение. Первым клиникам — бесплатный пилот." }
-    },
-    {
-      "@type": "FAQPage",
-      "mainEntity": [
-        { "@type": "Question", "name": "Нужно ли менять нашу систему учёта?", "acceptedAnswer": { "@type": "Answer", "text": "Нет. ВетПульс надстраивается над Vetmanager и работает поверх вашего расписания и базы. Вы ничего не переносите и не переучиваете персонал." } },
-        { "@type": "Question", "name": "Вы получаете доступ к нашей базе пациентов?", "acceptedAnswer": { "@type": "Answer", "text": "Мы работаем через ограниченный доступ вашего Vetmanager, ключ остаётся у вас, вы можете отозвать его в любой момент. Мы не выгружаем и не храним вашу базу. Всё оформляется договором поручения на обработку по 152-ФЗ." } },
-        { "@type": "Question", "name": "А если бот ошибётся или не поймёт пациента?", "acceptedAnswer": { "@type": "Answer", "text": "Записи подтверждает ваш администратор — двойной записи не будет. Всё, в чём бот не уверен, и все экстренные случаи сразу передаются живому сотруднику." } },
-        { "@type": "Question", "name": "Сколько это стоит?", "acceptedAnswer": { "@type": "Answer", "text": "Подписка помесячно, без платы за подключение. Точную цену обсуждаем после бесплатного пилота, когда вы уже увидите возвращённую выручку на своих данных." } },
-        { "@type": "Question", "name": "Что такое бесплатный пилот?", "acceptedAnswer": { "@type": "Answer", "text": "Мы поднимаем вашу спящую базу и показываем, сколько пациентов реально возвращается, — вы ничего не платите и почти ничего не делаете. Понравится результат — продолжаем." } }
-      ]
-    }
-  ]
+  "@type": "WebPage",
+  "name": "ВетПульс — интерактивный продуктовый прототип",
+  "description": "Сценарный прототип интерфейса для ветклиник на вымышленных данных. AI-модель, серверная часть и интеграция с Vetmanager не подключены.",
+  "isPartOf": { "@type": "WebSite", "name": "Re:dnd", "url": "https://rednd.ru/" }
 }
 </script>
 </head>
@@ -553,11 +534,11 @@
       ВетПульс
     </a>
     <div class="nav-links">
-      <a href="#problem">Проблема</a>
-      <a href="#how">Как работает</a>
-      <a href="#roi">Выгода</a>
+      <a href="#problem">Гипотезы</a>
+      <a href="#how">Контур</a>
+      <a href="#roi">Модель</a>
       <a href="#faq">Вопросы</a>
-      <a class="btn btn-dark" href="demo.html">Смотреть демо →</a>
+      <a class="btn btn-dark" href="demo.html">Прототип →</a>
     </div>
   </div>
 </nav>
@@ -566,36 +547,36 @@
 <header class="hero">
   <div class="wrap hero-grid">
     <div>
-      <p class="eyebrow">AI-помощник для ветклиник · надстройка над Vetmanager</p>
-      <h1>Ваша ветклиника теряет пациентов каждый день. <span class="accent">Мы их возвращаем.</span></h1>
-      <p class="lede">Круглосуточно отвечаем на обращения, напоминаем о приёме, возвращаем питомцев с просроченными прививками. Всё поверх вашего Vetmanager — учётную систему менять не нужно.</p>
+      <p class="eyebrow">Продуктовый прототип · вымышленные данные</p>
+      <h1>Прототип помощника <span class="accent">для ветклиники</span></h1>
+      <p class="lede">Показывает, как можно собрать обращения, черновики записи, напоминания и реактивацию в одном интерфейсе. Это сценарная демонстрация в браузере: AI-модель, серверная часть и Vetmanager не подключены.</p>
       <div class="hero-cta">
-        <a class="btn btn-primary" href="demo.html">Потыкать демо-клинику</a>
-        <a class="btn btn-ghost" href="#contact">Бесплатный пилот</a>
+        <a class="btn btn-primary" href="demo.html">Открыть интерактивный прототип</a>
+        <a class="btn btn-ghost" href="#contact">Обсудить проверку гипотезы</a>
       </div>
       <div class="trust-chips">
-        <span class="tchip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6z"/></svg>Данные остаются у вас</span>
-        <span class="tchip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg>Соответствие 152-ФЗ</span>
-        <span class="tchip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h10"/></svg>Не меняем вашу систему</span>
+        <span class="tchip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6z"/></svg>Без реальных персональных данных</span>
+        <span class="tchip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg>Действия подтверждает человек</span>
+        <span class="tchip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h10"/></svg>Интеграция — следующий этап</span>
       </div>
     </div>
 
     <div class="hero-visual">
-      <div class="card mini" role="img" aria-label="Пример дашборда клиники «Айболит»: 184 200 ₽ возвращённой выручки за месяц, 212 обращений принято, 38 неявок предотвращено, 57 пациентов возвращено">
+      <div class="card mini" role="img" aria-label="Синтетический пример дашборда вымышленной клиники: модельный показатель 184 200 рублей, 212 обращений, 38 подтверждений после напоминания и 57 повторных визитов">
       <div class="mini-head">
         <b>Клиника «Айболит»</b>
-        <span class="mini-live" aria-hidden="true">за месяц</span>
+        <span class="mini-live">синтетический месяц</span>
       </div>
       <div class="mini-big" data-count="184200" data-suffix=" ₽">184 200 <small>₽</small></div>
       <div class="mini-sub" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15l5-5 4 3 6-7"/><path d="M19 6h-4M19 6v4"/></svg>
-        возвращённая выручка
+        модельный показатель
       </div>
       <div class="ecg" aria-hidden="true"><svg viewBox="0 0 300 26" preserveAspectRatio="none" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M0 13h40l8-9 12 20 9-16 6 11h26l7-5 10 5h30l8-11 11 18 8-13 6 9h68"/></svg></div>
       <div class="mini-rows">
-        <div class="mini-row"><span>Обращений принято 24/7</span><b data-count="212">212</b></div>
-        <div class="mini-row"><span>Неявок предотвращено</span><b data-count="38">38</b></div>
-        <div class="mini-row"><span>Пациентов возвращено</span><b data-count="57">57</b></div>
+        <div class="mini-row"><span>Обращений в сценарии</span><b data-count="212">212</b></div>
+        <div class="mini-row"><span>Подтверждений после напоминаний</span><b data-count="38">38</b></div>
+        <div class="mini-row"><span>Повторных визитов</span><b data-count="57">57</b></div>
       </div>
       </div>
     </div>
@@ -604,29 +585,29 @@
 
 <section id="problem">
   <div class="wrap">
-    <p class="sec-label reveal">Где утекают деньги</p>
-    <h2 class="reveal">Три дыры, за которыми никто не успевает</h2>
-    <p class="sec-intro reveal">Администратор не робот: он занят с посетителем, ушёл домой или просто не успевает обзванивать базу. Каждая из этих дыр — прямые деньги мимо кассы.</p>
+    <p class="sec-label reveal">Продуктовые гипотезы</p>
+    <h2 class="reveal">Три сценария для проверки с клиниками</h2>
+    <p class="sec-intro reveal">Прототип не доказывает масштаб проблемы. Он помогает провести предметное интервью, собрать исходные показатели и понять, что уже закрывает текущая CRM.</p>
     <div class="grid-3">
       <div class="leak reveal" role="button" tabindex="0" data-modal="A1" aria-label="Пропущенные обращения — подробнее">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3.5 9 4l1 4-2 1.5a12 12 0 0 0 6 6L15.5 14l4 1 .5 2.5a2 2 0 0 1-2 2.3A16 16 0 0 1 4.2 5.5a2 2 0 0 1 2.3-2Z"/><path d="M15 3l5 5M20 3l-5 5" opacity=".55"/></svg></div>
         <h3>Пропущенные обращения</h3>
-        <p>Владелец звонит вечером или пишет в мессенджер, когда ресепшн занят, — и уходит в соседнюю клинику за 30 секунд.</p>
-        <div class="stat">до 30% звонков — вне рабочего окна</div>
+        <p>Проверяем, остаются ли вечерние и выходные сообщения без своевременного ответа и нужен ли для них отдельный маршрут.</p>
+        <div class="stat">нужны интервью и исходные данные</div>
         <div class="more" aria-hidden="true">Подробнее <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
       </div>
       <div class="leak reveal" role="button" tabindex="0" data-modal="A2" aria-label="Неявки на приём — подробнее">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 9.5h17M8 3.5v3M16 3.5v3"/><path d="M9 15h6"/></svg></div>
         <h3>Неявки на приём</h3>
-        <p>Пациент записался и забыл. Кресло и время врача простаивают — этот час уже не продать повторно.</p>
-        <div class="stat">неявки в клиниках: 12–42%</div>
+        <p>Проверяем текущую долю неявок, используемые напоминания и возможность переноса записи без ручного звонка.</p>
+        <div class="stat">нужно измерить текущий процесс</div>
         <div class="more" aria-hidden="true">Подробнее <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
       </div>
-      <div class="leak reveal" role="button" tabindex="0" data-modal="A3" aria-label="Спящая база — подробнее">
+      <div class="leak reveal" role="button" tabindex="0" data-modal="A3" aria-label="Повторные визиты — подробнее">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 15.5 Q3.5 19.5 9 19.5 L15 19.5 Q20.5 19.5 20 15 Q19.6 11.5 15 12"/><path d="M4.5 15.5 Q4 12 8 12 Q11 12 10.8 15"/><path d="M5.2 12.6 l.7-2.3 1.9 1.5"/><path d="M5.5 14 q1 .7 2 0"/><path d="M20 15 Q22.2 12 19.2 10.4"/></svg></div>
         <h3>Спящая база</h3>
-        <p>Сотни кошек и собак с просроченной прививкой или подошедшим осмотром. Их никто не зовёт — не хватает рук.</p>
-        <div class="stat">готовые деньги лежат мёртвым грузом</div>
+        <p>Проверяем, есть ли в учётной системе надёжные основания для контакта и кто должен подтверждать такую кампанию.</p>
+        <div class="stat">нужны данные и согласие на коммуникацию</div>
         <div class="more" aria-hidden="true">Подробнее <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
       </div>
     </div>
@@ -635,26 +616,26 @@
 
 <section id="solution" style="padding-top:8px">
   <div class="wrap">
-    <p class="sec-label reveal">Что делает ВетПульс</p>
-    <h2 class="reveal">Три работы, которые приносят выручку</h2>
-    <p class="sec-intro reveal">Берём на себя рутину вокруг хвостатых пациентов — от первого вопроса владельца до возврата на приём.</p>
+    <p class="sec-label reveal">Что показывает прототип</p>
+    <h2 class="reveal">Три части предполагаемого процесса</h2>
+    <p class="sec-intro reveal">Сценарии помогают обсудить границы автоматизации, точки ручного контроля и данные, которых пока не хватает.</p>
     <div class="bento reveal">
 
-      <div class="cell c3" role="button" tabindex="0" data-modal="B1" aria-label="Принимает обращения 24/7 — подробнее">
+      <div class="cell c3" role="button" tabindex="0" data-modal="B1" aria-label="Маршрутизация обращения — подробнее">
         <div class="klabel">Работа 1 · приём</div>
-        <h3>Принимает обращения 24/7</h3>
-        <p class="grow">Отвечает про услуги, цены и часы, оценивает срочность и записывает — в любое время. Экстренное сразу переводит на живого администратора.</p>
+        <h3>Маршрутизирует обращение</h3>
+        <p class="grow">Показывает пример ответа, черновик записи или передачу сотруднику. Срочные запросы остаются без медицинских советов.</p>
         <div class="peekbox" aria-hidden="true">
           <div class="bub b">Сколько стоит вакцинация?</div>
-          <div class="bub m">Комплексная — 2 600 ₽. Записать вас?</div>
+          <div class="bub m">Демо-прайс: комплексная — 2 600 ₽. Подготовить черновик?</div>
         </div>
         <div class="more" aria-hidden="true">Подробнее <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
       </div>
 
-      <div class="cell c3" role="button" tabindex="0" data-modal="B2" aria-label="Напоминает о приёме — подробнее">
+      <div class="cell c3" role="button" tabindex="0" data-modal="B2" aria-label="Сценарий напоминания — подробнее">
         <div class="klabel">Работа 2 · напоминания</div>
-        <h3>Напоминает о приёме</h3>
-        <p class="grow">За день и за час: «подтвердите или перенесите». Питомец не забудет, кресло не простаивает — неявок ощутимо меньше.</p>
+        <h3>Моделирует напоминание</h3>
+        <p class="grow">Показывает очередь сообщений и варианты «подтвердить» или «перенести». Реальная отправка и обновление расписания не подключены.</p>
         <div class="peekbox remind" aria-hidden="true">
           <div class="rt">Завтра в <b>15:00</b> приём в «Айболит»</div>
           <div class="ra"><span class="yes">Подтвердить</span><span class="no">Перенести</span></div>
@@ -662,22 +643,22 @@
         <div class="more" aria-hidden="true">Подробнее <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
       </div>
 
-      <div class="cell c4 star" role="button" tabindex="0" data-modal="B3" aria-label="Возвращает спящую базу — подробнее">
-        <div class="klabel">Работа 3 · сердце продукта</div>
-        <h3>Возвращает спящую базу</h3>
-        <p class="grow">Сам находит питомцев с просроченной прививкой или осмотром и мягко зовёт обратно. Самая быстрая и заметная выручка — деньги, которые уже были вашими.</p>
+      <div class="cell c4 star" role="button" tabindex="0" data-modal="B3" aria-label="Сценарий реактивации — подробнее">
+        <div class="klabel">Работа 3 · реактивация</div>
+        <h3>Показывает сценарий кампании</h3>
+        <p class="grow">На вымышленном списке видно, как сотрудник мог бы проверить аудиторию, запустить сообщения и разобрать ответы.</p>
         <div class="peekbox" aria-hidden="true">
-          <div class="prow-mini"><span class="dot"><svg viewBox="0 0 24 24" fill="currentColor"><ellipse cx="7" cy="11" rx="1.8" ry="2.4"/><ellipse cx="11" cy="8" rx="1.8" ry="2.5"/><ellipse cx="15.5" cy="8.5" rx="1.8" ry="2.5"/><ellipse cx="18.5" cy="12" rx="1.7" ry="2.2"/><path d="M12.5 12.5c-2.7 0-4.9 2-4.9 4.1 0 1.7 1.4 2.7 3.1 2.4l1.8-.35 1.8.35c1.7.3 3.1-.7 3.1-2.4 0-2.1-2.2-4.1-4.9-4.1z"/></svg></span><span class="nm">Барсик · кот · бешенство</span><span class="pill book">записался</span></div>
-          <div class="prow-mini"><span class="dot"><svg viewBox="0 0 24 24" fill="currentColor"><ellipse cx="7" cy="11" rx="1.8" ry="2.4"/><ellipse cx="11" cy="8" rx="1.8" ry="2.5"/><ellipse cx="15.5" cy="8.5" rx="1.8" ry="2.5"/><ellipse cx="18.5" cy="12" rx="1.7" ry="2.2"/><path d="M12.5 12.5c-2.7 0-4.9 2-4.9 4.1 0 1.7 1.4 2.7 3.1 2.4l1.8-.35 1.8.35c1.7.3 3.1-.7 3.1-2.4 0-2.1-2.2-4.1-4.9-4.1z"/></svg></span><span class="nm">Рекс · лабрадор · вакцина</span><span class="pill book">записался</span></div>
-          <div class="prow-mini"><span class="dot"><svg viewBox="0 0 24 24" fill="currentColor"><ellipse cx="7" cy="11" rx="1.8" ry="2.4"/><ellipse cx="11" cy="8" rx="1.8" ry="2.5"/><ellipse cx="15.5" cy="8.5" rx="1.8" ry="2.5"/><ellipse cx="18.5" cy="12" rx="1.7" ry="2.2"/><path d="M12.5 12.5c-2.7 0-4.9 2-4.9 4.1 0 1.7 1.4 2.7 3.1 2.4l1.8-.35 1.8.35c1.7.3 3.1-.7 3.1-2.4 0-2.1-2.2-4.1-4.9-4.1z"/></svg></span><span class="nm">Мурка · кошка · осмотр</span><span class="pill wait">написали</span></div>
+          <div class="prow-mini"><span class="dot"><svg viewBox="0 0 24 24" fill="currentColor"><ellipse cx="7" cy="11" rx="1.8" ry="2.4"/><ellipse cx="11" cy="8" rx="1.8" ry="2.5"/><ellipse cx="15.5" cy="8.5" rx="1.8" ry="2.5"/><ellipse cx="18.5" cy="12" rx="1.7" ry="2.2"/><path d="M12.5 12.5c-2.7 0-4.9 2-4.9 4.1 0 1.7 1.4 2.7 3.1 2.4l1.8-.35 1.8.35c1.7.3 3.1-.7 3.1-2.4 0-2.1-2.2-4.1-4.9-4.1z"/></svg></span><span class="nm">Барсик · кот · бешенство</span><span class="pill book">модель</span></div>
+          <div class="prow-mini"><span class="dot"><svg viewBox="0 0 24 24" fill="currentColor"><ellipse cx="7" cy="11" rx="1.8" ry="2.4"/><ellipse cx="11" cy="8" rx="1.8" ry="2.5"/><ellipse cx="15.5" cy="8.5" rx="1.8" ry="2.5"/><ellipse cx="18.5" cy="12" rx="1.7" ry="2.2"/><path d="M12.5 12.5c-2.7 0-4.9 2-4.9 4.1 0 1.7 1.4 2.7 3.1 2.4l1.8-.35 1.8.35c1.7.3 3.1-.7 3.1-2.4 0-2.1-2.2-4.1-4.9-4.1z"/></svg></span><span class="nm">Рекс · лабрадор · вакцина</span><span class="pill book">модель</span></div>
+          <div class="prow-mini"><span class="dot"><svg viewBox="0 0 24 24" fill="currentColor"><ellipse cx="7" cy="11" rx="1.8" ry="2.4"/><ellipse cx="11" cy="8" rx="1.8" ry="2.5"/><ellipse cx="15.5" cy="8.5" rx="1.8" ry="2.5"/><ellipse cx="18.5" cy="12" rx="1.7" ry="2.2"/><path d="M12.5 12.5c-2.7 0-4.9 2-4.9 4.1 0 1.7 1.4 2.7 3.1 2.4l1.8-.35 1.8.35c1.7.3 3.1-.7 3.1-2.4 0-2.1-2.2-4.1-4.9-4.1z"/></svg></span><span class="nm">Мурка · кошка · осмотр</span><span class="pill wait">черновик</span></div>
         </div>
         <div class="more" aria-hidden="true">Подробнее <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
       </div>
 
       <div class="cell c2 proof">
-        <div class="klabel">В демо «Айболит» · за месяц</div>
-        <div class="num">184 200 <small>₽</small></div>
-        <div class="pt">57 питомцев вернулись на приём. Каждого видно в дашборде: кто и на какую сумму.</div>
+        <div class="klabel">Проверяемый объём прототипа</div>
+        <div class="num">5 <small>разделов</small></div>
+        <div class="pt">Сводка, обращения, записи, напоминания и реактивация — все экраны доступны в браузере.</div>
       </div>
 
     </div>
@@ -688,19 +669,19 @@
   <div class="wrap">
     <div class="panel reveal">
       <div class="pawmark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><ellipse cx="6.3" cy="10" rx="2" ry="2.6"/><ellipse cx="10.2" cy="7.2" rx="2" ry="2.7"/><ellipse cx="14.6" cy="7.2" rx="2" ry="2.7"/><ellipse cx="18.4" cy="10.3" rx="1.9" ry="2.5"/><path d="M12.3 12.4c-3.1 0-5.6 2.2-5.6 4.6 0 2 1.7 3.1 3.6 2.8l2-.4 2 .4c1.9.3 3.6-.8 3.6-2.8 0-2.4-2.5-4.6-5.6-4.6z"/></svg></div>
-      <p class="sec-label">Как это устроено</p>
-      <h2>Мы надстраиваемся над вашей системой, а не заменяем её</h2>
-      <p class="sec-intro">Ничего не переносите и не переучиваете персонал. Подключение занимает один разговор.</p>
+      <p class="sec-label">Предполагаемый контур</p>
+      <h2>Что нужно проверить до реальной интеграции</h2>
+      <p class="sec-intro">Vetmanager, персональные данные и каналы сообщений пока не подключены. Ниже — порядок проверки, а не описание готовой системы.</p>
       <div class="steps">
-        <div class="step" role="button" tabindex="0" data-modal="C1" aria-label="Шаг 1: подключаемся к Vetmanager — подробнее"><div class="sn">ШАГ 1</div><h3>Подключаемся к Vetmanager</h3><p>Вы включаете доступ в настройках и выдаёте ключ. Учётная система остаётся прежней — мы работаем поверх неё.</p><div class="more" aria-hidden="true">Подробнее <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div></div>
-        <div class="step" role="button" tabindex="0" data-modal="C2" aria-label="Шаг 2: AI ведёт общение и запись — подробнее"><div class="sn">ШАГ 2</div><h3>AI ведёт общение и запись</h3><p>Отвечает пациентам, записывает в ваше расписание, напоминает и возвращает спящих — всё в одном контуре.</p><div class="more" aria-hidden="true">Подробнее <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div></div>
-        <div class="step" role="button" tabindex="0" data-modal="C3" aria-label="Шаг 3: вы видите деньги — подробнее"><div class="sn">ШАГ 3</div><h3>Вы видите деньги</h3><p>В дашборде видно, сколько пациентов вернулось и на какую сумму. В рублях, помесячно.</p><div class="more" aria-hidden="true">Подробнее <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div></div>
+        <div class="step" role="button" tabindex="0" data-modal="C1" aria-label="Шаг 1: проверить процесс и API — подробнее"><div class="sn">ШАГ 1</div><h3>Проверить процесс и API</h3><p>Сверить функции текущей CRM, доступные поля, права и ограничения на тестовом контуре.</p><div class="more" aria-hidden="true">Подробнее <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div></div>
+        <div class="step" role="button" tabindex="0" data-modal="C2" aria-label="Шаг 2: согласовать правила и контроль — подробнее"><div class="sn">ШАГ 2</div><h3>Согласовать правила и контроль</h3><p>Определить разрешённые ответы, источники данных и действия, которые подтверждает сотрудник.</p><div class="more" aria-hidden="true">Подробнее <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div></div>
+        <div class="step" role="button" tabindex="0" data-modal="C3" aria-label="Шаг 3: измерить пилот — подробнее"><div class="sn">ШАГ 3</div><h3>Измерить ограниченный пилот</h3><p>Зафиксировать исходные показатели и отдельно считать доставку, ответы, подтверждённые записи и фактическую выручку.</p><div class="more" aria-hidden="true">Подробнее <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div></div>
       </div>
       <div class="trust">
-        <div class="tr" role="button" tabindex="0" data-modal="C4" aria-label="Вы держите ключ у себя — подробнее"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6z"/><path d="M9 12l2 2 4-4.5"/></svg></span><div><b>Вы держите ключ у себя</b><p>Мы получаем ограниченный доступ через ваш Vetmanager — не выгружаем и не храним вашу базу. Отзываете ключ в любой момент.</p><div class="more" aria-hidden="true">Подробнее <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div></div></div>
-        <div class="tr" role="button" tabindex="0" data-modal="C5" aria-label="Данные остаются в России — подробнее"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6z"/><path d="M9 12l2 2 4-4.5"/></svg></span><div><b>Данные остаются в России</b><p>Соответствие 152-ФЗ и договор поручения на обработку. Работаем как легальный подрядчик, по документам.</p><div class="more" aria-hidden="true">Подробнее <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div></div></div>
-        <div class="tr" role="button" tabindex="0" data-modal="C6" aria-label="Мы не конкурент — подробнее"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6z"/><path d="M9 12l2 2 4-4.5"/></svg></span><div><b>Мы не конкурент</b><p>ВетПульс — это софт. Ваши пациенты нам не нужны: нам нужно, чтобы у вас их было больше.</p><div class="more" aria-hidden="true">Подробнее <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div></div></div>
-        <div class="tr" role="button" tabindex="0" data-modal="C7" aria-label="Человек в контуре — подробнее"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6z"/><path d="M9 12l2 2 4-4.5"/></svg></span><div><b>Человек в контуре</b><p>Записи подтверждает администратор, экстренное сразу передаётся живому сотруднику. Ошибке неоткуда взяться.</p><div class="more" aria-hidden="true">Подробнее <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div></div></div>
+        <div class="tr" role="button" tabindex="0" data-modal="C4" aria-label="Минимизация данных — подробнее"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6z"/><path d="M9 12l2 2 4-4.5"/></svg></span><div><b>Минимизация данных</b><p>До пилота нужно определить минимальный набор полей, сроки хранения и отзыв доступа. В демо реальных данных нет.</p><div class="more" aria-hidden="true">Подробнее <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div></div></div>
+        <div class="tr" role="button" tabindex="0" data-modal="C5" aria-label="Юридическая проверка — подробнее"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6z"/><path d="M9 12l2 2 4-4.5"/></svg></span><div><b>Юридическая проверка</b><p>Архитектуру персональных данных, основания рассылок и договорную схему должен подтвердить профильный специалист.</p><div class="more" aria-hidden="true">Подробнее <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div></div></div>
+        <div class="tr" role="button" tabindex="0" data-modal="C6" aria-label="Без медицинских советов — подробнее"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6z"/><path d="M9 12l2 2 4-4.5"/></svg></span><div><b>Без медицинских советов</b><p>Срочный или неоднозначный запрос должен уходить сотруднику, а не получать автоматический диагноз или назначение.</p><div class="more" aria-hidden="true">Подробнее <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div></div></div>
+        <div class="tr" role="button" tabindex="0" data-modal="C7" aria-label="Подтверждение человеком — подробнее"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6z"/><path d="M9 12l2 2 4-4.5"/></svg></span><div><b>Подтверждение человеком</b><p>Черновик записи, массовая отправка и спорное обращение требуют явного действия сотрудника. Это снижает риск, но не исключает ошибки.</p><div class="more" aria-hidden="true">Подробнее <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div></div></div>
       </div>
     </div>
   </div>
@@ -708,8 +689,8 @@
 
 <section id="roi">
   <div class="wrap">
-    <p class="sec-label reveal">Посчитайте выгоду</p>
-    <h2 class="reveal">Одна возвращённая неявка окупает месяц</h2>
+    <p class="sec-label reveal">Сценарная модель</p>
+    <h2 class="reveal">Проверьте чувствительность гипотезы</h2>
     <div class="roi reveal">
       <div>
         <div class="field">
@@ -724,12 +705,12 @@
           <label for="r-noshow">Доля неявок сейчас <span class="val" id="v-noshow">20%</span></label>
           <input type="range" id="r-noshow" min="5" max="40" value="20" aria-label="Доля неявок в процентах">
         </div>
-        <p class="note">Оценка: возврат ~40% неявок плюс подъём спящей базы. Прикидка для разговора, не гарантия.</p>
+        <p class="note">Модель использует условное возвращение 40% неявок и небольшой вклад реактивации. Это настраиваемое допущение для обсуждения, не прогноз и не результат внедрения.</p>
       </div>
       <div class="roi-out">
         <div class="big" id="roi-sum" aria-live="polite">— ₽</div>
-        <div class="cap">потенциально возвращаемая выручка в месяц</div>
-        <div class="foot" id="roi-foot">≈ окупает подписку многократно</div>
+        <div class="cap">модельный потенциал за месяц</div>
+        <div class="foot" id="roi-foot">не прогноз и не гарантия</div>
       </div>
     </div>
   </div>
@@ -739,11 +720,11 @@
   <div class="wrap">
     <div class="demo-band reveal">
       <div class="pawmark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><ellipse cx="6.3" cy="10" rx="2" ry="2.6"/><ellipse cx="10.2" cy="7.2" rx="2" ry="2.7"/><ellipse cx="14.6" cy="7.2" rx="2" ry="2.7"/><ellipse cx="18.4" cy="10.3" rx="1.9" ry="2.5"/><path d="M12.3 12.4c-3.1 0-5.6 2.2-5.6 4.6 0 2 1.7 3.1 3.6 2.8l2-.4 2 .4c1.9.3 3.6-.8 3.6-2.8 0-2.4-2.5-4.6-5.6-4.6z"/></svg></div>
-      <p class="sec-label">Живая демонстрация</p>
-      <h2>Загляните в клинику, где всё уже работает</h2>
-      <p>Полностью внедрённая демо-клиника «Айболит»: напишите боту, посмотрите дашборд, запустите кампанию возврата. Всё на вымышленных данных — тыкайте что угодно.</p>
-      <a class="btn btn-primary" href="demo.html">Открыть демо-клинику →</a>
-      <div class="peek">чат-бот · дашборд «₽ возвращено» · кампания возврата — работает прямо в браузере</div>
+      <p class="sec-label">Интерактивный прототип</p>
+      <h2>Пройдите сценарий кабинета</h2>
+      <p>Переключайте разделы вымышленной клиники «Айболит», отвечайте в чате, подтверждайте черновики и запускайте модельную кампанию. Никакие сообщения и записи наружу не отправляются.</p>
+      <a class="btn btn-primary" href="demo.html">Открыть прототип кабинета →</a>
+      <div class="peek">5 разделов · вымышленные данные · сценарная логика в браузере</div>
     </div>
   </div>
 </section>
@@ -753,11 +734,11 @@
     <p class="sec-label reveal">Частые вопросы</p>
     <h2 class="reveal">Коротко о главном</h2>
     <div class="reveal" style="margin-top:26px">
-      <details><summary>Нужно ли менять нашу систему учёта?<span class="pm" aria-hidden="true"></span></summary><p>Нет. ВетПульс надстраивается над Vetmanager и работает поверх вашего расписания и базы. Вы ничего не переносите и не переучиваете персонал.</p></details>
-      <details><summary>Вы получаете доступ к нашей базе пациентов?<span class="pm" aria-hidden="true"></span></summary><p>Мы работаем через ограниченный доступ вашего Vetmanager, ключ остаётся у вас, вы можете отозвать его в любой момент. Мы не выгружаем и не храним вашу базу и не передаём её третьим лицам. Всё оформляется договором поручения на обработку по 152-ФЗ.</p></details>
-      <details><summary>А если бот ошибётся или не поймёт пациента?<span class="pm" aria-hidden="true"></span></summary><p>Записи подтверждает ваш администратор — двойной записи не будет. Всё, в чём бот не уверен, и все экстренные случаи сразу передаются живому сотруднику.</p></details>
-      <details><summary>Сколько это стоит?<span class="pm" aria-hidden="true"></span></summary><p>Подписка помесячно, без платы за подключение. Точную цену обсуждаем после бесплатного пилота, когда вы уже увидите возвращённую выручку на своих данных.</p></details>
-      <details><summary>Что такое бесплатный пилот?<span class="pm" aria-hidden="true"></span></summary><p>Мы поднимаем вашу спящую базу и показываем, сколько пациентов реально возвращается, — вы ничего не платите и почти ничего не делаете. Понравится результат — продолжаем.</p></details>
+      <details><summary>Это работающий сервис?<span class="pm" aria-hidden="true"></span></summary><p>Нет. Сейчас это статический интерактивный прототип: интерфейс и сценарии работают в браузере, но серверная часть, AI-модель, авторизация и внешние интеграции отсутствуют.</p></details>
+      <details><summary>Он подключён к Vetmanager?<span class="pm" aria-hidden="true"></span></summary><p>Нет. До разработки интеграции нужно проверить API в разрешённой песочнице, состав доступных данных, ограничения и совпадение с реальным процессом клиники.</p></details>
+      <details><summary>В демо есть реальные пациенты или сообщения?<span class="pm" aria-hidden="true"></span></summary><p>Нет. Названия клиники, питомцы, цены, статистика и финансовые показатели вымышлены; взаимодействия не покидают браузер.</p></details>
+      <details><summary>Что потребуется для рабочего сервиса?<span class="pm" aria-hidden="true"></span></summary><p>Проверка спроса, согласованный контур данных, юридическая экспертиза, безопасная интеграция, правила ручного подтверждения, мониторинг и ограниченный пилот с заранее заданными метриками.</p></details>
+      <details><summary>Что можно обсудить сейчас?<span class="pm" aria-hidden="true"></span></summary><p>Интервью по текущему процессу клиники, разбор возможностей её CRM и дизайн небольшого теста гипотезы без обещания заранее заданного результата.</p></details>
     </div>
   </div>
 </section>
@@ -767,20 +748,20 @@
     <div class="final-dark reveal">
       <div class="pawmark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><ellipse cx="6.3" cy="10" rx="2" ry="2.6"/><ellipse cx="10.2" cy="7.2" rx="2" ry="2.7"/><ellipse cx="14.6" cy="7.2" rx="2" ry="2.7"/><ellipse cx="18.4" cy="10.3" rx="1.9" ry="2.5"/><path d="M12.3 12.4c-3.1 0-5.6 2.2-5.6 4.6 0 2 1.7 3.1 3.6 2.8l2-.4 2 .4c1.9.3 3.6-.8 3.6-2.8 0-2.4-2.5-4.6-5.6-4.6z"/></svg></div>
       <div class="ecg-wide" aria-hidden="true"><svg viewBox="0 0 300 22" preserveAspectRatio="none" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M0 11h34l8-9 12 20 9-16 6 11h32l7-6 10 6h34l8-11 11 18 8-13 6 9h90"/></svg></div>
-      <span class="badge">Первым клиникам — бесплатный пилот</span>
-      <h2>Посмотрим, сколько выручки вернём именно вам</h2>
-      <p>Один разговор и демо на ваших цифрах — без обязательств. Напишите удобным способом, ответим в тот же день.</p>
+      <span class="badge">Проверка до разработки</span>
+      <h2>Проверим гипотезу на вашем процессе</h2>
+      <p>Разберём текущий путь обращения, возможности вашей CRM и метрики, по которым можно честно оценить ограниченный тест.</p>
       <div class="hero-cta" style="justify-content:center">
         <a class="btn btn-primary" href="https://t.me/re_dnd" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.9 4.3 18.6 20c-.25 1.1-.9 1.37-1.83.85l-5.05-3.72-2.44 2.35c-.27.27-.5.5-1 .5l.36-5.13 9.3-8.4c.4-.36-.09-.56-.63-.2L4.16 13.1l-4.96-1.56c-1.08-.34-1.1-1.08.23-1.6L20.5 2.4c.9-.33 1.68.2 1.4 1.9Z"/></svg>
           Написать в Telegram
         </a>
-        <a class="btn btn-ghost-dark" href="mailto:politushkin@gmail.com?subject=Заявка%20на%20пилот%20ВетПульс&body=Здравствуйте!%20Хочу%20обсудить%20пилот%20ВетПульс%20для%20нашей%20клиники.">
+        <a class="btn btn-ghost-dark" href="mailto:politushkin@gmail.com?subject=Обсуждение%20прототипа%20ВетПульс&body=Здравствуйте!%20Хочу%20обсудить%20проверку%20гипотезы%20ВетПульс%20для%20нашей%20клиники.">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M4 7l8 6 8-6"/></svg>
           Написать на почту
         </a>
       </div>
-      <p class="alt">Ещё не готовы к разговору? <a href="demo.html">Сначала посмотрите живое демо →</a></p>
+      <p class="alt">Сначала хотите оценить интерфейс? <a href="demo.html">Откройте интерактивный прототип →</a></p>
     </div>
   </div>
 </section>
@@ -793,7 +774,7 @@
       ВетПульс
     </a>
     <div>
-      AI-помощник для ветеринарных клиник · демо на вымышленных данных · © 2026
+      Интерактивный продуктовый прототип · вымышленные данные · © 2026
       <br><span style="opacity:.75">ИП Яценко Даниил Александрович · ОГРНИП 325774600194672 · ИНН 502991709786</span>
     </div>
   </div>
@@ -818,7 +799,6 @@
   var rAppt=document.getElementById('r-appt'), rCheck=document.getElementById('r-check'), rNo=document.getElementById('r-noshow');
   var vAppt=document.getElementById('v-appt'), vCheck=document.getElementById('v-check'), vNo=document.getElementById('v-noshow');
   var out=document.getElementById('roi-sum'), foot=document.getElementById('roi-foot');
-  var SUBSCRIPTION=20000; // ориентир месячной подписки для строки окупаемости
 
   function setFill(el){ var min=+el.min, max=+el.max, p=(+el.value-min)/(max-min)*100; el.style.setProperty('--fill', p+'%'); }
 
@@ -830,8 +810,7 @@
     var monthlyNoShows=appt*22*no;
     var recovered=(monthlyNoShows*0.40 + appt*22*0.03)*check;
     out.textContent=fmt(recovered)+' ₽';
-    var x=recovered/SUBSCRIPTION;
-    foot.textContent = x>=2 ? ('≈ окупает подписку в '+Math.round(x)+'× раз') : 'ориентир для разговора';
+    foot.textContent = 'сценарная оценка · не прогноз';
   }
   [rAppt,rCheck,rNo].forEach(function(el){ el.addEventListener('input',calc); });
   calc();
@@ -852,19 +831,11 @@
     reveals.forEach(function(el){ io.observe(el); });
   }
 
-  /* ── Счётчики в мини-дашборде (один раз) ── */
+  /* ── Синтетические показатели показываем сразу, без имитации live-данных. ── */
   function countUp(el){
-    var target=+el.getAttribute('data-count'), suffix=el.getAttribute('data-suffix')||'';
+    var target=+el.getAttribute('data-count');
     var isMoney=/mini-big/.test(el.className);
-    if(reduceMotion){ el.innerHTML = fmt(target)+(isMoney?' <small>₽</small>':''); return; }
-    var start=performance.now(), dur=1100;
-    function tick(now){
-      var p=Math.min((now-start)/dur,1), e=1-Math.pow(1-p,3), v=target*e;
-      if(isMoney){ el.innerHTML = fmt(v)+' <small>₽</small>'; }
-      else { el.textContent = fmt(v); }
-      if(p<1) requestAnimationFrame(tick);
-    }
-    requestAnimationFrame(tick);
+    el.innerHTML = fmt(target)+(isMoney?' <small>₽</small>':'');
   }
   var counters=[].slice.call(document.querySelectorAll('[data-count]'));
   if('IntersectionObserver' in window){
@@ -876,45 +847,45 @@
 
   /* ── Модальные окна: одна модалка на страницу, контент из мапы (DRY) ── */
   var CONTENT = {
-    A1:{kicker:'Проблема',title:'Пропущенные обращения',demo:'evening',
-      lead:'Обращение приходит вечером или в выходной — а администратор уже ушёл. AI отвечает и записывает сам, круглосуточно.',
-      note:'До 30% обращений — вне рабочего окна. Без ответа человек за 30 секунд уходит в клинику напротив.'},
-    A2:{kicker:'Проблема',title:'Неявки на приём',demo:'schedule',
-      lead:'Напоминание за день и за час, владелец подтверждает одним тапом — слот не простаивает.',
-      note:'Неявки в клиниках — 12–42% приёмов. Каждая — прямой недополученный доход.'},
-    A3:{kicker:'Проблема',title:'Спящая база',demo:'grid',
-      lead:'Сотни питомцев с просроченной прививкой или осмотром тихо лежат в базе. AI находит их и мягко зовёт обратно.',
-      note:'Готовые деньги, которые уже были вашими — база оживает без обзвона вручную.'},
-    B1:{kicker:'Что делает ВетПульс',title:'Принимает обращения 24/7',demo:'chat',
-      lead:'AI отвечает и записывает во всех каналах — сайт, VK, Telegram, WhatsApp — строго по вашим данным, ничего не выдумывая.',
-      note:'Экстренное («питомцу плохо», «отравился») сразу передаётся живому врачу — AI не играет во врача.'},
-    B2:{kicker:'Что делает ВетПульс',title:'Напоминает о приёме',demo:'reminder',
-      lead:'Напоминания за день и за час — владелец подтверждает или переносит одним тапом, расписание обновляется само.',
-      note:'Меньше неявок — меньше простоя кресел. Освободившийся слот уходит следующему из очереди.'},
-    B3:{kicker:'Что делает ВетПульс',title:'Возвращает спящую базу',demo:'campaign',
-      lead:'Сам находит просроченных (прививка, осмотр, обработка) и мягко зовёт обратно — от имени клиники.',
-      note:'Это не разовая чистка: база пополняется новыми «уснувшими» каждый месяц.'},
-    C1:{kicker:'Как это устроено',title:'Шаг 1 · Подключаемся к Vetmanager',demo:'vm',
-      lead:'В настройках Vetmanager включаете доступ по API и выдаёте ключ — пара минут, без установки и переноса данных.',
-      note:'Учётная система остаётся вашей, мы работаем поверх неё. Ключ отзываете в любой момент.'},
-    C2:{kicker:'Как это устроено',title:'Шаг 2 · AI ведёт общение и запись',demo:'route',
-      lead:'Входящее сообщение → AI обрабатывает → запись появляется прямо в вашем расписании, во всех каналах.',
-      note:'Записи приходят со статусом «на подтверждении» — последнее слово за администратором.'},
-    C3:{kicker:'Как это устроено',title:'Шаг 3 · Вы видите деньги',demo:'dash',
-      lead:'В дашборде — не «сообщения бота», а результат в рублях: возвращённая выручка и откуда она.',
-      note:'У каждой записи видно, что она пришла через ВетПульс — вы знаете, за что платите.'},
-    C4:{kicker:'Доверие',title:'Вы держите ключ у себя',demo:'access',
-      lead:'Доступ идёт через ваш Vetmanager по ключу, который вы выдаёте — и в любой момент отзываете.',
-      note:'Не выгружаем, не копируем и не храним вашу базу у себя. Отозвали ключ — доступ закрыт.'},
-    C5:{kicker:'Доверие',title:'Данные остаются в России',demo:'rf',
-      lead:'Всё хранится и обрабатывается в РФ, по 152-ФЗ. С клиникой — договор поручения на обработку.',
-      note:'Легальный подрядчик по документам, а не «бот на коленке». Персональные данные под защитой.'},
-    C6:{kicker:'Доверие',title:'Мы не конкурент',demo:'align',
-      lead:'ВетПульс — это софт, а не вторая клиника. Наш заработок — подписка: он растёт, только когда растёте вы.',
-      note:'Мы не лечим животных и не переманиваем клиентов. Нам нужно, чтобы пациентов у вас было больше.'},
-    C7:{kicker:'Доверие',title:'Человек в контуре',demo:'human',
-      lead:'AI берёт рутину, а всё спорное и экстренное сразу передаёт живому сотруднику.',
-      note:'Записи подтверждает администратор. Ошибке «на автопилоте» неоткуда взяться.'}
+    A1:{kicker:'Гипотеза',title:'Пропущенные обращения',demo:'evening',
+      lead:'Прототип помогает обсудить, какие сообщения остаются без ответа вне рабочего окна и кому их безопасно маршрутизировать.',
+      note:'До пилота нужны интервью, исходные показатели и правила приоритета. Здесь нет фактической статистики клиники.'},
+    A2:{kicker:'Гипотеза',title:'Неявки на приём',demo:'schedule',
+      lead:'Сценарий показывает напоминание с подтверждением или переносом, но не отправляет сообщение и не обновляет реальное расписание.',
+      note:'Ценность нужно измерять относительно уже работающих напоминаний и функций текущей CRM.'},
+    A3:{kicker:'Гипотеза',title:'Повторные визиты',demo:'grid',
+      lead:'На вымышленном списке показано, как сотрудник мог бы проверить аудиторию перед кампанией реактивации.',
+      note:'Основания контакта, актуальность медицинских данных и согласие на коммуникацию требуют отдельной проверки.'},
+    B1:{kicker:'Сценарий прототипа',title:'Маршрутизация обращения',demo:'chat',
+      lead:'Интерфейс различает типовой вопрос, запрос на запись и возможный срочный случай. Ответы заскриптованы и не используют внешние каналы.',
+      note:'Срочный запрос не получает медицинского совета: прототип показывает передачу человеку, но ничего реально не отправляет.'},
+    B2:{kicker:'Сценарий прототипа',title:'Напоминание о приёме',demo:'reminder',
+      lead:'Показаны варианты подтверждения и переноса записи. Канал отправки и синхронизация расписания остаются за рамками прототипа.',
+      note:'Реальный эффект можно оценить только в ограниченном пилоте с заранее заданными исходными показателями.'},
+    B3:{kicker:'Сценарий прототипа',title:'Кампания реактивации',demo:'campaign',
+      lead:'Сотрудник видит синтетическую аудиторию, запускает модельную кампанию и разбирает условные ответы.',
+      note:'Вымышленные записи не являются пациентами, а модельный результат — прогнозом.'},
+    C1:{kicker:'Следующий этап',title:'Шаг 1 · Проверить процесс и API',demo:'vm',
+      lead:'Сначала нужно сверить функции действующей CRM и проверить доступные данные и права в разрешённой песочнице.',
+      note:'Показанный экран — макет технической проверки, а не подключённый аккаунт Vetmanager.'},
+    C2:{kicker:'Следующий этап',title:'Шаг 2 · Согласовать правила',demo:'route',
+      lead:'Нужно определить разрешённые ответы, подтверждённые источники и действия, которые всегда остаются за сотрудником.',
+      note:'На схеме создаётся только черновик; автоматическая запись в расписание не реализована.'},
+    C3:{kicker:'Следующий этап',title:'Шаг 3 · Измерить пилот',demo:'dash',
+      lead:'Доставку, ответы, подтверждённые записи и фактическую выручку следует считать раздельно и только по реальным событиям.',
+      note:'Числа в анимации синтетические и нужны исключительно для демонстрации формата отчёта.'},
+    C4:{kicker:'Граница безопасности',title:'Минимизация данных',demo:'access',
+      lead:'До интеграции определяется минимальный набор полей, доступов и сроков хранения, а также процедура отзыва.',
+      note:'В текущем прототипе нет ключей, базы и персональных данных.'},
+    C5:{kicker:'Граница безопасности',title:'Юридическая проверка',demo:'rf',
+      lead:'До рабочего запуска профильный специалист должен подтвердить архитектуру обработки данных, основания рассылок и договорную схему.',
+      note:'Прототип не заявляет соответствие закону и не заменяет юридическую экспертизу.'},
+    C6:{kicker:'Граница продукта',title:'Без медицинских советов',demo:'align',
+      lead:'Помощник может маршрутизировать обращение, но не должен ставить диагноз или назначать лечение.',
+      note:'Срочные и неоднозначные случаи должны попадать к сотруднику по проверенному каналу.'},
+    C7:{kicker:'Граница безопасности',title:'Подтверждение человеком',demo:'human',
+      lead:'Черновик записи, массовая кампания и спорное обращение требуют явного действия сотрудника.',
+      note:'Ручной контроль снижает риск, но не даёт обещания безошибочности.'}
   };
 
   var modal=document.getElementById('modal');
@@ -930,7 +901,7 @@
     var h='<p class="m-kicker">'+esc(c.kicker)+'</p><h2 class="m-title" id="modal-title">'+esc(c.title)+'</h2>';
     if(c.demo){
       h+='<p class="m-lead">'+esc(c.lead)+'</p>';
-      h+='<div class="m-demo"><div class="m-demo-bar"><span class="m-demo-tag">Живое демо</span>'+
+      h+='<div class="m-demo"><div class="m-demo-bar"><span class="m-demo-tag">Сценарная анимация</span>'+
          '<button type="button" class="m-replay" aria-label="Повторить демонстрацию">'+REPLAY+'Повторить</button></div>'+
          '<div class="m-demo-stage" aria-hidden="true" data-demo="'+c.demo+'"></div></div>';
       if(c.note) h+='<p class="m-note">'+esc(c.note)+'</p>';
@@ -942,21 +913,21 @@
         h+='<div class="'+cls+'"><div class="'+lcls+'">'+esc(s.l)+'</div><p>'+esc(s.t)+'</p></div>';
       });
     }
-    h+='<div class="modal-foot"><a class="btn btn-primary" href="https://t.me/re_dnd" target="_blank" rel="noopener">Обсудить пилот в Telegram</a>'+
-       '<a class="btn btn-ghost" href="demo.html">Открыть демо '+ARROW+'</a></div>';
+    h+='<div class="modal-foot"><a class="btn btn-primary" href="https://t.me/re_dnd" target="_blank" rel="noopener">Обсудить проверку гипотезы</a>'+
+       '<a class="btn btn-ghost" href="demo.html">Открыть прототип '+ARROW+'</a></div>';
     mbody.innerHTML=h;
     return true;
   }
 
-  /* ── Движок живого демо в модалках работ (механика из demo.html) ── */
+  /* ── Движок сценарных анимаций в модальных окнах ── */
   var demoSleep=function(ms){ return new Promise(function(r){ setTimeout(r, reduceMotion?0:ms); }); };
   var currentDemo=null, demoToken=0;
 
   function dChat(stage,t){
     var L=[['me','Сколько стоит стерилизация кошки?'],
-      ['bot','Стерилизация кошки — от 4 500 ₽, включая наркоз и наблюдение. Нужен предварительный осмотр. Записать на консультацию?'],
+      ['bot','В вымышленном прайсе демо — от 4 500 ₽. В реальном продукте цена нужна из подтверждённого источника. Подготовить черновик?'],
       ['me','Да, можно на четверг'],
-      ['bot','Записала на четверг 🐾 Статус — на подтверждении администратором. Пришлю напоминание за день и за час.']];
+      ['bot','В сценарии подготовлен черновик на четверг. Он требует подтверждения сотрудником и ничего не отправляет наружу.']];
     stage.innerHTML='';
     function bub(w,x){ var d=document.createElement('div'); d.className='cmsg '+w; d.textContent=x; return d; }
     function down(){ stage.scrollTop=stage.scrollHeight; }
@@ -984,8 +955,8 @@
     var flow=stage.querySelector('.rem-flow'), slot=stage.querySelector('.rem-slot'),
         yes=stage.querySelector('.rem-btn.yes'), acts=stage.querySelector('.rem-actions');
     function reply(){ var d=document.createElement('div'); d.className='rem-reply'; d.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 6"/></svg>Подтверждаю'; flow.appendChild(d); }
-    function c2(){ var d=document.createElement('div'); d.className='rem-c2'; d.textContent='Готово, ждём вас. Слот закреплён.'; flow.appendChild(d); }
-    function ok(){ slot.classList.add('ok'); slot.textContent='Слот: завтра, 15:00 — закреплён'; }
+    function c2(){ var d=document.createElement('div'); d.className='rem-c2'; d.textContent='Сценарий получил условное подтверждение.'; flow.appendChild(d); }
+    function ok(){ slot.classList.add('ok'); slot.textContent='Слот: завтра, 15:00 — условно подтверждён'; }
     if(reduceMotion){ acts.classList.add('chosen'); reply(); c2(); ok(); return; }
     (async function(){
       await demoSleep(1200); if(t!==demoToken)return;
@@ -1005,23 +976,23 @@
       '<span class="cinfo"><b>'+p.n+'</b> · '+p.b+'<span>'+p.w+'</span></span><span class="cstat">ожидает</span></div>'; }).join('');
     stage.innerHTML='<div class="camp-status">Готово к запуску</div><div class="camp-rows">'+rows+'</div>'+
       '<div class="camp-sum"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>'+
-      '<span>Возвращено: <b class="cs-n">0</b> питомца · ≈ <b class="cs-r">0</b> ₽</span><span class="ex">пример</span></div>';
+      '<span>Условных ответов: <b class="cs-n">0</b> · модель: <b class="cs-r">0</b> ₽</span><span class="ex">синтетика</span></div>';
     var status=stage.querySelector('.camp-status'), sum=stage.querySelector('.camp-sum'),
         csn=stage.querySelector('.cs-n'), csr=stage.querySelector('.cs-r');
     function set(i,cls,txt){ var el=stage.querySelector('#cr'+i); el.classList.remove('sent','booked'); if(cls)el.classList.add(cls); el.querySelector('.cstat').textContent=txt; }
     var tN=0,tR=0; pets.forEach(function(p){ if(p.book){tN++;tR+=p.rub;} });
-    if(reduceMotion){ status.textContent='Кампания завершена'; pets.forEach(function(p,i){ set(i,p.book?'booked':'sent',p.book?'записался':'написали'); }); csn.textContent=tN; csr.textContent=fmt(tR); sum.classList.add('show'); return; }
+    if(reduceMotion){ status.textContent='Сценарий завершён'; pets.forEach(function(p,i){ set(i,p.book?'booked':'sent',p.book?'условный ответ':'условная отправка'); }); csn.textContent=tN; csr.textContent=fmt(tR); sum.classList.add('show'); return; }
     (async function(){
-      await demoSleep(300); if(t!==demoToken)return; status.textContent='Запускаем кампанию…';
+      await demoSleep(300); if(t!==demoToken)return; status.textContent='Моделируем кампанию…';
       await demoSleep(420); if(t!==demoToken)return;
-      for(var i=0;i<pets.length;i++){ set(i,'sent','написали'); await demoSleep(380); if(t!==demoToken)return; }
+      for(var i=0;i<pets.length;i++){ set(i,'sent','условная отправка'); await demoSleep(380); if(t!==demoToken)return; }
       await demoSleep(320); if(t!==demoToken)return;
       var n=0,r=0;
       for(var j=0;j<pets.length;j++){ if(!pets[j].book) continue;
-        set(j,'booked','записался'); n++; r+=pets[j].rub; csn.textContent=n; csr.textContent=fmt(r);
+        set(j,'booked','условный ответ'); n++; r+=pets[j].rub; csn.textContent=n; csr.textContent=fmt(r);
         if(!sum.classList.contains('show')) sum.classList.add('show');
         await demoSleep(560); if(t!==demoToken)return; }
-      status.textContent='Кампания завершена';
+      status.textContent='Сценарий завершён';
     })();
   }
 
@@ -1041,14 +1012,14 @@
     server:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="7" rx="1.5"/><rect x="4" y="13" width="16" height="7" rx="1.5"/><path d="M7.5 7.5h.01M7.5 16.5h.01"/></svg>',
     clock:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>'};
 
-  /* A1 — сцена «вечер»: сообщение → AI отвечает → записан → контраст «без нас» */
+  /* A1 — сцена «вечер»: сообщение → сценарный маршрут → черновик */
   function dEvening(stage,t){
     stage.innerHTML='<div class="wg-eve-head">'+IC.clock+'21:40 · клиника закрыта</div><div class="wg-flow"></div>';
     var f=stage.querySelector('.wg-flow');
     var owner=function(){ f.appendChild(el('<div class="wg-bub l"><span class="who">Владелец</span>Здравствуйте! Кот приболел, можно записаться завтра?</div>')); };
-    var ai=function(){ f.appendChild(el('<div class="wg-ai"><span class="ai-badge">AI</span>Отвечу сейчас</div>')); };
-    var bot=function(){ f.appendChild(el('<div class="wg-bub r">Записываю Барсика на завтра, 10:00. Администратор подтвердит.</div>')); };
-    var cmp=function(){ f.appendChild(el('<div class="wg-compare"><div class="wg-oc"><span class="wg-pill ok">записан</span>С ВетПульсом — пациент остаётся у вас</div><div class="wg-oc mut"><span class="wg-pill">ушёл</span>Без нас — уехал в клинику напротив</div></div>')); };
+    var ai=function(){ f.appendChild(el('<div class="wg-ai"><span class="ai-badge">UX</span>Сценарий маршрутизации</div>')); };
+    var bot=function(){ f.appendChild(el('<div class="wg-bub r">Подготовлен черновик на завтра, 10:00. Сотрудник должен подтвердить.</div>')); };
+    var cmp=function(){ f.appendChild(el('<div class="wg-compare"><div class="wg-oc"><span class="wg-pill ok">гипотеза</span>Ответ вне рабочего окна можно проверить</div><div class="wg-oc mut"><span class="wg-pill">исходные данные</span>Сначала измеряем текущий процесс</div></div>')); };
     if(reduceMotion){ owner(); ai(); f.querySelector('.wg-ai').classList.add('on'); bot(); cmp(); return; }
     (async function(){
       await demoSleep(500); if(t!==demoToken)return; owner();
@@ -1064,10 +1035,10 @@
     stage.innerHTML='<div class="wg-status">Расписание · вторник</div>'+
       '<div class="wg-row"><span class="wg-rt">12:30</span><span class="rl">Рекс · осмотр<span>подтверждён</span></span><span class="wg-pill ok">готов</span></div>'+
       '<div class="wg-row" id="tgt"><span class="wg-rt">15:00</span><span class="rl">Барсик · вакцинация<span class="ss">ожидает подтверждения</span></span><span class="wg-pill blue st">ожидает</span></div>'+
-      '<div class="wg-remind" id="rem" style="display:none">Напоминание отправлено: «подтвердить / перенести»</div>'+
+      '<div class="wg-remind" id="rem" style="display:none">Напоминание смоделировано: «подтвердить / перенести»</div>'+
       '<div class="wg-row"><span class="wg-rt">16:30</span><span class="rl">Мурка · чистка<span>подтверждён</span></span><span class="wg-pill ok">готов</span></div>';
     var tgt=stage.querySelector('#tgt'), rem=stage.querySelector('#rem'), st=tgt.querySelector('.st'), ss=tgt.querySelector('.ss');
-    var done=function(){ st.textContent='подтверждён'; st.className='wg-pill ok st'; tgt.classList.add('ok'); ss.textContent='слот закреплён — не простаивает'; rem.style.display='none'; };
+    var done=function(){ st.textContent='условно'; st.className='wg-pill ok st'; tgt.classList.add('ok'); ss.textContent='сценарное подтверждение'; rem.style.display='none'; };
     if(reduceMotion){ done(); return; }
     (async function(){
       await demoSleep(750); if(t!==demoToken)return; rem.style.display='block'; rem.style.animation='mpop .3s both';
@@ -1075,11 +1046,11 @@
     })();
   }
 
-  /* A3 — сетка спящих: волна оживления, счётчик возвращённых */
+  /* A3 — синтетическая аудитория и условные ответы */
   function dGrid(stage,t){
     var N=36, dots=''; for(var i=0;i<N;i++) dots+='<span class="wg-dot" id="wd'+i+'"></span>';
-    stage.innerHTML='<div class="wg-status">База спящих питомцев</div><div class="wg-grid">'+dots+'</div>'+
-      '<div class="wg-gridsum"><span>Спящих: <b>340</b></span><span class="ret">Возвращено: <b class="rn">0</b> <span class="wg-ex">пример</span></span></div>';
+    stage.innerHTML='<div class="wg-status">Синтетическая аудитория</div><div class="wg-grid">'+dots+'</div>'+
+      '<div class="wg-gridsum"><span>Записей: <b>340</b></span><span class="ret">Условных ответов: <b class="rn">0</b> <span class="wg-ex">пример</span></span></div>';
     var idx=[]; for(var k=0;k<N;k++){ if(k%4===1) idx.push(k); }
     var rn=stage.querySelector('.rn');
     if(reduceMotion){ idx.forEach(function(i){ stage.querySelector('#wd'+i).classList.add('on'); }); rn.textContent='57'; return; }
@@ -1091,13 +1062,13 @@
     })();
   }
 
-  /* C1 — мокап Vetmanager: тумблер OFF→ON, поле ключа, «Подключено» */
+  /* C1 — макет проверки API; реального подключения нет */
   function dVetmanager(stage,t){
-    stage.innerHTML='<div class="wg-app"><div class="wg-app-bar"><span class="dot3"><i></i><i></i><i></i></span>Vetmanager · настройки</div>'+
-      '<div class="wg-crumb">Настройки → Интеграция с сервисами → <b>Rest API</b></div>'+
-      '<div class="wg-appline"><span>Доступ по API</span><span class="wg-tog" id="tog"></span></div>'+
+    stage.innerHTML='<div class="wg-app"><div class="wg-app-bar"><span class="dot3"><i></i><i></i><i></i></span>API-песочница · макет</div>'+
+      '<div class="wg-crumb">Проверка → Поля и права → <b>тестовый контур</b></div>'+
+      '<div class="wg-appline"><span>Разрешение на тест</span><span class="wg-tog" id="tog"></span></div>'+
       '<div class="wg-reveal" id="rev"><div class="wg-appline" style="border-top:1px solid var(--line-soft)"><span class="wg-key" id="key">—&nbsp;—&nbsp;—&nbsp;—</span><span class="wg-copied" id="cop">скопировано</span></div></div></div>'+
-      '<div class="wg-badge" id="bdg">'+IC.check+'Подключено</div>';
+      '<div class="wg-badge" id="bdg">'+IC.check+'Готово к проверке</div>';
     var tog=stage.querySelector('#tog'),rev=stage.querySelector('#rev'),key=stage.querySelector('#key'),cop=stage.querySelector('#cop'),bdg=stage.querySelector('#bdg');
     var fin=function(){ tog.classList.add('on'); rev.classList.add('show'); key.textContent='••••••••••••'; cop.classList.add('show'); bdg.classList.add('show'); };
     if(reduceMotion){ fin(); return; }
@@ -1109,12 +1080,12 @@
     })();
   }
 
-  /* C2 — маршрут: входящее → AI → строка в расписании */
+  /* C2 — маршрут: входящее → правила → черновик */
   function dRoute(stage,t){
     stage.innerHTML='<div class="wg-route"><div class="node" id="n1">Входящее<br><small>«Запишите Мурку»</small></div>'+
-      '<span class="arr">'+IC.arrow+'</span><div class="node ai" id="n2">AI ВетПульс</div>'+
-      '<span class="arr">'+IC.arrow+'</span><div class="node" id="n3">Расписание</div></div>'+
-      '<div class="wg-row" id="row" style="opacity:0;transition:opacity .35s ease"><span class="wg-rt">16:00</span><span class="rl">Мурка · осмотр<span>через ВетПульс</span></span><span class="wg-pill warn">на подтверждении</span></div>';
+      '<span class="arr">'+IC.arrow+'</span><div class="node ai" id="n2">Правила</div>'+
+      '<span class="arr">'+IC.arrow+'</span><div class="node" id="n3">Черновик</div></div>'+
+      '<div class="wg-row" id="row" style="opacity:0;transition:opacity .35s ease"><span class="wg-rt">16:00</span><span class="rl">Мурка · осмотр<span>сценарий прототипа</span></span><span class="wg-pill warn">нужна проверка</span></div>';
     var n1=stage.querySelector('#n1'),n2=stage.querySelector('#n2'),n3=stage.querySelector('#n3'),row=stage.querySelector('#row');
     var fin=function(){ n1.classList.add('on'); n2.classList.add('on'); n3.classList.add('on'); row.style.opacity='1'; };
     if(reduceMotion){ fin(); return; }
@@ -1129,9 +1100,9 @@
   /* C3 — мини-дашборд: счётчик ₽, sparkline, три стата */
   function dDash(stage,t){
     stage.innerHTML='<div class="wg-dash-big"><span class="rev">0</span> <small>₽</small></div>'+
-      '<div class="wg-dash-cap">возвращённая выручка · за месяц <span class="wg-ex">пример</span></div>'+
+      '<div class="wg-dash-cap">модельный потенциал · синтетический месяц <span class="wg-ex">пример</span></div>'+
       '<div class="wg-spark"><svg viewBox="0 0 300 34" preserveAspectRatio="none" fill="none"><path class="ln" d="M2 30 L40 26 L80 27 L120 18 L160 20 L200 12 L240 9 L298 4" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>'+
-      '<div class="wg-dstats"><div class="wg-dstat"><b class="s1">0</b><span>обращений 24/7</span></div><div class="wg-dstat"><b class="s2">0</b><span>неявок предотвр.</span></div><div class="wg-dstat"><b class="s3">0</b><span>возвращено</span></div></div>';
+      '<div class="wg-dstats"><div class="wg-dstat"><b class="s1">0</b><span>обращений в сценарии</span></div><div class="wg-dstat"><b class="s2">0</b><span>подтверждений</span></div><div class="wg-dstat"><b class="s3">0</b><span>повторных визитов</span></div></div>';
     var rev=stage.querySelector('.rev'),spark=stage.querySelector('.wg-spark'),s1=stage.querySelector('.s1'),s2=stage.querySelector('.s2'),s3=stage.querySelector('.s3');
     if(reduceMotion){ rev.textContent=fmt(184200); spark.classList.add('draw'); s1.textContent='212'; s2.textContent='38'; s3.textContent='57'; return; }
     requestAnimationFrame(function(){ if(t===demoToken) spark.classList.add('draw'); });
@@ -1140,8 +1111,8 @@
 
   /* C4 — панель доступа: активен → «Отозвать» → закрыт, линия рвётся */
   function dAccess(stage,t){
-    stage.innerHTML='<div class="wg-status">Доступ к Vetmanager</div>'+
-      '<div class="wg-appline" style="border:1px solid var(--line-soft);border-radius:10px;background:#fff"><span class="wg-badge show" id="abd">'+IC.check+'Доступ активен</span><span class="wg-tog on" id="atog"></span></div>'+
+    stage.innerHTML='<div class="wg-status">Макет ограниченного доступа</div>'+
+      '<div class="wg-appline" style="border:1px solid var(--line-soft);border-radius:10px;background:#fff"><span class="wg-badge show" id="abd">'+IC.check+'Тестовый доступ</span><span class="wg-tog on" id="atog"></span></div>'+
       '<div class="wg-line" id="aln"></div>'+
       '<button type="button" class="wg-btn-ghost" id="arev" tabindex="-1">Отозвать ключ</button>';
     var bd=stage.querySelector('#abd'),tog=stage.querySelector('#atog'),ln=stage.querySelector('#aln'),btn=stage.querySelector('#arev');
@@ -1150,10 +1121,10 @@
     (async function(){ await demoSleep(1300); if(t!==demoToken)return; revoke(); })();
   }
 
-  /* C5 — рамка РФ: данные не уходят (отскок), штампы 152-ФЗ и договор */
+  /* C5 — напоминание о юридической проверке */
   function dRF(stage,t){
-    stage.innerHTML='<div class="wg-rf"><span class="rf-tag">РФ</span><span class="server">'+IC.server+'</span><span class="esc" id="esc"></span></div>'+
-      '<div class="wg-shieldrow"><span class="wg-badge" id="st1">'+IC.check+'Договор поручения</span><span class="wg-badge" id="st2">'+IC.shield+'152-ФЗ</span></div>';
+    stage.innerHTML='<div class="wg-rf"><span class="rf-tag">?</span><span class="server">'+IC.server+'</span><span class="esc" id="esc"></span></div>'+
+      '<div class="wg-shieldrow"><span class="wg-badge" id="st1">'+IC.check+'Карта данных</span><span class="wg-badge" id="st2">'+IC.shield+'Юрист проверяет</span></div>';
     var esc=stage.querySelector('#esc'),st1=stage.querySelector('#st1'),st2=stage.querySelector('#st2');
     if(reduceMotion){ st1.classList.add('show'); st2.classList.add('show'); return; }
     (async function(){
@@ -1169,21 +1140,21 @@
     stage.innerHTML='<div class="wg-chart"><svg viewBox="0 0 300 110" fill="none" preserveAspectRatio="none">'+
       '<path class="grow" d="M6 96 C 90 86, 150 58, 294 18" stroke="#0e7c6f" stroke-width="3" stroke-linecap="round"/>'+
       '<path class="grow g2" d="M6 101 C 95 96, 165 76, 294 42" stroke="#e8734a" stroke-width="3" stroke-linecap="round"/></svg></div>'+
-      '<div class="wg-legend"><span><i style="background:#0e7c6f"></i>Ваша выручка ↑</span><span><i style="background:#e8734a"></i>Наша подписка ↑</span></div>';
+      '<div class="wg-legend"><span><i style="background:#0e7c6f"></i>Риск автоматизации ↓</span><span><i style="background:#e8734a"></i>Контроль человека ↑</span></div>';
     var chart=stage.querySelector('.wg-chart');
     if(reduceMotion){ chart.classList.add('draw'); return; }
     requestAnimationFrame(function(){ if(t===demoToken) chart.classList.add('draw'); });
   }
 
-  /* C7 — человек в контуре: рутина AI, экстренное → сотруднику → подтверждено */
+  /* C7 — человек в контуре: прототип показывает только предполагаемый маршрут */
   function dHuman(stage,t){
     stage.innerHTML='<div class="wg-flow"></div>';
     var f=stage.querySelector('.wg-flow');
     var R=[
-      '<div class="wg-row"><span class="hh ai">'+IC.check+'</span><span class="rl">Цена и часы работы<span>ответил AI</span></span><span class="wg-pill ok">готово</span></div>',
-      '<div class="wg-row"><span class="hh ai">'+IC.check+'</span><span class="rl">Запись на осмотр<span>ответил AI</span></span><span class="wg-pill ok">готово</span></div>',
-      '<div class="wg-row"><span class="hh hum">'+IC.person+'</span><span class="rl">«Питомцу плохо» — экстренное<span>передано администратору</span></span><span class="wg-pill warn">человек</span></div>',
-      '<div class="wg-row ok"><span class="hh hum">'+IC.person+'</span><span class="rl">Запись подтверждена<span>решил администратор</span></span><span class="wg-pill ok">готово</span></div>'];
+      '<div class="wg-row"><span class="hh ai">'+IC.check+'</span><span class="rl">Цена и часы работы<span>сценарный ответ</span></span><span class="wg-pill ok">макет</span></div>',
+      '<div class="wg-row"><span class="hh ai">'+IC.check+'</span><span class="rl">Запись на осмотр<span>создан черновик</span></span><span class="wg-pill warn">проверить</span></div>',
+      '<div class="wg-row"><span class="hh hum">'+IC.person+'</span><span class="rl">«Питомцу плохо» — срочно<span>маршрут к сотруднику</span></span><span class="wg-pill warn">человек</span></div>',
+      '<div class="wg-row ok"><span class="hh hum">'+IC.person+'</span><span class="rl">Черновик просмотрен<span>решение за сотрудником</span></span><span class="wg-pill ok">контроль</span></div>'];
     if(reduceMotion){ R.forEach(function(h){ f.appendChild(el(h)); }); return; }
     (async function(){
       for(var i=0;i<R.length;i++){ await demoSleep(i===0?450:640); if(t!==demoToken)return; f.appendChild(el(R[i])); }
@@ -1215,7 +1186,7 @@
     void dialog.offsetWidth;
     try{ dialog.focus(); }catch(e){}
     if(window.requestAnimationFrame){ requestAnimationFrame(function(){ if(!modal.contains(document.activeElement)){ try{dialog.focus();}catch(e){} } }); }
-    // запускаем живое демо, если модалка «работы» (B1-B3)
+    // запускаем сценарную анимацию для карточек B1-B3
     var stg=mbody.querySelector('.m-demo-stage');
     currentDemo = stg ? {type:stg.getAttribute('data-demo'), stage:stg} : null;
     if(currentDemo) runDemo(currentDemo);

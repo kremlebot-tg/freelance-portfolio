@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">ВетПульс — продуктовый прототип для ветклиник</title>
+  <desc id="desc">Сценарии обращений, черновиков записи, напоминаний и реактивации на вымышленных данных.</desc>
+  <rect width="1200" height="630" fill="#f3f7f5"/>
+
+  <g transform="translate(72 64)">
+    <rect width="54" height="54" rx="14" fill="#0a544b"/>
+    <g fill="#e8734a" transform="translate(9 9) scale(1.5)">
+      <ellipse cx="6.3" cy="10" rx="2" ry="2.6"/>
+      <ellipse cx="10.2" cy="7.2" rx="2" ry="2.7"/>
+      <ellipse cx="14.6" cy="7.2" rx="2" ry="2.7"/>
+      <ellipse cx="18.4" cy="10.3" rx="1.9" ry="2.5"/>
+      <path d="M12.3 12.4c-3.1 0-5.6 2.2-5.6 4.6 0 2 1.7 3.1 3.6 2.8l2-.4 2 .4c1.9.3 3.6-.8 3.6-2.8 0-2.4-2.5-4.6-5.6-4.6z"/>
+    </g>
+    <text x="72" y="39" fill="#122320" font-family="Arial, sans-serif" font-size="31" font-weight="700">ВетПульс</text>
+  </g>
+
+  <text x="72" y="182" fill="#0e7c6f" font-family="Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="3">ПРОДУКТОВЫЙ ПРОТОТИП</text>
+  <text x="72" y="252" fill="#122320" font-family="Arial, sans-serif" font-size="57" font-weight="800">Проверяем сценарий</text>
+  <text x="72" y="320" fill="#122320" font-family="Arial, sans-serif" font-size="57" font-weight="800">до разработки</text>
+  <text x="72" y="380" fill="#566a64" font-family="Arial, sans-serif" font-size="24">Обращения · черновики записи · напоминания · реактивация</text>
+
+  <g transform="translate(72 452)">
+    <rect width="316" height="50" rx="25" fill="#ffffff" stroke="#dce6e2"/>
+    <circle cx="26" cy="25" r="7" fill="#e8734a"/>
+    <text x="46" y="33" fill="#566a64" font-family="Arial, sans-serif" font-size="18" font-weight="600">ВЫМЫШЛЕННЫЕ ДАННЫЕ</text>
+  </g>
+  <text x="72" y="552" fill="#7e908a" font-family="Arial, sans-serif" font-size="18">Без AI-модели, серверной части и подключения к Vetmanager</text>
+
+  <g transform="translate(804 94)">
+    <rect width="324" height="442" rx="24" fill="#ffffff" stroke="#dce6e2" stroke-width="2"/>
+    <text x="32" y="54" fill="#566a64" font-family="Arial, sans-serif" font-size="15" font-weight="700" letter-spacing="2">ИНТЕРАКТИВНЫЙ КАБИНЕТ</text>
+    <text x="32" y="139" fill="#0a544b" font-family="Arial, sans-serif" font-size="78" font-weight="800">5</text>
+    <text x="111" y="139" fill="#566a64" font-family="Arial, sans-serif" font-size="27" font-weight="600">разделов</text>
+    <line x1="32" y1="170" x2="292" y2="170" stroke="#dce6e2"/>
+    <g fill="#122320" font-family="Arial, sans-serif" font-size="21">
+      <text x="32" y="221">01  Сводка</text>
+      <text x="32" y="267">02  Обращения</text>
+      <text x="32" y="313">03  Черновики записи</text>
+      <text x="32" y="359">04  Напоминания</text>
+      <text x="32" y="405">05  Реактивация</text>
+    </g>
+  </g>
+</svg>

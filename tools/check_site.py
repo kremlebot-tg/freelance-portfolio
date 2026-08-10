@@ -145,6 +145,14 @@ def main() -> int:
             if copy not in source:
                 failures.append(f"{relative}: missing transparent demo label {copy!r}")
 
+    case_pages = sorted(ROOT.glob("case-*.html")) + sorted((ROOT / "en").glob("case-*.html"))
+    for page in case_pages:
+        source = page.read_text(encoding="utf-8")
+        has_shared_process = 'class="case-process__flow"' in source and 'class="case-process__link"' in source
+        has_vetpulse_process = 'class="flow"' in source and 'class="flow-link"' in source
+        if not (has_shared_process or has_vetpulse_process):
+            failures.append(f"{page.relative_to(ROOT)}: missing visual business-process flow")
+
     repricer_overclaims = (
         "каждый активный товар был в плюсе",
         "переоценивает каталог в плюс",
@@ -158,6 +166,51 @@ def main() -> int:
         for claim in repricer_overclaims:
             if claim in source:
                 failures.append(f"{page.relative_to(ROOT)}: unsupported repricer claim {claim!r}")
+
+    vetpulse_required = {
+        "case-vetpulse.html": (
+            "интерактивный прототип",
+            "AI-модель, серверная часть и Vetmanager не подключены",
+            "три заскриптованных сценария",
+        ),
+        "en/case-vetpulse.html": (
+            "interactive prototype",
+            "Live AI, a backend and Vetmanager are not connected",
+            "three scripted scenarios",
+        ),
+        "vetpulse/index.html": (
+            'content="noindex,follow"',
+            "Продуктовый прототип · вымышленные данные",
+            "Интеграция — следующий этап",
+        ),
+        "vetpulse/demo.html": (
+            "Это сценарный прототип",
+            "ничего не отправляют наружу",
+            "не реальные результаты",
+        ),
+    }
+    for relative, required_copy in vetpulse_required.items():
+        source = (ROOT / relative).read_text(encoding="utf-8")
+        for copy in required_copy:
+            if copy not in source:
+                failures.append(f"{relative}: missing transparent prototype label {copy!r}")
+
+    vetpulse_overclaims = (
+        "Мультиарендный AI-SaaS",
+        "multi-tenant AI-SaaS",
+        "Мультиарендный SaaS",
+        "multi-tenant SaaS",
+        "Соответствие 152-ФЗ",
+        "Бесплатный пилот",
+        "полностью внедрённая",
+        "всё уже работает",
+        "Ошибке неоткуда взяться",
+    )
+    for relative in vetpulse_required:
+        source = (ROOT / relative).read_text(encoding="utf-8")
+        for claim in vetpulse_overclaims:
+            if claim in source:
+                failures.append(f"{relative}: unsupported VetPulse claim {claim!r}")
 
     if failures:
         print("Site checks failed:")

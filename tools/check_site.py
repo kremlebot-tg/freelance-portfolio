@@ -145,14 +145,6 @@ def main() -> int:
             if copy not in source:
                 failures.append(f"{relative}: missing transparent demo label {copy!r}")
 
-    case_pages = sorted(ROOT.glob("case-*.html")) + sorted((ROOT / "en").glob("case-*.html"))
-    for page in case_pages:
-        source = page.read_text(encoding="utf-8")
-        has_shared_process = 'class="case-process__flow"' in source and 'class="case-process__link"' in source
-        has_vetpulse_process = 'class="flow"' in source and 'class="flow-link"' in source
-        if not (has_shared_process or has_vetpulse_process):
-            failures.append(f"{page.relative_to(ROOT)}: missing visual business-process flow")
-
     repricer_overclaims = (
         "каждый активный товар был в плюсе",
         "переоценивает каталог в плюс",

@@ -45,8 +45,9 @@ window.SITE_CONFIG = {
   requisitesFull: 'ИП Яценко Даниил Александрович',
   requisitesEn: 'Sole proprietor · TIN 502991709786',  // для EN достаточно TIN, ОГРНИП не нужен
 
-  // --- Отзывы (главная страница) ---
-  // Секция скрыта, пока массив пуст. Формат:
+  // --- Подтверждённые отзывы (главная страница) ---
+  // Секция скрыта, пока массив пуст. Добавлять только с разрешением автора
+  // отзыва и без редактирования смысла. Формат:
   // { text: 'Текст отзыва…', name: 'Имя Фамилия', role: 'Должность, компания' }
   testimonials: [],
 
@@ -178,6 +179,15 @@ window.SITE_CONFIG = {
     }
   }
 
+  function enforceRequiredFields(root) {
+    var fields = (root || document).querySelectorAll('[data-form-task],[data-form-about],[data-form-contact]');
+    for (var i = 0; i < fields.length; i++) {
+      fields[i].required = true;
+      fields[i].setAttribute('required', '');
+      fields[i].setAttribute('aria-required', 'true');
+    }
+  }
+
   function isHeroElement(el) {
     if (!isHome) return false;
     var first = document.querySelector('main > section');
@@ -280,7 +290,10 @@ window.SITE_CONFIG = {
 
   function enhance(root) {
     if (!document.body) return;
+    var main = document.querySelector('main');
+    if (main && !main.id) main.id = 'main-content';
     hydrateDeferredImages(root);
+    enforceRequiredFields(root);
     markDisplayType(root);
     markCards(root);
     markChrome(root);

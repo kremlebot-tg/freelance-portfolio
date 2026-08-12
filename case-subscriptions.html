@@ -3,29 +3,29 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Кейс: подписочный Telegram-бот с оплатой ЮКасса — Re:dnd</title>
-<meta name="description" content="Разработка подписочного Telegram-бота: тарифы, рекуррентная оплата через ЮКассу, автовыдача доступа. Живое демо внутри.">
+<title>Прототип подписочного Telegram-бота с оплатой — Re:dnd</title>
+<meta name="description" content="Интерактивный прототип подписочного Telegram-бота: тарифы, безопасный переход к оплате и сценарий управления доступом. Без реальных платежей.">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Re:dnd">
 <meta property="og:locale" content="ru_RU">
 <meta property="og:url" content="https://rednd.ru/case-subscriptions.html">
-<meta property="og:title" content="Кейс: подписочный Telegram-бот с оплатой ЮКасса — Re:dnd">
-<meta property="og:description" content="Разработка подписочного Telegram-бота: тарифы, рекуррентная оплата через ЮКассу, автовыдача доступа. Живое демо внутри.">
+<meta property="og:title" content="Прототип подписочного Telegram-бота с оплатой — Re:dnd">
+<meta property="og:description" content="Интерактивный прототип сценария подписки и управления доступом. Демо не проводит реальные платежи.">
 <meta property="og:image" content="https://rednd.ru/og-case-subscriptions.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Кейс: подписочный Telegram-бот с оплатой ЮКасса — Re:dnd">
-<meta name="twitter:description" content="Разработка подписочного Telegram-бота: тарифы, рекуррентная оплата через ЮКассу, автовыдача доступа. Живое демо внутри.">
+<meta name="twitter:title" content="Прототип подписочного Telegram-бота с оплатой — Re:dnd">
+<meta name="twitter:description" content="Интерактивный прототип сценария подписки и управления доступом. Без реальных платежей.">
 <meta name="twitter:image" content="https://rednd.ru/og-case-subscriptions.png">
 <link rel="canonical" href="https://rednd.ru/case-subscriptions.html">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="alternate" hreflang="ru" href="https://rednd.ru/case-subscriptions.html">
 <link rel="alternate" hreflang="en" href="https://rednd.ru/en/case-subscriptions.html">
 <link rel="alternate" hreflang="x-default" href="https://rednd.ru/case-subscriptions.html">
-<script src="./site-config.js?v=20260810a"></script>
+<script src="./site-config.js?v=20260812a"></script>
 <script>(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
-<link rel="stylesheet" href="./theme.css?v=20260810b">
+<link rel="stylesheet" href="./theme.css?v=20260812a">
 <script src="./support.js"></script>
 </head>
 <body>
@@ -43,23 +43,32 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
 
 <dc-import name="Header" active="projects" brand-name="{{ brandName }}" hint-size="100%,64px"></dc-import>
 
-<main style="font-family:Inter,system-ui,sans-serif;max-width:1140px;margin:0 auto;padding:clamp(32px,4vw,52px) 22px clamp(56px,7vw,88px)">
+<main id="main-content" style="font-family:Inter,system-ui,sans-serif;max-width:1140px;margin:0 auto;padding:clamp(32px,4vw,52px) 22px clamp(56px,7vw,88px)">
 
   <a href="projects.html" style="display:inline-flex;align-items:center;gap:6px;font:500 14.5px Inter,system-ui,sans-serif;color:var(--accent);text-decoration:none;border-radius:8px;padding:10px 6px;min-height:44px;margin:0 0 12px -6px" style-hover="background:var(--accent-tint)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">← Все проекты</a>
 
   <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:28px">
     <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
       <span style="font:500 13px JetBrains Mono,monospace;color:var(--accent)">[Подписки · Оплаты]</span>
-      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:var(--online)"></span>автоматизация платежей</span>
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:var(--status-amber-fg)"></span>интерактивный прототип</span>
     </div>
     <h1 style="margin:0;font:700 clamp(28px,4vw,42px)/1.15 Sora,sans-serif;letter-spacing:-0.02em">Подписочный Telegram-сервис</h1>
-    <p style="margin:0;font:400 clamp(15.5px,1.6vw,18px)/1.55 Inter,system-ui,sans-serif;color:var(--text-body);max-width:640px">Бот принимает регулярную оплату через ЮКассу и сам выдаёт платный доступ.</p>
+    <p style="margin:0;font:400 clamp(15.5px,1.6vw,18px)/1.55 Inter,system-ui,sans-serif;color:var(--text-body);max-width:680px">Кликабельный сценарий подписки показывает выбор тарифа, безопасный переход к платёжному провайдеру и логику выдачи доступа. Реальные платежи и backend здесь не подключены.</p>
   </div>
 
+  <section class="case-glance" data-kind="prototype" data-layout="rail" aria-labelledby="subscriptions-glance-title">
+    <div class="case-glance__lead"><div><span class="case-glance__eyebrow">статус кейса</span><h2 id="subscriptions-glance-title">Кликабельный сценарий до backend-разработки</h2></div><span class="case-glance__state">интерактивный прототип</span></div>
+    <div class="case-glance__items">
+      <article class="case-glance__item" data-role="check"><span class="case-glance__label">можно проверить</span><strong>Тариф → макет оплаты → доступ</strong><p>Все основные состояния проходятся прямо на странице.</p></article>
+      <article class="case-glance__item" data-role="proof"><span class="case-glance__label">показано</span><strong>Полный пользовательский путь</strong><p>Выбор периода, возврат после оплаты, активация и напоминание.</p></article>
+      <article class="case-glance__item" data-role="boundary"><span class="case-glance__label">граница</span><strong>Деньги не списываются</strong><p>ЮKassa, webhook, backend и реальная выдача доступа не подключены.</p></article>
+    </div>
+  </section>
+
   <!-- ============ DEMO ============ -->
-  <section aria-label="Живое демо бота" style="background:var(--surface);border:1px solid var(--border);border-radius:22px;padding:clamp(18px,3vw,32px);display:flex;flex-direction:column;gap:18px">
+  <section data-theme-lock aria-label="Интерактивный прототип бота без реальных платежей" style="background:var(--surface);border:1px solid var(--border);border-radius:22px;padding:clamp(18px,3vw,32px);display:flex;flex-direction:column;gap:18px">
     <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
-      <span style="display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 13px Inter,system-ui,sans-serif"><span style="width:7px;height:7px;border-radius:50%;background:var(--online)"></span>живое демо: кликайте, как в настоящем боте</span>
+      <span style="display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 13px Inter,system-ui,sans-serif"><span style="width:7px;height:7px;border-radius:50%;background:var(--status-amber-fg)"></span>прототип · платежи и доступ эмулируются</span>
       <button type="button" onClick="{{ onResetDemo }}" style="margin-left:auto;font:500 13.5px Inter,system-ui,sans-serif;color:var(--text-meta);background:var(--surface-2);border:none;cursor:pointer;padding:11px 16px;min-height:44px;display:inline-flex;align-items:center;border-radius:10px" style-hover="background:var(--border-soft);color:var(--text)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">⟳ сбросить демо</button>
     </div>
 
@@ -78,7 +87,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
         <!-- chat body -->
         <div ref="{{ chatRef }}" style="height:420px;overflow-y:auto;padding:16px 12px;display:flex;flex-direction:column;gap:9px;background-color:var(--chat-area);background-image:radial-gradient(rgba(26,121,199,0.08) 1px,transparent 1.3px);background-size:20px 20px">
 
-          <div style="align-self:flex-start;max-width:88%;background:var(--surface);border-radius:15px 15px 15px 4px;padding:9px 13px;box-shadow:0 1px 1px var(--shadow-1);font:400 14.5px/1.45 Inter,system-ui,sans-serif">Это демо настоящего сценария оплаты. Нажмите /start внизу 👇</div>
+          <div style="align-self:flex-start;max-width:88%;background:var(--surface);border-radius:15px 15px 15px 4px;padding:9px 13px;box-shadow:0 1px 1px var(--shadow-1);font:400 14.5px/1.45 Inter,system-ui,sans-serif">Это прототип интерфейса: он не создаёт счёт и не списывает деньги. Нажмите /start внизу 👇</div>
 
           <sc-if value="{{ s1 }}" hint-placeholder-val="{{ false }}">
             <div style="align-self:flex-end;max-width:88%;background:var(--msg-out-bg);border-radius:15px 15px 4px 15px;padding:9px 13px;box-shadow:0 1px 1px var(--shadow-1);font:500 14.5px/1.45 JetBrains Mono,monospace;animation:{{ anim }}">/start</div>
@@ -172,10 +181,10 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
     </div>
   </section>
 
-  <section class="case-process" aria-labelledby="subscriptions-process-title">
+  <section class="case-process" data-layout="compact" aria-labelledby="subscriptions-process-title">
     <div class="case-process__head">
       <div class="case-process__title-wrap"><span class="case-process__kicker">платёжный цикл</span><h2 id="subscriptions-process-title">От выбора тарифа до управляемого доступа</h2></div>
-      <p>Бот ведёт пользователя по сценарию, платёж принимает провайдер, а доступ меняется только после проверенного события оплаты.</p>
+      <p>Схема показывает целевую production-логику. На этой странице шаги выполняются локально и не обращаются к ЮKassa или backend.</p>
     </div>
     <div class="case-process__flow">
       <article class="case-process__stage"><span class="case-process__num">01</span><div><h3>Пользователь выбирает тариф</h3><p>Telegram-бот показывает варианты, срок и итоговую сумму без перехода в отдельный личный кабинет.</p></div></article>
@@ -187,7 +196,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
       <article class="case-process__stage"><span class="case-process__num">04</span><div><h3>Доступ синхронизируется</h3><p>Срок подписки обновляется, бот выдаёт доступ и заранее напоминает о следующем продлении.</p></div></article>
       <div class="case-process__link" aria-hidden="true"></div>
       <div class="case-process__outcomes">
-        <article class="case-process__outcome" data-tone="success"><span>→ ОПЛАЧЕНО</span><h3>Доступ активен</h3><p>Выдача или продление происходят без ручной обработки.</p></article>
+        <article class="case-process__outcome" data-tone="success"><span>→ ЦЕЛЕВОЙ СЦЕНАРИЙ</span><h3>Доступ активен</h3><p>В production выдача или продление должны происходить только после серверной проверки.</p></article>
         <article class="case-process__outcome" data-tone="review"><span>→ СКОРО ОКОНЧАНИЕ</span><h3>Напоминание</h3><p>Пользователь получает понятный следующий шаг до завершения срока.</p></article>
         <article class="case-process__outcome" data-tone="stop"><span>→ НЕ ОПЛАЧЕНО</span><h3>Доступ отозван</h3><p>Статус меняется предсказуемо, а событие остаётся в админке.</p></article>
       </div>
@@ -198,15 +207,15 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
   <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:16px;margin-top:24px">
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
       <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">01 · задача</span>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">Принимать регулярную оплату и управлять платным доступом без ручной работы: выдача, продление, отзыв.</p>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">Спроектировать понятный путь от выбора тарифа до управляемого доступа и заранее показать его заказчику.</p>
     </div>
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
       <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">02 · как решали</span>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">Бот на Bot API: тарифы, счета и вебхуки ЮКассы, автовыдача и отзыв доступа, напоминания о продлении, админка со статистикой. Хостинг и мониторинг на VPS.</p>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">Интерактивный клиентский прототип: тарифы, макет безопасного перехода к ЮKassa, состояния доступа и напоминания. Backend, вебхуки и production-мониторинг — отдельный этап внедрения.</p>
     </div>
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
-      <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">03 · результат</span>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty"><strong style="color:var(--accent)">Оплата и доступ работают на автомате.</strong> Выдача, продление и отзыв доступа идут без нашего участия.</p>
+      <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">03 · что подтверждено</span>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty"><strong style="color:var(--accent)">Пользовательский путь можно проверить до разработки backend.</strong> Реальную автоматизацию оплаты этот прототип не подтверждает.</p>
     </div>
   </section>
 

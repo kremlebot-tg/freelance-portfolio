@@ -57,6 +57,8 @@ jobs:
             --exclude '.DS_Store'
           test -f _site/index.html
           test -f _site/CNAME
+          test -f _site/.nojekyll
+          test -f _site/.well-known/security.txt
           test ! -d _site/node_modules
           if find _site -type f \( -name '*.py' -o -name '*.pyc' -o -name '*.jsx' \) | grep -q .; then
             echo 'Internal source leaked into the Pages artifact.'
@@ -70,6 +72,7 @@ jobs:
         uses: actions/upload-pages-artifact@v5
         with:
           path: _site
+          include-hidden-files: true
 
       - name: Deploy
         id: deployment

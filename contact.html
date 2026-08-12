@@ -23,9 +23,9 @@
 <link rel="alternate" hreflang="ru" href="https://rednd.ru/contact.html">
 <link rel="alternate" hreflang="en" href="https://rednd.ru/en/contact.html">
 <link rel="alternate" hreflang="x-default" href="https://rednd.ru/contact.html">
-<script src="./site-config.js?v=20260810a"></script>
+<script src="./site-config.js?v=20260812a"></script>
 <script>(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
-<link rel="stylesheet" href="./theme.css?v=20260810b">
+<link rel="stylesheet" href="./theme.css?v=20260812a">
 <script src="./support.js"></script>
 </head>
 <body>
@@ -94,7 +94,7 @@
 
 <dc-import name="Header" active="" brand-name="{{ brandName }}" hint-size="100%,64px"></dc-import>
 
-<main style="font-family:Inter,system-ui,sans-serif;max-width:1140px;margin:0 auto;padding:clamp(40px,5vw,64px) 22px clamp(56px,7vw,88px)">
+<main id="main-content" style="font-family:Inter,system-ui,sans-serif;max-width:1140px;margin:0 auto;padding:clamp(40px,5vw,64px) 22px clamp(56px,7vw,88px)">
   <h1 style="margin:0 0 12px;font:700 clamp(30px,4vw,44px)/1.15 Sora,sans-serif;letter-spacing:-0.02em">Расскажите про задачу</h1>
   <p style="margin:0 0 36px;font:400 clamp(15.5px,1.6vw,18px)/1.6 Inter,system-ui,sans-serif;color:var(--text-body);max-width:620px;text-wrap:pretty">Опишите задачу как есть, без ТЗ. Ответим обычно за пару часов.</p>
 
@@ -107,7 +107,7 @@
 
           <label style="display:flex;flex-direction:column;gap:8px">
             <span style="font:600 14.5px Inter,system-ui,sans-serif">Что нужно разработать или автоматизировать</span>
-            <textarea data-form-task rows="4" value="{{ task }}" onChange="{{ onTask }}" aria-invalid="{{ taskInvalid }}" aria-describedby="{{ formErrorId }}" placeholder="Например: принимать заявки из Telegram и складывать их в Google-таблицу" style="font:400 15px/1.55 Inter,system-ui,sans-serif;color:var(--text);border:1px solid var(--border-input);border-radius:12px;padding:12px 14px;resize:vertical;background:var(--input-bg);outline:none" style-focus-visible="border-color:var(--accent-cta);box-shadow:0 0 0 3px rgba(34,158,217,0.18)"></textarea>
+            <textarea data-form-task name="task" required aria-required="true" rows="4" value="{{ task }}" onChange="{{ onTask }}" aria-invalid="{{ taskInvalid }}" aria-describedby="{{ formErrorId }}" placeholder="Например: принимать заявки из Telegram и складывать их в Google-таблицу" style="font:400 15px/1.55 Inter,system-ui,sans-serif;color:var(--text);border:1px solid var(--border-input);border-radius:12px;padding:12px 14px;resize:vertical;background:var(--input-bg);outline:none" style-focus-visible="border-color:var(--accent-cta);box-shadow:0 0 0 3px rgba(34,158,217,0.18)"></textarea>
           </label>
 
           <div style="display:flex;flex-direction:column;gap:8px">
@@ -121,7 +121,7 @@
 
           <label style="display:flex;flex-direction:column;gap:8px">
             <span style="font:600 14.5px Inter,system-ui,sans-serif">Ориентир по бюджету <span style="font-weight:400;color:var(--text-muted)">· опционально</span></span>
-            <select value="{{ budget }}" onChange="{{ onBudget }}" style="font:400 15px Inter,system-ui,sans-serif;color:var(--text);border:1px solid var(--border-input);border-radius:12px;padding:12px 14px;background:var(--input-bg);outline:none;appearance:auto" style-focus-visible="border-color:var(--accent-cta);box-shadow:0 0 0 3px rgba(34,158,217,0.18)">
+            <select name="budget" value="{{ budget }}" onChange="{{ onBudget }}" style="font:400 15px Inter,system-ui,sans-serif;color:var(--text);border:1px solid var(--border-input);border-radius:12px;padding:12px 14px;background:var(--input-bg);outline:none;appearance:auto" style-focus-visible="border-color:var(--accent-cta);box-shadow:0 0 0 3px rgba(34,158,217,0.18)">
               <option value="">Пока не знаю</option>
               <option value="до 50 000 ₽">До 50 000 ₽</option>
               <option value="50–150 тыс ₽">50–150 тыс ₽</option>
@@ -131,7 +131,7 @@
 
           <label style="display:flex;flex-direction:column;gap:8px">
             <span style="font:600 14.5px Inter,system-ui,sans-serif">Как с вами связаться</span>
-            <input data-form-contact type="text" value="{{ contact }}" onChange="{{ onContact }}" aria-invalid="{{ contactInvalid }}" aria-describedby="{{ formErrorId }}" placeholder="@ник в Telegram или email" style="font:400 15px Inter,system-ui,sans-serif;color:var(--text);border:1px solid var(--border-input);border-radius:12px;padding:12px 14px;background:var(--input-bg);outline:none" style-focus-visible="border-color:var(--accent-cta);box-shadow:0 0 0 3px rgba(34,158,217,0.18)">
+            <input data-form-contact name="contact" type="text" required aria-required="true" autocomplete="email" value="{{ contact }}" onChange="{{ onContact }}" aria-invalid="{{ contactInvalid }}" aria-describedby="{{ formErrorId }}" placeholder="@ник в Telegram или email" style="font:400 15px Inter,system-ui,sans-serif;color:var(--text);border:1px solid var(--border-input);border-radius:12px;padding:12px 14px;background:var(--input-bg);outline:none" style-focus-visible="border-color:var(--accent-cta);box-shadow:0 0 0 3px rgba(34,158,217,0.18)">
           </label>
           <input type="text" name="website" value="{{ website }}" onChange="{{ onWebsite }}" autocomplete="off" tabindex="-1" aria-hidden="true" style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;opacity:0.01;pointer-events:none">
 

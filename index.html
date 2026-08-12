@@ -24,19 +24,20 @@
 <link rel="alternate" hreflang="en" href="https://rednd.ru/en/">
 <link rel="alternate" hreflang="x-default" href="https://rednd.ru/">
 <script>(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
-<link rel="stylesheet" href="./theme.css?v=20260810b">
-<script src="./site-config.js?v=20260810a"></script>
+<link rel="stylesheet" href="./theme.css?v=20260812a">
+<script src="./site-config.js?v=20260812a"></script>
 <script src="./support.js"></script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "Organization",
-      "@id": "https://rednd.ru/#org",
-      "name": "Re:dnd",
+      "@type": "Person",
+      "@id": "https://rednd.ru/#founder",
+      "name": "Даниил Яценко",
+      "alternateName": "Re:dnd",
       "url": "https://rednd.ru/",
-      "description": "Команда разработки и автоматизации для бизнеса",
+      "description": "Независимый разработчик и автор продуктовой практики Re:dnd",
       "email": "mailto:politushkin@gmail.com",
       "sameAs": ["https://t.me/re_dnd"]
     },
@@ -46,7 +47,7 @@
       "url": "https://rednd.ru/",
       "name": "Re:dnd",
       "inLanguage": "ru",
-      "publisher": { "@id": "https://rednd.ru/#org" }
+      "publisher": { "@id": "https://rednd.ru/#founder" }
     },
     {
       "@type": "ProfessionalService",
@@ -54,7 +55,7 @@
       "name": "Re:dnd — разработка и автоматизация для бизнеса",
       "url": "https://rednd.ru/",
       "image": "https://rednd.ru/og-default.png",
-      "provider": { "@id": "https://rednd.ru/#org" },
+      "provider": { "@id": "https://rednd.ru/#founder" },
       "areaServed": "RU",
       "priceRange": "от 7000 ₽",
       "description": "Разработка и автоматизация под задачу: боты, приложения, веб-сервисы, ИИ-ассистенты, CRM.",
@@ -133,16 +134,16 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
 
 <dc-import name="Header" active="" brand-name="{{ brandName }}" hint-size="100%,64px"></dc-import>
 
-<main style="font-family:Inter,system-ui,sans-serif">
+<main id="main-content" style="font-family:Inter,system-ui,sans-serif">
 
   <!-- ============ HERO ============ -->
   <section style="max-width:1140px;margin:0 auto;padding:clamp(48px,7vw,88px) 22px clamp(40px,6vw,72px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:clamp(28px,5vw,64px);align-items:center">
     <div style="display:flex;flex-direction:column;gap:20px;max-width:560px">
       <h1 style="margin:0;font:700 clamp(34px,4.6vw,54px)/1.12 Sora,sans-serif;letter-spacing:-0.02em;text-wrap:balance">Разработка и автоматизация для бизнеса</h1>
-      <p style="margin:0;font:400 clamp(16px,1.6vw,19px)/1.6 Inter,system-ui,sans-serif;color:var(--text-body);text-wrap:pretty">Боты, приложения и веб-сервисы под ключ: сценарий, интеграции, оплаты, запуск и передача вам.</p>
+      <p style="margin:0;font:400 clamp(16px,1.6vw,19px)/1.6 Inter,system-ui,sans-serif;color:var(--text-body);text-wrap:pretty">Я проектирую и собираю ботов, приложения и веб-сервисы под задачу: от сценария и интеграций до запуска и передачи вам.</p>
       <div style="display:flex;align-items:center;gap:10px;font:500 14px JetBrains Mono,monospace;color:var(--text-meta)">
         <span style="width:8px;height:8px;border-radius:50%;background:var(--online);flex:none"></span>
-        онлайн · отвечаем обычно за пару часов
+        онлайн · отвечаю обычно за пару часов
       </div>
     </div>
 
@@ -158,13 +159,13 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
       </div>
       <div style="padding:18px 14px 14px;display:flex;flex-direction:column;gap:10px;min-height:330px;background-color:var(--chat-area);background-image:radial-gradient(rgba(26,121,199,0.08) 1px,transparent 1.3px);background-size:20px 20px">
         <sc-if value="{{ showB1 }}" hint-placeholder-val="{{ true }}">
-          <div style="align-self:flex-start;max-width:86%;background:var(--surface);border-radius:16px 16px 16px 5px;padding:9px 13px;box-shadow:0 1px 1px var(--shadow-1);font:400 15px/1.45 Inter,system-ui,sans-serif;animation:{{ bubbleAnim }}">Привет 👋 Делаем ботов, приложения и веб-сервисы для бизнеса.<span style="display:inline-block;margin-left:8px;font-size:11px;color:var(--text-muted);vertical-align:bottom">12:04</span></div>
+          <div style="align-self:flex-start;max-width:86%;background:var(--surface);border-radius:16px 16px 16px 5px;padding:9px 13px;box-shadow:0 1px 1px var(--shadow-1);font:400 15px/1.45 Inter,system-ui,sans-serif;animation:{{ bubbleAnim }}">Привет 👋 Я проектирую ботов, приложения и веб-сервисы для бизнеса.<span style="display:inline-block;margin-left:8px;font-size:11px;color:var(--text-muted);vertical-align:bottom">12:04</span></div>
         </sc-if>
         <sc-if value="{{ showB2 }}" hint-placeholder-val="{{ true }}">
-          <div style="align-self:flex-start;max-width:86%;background:var(--surface);border-radius:16px 16px 16px 5px;padding:9px 13px;box-shadow:0 1px 1px var(--shadow-1);font:400 15px/1.45 Inter,system-ui,sans-serif;animation:{{ bubbleAnim }}">Собираем под ключ: приём заявок, оплаты и подписки, ИИ-ботов, автоматизацию рутины.<span style="display:inline-block;margin-left:8px;font-size:11px;color:var(--text-muted);vertical-align:bottom">12:04</span></div>
+          <div style="align-self:flex-start;max-width:86%;background:var(--surface);border-radius:16px 16px 16px 5px;padding:9px 13px;box-shadow:0 1px 1px var(--shadow-1);font:400 15px/1.45 Inter,system-ui,sans-serif;animation:{{ bubbleAnim }}">Веду проект от приёма заявок и интеграций до оплат, запуска и передачи доступов.<span style="display:inline-block;margin-left:8px;font-size:11px;color:var(--text-muted);vertical-align:bottom">12:04</span></div>
         </sc-if>
         <sc-if value="{{ showB3 }}" hint-placeholder-val="{{ true }}">
-          <div style="align-self:flex-start;max-width:86%;background:var(--surface);border-radius:16px 16px 16px 5px;padding:9px 13px;box-shadow:0 1px 1px var(--shadow-1);font:400 15px/1.45 Inter,system-ui,sans-serif;animation:{{ bubbleAnim }}">Расскажите, что нужно автоматизировать. Прикинем решение и сроки.<span style="display:inline-block;margin-left:8px;font-size:11px;color:var(--text-muted);vertical-align:bottom">12:05</span></div>
+          <div style="align-self:flex-start;max-width:86%;background:var(--surface);border-radius:16px 16px 16px 5px;padding:9px 13px;box-shadow:0 1px 1px var(--shadow-1);font:400 15px/1.45 Inter,system-ui,sans-serif;animation:{{ bubbleAnim }}">Расскажите, что нужно автоматизировать. Отвечу лично и предложу следующий шаг.<span style="display:inline-block;margin-left:8px;font-size:11px;color:var(--text-muted);vertical-align:bottom">12:05</span></div>
         </sc-if>
         <sc-if value="{{ showTyping }}" hint-placeholder-val="{{ false }}">
           <div aria-hidden="true" style="align-self:flex-start;background:var(--surface);border-radius:16px 16px 16px 5px;padding:13px 15px;box-shadow:0 1px 1px var(--shadow-1);display:flex;gap:4px">
@@ -290,9 +291,9 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
       <a href="case-subscriptions.html" style="display:flex;flex-direction:column;gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 14px 34px -14px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
         <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--accent)">[Подписки · Оплаты]</span>
         <span style="font:600 20px/1.3 Sora,sans-serif">Подписочный Telegram-сервис</span>
-        <span style="font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Тарифы кнопками, оплата через ЮКассу, автоматическая выдача доступа.</span>
+        <span style="font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Прототип выбора тарифа, перехода к оплате и состояний доступа. Без реальных списаний.</span>
         <span style="margin-top:auto;display:flex;align-items:center;gap:8px">
-          <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:var(--online)"></span>живое демо внутри</span>
+          <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:var(--status-amber-fg)"></span>интерактивный прототип</span>
           <span aria-hidden="true" style="margin-left:auto;color:var(--accent);font-size:18px">→</span>
         </span>
       </a>
@@ -302,7 +303,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
         <span style="font:600 20px/1.3 Sora,sans-serif">CRM для нетворкинга</span>
         <span style="font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Заметки о людях превращаются в граф связей и извлечённые факты. Ничего не теряется.</span>
         <span style="margin-top:auto;display:flex;align-items:center;gap:8px">
-          <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:var(--online)"></span>живое демо внутри</span>
+          <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:var(--status-amber-fg)"></span>сценарное демо · 3 примера</span>
           <span aria-hidden="true" style="margin-left:auto;color:var(--accent);font-size:18px">→</span>
         </span>
       </a>
@@ -332,7 +333,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
         <span style="font:600 20px/1.3 Sora,sans-serif">MUTUAL — знакомства через QR</span>
         <span style="font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Стритвир-бренд, где вещь знакомит: скан QR открывает профиль владельца.</span>
         <span style="margin-top:auto;display:flex;align-items:center;gap:8px">
-          <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:var(--online)"></span>живое демо внутри</span>
+          <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:var(--status-amber-fg)"></span>интерактивный прототип · 8 экранов</span>
           <span aria-hidden="true" style="margin-left:auto;color:var(--accent);font-size:18px">→</span>
         </span>
       </a>
@@ -342,7 +343,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
         <span style="font:600 20px/1.3 Sora,sans-serif">Faith App — обучение в стиле Duolingo</span>
         <span style="font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Обучающее приложение: короткие уроки с тестами, прогресс, серия дней.</span>
         <span style="margin-top:auto;display:flex;align-items:center;gap:8px">
-          <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:var(--online)"></span>живое демо внутри</span>
+          <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:var(--status-amber-fg)"></span>техническая сборка · до публикации</span>
           <span aria-hidden="true" style="margin-left:auto;color:var(--accent);font-size:18px">→</span>
         </span>
       </a>
@@ -353,7 +354,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
   <!-- ============ PROCESS ============ -->
   <section style="max-width:1140px;margin:0 auto;padding:clamp(28px,4vw,48px) 22px">
     <div style="display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:24px">
-      <h2 style="margin:0;font:600 clamp(26px,3.2vw,36px)/1.15 Sora,sans-serif;letter-spacing:-0.01em">Как мы работаем</h2>
+      <h2 style="margin:0;font:600 clamp(26px,3.2vw,36px)/1.15 Sora,sans-serif;letter-spacing:-0.01em">Как проходит работа</h2>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));gap:16px;align-items:start">
       <div class="ex" data-state="{{ proc0 }}" style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px">
@@ -426,7 +427,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
   <!-- ============ TRUST ============ -->
   <section style="background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-top:clamp(28px,4vw,48px)">
     <div style="max-width:1140px;margin:0 auto;padding:clamp(40px,5vw,64px) 22px;display:flex;flex-direction:column;gap:28px">
-      <h2 style="margin:0;font:600 clamp(24px,3vw,34px)/1.2 Sora,sans-serif;letter-spacing:-0.01em;text-wrap:balance">Что мы делаем</h2>
+      <h2 style="margin:0;font:600 clamp(24px,3vw,34px)/1.2 Sora,sans-serif;letter-spacing:-0.01em;text-wrap:balance">Что я делаю</h2>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:16px">
         <div style="display:flex;flex-direction:column;gap:6px;border-left:2px solid var(--accent-cta);padding-left:18px">
           <span style="font:700 clamp(24px,2.6vw,32px)/1.1 Sora,sans-serif;color:var(--accent)">Приложения</span>
@@ -470,7 +471,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
 
   <!-- ============ CTA ============ -->
   <section style="max-width:760px;margin:0 auto;padding:clamp(48px,6vw,80px) 22px;display:flex;flex-direction:column;gap:18px;align-items:flex-start">
-    <div style="align-self:stretch;background:var(--surface);border-radius:18px 18px 18px 5px;padding:18px 22px;box-shadow:0 2px 6px var(--shadow-2);font:400 clamp(17px,2vw,20px)/1.5 Inter,system-ui,sans-serif">Расскажите, что нужно автоматизировать. Ответим сами, с планом и ценой.</div>
+    <div style="align-self:stretch;background:var(--surface);border-radius:18px 18px 18px 5px;padding:18px 22px;box-shadow:0 2px 6px var(--shadow-2);font:400 clamp(17px,2vw,20px)/1.5 Inter,system-ui,sans-serif">Расскажите, что нужно автоматизировать. Отвечу лично, с планом и ценой.</div>
     <a href="contact.html" style="display:inline-flex;align-items:center;gap:9px;background:var(--accent-cta);color:var(--surface);text-decoration:none;font:600 16px/1 Inter,system-ui,sans-serif;padding:14px 24px;border-radius:13px" style-hover="background:var(--accent)" style-focus-visible="outline:2px solid var(--text);outline-offset:2px">
       <span style="width:8px;height:8px;border-radius:50%;background:var(--online);box-shadow:0 0 0 3px rgba(49,181,69,0.25)"></span>
       Написать

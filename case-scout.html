@@ -21,9 +21,9 @@
 <link rel="alternate" hreflang="ru" href="https://rednd.ru/case-scout.html">
 <link rel="alternate" hreflang="en" href="https://rednd.ru/en/case-scout.html">
 <link rel="alternate" hreflang="x-default" href="https://rednd.ru/case-scout.html">
-<script src="./site-config.js?v=20260810a"></script>
+<script src="./site-config.js?v=20260812a"></script>
 <script>(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
-<link rel="stylesheet" href="./theme.css?v=20260810b">
+<link rel="stylesheet" href="./theme.css?v=20260812a">
 <script src="./support.js"></script>
 </head>
 <body>
@@ -71,7 +71,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
 
 <dc-import name="Header" active="projects" brand-name="{{ brandName }}" hint-size="100%,64px"></dc-import>
 
-<main class="sc-main">
+<main id="main-content" class="sc-main">
   <a class="sc-back" href="projects.html">← Все проекты</a>
 
   <section class="sc-hero" aria-labelledby="case-title">
@@ -100,6 +100,15 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
     <div class="sc-fact"><strong>3</strong><span>платформы: web, macOS и Windows</span></div>
     <div class="sc-fact"><strong>2</strong><span>контура: локальный поиск и общая CRM</span></div>
     <div class="sc-fact"><strong>1</strong><span>карточка компании вместо дублей из источников</span></div>
+  </section>
+
+  <section class="case-glance" data-kind="live" data-layout="split" aria-labelledby="scout-glance-title">
+    <div class="case-glance__lead"><div><span class="case-glance__eyebrow">статус кейса</span><h2 id="scout-glance-title">Рабочая web-CRM и desktop-агент</h2></div><span class="case-glance__state">живой продукт · закрытая beta</span></div>
+    <div class="case-glance__items">
+      <article class="case-glance__item" data-role="check"><span class="case-glance__label">можно проверить</span><strong>Сайт, FAQ и сборки</strong><p>Публичная страница Scout открыта; рабочее пространство доступно после входа.</p></article>
+      <article class="case-glance__item" data-role="proof"><span class="case-glance__label">реализовано</span><strong>Web · macOS · Windows</strong><p>Локальный поиск соединён с общей CRM, ролями и защищённым взятием лидов.</p></article>
+      <article class="case-glance__item" data-role="boundary"><span class="case-glance__label">принцип</span><strong>Человек решает, кому писать</strong><p>Scout не рассылает сообщения автоматически и не обходит CAPTCHA или ограничения источников.</p></article>
+    </div>
   </section>
 
   <section id="how-it-works" class="case-process" aria-labelledby="flow-title">

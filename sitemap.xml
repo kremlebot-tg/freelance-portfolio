@@ -64,7 +64,17 @@
   </url>
   <url>
     <loc>https://rednd.ru/case-chainya.html</loc>
-    <lastmod>2026-08-09</lastmod>
+    <lastmod>2026-08-12</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://rednd.ru/case-chainya.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://rednd.ru/en/case-chainya.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://rednd.ru/case-chainya.html"/>
+  </url>
+  <url>
+    <loc>https://rednd.ru/en/case-chainya.html</loc>
+    <lastmod>2026-08-12</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://rednd.ru/case-chainya.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://rednd.ru/en/case-chainya.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://rednd.ru/case-chainya.html"/>
   </url>
   <url>
     <loc>https://rednd.ru/en/projects.html</loc>

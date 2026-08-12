@@ -23,9 +23,9 @@
 <link rel="alternate" hreflang="ru" href="https://rednd.ru/case-crm.html">
 <link rel="alternate" hreflang="en" href="https://rednd.ru/en/case-crm.html">
 <link rel="alternate" hreflang="x-default" href="https://rednd.ru/case-crm.html">
-<script src="./site-config.js?v=20260810a"></script>
+<script src="./site-config.js?v=20260812a"></script>
 <script>(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
-<link rel="stylesheet" href="./theme.css?v=20260810b">
+<link rel="stylesheet" href="./theme.css?v=20260812a">
 <script src="./support.js"></script>
 </head>
 <body>
@@ -53,7 +53,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
 
 <dc-import name="Header" active="projects" brand-name="{{ brandName }}" hint-size="100%,64px"></dc-import>
 
-<main style="font-family:Inter,system-ui,sans-serif;max-width:1140px;margin:0 auto;padding:clamp(32px,4vw,52px) 22px clamp(56px,7vw,88px)">
+<main id="main-content" style="font-family:Inter,system-ui,sans-serif;max-width:1140px;margin:0 auto;padding:clamp(32px,4vw,52px) 22px clamp(56px,7vw,88px)">
 
   <a href="projects.html" style="display:inline-flex;align-items:center;gap:6px;font:500 14.5px Inter,system-ui,sans-serif;color:var(--accent);text-decoration:none;border-radius:8px;padding:10px 6px;min-height:44px;margin:0 0 12px -6px" style-hover="background:var(--accent-tint)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">← Все проекты</a>
 
@@ -66,6 +66,15 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
     <h1 style="margin:0;font:700 clamp(28px,4vw,42px)/1.15 Sora,sans-serif;letter-spacing:-0.02em">Персональный CRM для нетворкинга</h1>
     <p style="margin:0;font:400 clamp(15.5px,1.6vw,18px)/1.55 Inter,system-ui,sans-serif;color:var(--text-body);max-width:720px">CRM в Telegram для тех, кто зарабатывает через связи, но забывает их поддерживать. Автозахват новых контактов и ИИ-напоминания, кто ждёт ответа.</p>
   </div>
+
+  <section class="case-glance" data-kind="review" data-layout="evidence" aria-labelledby="crm-glance-title">
+    <div class="case-glance__lead"><div><span class="case-glance__eyebrow">что перед вами</span><h2 id="crm-glance-title">Продуктовый сценарий CRM с проверяемым демо</h2></div><span class="case-glance__state">Telegram + web-интерфейс</span></div>
+    <div class="case-glance__items">
+      <article class="case-glance__item" data-role="check"><span class="case-glance__label">можно проверить</span><strong>Граф связей и извлечение фактов</strong><p>Узлы двигаются, карточки открываются, три примера текста разбираются на факты.</p></article>
+      <article class="case-glance__item" data-role="proof"><span class="case-glance__label">реализовано</span><strong>Два интерфейса, платежи и напоминания</strong><p>Telegram отвечает за быстрые действия, web — за обзор сети контактов.</p></article>
+      <article class="case-glance__item" data-role="boundary"><span class="case-glance__label">граница демо</span><strong>ИИ здесь заскриптован</strong><p>Извлечение показано на трёх примерах; живой LLM требует серверного прокси.</p></article>
+    </div>
+  </section>
 
   <!-- ============ DEMO A: GRAPH ============ -->
   <section aria-label="Демо: граф связей" style="background:var(--surface);border:1px solid var(--border);border-radius:22px;padding:clamp(18px,3vw,32px);display:flex;flex-direction:column;gap:16px">
@@ -167,7 +176,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
     </div>
   </section>
 
-  <section class="case-process" aria-labelledby="crm-process-title">
+  <section class="case-process" data-layout="compact" aria-labelledby="crm-process-title">
     <div class="case-process__head">
       <div class="case-process__title-wrap"><span class="case-process__kicker">контур полезного контекста</span><h2 id="crm-process-title">От разговора до следующего контакта</h2></div>
       <p>CRM сохраняет бесплатный контекст автоматически, а затратный AI включается только по явному действию пользователя.</p>

@@ -23,20 +23,21 @@
 <link rel="alternate" hreflang="ru" href="https://rednd.ru/">
 <link rel="alternate" hreflang="en" href="https://rednd.ru/en/">
 <link rel="alternate" hreflang="x-default" href="https://rednd.ru/">
-<script src="../site-config.js?v=20260810a"></script>
+<script src="../site-config.js?v=20260812a"></script>
 <script>(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
-<link rel="stylesheet" href="../theme.css?v=20260810b">
+<link rel="stylesheet" href="../theme.css?v=20260812a">
 <script src="../support.js"></script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "Organization",
-      "@id": "https://rednd.ru/#org",
-      "name": "Re:dnd",
+      "@type": "Person",
+      "@id": "https://rednd.ru/#founder",
+      "name": "Daniil Yatsenko",
+      "alternateName": "Re:dnd",
       "url": "https://rednd.ru/",
-      "description": "A team building software and automation for business",
+      "description": "Independent developer and creator of the Re:dnd product practice",
       "email": "mailto:politushkin@gmail.com",
       "sameAs": ["https://t.me/re_dnd"]
     },
@@ -46,7 +47,7 @@
       "url": "https://rednd.ru/",
       "name": "Re:dnd",
       "inLanguage": "en",
-      "publisher": { "@id": "https://rednd.ru/#org" }
+      "publisher": { "@id": "https://rednd.ru/#founder" }
     },
     {
       "@type": "ProfessionalService",
@@ -54,7 +55,7 @@
       "name": "Re:dnd — development and automation for business",
       "url": "https://rednd.ru/",
       "image": "https://rednd.ru/og-default.png",
-      "provider": { "@id": "https://rednd.ru/#org" },
+      "provider": { "@id": "https://rednd.ru/#founder" },
       "areaServed": "Worldwide",
       "priceRange": "from $49",
       "description": "Development and automation to fit the task: bots, apps, web services, AI assistants, CRM.",
@@ -133,16 +134,16 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
 
 <dc-import name="Header" active="" brand-name="{{ brandName }}" hint-size="100%,64px"></dc-import>
 
-<main style="font-family:Inter,system-ui,sans-serif">
+<main id="main-content" style="font-family:Inter,system-ui,sans-serif">
 
   <!-- ============ HERO ============ -->
   <section style="max-width:1140px;margin:0 auto;padding:clamp(48px,7vw,88px) 22px clamp(40px,6vw,72px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:clamp(28px,5vw,64px);align-items:center">
     <div style="display:flex;flex-direction:column;gap:20px;max-width:560px">
       <h1 style="margin:0;font:700 clamp(34px,4.6vw,54px)/1.12 Sora,sans-serif;letter-spacing:-0.02em;text-wrap:balance">Development and automation for business</h1>
-      <p style="margin:0;font:400 clamp(16px,1.6vw,19px)/1.6 Inter,system-ui,sans-serif;color:var(--text-body);text-wrap:pretty">Bots, apps, web services and automation, designed and built to fit the task. From first message to launch.</p>
+      <p style="margin:0;font:400 clamp(16px,1.6vw,19px)/1.6 Inter,system-ui,sans-serif;color:var(--text-body);text-wrap:pretty">I design and build bots, apps and web services around the task, from the workflow and integrations to launch and hand-off.</p>
       <div style="display:flex;align-items:center;gap:10px;font:500 14px JetBrains Mono,monospace;color:var(--text-meta)">
         <span style="width:8px;height:8px;border-radius:50%;background:var(--online);flex:none"></span>
-        online · we usually reply within a couple of hours
+        online · I usually reply within a couple of hours
       </div>
     </div>
 
@@ -158,13 +159,13 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
       </div>
       <div style="padding:18px 14px 14px;display:flex;flex-direction:column;gap:10px;min-height:330px;background-color:var(--chat-area);background-image:radial-gradient(rgba(26,121,199,0.08) 1px,transparent 1.3px);background-size:20px 20px">
         <sc-if value="{{ showB1 }}" hint-placeholder-val="{{ true }}">
-          <div style="align-self:flex-start;max-width:86%;background:var(--surface);border-radius:16px 16px 16px 5px;padding:9px 13px;box-shadow:0 1px 1px var(--shadow-1);font:400 15px/1.45 Inter,system-ui,sans-serif;animation:{{ bubbleAnim }}">Hi 👋 We build bots, apps and web services for business.<span style="display:inline-block;margin-left:8px;font-size:11px;color:var(--text-muted);vertical-align:bottom">12:04</span></div>
+          <div style="align-self:flex-start;max-width:86%;background:var(--surface);border-radius:16px 16px 16px 5px;padding:9px 13px;box-shadow:0 1px 1px var(--shadow-1);font:400 15px/1.45 Inter,system-ui,sans-serif;animation:{{ bubbleAnim }}">Hi 👋 I design bots, apps and web services for business.<span style="display:inline-block;margin-left:8px;font-size:11px;color:var(--text-muted);vertical-align:bottom">12:04</span></div>
         </sc-if>
         <sc-if value="{{ showB2 }}" hint-placeholder-val="{{ true }}">
-          <div style="align-self:flex-start;max-width:86%;background:var(--surface);border-radius:16px 16px 16px 5px;padding:9px 13px;box-shadow:0 1px 1px var(--shadow-1);font:400 15px/1.45 Inter,system-ui,sans-serif;animation:{{ bubbleAnim }}">We do it end to end: lead capture, payments and subscriptions, AI helpers, routine automation.<span style="display:inline-block;margin-left:8px;font-size:11px;color:var(--text-muted);vertical-align:bottom">12:04</span></div>
+          <div style="align-self:flex-start;max-width:86%;background:var(--surface);border-radius:16px 16px 16px 5px;padding:9px 13px;box-shadow:0 1px 1px var(--shadow-1);font:400 15px/1.45 Inter,system-ui,sans-serif;animation:{{ bubbleAnim }}">I handle the project from lead capture and integrations to payments, launch and access hand-off.<span style="display:inline-block;margin-left:8px;font-size:11px;color:var(--text-muted);vertical-align:bottom">12:04</span></div>
         </sc-if>
         <sc-if value="{{ showB3 }}" hint-placeholder-val="{{ true }}">
-          <div style="align-self:flex-start;max-width:86%;background:var(--surface);border-radius:16px 16px 16px 5px;padding:9px 13px;box-shadow:0 1px 1px var(--shadow-1);font:400 15px/1.45 Inter,system-ui,sans-serif;animation:{{ bubbleAnim }}">Tell us what you need automated. We&#39;ll sketch the solution and timeline.<span style="display:inline-block;margin-left:8px;font-size:11px;color:var(--text-muted);vertical-align:bottom">12:05</span></div>
+          <div style="align-self:flex-start;max-width:86%;background:var(--surface);border-radius:16px 16px 16px 5px;padding:9px 13px;box-shadow:0 1px 1px var(--shadow-1);font:400 15px/1.45 Inter,system-ui,sans-serif;animation:{{ bubbleAnim }}">Tell me what you need automated. I will reply personally and suggest the next step.<span style="display:inline-block;margin-left:8px;font-size:11px;color:var(--text-muted);vertical-align:bottom">12:05</span></div>
         </sc-if>
         <sc-if value="{{ showTyping }}" hint-placeholder-val="{{ false }}">
           <div aria-hidden="true" style="align-self:flex-start;background:var(--surface);border-radius:16px 16px 16px 5px;padding:13px 15px;box-shadow:0 1px 1px var(--shadow-1);display:flex;gap:4px">
@@ -274,12 +275,19 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
         <span style="margin-top:auto;display:flex;align-items:center;gap:8px"><span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:var(--online)"></span>live product</span><span aria-hidden="true" style="margin-left:auto;color:var(--accent);font-size:18px">→</span></span>
       </a>
 
+      <a href="case-chainya.html" style="display:flex;flex-direction:column;gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 14px 34px -14px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
+        <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--accent)">[E-commerce · Booking]</span>
+        <span style="font:600 20px/1.3 Sora,sans-serif">Chainya — tea shop and booking</span>
+        <span style="font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">A live multilingual shop with server-verified orders, booking and customer accounts.</span>
+        <span style="margin-top:auto;display:flex;align-items:center;gap:8px"><span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:var(--online)"></span>live site</span><span aria-hidden="true" style="margin-left:auto;color:var(--accent);font-size:18px">→</span></span>
+      </a>
+
       <a href="case-subscriptions.html" style="display:flex;flex-direction:column;gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 14px 34px -14px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
         <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--accent)">[Subscriptions · Payments]</span>
         <span style="font:600 20px/1.3 Sora,sans-serif">Subscription Telegram service</span>
-        <span style="font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Plans as buttons, YooKassa payments, automatic access delivery.</span>
+        <span style="font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">A prototype of plan selection, payment hand-off and access states. No real charges.</span>
         <span style="margin-top:auto;display:flex;align-items:center;gap:8px">
-          <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:var(--online)"></span>live demo inside</span>
+          <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:var(--status-amber-fg)"></span>interactive prototype</span>
           <span aria-hidden="true" style="margin-left:auto;color:var(--accent);font-size:18px">→</span>
         </span>
       </a>
@@ -289,7 +297,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
         <span style="font:600 20px/1.3 Sora,sans-serif">CRM for networking</span>
         <span style="font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Notes about people turn into a relationship graph and extracted facts. Nothing gets lost.</span>
         <span style="margin-top:auto;display:flex;align-items:center;gap:8px">
-          <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:var(--online)"></span>live demo inside</span>
+          <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:var(--status-amber-fg)"></span>scripted demo · 3 examples</span>
           <span aria-hidden="true" style="margin-left:auto;color:var(--accent);font-size:18px">→</span>
         </span>
       </a>
@@ -319,7 +327,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
         <span style="font:600 20px/1.3 Sora,sans-serif">MUTUAL — meeting people via QR</span>
         <span style="font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">A streetwear brand where the garment breaks the ice: scanning a QR opens the owner&#39;s profile.</span>
         <span style="margin-top:auto;display:flex;align-items:center;gap:8px">
-          <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:var(--online)"></span>live demo inside</span>
+          <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:var(--status-amber-fg)"></span>interactive prototype · 8 screens</span>
           <span aria-hidden="true" style="margin-left:auto;color:var(--accent);font-size:18px">→</span>
         </span>
       </a>
@@ -329,7 +337,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
         <span style="font:600 20px/1.3 Sora,sans-serif">Faith App — Duolingo-style learning</span>
         <span style="font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">A learning app: short lessons with quizzes, progress tracking, day streaks.</span>
         <span style="margin-top:auto;display:flex;align-items:center;gap:8px">
-          <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:var(--online)"></span>live demo inside</span>
+          <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:var(--status-amber-fg)"></span>technical build · pre-publication</span>
           <span aria-hidden="true" style="margin-left:auto;color:var(--accent);font-size:18px">→</span>
         </span>
       </a>
@@ -340,7 +348,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
   <!-- ============ PROCESS ============ -->
   <section style="max-width:1140px;margin:0 auto;padding:clamp(28px,4vw,48px) 22px">
     <div style="display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:24px">
-      <h2 style="margin:0;font:600 clamp(26px,3.2vw,36px)/1.15 Sora,sans-serif;letter-spacing:-0.01em">How we work</h2>
+      <h2 style="margin:0;font:600 clamp(26px,3.2vw,36px)/1.15 Sora,sans-serif;letter-spacing:-0.01em">How the work runs</h2>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));gap:16px;align-items:start">
       <div class="ex" data-state="{{ proc0 }}" style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px">
@@ -413,7 +421,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
   <!-- ============ TRUST ============ -->
   <section style="background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-top:clamp(28px,4vw,48px)">
     <div style="max-width:1140px;margin:0 auto;padding:clamp(40px,5vw,64px) 22px;display:flex;flex-direction:column;gap:28px">
-      <h2 style="margin:0;font:600 clamp(24px,3vw,34px)/1.2 Sora,sans-serif;letter-spacing:-0.01em;text-wrap:balance">What we do</h2>
+      <h2 style="margin:0;font:600 clamp(24px,3vw,34px)/1.2 Sora,sans-serif;letter-spacing:-0.01em;text-wrap:balance">What I build</h2>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:16px">
         <div style="display:flex;flex-direction:column;gap:6px;border-left:2px solid var(--accent-cta);padding-left:18px">
           <span style="font:700 clamp(24px,2.6vw,32px)/1.1 Sora,sans-serif;color:var(--accent)">Apps</span>

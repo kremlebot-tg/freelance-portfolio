@@ -130,6 +130,38 @@ def main() -> int:
         source = (ROOT / relative).read_text(encoding="utf-8")
         if "payload.stored === true" not in source or "error.stored ? 'stored' : 'network'" not in source:
             failures.append(f"{relative}: missing stored-but-not-notified response handling")
+        if source.count('required aria-required="true"') < 2:
+            failures.append(f"{relative}: required fields need native and assistive semantics")
+
+    subscription_transparency = {
+        "case-subscriptions.html": (
+            "интерактивный прототип",
+            "Реальные платежи и backend здесь не подключены",
+            "не создаёт счёт и не списывает деньги",
+            "Реальную автоматизацию оплаты этот прототип не подтверждает",
+        ),
+        "en/case-subscriptions.html": (
+            "interactive prototype",
+            "Real payments and a backend are not connected here",
+            "creates no invoice and charges no money",
+            "This prototype does not prove live payment automation",
+        ),
+    }
+    subscription_overclaims = (
+        "Бот принимает регулярную оплату",
+        "Оплата и доступ работают на автомате",
+        "The bot takes recurring payments",
+        "Payments and access run on their own",
+        "subscription bot with recurring payments",
+    )
+    for relative, required_copy in subscription_transparency.items():
+        source = (ROOT / relative).read_text(encoding="utf-8")
+        for copy in required_copy:
+            if copy not in source:
+                failures.append(f"{relative}: missing transparent prototype label {copy!r}")
+        for claim in subscription_overclaims:
+            if claim in source:
+                failures.append(f"{relative}: unsupported live-payment claim {claim!r}")
 
     autopricer_pages = {
         "case-autopricer.html": ("синтетических данных", "средняя расчётная маржа"),
@@ -146,8 +178,29 @@ def main() -> int:
                 failures.append(f"{relative}: missing transparent demo label {copy!r}")
 
     case_pages = sorted(ROOT.glob("case-*.html")) + sorted((ROOT / "en").glob("case-*.html"))
+    expected_case_names = {
+        "case-scout.html", "case-chainya.html", "case-subscriptions.html", "case-crm.html",
+        "case-vetpulse.html", "case-autopricer.html", "case-mutual.html", "case-faith.html",
+    }
+    for directory in (ROOT, ROOT / "en"):
+        actual = {page.name for page in directory.glob("case-*.html")}
+        if actual != expected_case_names:
+            failures.append(
+                f"{directory.relative_to(ROOT) or '.'}: RU/EN case parity mismatch; "
+                f"missing={sorted(expected_case_names - actual)}, extra={sorted(actual - expected_case_names)}"
+            )
+
+    glance_layouts: set[str] = set()
     for page in case_pages:
         source = page.read_text(encoding="utf-8")
+        if source.count('class="case-glance"') != 1:
+            failures.append(f"{page.relative_to(ROOT)}: expected one case status summary")
+        for role in ("check", "proof", "boundary"):
+            if source.count(f'data-role="{role}"') != 1:
+                failures.append(f"{page.relative_to(ROOT)}: expected one case summary role {role!r}")
+        for layout in ("split", "rail", "evidence"):
+            if f'data-layout="{layout}"' in source:
+                glance_layouts.add(layout)
         has_shared_process = 'class="case-process__flow"' in source and 'class="case-process__link"' in source
         has_vetpulse_process = 'class="flow"' in source and 'class="flow-link"' in source
         if not (has_shared_process or has_vetpulse_process):
@@ -165,6 +218,13 @@ def main() -> int:
                     failures.append(
                         f"{page.relative_to(ROOT)}: expected {expected} process tokens {token!r}, found {actual}"
                     )
+    if glance_layouts != {"split", "rail", "evidence"}:
+        failures.append(f"case summaries: expected three visual layouts, found {sorted(glance_layouts)}")
+
+    chainya_en = (ROOT / "en/case-chainya.html").read_text(encoding="utf-8")
+    for token in ("32 items · 4 journeys · 254 tests", "The server verifies critical data", "https://chainya.ru/"):
+        if token not in chainya_en:
+            failures.append(f"en/case-chainya.html: missing verified case evidence {token!r}")
 
     templated_process_copy = ("как работает бизнес-процесс", "how the business workflow works")
     for page in case_pages:
@@ -266,6 +326,8 @@ def main() -> int:
             "function observeMotionScenes(root)",
             "rd-motion-observed",
             "observeMotionScenes(root);",
+            "function enforceRequiredFields(root)",
+            "enforceRequiredFields(root);",
         ),
     }
     for relative, required_tokens in motion_contract.items():
@@ -279,6 +341,8 @@ def main() -> int:
 
     for relative in ("Header.dc.html", "en/Header.dc.html"):
         source = (ROOT / relative).read_text(encoding="utf-8")
+        if 'class="rd-skip-link" href="#main-content"' not in source:
+            failures.append(f"{relative}: missing keyboard skip link")
         for token in ("opacity:0", "visibility:hidden", "pointer-events:none", "transform:translateY(-8px)"):
             if token not in source:
                 failures.append(f"{relative}: mobile menu lacks reversible close transition {token!r}")
@@ -299,10 +363,19 @@ def main() -> int:
     for page, parser in parsed.items():
         source = page.read_text(encoding="utf-8")
         rel = page.relative_to(ROOT)
-        if "theme.css?v=" in source and "theme.css?v=20260810b" not in source:
+        if "theme.css?v=" in source and "theme.css?v=20260812a" not in source:
             failures.append(f"{rel}: stale theme.css cache token")
-        if "site-config.js?v=" in source and "site-config.js?v=20260810a" not in source:
+        if "site-config.js?v=" in source and "site-config.js?v=20260812a" not in source:
             failures.append(f"{rel}: stale site-config.js cache token")
+
+    pages_workflow = (ROOT / ".github/workflows/pages.yml").read_text(encoding="utf-8")
+    for token in (
+        "test -f _site/.well-known/security.txt",
+        "test -f _site/.nojekyll",
+        "include-hidden-files: true",
+    ):
+        if token not in pages_workflow:
+            failures.append(f"pages.yml: hidden public files are not protected by {token!r}")
 
     vetpulse_demo = (ROOT / "vetpulse/demo.html").read_text(encoding="utf-8")
     if "*,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}" not in vetpulse_demo:

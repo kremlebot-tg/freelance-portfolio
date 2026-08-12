@@ -3,29 +3,29 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Case Study: Subscription Telegram Bot with Recurring Payments — Re:dnd</title>
-<meta name="description" content="A subscription Telegram service: plans as buttons, recurring payments via YooKassa, automatic access management. Live demo inside.">
+<title>Subscription Telegram Bot Prototype — Re:dnd</title>
+<meta name="description" content="An interactive subscription-bot prototype: plans, a safe payment hand-off and access states. No real payments are processed.">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Re:dnd">
 <meta property="og:locale" content="en_US">
 <meta property="og:url" content="https://rednd.ru/en/case-subscriptions.html">
-<meta property="og:title" content="Case Study: Subscription Telegram Bot with Recurring Payments — Re:dnd">
-<meta property="og:description" content="A subscription Telegram service: plans as buttons, recurring payments via YooKassa, automatic access management. Live demo inside.">
+<meta property="og:title" content="Subscription Telegram Bot Prototype — Re:dnd">
+<meta property="og:description" content="An interactive prototype of a subscription and access workflow. No real payments are processed.">
 <meta property="og:image" content="https://rednd.ru/og-case-subscriptions.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Case Study: Subscription Telegram Bot with Recurring Payments — Re:dnd">
-<meta name="twitter:description" content="A subscription Telegram service: plans as buttons, recurring payments via YooKassa, automatic access management. Live demo inside.">
+<meta name="twitter:title" content="Subscription Telegram Bot Prototype — Re:dnd">
+<meta name="twitter:description" content="An interactive prototype of a subscription and access workflow. No real payments are processed.">
 <meta name="twitter:image" content="https://rednd.ru/og-case-subscriptions.png">
 <link rel="canonical" href="https://rednd.ru/en/case-subscriptions.html">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <link rel="alternate" hreflang="ru" href="https://rednd.ru/case-subscriptions.html">
 <link rel="alternate" hreflang="en" href="https://rednd.ru/en/case-subscriptions.html">
 <link rel="alternate" hreflang="x-default" href="https://rednd.ru/case-subscriptions.html">
-<script src="../site-config.js?v=20260810a"></script>
+<script src="../site-config.js?v=20260812a"></script>
 <script>(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
-<link rel="stylesheet" href="../theme.css?v=20260810b">
+<link rel="stylesheet" href="../theme.css?v=20260812a">
 <script src="../support.js"></script>
 </head>
 <body>
@@ -43,23 +43,32 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
 
 <dc-import name="Header" active="projects" brand-name="{{ brandName }}" hint-size="100%,64px"></dc-import>
 
-<main style="font-family:Inter,system-ui,sans-serif;max-width:1140px;margin:0 auto;padding:clamp(32px,4vw,52px) 22px clamp(56px,7vw,88px)">
+<main id="main-content" style="font-family:Inter,system-ui,sans-serif;max-width:1140px;margin:0 auto;padding:clamp(32px,4vw,52px) 22px clamp(56px,7vw,88px)">
 
   <a href="projects.html" style="display:inline-flex;align-items:center;gap:6px;font:500 14.5px Inter,system-ui,sans-serif;color:var(--accent);text-decoration:none;border-radius:8px;padding:10px 6px;min-height:44px;margin:0 0 12px -6px" style-hover="background:var(--accent-tint)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">← All projects</a>
 
   <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:28px">
     <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
       <span style="font:500 13px JetBrains Mono,monospace;color:var(--accent)">[Subscriptions · Payments]</span>
-      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:var(--online)"></span>payment automation</span>
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:var(--status-amber-fg)"></span>interactive prototype</span>
     </div>
     <h1 style="margin:0;font:700 clamp(28px,4vw,42px)/1.15 Sora,sans-serif;letter-spacing:-0.02em">Subscription Telegram service</h1>
-    <p style="margin:0;font:400 clamp(15.5px,1.6vw,18px)/1.55 Inter,system-ui,sans-serif;color:var(--text-body);max-width:640px">The bot takes recurring payments via YooKassa and grants paid access on its own.</p>
+    <p style="margin:0;font:400 clamp(15.5px,1.6vw,18px)/1.55 Inter,system-ui,sans-serif;color:var(--text-body);max-width:680px">A clickable subscription flow showing plan selection, a safe payment-provider hand-off and access states. Real payments and a backend are not connected here.</p>
   </div>
 
+  <section class="case-glance" data-kind="prototype" data-layout="rail" aria-labelledby="subscriptions-glance-title">
+    <div class="case-glance__lead"><div><span class="case-glance__eyebrow">case status</span><h2 id="subscriptions-glance-title">A clickable journey before backend implementation</h2></div><span class="case-glance__state">interactive prototype</span></div>
+    <div class="case-glance__items">
+      <article class="case-glance__item" data-role="check"><span class="case-glance__label">try it</span><strong>Plan → payment mock-up → access</strong><p>Every key state is walkable directly on this page.</p></article>
+      <article class="case-glance__item" data-role="proof"><span class="case-glance__label">shown</span><strong>The complete user journey</strong><p>Period selection, payment return, activation and renewal reminder.</p></article>
+      <article class="case-glance__item" data-role="boundary"><span class="case-glance__label">boundary</span><strong>No money is charged</strong><p>YooKassa, webhooks, backend and real access delivery are not connected.</p></article>
+    </div>
+  </section>
+
   <!-- ============ DEMO ============ -->
-  <section data-theme-lock aria-label="Live bot demo" style="background:var(--surface);border:1px solid var(--border);border-radius:22px;padding:clamp(18px,3vw,32px);display:flex;flex-direction:column;gap:18px">
+  <section data-theme-lock aria-label="Interactive bot prototype with no real payments" style="background:var(--surface);border:1px solid var(--border);border-radius:22px;padding:clamp(18px,3vw,32px);display:flex;flex-direction:column;gap:18px">
     <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
-      <span style="display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 13px Inter,system-ui,sans-serif"><span style="width:7px;height:7px;border-radius:50%;background:var(--online)"></span>live demo: click around like in the real bot</span>
+      <span style="display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 13px Inter,system-ui,sans-serif"><span style="width:7px;height:7px;border-radius:50%;background:var(--status-amber-fg)"></span>prototype · payments and access are simulated</span>
       <button type="button" onClick="{{ onResetDemo }}" style="margin-left:auto;font:500 13.5px Inter,system-ui,sans-serif;color:var(--text-meta);background:var(--surface-2);border:none;cursor:pointer;padding:11px 16px;min-height:44px;display:inline-flex;align-items:center;border-radius:10px" style-hover="background:var(--border-soft);color:var(--text)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">⟳ reset demo</button>
     </div>
 
@@ -78,7 +87,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
         <!-- chat body -->
         <div ref="{{ chatRef }}" style="height:420px;overflow-y:auto;padding:16px 12px;display:flex;flex-direction:column;gap:9px;background-color:var(--chat-area);background-image:radial-gradient(rgba(26,121,199,0.08) 1px,transparent 1.3px);background-size:20px 20px">
 
-          <div style="align-self:flex-start;max-width:88%;background:var(--surface);border-radius:15px 15px 15px 4px;padding:9px 13px;box-shadow:0 1px 1px var(--shadow-1);font:400 14.5px/1.45 Inter,system-ui,sans-serif">This is a demo of the real payment flow. Tap /start below 👇</div>
+          <div style="align-self:flex-start;max-width:88%;background:var(--surface);border-radius:15px 15px 15px 4px;padding:9px 13px;box-shadow:0 1px 1px var(--shadow-1);font:400 14.5px/1.45 Inter,system-ui,sans-serif">This is an interface prototype: it creates no invoice and charges no money. Tap /start below 👇</div>
 
           <sc-if value="{{ s1 }}" hint-placeholder-val="{{ false }}">
             <div style="align-self:flex-end;max-width:88%;background:#D3ECFB;border-radius:15px 15px 4px 15px;padding:9px 13px;box-shadow:0 1px 1px var(--shadow-1);font:500 14.5px/1.45 JetBrains Mono,monospace;animation:{{ anim }}">/start</div>
@@ -172,10 +181,10 @@ status:  active · auto-renew</pre>
     </div>
   </section>
 
-  <section class="case-process" aria-labelledby="subscriptions-process-title">
+  <section class="case-process" data-layout="compact" aria-labelledby="subscriptions-process-title">
     <div class="case-process__head">
       <div class="case-process__title-wrap"><span class="case-process__kicker">payment and access loop</span><h2 id="subscriptions-process-title">From plan selection to managed access</h2></div>
-      <p>The bot guides the customer, the provider handles the payment, and access changes only after a verified payment event.</p>
+      <p>This diagram shows the intended production logic. On this page, every step runs locally and never contacts YooKassa or a backend.</p>
     </div>
     <div class="case-process__flow">
       <article class="case-process__stage"><span class="case-process__num">01</span><div><h3>The customer selects a plan</h3><p>The Telegram bot shows the options, billing period and total without a separate account area.</p></div></article>
@@ -187,7 +196,7 @@ status:  active · auto-renew</pre>
       <article class="case-process__stage"><span class="case-process__num">04</span><div><h3>Access stays in sync</h3><p>The subscription period updates, access is issued and the bot reminds before renewal.</p></div></article>
       <div class="case-process__link" aria-hidden="true"></div>
       <div class="case-process__outcomes">
-        <article class="case-process__outcome" data-tone="success"><span>→ PAID</span><h3>Access is active</h3><p>Issuing and renewal need no manual processing.</p></article>
+        <article class="case-process__outcome" data-tone="success"><span>→ TARGET FLOW</span><h3>Access is active</h3><p>In production, access should change only after server-side verification.</p></article>
         <article class="case-process__outcome" data-tone="review"><span>→ EXPIRING</span><h3>Send a reminder</h3><p>The customer sees a clear next step before access ends.</p></article>
         <article class="case-process__outcome" data-tone="stop"><span>→ UNPAID</span><h3>Revoke access</h3><p>The status changes consistently and remains visible to the admin.</p></article>
       </div>
@@ -198,15 +207,15 @@ status:  active · auto-renew</pre>
   <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:16px;margin-top:24px">
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
       <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">01 · problem</span>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">Take recurring payments and manage paid access with zero manual work: granting, renewing, revoking.</p>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">Design a clear path from plan selection to managed access and validate it with the client before backend development.</p>
     </div>
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
       <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">02 · solution</span>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">A Bot API bot: plans, YooKassa invoices and webhooks, automatic access granting and revocation, renewal reminders, an admin panel with stats. Hosted and monitored on a VPS.</p>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">An interactive client-side prototype: plans, a mock secure hand-off to YooKassa, access states and reminders. Backend, webhooks and production monitoring are a separate implementation stage.</p>
     </div>
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
-      <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">03 · result</span>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty"><strong style="color:var(--accent)">Payments and access run on their own.</strong> Granting, renewal and revocation happen without us.</p>
+      <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">03 · verified result</span>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty"><strong style="color:var(--accent)">The user journey can be tested before backend development.</strong> This prototype does not prove live payment automation.</p>
     </div>
   </section>
 

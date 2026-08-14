@@ -25,7 +25,7 @@
 <link rel="alternate" hreflang="x-default" href="https://rednd.ru/case-autopricer.html">
 <script defer src="./site-config.js?v=20260814a"></script>
 <script>(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
-<link rel="stylesheet" href="./theme.css?v=20260814a">
+<link rel="stylesheet" href="./theme.css?v=20260814b">
 <script defer src="./vendor/react.production.min.js" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z" crossorigin="anonymous"></script>
 <script defer src="./vendor/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous"></script>
 <script defer src="./support.js"></script>
@@ -184,28 +184,28 @@
 
         <label style="display:flex;flex-direction:column;gap:8px">
           <span style="display:flex;justify-content:space-between;font:500 13.5px Inter,system-ui,sans-serif;color:var(--text-strong)">Изменение себестоимости<span style="font:500 13px JetBrains Mono,monospace;color:var(--accent)">{{ costDeltaLabel }}</span></span>
-          <input type="range" min="-20" max="30" step="1" value="{{ costDelta }}" onInput="{{ onCostDelta }}" style="width:100%;accent-color:var(--accent-cta)" style-focus-visible="outline:2px solid var(--accent);outline-offset:3px">
+          <input type="range" aria-label="Изменение себестоимости" min="-20" max="30" step="1" value="{{ costDelta }}" onInput="{{ onCostDelta }}" style="width:100%;height:44px;accent-color:var(--accent-cta)" style-focus-visible="outline:2px solid var(--accent);outline-offset:3px">
         </label>
 
         <label style="display:flex;flex-direction:column;gap:8px">
           <span style="display:flex;justify-content:space-between;font:500 13.5px Inter,system-ui,sans-serif;color:var(--text-strong)">Фулфилмент и логистика<span style="font:500 13px JetBrains Mono,monospace;color:var(--accent)">+{{ fulfil }} ₽/шт</span></span>
-          <input type="range" min="0" max="300" step="5" value="{{ fulfil }}" onInput="{{ onFulfil }}" style="width:100%;accent-color:var(--accent-cta)" style-focus-visible="outline:2px solid var(--accent);outline-offset:3px">
+          <input type="range" aria-label="Фулфилмент и логистика" min="0" max="300" step="5" value="{{ fulfil }}" onInput="{{ onFulfil }}" style="width:100%;height:44px;accent-color:var(--accent-cta)" style-focus-visible="outline:2px solid var(--accent);outline-offset:3px">
         </label>
 
         <label style="display:flex;flex-direction:column;gap:8px">
           <span style="display:flex;justify-content:space-between;font:500 13.5px Inter,system-ui,sans-serif;color:var(--text-strong)">Целевая маржа демо<span style="font:500 13px JetBrains Mono,monospace;color:var(--accent)">{{ margin }} % от цены</span></span>
-          <input type="range" min="5" max="45" step="1" value="{{ margin }}" onInput="{{ onMargin }}" style="width:100%;accent-color:var(--accent-cta)" style-focus-visible="outline:2px solid var(--accent);outline-offset:3px">
+          <input type="range" aria-label="Целевая маржа демо" min="5" max="45" step="1" value="{{ margin }}" onInput="{{ onMargin }}" style="width:100%;height:44px;accent-color:var(--accent-cta)" style-focus-visible="outline:2px solid var(--accent);outline-offset:3px">
         </label>
 
         <div style="display:flex;flex-direction:column;gap:14px;border-top:1px dashed var(--border-input);padding-top:16px">
           <span style="font:500 13px Inter,system-ui,sans-serif;color:var(--text-meta)">Коридор цен — защита от крайностей</span>
           <label style="display:flex;flex-direction:column;gap:8px">
             <span style="display:flex;justify-content:space-between;font:500 13.5px Inter,system-ui,sans-serif;color:var(--text-strong)">Не ниже, наценка к себестоимости<span style="font:500 13px JetBrains Mono,monospace;color:var(--accent)">+{{ floorPct }} %</span></span>
-            <input type="range" min="10" max="100" step="5" value="{{ floorPct }}" onInput="{{ onFloor }}" style="width:100%;accent-color:var(--accent-cta)" style-focus-visible="outline:2px solid var(--accent);outline-offset:3px">
+            <input type="range" aria-label="Минимальная наценка к себестоимости" min="10" max="100" step="5" value="{{ floorPct }}" onInput="{{ onFloor }}" style="width:100%;height:44px;accent-color:var(--accent-cta)" style-focus-visible="outline:2px solid var(--accent);outline-offset:3px">
           </label>
           <label style="display:flex;flex-direction:column;gap:8px">
             <span style="display:flex;justify-content:space-between;font:500 13.5px Inter,system-ui,sans-serif;color:var(--text-strong)">Не выше<span style="font:500 13px JetBrains Mono,monospace;color:var(--accent)">×{{ maxMult }} себестоимости</span></span>
-            <input type="range" min="1.5" max="5" step="0.1" value="{{ maxMultRaw }}" onInput="{{ onMaxMult }}" style="width:100%;accent-color:var(--accent-cta)" style-focus-visible="outline:2px solid var(--accent);outline-offset:3px">
+            <input type="range" aria-label="Максимальный множитель себестоимости" min="1.5" max="5" step="0.1" value="{{ maxMultRaw }}" onInput="{{ onMaxMult }}" style="width:100%;height:44px;accent-color:var(--accent-cta)" style-focus-visible="outline:2px solid var(--accent);outline-offset:3px">
           </label>
         </div>
 

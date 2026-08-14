@@ -534,6 +534,10 @@ def main() -> int:
         source = (ROOT / relative).read_text(encoding="utf-8")
         if source.count('type="range"') != 5 or source.count('onInput="{{ on') != 5:
             failures.append(f"{relative}: all five demo ranges must update continuously via onInput")
+        if source.count('type="range" aria-label="') != 5:
+            failures.append(f"{relative}: all five demo ranges need explicit accessible names")
+        if source.count("height:44px;accent-color:var(--accent-cta)") != 5:
+            failures.append(f"{relative}: all five demo ranges need 44px touch targets")
         if 'onChange="{{ on' in source:
             failures.append(f"{relative}: demo range still uses delayed onChange handling")
         for copy in required_copy:
@@ -713,6 +717,13 @@ def main() -> int:
         for token in required_tokens:
             if token not in source:
                 failures.append(f"{relative}: missing motion-safety contract {token!r}")
+    for token in (
+        ".rd-skip-link {",
+        ".rd-breadcrumbs a {\n  display: inline-flex;\n  min-width: 44px;\n  min-height: 46px;",
+        ".pchip, .tt { min-height: 44px; min-width: 44px;",
+    ):
+        if token not in theme:
+            failures.append(f"theme.css: missing minimum target-size contract {token!r}")
     for forbidden in ("filter: saturate", "rotate(360deg)"):
         if forbidden in theme:
             failures.append(f"theme.css: avoid expensive or distracting motion {forbidden!r}")
@@ -726,6 +737,47 @@ def main() -> int:
                 failures.append(f"{relative}: mobile menu lacks reversible close transition {token!r}")
         if ".hdr-nav{display:none!important" in source:
             failures.append(f"{relative}: mobile menu close still uses abrupt display:none")
+        for token in (
+            "display:inline-flex;min-height:44px;align-items:center;padding:9px 13px",
+            "min-width:44px;min-height:44px",
+            "width:44px;height:44px",
+            'class="hdr-cta" aria-current="{{ ctaCurrent }}" style="display:inline-flex;min-height:44px',
+        ):
+            if token not in source:
+                failures.append(f"{relative}: missing 44px header target contract {token!r}")
+
+    for relative in ("Footer.dc.html", "en/Footer.dc.html"):
+        source = (ROOT / relative).read_text(encoding="utf-8")
+        if "footer nav a{min-height:44px;display:inline-flex;align-items:center}" not in source:
+            failures.append(f"{relative}: footer links must keep 44px targets")
+
+    interactive_target_contract = {
+        "case-faith.html": ("min-height:58px;text-align:left", 1),
+        "en/case-faith.html": ("min-height:58px;text-align:left", 1),
+        "case-mutual.html": (".m-btn{width:100%;min-height:60px", 1),
+        "en/case-mutual.html": (".m-btn{width:100%;min-height:60px", 1),
+        "case-vetpulse.html": ('role="tab" aria-selected="{{', 2),
+        "en/case-vetpulse.html": ('role="tab" aria-selected="{{', 2),
+    }
+    for relative, (token, expected) in interactive_target_contract.items():
+        source = (ROOT / relative).read_text(encoding="utf-8")
+        if source.count(token) != expected:
+            failures.append(f"{relative}: interactive target contract {token!r} must occur {expected} times")
+        if "vetpulse" in relative and source.count("min-height:44px;border:none;cursor:pointer") < 2:
+            failures.append(f"{relative}: perspective tabs must keep 44px targets")
+
+    page_target_contract = {
+        "services.html": ("display:inline-flex;min-height:44px;align-items:center;gap:9px", 1),
+        "en/services.html": ("display:inline-flex;min-height:44px;align-items:center;gap:9px", 1),
+        "contact.html": ("display:inline-flex;min-height:44px;align-items:center;color:var(--accent)", 2),
+        "en/contact.html": ("display:inline-flex;min-height:44px;align-items:center;color:var(--accent)", 2),
+        "partner.html": (".p-direct a{display:inline-flex;min-height:44px;align-items:center", 1),
+        "en/partner.html": (".p-direct a{display:inline-flex;min-height:44px;align-items:center", 1),
+    }
+    for relative, (token, expected) in page_target_contract.items():
+        source = (ROOT / relative).read_text(encoding="utf-8")
+        if source.count(token) != expected:
+            failures.append(f"{relative}: page target contract {token!r} must occur {expected} times")
 
     infinite_scene_tokens = (
         "wkDot 1.1s infinite",
@@ -741,7 +793,7 @@ def main() -> int:
     for page, parser in parsed.items():
         source = page.read_text(encoding="utf-8")
         rel = page.relative_to(ROOT)
-        if "theme.css?v=" in source and "theme.css?v=20260814a" not in source:
+        if "theme.css?v=" in source and "theme.css?v=20260814b" not in source:
             failures.append(f"{rel}: stale theme.css cache token")
         if "site-config.js?v=" in source and "site-config.js?v=20260814a" not in source:
             failures.append(f"{rel}: stale site-config.js cache token")

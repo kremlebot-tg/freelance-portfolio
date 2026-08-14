@@ -25,7 +25,7 @@
 <link rel="alternate" hreflang="x-default" href="https://rednd.ru/case-vetpulse.html">
 <script defer src="../site-config.js?v=20260814a"></script>
 <script>(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
-<link rel="stylesheet" href="../theme.css?v=20260814a">
+<link rel="stylesheet" href="../theme.css?v=20260814b">
 <script defer src="../vendor/react.production.min.js" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z" crossorigin="anonymous"></script>
 <script defer src="../vendor/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous"></script>
 <script defer src="../support.js"></script>
@@ -193,8 +193,8 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
     </div>
 
     <div role="tablist" aria-label="Demo perspective" style="display:inline-flex;gap:4px;padding:4px;background:var(--surface-2);border:1px solid var(--border);border-radius:12px;width:fit-content">
-      <button type="button" role="tab" aria-selected="{{ clientSel }}" onClick="{{ onClient }}" style="border:none;cursor:pointer;padding:8px 15px;border-radius:9px;font:600 13.5px Inter,system-ui,sans-serif;background:{{ clientBg }};color:{{ clientColor }}" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">As the owner</button>
-      <button type="button" role="tab" aria-selected="{{ companySel }}" onClick="{{ onCompany }}" style="border:none;cursor:pointer;padding:8px 15px;border-radius:9px;font:600 13.5px Inter,system-ui,sans-serif;background:{{ companyBg }};color:{{ companyColor }}" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">As the clinic</button>
+      <button type="button" role="tab" aria-selected="{{ clientSel }}" onClick="{{ onClient }}" style="min-height:44px;border:none;cursor:pointer;padding:8px 15px;border-radius:9px;font:600 13.5px Inter,system-ui,sans-serif;background:{{ clientBg }};color:{{ clientColor }}" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">As the owner</button>
+      <button type="button" role="tab" aria-selected="{{ companySel }}" onClick="{{ onCompany }}" style="min-height:44px;border:none;cursor:pointer;padding:8px 15px;border-radius:9px;font:600 13.5px Inter,system-ui,sans-serif;background:{{ companyBg }};color:{{ companyColor }}" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">As the clinic</button>
     </div>
 
     <div style="display:flex;justify-content:center">

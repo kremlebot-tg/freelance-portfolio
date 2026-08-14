@@ -212,6 +212,7 @@ main { position: relative; }
   left: 12px;
   z-index: 1000;
   max-width: calc(100vw - 24px);
+  min-height: 44px;
   padding: 11px 15px;
   border: 1px solid var(--accent-cta);
   border-radius: 10px;
@@ -219,6 +220,7 @@ main { position: relative; }
   color: var(--text);
   font: 600 14px/1.2 Inter, system-ui, sans-serif;
   text-decoration: none;
+  align-items: center;
   box-shadow: 0 8px 24px -12px var(--shadow-3);
   transform: translateY(-150%);
   transition: transform .16s ease;
@@ -533,7 +535,7 @@ main { overflow-x: clip; overflow-y: visible; }
    контент, аккордеоны-заголовки и чипы-фильтры дотягиваются до 44px по высоте.
    Только <768px — на десктопе указатель, layout не трогаем. */
 @media (max-width: 767px) {
-  .pchip { min-height: 44px; min-width: 44px; display: inline-flex; align-items: center; justify-content: center; }
+  .pchip, .tt { min-height: 44px; min-width: 44px; display: inline-flex; align-items: center; justify-content: center; }
   .acc-sum, .wk-sum, .ex-sum { min-height: 44px; }
 }
 
@@ -885,7 +887,7 @@ html.rd-motion-ready .case-process.is-visible .case-process__link::after {
 .rd-breadcrumbs {
   display: flex;
   min-width: 0;
-  min-height: 24px;
+  min-height: 46px;
   align-items: center;
   gap: 8px;
   margin: 0 0 16px;
@@ -893,6 +895,10 @@ html.rd-motion-ready .case-process.is-visible .case-process__link::after {
   font: 500 13px/1.4 Inter, system-ui, sans-serif;
 }
 .rd-breadcrumbs a {
+  display: inline-flex;
+  min-width: 44px;
+  min-height: 46px;
+  align-items: center;
   color: var(--accent);
   text-decoration: none;
   border-radius: 6px;

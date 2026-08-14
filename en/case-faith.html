@@ -25,7 +25,7 @@
 <link rel="alternate" hreflang="x-default" href="https://rednd.ru/case-faith.html">
 <script defer src="../site-config.js?v=20260814a"></script>
 <script>(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
-<link rel="stylesheet" href="../theme.css?v=20260814a">
+<link rel="stylesheet" href="../theme.css?v=20260814b">
 <script defer src="../vendor/react.production.min.js" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z" crossorigin="anonymous"></script>
 <script defer src="../vendor/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous"></script>
 <script defer src="../support.js"></script>
@@ -193,7 +193,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
 
               <div style="margin-top:22px;display:flex;flex-direction:column;gap:10px">
                 <sc-for list="{{ options }}" as="o" hint-placeholder-count="4">
-                  <button type="button" onClick="{{ o.pick }}" disabled="{{ answered }}" style="text-align:left;padding:15px 16px;border-radius:15px;border:2px solid {{ o.border }};border-bottom-width:4px;background:{{ o.bg }};color:{{ o.color }};font:600 15.5px Inter,system-ui,sans-serif;cursor:{{ optCursor }};transition:transform .1s ease" style-hover="transform:translateY(-1px)" style-focus-visible="outline:2px solid #C99A2E;outline-offset:2px">{{ o.label }}</button>
+                  <button type="button" onClick="{{ o.pick }}" disabled="{{ answered }}" style="min-height:58px;text-align:left;padding:15px 16px;border-radius:15px;border:2px solid {{ o.border }};border-bottom-width:4px;background:{{ o.bg }};color:{{ o.color }};font:600 15.5px Inter,system-ui,sans-serif;cursor:{{ optCursor }};transition:transform .1s ease" style-hover="transform:translateY(-1px)" style-focus-visible="outline:2px solid #C99A2E;outline-offset:2px">{{ o.label }}</button>
                 </sc-for>
               </div>
 

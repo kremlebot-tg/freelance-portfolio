@@ -299,7 +299,7 @@ def generated_head(relative: str, source: str, url: str, lastmod: str) -> str:
 def optimize_runtime(source: str, prefix: str) -> str:
     source = source.replace(
         f'{prefix}theme.css?v=20260812a',
-        f'{prefix}theme.css?v=20260814a',
+        f'{prefix}theme.css?v=20260814b',
     )
     source = source.replace(
         f'<script src="{prefix}site-config.js?v=20260812a"></script>',

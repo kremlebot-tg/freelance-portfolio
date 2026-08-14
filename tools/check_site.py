@@ -26,8 +26,20 @@ SEO_CRUMB_END = "<!-- SEO-BREADCRUMBS:END -->"
 CASE_SOCIAL_IMAGES = {
     Path("case-scout.html"): f"{SITE_ORIGIN}/og-case-scout.png",
     Path("en/case-scout.html"): f"{SITE_ORIGIN}/og-case-scout-en.png",
+    Path("case-chainya.html"): f"{SITE_ORIGIN}/assets/cases/chainya/og.jpg",
+    Path("en/case-chainya.html"): f"{SITE_ORIGIN}/assets/cases/chainya/og-en.jpg",
+    Path("case-crm.html"): f"{SITE_ORIGIN}/og-case-crm.png",
+    Path("en/case-crm.html"): f"{SITE_ORIGIN}/og-case-crm-en.png",
+    Path("case-faith.html"): f"{SITE_ORIGIN}/og-case-faith.png",
+    Path("en/case-faith.html"): f"{SITE_ORIGIN}/og-case-faith-en.png",
+    Path("case-mutual.html"): f"{SITE_ORIGIN}/og-case-mutual.png",
+    Path("en/case-mutual.html"): f"{SITE_ORIGIN}/og-case-mutual-en.png",
+    Path("case-subscriptions.html"): f"{SITE_ORIGIN}/og-case-subscriptions.png",
+    Path("en/case-subscriptions.html"): f"{SITE_ORIGIN}/og-case-subscriptions-en.png",
     Path("case-autopricer.html"): f"{SITE_ORIGIN}/og-case-autopricer.png",
     Path("en/case-autopricer.html"): f"{SITE_ORIGIN}/og-case-autopricer-en.png",
+    Path("case-vetpulse.html"): f"{SITE_ORIGIN}/vetpulse/og-cover.png",
+    Path("en/case-vetpulse.html"): f"{SITE_ORIGIN}/vetpulse/og-cover-en.png",
 }
 
 
@@ -127,12 +139,37 @@ def json_ld_graphs(source: str) -> tuple[list[dict[str, object]], list[str]]:
     return graph, failures
 
 
-def png_dimensions(path: Path) -> tuple[int, int] | None:
-    """Read PNG dimensions without adding an image-library test dependency."""
-    header = path.read_bytes()[:24]
-    if len(header) != 24 or header[:8] != b"\x89PNG\r\n\x1a\n" or header[12:16] != b"IHDR":
+def image_dimensions(path: Path) -> tuple[int, int] | None:
+    """Read PNG/JPEG dimensions without adding an image-library test dependency."""
+    data = path.read_bytes()
+    if len(data) >= 24 and data[:8] == b"\x89PNG\r\n\x1a\n" and data[12:16] == b"IHDR":
+        return struct.unpack(">II", data[16:24])
+    if len(data) < 4 or data[:2] != b"\xff\xd8":
         return None
-    return struct.unpack(">II", header[16:24])
+    position = 2
+    start_of_frame = {0xC0, 0xC1, 0xC2, 0xC3, 0xC5, 0xC6, 0xC7, 0xC9, 0xCA, 0xCB, 0xCD, 0xCE, 0xCF}
+    while position + 4 <= len(data):
+        if data[position] != 0xFF:
+            position += 1
+            continue
+        while position < len(data) and data[position] == 0xFF:
+            position += 1
+        if position >= len(data):
+            break
+        marker = data[position]
+        position += 1
+        if marker in {0xD8, 0xD9}:
+            continue
+        if position + 2 > len(data):
+            break
+        length = struct.unpack(">H", data[position:position + 2])[0]
+        if length < 2 or position + length > len(data):
+            break
+        if marker in start_of_frame and length >= 7:
+            height, width = struct.unpack(">HH", data[position + 3:position + 7])
+            return width, height
+        position += length
+    return None
 
 
 def main() -> int:
@@ -250,8 +287,8 @@ def main() -> int:
             social_path = ROOT / urlparse(expected_social_image).path.lstrip("/")
             if not social_path.exists():
                 failures.append(f"{rel}: missing social image {social_path.relative_to(ROOT)}")
-            elif png_dimensions(social_path) != (1200, 630):
-                failures.append(f"{rel}: social image must be a 1200x630 PNG")
+            elif image_dimensions(social_path) != (1200, 630):
+                failures.append(f"{rel}: social image must be 1200x630")
 
         prefix = "../" if str(rel).startswith("en/") else "./"
         runtime_contract = (
@@ -570,6 +607,20 @@ def main() -> int:
         for copy in forbidden_copy:
             if copy in source:
                 failures.append(f"{relative}: unsupported process claim {copy!r}")
+
+    ambiguous_demo_labels = {
+        "case-crm.html": ("Живое демо",),
+        "en/case-crm.html": ("Live demo",),
+        "case-faith.html": ("Живое демо",),
+        "en/case-faith.html": ("Live demo", "Live lesson demo"),
+        "case-mutual.html": ("Живое демо",),
+        "en/case-mutual.html": ("Live demo",),
+    }
+    for relative, forbidden_copy in ambiguous_demo_labels.items():
+        source = (ROOT / relative).read_text(encoding="utf-8")
+        for copy in forbidden_copy:
+            if copy.casefold() in source.casefold():
+                failures.append(f"{relative}: ambiguous product/demo status {copy!r}")
 
     scout_workflow_copy = {
         "case-scout.html": ("общий неназначенный пул", "без автоматической раздачи", "чужая рабочая очередь не раскрывается"),

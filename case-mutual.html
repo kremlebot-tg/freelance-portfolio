@@ -25,7 +25,7 @@
 <link rel="alternate" hreflang="x-default" href="https://rednd.ru/case-mutual.html">
 <script defer src="./site-config.js?v=20260814a"></script>
 <script>(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
-<link rel="stylesheet" href="./theme.css?v=20260814b">
+<link rel="stylesheet" href="./theme.css?v=20260814g">
 <script defer src="./vendor/react.production.min.js" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z" crossorigin="anonymous"></script>
 <script defer src="./vendor/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous"></script>
 <script defer src="./support.js"></script>
@@ -172,8 +172,9 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
 .m-sweep{position:absolute;top:50%;left:50%;width:280px;height:280px;border-radius:50%;transform:translate(-50%,-50%);background:conic-gradient(from 0deg,rgba(214,255,61,.16),transparent 40%);animation:mSpin 5s linear infinite}
 @keyframes mSpin{to{transform:translate(-50%,-50%) rotate(360deg)}}
 .m-ring{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);border:1px solid rgba(214,255,61,.12);border-radius:50%}
-.m-you{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:14px;height:14px;border-radius:50%;background:var(--acc);box-shadow:0 0 0 0 rgba(214,255,61,.45);animation:mPulse 2.4s infinite}
-@keyframes mPulse{0%{box-shadow:0 0 0 0 rgba(214,255,61,.4)}70%{box-shadow:0 0 0 26px rgba(214,255,61,0)}100%{box-shadow:0 0 0 0 rgba(214,255,61,0)}}
+.m-you{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:14px;height:14px;border-radius:50%;background:var(--acc)}
+.m-you::after{position:absolute;inset:-1px;border:1px solid var(--acc);border-radius:50%;content:"";animation:mPulse 2.4s infinite}
+@keyframes mPulse{0%{transform:scale(1);opacity:.7}70%,100%{transform:scale(3.7);opacity:0}}
 .m-pin{position:absolute;width:30px;height:30px;border-radius:50%;transform:translate(-50%,-50%);display:grid;place-items:center;background:#212126;border:1.5px solid var(--line2);color:var(--ink);font-size:12px;font-weight:800;animation:mDrop .5s cubic-bezier(.2,1.3,.4,1) backwards}
 @keyframes mDrop{from{opacity:0;transform:translate(-50%,-80%) scale(.5)}}
 .m-hidden{position:absolute;inset:0;display:grid;place-items:center;background:rgba(11,11,13,.86)}
@@ -203,7 +204,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
 .m-cam[data-scan="scanning"] .m-cnr,.m-cam[data-scan="locked"] .m-cnr{border-color:var(--acc)}
 .m-beam{position:absolute;left:6px;right:6px;height:2px;background:var(--acc);box-shadow:0 0 12px 2px rgba(214,255,61,.6);top:6px;opacity:0}
 .m-cam[data-scan="scanning"] .m-beam{opacity:1;animation:mBeam 1.15s ease-in-out infinite}
-@keyframes mBeam{0%{top:6px}50%{top:182px}100%{top:6px}}
+@keyframes mBeam{0%{transform:translateY(0)}50%{transform:translateY(176px)}100%{transform:translateY(0)}}
 .m-cam[data-scan="locked"]{animation:mShake .32s cubic-bezier(.36,.07,.19,.97)}
 @keyframes mShake{10%,90%{transform:translateX(-1px)}30%,70%{transform:translateX(2px)}50%{transform:translateX(-2px)}}
 .m-flash{position:absolute;inset:0;background:var(--acc);opacity:0;pointer-events:none}

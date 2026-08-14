@@ -25,7 +25,7 @@
 <link rel="alternate" hreflang="x-default" href="https://rednd.ru/case-vetpulse.html">
 <script defer src="../site-config.js?v=20260814a"></script>
 <script>(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
-<link rel="stylesheet" href="../theme.css?v=20260814b">
+<link rel="stylesheet" href="../theme.css?v=20260814g">
 <script defer src="../vendor/react.production.min.js" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z" crossorigin="anonymous"></script>
 <script defer src="../vendor/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous"></script>
 <script defer src="../support.js"></script>
@@ -143,7 +143,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
 .flow-out .ot{font:400 12.5px/1.35 Inter,system-ui,sans-serif;color:var(--text-body)}
 .flow-auto{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:14px;max-width:720px}
 .flow-acard{background:var(--surface-2);border:1px solid var(--border-soft);border-radius:14px;padding:14px 16px}
-@keyframes flowDown{0%{top:-12px;opacity:0}18%{opacity:1}82%{opacity:1}100%{top:24px;opacity:0}}
+@keyframes flowDown{0%{transform:translateY(0);opacity:0}18%{opacity:1}82%{opacity:1}100%{transform:translateY(36px);opacity:0}}
 @media(max-width:560px){.flow-branch{grid-template-columns:1fr}.flow-auto{grid-template-columns:1fr}}
 @media (prefers-reduced-motion:reduce){.acc-body{animation:none!important}.acc-chev{transition:none}.flow-link::after{animation:none;opacity:0}}
 </style>

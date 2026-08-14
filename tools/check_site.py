@@ -703,6 +703,11 @@ def main() -> int:
             "html.rd-motion-ready .rd-motion-observed * { animation-play-state: paused !important; }",
             "@media (prefers-reduced-motion: reduce)",
             "transform: rotate(-8deg) scale(1.04)",
+            "@keyframes rd-case-step-in",
+            ".sc-claim {",
+            ".ap-margin-viz {",
+            ".sub-state {",
+            '.case-process[data-layout="compact"] .case-process__stage {',
         ),
         "site-config.js": (
             "function observeMotionScenes(root)",
@@ -727,6 +732,42 @@ def main() -> int:
     for forbidden in ("filter: saturate", "rotate(360deg)"):
         if forbidden in theme:
             failures.append(f"theme.css: avoid expensive or distracting motion {forbidden!r}")
+
+    case_visual_contract = {
+        "case-scout.html": (('class="sc-claim flow"', 1), ('class="sc-claim__worker"', 2), ("сотрудник A", 1), ("сотрудник B", 1)),
+        "en/case-scout.html": (('class="sc-claim flow"', 1), ('class="sc-claim__worker"', 2), ("teammate A", 1), ("teammate B", 1)),
+        "case-autopricer.html": (('class="ap-demo-grid"', 1), ('class="ap-margin-viz flow"', 1), ("barLeft", 2), ("barWidth", 2), ("chartLabel", 2)),
+        "en/case-autopricer.html": (('class="ap-demo-grid"', 1), ('class="ap-margin-viz flow"', 1), ("barLeft", 2), ("barWidth", 2), ("chartLabel", 2)),
+        "case-subscriptions.html": (('class="sub-state"', 1), ("flowSteps", 3), ("Макет оплаты", 1)),
+        "en/case-subscriptions.html": (('class="sub-state"', 1), ("flowSteps", 3), ("Payment mock-up", 1)),
+        "case-crm.html": (('class="crm-network flow"', 1), ('class="crm-network__edge"', 1), ("@keyframes crmEdgeIn", 1)),
+        "en/case-crm.html": (('class="crm-network flow"', 1), ('class="crm-network__edge"', 1), ("@keyframes crmEdgeIn", 1)),
+    }
+    for relative, contracts in case_visual_contract.items():
+        source = (ROOT / relative).read_text(encoding="utf-8")
+        for token, expected in contracts:
+            if source.count(token) != expected:
+                failures.append(f"{relative}: visual contract {token!r} must occur {expected} times")
+        if "subscriptions" in relative:
+            if "data-theme-lock" in source:
+                failures.append(f"{relative}: adaptive subscription demo must follow the selected site theme")
+            for decorative_gradient in ("linear-gradient(135deg,#7A6CF0,#4F8EF7)", "radial-gradient(rgba(26,121,199"):
+                if decorative_gradient in source:
+                    failures.append(f"{relative}: subscription demo retains decorative gradient {decorative_gradient!r}")
+
+    optimized_motion_contract = {
+        "case-chainya.html": ("@keyframes chHeroIn", "@media(prefers-reduced-motion:reduce)", "transform .32s var(--ease-out)"),
+        "en/case-chainya.html": ("@keyframes chHeroIn", "@media(prefers-reduced-motion:reduce)", "transform .32s var(--ease-out)"),
+        "case-vetpulse.html": ("transform:translateY(36px)",),
+        "en/case-vetpulse.html": ("transform:translateY(36px)",),
+        "case-mutual.html": (".m-you::after", "transform:translateY(176px)"),
+        "en/case-mutual.html": (".m-you::after", "transform:translateY(176px)"),
+    }
+    for relative, required_tokens in optimized_motion_contract.items():
+        source = (ROOT / relative).read_text(encoding="utf-8")
+        for token in required_tokens:
+            if token not in source:
+                failures.append(f"{relative}: missing optimized motion contract {token!r}")
 
     for relative in ("Header.dc.html", "en/Header.dc.html"):
         source = (ROOT / relative).read_text(encoding="utf-8")
@@ -793,7 +834,7 @@ def main() -> int:
     for page, parser in parsed.items():
         source = page.read_text(encoding="utf-8")
         rel = page.relative_to(ROOT)
-        if "theme.css?v=" in source and "theme.css?v=20260814b" not in source:
+        if "theme.css?v=" in source and "theme.css?v=20260814g" not in source:
             failures.append(f"{rel}: stale theme.css cache token")
         if "site-config.js?v=" in source and "site-config.js?v=20260814a" not in source:
             failures.append(f"{rel}: stale site-config.js cache token")

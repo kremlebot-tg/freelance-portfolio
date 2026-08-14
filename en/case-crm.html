@@ -25,7 +25,7 @@
 <link rel="alternate" hreflang="x-default" href="https://rednd.ru/case-crm.html">
 <script defer src="../site-config.js?v=20260814a"></script>
 <script>(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
-<link rel="stylesheet" href="../theme.css?v=20260814b">
+<link rel="stylesheet" href="../theme.css?v=20260814g">
 <script defer src="../vendor/react.production.min.js" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z" crossorigin="anonymous"></script>
 <script defer src="../vendor/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous"></script>
 <script defer src="../support.js"></script>
@@ -127,6 +127,11 @@
 .acc[data-state="closed"] .acc-body{display:none}
 @keyframes accIn{from{opacity:0;transform:translateY(-7px)}to{opacity:1;transform:none}}
 @keyframes accOut{from{opacity:1;transform:none}to{opacity:0;transform:translateY(-5px)}}
+.crm-network__edge{stroke-dasharray:1;stroke-dashoffset:0}
+html.rd-motion-ready .crm-network .crm-network__edge{stroke-dashoffset:1}
+html.rd-motion-ready .crm-network.is-visible .crm-network__edge{animation:crmEdgeIn .58s var(--ease-out) both}
+html.rd-motion-ready .crm-network.is-visible .crm-network__edge:nth-child(2n){animation-delay:70ms}
+@keyframes crmEdgeIn{to{stroke-dashoffset:0}}
 @media (prefers-reduced-motion:reduce){.acc-body{animation:none!important}.acc-chev{transition:none}}
 body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
 @keyframes bubbleIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
@@ -172,10 +177,10 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
       <span style="display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 13px Inter,system-ui,sans-serif"><span style="width:7px;height:7px;border-radius:50%;background:var(--online)"></span>interactive demo · drag the graph, click the nodes</span>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px;align-items:stretch">
-      <div style="position:relative;grid-column:span 1;min-width:0;background:var(--demo-canvas);border:1px solid var(--border-soft);border-radius:16px;overflow:hidden">
+      <div class="crm-network flow" style="position:relative;grid-column:span 1;min-width:0;background:var(--demo-canvas);border:1px solid var(--border-soft);border-radius:16px;overflow:hidden">
         <svg viewBox="0 0 640 460" role="application" aria-label="Contact graph" style="display:block;width:100%;height:auto;touch-action:none;user-select:none;cursor:{{ svgCursor }}" onPointerMove="{{ onMove }}" onPointerUp="{{ onUp }}" onPointerLeave="{{ onUp }}" ref="{{ svgRef }}">
           <sc-for list="{{ edges }}" as="e" hint-placeholder-count="8">
-            <line x1="{{ e.x1 }}" y1="{{ e.y1 }}" x2="{{ e.x2 }}" y2="{{ e.y2 }}" style="stroke:{{ e.stroke }}" stroke-width="{{ e.w }}"></line>
+            <line class="crm-network__edge" pathLength="1" x1="{{ e.x1 }}" y1="{{ e.y1 }}" x2="{{ e.x2 }}" y2="{{ e.y2 }}" style="stroke:{{ e.stroke }}" stroke-width="{{ e.w }}"></line>
           </sc-for>
           <sc-for list="{{ nodes }}" as="n" hint-placeholder-count="8">
             <g transform="translate({{ n.x }} {{ n.y }})" onPointerDown="{{ n.down }}" style="cursor:grab">
@@ -199,7 +204,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
         </sc-if>
         <sc-if value="{{ hasSelection }}" hint-placeholder-val="{{ true }}">
           <div style="display:flex;align-items:center;gap:12px">
-            <span style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#38AEE5,var(--accent));color:var(--surface);display:grid;place-items:center;font:600 17px Sora,sans-serif;flex:none">{{ selInitial }}</span>
+            <span style="width:44px;height:44px;border-radius:50%;background:var(--accent-cta);color:#fff;display:grid;place-items:center;font:600 17px Sora,sans-serif;flex:none">{{ selInitial }}</span>
             <span style="display:flex;flex-direction:column;gap:2px">
               <span style="font:600 18px Sora,sans-serif">{{ selName }}</span>
               <span style="font:400 13.5px Inter,system-ui,sans-serif;color:var(--text-meta)">{{ selRole }}</span>

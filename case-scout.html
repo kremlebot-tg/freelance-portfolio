@@ -23,7 +23,7 @@
 <link rel="alternate" hreflang="x-default" href="https://rednd.ru/case-scout.html">
 <script defer src="./site-config.js?v=20260814a"></script>
 <script>(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
-<link rel="stylesheet" href="./theme.css?v=20260814b">
+<link rel="stylesheet" href="./theme.css?v=20260814g">
 <script defer src="./vendor/react.production.min.js" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z" crossorigin="anonymous"></script>
 <script defer src="./vendor/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous"></script>
 <script defer src="./support.js"></script>
@@ -224,6 +224,26 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
         <article class="case-process__outcome" data-tone="stop"><span>→ УЖЕ ВЗЯТ</span><h3>Нет двойной обработки</h3><p>Повторное взятие отклоняется, а чужая рабочая очередь не раскрывается.</p></article>
       </div>
     </div>
+  </section>
+
+  <section class="sc-claim flow" aria-labelledby="claim-title">
+    <div class="sc-claim__head">
+      <h2 id="claim-title">Два сотрудника берут два разных лида</h2>
+      <p>Схема показывает главное многопользовательское правило Scout: пул общий, но рабочая очередь остаётся личной.</p>
+    </div>
+    <div class="sc-claim__board">
+      <div class="sc-claim__pool">
+        <span class="sc-claim__label">общий неназначенный пул</span>
+        <div class="sc-claim__lead"><span>A</span>Компания «Альфа» · свободна</div>
+        <div class="sc-claim__lead"><span>B</span>Компания «Бета» · свободна</div>
+      </div>
+      <div class="sc-claim__routes" aria-hidden="true"><i></i><i></i></div>
+      <div class="sc-claim__workers">
+        <article class="sc-claim__worker"><span class="sc-claim__label">сотрудник A</span><strong>Берёт компанию «Альфа»</strong><p>После подтверждения лид появляется только в его рабочей очереди.</p><span class="sc-claim__status">в работе</span></article>
+        <article class="sc-claim__worker"><span class="sc-claim__label">сотрудник B</span><strong>Берёт компанию «Бета»</strong><p>Параллельное действие закрепляет другой свободный лид без конфликта.</p><span class="sc-claim__status">в работе</span></article>
+      </div>
+    </div>
+    <p class="sc-claim__guard"><strong>Защита от гонки:</strong> если оба сотрудника выбирают один лид, сохраняется только первое подтверждённое взятие. Повторная попытка отклоняется без раскрытия чужой очереди.</p>
   </section>
 
   <section class="sc-section" aria-labelledby="architecture-title">

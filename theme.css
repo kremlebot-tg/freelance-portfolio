@@ -310,7 +310,7 @@ html.rd-motion-ready .rd-motion-observed.is-visible * { animation-play-state: ru
 .wk-cur { animation-iteration-count: 4 !important; }
 .wk-dot { animation-iteration-count: 1, 2 !important; }
 .m-sweep { animation-iteration-count: 1 !important; }
-.m-you, .m-orb .r { animation-iteration-count: 2 !important; }
+.m-you::after, .m-orb .r { animation-iteration-count: 2 !important; }
 .m-on i { animation-iteration-count: 2 !important; }
 .flow-link::after { animation-iteration-count: 2 !important; }
 
@@ -651,11 +651,35 @@ html.rd-motion-ready .case-process__link::after { top: -15px; opacity: 0; }
 html.rd-motion-ready .case-process.is-visible .case-process__link::after {
   animation: case-process-flow 2.15s cubic-bezier(.58, 0, .42, 1) 2 both;
 }
+html.rd-motion-ready .case-process.rd-reveal {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+html.rd-motion-ready .case-process .case-process__stage,
+html.rd-motion-ready .case-process .case-process__outcome {
+  opacity: 0;
+  transform: translateY(10px);
+}
+html.rd-motion-ready .case-process.is-visible .case-process__stage,
+html.rd-motion-ready .case-process.is-visible .case-process__outcome {
+  animation: rd-case-step-in .46s var(--ease-out) both;
+}
+html.rd-motion-ready .case-process.is-visible .case-process__stage:nth-of-type(2) { animation-delay: 70ms; }
+html.rd-motion-ready .case-process.is-visible .case-process__stage:nth-of-type(3) { animation-delay: 140ms; }
+html.rd-motion-ready .case-process.is-visible .case-process__stage:nth-of-type(4) { animation-delay: 210ms; }
+html.rd-motion-ready .case-process.is-visible .case-process__outcome:nth-of-type(1) { animation-delay: 300ms; }
+html.rd-motion-ready .case-process.is-visible .case-process__outcome:nth-of-type(2) { animation-delay: 365ms; }
+html.rd-motion-ready .case-process.is-visible .case-process__outcome:nth-of-type(3) { animation-delay: 430ms; }
 @keyframes case-process-flow {
   0% { transform: translateY(0); opacity: 0; }
   18% { opacity: 1; }
   82% { opacity: 1; }
   100% { transform: translateY(48px); opacity: 0; }
+}
+@keyframes rd-case-step-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
 }
 .case-process__outcomes {
   display: grid;
@@ -680,6 +704,105 @@ html.rd-motion-ready .case-process.is-visible .case-process__link::after {
 .case-process__outcome[data-tone="stop"] > span { color: var(--error-text); }
 [data-theme="dark"] .case-process__outcome[data-tone="success"] > span { color: var(--status-green-fg); }
 [data-theme="dark"] .case-process__outcome[data-tone="review"] > span { color: var(--status-amber-fg); }
+
+/* Scout: the shared pool is shown as an explicit two-lane claim, not as
+   automatic assignment. Generic teammate labels keep the public case reusable. */
+.sc-claim {
+  margin-top: 20px;
+  padding: clamp(22px, 4vw, 34px);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  background: var(--surface);
+  font-family: Inter, system-ui, sans-serif;
+}
+.sc-claim__head {
+  display: grid;
+  grid-template-columns: minmax(0, .72fr) minmax(260px, .42fr);
+  gap: 22px;
+  align-items: end;
+  margin-bottom: 22px;
+}
+.sc-claim__head h2 { margin: 0; font: 700 clamp(25px, 3vw, 36px)/1.12 Sora, sans-serif; letter-spacing: -.03em; }
+.sc-claim__head p { margin: 0; color: var(--text-body); font: 400 14.5px/1.58 Inter, system-ui, sans-serif; }
+.sc-claim__board { display: grid; grid-template-columns: minmax(220px, .7fr) 92px minmax(0, 1.3fr); gap: 14px; align-items: stretch; }
+.sc-claim__pool,
+.sc-claim__worker {
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--surface-2);
+}
+.sc-claim__label { display: block; margin-bottom: 12px; color: var(--accent); font: 700 11px/1.2 JetBrains Mono, monospace; letter-spacing: .04em; text-transform: uppercase; }
+.sc-claim__lead { display: flex; align-items: center; gap: 9px; min-height: 48px; padding: 10px 12px; border: 1px solid var(--border); border-radius: 11px; background: var(--surface); color: var(--text); font: 600 13px/1.35 Inter, system-ui, sans-serif; }
+.sc-claim__lead + .sc-claim__lead { margin-top: 8px; }
+.sc-claim__lead > span { display: grid; width: 27px; height: 27px; flex: none; place-items: center; border-radius: 8px; background: var(--accent-tint); color: var(--accent); font: 700 11px/1 JetBrains Mono, monospace; }
+.sc-claim__routes { display: grid; grid-template-rows: 1fr 1fr; gap: 12px; align-items: center; overflow: hidden; }
+.sc-claim__routes i { position: relative; display: block; height: 2px; border-radius: 99px; background: var(--border-hover); transform-origin: left; }
+.sc-claim__routes i::after { content: ""; position: absolute; top: 50%; right: -1px; width: 8px; height: 8px; border-top: 2px solid var(--accent); border-right: 2px solid var(--accent); transform: translateY(-50%) rotate(45deg); }
+.sc-claim__workers { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.sc-claim__worker strong { display: block; margin-bottom: 7px; font: 700 16px/1.25 Sora, sans-serif; }
+.sc-claim__worker p { margin: 0 0 12px; color: var(--text-body); font: 400 13px/1.48 Inter, system-ui, sans-serif; }
+.sc-claim__status { display: inline-flex; min-height: 28px; align-items: center; padding: 5px 9px; border-radius: 999px; background: var(--status-green-bg); color: var(--status-green-fg); font: 700 10.5px/1 JetBrains Mono, monospace; }
+.sc-claim__guard { margin: 14px 0 0; padding: 12px 14px; border-left: 3px solid var(--status-amber-fg); border-radius: 0 10px 10px 0; background: var(--status-amber-bg); color: var(--text-body); font: 500 12.5px/1.5 Inter, system-ui, sans-serif; }
+html.rd-motion-ready .sc-claim .sc-claim__routes i { transform: scaleX(0); }
+html.rd-motion-ready .sc-claim.is-visible .sc-claim__routes i { animation: sc-claim-route .52s var(--ease-out) both; }
+html.rd-motion-ready .sc-claim.is-visible .sc-claim__routes i:nth-child(2) { animation-delay: 90ms; }
+html.rd-motion-ready .sc-claim .sc-claim__worker { opacity: 0; transform: translateX(8px); }
+html.rd-motion-ready .sc-claim.is-visible .sc-claim__worker { animation: sc-claim-worker .42s .28s var(--ease-out) both; }
+html.rd-motion-ready .sc-claim.is-visible .sc-claim__worker:nth-child(2) { animation-delay: .38s; }
+@keyframes sc-claim-route { to { transform: scaleX(1); } }
+@keyframes sc-claim-worker { to { opacity: 1; transform: none; } }
+
+/* Autopricer: the synthetic demo gets a live margin profile. Widths are
+   derived from the same rows as the accessible table. */
+.ap-demo-grid { display: grid; grid-template-columns: minmax(300px, 380px) minmax(0, 1fr); gap: 16px; align-items: start; }
+.ap-demo-grid label > span > span { flex: none; margin-left: 12px; white-space: nowrap; }
+.ap-margin-viz { margin-top: 14px; padding: 18px; border: 1px solid var(--border-soft); border-radius: 16px; background: var(--demo-canvas); }
+.ap-margin-viz__head { display: flex; justify-content: space-between; gap: 18px; align-items: baseline; margin-bottom: 15px; }
+.ap-margin-viz__head strong { font: 700 16px/1.25 Sora, sans-serif; }
+.ap-margin-viz__head span { color: var(--text-muted); font: 500 11px/1.4 JetBrains Mono, monospace; text-align: right; }
+.ap-margin-viz__rows { display: grid; gap: 9px; }
+.ap-margin-viz__row { display: grid; grid-template-columns: minmax(118px, .55fr) minmax(160px, 1.45fr); gap: 12px; align-items: center; }
+.ap-margin-viz__name { min-width: 0; overflow: hidden; color: var(--text-body); font: 500 12.5px/1.3 Inter, system-ui, sans-serif; text-overflow: ellipsis; white-space: nowrap; }
+.ap-margin-viz__track { position: relative; height: 25px; overflow: hidden; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); }
+.ap-margin-viz__track::before { content: ""; position: absolute; top: 0; bottom: 0; left: 47.1%; z-index: 2; width: 1px; background: var(--text-muted); opacity: .42; }
+.ap-margin-viz__bar { position: absolute; top: 0; bottom: 0; z-index: 1; display: block; min-width: 3px; border-radius: 7px; transform-origin: left; transition: left .28s var(--ease-out), width .28s var(--ease-out); }
+.ap-margin-viz__value { position: absolute; inset: 0 8px 0 auto; z-index: 3; display: flex; align-items: center; color: var(--text); font: 700 10.5px/1 JetBrains Mono, monospace; text-shadow: 0 1px 0 var(--surface); }
+html.rd-motion-ready .ap-margin-viz .ap-margin-viz__bar { transform: scaleX(0); }
+html.rd-motion-ready .ap-margin-viz.is-visible .ap-margin-viz__bar { animation: ap-margin-grow .48s var(--ease-out) both; }
+@keyframes ap-margin-grow { to { transform: scaleX(1); } }
+
+/* Subscription prototype: a state rail mirrors the click-through demo and
+   keeps the payment boundary explicit. */
+.sub-state { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin: 0; padding: 0; list-style: none; }
+.sub-state li { position: relative; min-width: 0; min-height: 66px; padding: 12px 11px; border: 1px solid var(--border); border-radius: 12px; background: var(--surface-2); color: var(--text-muted); }
+.sub-state li::after { content: ""; position: absolute; right: -9px; top: 50%; z-index: 2; width: 9px; height: 2px; background: var(--border-hover); transform: translateY(-50%) scaleX(0); transform-origin: left; transition: transform .24s var(--ease-out); }
+.sub-state li:last-child::after { display: none; }
+.sub-state__num { display: block; margin-bottom: 7px; font: 700 10px/1 JetBrains Mono, monospace; }
+.sub-state__label { display: block; color: inherit; font: 700 12.5px/1.28 Inter, system-ui, sans-serif; }
+.sub-state li.is-done,
+.sub-state li.is-current { border-color: rgba(var(--accent-rgb), .48); color: var(--accent); background: var(--accent-tint); }
+.sub-state li.is-done::after { transform: translateY(-50%) scaleX(1); background: var(--accent); }
+.sub-state li.is-current { box-shadow: inset 0 0 0 1px rgba(var(--accent-rgb), .15); }
+
+@media (max-width: 760px) {
+  .sc-claim__head { grid-template-columns: 1fr; gap: 10px; }
+  .sc-claim__board { grid-template-columns: 1fr; }
+  .sc-claim__routes { grid-template-columns: 1fr 1fr; grid-template-rows: auto; min-height: 28px; }
+  .sc-claim__routes i { width: 2px; height: 28px; justify-self: center; transform-origin: top; }
+  .sc-claim__routes i::after { right: auto; bottom: -1px; left: 50%; top: auto; transform: translateX(-50%) rotate(135deg); }
+  html.rd-motion-ready .sc-claim .sc-claim__routes i { transform: scaleY(0); }
+  html.rd-motion-ready .sc-claim.is-visible .sc-claim__routes i { animation-name: sc-claim-route-y; }
+  .sc-claim__workers { grid-template-columns: 1fr; }
+  .ap-demo-grid { grid-template-columns: minmax(0, 1fr); }
+  .ap-margin-viz__head { align-items: flex-start; flex-direction: column; gap: 5px; }
+  .ap-margin-viz__head span { text-align: left; }
+  .ap-margin-viz__row { grid-template-columns: minmax(86px, .65fr) minmax(130px, 1.35fr); gap: 8px; }
+  .sub-state { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .sub-state li:nth-child(2)::after { display: none; }
+  @keyframes sc-claim-route-y { to { transform: scaleY(1); } }
+}
 
 @media (min-width: 960px) {
   .case-process__flow {
@@ -735,6 +858,18 @@ html.rd-motion-ready .case-process.is-visible .case-process__link::after {
   .case-process__outcomes {
     grid-column: 1 / -1;
     grid-row: 3;
+  }
+  /* Compact flows keep their intentional 2x2 layout. The desktop timeline
+     positioning above only applies to full-width flows. */
+  .case-process[data-layout="compact"] .case-process__stage {
+    grid-column: auto;
+    grid-row: auto;
+    min-height: 132px;
+    grid-template-columns: 48px minmax(0, 1fr);
+  }
+  .case-process[data-layout="compact"] .case-process__outcomes {
+    grid-column: 1 / -1;
+    grid-row: auto;
   }
   @keyframes case-process-flow-x {
     0% { transform: translateX(0); opacity: 0; }

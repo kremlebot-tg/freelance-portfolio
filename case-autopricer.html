@@ -25,7 +25,7 @@
 <link rel="alternate" hreflang="x-default" href="https://rednd.ru/case-autopricer.html">
 <script defer src="./site-config.js?v=20260814a"></script>
 <script>(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
-<link rel="stylesheet" href="./theme.css?v=20260814b">
+<link rel="stylesheet" href="./theme.css?v=20260814g">
 <script defer src="./vendor/react.production.min.js" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z" crossorigin="anonymous"></script>
 <script defer src="./vendor/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous"></script>
 <script defer src="./support.js"></script>
@@ -176,7 +176,7 @@
       <span style="margin-left:auto;font:400 12px JetBrains Mono,monospace;color:var(--text-muted)">// упрощённая модель, не production-интерфейс</span>
     </div>
 
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr));gap:16px;align-items:start">
+    <div class="ap-demo-grid">
 
       <!-- Params -->
       <div style="background:var(--demo-canvas);border:1px solid var(--border-soft);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:20px;max-width:420px">
@@ -221,6 +221,7 @@
         </div>
       </div>
 
+      <div style="min-width:0;display:grid;gap:14px">
       <!-- Table -->
       <div class="pnl-wrap" style="min-width:0;overflow-x:auto;border:1px solid var(--border-soft);border-radius:16px">
         <div class="pnl" role="table" aria-label="Расчёт цен и маржи">
@@ -233,6 +234,19 @@
             </div>
           </sc-for>
         </div>
+      </div>
+
+      <div class="ap-margin-viz flow" role="group" aria-label="Профиль расчётной маржи восьми вымышленных товаров">
+        <div class="ap-margin-viz__head"><strong>Как распределилась расчётная маржа</strong><span>синтетические данные · шкала −40…+45%</span></div>
+        <div class="ap-margin-viz__rows">
+          <sc-for list="{{ rows }}" as="r">
+            <div class="ap-margin-viz__row">
+              <span class="ap-margin-viz__name" title="{{ r.name }}">{{ r.name }}</span>
+              <div class="ap-margin-viz__track" role="img" aria-label="{{ r.chartLabel }}"><i class="ap-margin-viz__bar" style="left:{{ r.barLeft }}%;width:{{ r.barWidth }}%;background:{{ r.marginColor }}"></i><b class="ap-margin-viz__value">{{ r.marginPct }}%</b></div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
       </div>
     </div>
 
@@ -355,12 +369,17 @@ class Component extends DCLogic {
       let status = 'в коридоре', badgeBg = 'var(--status-green-bg)', badgeColor = 'var(--status-green-fg)';
       if (price >= ceil - 0.5) { status = 'у потолка'; badgeBg = 'var(--status-amber-bg)'; badgeColor = 'var(--status-amber-fg)'; clamped++; }
       else if (price <= floor + 0.5) { status = 'у пола'; badgeBg = 'var(--error-bg)'; badgeColor = 'var(--error-text)'; clamped++; }
+      const chartMargin = Math.max(-40, Math.min(45, marginPct));
+      const chartZero = 40 / 85 * 100;
       return {
         name: p.name,
         cost: fmt(cost),
         comm: p.comm,
         price: fmt(price),
         marginPct: marginPct.toFixed(1).replace('.', ','),
+        barLeft: (chartMargin < 0 ? (chartMargin + 40) / 85 * 100 : chartZero).toFixed(1),
+        barWidth: Math.max(1.2, Math.abs(chartMargin) / 85 * 100).toFixed(1),
+        chartLabel: p.name + ': расчётная маржа ' + marginPct.toFixed(1).replace('.', ',') + ' процента',
         marginColor: marginPct < 5 ? 'var(--error-text)' : marginPct < 12 ? 'var(--status-amber-fg)' : 'var(--status-green-fg)',
         status, badgeBg, badgeColor,
       };

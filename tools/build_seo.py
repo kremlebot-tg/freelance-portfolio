@@ -297,10 +297,11 @@ def generated_head(relative: str, source: str, url: str, lastmod: str) -> str:
 
 
 def optimize_runtime(source: str, prefix: str) -> str:
-    source = source.replace(
-        f'{prefix}theme.css?v=20260812a',
-        f'{prefix}theme.css?v=20260814b',
-    )
+    for old_theme_token in ("20260812a", "20260814b", "20260814c", "20260814d", "20260814e", "20260814f"):
+        source = source.replace(
+            f'{prefix}theme.css?v={old_theme_token}',
+            f'{prefix}theme.css?v=20260814g',
+        )
     source = source.replace(
         f'<script src="{prefix}site-config.js?v=20260812a"></script>',
         f'<script defer src="{prefix}site-config.js?v=20260814a"></script>',

@@ -612,6 +612,47 @@ def main() -> int:
             if copy in source:
                 failures.append(f"{relative}: unsupported process claim {copy!r}")
 
+    faith_evidence_contract = {
+        "case-faith.html": (
+            'class="faith-evidence flow"',
+            "2 558",
+            "T-A-005",
+            "27 адресных тестов проходят",
+            "интерактивный фрагмент интерфейса",
+            "local-first",
+        ),
+        "en/case-faith.html": (
+            'class="faith-evidence flow"',
+            "2,558",
+            "T-A-005",
+            "27 targeted tests pass",
+            "interactive interface excerpt",
+            "local-first",
+        ),
+    }
+    for relative, required_copy in faith_evidence_contract.items():
+        source = (ROOT / relative).read_text(encoding="utf-8")
+        for copy in required_copy:
+            if copy not in source:
+                failures.append(f"{relative}: missing Faith App evidence {copy!r}")
+
+    faith_positioning_regressions = (
+        "обучение в стиле Duolingo",
+        "Duolingo-style",
+        "+{{ xp }} XP",
+        "XP, серия дней",
+        "XP, streaks",
+        "полностью офлайн-first",
+        "fully offline-first",
+        ">офлайн-first</span>",
+        ">offline-first</span>",
+    )
+    for relative in faith_evidence_contract:
+        source = (ROOT / relative).read_text(encoding="utf-8")
+        for copy in faith_positioning_regressions:
+            if copy.casefold() in source.casefold():
+                failures.append(f"{relative}: stale Faith App positioning {copy!r}")
+
     ambiguous_demo_labels = {
         "case-crm.html": ("Живое демо",),
         "en/case-crm.html": ("Live demo",),

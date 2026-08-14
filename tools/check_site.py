@@ -292,7 +292,7 @@ def main() -> int:
 
         prefix = "../" if str(rel).startswith("en/") else "./"
         runtime_contract = (
-            f'<script defer src="{prefix}site-config.js?v=20260814a"></script>',
+            f'<script defer src="{prefix}site-config.js?v=20260815a"></script>',
             f'<script defer src="{prefix}vendor/react.production.min.js"',
             f'<script defer src="{prefix}vendor/react-dom.production.min.js"',
             f'<script defer src="{prefix}support.js"></script>',
@@ -300,6 +300,21 @@ def main() -> int:
         for token in runtime_contract:
             if source.count(token) != 1:
                 failures.append(f"{rel}: expected one optimized runtime token {token!r}")
+        font_href = f"{prefix}fonts/fonts.css" if prefix == "../" else "fonts/fonts.css"
+        font_contract = (
+            f'<link rel="preload" href="{font_href}" as="style"',
+            f'<noscript><link href="{font_href}" rel="stylesheet"></noscript>',
+        )
+        for token in font_contract:
+            if source.count(token) != 1:
+                failures.append(f"{rel}: expected one non-blocking font token {token!r}")
+        critical_font = (
+            "sora-xMQ9uFFYT72X5wkB_18qmnndmSdSnh2BAfO5mnuyOo1lfiQwV6-xo6eeIw.woff2"
+            if str(rel).startswith("en/")
+            else "inter-UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa0ZL7W0Q5n-wU.woff2"
+        )
+        if source.count(f'href="{prefix}fonts/{critical_font}" as="font"') != 1:
+            failures.append(f"{rel}: missing critical font preload")
 
         schema_graph, schema_failures = json_ld_graphs(source)
         for failure in schema_failures:
@@ -424,7 +439,7 @@ def main() -> int:
         source = (ROOT / relative).read_text(encoding="utf-8")
         prefix = "../" if relative.startswith("en/") else "./"
         for token in (
-            f'<script defer src="{prefix}site-config.js?v=20260814a"></script>',
+            f'<script defer src="{prefix}site-config.js?v=20260815a"></script>',
             f'<script defer src="{prefix}vendor/react.production.min.js"',
             f'<script defer src="{prefix}vendor/react-dom.production.min.js"',
             f'<script defer src="{prefix}support.js"></script>',
@@ -848,6 +863,28 @@ def main() -> int:
         if "vetpulse" in relative and source.count("min-height:44px;border:none;cursor:pointer") < 2:
             failures.append(f"{relative}: perspective tabs must keep 44px targets")
 
+    for relative in ("case-autopricer.html", "en/case-autopricer.html"):
+        source = (ROOT / relative).read_text(encoding="utf-8")
+        for token in ('class="pnl-scroll-hint"', 'class="pnl-wrap" tabindex="0" aria-label='):
+            if source.count(token) != 1:
+                failures.append(f"{relative}: missing mobile table affordance {token!r}")
+    for relative in ("case-scout.html", "en/case-scout.html"):
+        source = (ROOT / relative).read_text(encoding="utf-8")
+        if 'font-size:0' in source:
+            failures.append(f"{relative}: mobile dashboard labels must remain readable")
+    for relative in ("index.html", "en/index.html"):
+        source = (ROOT / relative).read_text(encoding="utf-8")
+        if "radial-gradient(rgba(26,121,199" in source:
+            failures.append(f"{relative}: chat demo retains a decorative AI-style gradient")
+    theme = (ROOT / "theme.css").read_text(encoding="utf-8")
+    for token in (
+        "html.sc-dc-streaming .sc-placeholder::before",
+        "background-image: none !important;",
+        "animation: none !important;",
+    ):
+        if token not in theme:
+            failures.append(f"theme.css: missing static streaming-placeholder contract {token!r}")
+
     page_target_contract = {
         "services.html": ("display:inline-flex;min-height:44px;align-items:center;gap:9px", 1),
         "en/services.html": ("display:inline-flex;min-height:44px;align-items:center;gap:9px", 1),
@@ -875,10 +912,27 @@ def main() -> int:
     for page, parser in parsed.items():
         source = page.read_text(encoding="utf-8")
         rel = page.relative_to(ROOT)
-        if "theme.css?v=" in source and "theme.css?v=20260814g" not in source:
+        if "theme.css?v=" in source and "theme.css?v=20260815a" not in source:
             failures.append(f"{rel}: stale theme.css cache token")
-        if "site-config.js?v=" in source and "site-config.js?v=20260814a" not in source:
+        if "site-config.js?v=" in source and "site-config.js?v=20260815a" not in source:
             failures.append(f"{rel}: stale site-config.js cache token")
+
+    site_config = (ROOT / "site-config.js").read_text(encoding="utf-8")
+    for token in (
+        "var storageKey = 'rednd_analytics_consent';",
+        "if (choice === 'accepted') loadMetrika();",
+        "else if (!choice) createBanner();",
+        "k.dataset.redndAnalytics = 'true';",
+    ):
+        if token not in site_config:
+            failures.append(f"site-config.js: missing analytics consent contract {token!r}")
+    theme = (ROOT / "theme.css").read_text(encoding="utf-8")
+    if ".rd-cookie__button--primary" not in theme:
+        failures.append("theme.css: missing analytics consent controls")
+    for relative in ("privacy.html", "en/privacy.html"):
+        source = (ROOT / relative).read_text(encoding="utf-8")
+        if source.count("data-analytics-consent-control") != 1:
+            failures.append(f"{relative}: expected one analytics consent control")
 
     pages_workflow = (ROOT / ".github/workflows/pages.yml").read_text(encoding="utf-8")
     for token in (

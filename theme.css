@@ -227,6 +227,76 @@ main { position: relative; }
 }
 .rd-skip-link:focus { transform: translateY(0); }
 
+/* Если DC-рантайм показывает короткий loading-state, оставляем его статичным:
+   без «нейросетевого» shimmer-градиента и бесконечной анимации. */
+html.sc-dc-streaming .sc-placeholder::before,
+html.sc-dc-streaming .sc-interp.sc-missing::before {
+  background: color-mix(in srgb, currentColor 10%, transparent) !important;
+  background-image: none !important;
+  animation: none !important;
+}
+
+/* Аналитика не загружается до явного выбора. Панель остаётся небольшой,
+   не блокирует страницу и не использует декоративные градиенты. */
+.rd-cookie {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  left: 18px;
+  z-index: 120;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 18px;
+  align-items: center;
+  width: min(760px, calc(100vw - 36px));
+  margin-left: auto;
+  padding: 16px 18px;
+  border: 1px solid var(--border-hover);
+  border-radius: 16px;
+  background: var(--surface);
+  box-shadow: 0 18px 48px -28px var(--shadow-3);
+  color: var(--text-body);
+  font: 400 14px/1.5 Inter, system-ui, sans-serif;
+}
+.rd-cookie p { margin: 0; }
+.rd-cookie a { color: var(--accent); font-weight: 600; }
+.rd-cookie__actions { display: flex; gap: 8px; }
+.rd-cookie__button,
+.rd-analytics-control {
+  min-height: 44px;
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface-2);
+  color: var(--text);
+  cursor: pointer;
+  font: 600 13.5px/1.2 Inter, system-ui, sans-serif;
+}
+.rd-cookie__button--primary {
+  border-color: var(--accent-cta);
+  background: var(--accent-cta);
+  color: var(--surface);
+}
+.rd-analytics-control { align-self: flex-start; margin-top: 2px; }
+@media (hover:hover) and (pointer:fine) {
+  .rd-cookie__button:hover,
+  .rd-analytics-control:hover { border-color: var(--accent); }
+  .rd-cookie__button--primary:hover { background: var(--accent); color: var(--surface); }
+}
+@media (max-width: 620px) {
+  .rd-cookie {
+    right: 12px;
+    bottom: 12px;
+    left: 12px;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    width: calc(100vw - 24px);
+    padding: 15px;
+  }
+  .rd-cookie__actions { display: grid; grid-template-columns: 1fr 1fr; }
+  .pnl-scroll-hint { display: block !important; }
+}
+
 /* Sora в проекте содержит только латиницу. Кириллицу выводим локальным Inter,
    чтобы заголовки не прыгали в случайный системный fallback на разных ОС. */
 .rd-cyr-display {

@@ -59,27 +59,146 @@ window.SITE_CONFIG = {
 };
 
 // ============================================================
-// Яндекс Метрика — подключается ТОЛЬКО если задан metrikaId.
-// Обезличенная аналитика, данные обрабатываются в РФ. Чтобы отключить —
-// очистите metrikaId в SITE_CONFIG выше.
+// Яндекс Метрика подключается только после явного выбора посетителя.
+// Решение хранится локально в браузере и может быть изменено на странице
+// политики конфиденциальности. До согласия сторонний скрипт не запрашивается.
 // ============================================================
 (function () {
   var cfg = window.SITE_CONFIG || {};
   var id = String(cfg.metrikaId || '').trim();
   if (!id) return;
-  (function (m, e, t, r, i, k, a) {
-    m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments); };
-    m[i].l = 1 * new Date();
-    for (var j = 0; j < e.scripts.length; j++) { if (e.scripts[j].src === r) { return; } }
-    k = e.createElement(t); a = e.getElementsByTagName(t)[0];
-    k.async = 1; k.src = r; a.parentNode.insertBefore(k, a);
-  })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js', 'ym');
-  window.ym(id, 'init', {
-    clickmap: true,
-    trackLinks: true,
-    accurateTrackBounce: true,
-    webvisor: !!cfg.metrikaWebvisor
-  });
+  var storageKey = 'rednd_analytics_consent';
+  var isEnglish = location.pathname.indexOf('/en/') !== -1;
+  var loaded = false;
+  var controlsBound = false;
+
+  function readChoice() {
+    try { return localStorage.getItem(storageKey) || ''; } catch (e) { return ''; }
+  }
+
+  function saveChoice(value) {
+    try { localStorage.setItem(storageKey, value); } catch (e) {}
+  }
+
+  function loadMetrika() {
+    if (loaded) return;
+    loaded = true;
+    (function (m, e, t, r, i, k, a) {
+      m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments); };
+      m[i].l = 1 * new Date();
+      for (var j = 0; j < e.scripts.length; j++) { if (e.scripts[j].src === r) { return; } }
+      k = e.createElement(t); a = e.getElementsByTagName(t)[0];
+      k.async = 1; k.src = r; k.dataset.redndAnalytics = 'true';
+      a.parentNode.insertBefore(k, a);
+    })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js', 'ym');
+    window.ym(id, 'init', {
+      clickmap: true,
+      trackLinks: true,
+      accurateTrackBounce: true,
+      webvisor: !!cfg.metrikaWebvisor
+    });
+  }
+
+  function stopMetrika() {
+    if (window.ym && loaded) {
+      try { window.ym(id, 'destruct'); } catch (e) {}
+    }
+    loaded = false;
+    var script = document.querySelector('script[data-rednd-analytics="true"]');
+    if (script) script.remove();
+  }
+
+  function updateControls() {
+    var accepted = readChoice() === 'accepted';
+    var controls = document.querySelectorAll('[data-analytics-consent-control]');
+    for (var i = 0; i < controls.length; i++) {
+      controls[i].textContent = accepted
+        ? (isEnglish ? 'Disable analytics' : 'Отключить аналитику')
+        : (isEnglish ? 'Allow analytics' : 'Разрешить аналитику');
+      controls[i].setAttribute('aria-pressed', accepted ? 'true' : 'false');
+    }
+  }
+
+  function closeBanner() {
+    var banner = document.getElementById('rd-cookie-consent');
+    if (banner) banner.remove();
+  }
+
+  function accept() {
+    saveChoice('accepted');
+    closeBanner();
+    loadMetrika();
+    updateControls();
+  }
+
+  function decline() {
+    saveChoice('declined');
+    closeBanner();
+    stopMetrika();
+    updateControls();
+  }
+
+  function createBanner() {
+    if (readChoice() || document.getElementById('rd-cookie-consent')) return;
+    var banner = document.createElement('aside');
+    banner.id = 'rd-cookie-consent';
+    banner.className = 'rd-cookie';
+    banner.setAttribute('aria-label', isEnglish ? 'Analytics settings' : 'Настройки аналитики');
+
+    var copy = document.createElement('p');
+    copy.appendChild(document.createTextNode(isEnglish
+      ? 'May we use Yandex Metrica to understand which pages are useful? It stays off until you allow it. '
+      : 'Можно включить Яндекс Метрику, чтобы понимать, какие страницы полезны? До вашего согласия она выключена. '));
+    var privacy = document.createElement('a');
+    privacy.href = 'privacy.html';
+    privacy.textContent = isEnglish ? 'Privacy policy' : 'Политика конфиденциальности';
+    copy.appendChild(privacy);
+
+    var actions = document.createElement('div');
+    actions.className = 'rd-cookie__actions';
+    var reject = document.createElement('button');
+    reject.type = 'button';
+    reject.className = 'rd-cookie__button';
+    reject.textContent = isEnglish ? 'No, thanks' : 'Не включать';
+    reject.addEventListener('click', decline);
+    var approve = document.createElement('button');
+    approve.type = 'button';
+    approve.className = 'rd-cookie__button rd-cookie__button--primary';
+    approve.textContent = isEnglish ? 'Allow analytics' : 'Разрешить';
+    approve.addEventListener('click', accept);
+    actions.appendChild(reject);
+    actions.appendChild(approve);
+    banner.appendChild(copy);
+    banner.appendChild(actions);
+    document.body.appendChild(banner);
+  }
+
+  function bindControls() {
+    if (!controlsBound) {
+      controlsBound = true;
+      document.addEventListener('click', function (event) {
+        var target = event.target && event.target.closest
+          ? event.target.closest('[data-analytics-consent-control]')
+          : null;
+        if (!target) return;
+        if (readChoice() === 'accepted') decline(); else accept();
+      });
+    }
+    updateControls();
+  }
+
+  function bootAnalyticsChoice() {
+    bindControls();
+    var choice = readChoice();
+    if (choice === 'accepted') loadMetrika();
+    else if (!choice) createBanner();
+    // DC-компоненты появляются после DOMContentLoaded, поэтому повторно
+    // подхватываем кнопку управления на странице политики.
+    setTimeout(bindControls, 700);
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', bootAnalyticsChoice);
+  else bootAnalyticsChoice();
 })();
 
 // ============================================================

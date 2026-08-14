@@ -297,18 +297,41 @@ def generated_head(relative: str, source: str, url: str, lastmod: str) -> str:
 
 
 def optimize_runtime(source: str, prefix: str) -> str:
-    for old_theme_token in ("20260812a", "20260814b", "20260814c", "20260814d", "20260814e", "20260814f"):
+    for old_theme_token in ("20260812a", "20260814b", "20260814c", "20260814d", "20260814e", "20260814f", "20260814g"):
         source = source.replace(
             f'{prefix}theme.css?v={old_theme_token}',
-            f'{prefix}theme.css?v=20260814g',
+            f'{prefix}theme.css?v=20260815a',
         )
     source = source.replace(
         f'<script src="{prefix}site-config.js?v=20260812a"></script>',
-        f'<script defer src="{prefix}site-config.js?v=20260814a"></script>',
+        f'<script defer src="{prefix}site-config.js?v=20260815a"></script>',
     ).replace(
         f'<script src="{prefix}site-config.js?v=20260814a"></script>',
+        f'<script defer src="{prefix}site-config.js?v=20260815a"></script>',
+    ).replace(
         f'<script defer src="{prefix}site-config.js?v=20260814a"></script>',
+        f'<script defer src="{prefix}site-config.js?v=20260815a"></script>',
     )
+    font_href = f'{prefix}fonts/fonts.css' if prefix == "../" else "fonts/fonts.css"
+    font_stylesheet = f'<link href="{font_href}" rel="stylesheet">'
+    async_font_stylesheet = "\n".join(
+        [
+            f'<link rel="preload" href="{font_href}" as="style" onload="this.onload=null;this.rel=\'stylesheet\'">',
+            f'<noscript><link href="{font_href}" rel="stylesheet"></noscript>',
+        ]
+    )
+    if async_font_stylesheet not in source:
+        source = source.replace(font_stylesheet, async_font_stylesheet, 1)
+    theme_link = f'<link rel="stylesheet" href="{prefix}theme.css?v=20260815a">'
+    critical_fonts = [
+        f'<link rel="preload" href="{prefix}fonts/inter-UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2" as="font" type="font/woff2" crossorigin>',
+        f'<link rel="preload" href="{prefix}fonts/sora-xMQ9uFFYT72X5wkB_18qmnndmSdSnh2BAfO5mnuyOo1lfiQwV6-xo6eeIw.woff2" as="font" type="font/woff2" crossorigin>',
+    ] if prefix == "../" else [
+        f'<link rel="preload" href="{prefix}fonts/inter-UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa0ZL7W0Q5n-wU.woff2" as="font" type="font/woff2" crossorigin>',
+    ]
+    critical_block = "\n".join(critical_fonts)
+    if theme_link in source and critical_block not in source:
+        source = source.replace(theme_link, f"{critical_block}\n{theme_link}", 1)
     scripts = "\n".join(
         [
             f'<script defer src="{prefix}vendor/react.production.min.js" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z" crossorigin="anonymous"></script>',

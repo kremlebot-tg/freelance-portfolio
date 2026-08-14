@@ -23,9 +23,10 @@
 <link rel="alternate" hreflang="ru" href="https://rednd.ru/about.html">
 <link rel="alternate" hreflang="en" href="https://rednd.ru/en/about.html">
 <link rel="alternate" hreflang="x-default" href="https://rednd.ru/about.html">
-<script defer src="./site-config.js?v=20260814a"></script>
+<script defer src="./site-config.js?v=20260815a"></script>
 <script>(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
-<link rel="stylesheet" href="./theme.css?v=20260814g">
+<link rel="preload" href="./fonts/inter-UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa0ZL7W0Q5n-wU.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="./theme.css?v=20260815a">
 <script defer src="./vendor/react.production.min.js" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z" crossorigin="anonymous"></script>
 <script defer src="./vendor/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous"></script>
 <script defer src="./support.js"></script>
@@ -64,7 +65,7 @@
       "name": "О команде Re:dnd — разработка и автоматизация",
       "description": "Re:dnd — команда продуктовой разработки и автоматизации. Создаём ботов, приложения и веб-сервисы, назначаем ответственного и доводим задачи до запуска.",
       "inLanguage": "ru-RU",
-      "dateModified": "2026-08-14",
+      "dateModified": "2026-08-15",
       "isPartOf": {
         "@id": "https://rednd.ru/#website"
       },
@@ -98,7 +99,8 @@
 <body>
 <x-dc>
 <helmet>
-<link href="fonts/fonts.css" rel="stylesheet">
+<link rel="preload" href="fonts/fonts.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="fonts/fonts.css" rel="stylesheet"></noscript>
 <style>*,*::before,*::after{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}</style>
 </helmet>
 

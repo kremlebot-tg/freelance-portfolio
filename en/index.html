@@ -23,9 +23,11 @@
 <link rel="alternate" hreflang="ru" href="https://rednd.ru/">
 <link rel="alternate" hreflang="en" href="https://rednd.ru/en/">
 <link rel="alternate" hreflang="x-default" href="https://rednd.ru/">
-<script defer src="../site-config.js?v=20260814a"></script>
+<script defer src="../site-config.js?v=20260815a"></script>
 <script>(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
-<link rel="stylesheet" href="../theme.css?v=20260814g">
+<link rel="preload" href="../fonts/inter-UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../fonts/sora-xMQ9uFFYT72X5wkB_18qmnndmSdSnh2BAfO5mnuyOo1lfiQwV6-xo6eeIw.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../theme.css?v=20260815a">
 <script defer src="../vendor/react.production.min.js" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z" crossorigin="anonymous"></script>
 <script defer src="../vendor/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous"></script>
 <script defer src="../support.js"></script>
@@ -90,7 +92,8 @@
 <body>
 <x-dc>
 <helmet>
-<link href="../fonts/fonts.css" rel="stylesheet">
+<link rel="preload" href="../fonts/fonts.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="../fonts/fonts.css" rel="stylesheet"></noscript>
 <style>
 *,*::before,*::after{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
@@ -173,7 +176,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
         </div>
         <span style="margin-left:auto;font:500 12px JetBrains Mono,monospace;color:var(--text-muted)">@re_dnd</span>
       </div>
-      <div style="padding:18px 14px 14px;display:flex;flex-direction:column;gap:10px;min-height:330px;background-color:var(--chat-area);background-image:radial-gradient(rgba(26,121,199,0.08) 1px,transparent 1.3px);background-size:20px 20px">
+      <div style="padding:18px 14px 14px;display:flex;flex-direction:column;gap:10px;min-height:330px;background-color:var(--chat-area)">
         <sc-if value="{{ showB1 }}" hint-placeholder-val="{{ true }}">
           <div style="align-self:flex-start;max-width:86%;background:var(--surface);border-radius:16px 16px 16px 5px;padding:9px 13px;box-shadow:0 1px 1px var(--shadow-1);font:400 15px/1.45 Inter,system-ui,sans-serif;animation:{{ bubbleAnim }}">Hi 👋 We are Re:dnd, a team building bots, apps and web services for business.<span style="display:inline-block;margin-left:8px;font-size:11px;color:var(--text-muted);vertical-align:bottom">12:04</span></div>
         </sc-if>

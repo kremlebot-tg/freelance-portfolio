@@ -9,6 +9,7 @@ from html.parser import HTMLParser
 import json
 from pathlib import Path
 import re
+import struct
 from urllib.parse import unquote, urlparse
 import sys
 import xml.etree.ElementTree as ET
@@ -22,6 +23,12 @@ SEO_HEAD_START = "<!-- SEO-GENERATED:BEGIN -->"
 SEO_HEAD_END = "<!-- SEO-GENERATED:END -->"
 SEO_CRUMB_START = "<!-- SEO-BREADCRUMBS:BEGIN -->"
 SEO_CRUMB_END = "<!-- SEO-BREADCRUMBS:END -->"
+CASE_SOCIAL_IMAGES = {
+    Path("case-scout.html"): f"{SITE_ORIGIN}/og-case-scout.png",
+    Path("en/case-scout.html"): f"{SITE_ORIGIN}/og-case-scout-en.png",
+    Path("case-autopricer.html"): f"{SITE_ORIGIN}/og-case-autopricer.png",
+    Path("en/case-autopricer.html"): f"{SITE_ORIGIN}/og-case-autopricer-en.png",
+}
 
 
 class PageParser(HTMLParser):
@@ -118,6 +125,14 @@ def json_ld_graphs(source: str) -> tuple[list[dict[str, object]], list[str]]:
             continue
         graph.extend(nodes)
     return graph, failures
+
+
+def png_dimensions(path: Path) -> tuple[int, int] | None:
+    """Read PNG dimensions without adding an image-library test dependency."""
+    header = path.read_bytes()[:24]
+    if len(header) != 24 or header[:8] != b"\x89PNG\r\n\x1a\n" or header[12:16] != b"IHDR":
+        return None
+    return struct.unpack(">II", header[16:24])
 
 
 def main() -> int:
@@ -221,6 +236,22 @@ def main() -> int:
             values = parser.meta_properties.get(name, [])
             if len(values) != 1 or not values[0]:
                 failures.append(f"{rel}: expected one non-empty meta property={name!r}")
+
+        og_images = parser.meta_properties.get("og:image", [])
+        twitter_images = parser.meta_names.get("twitter:image", [])
+        if len(og_images) == 1 and len(twitter_images) == 1 and og_images != twitter_images:
+            failures.append(f"{rel}: Twitter and Open Graph images must match")
+        if rel.name.startswith("case-") and og_images == [f"{SITE_ORIGIN}/og-default.png"]:
+            failures.append(f"{rel}: case page must use a dedicated social image")
+        expected_social_image = CASE_SOCIAL_IMAGES.get(rel)
+        if expected_social_image is not None:
+            if og_images != [expected_social_image]:
+                failures.append(f"{rel}: expected dedicated social image {expected_social_image}")
+            social_path = ROOT / urlparse(expected_social_image).path.lstrip("/")
+            if not social_path.exists():
+                failures.append(f"{rel}: missing social image {social_path.relative_to(ROOT)}")
+            elif png_dimensions(social_path) != (1200, 630):
+                failures.append(f"{rel}: social image must be a 1200x630 PNG")
 
         prefix = "../" if str(rel).startswith("en/") else "./"
         runtime_contract = (

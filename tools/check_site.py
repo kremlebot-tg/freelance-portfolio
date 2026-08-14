@@ -224,14 +224,14 @@ def main() -> int:
 
         prefix = "../" if str(rel).startswith("en/") else "./"
         runtime_contract = (
-            f'<script src="{prefix}site-config.js?v=20260814a"></script>',
-            f'<script src="{prefix}support.js"></script>',
+            f'<script defer src="{prefix}site-config.js?v=20260814a"></script>',
+            f'<script defer src="{prefix}vendor/react.production.min.js"',
+            f'<script defer src="{prefix}vendor/react-dom.production.min.js"',
+            f'<script defer src="{prefix}support.js"></script>',
         )
         for token in runtime_contract:
             if source.count(token) != 1:
                 failures.append(f"{rel}: expected one optimized runtime token {token!r}")
-        if f'<script defer src="{prefix}vendor/react.production.min.js"' in source:
-            failures.append(f"{rel}: React must remain loaded by the proven support runtime path")
 
         schema_graph, schema_failures = json_ld_graphs(source)
         for failure in schema_failures:
@@ -356,8 +356,10 @@ def main() -> int:
         source = (ROOT / relative).read_text(encoding="utf-8")
         prefix = "../" if relative.startswith("en/") else "./"
         for token in (
-            f'<script src="{prefix}site-config.js?v=20260814a"></script>',
-            f'<script src="{prefix}support.js"></script>',
+            f'<script defer src="{prefix}site-config.js?v=20260814a"></script>',
+            f'<script defer src="{prefix}vendor/react.production.min.js"',
+            f'<script defer src="{prefix}vendor/react-dom.production.min.js"',
+            f'<script defer src="{prefix}support.js"></script>',
         ):
             if source.count(token) != 1:
                 failures.append(f"{relative}: expected one optimized runtime token {token!r}")

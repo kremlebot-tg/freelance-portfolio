@@ -302,24 +302,24 @@ def optimize_runtime(source: str, prefix: str) -> str:
         f'{prefix}theme.css?v=20260814a',
     )
     source = source.replace(
-        f'<script defer src="{prefix}site-config.js?v=20260812a"></script>',
-        f'<script src="{prefix}site-config.js?v=20260814a"></script>',
-    ).replace(
+        f'<script src="{prefix}site-config.js?v=20260812a"></script>',
         f'<script defer src="{prefix}site-config.js?v=20260814a"></script>',
+    ).replace(
         f'<script src="{prefix}site-config.js?v=20260814a"></script>',
+        f'<script defer src="{prefix}site-config.js?v=20260814a"></script>',
     )
-    react_block = "\n".join(
+    scripts = "\n".join(
         [
             f'<script defer src="{prefix}vendor/react.production.min.js" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z" crossorigin="anonymous"></script>',
             f'<script defer src="{prefix}vendor/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous"></script>',
             f'<script defer src="{prefix}support.js"></script>',
         ]
     )
-    source = source.replace(react_block, f'<script src="{prefix}support.js"></script>')
-    source = source.replace(
-        f'<script defer src="{prefix}support.js"></script>',
-        f'<script src="{prefix}support.js"></script>',
-    )
+    current = f'<script src="{prefix}support.js"></script>'
+    if current in source:
+        source = source.replace(current, scripts)
+    elif f'<script defer src="{prefix}support.js"></script>' in source and "vendor/react.production.min.js" not in source:
+        source = source.replace(f'<script defer src="{prefix}support.js"></script>', scripts)
     return source
 
 

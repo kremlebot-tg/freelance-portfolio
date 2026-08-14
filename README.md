@@ -1,7 +1,7 @@
 # Re:dnd — сайт-портфолио
 
-Двуязычный (RU + `/en/`) статический сайт команды Re:dnd на **https://rednd.ru**: Telegram-боты, мини-аппы, кейсы
-с живыми демо. Дизайн — Claude Design (формат `.dc.html` + рантайм
+Двуязычный (RU + `/en/`) статический сайт команды Re:dnd на **https://rednd.ru**: Telegram-боты, мини-аппы и кейсы
+с интерактивными демо и честными границами каждого продукта. Дизайн — Claude Design (формат `.dc.html` + рантайм
 `support.js`), инженерия и деплой — Claude Code.
 
 ## ⚡ Что вписать после клона
@@ -117,6 +117,33 @@ cookie и обезличенные технические данные, вебв
 | `server/` | История: прежний VPS-бэкенд формы — не используется |
 | `vendor/`, `fonts/` | React 18.3.1 UMD и шрифты локально — сайт без внешних запросов |
 | `ios-frame.jsx` → `ios-frame.js` | Исходник и прекомпилированная iOS-рамка для демо |
+
+## SEO
+
+Индексируемая поверхность сайта описана в `sitemap.xml`: 28 RU/EN URL с парными
+`hreflang`, каноническими URL и правдивым `lastmod`. Служебные privacy, consent и
+partner-apply исключены из sitemap и имеют `noindex,follow`.
+
+`tools/build_seo.py` детерминированно собирает помеченные `SEO-GENERATED` и
+`SEO-BREADCRUMBS` блоки: robots-preview directives, social metadata, видимые хлебные
+крошки и JSON-LD (`Organization`, `WebSite`, `ProfessionalService`, `ProfilePage`,
+`CollectionPage`, `ContactPage`, `BreadcrumbList`, `CreativeWork`, `ItemList`). Не редактируйте
+эти блоки вручную: измените обычные title, description, Open Graph, контент или
+`sitemap.xml`, затем пересоберите SEO:
+
+```bash
+npm run build:seo
+npm run check:seo
+```
+
+`tools/check_site.py` ловит рассинхронизацию sitemap/canonical/hreflang, дубли title и
+description, потерю social metadata, schema, хлебных крошек, семантики карточек
+или рассинхронизацию cache-версий рантайма.
+
+После публикации владелец домена должен добавить `https://rednd.ru/sitemap.xml` в Google
+Search Console и Яндек Вебмастер, проверить права на домен и дальше контролировать
+индексацию, запросы и полевые Core Web Vitals. Доступ к этим кабинетам и факт
+отправки sitemap не подтверждаются одним репозиторием.
 
 ## Локальный запуск
 

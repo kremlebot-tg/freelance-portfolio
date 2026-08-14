@@ -17,6 +17,11 @@ import xml.etree.ElementTree as ET
 ROOT = Path(__file__).resolve().parent.parent
 SITE_ORIGIN = "https://rednd.ru"
 SKIP_SCHEMES = ("http://", "https://", "mailto:", "tel:", "data:", "javascript:")
+INDEX_ROBOTS = "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
+SEO_HEAD_START = "<!-- SEO-GENERATED:BEGIN -->"
+SEO_HEAD_END = "<!-- SEO-GENERATED:END -->"
+SEO_CRUMB_START = "<!-- SEO-BREADCRUMBS:BEGIN -->"
+SEO_CRUMB_END = "<!-- SEO-BREADCRUMBS:END -->"
 
 
 class PageParser(HTMLParser):
@@ -31,6 +36,8 @@ class PageParser(HTMLParser):
         self.canonicals: list[str] = []
         self.robots: list[str] = []
         self.alternates: list[tuple[str, str]] = []
+        self.meta_names: dict[str, list[str]] = {}
+        self.meta_properties: dict[str, list[str]] = {}
         self.h1_count = 0
 
     def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
@@ -47,6 +54,12 @@ class PageParser(HTMLParser):
             self.descriptions.append(values.get("content", "").strip())
         if tag == "meta" and values.get("name", "").lower() == "robots":
             self.robots.append(values.get("content", "").strip().lower())
+        if tag == "meta" and values.get("name"):
+            key = values["name"].lower()
+            self.meta_names.setdefault(key, []).append(values.get("content", "").strip())
+        if tag == "meta" and values.get("property"):
+            key = values["property"].lower()
+            self.meta_properties.setdefault(key, []).append(values.get("content", "").strip())
         if tag == "link" and values.get("rel", "").lower() == "canonical":
             self.canonicals.append(values.get("href", "").strip())
         if tag == "link" and values.get("rel", "").lower() == "alternate" and values.get("hreflang"):
@@ -86,6 +99,27 @@ def local_target(page: Path, raw: str) -> Path | None:
     return target.resolve()
 
 
+def json_ld_graphs(source: str) -> tuple[list[dict[str, object]], list[str]]:
+    """Return all JSON-LD graph nodes and any decoding/shape failures."""
+    graph: list[dict[str, object]] = []
+    failures: list[str] = []
+    blocks = re.findall(
+        r'<script\s+type="application/ld\+json">(.*?)</script>', source, flags=re.DOTALL
+    )
+    for index, block in enumerate(blocks, start=1):
+        try:
+            payload = json.loads(block)
+        except json.JSONDecodeError as exc:
+            failures.append(f"JSON-LD block {index} is invalid: {exc}")
+            continue
+        nodes = payload.get("@graph") if isinstance(payload, dict) else None
+        if not isinstance(nodes, list) or not all(isinstance(node, dict) for node in nodes):
+            failures.append(f"JSON-LD block {index} must contain an object @graph")
+            continue
+        graph.extend(nodes)
+    return graph, failures
+
+
 def main() -> int:
     failures: list[str] = []
     parsed: dict[Path, PageParser] = {}
@@ -115,6 +149,11 @@ def main() -> int:
     sitemap = ET.parse(ROOT / "sitemap.xml").getroot()
     urls = [node.text or "" for node in sitemap.findall("s:url/s:loc", ns)]
     sitemap_urls = set(urls)
+    sitemap_lastmod = {
+        node.findtext("s:loc", default="", namespaces=ns):
+        node.findtext("s:lastmod", default="", namespaces=ns)
+        for node in sitemap.findall("s:url", ns)
+    }
     indexable_parsers: list[PageParser] = []
     if len(urls) != len(set(urls)):
         failures.append("sitemap.xml: duplicate URLs")
@@ -148,6 +187,124 @@ def main() -> int:
                 failures.append(f"{rel}: {language} alternate is absent from sitemap: {alternate_url}")
         if parser.h1_count != 1:
             failures.append(f"{rel}: expected one h1, found {parser.h1_count}")
+
+        source = page.read_text(encoding="utf-8")
+        if parser.robots != [INDEX_ROBOTS]:
+            failures.append(f"{rel}: expected exactly the explicit index robots directive")
+        if source.count(SEO_HEAD_START) != 1 or source.count(SEO_HEAD_END) != 1:
+            failures.append(f"{rel}: expected one deterministic generated SEO head block")
+
+        expected_meta = {
+            "color-scheme": "light dark",
+            "twitter:card": "summary_large_image",
+        }
+        for name, expected in expected_meta.items():
+            if parser.meta_names.get(name) != [expected]:
+                failures.append(f"{rel}: meta name={name!r} must be exactly {expected!r}")
+        for name in ("twitter:title", "twitter:description", "twitter:image", "twitter:image:alt"):
+            values = parser.meta_names.get(name, [])
+            if len(values) != 1 or not values[0]:
+                failures.append(f"{rel}: expected one non-empty meta name={name!r}")
+
+        expected_locale = "en_US" if parser.lang == "en" else "ru_RU"
+        expected_alternate_locale = "ru_RU" if parser.lang == "en" else "en_US"
+        expected_properties = {
+            "og:site_name": "Re:dnd",
+            "og:locale": expected_locale,
+            "og:locale:alternate": expected_alternate_locale,
+            "og:url": url,
+        }
+        for name, expected in expected_properties.items():
+            if parser.meta_properties.get(name) != [expected]:
+                failures.append(f"{rel}: meta property={name!r} must be exactly {expected!r}")
+        for name in ("og:title", "og:description", "og:image", "og:image:alt"):
+            values = parser.meta_properties.get(name, [])
+            if len(values) != 1 or not values[0]:
+                failures.append(f"{rel}: expected one non-empty meta property={name!r}")
+
+        prefix = "../" if str(rel).startswith("en/") else "./"
+        runtime_contract = (
+            f'<script src="{prefix}site-config.js?v=20260814a"></script>',
+            f'<script src="{prefix}support.js"></script>',
+        )
+        for token in runtime_contract:
+            if source.count(token) != 1:
+                failures.append(f"{rel}: expected one optimized runtime token {token!r}")
+        if f'<script defer src="{prefix}vendor/react.production.min.js"' in source:
+            failures.append(f"{rel}: React must remain loaded by the proven support runtime path")
+
+        schema_graph, schema_failures = json_ld_graphs(source)
+        for failure in schema_failures:
+            failures.append(f"{rel}: {failure}")
+        if source.count('<script type="application/ld+json">') != 1:
+            failures.append(f"{rel}: expected exactly one JSON-LD script")
+        schema_types = {node.get("@type") for node in schema_graph}
+        if rel.name == "index.html" and rel.parent == Path("."):
+            expected_types = {"Organization", "WebSite", "ProfessionalService"}
+        elif rel == Path("en/index.html"):
+            expected_types = {"Organization", "WebSite", "ProfessionalService"}
+        else:
+            expected_page_type = {
+                "about.html": "ProfilePage",
+                "services.html": "CollectionPage",
+                "projects.html": "CollectionPage",
+                "contact.html": "ContactPage",
+            }.get(rel.name, "WebPage")
+            expected_types = {"BreadcrumbList", expected_page_type}
+            if rel.name.startswith("case-"):
+                expected_types.add("CreativeWork")
+        missing_schema = expected_types - schema_types
+        if missing_schema:
+            failures.append(f"{rel}: missing schema types {sorted(missing_schema)}")
+
+        is_home = url in {f"{SITE_ORIGIN}/", f"{SITE_ORIGIN}/en/"}
+        if is_home:
+            if SEO_CRUMB_START in source or SEO_CRUMB_END in source or 'class="rd-breadcrumbs"' in source:
+                failures.append(f"{rel}: home page must not render breadcrumbs")
+        else:
+            if source.count(SEO_CRUMB_START) != 1 or source.count(SEO_CRUMB_END) != 1:
+                failures.append(f"{rel}: expected one generated breadcrumb block")
+            if source.count('class="rd-breadcrumbs"') != 1:
+                failures.append(f"{rel}: expected one visible breadcrumb navigation")
+            breadcrumb_nodes = [node for node in schema_graph if node.get("@type") == "BreadcrumbList"]
+            if len(breadcrumb_nodes) != 1:
+                failures.append(f"{rel}: expected one BreadcrumbList node")
+            else:
+                items = breadcrumb_nodes[0].get("itemListElement")
+                expected_count = 3 if rel.name.startswith("case-") else 2
+                if not isinstance(items, list) or len(items) != expected_count:
+                    failures.append(f"{rel}: BreadcrumbList must contain {expected_count} items")
+                elif not isinstance(items[-1], dict) or items[-1].get("item") != url:
+                    failures.append(f"{rel}: final breadcrumb item must reference its canonical URL")
+            webpage_nodes = [node for node in schema_graph if node.get("@id") == f"{url}#webpage"]
+            if len(webpage_nodes) != 1:
+                failures.append(f"{rel}: expected one canonical webpage schema node")
+            else:
+                webpage = webpage_nodes[0]
+                if webpage.get("url") != url:
+                    failures.append(f"{rel}: webpage schema URL must match canonical")
+                if webpage.get("dateModified") != sitemap_lastmod.get(url):
+                    failures.append(f"{rel}: webpage schema dateModified must match sitemap lastmod")
+
+        if rel.name in {"projects.html", "services.html"}:
+            item_lists = [
+                node.get("mainEntity")
+                for node in schema_graph
+                if node.get("@id") == f"{url}#webpage"
+            ]
+            expected_items = 8 if rel.name == "projects.html" else 5
+            if (
+                len(item_lists) != 1
+                or not isinstance(item_lists[0], dict)
+                or item_lists[0].get("@type") != "ItemList"
+                or item_lists[0].get("numberOfItems") != expected_items
+            ):
+                failures.append(f"{rel}: expected an ItemList with {expected_items} entries")
+
+        if rel.name == "projects.html":
+            heading_token = '<h2 style="margin:0;font:600 clamp(20px,2.4vw,25px)/1.25 Sora,sans-serif">'
+            if source.count(heading_token) != 8:
+                failures.append(f"{rel}: all eight project cards must use semantic h2 headings")
 
     for field, values in (
         ("title", [parser.title.strip() for parser in indexable_parsers if parser.title.strip()]),
@@ -196,6 +353,18 @@ def main() -> int:
             failures.append(f"{relative}: canonical must remain self-referential")
         if canonical in sitemap_urls:
             failures.append(f"sitemap.xml: noindex page listed: {canonical}")
+        source = (ROOT / relative).read_text(encoding="utf-8")
+        prefix = "../" if relative.startswith("en/") else "./"
+        for token in (
+            f'<script src="{prefix}site-config.js?v=20260814a"></script>',
+            f'<script src="{prefix}support.js"></script>',
+        ):
+            if source.count(token) != 1:
+                failures.append(f"{relative}: expected one optimized runtime token {token!r}")
+
+    not_found = parsed[(ROOT / "404.html").resolve()]
+    if not_found.robots != ["noindex,follow"]:
+        failures.append("404.html: expected exactly noindex,follow")
 
     for relative in ("index.html", "en/index.html"):
         source = (ROOT / relative).read_text(encoding="utf-8")
@@ -442,6 +611,7 @@ def main() -> int:
     site_config = (ROOT / "site-config.js").read_text(encoding="utf-8")
     motion_contract = {
         "theme.css": (
+            ".rd-breadcrumbs {",
             "html.rd-motion-ready .rd-motion-observed * { animation-play-state: paused !important; }",
             "@media (prefers-reduced-motion: reduce)",
             "transform: rotate(-8deg) scale(1.04)",
@@ -487,9 +657,9 @@ def main() -> int:
     for page, parser in parsed.items():
         source = page.read_text(encoding="utf-8")
         rel = page.relative_to(ROOT)
-        if "theme.css?v=" in source and "theme.css?v=20260812a" not in source:
+        if "theme.css?v=" in source and "theme.css?v=20260814a" not in source:
             failures.append(f"{rel}: stale theme.css cache token")
-        if "site-config.js?v=" in source and "site-config.js?v=20260812a" not in source:
+        if "site-config.js?v=" in source and "site-config.js?v=20260814a" not in source:
             failures.append(f"{rel}: stale site-config.js cache token")
 
     pages_workflow = (ROOT / ".github/workflows/pages.yml").read_text(encoding="utf-8")

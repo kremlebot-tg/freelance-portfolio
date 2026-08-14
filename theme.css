@@ -880,3 +880,33 @@ html.rd-motion-ready .case-process.is-visible .case-process__link::after {
   .case-glance__state { width: fit-content; text-align: left; }
   .case-glance__item { padding: 17px 18px 19px; }
 }
+
+/* Static hierarchy: useful before component hydration and in search results. */
+.rd-breadcrumbs {
+  display: flex;
+  min-width: 0;
+  min-height: 24px;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 16px;
+  color: var(--text-muted);
+  font: 500 13px/1.4 Inter, system-ui, sans-serif;
+}
+.rd-breadcrumbs a {
+  color: var(--accent);
+  text-decoration: none;
+  border-radius: 6px;
+}
+.rd-breadcrumbs a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.rd-breadcrumbs a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.rd-breadcrumbs span[aria-current="page"] {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--text-meta);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (max-width: 560px) {
+  .rd-breadcrumbs { margin-bottom: 14px; font-size: 12.5px; }
+}

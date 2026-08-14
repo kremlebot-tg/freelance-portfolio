@@ -3,20 +3,20 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Re:dnd — Development and Automation for Business</title>
-<meta name="description" content="Development and automation for business: bots, apps, web services, AI assistants, CRM. Designed and built to fit the task. We work officially (contract), with 7 days of free bug fixes after delivery.">
+<title>Business Automation and Bot Development — Re:dnd</title>
+<meta name="description" content="Re:dnd builds Telegram bots, mini apps, CRM systems, AI assistants and web services end to end, from product flow and integrations to launch.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Re:dnd">
 <meta property="og:locale" content="en_US">
 <meta property="og:url" content="https://rednd.ru/en/">
-<meta property="og:title" content="Re:dnd — Development and Automation for Business">
-<meta property="og:description" content="Development and automation for business: bots, apps, web services, AI assistants, CRM. Designed and built to fit the task. We work officially (contract), with 7 days of free bug fixes after delivery.">
+<meta property="og:title" content="Business Automation and Bot Development — Re:dnd">
+<meta property="og:description" content="The Re:dnd team builds Telegram bots, apps, CRM systems, AI assistants and web services end to end.">
 <meta property="og:image" content="https://rednd.ru/og-default.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Re:dnd — Development and Automation for Business">
-<meta name="twitter:description" content="Development and automation for business: bots, apps, web services, AI assistants, CRM. Designed and built to fit the task. We work officially (contract), with 7 days of free bug fixes after delivery.">
+<meta name="twitter:title" content="Business Automation and Bot Development — Re:dnd">
+<meta name="twitter:description" content="The Re:dnd team builds Telegram bots, apps, CRM systems, AI assistants and web services end to end.">
 <meta name="twitter:image" content="https://rednd.ru/og-default.png">
 <link rel="canonical" href="https://rednd.ru/en/">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
@@ -32,12 +32,13 @@
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "Person",
-      "@id": "https://rednd.ru/#founder",
-      "name": "Daniil Yatsenko",
-      "alternateName": "Re:dnd",
+      "@type": "Organization",
+      "@id": "https://rednd.ru/#organization",
+      "name": "Re:dnd",
       "url": "https://rednd.ru/",
-      "description": "Independent developer and creator of the Re:dnd product practice",
+      "logo": "https://rednd.ru/favicon.svg",
+      "image": "https://rednd.ru/og-default.png",
+      "description": "A product development and business automation team",
       "email": "mailto:politushkin@gmail.com",
       "sameAs": ["https://t.me/re_dnd"]
     },
@@ -47,7 +48,7 @@
       "url": "https://rednd.ru/",
       "name": "Re:dnd",
       "inLanguage": "en",
-      "publisher": { "@id": "https://rednd.ru/#founder" }
+      "publisher": { "@id": "https://rednd.ru/#organization" }
     },
     {
       "@type": "ProfessionalService",
@@ -55,7 +56,7 @@
       "name": "Re:dnd — development and automation for business",
       "url": "https://rednd.ru/",
       "image": "https://rednd.ru/og-default.png",
-      "provider": { "@id": "https://rednd.ru/#founder" },
+      "provider": { "@id": "https://rednd.ru/#organization" },
       "areaServed": "Worldwide",
       "priceRange": "from $49",
       "description": "Development and automation to fit the task: bots, apps, web services, AI assistants, CRM.",
@@ -140,10 +141,10 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
   <section style="max-width:1140px;margin:0 auto;padding:clamp(48px,7vw,88px) 22px clamp(40px,6vw,72px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:clamp(28px,5vw,64px);align-items:center">
     <div style="display:flex;flex-direction:column;gap:20px;max-width:560px">
       <h1 style="margin:0;font:700 clamp(34px,4.6vw,54px)/1.12 Sora,sans-serif;letter-spacing:-0.02em;text-wrap:balance">Development and automation for business</h1>
-      <p style="margin:0;font:400 clamp(16px,1.6vw,19px)/1.6 Inter,system-ui,sans-serif;color:var(--text-body);text-wrap:pretty">I design and build bots, apps and web services around the task, from the workflow and integrations to launch and hand-off.</p>
+      <p style="margin:0;font:400 clamp(16px,1.6vw,19px)/1.6 Inter,system-ui,sans-serif;color:var(--text-body);text-wrap:pretty">We design and build bots, apps and web services around the task, from product flow and integrations to launch and hand-off.</p>
       <div style="display:flex;align-items:center;gap:10px;font:500 14px JetBrains Mono,monospace;color:var(--text-meta)">
         <span style="width:8px;height:8px;border-radius:50%;background:var(--online);flex:none"></span>
-        online · I usually reply within a couple of hours
+        online · we usually reply within a couple of hours
       </div>
     </div>
 
@@ -159,13 +160,13 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
       </div>
       <div style="padding:18px 14px 14px;display:flex;flex-direction:column;gap:10px;min-height:330px;background-color:var(--chat-area);background-image:radial-gradient(rgba(26,121,199,0.08) 1px,transparent 1.3px);background-size:20px 20px">
         <sc-if value="{{ showB1 }}" hint-placeholder-val="{{ true }}">
-          <div style="align-self:flex-start;max-width:86%;background:var(--surface);border-radius:16px 16px 16px 5px;padding:9px 13px;box-shadow:0 1px 1px var(--shadow-1);font:400 15px/1.45 Inter,system-ui,sans-serif;animation:{{ bubbleAnim }}">Hi 👋 I design bots, apps and web services for business.<span style="display:inline-block;margin-left:8px;font-size:11px;color:var(--text-muted);vertical-align:bottom">12:04</span></div>
+          <div style="align-self:flex-start;max-width:86%;background:var(--surface);border-radius:16px 16px 16px 5px;padding:9px 13px;box-shadow:0 1px 1px var(--shadow-1);font:400 15px/1.45 Inter,system-ui,sans-serif;animation:{{ bubbleAnim }}">Hi 👋 We are Re:dnd, a team building bots, apps and web services for business.<span style="display:inline-block;margin-left:8px;font-size:11px;color:var(--text-muted);vertical-align:bottom">12:04</span></div>
         </sc-if>
         <sc-if value="{{ showB2 }}" hint-placeholder-val="{{ true }}">
-          <div style="align-self:flex-start;max-width:86%;background:var(--surface);border-radius:16px 16px 16px 5px;padding:9px 13px;box-shadow:0 1px 1px var(--shadow-1);font:400 15px/1.45 Inter,system-ui,sans-serif;animation:{{ bubbleAnim }}">I handle the project from lead capture and integrations to payments, launch and access hand-off.<span style="display:inline-block;margin-left:8px;font-size:11px;color:var(--text-muted);vertical-align:bottom">12:04</span></div>
+          <div style="align-self:flex-start;max-width:86%;background:var(--surface);border-radius:16px 16px 16px 5px;padding:9px 13px;box-shadow:0 1px 1px var(--shadow-1);font:400 15px/1.45 Inter,system-ui,sans-serif;animation:{{ bubbleAnim }}">We handle the project from lead capture and integrations to payments, launch and access hand-off.<span style="display:inline-block;margin-left:8px;font-size:11px;color:var(--text-muted);vertical-align:bottom">12:04</span></div>
         </sc-if>
         <sc-if value="{{ showB3 }}" hint-placeholder-val="{{ true }}">
-          <div style="align-self:flex-start;max-width:86%;background:var(--surface);border-radius:16px 16px 16px 5px;padding:9px 13px;box-shadow:0 1px 1px var(--shadow-1);font:400 15px/1.45 Inter,system-ui,sans-serif;animation:{{ bubbleAnim }}">Tell me what you need automated. I will reply personally and suggest the next step.<span style="display:inline-block;margin-left:8px;font-size:11px;color:var(--text-muted);vertical-align:bottom">12:05</span></div>
+          <div style="align-self:flex-start;max-width:86%;background:var(--surface);border-radius:16px 16px 16px 5px;padding:9px 13px;box-shadow:0 1px 1px var(--shadow-1);font:400 15px/1.45 Inter,system-ui,sans-serif;animation:{{ bubbleAnim }}">Tell us what you need automated. The team will review it and suggest the next step.<span style="display:inline-block;margin-left:8px;font-size:11px;color:var(--text-muted);vertical-align:bottom">12:05</span></div>
         </sc-if>
         <sc-if value="{{ showTyping }}" hint-placeholder-val="{{ false }}">
           <div aria-hidden="true" style="align-self:flex-start;background:var(--surface);border-radius:16px 16px 16px 5px;padding:13px 15px;box-shadow:0 1px 1px var(--shadow-1);display:flex;gap:4px">
@@ -421,7 +422,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
   <!-- ============ TRUST ============ -->
   <section style="background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-top:clamp(28px,4vw,48px)">
     <div style="max-width:1140px;margin:0 auto;padding:clamp(40px,5vw,64px) 22px;display:flex;flex-direction:column;gap:28px">
-      <h2 style="margin:0;font:600 clamp(24px,3vw,34px)/1.2 Sora,sans-serif;letter-spacing:-0.01em;text-wrap:balance">What I build</h2>
+      <h2 style="margin:0;font:600 clamp(24px,3vw,34px)/1.2 Sora,sans-serif;letter-spacing:-0.01em;text-wrap:balance">What we build</h2>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:16px">
         <div style="display:flex;flex-direction:column;gap:6px;border-left:2px solid var(--accent-cta);padding-left:18px">
           <span style="font:700 clamp(24px,2.6vw,32px)/1.1 Sora,sans-serif;color:var(--accent)">Apps</span>

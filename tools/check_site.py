@@ -4,8 +4,11 @@
 from __future__ import annotations
 
 from collections import Counter
+from datetime import date
 from html.parser import HTMLParser
+import json
 from pathlib import Path
+import re
 from urllib.parse import unquote, urlparse
 import sys
 import xml.etree.ElementTree as ET
@@ -26,6 +29,8 @@ class PageParser(HTMLParser):
         self.title = ""
         self.descriptions: list[str] = []
         self.canonicals: list[str] = []
+        self.robots: list[str] = []
+        self.alternates: list[tuple[str, str]] = []
         self.h1_count = 0
 
     def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
@@ -40,8 +45,12 @@ class PageParser(HTMLParser):
             self.ids.append(values["id"])
         if tag == "meta" and values.get("name", "").lower() == "description":
             self.descriptions.append(values.get("content", "").strip())
+        if tag == "meta" and values.get("name", "").lower() == "robots":
+            self.robots.append(values.get("content", "").strip().lower())
         if tag == "link" and values.get("rel", "").lower() == "canonical":
             self.canonicals.append(values.get("href", "").strip())
+        if tag == "link" and values.get("rel", "").lower() == "alternate" and values.get("hreflang"):
+            self.alternates.append((values["hreflang"].lower(), values.get("href", "").strip()))
         for attr in ("href", "src"):
             if values.get(attr):
                 self.refs.append((attr, values[attr]))
@@ -99,9 +108,14 @@ def main() -> int:
             if target is not None and not target.exists():
                 failures.append(f"{page.relative_to(ROOT)}: missing {attr} target {ref}")
 
-    ns = {"s": "http://www.sitemaps.org/schemas/sitemap/0.9"}
+    ns = {
+        "s": "http://www.sitemaps.org/schemas/sitemap/0.9",
+        "xhtml": "http://www.w3.org/1999/xhtml",
+    }
     sitemap = ET.parse(ROOT / "sitemap.xml").getroot()
     urls = [node.text or "" for node in sitemap.findall("s:url/s:loc", ns)]
+    sitemap_urls = set(urls)
+    indexable_parsers: list[PageParser] = []
     if len(urls) != len(set(urls)):
         failures.append("sitemap.xml: duplicate URLs")
     for url in urls:
@@ -110,17 +124,127 @@ def main() -> int:
         if parser is None:
             failures.append(f"sitemap.xml: missing page for {url}")
             continue
+        indexable_parsers.append(parser)
         rel = page.relative_to(ROOT)
         if parser.lang not in {"ru", "en"}:
             failures.append(f"{rel}: missing or unsupported html lang")
         if not parser.title.strip():
             failures.append(f"{rel}: missing title")
+        elif not 20 <= len(parser.title.strip()) <= 70:
+            failures.append(f"{rel}: title length outside 20–70 characters")
         if len(parser.descriptions) != 1 or not parser.descriptions[0]:
             failures.append(f"{rel}: expected one non-empty meta description")
+        elif not 60 <= len(parser.descriptions[0]) <= 220:
+            failures.append(f"{rel}: meta description length outside 60–220 characters")
         if parser.canonicals != [url]:
             failures.append(f"{rel}: canonical must be exactly {url}")
+        if any("noindex" in directive for directive in parser.robots):
+            failures.append(f"{rel}: indexable sitemap page must not be noindex")
+        alternates = dict(parser.alternates)
+        if len(parser.alternates) != 3 or set(alternates) != {"ru", "en", "x-default"}:
+            failures.append(f"{rel}: expected ru, en and x-default alternate links")
+        for language, alternate_url in alternates.items():
+            if alternate_url not in sitemap_urls:
+                failures.append(f"{rel}: {language} alternate is absent from sitemap: {alternate_url}")
         if parser.h1_count != 1:
             failures.append(f"{rel}: expected one h1, found {parser.h1_count}")
+
+    for field, values in (
+        ("title", [parser.title.strip() for parser in indexable_parsers if parser.title.strip()]),
+        ("meta description", [parser.descriptions[0] for parser in indexable_parsers if parser.descriptions]),
+    ):
+        duplicates = [value for value, count in Counter(values).items() if count > 1]
+        if duplicates:
+            failures.append(f"sitemap.xml: duplicate {field} values: {duplicates}")
+
+    for node in sitemap.findall("s:url", ns):
+        url = node.findtext("s:loc", default="", namespaces=ns)
+        lastmods = node.findall("s:lastmod", ns)
+        if len(lastmods) != 1 or not (lastmods[0].text or "").strip():
+            failures.append(f"sitemap.xml: {url} must have exactly one lastmod")
+        else:
+            try:
+                modified = date.fromisoformat((lastmods[0].text or "").strip())
+                if modified > date.today():
+                    failures.append(f"sitemap.xml: future lastmod for {url}")
+            except ValueError:
+                failures.append(f"sitemap.xml: invalid lastmod for {url}")
+        xml_alternates = {
+            (link.get("hreflang") or "").lower(): link.get("href") or ""
+            for link in node.findall("xhtml:link", ns)
+        }
+        xml_links = node.findall("xhtml:link", ns)
+        if len(xml_links) != 3 or set(xml_alternates) != {"ru", "en", "x-default"}:
+            failures.append(f"sitemap.xml: {url} needs ru, en and x-default alternates")
+        for language, alternate_url in xml_alternates.items():
+            if alternate_url not in sitemap_urls:
+                failures.append(f"sitemap.xml: {url} {language} alternate is not listed: {alternate_url}")
+
+    noindex_pages = {
+        "privacy.html": "https://rednd.ru/privacy.html",
+        "consent.html": "https://rednd.ru/consent.html",
+        "partner-apply.html": "https://rednd.ru/partner-apply.html",
+        "en/privacy.html": "https://rednd.ru/en/privacy.html",
+        "en/consent.html": "https://rednd.ru/en/consent.html",
+        "en/partner-apply.html": "https://rednd.ru/en/partner-apply.html",
+    }
+    for relative, canonical in noindex_pages.items():
+        parser = parsed[(ROOT / relative).resolve()]
+        if parser.robots != ["noindex,follow"]:
+            failures.append(f"{relative}: expected exactly noindex,follow")
+        if parser.canonicals != [canonical]:
+            failures.append(f"{relative}: canonical must remain self-referential")
+        if canonical in sitemap_urls:
+            failures.append(f"sitemap.xml: noindex page listed: {canonical}")
+
+    for relative in ("index.html", "en/index.html"):
+        source = (ROOT / relative).read_text(encoding="utf-8")
+        blocks = re.findall(
+            r'<script\s+type="application/ld\+json">(.*?)</script>', source, flags=re.DOTALL
+        )
+        if len(blocks) != 1:
+            failures.append(f"{relative}: expected one JSON-LD block")
+            continue
+        try:
+            graph = json.loads(blocks[0]).get("@graph", [])
+        except json.JSONDecodeError as exc:
+            failures.append(f"{relative}: invalid JSON-LD: {exc}")
+            continue
+        types = {item.get("@type") for item in graph if isinstance(item, dict)}
+        if not {"Organization", "WebSite", "ProfessionalService"}.issubset(types):
+            failures.append(f"{relative}: missing Organization, WebSite or ProfessionalService schema")
+        if '"@type": "Person"' in source or "#founder" in source:
+            failures.append(f"{relative}: stale individual-provider schema")
+
+    team_contract = {
+        "index.html": ("Мы проектируем и собираем", "Что мы делаем"),
+        "en/index.html": ("We design and build", "What we build"),
+        "Header.dc.html": ("О команде",),
+        "en/Header.dc.html": ("Team",),
+        "Footer.dc.html": ("О команде",),
+        "en/Footer.dc.html": ("Team",),
+        "about.html": ("О команде Re:dnd", "назначаем ответственного"),
+        "en/about.html": ("The Re:dnd team", "assign one person"),
+        "contact.html": ("формируем команду", "одного ответственного"),
+        "en/contact.html": ("form a team", "assign one person"),
+        "partner-apply.html": ("Команда оценивает и ведёт проект",),
+        "en/partner-apply.html": ("The team scopes and leads the project",),
+    }
+    for relative, required_copy in team_contract.items():
+        source = (ROOT / relative).read_text(encoding="utf-8")
+        for copy in required_copy:
+            if copy not in source:
+                failures.append(f"{relative}: missing team-positioning copy {copy!r}")
+    stale_personal_copy = (
+        "Об авторе", "Я проектирую", "Отвечу лично", "отвечаю обычно", "Веду проект",
+        "I design and build", "I will reply personally", "independent product practice",
+        "One accountable person handles", "project creator",
+    )
+    for relative in team_contract:
+        source = (ROOT / relative).read_text(encoding="utf-8")
+        for copy in stale_personal_copy:
+            if copy in source:
+                failures.append(f"{relative}: stale individual-positioning copy {copy!r}")
 
     for forbidden in ("README.md", "package.json", "package-lock.json", "ios-frame.jsx"):
         if forbidden in {Path(urlparse(url).path).name for url in urls}:

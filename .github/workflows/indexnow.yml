@@ -1,0 +1,32 @@
+name: Notify Yandex IndexNow
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Verify public key and submit sitemap URLs
+        env:
+          INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
+        run: |
+          test -n "$INDEXNOW_KEY"
+          python3 - <<'PY'
+          import os
+          from urllib.request import urlopen
+
+          key = os.environ["INDEXNOW_KEY"]
+          with urlopen(f"https://rednd.ru/{key}.txt", timeout=30) as response:
+              published = response.read().decode("utf-8")
+          if published != key:
+              raise SystemExit("The public IndexNow key does not match the repository secret")
+          print("Public IndexNow key verified")
+          PY
+          python3 tools/submit_indexnow.py

@@ -673,6 +673,27 @@ def main() -> int:
         if token not in pages_workflow:
             failures.append(f"pages.yml: hidden public files are not protected by {token!r}")
 
+    for relative in (".github/workflows/pages.yml", ".github/workflows/deploy.yml"):
+        source = (ROOT / relative).read_text(encoding="utf-8")
+        for token in (
+            "INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}",
+            'test -n "$INDEXNOW_KEY"',
+            'printf \'%s\' "$INDEXNOW_KEY" > "_site/${INDEXNOW_KEY}.txt"',
+            'test -f "_site/${INDEXNOW_KEY}.txt"',
+        ):
+            if token not in source:
+                failures.append(f"{relative}: missing private IndexNow artifact contract {token!r}")
+
+    indexnow_workflow = (ROOT / ".github/workflows/indexnow.yml").read_text(encoding="utf-8")
+    for token in (
+        "workflow_dispatch:",
+        "INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}",
+        "https://rednd.ru/{key}.txt",
+        "python3 tools/submit_indexnow.py",
+    ):
+        if token not in indexnow_workflow:
+            failures.append(f"indexnow.yml: missing safe submission contract {token!r}")
+
     vetpulse_demo = (ROOT / "vetpulse/demo.html").read_text(encoding="utf-8")
     if "*,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}" not in vetpulse_demo:
         failures.append("vetpulse/demo.html: missing universal reduced-motion fallback")

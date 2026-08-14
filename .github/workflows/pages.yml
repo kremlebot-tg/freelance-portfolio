@@ -37,7 +37,10 @@ jobs:
           npm audit --omit=dev --audit-level=high
 
       - name: Build public artifact
+        env:
+          INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
         run: |
+          test -n "$INDEXNOW_KEY"
           mkdir -p _site
           rsync -a ./ _site/ \
             --exclude '.git/' \
@@ -55,10 +58,12 @@ jobs:
             --exclude '*.pyc' \
             --exclude '*.jsx' \
             --exclude '.DS_Store'
+          printf '%s' "$INDEXNOW_KEY" > "_site/${INDEXNOW_KEY}.txt"
           test -f _site/index.html
           test -f _site/CNAME
           test -f _site/.nojekyll
           test -f _site/.well-known/security.txt
+          test -f "_site/${INDEXNOW_KEY}.txt"
           test ! -d _site/node_modules
           if find _site -type f \( -name '*.py' -o -name '*.pyc' -o -name '*.jsx' \) | grep -q .; then
             echo 'Internal source leaked into the Pages artifact.'

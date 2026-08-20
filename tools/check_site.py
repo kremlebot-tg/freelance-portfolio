@@ -36,8 +36,8 @@ CASE_SOCIAL_IMAGES = {
     Path("en/case-mutual.html"): f"{SITE_ORIGIN}/og-case-mutual-en.png",
     Path("case-subscriptions.html"): f"{SITE_ORIGIN}/og-case-subscriptions.png",
     Path("en/case-subscriptions.html"): f"{SITE_ORIGIN}/og-case-subscriptions-en.png",
-    Path("case-autopricer.html"): f"{SITE_ORIGIN}/og-case-autopricer.png",
-    Path("en/case-autopricer.html"): f"{SITE_ORIGIN}/og-case-autopricer-en.png",
+    Path("case-autopricer.html"): f"{SITE_ORIGIN}/og-case-autopricer.png?v=20260821a",
+    Path("en/case-autopricer.html"): f"{SITE_ORIGIN}/og-case-autopricer-en.png?v=20260821a",
     Path("case-vetpulse.html"): f"{SITE_ORIGIN}/vetpulse/og-cover.png",
     Path("en/case-vetpulse.html"): f"{SITE_ORIGIN}/vetpulse/og-cover-en.png",
 }

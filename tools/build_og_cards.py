@@ -78,20 +78,19 @@ def draw_scout_panel(draw: ImageDraw.ImageDraw, language: str) -> None:
 
 def draw_autopricer_panel(draw: ImageDraw.ImageDraw, language: str) -> None:
     copy = {
-        "ru": ("DRY-RUN", "Цена не отправляется", "ПОРОГ МАРЖИ", "РУЧНОЕ ПОДТВЕРЖДЕНИЕ"),
-        "en": ("DRY RUN", "No price writes", "MARGIN FLOOR", "MANUAL APPROVAL"),
+        "ru": ("РОЛЬ В ПРОЕКТЕ", "FBS / FBO", "БИЗНЕС-ПРАВИЛА", "ПРОВЕРКА ЗАПИСЕЙ"),
+        "en": ("ROLE IN THE PROJECT", "FBS / FBO", "BUSINESS RULES", "WRITE VERIFICATION"),
     }[language]
     panel = (790, 190, 1128, 486)
     draw.rounded_rectangle(panel, radius=25, fill=COLORS["panel"], outline=COLORS["border"], width=2)
-    draw.rounded_rectangle((826, 224, 936, 262), radius=19, fill=COLORS["amber_soft"])
-    draw.text((847, 235), copy[0], font=font(14, bold=True), fill=COLORS["amber"])
-    draw.text((826, 284), copy[1], font=font(21, bold=True), fill=COLORS["text"])
-    draw.text((826, 334), copy[2], font=font(13, bold=True), fill=COLORS["muted"])
-    draw.line((826, 375, 1080, 375), fill=COLORS["border"], width=8)
-    draw.line((826, 375, 1002, 375), fill=COLORS["blue"], width=8)
-    draw.ellipse((989, 362, 1015, 388), fill=COLORS["blue"])
-    draw.rounded_rectangle((826, 413, 1088, 455), radius=13, fill=COLORS["blue_soft"])
-    draw.text((846, 426), copy[3], font=font(13, bold=True), fill=COLORS["text"])
+    draw.text((826, 226), copy[0], font=font(13, bold=True), fill=COLORS["blue"])
+    draw.text((826, 265), copy[1], font=font(45, bold=True), fill=COLORS["text"])
+    draw.line((826, 332, 1092, 332), fill=COLORS["border"], width=2)
+    for index, label in enumerate(copy[2:]):
+        top = 357 + index * 58
+        draw.rounded_rectangle((826, top, 1092, top + 42), radius=13, fill=COLORS["blue_soft"])
+        draw.ellipse((846, top + 15, 858, top + 27), fill=COLORS["green"] if index == 1 else COLORS["blue"])
+        draw.text((875, top + 13), label, font=font(13, bold=True), fill=COLORS["text"])
 
 
 def draw_flow_panel(
@@ -198,10 +197,10 @@ def build_card(kind: str, language: str) -> Image.Image:
         footer = "rednd.ru · web + macOS + Windows"
         draw_scout_panel(draw, language)
     elif kind == "autopricer":
-        kicker = "ИНТЕРАКТИВНОЕ ДЕМО · OZON" if language == "ru" else "INTERACTIVE DEMO · OZON"
-        title = "Безопасный\nрепрайсер" if language == "ru" else "Safe repricing\ncontrols"
-        subtitle = "Dry-run → проверка → подтверждение" if language == "ru" else "Dry run → review → approval"
-        footer = "rednd.ru · синтетические данные" if language == "ru" else "rednd.ru · synthetic data"
+        kicker = "OZON · ЦЕНЫ · ЮНИТ-ЭКОНОМИКА" if language == "ru" else "OZON · PRICING · UNIT ECONOMICS"
+        title = "7 473 SKU" if language == "ru" else "7,473 SKUs"
+        subtitle = "126 тестов · 19 FBO SKU" if language == "ru" else "126 tests · 19 FBO SKUs"
+        footer = "кейс Даниила · подтверждённые данные" if language == "ru" else "Daniel's case · verified evidence"
         draw_autopricer_panel(draw, language)
     elif kind == "crm":
         kicker = "ПРОВЕРЯЕМОЕ ДЕМО · CRM" if language == "ru" else "VERIFIABLE DEMO · CRM"

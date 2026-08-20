@@ -3,21 +3,21 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Кейс: безопасный репрайсер и юнит-экономика Ozon — Re:dnd</title>
-<meta name="description" content="Внутренний операторский инструмент для Ozon: раздельные сценарии FBS и FBO, dry-run, canary, rollback и проверка ценовых записей. Интерактивное демо на синтетических данных.">
+<title>Кейс менеджера Ozon: цены, FBO/FBS и автоматизация — Re:dnd</title>
+<meta name="description" content="Как Даниил контролирует цены большого каталога Ozon: раздельная экономика FBS и FBO, проверка человеком, сохранение исходных цен и сверка через Seller API. Демо — на синтетических данных.">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Re:dnd">
 <meta property="og:locale" content="ru_RU">
 <meta property="og:url" content="https://rednd.ru/case-autopricer.html">
-<meta property="og:title" content="Кейс: безопасный репрайсер и юнит-экономика Ozon — Re:dnd">
-<meta property="og:description" content="Внутренний операторский инструмент для Ozon: раздельные сценарии FBS и FBO, dry-run, canary, rollback и проверка ценовых записей. Интерактивное демо на синтетических данных.">
-<meta property="og:image" content="https://rednd.ru/og-case-autopricer.png">
+<meta property="og:title" content="Кейс менеджера Ozon: цены, FBO/FBS и автоматизация — Re:dnd">
+<meta property="og:description" content="Как Даниил контролирует цены большого каталога Ozon: раздельная экономика FBS и FBO, проверка человеком, сохранение исходных цен и сверка через Seller API. Демо — на синтетических данных.">
+<meta property="og:image" content="https://rednd.ru/og-case-autopricer.png?v=20260821a">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Кейс: безопасный репрайсер и юнит-экономика Ozon — Re:dnd">
-<meta name="twitter:description" content="Внутренний операторский инструмент для Ozon: раздельные сценарии FBS и FBO, dry-run, canary, rollback и проверка ценовых записей. Интерактивное демо на синтетических данных.">
-<meta name="twitter:image" content="https://rednd.ru/og-case-autopricer.png">
+<meta name="twitter:title" content="Кейс менеджера Ozon: цены, FBO/FBS и автоматизация — Re:dnd">
+<meta name="twitter:description" content="Как Даниил контролирует цены большого каталога Ozon: раздельная экономика FBS и FBO, проверка человеком, сохранение исходных цен и сверка через Seller API. Демо — на синтетических данных.">
+<meta name="twitter:image" content="https://rednd.ru/og-case-autopricer.png?v=20260821a">
 <link rel="canonical" href="https://rednd.ru/case-autopricer.html">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="alternate" hreflang="ru" href="https://rednd.ru/case-autopricer.html">
@@ -34,8 +34,8 @@
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
 <meta name="color-scheme" content="light dark">
 <meta property="og:locale:alternate" content="en_US">
-<meta property="og:image:alt" content="Кейс: безопасный репрайсер и юнит-экономика Ozon — Re:dnd">
-<meta name="twitter:image:alt" content="Кейс: безопасный репрайсер и юнит-экономика Ozon — Re:dnd">
+<meta property="og:image:alt" content="Кейс менеджера Ozon: цены, FBO/FBS и автоматизация — Re:dnd">
+<meta name="twitter:image:alt" content="Кейс менеджера Ozon: цены, FBO/FBS и автоматизация — Re:dnd">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -68,10 +68,10 @@
       "@type": "WebPage",
       "@id": "https://rednd.ru/case-autopricer.html#webpage",
       "url": "https://rednd.ru/case-autopricer.html",
-      "name": "Кейс: безопасный репрайсер и юнит-экономика Ozon — Re:dnd",
-      "description": "Внутренний операторский инструмент для Ozon: раздельные сценарии FBS и FBO, dry-run, canary, rollback и проверка ценовых записей. Интерактивное демо на синтетических данных.",
+      "name": "Кейс менеджера Ozon: цены, FBO/FBS и автоматизация — Re:dnd",
+      "description": "Как Даниил контролирует цены большого каталога Ozon: раздельная экономика FBS и FBO, проверка человеком, сохранение исходных цен и сверка через Seller API. Демо — на синтетических данных.",
       "inLanguage": "ru-RU",
-      "dateModified": "2026-08-14",
+      "dateModified": "2026-08-20",
       "isPartOf": {
         "@id": "https://rednd.ru/#website"
       },
@@ -80,7 +80,7 @@
       },
       "primaryImageOfPage": {
         "@type": "ImageObject",
-        "url": "https://rednd.ru/og-case-autopricer.png"
+        "url": "https://rednd.ru/og-case-autopricer.png?v=20260821a"
       },
       "publisher": {
         "@id": "https://rednd.ru/#organization"
@@ -93,13 +93,13 @@
       "@type": "CreativeWork",
       "@id": "https://rednd.ru/case-autopricer.html#case-study",
       "url": "https://rednd.ru/case-autopricer.html",
-      "name": "Кейс: безопасный репрайсер и юнит-экономика Ozon — Re:dnd",
-      "headline": "Кейс: безопасный репрайсер и юнит-экономика Ozon — Re:dnd",
-      "description": "Внутренний операторский инструмент для Ozon: раздельные сценарии FBS и FBO, dry-run, canary, rollback и проверка ценовых записей. Интерактивное демо на синтетических данных.",
-      "image": "https://rednd.ru/og-case-autopricer.png",
+      "name": "Кейс менеджера Ozon: цены, FBO/FBS и автоматизация — Re:dnd",
+      "headline": "Кейс менеджера Ozon: цены, FBO/FBS и автоматизация — Re:dnd",
+      "description": "Как Даниил контролирует цены большого каталога Ozon: раздельная экономика FBS и FBO, проверка человеком, сохранение исходных цен и сверка через Seller API. Демо — на синтетических данных.",
+      "image": "https://rednd.ru/og-case-autopricer.png?v=20260821a",
       "genre": "Case study",
       "inLanguage": "ru-RU",
-      "dateModified": "2026-08-14",
+      "dateModified": "2026-08-20",
       "creator": {
         "@id": "https://rednd.ru/#organization"
       },
@@ -156,18 +156,18 @@
   <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:28px">
     <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
       <span style="font:500 13px JetBrains Mono,monospace;color:var(--accent)">[Ozon · Автоматизация · Аналитика]</span>
-      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:var(--online)"></span>внутренний инструмент · human-in-the-loop</span>
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:var(--online)"></span>кейс менеджера · решение принимает человек</span>
     </div>
-    <h1 style="margin:0;font:700 clamp(28px,4vw,42px)/1.15 Sora,sans-serif;letter-spacing:-0.02em">Безопасный репрайсер и юнит-экономика для Ozon</h1>
-    <p style="margin:0;font:400 clamp(15.5px,1.6vw,18px)/1.55 Inter,system-ui,sans-serif;color:var(--text-body);max-width:760px">Операторский инструмент для каталога в несколько тысяч SKU: объединяет данные Ozon и поставщика, рассчитывает защитную цену для FBS и отдельно управляет ликвидацией FBO. В актуальных защищённых сценариях запись разрешается только после live-проверки, dry-run, решения оператора и подготовки отката; исторические одноразовые скрипты в этот контур не входят.</p>
+    <h1 style="margin:0;font:700 clamp(28px,4vw,42px)/1.15 Sora,sans-serif;letter-spacing:-0.02em">Ozon: цены и юнит-экономика для FBO и FBS</h1>
+    <p style="margin:0;font:400 clamp(15.5px,1.6vw,18px)/1.55 Inter,system-ui,sans-serif;color:var(--text-body);max-width:760px">Инструмент помогает контролировать цены большого каталога Ozon: сверяет данные Ozon и поставщика, рассчитывает минимально допустимую цену для FBS и отдельно помогает распродавать остатки FBO. Перед изменением Даниил проверяет расчёт, сохраняет прежнюю цену и после записи сверяет результат через API.</p>
   </div>
 
   <section class="case-glance" data-kind="live" data-layout="evidence" aria-labelledby="autopricer-glance-title">
-    <div class="case-glance__lead"><div><span class="case-glance__eyebrow">проверенный контур</span><h2 id="autopricer-glance-title">Операторский инструмент, а не автопилот цен</h2></div><span class="case-glance__state">human-in-the-loop</span></div>
+    <div class="case-glance__lead"><div><span class="case-glance__eyebrow">роль и доказательства</span><h2 id="autopricer-glance-title">Контроль цен с проверкой человеком</h2></div><span class="case-glance__state">решение принимает человек</span></div>
     <div class="case-glance__items">
-      <article class="case-glance__item" data-role="check"><span class="case-glance__label">можно проверить</span><strong>5 параметров · 8 синтетических SKU</strong><p>Демо пересчитывает рекомендации и объясняет причины каждого статуса.</p></article>
+      <article class="case-glance__item" data-role="check"><span class="case-glance__label">роль Даниила</span><strong>Бизнес-правила · решения · проверка</strong><p>Определял стратегии FBS и FBO и допустимый риск, подтверждал ценовые записи и сверял результат с заказами и начислениями.</p></article>
       <article class="case-glance__item" data-role="proof"><span class="case-glance__label">подтверждено аудитом</span><strong>7 473 SKU · 126 тестов · 19 FBO SKU</strong><p>Аудит 21 июля, тесты 21 августа и подтверждённая операция 6 августа отделены от синтетического демо.</p></article>
-      <article class="case-glance__item" data-role="boundary"><span class="case-glance__label">граница</span><strong>Нет записи без подтверждения</strong><p>В защищённых сценариях обязательны dry-run, canary, решение оператора и откат; причинный рост прибыли не заявлен.</p></article>
+      <article class="case-glance__item" data-role="boundary"><span class="case-glance__label">граница</span><strong>Нет автономных записей</strong><p>Перед записью — расчёт без изменения, тест на 1–3 товарах, решение оператора и сохранённые исходные цены. Причинный рост прибыли не заявлен.</p></article>
     </div>
   </section>
 
@@ -253,7 +253,7 @@
       </div>
     </div>
 
-    <p style="margin:0;font:400 13.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-meta);max-width:800px">Демо показывает механику коридора цен на 8 вымышленных товарах. Рабочая операторская FBS-модель дополнительно учитывает эквайринг, ступени комиссии, базовый и стрессовый сценарии логистики и проверенную закупочную цену поставщика. Плановые мониторы читают данные автоматически; запись цен подтверждает оператор.</p>
+    <p style="margin:0;font:400 13.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-meta);max-width:800px">Демо показывает механику коридора цен на 8 вымышленных товарах. Рабочая FBS-модель дополнительно учитывает эквайринг, ступени комиссии, обычный сценарий и сценарий с повышенными расходами на логистику, а также проверенную закупочную цену поставщика. Плановые мониторы читают данные автоматически; запись цен подтверждает оператор.</p>
   </section>
 
   <section class="case-process" aria-labelledby="autopricer-process-title">
@@ -264,11 +264,11 @@
     <div class="case-process__flow">
       <article class="case-process__stage"><span class="case-process__num">01</span><div><h3>Собирает актуальные данные</h3><p>Цены и заказы Ozon сопоставляются с закупочной ценой поставщика, комиссиями и логистикой.</p></div></article>
       <div class="case-process__link" aria-hidden="true"></div>
-      <article class="case-process__stage"><span class="case-process__num">02</span><div><h3>Считает экономику FBS и FBO отдельно</h3><p>FBS получает базовый и стрессовый расчёт защитной цены; FBO — отдельный ликвидационный контур с проверкой живых цены и остатков.</p></div></article>
+      <article class="case-process__stage"><span class="case-process__num">02</span><div><h3>Считает экономику FBS и FBO отдельно</h3><p>Для FBS рассчитывается минимальная цена при обычных и повышенных расходах; для FBO действует отдельный сценарий распродажи с проверкой актуальных цены и остатков.</p></div></article>
       <div class="case-process__link" aria-hidden="true"></div>
-      <article class="case-process__stage"><span class="case-process__num">03</span><div><h3>Показывает dry-run оператору</h3><p>До записи видны новая цена, маржа, причина изменения и позиции, которые упёрлись в ограничения.</p></div></article>
+      <article class="case-process__stage"><span class="case-process__num">03</span><div><h3>Показывает расчёт без записи</h3><p>До изменения видны новая цена, маржа, причина и позиции, которые упёрлись в ограничения.</p></div></article>
       <div class="case-process__link" aria-hidden="true"></div>
-      <article class="case-process__stage"><span class="case-process__num">04</span><div><h3>Пишет ограниченной партией и перепроверяет</h3><p>Запись начинается с канарейки в 1–3 SKU и продолжается ограниченными партиями; размер зависит от guard-сценария. Откат сохраняется заранее, а цена повторно читается из API Ozon.</p></div></article>
+      <article class="case-process__stage"><span class="case-process__num">04</span><div><h3>Меняет небольшую группу и перепроверяет</h3><p>Сначала проверяются 1–3 товара, затем — ограниченная партия по правилам выбранного сценария. Исходные цены сохраняются заранее, а результат повторно считывается из API Ozon.</p></div></article>
       <div class="case-process__link" aria-hidden="true"></div>
       <div class="case-process__outcomes">
         <article class="case-process__outcome" data-tone="success"><span>→ ПОДТВЕРЖДЕНО</span><h3>Следующая партия</h3><p>Цена совпала с расчётом — оператор может продолжить волну.</p></article>
@@ -286,7 +286,7 @@
     </div>
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
       <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">02 · как решали</span>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">Python-инструменты читают цены, остатки, заказы и финансовые операции из Ozon Seller API, а закупочную цену — из Sima-land API. Прогнозная модель FBS считает целевую цену с учётом комиссии, эквайринга, логистики и фулфилмента. Исторический P&amp;L строится по финансовым операциям и завершённым продажам. Он остаётся оценкой, если используется текущий закуп вместо исторического или расходы уровня кабинета нельзя надёжно распределить по SKU.</p>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">Python-инструменты читают цены, остатки, заказы и финансовые операции из Ozon Seller API, а закупочную цену — из Sima-land API. Прогнозная модель FBS считает целевую цену с учётом комиссии, эквайринга, логистики и фулфилмента. Исторический расчёт прибыли строится по финансовым операциям и завершённым продажам. Он остаётся оценкой, если используется текущий закуп вместо исторического или расходы уровня кабинета нельзя надёжно распределить по SKU.</p>
       <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">Результат работы — проверяемый файловый план в CSV, JSON или XLSX. Автоматической записи без участия человека нет.</p>
     </div>
     <div style="grid-column:1/-1;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
@@ -297,11 +297,11 @@
           <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:820px">Для FBS система защищает нижнюю границу цены и не предлагает снижение. Для FBO используется отдельный ликвидационный сценарий: снижение не более 20%, только когда есть остаток FBO и одновременно нет остатка FBS. Это не даёт распродаже склада случайно ухудшить экономику активного FBS.</p>
         </div></div>
       </div>
-      <p style="margin:0;font:500 14px/1.65 JetBrains Mono,monospace;color:var(--text-body);text-wrap:pretty;max-width:900px;border-left:2px solid var(--border-hover);padding-left:14px">live read → dry-run → ручная проверка → подтверждение → rollback → canary → малая партия → перечитывание API → карантинная проверка</p>
+      <p style="margin:0;font:500 14px/1.65 JetBrains Mono,monospace;color:var(--text-body);text-wrap:pretty;max-width:900px;border-left:2px solid var(--border-hover);padding-left:14px">актуальные данные → расчёт без записи → ручная проверка → подтверждение → сохранение исходных цен → тест на 1–3 товарах → малая партия → повторная проверка API → проверка карантина</p>
       <div class="acc" data-state="{{ hardBState }}">
         <button type="button" class="acc-sum" onClick="{{ onHardB }}" aria-expanded="{{ hardBExp }}" aria-controls="ap-h2" style="font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);max-width:820px">Защиты различаются для FBS и FBO и останавливают сценарий при сомнении.<span class="acc-chev" aria-hidden="true">▾</span></button>
         <div id="ap-h2" class="acc-body" style="animation:{{ hardBAnim }}"><div class="acc-inner">
-          <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:820px">FBS-guard перечитывает цену, закуп, рынок и stress-экономику. FBO-контур перечитывает цену и остатки, допускает шаг не более 20% и работает только при FBO&gt;0 и FBS=0. Запись начинается с канарейки в 1–3 SKU и продолжается ограниченными партиями; размер зависит от сценария. До записи сохраняется откат, после неё цена перечитывается из API и проверяется рост карантина.</p>
+          <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:820px">Защита FBS повторно проверяет цену, закупочную стоимость, рынок и экономику при повышенных расходах. Сценарий FBO перечитывает цену и остатки, допускает шаг не более 20% и работает только при FBO&gt;0 и FBS=0. Сначала тестируются 1–3 товара, затем — ограниченная партия. Исходные цены сохраняются до записи; после неё цена повторно считывается из API и проверяется, не вырос ли карантин.</p>
         </div></div>
       </div>
     </div>
@@ -309,14 +309,15 @@
       <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">04 · подтверждённый результат</span>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));gap:10px">
         <div style="background:var(--demo-canvas);border:1px solid var(--border-soft);border-radius:12px;padding:16px"><strong style="display:block;font:700 26px/1 Sora,sans-serif;color:var(--accent)">7 473 SKU</strong><span style="display:block;margin-top:7px;font:400 13.5px/1.5 Inter,system-ui,sans-serif;color:var(--text-meta)">в проверенном аудите 21 июля 2026 года</span></div>
-        <div style="background:var(--demo-canvas);border:1px solid var(--border-soft);border-radius:12px;padding:16px"><strong style="display:block;font:700 26px/1 Sora,sans-serif;color:var(--accent)">3 / 2 932</strong><span style="display:block;margin-top:7px;font:400 13.5px/1.5 Inter,system-ui,sans-serif;color:var(--text-meta)">прошли автоматически / отправлены на ручную проверку</span></div>
+        <div style="background:var(--demo-canvas);border:1px solid var(--border-soft);border-radius:12px;padding:16px"><strong style="display:block;font:700 26px/1 Sora,sans-serif;color:var(--accent)">3 SKU</strong><span style="display:block;margin-top:7px;font:400 13.5px/1.5 Inter,system-ui,sans-serif;color:var(--text-meta)">прошли автоматическую проверку</span></div>
+        <div style="background:var(--demo-canvas);border:1px solid var(--border-soft);border-radius:12px;padding:16px"><strong style="display:block;font:700 26px/1 Sora,sans-serif;color:var(--accent)">2 932 SKU</strong><span style="display:block;margin-top:7px;font:400 13.5px/1.5 Inter,system-ui,sans-serif;color:var(--text-meta)">отправлены на ручную проверку</span></div>
         <div style="background:var(--demo-canvas);border:1px solid var(--border-soft);border-radius:12px;padding:16px"><strong style="display:block;font:700 26px/1 Sora,sans-serif;color:var(--accent)">19 FBO SKU</strong><span style="display:block;margin-top:7px;font:400 13.5px/1.5 Inter,system-ui,sans-serif;color:var(--text-meta)">в подтверждённой операции 6 августа достигли целевых цен</span></div>
       </div>
       <p style="margin:0;font:400 14px/1.6 Inter,system-ui,sans-serif;color:var(--text-body);text-wrap:pretty;max-width:860px">21 августа 2026 года проходят 126 автоматических тестов. Отдельный причинный замер финансового эффекта до/после не проводился, поэтому кейс не приписывает системе неподтверждённый рост прибыли.</p>
     </div>
     <div style="grid-column:1/-1;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:20px">
-      <div style="display:flex;flex-direction:column;gap:8px"><span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">05 · границы решения</span><p style="margin:0;font:400 14.5px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">Это production-assisted инструмент, а не автономный сервис: единой production-БД и общего планировщика пока нет. Налоги не включены в модель, часть P&amp;L приблизительна, сетевую устойчивость плановых мониторов нужно усиливать. Ценовые записи и выход из карантина остаются за оператором.</p></div>
-      <div style="display:flex;flex-direction:column;gap:8px"><span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">роль в проекте</span><p style="margin:0;font:400 14.5px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">Даниил определял бизнес-правила, стратегии FBS и FBO и допустимый риск; принимал решения о записях и сверял результаты с заказами и начислениями. ИИ-инструменты помогали анализировать данные, писать код и тесты; внешние изменения проверялись Даниилом.</p></div>
+      <div style="display:flex;flex-direction:column;gap:8px"><span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">05 · границы решения</span><p style="margin:0;font:400 14.5px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">Это рабочий инструмент под контролем оператора, а не автономный сервис: единой рабочей базы данных и общего планировщика пока нет. Налоги не включены в модель, часть расчёта прибыли приблизительна, сетевую устойчивость плановых мониторов нужно усиливать. Исторические одноразовые скрипты не входят в текущий защищённый процесс. Ценовые записи и выход из карантина остаются за оператором.</p></div>
+      <div style="display:flex;flex-direction:column;gap:8px"><span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">роль ИИ-инструментов</span><p style="margin:0;font:400 14.5px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">ИИ-инструменты помогали анализировать данные, писать код и тесты; решения о внешних изменениях и проверка результата оставались за Даниилом.</p></div>
     </div>
   </section>
 
@@ -331,7 +332,7 @@
     <span style="font:500 13px JetBrains Mono,monospace;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 11px">CSV · JSON · XLSX</span>
   </div>
 
-  <dc-import name="CaseCTA" q="Нужна безопасная автоматизация цен?" hint-size="100%,170px"></dc-import>
+  <dc-import name="CaseCTA" q="Ищу удалённую работу менеджером Ozon." detail="Готов отвечать за кабинет, рекламу, цены, поставки и ежедневную операционную работу." label="Обсудить работу" href="mailto:politushkin@gmail.com?subject=%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%20%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%D0%BE%D0%BC%20Ozon" hint-size="100%,170px"></dc-import>
 
   <div style="display:flex;align-items:center;gap:12px;margin-top:18px;flex-wrap:wrap">
     <a href="case-mutual.html" style="margin-left:auto;display:inline-flex;align-items:center;min-height:44px;font:500 15px Inter,system-ui,sans-serif;color:var(--accent);text-decoration:none;border-radius:8px;padding:6px 8px" style-hover="background:var(--accent-tint)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">следующий кейс: MUTUAL →</a>

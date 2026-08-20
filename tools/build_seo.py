@@ -297,10 +297,10 @@ def generated_head(relative: str, source: str, url: str, lastmod: str) -> str:
 
 
 def optimize_runtime(source: str, prefix: str) -> str:
-    for old_theme_token in ("20260812a", "20260814b", "20260814c", "20260814d", "20260814e", "20260814f", "20260814g"):
+    for old_theme_token in ("20260812a", "20260814b", "20260814c", "20260814d", "20260814e", "20260814f", "20260814g", "20260815a"):
         source = source.replace(
             f'{prefix}theme.css?v={old_theme_token}',
-            f'{prefix}theme.css?v=20260815a',
+            f'{prefix}theme.css?v=20260821b',
         )
     source = source.replace(
         f'<script src="{prefix}site-config.js?v=20260812a"></script>',
@@ -322,7 +322,7 @@ def optimize_runtime(source: str, prefix: str) -> str:
     )
     if async_font_stylesheet not in source:
         source = source.replace(font_stylesheet, async_font_stylesheet, 1)
-    theme_link = f'<link rel="stylesheet" href="{prefix}theme.css?v=20260815a">'
+    theme_link = f'<link rel="stylesheet" href="{prefix}theme.css?v=20260821b">'
     critical_fonts = [
         f'<link rel="preload" href="{prefix}fonts/inter-UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2" as="font" type="font/woff2" crossorigin>',
         f'<link rel="preload" href="{prefix}fonts/sora-xMQ9uFFYT72X5wkB_18qmnndmSdSnh2BAfO5mnuyOo1lfiQwV6-xo6eeIw.woff2" as="font" type="font/woff2" crossorigin>',

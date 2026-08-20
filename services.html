@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Разработка ботов, приложений и автоматизация — Re:dnd</title>
-<meta name="description" content="Разрабатываем Telegram-ботов, мини-приложения, ИИ-ассистентов, интеграции и веб-сервисы под ключ. Фиксируем объём, цену и срок до старта.">
+<meta name="description" content="Команда Re:dnd разрабатывает Telegram-ботов, CRM, AI-ассистентов, автоматизацию, веб- и мобильные приложения. Кейсы, состав работ и стартовые цены.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Re:dnd">
 <meta property="og:locale" content="ru_RU">
@@ -26,7 +26,7 @@
 <script defer src="./site-config.js?v=20260821a"></script>
 <script>(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 <link rel="preload" href="./fonts/inter-UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa0ZL7W0Q5n-wU.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="./theme.css?v=20260815a">
+<link rel="stylesheet" href="./theme.css?v=20260821b">
 <script defer src="./vendor/react.production.min.js" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z" crossorigin="anonymous"></script>
 <script defer src="./vendor/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous"></script>
 <script defer src="./support.js"></script>
@@ -63,9 +63,9 @@
       "@id": "https://rednd.ru/services.html#webpage",
       "url": "https://rednd.ru/services.html",
       "name": "Разработка ботов, приложений и автоматизация — Re:dnd",
-      "description": "Разрабатываем Telegram-ботов, мини-приложения, ИИ-ассистентов, интеграции и веб-сервисы под ключ. Фиксируем объём, цену и срок до старта.",
+      "description": "Команда Re:dnd разрабатывает Telegram-ботов, CRM, AI-ассистентов, автоматизацию, веб- и мобильные приложения. Кейсы, состав работ и стартовые цены.",
       "inLanguage": "ru-RU",
-      "dateModified": "2026-08-14",
+      "dateModified": "2026-08-21",
       "isPartOf": {
         "@id": "https://rednd.ru/#website"
       },
@@ -135,11 +135,19 @@
   </nav>
   <!-- SEO-BREADCRUMBS:END -->
   <h1 style="margin:0 0 12px;font:700 clamp(30px,4vw,44px)/1.15 Sora,sans-serif;letter-spacing:-0.02em">Услуги</h1>
-  <p style="margin:0 0 36px;font:400 clamp(15.5px,1.6vw,18px)/1.6 Inter,system-ui,sans-serif;color:var(--text-body);max-width:640px;text-wrap:pretty">Пять направлений. Берём задачу целиком: от логики и данных до запуска на сервере. Начать можно с малого и наращивать по мере роста.</p>
+  <p style="margin:0 0 24px;font:400 clamp(15.5px,1.6vw,18px)/1.6 Inter,system-ui,sans-serif;color:var(--text-body);max-width:720px;text-wrap:pretty">Пять направлений. Берём задачу целиком: от логики и данных до запуска на сервере. Помогаем выбрать формат по рабочему сценарию, а не по модному названию технологии.</p>
 
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px">
+  <nav class="rd-service-nav" aria-label="Направления разработки">
+    <a href="#telegram">Telegram</a>
+    <a href="#ai">AI-ассистенты</a>
+    <a href="#automation">Автоматизация</a>
+    <a href="#web">Веб-сервисы</a>
+    <a href="#mobile">Мобильные приложения</a>
+  </nav>
 
-    <div style="background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(22px,3vw,28px);display:flex;flex-direction:column;gap:12px">
+  <div class="rd-service-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px">
+
+    <div id="telegram" style="background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(22px,3vw,28px);display:flex;flex-direction:column;gap:12px">
       <span style="font:500 13px JetBrains Mono,monospace;color:var(--text-muted)">/telegram</span>
       <h2 style="margin:0;font:600 clamp(19px,2.2vw,23px)/1.3 Sora,sans-serif">Telegram-боты и мини-аппы</h2>
       <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-body);text-wrap:pretty">Приём заявок и продажи, оплата и подписки через ЮКассу, каталог с корзиной, запись, личный кабинет. От простого бота до полноценного мини-аппа, который выглядит как обычное приложение, но живёт прямо в мессенджере.</p>
@@ -147,7 +155,7 @@
       <a href="case-subscriptions.html" style="margin-top:auto;font:500 14.5px Inter,system-ui,sans-serif;color:var(--accent);text-decoration:none;width:fit-content;border-radius:8px;padding:8px 4px;min-height:44px;display:inline-flex;align-items:center" style-hover="text-decoration:underline" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">кейс: подписочный сервис →</a>
     </div>
 
-    <div style="background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(22px,3vw,28px);display:flex;flex-direction:column;gap:12px">
+    <div id="ai" style="background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(22px,3vw,28px);display:flex;flex-direction:column;gap:12px">
       <span style="font:500 13px JetBrains Mono,monospace;color:var(--text-muted)">/ai</span>
       <h2 style="margin:0;font:600 clamp(19px,2.2vw,23px)/1.3 Sora,sans-serif">ИИ-ассистенты и агенты</h2>
       <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-body);text-wrap:pretty">Внутри настоящая LLM, но отвечает она строго по вашим материалам: ценам, услугам, документам, частым вопросам. Ассистент квалифицирует заявку, снимает первую линию поддержки и передаёт человеку то, что реально требует человека. Без выдумок вместо фактов.</p>
@@ -155,7 +163,7 @@
       <a href="case-crm.html" style="margin-top:auto;font:500 14.5px Inter,system-ui,sans-serif;color:var(--accent);text-decoration:none;width:fit-content;border-radius:8px;padding:8px 4px;min-height:44px;display:inline-flex;align-items:center" style-hover="text-decoration:underline" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">кейс: ИИ-CRM для нетворкинга →</a>
     </div>
 
-    <div style="background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(22px,3vw,28px);display:flex;flex-direction:column;gap:12px">
+    <div id="automation" style="background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(22px,3vw,28px);display:flex;flex-direction:column;gap:12px">
       <span style="font:500 13px JetBrains Mono,monospace;color:var(--text-muted)">/automation</span>
       <h2 style="margin:0;font:600 clamp(19px,2.2vw,23px)/1.3 Sora,sans-serif">Интеграции и автоматизация</h2>
       <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-body);text-wrap:pretty">Связываем между собой CRM, 1С, маркетплейсы (Ozon, Wildberries) и любые сервисы через API. Забираем на себя ручную рутину: парсинг, отчёты, выгрузки, пересчёт цен, синхронизацию данных. То, что человек делает руками каждый день, начинает работать само.</p>
@@ -163,7 +171,7 @@
       <a href="case-autopricer.html" style="margin-top:auto;font:500 14.5px Inter,system-ui,sans-serif;color:var(--accent);text-decoration:none;width:fit-content;border-radius:8px;padding:8px 4px;min-height:44px;display:inline-flex;align-items:center" style-hover="text-decoration:underline" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">кейс: автопрайсер для Ozon →</a>
     </div>
 
-    <div style="background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(22px,3vw,28px);display:flex;flex-direction:column;gap:12px">
+    <div id="web" style="background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(22px,3vw,28px);display:flex;flex-direction:column;gap:12px">
       <span style="font:500 13px JetBrains Mono,monospace;color:var(--text-muted)">/web</span>
       <h2 style="margin:0;font:600 clamp(19px,2.2vw,23px)/1.3 Sora,sans-serif">Веб-сервисы и приложения</h2>
       <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-body);text-wrap:pretty">Личные кабинеты, дашборды, админки, внутренние инструменты и SaaS-сервисы под вашу задачу. Берём весь цикл: база данных, логика, интерфейс, запуск на сервере. Один сервис может обслуживать много клиентов с изолированными данными.</p>
@@ -171,7 +179,7 @@
       <a href="case-vetpulse.html" style="margin-top:auto;font:500 14.5px Inter,system-ui,sans-serif;color:var(--accent);text-decoration:none;width:fit-content;border-radius:8px;padding:8px 4px;min-height:44px;display:inline-flex;align-items:center" style-hover="text-decoration:underline" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">кейс: ВетПульс, веб-CRM для клиник →</a>
     </div>
 
-    <div style="background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(22px,3vw,28px);display:flex;flex-direction:column;gap:12px">
+    <div id="mobile" style="background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(22px,3vw,28px);display:flex;flex-direction:column;gap:12px">
       <span style="font:500 13px JetBrains Mono,monospace;color:var(--text-muted)">/mobile</span>
       <h2 style="margin:0;font:600 clamp(19px,2.2vw,23px)/1.3 Sora,sans-serif">Мобильные приложения</h2>
       <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-body);text-wrap:pretty">iOS и Android из одной кодовой базы на Flutter: быстрее и дешевле, чем две отдельные разработки. Офлайн-режим, платежи, пуш-уведомления, публикация в App Store и Google Play.</p>
@@ -185,6 +193,69 @@
     <span style="font:400 13.5px/1.5 Inter,system-ui,sans-serif;color:var(--text-muted)">«От» — это цена за простую версию под ключ; мобильные приложения считаем по задаче. Итоговую цену фиксируем до старта работ, и она не меняется по ходу.</span>
     <span style="display:flex;align-items:center;gap:8px;font:500 13.5px JetBrains Mono,monospace;color:var(--text-meta)"><span style="width:8px;height:8px;border-radius:50%;background:var(--online);flex:none"></span>7 дней исправления ошибок после сдачи</span>
   </div>
+
+  <section class="rd-service-fit" aria-labelledby="service-fit-title">
+    <div class="rd-service-section-head">
+      <span class="rd-service-kicker">Выбор формата</span>
+      <h2 id="service-fit-title">Что подойдёт вашей задаче</h2>
+      <p>Отталкиваемся от места, где возникает работа, частоты сценария и числа ролей. Один продукт не обязан начинаться с большой системы.</p>
+    </div>
+    <div class="rd-service-fit__grid">
+      <article>
+        <strong>Бот или мини-апп</strong>
+        <p>Если клиент или сотрудник уже работает в Telegram: оставляет заявку, выбирает услугу, оплачивает, получает уведомления или открывает каталог.</p>
+        <a href="case-subscriptions.html">Посмотреть сценарий подписки →</a>
+      </article>
+      <article>
+        <strong>Автоматизация и интеграция</strong>
+        <p>Если данные уже есть в CRM, 1С или маркетплейсе, но сотрудники ежедневно копируют их, сверяют таблицы или пересчитывают показатели вручную.</p>
+        <a href="case-autopricer.html">Посмотреть автоматизацию цен →</a>
+      </article>
+      <article>
+        <strong>Веб-сервис или CRM</strong>
+        <p>Если нужны разные роли, общая база, история действий, дашборды и рабочее место, доступное с компьютера без установки.</p>
+        <a href="case-scout.html">Посмотреть многопользовательскую CRM →</a>
+      </article>
+      <article>
+        <strong>Мобильное приложение</strong>
+        <p>Если продукт должен быть всегда под рукой, работать с системными уведомлениями, камерой или офлайн и публиковаться в магазинах приложений.</p>
+        <a href="case-faith.html">Посмотреть Flutter-приложение →</a>
+      </article>
+    </div>
+  </section>
+
+  <section class="rd-service-faq" aria-labelledby="service-faq-title">
+    <div class="rd-service-section-head">
+      <span class="rd-service-kicker">Перед стартом</span>
+      <h2 id="service-faq-title">Частые вопросы</h2>
+    </div>
+    <div class="rd-service-faq__list">
+      <details>
+        <summary>С чего начать, если технического задания ещё нет?</summary>
+        <p>Достаточно описать рабочий сценарий: кто что делает сейчас, где теряется время или заявка и какие сервисы уже используются. Мы разложим задачу на первую полезную версию, зависимости и следующие этапы.</p>
+      </details>
+      <details>
+        <summary>Как выбираете между ботом, сайтом и приложением?</summary>
+        <p>Смотрим, где пользователю удобнее совершать действие, нужны ли роли и общая база, требуется ли офлайн-режим и как часто меняется процесс. Если задачу решает бот или автоматизация без отдельного интерфейса, не предлагаем более дорогой формат.</p>
+      </details>
+      <details>
+        <summary>Как фиксируются цена и объём?</summary>
+        <p>До начала работ согласуем состав первой версии, критерии приёмки, стоимость и срок. Новые функции, которых не было в согласованном объёме, оцениваем отдельно — без незаметного расширения сметы.</p>
+      </details>
+      <details>
+        <summary>Можно ли продолжить уже начатый продукт?</summary>
+        <p>Да, если текущая кодовая база и доступы позволяют безопасно её развивать. Сначала изучаем репозиторий, архитектуру и способ публикации; если продолжение рискованно, объясняем конкретную причину и предлагаем путь переноса.</p>
+      </details>
+      <details>
+        <summary>Что происходит при сдаче?</summary>
+        <p>Заранее фиксируем состав передачи: рабочую версию, согласованные исходники, настройки развёртывания и сценарий проверки. Секреты не кладём в публичный репозиторий и передаём отдельно безопасным способом.</p>
+      </details>
+      <details>
+        <summary>Что будет после запуска?</summary>
+        <p>В течение семи дней исправляем ошибки в согласованном функционале. Дальнейшее развитие, мониторинг и поддержка зависят от продукта и согласуются отдельно.</p>
+      </details>
+    </div>
+  </section>
 
   <div style="margin-top:clamp(36px,5vw,56px);display:flex;flex-direction:column;gap:18px;align-items:flex-start;max-width:640px">
     <div style="background:var(--surface);border-radius:18px 18px 18px 5px;padding:16px 20px;box-shadow:0 2px 6px var(--shadow-2);font:400 17px/1.5 Inter,system-ui,sans-serif">Не нашли своё? Опишите задачу своими словами. Скажем, как её можно решить и сколько это будет стоить.</div>

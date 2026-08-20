@@ -1118,6 +1118,151 @@ html.rd-motion-ready .ap-margin-viz.is-visible .ap-margin-viz__bar { animation: 
   white-space: nowrap;
 }
 
+/* Services: compact navigation, decision support and native FAQ. All blocks
+   share the page's 1140px / 22px content rail, so the left edge remains
+   consistent from the heading through the final CTA. */
+.rd-service-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 28px;
+}
+.rd-service-nav a {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  padding: 9px 13px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--text-body);
+  font: 600 13.5px/1.2 Inter, system-ui, sans-serif;
+}
+.rd-service-grid > [id] { scroll-margin-top: 92px; }
+.rd-service-grid > [id]:target {
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 0 3px rgba(var(--accent-rgb), .12);
+}
+.rd-service-fit,
+.rd-service-faq { margin-top: clamp(48px, 7vw, 80px); }
+.rd-service-section-head { max-width: 720px; }
+.rd-service-kicker {
+  display: block;
+  margin-bottom: 9px;
+  color: var(--accent);
+  font: 700 11.5px/1.3 JetBrains Mono, monospace;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+.rd-service-section-head h2 {
+  margin: 0;
+  color: var(--text);
+  font: 650 clamp(25px, 3.2vw, 36px)/1.16 Sora, Inter, sans-serif;
+  letter-spacing: -.025em;
+  text-wrap: balance;
+}
+.rd-service-section-head p {
+  margin: 13px 0 0;
+  color: var(--text-body);
+  font: 400 16px/1.62 Inter, system-ui, sans-serif;
+  text-wrap: pretty;
+}
+.rd-service-fit__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 24px;
+}
+.rd-service-fit__grid article {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  padding: clamp(20px, 3vw, 26px);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: var(--surface);
+}
+.rd-service-fit__grid strong {
+  color: var(--text);
+  font: 650 18px/1.3 Sora, Inter, sans-serif;
+}
+.rd-service-fit__grid p {
+  margin: 9px 0 18px;
+  color: var(--text-body);
+  font: 400 14.5px/1.58 Inter, system-ui, sans-serif;
+  text-wrap: pretty;
+}
+.rd-service-fit__grid a {
+  display: inline-flex;
+  width: fit-content;
+  min-height: 44px;
+  align-items: center;
+  margin-top: auto;
+  color: var(--accent);
+  font: 650 13.5px/1.35 Inter, system-ui, sans-serif;
+}
+.rd-service-faq__list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 24px;
+  align-items: start;
+}
+.rd-service-faq details {
+  overflow: clip;
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  background: var(--surface);
+}
+.rd-service-faq details[open] { border-color: rgba(var(--accent-rgb), .45); }
+.rd-service-faq summary {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 24px;
+  gap: 16px;
+  min-height: 60px;
+  align-items: center;
+  padding: 16px 18px;
+  color: var(--text);
+  cursor: pointer;
+  font: 650 15px/1.4 Inter, system-ui, sans-serif;
+  list-style: none;
+}
+.rd-service-faq summary::-webkit-details-marker { display: none; }
+.rd-service-faq summary::after {
+  content: "+";
+  color: var(--accent);
+  font: 500 22px/1 Inter, system-ui, sans-serif;
+  text-align: center;
+}
+.rd-service-faq details[open] summary::after { content: "−"; }
+.rd-service-faq details p {
+  margin: 0;
+  padding: 0 18px 18px;
+  color: var(--text-body);
+  font: 400 14px/1.6 Inter, system-ui, sans-serif;
+  text-wrap: pretty;
+}
+@media (hover:hover) and (pointer:fine) {
+  .rd-service-nav a:hover { border-color: var(--accent); color: var(--accent); }
+  .rd-service-fit__grid a:hover { color: var(--accent-hover); }
+  .rd-service-faq summary:hover { color: var(--accent); }
+}
+
+@media (max-width: 720px) {
+  .rd-service-fit__grid,
+  .rd-service-faq__list { grid-template-columns: 1fr; }
+  .rd-service-nav {
+    flex-wrap: nowrap;
+    margin-right: -22px;
+    margin-left: -22px;
+    padding: 0 22px 6px;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scrollbar-width: thin;
+  }
+  .rd-service-nav a { flex: none; }
+}
+
 @media (max-width: 560px) {
   .rd-breadcrumbs { margin-bottom: 14px; font-size: 12.5px; }
 }

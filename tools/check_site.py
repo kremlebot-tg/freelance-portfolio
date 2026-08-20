@@ -898,6 +898,30 @@ def main() -> int:
         if source.count(token) != expected:
             failures.append(f"{relative}: page target contract {token!r} must occur {expected} times")
 
+    service_page_contract = {
+        "services.html": (
+            'aria-label="Направления разработки"',
+            'id="service-fit-title">Что подойдёт вашей задаче',
+            'id="service-faq-title">Частые вопросы',
+        ),
+        "en/services.html": (
+            'aria-label="Development services"',
+            'id="service-fit-title">What fits your task',
+            'id="service-faq-title">Common questions',
+        ),
+    }
+    for relative, tokens in service_page_contract.items():
+        source = (ROOT / relative).read_text(encoding="utf-8")
+        for token in tokens:
+            if source.count(token) != 1:
+                failures.append(f"{relative}: service decision contract {token!r} must occur once")
+        for section_id in ("telegram", "ai", "automation", "web", "mobile"):
+            token = f'id="{section_id}"'
+            if source.count(token) != 1:
+                failures.append(f"{relative}: service anchor {token!r} must occur once")
+        if source.count("<details>") != 6:
+            failures.append(f"{relative}: service FAQ must contain exactly 6 native details")
+
     infinite_scene_tokens = (
         "wkDot 1.1s infinite",
         "wkBlink 1s step-end infinite",
@@ -912,7 +936,7 @@ def main() -> int:
     for page, parser in parsed.items():
         source = page.read_text(encoding="utf-8")
         rel = page.relative_to(ROOT)
-        if "theme.css?v=" in source and "theme.css?v=20260815a" not in source:
+        if "theme.css?v=" in source and "theme.css?v=20260821b" not in source:
             failures.append(f"{rel}: stale theme.css cache token")
         if "site-config.js?v=" in source and "site-config.js?v=20260821a" not in source:
             failures.append(f"{rel}: stale site-config.js cache token")
@@ -936,6 +960,14 @@ def main() -> int:
     theme = (ROOT / "theme.css").read_text(encoding="utf-8")
     if ".rd-cookie__button--primary" not in theme:
         failures.append("theme.css: missing analytics consent controls")
+    for token in (
+        ".rd-service-nav",
+        ".rd-service-fit__grid",
+        ".rd-service-faq__list",
+        ".rd-service-grid > [id]:target",
+    ):
+        if token not in theme:
+            failures.append(f"theme.css: missing services UX contract {token!r}")
     for relative in ("privacy.html", "en/privacy.html"):
         source = (ROOT / relative).read_text(encoding="utf-8")
         if source.count("data-analytics-consent-control") != 1:

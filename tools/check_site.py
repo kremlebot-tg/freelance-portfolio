@@ -174,6 +174,41 @@ def image_dimensions(path: Path) -> tuple[int, int] | None:
 
 def main() -> int:
     failures: list[str] = []
+
+    recovery = ROOT / "RECOVERY.md"
+    if not recovery.is_file():
+        failures.append("RECOVERY.md: missing disaster-recovery runbook")
+    else:
+        recovery_text = recovery.read_text(encoding="utf-8")
+        for token in (
+            "production-2026-08-21",
+            "INDEXNOW_KEY",
+            "S3_KEY_ID",
+            "S3_SECRET",
+            "TG_BOT_TOKEN",
+            "TG_CHAT_ID",
+            "git clone https://github.com/kremlebot-tg/freelance-portfolio.git",
+        ):
+            if token not in recovery_text:
+                failures.append(f"RECOVERY.md: missing recovery contract {token!r}")
+
+    dependabot = ROOT / ".github" / "dependabot.yml"
+    if not dependabot.is_file():
+        failures.append(".github/dependabot.yml: missing dependency recovery guard")
+    else:
+        dependabot_text = dependabot.read_text(encoding="utf-8")
+        for ecosystem in ("npm", "github-actions"):
+            if f"package-ecosystem: {ecosystem}" not in dependabot_text:
+                failures.append(f".github/dependabot.yml: missing {ecosystem} updates")
+
+    for workflow in sorted((ROOT / ".github" / "workflows").glob("*.yml")):
+        workflow_text = workflow.read_text(encoding="utf-8")
+        for action, ref in re.findall(r"uses:\s+([^\s@]+)@([^\s#]+)", workflow_text):
+            if action.startswith("actions/") and not re.fullmatch(r"[0-9a-f]{40}", ref):
+                failures.append(
+                    f"{workflow.relative_to(ROOT)}: GitHub-owned action {action!r} "
+                    "must be pinned to a full commit SHA"
+                )
     parsed: dict[Path, PageParser] = {}
 
     for page in sorted(ROOT.rglob("*.html")):

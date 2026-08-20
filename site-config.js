@@ -66,11 +66,15 @@ window.SITE_CONFIG = {
 (function () {
   var cfg = window.SITE_CONFIG || {};
   var id = String(cfg.metrikaId || '').trim();
-  if (!id) return;
   var storageKey = 'rednd_analytics_consent';
   var isEnglish = location.pathname.indexOf('/en/') !== -1;
   var loaded = false;
   var controlsBound = false;
+  var api = window.REDND_ANALYTICS = {
+    reachGoal: function () { return false; }
+  };
+
+  if (!id) return;
 
   function readChoice() {
     try { return localStorage.getItem(storageKey) || ''; } catch (e) { return ''; }
@@ -106,6 +110,89 @@ window.SITE_CONFIG = {
     loaded = false;
     var script = document.querySelector('script[data-rednd-analytics="true"]');
     if (script) script.remove();
+  }
+
+  // Единая точка отправки целей. Она намеренно ничего не буферизует:
+  // действия до согласия не должны попадать в аналитику задним числом.
+  // Параметры ниже описывают только экран и элемент интерфейса — значения
+  // полей формы и другие пользовательские данные сюда не передаются.
+  function reachGoal(target, params) {
+    if (readChoice() !== 'accepted' || !loaded || typeof window.ym !== 'function') return false;
+    if (!/^[A-Za-z0-9_-]+$/.test(String(target || ''))) return false;
+    try {
+      window.ym(id, 'reachGoal', target, params || {});
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  api.reachGoal = reachGoal;
+
+  function currentPage() {
+    var path = location.pathname.replace(/\/+$/, '');
+    return path.split('/').pop() || 'index.html';
+  }
+
+  function placementOf(element) {
+    if (element.closest('header')) return 'header';
+    if (element.closest('footer')) return 'footer';
+    if (element.closest('.case-cta-link,dc-import[name="CaseCTA"]')) return 'case_cta';
+    return 'main';
+  }
+
+  function withContext(extra) {
+    var params = {
+      language: isEnglish ? 'en' : 'ru',
+      page: currentPage()
+    };
+    for (var key in (extra || {})) {
+      if (Object.prototype.hasOwnProperty.call(extra, key)) params[key] = extra[key];
+    }
+    return params;
+  }
+
+  function bindFunnelTracking() {
+    document.addEventListener('click', function (event) {
+      var anchor = event.target && event.target.closest ? event.target.closest('a[href]') : null;
+      if (!anchor) return;
+      var rawHref = (anchor.getAttribute('href') || '').trim();
+      if (!rawHref || rawHref.charAt(0) === '#') return;
+
+      if (/^mailto:/i.test(rawHref)) {
+        reachGoal('contact_channel', withContext({ channel: 'email', placement: placementOf(anchor) }));
+        return;
+      }
+
+      var url;
+      try { url = new URL(rawHref, location.href); } catch (e) { return; }
+      if (/^(?:www\.)?(?:t\.me|telegram\.me)$/i.test(url.hostname)) {
+        reachGoal('contact_channel', withContext({ channel: 'telegram', placement: placementOf(anchor) }));
+        return;
+      }
+      if (url.origin !== location.origin) return;
+
+      var destination = url.pathname.split('/').pop() || 'index.html';
+      var caseMatch = destination.match(/^case-([a-z0-9-]+)\.html$/i);
+      if (caseMatch) {
+        reachGoal('case_open', withContext({ case_id: caseMatch[1].toLowerCase(), placement: placementOf(anchor) }));
+      } else if (destination === 'contact.html') {
+        reachGoal('contact_open', withContext({ placement: placementOf(anchor) }));
+      } else if (destination === 'partner-apply.html') {
+        reachGoal('partner_open', withContext({ placement: placementOf(anchor) }));
+      }
+    });
+
+    document.addEventListener('input', function (event) {
+      var form = event.target && event.target.closest
+        ? event.target.closest('form[data-conversion-form]')
+        : null;
+      if (!form || form.getAttribute('data-analytics-started') === 'true') return;
+      form.setAttribute('data-analytics-started', 'true');
+      reachGoal('form_start', withContext({
+        form_kind: form.getAttribute('data-conversion-form') || 'contact'
+      }));
+    });
   }
 
   function updateControls() {
@@ -189,6 +276,7 @@ window.SITE_CONFIG = {
 
   function bootAnalyticsChoice() {
     bindControls();
+    bindFunnelTracking();
     var choice = readChoice();
     if (choice === 'accepted') loadMetrika();
     else if (!choice) createBanner();

@@ -304,13 +304,13 @@ def optimize_runtime(source: str, prefix: str) -> str:
         )
     source = source.replace(
         f'<script src="{prefix}site-config.js?v=20260812a"></script>',
-        f'<script defer src="{prefix}site-config.js?v=20260815a"></script>',
+        f'<script defer src="{prefix}site-config.js?v=20260821a"></script>',
     ).replace(
         f'<script src="{prefix}site-config.js?v=20260814a"></script>',
-        f'<script defer src="{prefix}site-config.js?v=20260815a"></script>',
+        f'<script defer src="{prefix}site-config.js?v=20260821a"></script>',
     ).replace(
         f'<script defer src="{prefix}site-config.js?v=20260814a"></script>',
-        f'<script defer src="{prefix}site-config.js?v=20260815a"></script>',
+        f'<script defer src="{prefix}site-config.js?v=20260821a"></script>',
     )
     font_href = f'{prefix}fonts/fonts.css' if prefix == "../" else "fonts/fonts.css"
     font_stylesheet = f'<link href="{font_href}" rel="stylesheet">'

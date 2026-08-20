@@ -23,7 +23,7 @@
 <link rel="alternate" hreflang="ru" href="https://rednd.ru/contact.html">
 <link rel="alternate" hreflang="en" href="https://rednd.ru/en/contact.html">
 <link rel="alternate" hreflang="x-default" href="https://rednd.ru/contact.html">
-<script defer src="../site-config.js?v=20260815a"></script>
+<script defer src="../site-config.js?v=20260821a"></script>
 <script>(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 <link rel="preload" href="../fonts/inter-UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../fonts/sora-xMQ9uFFYT72X5wkB_18qmnndmSdSnh2BAfO5mnuyOo1lfiQwV6-xo6eeIw.woff2" as="font" type="font/woff2" crossorigin>
@@ -172,7 +172,7 @@
     <!-- Form -->
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(22px,3vw,30px)">
       <sc-if value="{{ notSubmitted }}" hint-placeholder-val="{{ true }}">
-        <form onSubmit="{{ onSubmit }}" style="display:flex;flex-direction:column;gap:20px">
+        <form data-conversion-form="contact" onSubmit="{{ onSubmit }}" style="display:flex;flex-direction:column;gap:20px">
 
           <label style="display:flex;flex-direction:column;gap:8px">
             <span style="font:600 14.5px Inter,system-ui,sans-serif">What do you need built or automated</span>
@@ -472,7 +472,7 @@ class Component extends DCLogic {
             throw error;
           }
           this.setState({ sending: false, submitted: true, error: false });
-          try { var _m = window.SITE_CONFIG && window.SITE_CONFIG.metrikaId; if (window.ym && _m) window.ym(_m, 'reachGoal', 'form_submit'); } catch (e) {}
+          if (window.REDND_ANALYTICS) window.REDND_ANALYTICS.reachGoal('form_submit', { language: 'en', page: 'contact.html', form_kind: 'contact' });
         }).catch(error => {
           this.setState({ sending: false, error: true, errorKind: error.stored ? 'stored' : 'network' });
         });

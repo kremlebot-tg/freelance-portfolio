@@ -292,7 +292,7 @@ def main() -> int:
 
         prefix = "../" if str(rel).startswith("en/") else "./"
         runtime_contract = (
-            f'<script defer src="{prefix}site-config.js?v=20260815a"></script>',
+            f'<script defer src="{prefix}site-config.js?v=20260821a"></script>',
             f'<script defer src="{prefix}vendor/react.production.min.js"',
             f'<script defer src="{prefix}vendor/react-dom.production.min.js"',
             f'<script defer src="{prefix}support.js"></script>',
@@ -439,7 +439,7 @@ def main() -> int:
         source = (ROOT / relative).read_text(encoding="utf-8")
         prefix = "../" if relative.startswith("en/") else "./"
         for token in (
-            f'<script defer src="{prefix}site-config.js?v=20260815a"></script>',
+            f'<script defer src="{prefix}site-config.js?v=20260821a"></script>',
             f'<script defer src="{prefix}vendor/react.production.min.js"',
             f'<script defer src="{prefix}vendor/react-dom.production.min.js"',
             f'<script defer src="{prefix}support.js"></script>',
@@ -914,7 +914,7 @@ def main() -> int:
         rel = page.relative_to(ROOT)
         if "theme.css?v=" in source and "theme.css?v=20260815a" not in source:
             failures.append(f"{rel}: stale theme.css cache token")
-        if "site-config.js?v=" in source and "site-config.js?v=20260815a" not in source:
+        if "site-config.js?v=" in source and "site-config.js?v=20260821a" not in source:
             failures.append(f"{rel}: stale site-config.js cache token")
 
     site_config = (ROOT / "site-config.js").read_text(encoding="utf-8")
@@ -923,6 +923,13 @@ def main() -> int:
         "if (choice === 'accepted') loadMetrika();",
         "else if (!choice) createBanner();",
         "k.dataset.redndAnalytics = 'true';",
+        "window.REDND_ANALYTICS",
+        "reachGoal('case_open'",
+        "reachGoal('contact_open'",
+        "reachGoal('contact_channel'",
+        "reachGoal('form_start'",
+        "пользовательские данные сюда не передаются.",
+        ".case-cta-link",
     ):
         if token not in site_config:
             failures.append(f"site-config.js: missing analytics consent contract {token!r}")
@@ -933,6 +940,23 @@ def main() -> int:
         source = (ROOT / relative).read_text(encoding="utf-8")
         if source.count("data-analytics-consent-control") != 1:
             failures.append(f"{relative}: expected one analytics consent control")
+
+    for relative in ("CaseCTA.dc.html", "en/CaseCTA.dc.html"):
+        source = (ROOT / relative).read_text(encoding="utf-8")
+        if source.count('class="case-cta-link"') != 1:
+            failures.append(f"{relative}: expected one conversion-aware case CTA")
+
+    conversion_form_contract = {
+        "contact.html": ('data-conversion-form="contact"', "'form_submit'", "form_kind: 'contact'"),
+        "en/contact.html": ('data-conversion-form="contact"', "'form_submit'", "form_kind: 'contact'"),
+        "partner-apply.html": ('data-conversion-form="partner"', "'partner_apply'", "form_kind: 'partner'"),
+        "en/partner-apply.html": ('data-conversion-form="partner"', "'partner_apply'", "form_kind: 'partner'"),
+    }
+    for relative, tokens in conversion_form_contract.items():
+        source = (ROOT / relative).read_text(encoding="utf-8")
+        for token in tokens:
+            if source.count(token) != 1:
+                failures.append(f"{relative}: conversion contract {token!r} must occur exactly once")
 
     pages_workflow = (ROOT / ".github/workflows/pages.yml").read_text(encoding="utf-8")
     for token in (

@@ -16,6 +16,7 @@
 - исходники интерактивных демо и сгенерированные браузерные версии;
 - тесты, SEO-сборщик и проверки публикации;
 - GitHub Actions для Pages и IndexNow;
+- read-only CI для pull request и обновлений Dependabot;
 - исходник Yandex Cloud Function и исторический VPS-вариант формы;
 - `CNAME`, документация и публичный security contact.
 

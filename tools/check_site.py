@@ -327,7 +327,7 @@ def main() -> int:
 
         prefix = "../" if str(rel).startswith("en/") else "./"
         runtime_contract = (
-            f'<script defer src="{prefix}site-config.js?v=20260821a"></script>',
+            f'<script defer src="{prefix}site-config.js?v=20260821b"></script>',
             f'<script defer src="{prefix}vendor/react.production.min.js"',
             f'<script defer src="{prefix}vendor/react-dom.production.min.js"',
             f'<script defer src="{prefix}support.js"></script>',
@@ -474,7 +474,7 @@ def main() -> int:
         source = (ROOT / relative).read_text(encoding="utf-8")
         prefix = "../" if relative.startswith("en/") else "./"
         for token in (
-            f'<script defer src="{prefix}site-config.js?v=20260821a"></script>',
+            f'<script defer src="{prefix}site-config.js?v=20260821b"></script>',
             f'<script defer src="{prefix}vendor/react.production.min.js"',
             f'<script defer src="{prefix}vendor/react-dom.production.min.js"',
             f'<script defer src="{prefix}support.js"></script>',
@@ -973,7 +973,7 @@ def main() -> int:
         rel = page.relative_to(ROOT)
         if "theme.css?v=" in source and "theme.css?v=20260821b" not in source:
             failures.append(f"{rel}: stale theme.css cache token")
-        if "site-config.js?v=" in source and "site-config.js?v=20260821a" not in source:
+        if "site-config.js?v=" in source and "site-config.js?v=20260821b" not in source:
             failures.append(f"{rel}: stale site-config.js cache token")
 
     site_config = (ROOT / "site-config.js").read_text(encoding="utf-8")
@@ -989,9 +989,19 @@ def main() -> int:
         "reachGoal('form_start'",
         "пользовательские данные сюда не передаются.",
         ".case-cta-link",
+        "element.closest('[data-analytics-placement]')",
     ):
         if token not in site_config:
             failures.append(f"site-config.js: missing analytics consent contract {token!r}")
+    hero_conversion_contract = {
+        "index.html": ('data-analytics-placement="hero"', 'data-hero-action="contact"', 'data-hero-action="projects"'),
+        "en/index.html": ('data-analytics-placement="hero"', 'data-hero-action="contact"', 'data-hero-action="projects"'),
+    }
+    for relative, tokens in hero_conversion_contract.items():
+        source = (ROOT / relative).read_text(encoding="utf-8")
+        for token in tokens:
+            if source.count(token) != 1:
+                failures.append(f"{relative}: hero conversion contract {token!r} must occur exactly once")
     theme = (ROOT / "theme.css").read_text(encoding="utf-8")
     if ".rd-cookie__button--primary" not in theme:
         failures.append("theme.css: missing analytics consent controls")

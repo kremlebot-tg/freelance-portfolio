@@ -135,6 +135,11 @@ window.SITE_CONFIG = {
   }
 
   function placementOf(element) {
+    var explicit = element.closest('[data-analytics-placement]');
+    if (explicit) {
+      var placement = String(explicit.getAttribute('data-analytics-placement') || '').trim();
+      if (/^[A-Za-z0-9_-]+$/.test(placement)) return placement;
+    }
     if (element.closest('header')) return 'header';
     if (element.closest('footer')) return 'footer';
     if (element.closest('.case-cta-link,dc-import[name="CaseCTA"]')) return 'case_cta';

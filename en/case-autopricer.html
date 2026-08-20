@@ -160,15 +160,15 @@
       <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:var(--online)"></span>internal tool · human-in-the-loop</span>
     </div>
     <h1 style="margin:0;font:700 clamp(28px,4vw,42px)/1.15 Sora,sans-serif;letter-spacing:-0.02em">Safe Ozon repricing and unit economics</h1>
-    <p style="margin:0;font:400 clamp(15.5px,1.6vw,18px)/1.55 Inter,system-ui,sans-serif;color:var(--text-body);max-width:760px">An operator tool for a catalogue with thousands of SKUs. It combines Ozon and supplier data, calculates a protective FBS price, and handles FBO liquidation separately. Prices change only after a dry-run, human review, and rollback preparation.</p>
+    <p style="margin:0;font:400 clamp(15.5px,1.6vw,18px)/1.55 Inter,system-ui,sans-serif;color:var(--text-body);max-width:760px">An operator tool for a catalogue with thousands of SKUs. It combines Ozon and supplier data, calculates a protective FBS price, and handles FBO liquidation separately. Current guarded flows allow a write only after a live check, dry run, operator approval, and rollback preparation; legacy one-off scripts are outside this workflow.</p>
   </div>
 
   <section class="case-glance" data-kind="live" data-layout="evidence" aria-labelledby="autopricer-glance-title">
     <div class="case-glance__lead"><div><span class="case-glance__eyebrow">verified workflow</span><h2 id="autopricer-glance-title">An operator tool, not a pricing autopilot</h2></div><span class="case-glance__state">human in the loop</span></div>
     <div class="case-glance__items">
       <article class="case-glance__item" data-role="check"><span class="case-glance__label">try it</span><strong>5 controls · 8 synthetic SKUs</strong><p>The demo recalculates recommendations and explains every status.</p></article>
-      <article class="case-glance__item" data-role="proof"><span class="case-glance__label">audit evidence</span><strong>7,473 SKUs · 126 tests · 19 writes</strong><p>The verified catalogue audit is separate from the page's demonstration data.</p></article>
-      <article class="case-glance__item" data-role="boundary"><span class="case-glance__label">boundary</span><strong>No unattended writes</strong><p>Dry-run, canary, human approval and rollback are mandatory; no causal profit claim is made.</p></article>
+      <article class="case-glance__item" data-role="proof"><span class="case-glance__label">audit evidence</span><strong>7,473 SKUs · 126 tests · 19 FBO SKUs</strong><p>The 21 July audit, 21 August test run, and verified 6 August operation are separate from the synthetic demo.</p></article>
+      <article class="case-glance__item" data-role="boundary"><span class="case-glance__label">boundary</span><strong>No unattended writes</strong><p>Guarded flows require a dry run, canary, operator approval, and rollback; no causal profit claim is made.</p></article>
     </div>
   </section>
 
@@ -176,7 +176,7 @@
   <section aria-label="Interactive demo with synthetic data" style="background:var(--surface);border:1px solid var(--border);border-radius:22px;padding:clamp(18px,3vw,32px);display:flex;flex-direction:column;gap:18px">
     <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
       <span style="display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 13px Inter,system-ui,sans-serif"><span style="width:7px;height:7px;border-radius:50%;background:var(--online)"></span>interactive demo · synthetic data</span>
-      <span style="margin-left:auto;font:400 12px JetBrains Mono,monospace;color:var(--text-muted)">// simplified model, not the production UI</span>
+      <span style="margin-left:auto;font:400 12px JetBrains Mono,monospace;color:var(--text-muted)">// simplified model, not the operator tool interface</span>
     </div>
 
     <div class="ap-demo-grid">
@@ -254,7 +254,7 @@
       </div>
     </div>
 
-    <p style="margin:0;font:400 13.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-meta);max-width:800px">The demo illustrates price-corridor mechanics with 8 fictional products. The production FBS model also uses acquiring, tiered commission, base and stress logistics scenarios, and a verified supplier cost. Scheduled monitors read data automatically; the operator confirms every price write.</p>
+    <p style="margin:0;font:400 13.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-meta);max-width:800px">The demo illustrates price-corridor mechanics with 8 fictional products. The operator-run FBS model also uses acquiring, tiered commission, base and stress logistics scenarios, and a verified supplier cost. Scheduled monitors read data automatically; the operator confirms every price write.</p>
   </section>
 
   <section class="case-process" aria-labelledby="autopricer-process-title">
@@ -265,11 +265,11 @@
     <div class="case-process__flow">
       <article class="case-process__stage"><span class="case-process__num">01</span><div><h3>Collect current inputs</h3><p>Ozon prices and orders are matched with supplier cost, commissions and logistics.</p></div></article>
       <div class="case-process__link" aria-hidden="true"></div>
-      <article class="case-process__stage"><span class="case-process__num">02</span><div><h3>Model FBS and FBO separately</h3><p>Each model gets base and stress scenarios, a price floor and an allowed corridor.</p></div></article>
+      <article class="case-process__stage"><span class="case-process__num">02</span><div><h3>Model FBS and FBO separately</h3><p>FBS gets a base and stress calculation for its protective price; FBO uses a separate liquidation flow with live price and stock checks.</p></div></article>
       <div class="case-process__link" aria-hidden="true"></div>
       <article class="case-process__stage"><span class="case-process__num">03</span><div><h3>Show the operator a dry run</h3><p>The proposed price, margin, reason and every constrained SKU are visible before a write.</p></div></article>
       <div class="case-process__link" aria-hidden="true"></div>
-      <article class="case-process__stage"><span class="case-process__num">04</span><div><h3>Write a small batch and verify</h3><p>A rollback is saved for up to 25 SKUs, then the new price is read back from the Ozon API.</p></div></article>
+      <article class="case-process__stage"><span class="case-process__num">04</span><div><h3>Write a bounded batch and verify</h3><p>A write starts with a 1–3 SKU canary and continues in bounded batches; the size is specific to each guard flow. Rollback is prepared first, then the price is read back from the Ozon API.</p></div></article>
       <div class="case-process__link" aria-hidden="true"></div>
       <div class="case-process__outcomes">
         <article class="case-process__outcome" data-tone="success"><span>→ VERIFIED</span><h3>Continue the wave</h3><p>The observed price matches the calculation.</p></article>
@@ -287,7 +287,7 @@
     </div>
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
       <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">02 · solution</span>
-      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">Python tools read prices, stock, orders, and financial operations from the Ozon Seller API and supplier costs from the Sima-land API. The FBS forecast calculates a target price from commission, acquiring, logistics, fulfilment, and cost. Historical P&amp;L covers sold SKUs only and remains approximate where account-level costs cannot be attributed reliably.</p>
+      <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">Python tools read prices, stock, orders, and financial operations from the Ozon Seller API and supplier costs from the Sima-land API. The FBS forecast calculates a target price from commission, acquiring, logistics, fulfilment, and cost. Historical P&amp;L uses financial operations and completed sales. It remains an estimate when current rather than historical cost is used, or when account-level expenses cannot be allocated reliably by SKU.</p>
       <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">The output is an inspectable file-based plan in CSV, JSON, or XLSX. There is no unattended price-writing mode.</p>
     </div>
     <div style="grid-column:1/-1;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px">
@@ -300,9 +300,9 @@
       </div>
       <p style="margin:0;font:500 14px/1.65 JetBrains Mono,monospace;color:var(--text-body);text-wrap:pretty;max-width:900px;border-left:2px solid var(--border-hover);padding-left:14px">live read → dry-run → human review → confirmation → rollback → canary → small batch → API reread → quarantine check</p>
       <div class="acc" data-state="{{ hardBState }}">
-        <button type="button" class="acc-sum" onClick="{{ onHardB }}" aria-expanded="{{ hardBExp }}" aria-controls="ap-h2" style="font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);max-width:820px">Before every write, the tool rereads the product state and fails closed on uncertainty.<span class="acc-chev" aria-hidden="true">▾</span></button>
+        <button type="button" class="acc-sum" onClick="{{ onHardB }}" aria-expanded="{{ hardBExp }}" aria-controls="ap-h2" style="font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);max-width:820px">FBS and FBO use different safeguards and stop when the state is uncertain.<span class="acc-chev" aria-hidden="true">▾</span></button>
         <div id="ap-h2" class="acc-body" style="animation:{{ hardBAnim }}"><div class="acc-inner">
-          <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:820px">It checks current price and cost, the floor, market-index bounds, and stress economics. A batch is capped at 25 items; rollback is saved before writing and the API price is read back afterwards. A network error, data mismatch, or quarantine result stops the next wave for an operator decision.</p>
+          <p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty;max-width:820px">The FBS guard rereads price, supplier cost, market bounds, and stress economics. The FBO flow rereads price and stock, limits each step to 20%, and runs only when FBO&gt;0 and FBS=0. A write starts with a 1–3 SKU canary and continues in bounded batches whose size depends on the flow. Rollback is saved before writing; afterwards the API price is reread and quarantine growth is checked.</p>
         </div></div>
       </div>
     </div>
@@ -311,13 +311,13 @@
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));gap:10px">
         <div style="background:var(--demo-canvas);border:1px solid var(--border-soft);border-radius:12px;padding:16px"><strong style="display:block;font:700 26px/1 Sora,sans-serif;color:var(--accent)">7,473 SKUs</strong><span style="display:block;margin-top:7px;font:400 13.5px/1.5 Inter,system-ui,sans-serif;color:var(--text-meta)">in the verified 21 July 2026 audit</span></div>
         <div style="background:var(--demo-canvas);border:1px solid var(--border-soft);border-radius:12px;padding:16px"><strong style="display:block;font:700 26px/1 Sora,sans-serif;color:var(--accent)">3 / 2,932</strong><span style="display:block;margin-top:7px;font:400 13.5px/1.5 Inter,system-ui,sans-serif;color:var(--text-meta)">passed automatically / routed to manual review</span></div>
-        <div style="background:var(--demo-canvas);border:1px solid var(--border-soft);border-radius:12px;padding:16px"><strong style="display:block;font:700 26px/1 Sora,sans-serif;color:var(--accent)">19 SKUs</strong><span style="display:block;margin-top:7px;font:400 13.5px/1.5 Inter,system-ui,sans-serif;color:var(--text-meta)">with confirmed price writes reached their targets</span></div>
+        <div style="background:var(--demo-canvas);border:1px solid var(--border-soft);border-radius:12px;padding:16px"><strong style="display:block;font:700 26px/1 Sora,sans-serif;color:var(--accent)">19 FBO SKUs</strong><span style="display:block;margin-top:7px;font:400 13.5px/1.5 Inter,system-ui,sans-serif;color:var(--text-meta)">reached target prices in the verified 6 August operation</span></div>
       </div>
-      <p style="margin:0;font:400 14px/1.6 Inter,system-ui,sans-serif;color:var(--text-body);text-wrap:pretty;max-width:860px">All 126 automated tests pass. No isolated causal before-and-after financial study has been run, so this case does not attribute an unverified profit increase to the tool.</p>
+      <p style="margin:0;font:400 14px/1.6 Inter,system-ui,sans-serif;color:var(--text-body);text-wrap:pretty;max-width:860px">All 126 automated tests pass as of 21 August 2026. No isolated causal before-and-after financial study has been run, so this case does not attribute an unverified profit increase to the tool.</p>
     </div>
     <div style="grid-column:1/-1;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:20px">
       <div style="display:flex;flex-direction:column;gap:8px"><span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">05 · current boundaries</span><p style="margin:0;font:400 14.5px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">This is a production-assisted tool, not an autonomous service: there is no unified production database or central scheduler yet. Taxes are outside the model, some P&amp;L attribution is approximate, and scheduled monitors need stronger network resilience. Price writes and quarantine release remain human decisions.</p></div>
-      <div style="display:flex;flex-direction:column;gap:8px"><span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">my role</span><p style="margin:0;font:400 14.5px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">I defined the business rules, FBS and FBO strategies, acceptable risk, and each write decision; I reconciled results against orders and settlements. AI assisted with engineering implementation, tests, and rollback mechanics.</p></div>
+      <div style="display:flex;flex-direction:column;gap:8px"><span style="font:500 12.5px JetBrains Mono,monospace;color:var(--text-muted)">my role</span><p style="margin:0;font:400 14.5px/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty">Daniel defined the business rules, FBS and FBO strategies, and acceptable risk; he approved write decisions and reconciled results against orders and settlements. AI tools helped analyze data and write code and tests; Daniel reviewed external changes.</p></div>
     </div>
   </section>
 

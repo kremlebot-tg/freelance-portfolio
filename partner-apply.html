@@ -24,7 +24,7 @@
 <link rel="alternate" hreflang="ru" href="https://rednd.ru/partner-apply.html">
 <link rel="alternate" hreflang="en" href="https://rednd.ru/en/partner-apply.html">
 <link rel="alternate" hreflang="x-default" href="https://rednd.ru/partner-apply.html">
-<script defer src="./site-config.js?v=20260821b"></script>
+<script defer src="./site-config.js?v=20260825a"></script>
 <script>(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 <link rel="preload" href="./fonts/inter-UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa0ZL7W0Q5n-wU.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="./theme.css?v=20260821b">
@@ -52,7 +52,8 @@
 <main id="main-content" style="font-family:Inter,system-ui,sans-serif;max-width:1000px;margin:0 auto;padding:clamp(40px,5vw,64px) 22px clamp(56px,7vw,88px)">
   <a href="partner.html" style="display:inline-flex;align-items:center;gap:6px;font:500 13.5px Inter,system-ui,sans-serif;color:var(--text-muted);text-decoration:none;min-height:44px;margin-bottom:6px" style-hover="color:var(--accent)">← О партнёрской программе</a>
   <h1 style="margin:0 0 12px;font:700 clamp(30px,4vw,44px)/1.15 Sora,sans-serif;letter-spacing:-0.02em">Заявка в партнёры</h1>
-  <p style="margin:0 0 36px;font:400 clamp(15.5px,1.6vw,18px)/1.6 Inter,system-ui,sans-serif;color:var(--text-body);max-width:620px;text-wrap:pretty">Коротко расскажите о себе и кого можете привести. Ответим сами, обычно за пару часов, и обсудим условия. В штат оформлять не будем, это свободное партнёрство: приводите клиента, получаете долю.</p>
+  <p style="margin:0 0 14px;font:400 clamp(15.5px,1.6vw,18px)/1.6 Inter,system-ui,sans-serif;color:var(--text-body);max-width:620px;text-wrap:pretty">Коротко расскажите о себе и кого можете познакомить с командой. Это не трудоустройство: вознаграждение обсуждается за конкретный оплаченный клиентский проект.</p>
+  <p style="margin:0 0 36px;padding:12px 14px;border:1px solid var(--border);border-radius:12px;background:var(--surface);font:400 13.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body);max-width:720px"><strong style="color:var(--text)">Участие бесплатное.</strong> Нет вступительного взноса, обязательных покупок, платного обучения и выплат за привлечение других партнёров.</p>
 
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:24px;align-items:start">
 
@@ -60,6 +61,9 @@
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(22px,3vw,30px)">
       <sc-if value="{{ notSubmitted }}" hint-placeholder-val="{{ true }}">
         <form data-conversion-form="partner" onSubmit="{{ onSubmit }}" style="display:flex;flex-direction:column;gap:20px">
+          <sc-if value="{{ formUnavailable }}" hint-placeholder-val="{{ false }}">
+            <div role="status" style="font:400 14px/1.55 Inter,system-ui,sans-serif;color:var(--text-body);background:var(--status-amber-bg);border:1px solid var(--status-amber-fg);border-radius:11px;padding:12px 14px"><strong style="color:var(--text)">Онлайн-анкета временно недоступна.</strong> Отправка отключена, чтобы данные не потерялись. Напишите напрямую в <a href="https://t.me/re_dnd" style="color:var(--accent);font-weight:600">Telegram @re_dnd</a> или на <a href="mailto:politushkin@gmail.com" style="color:var(--accent);font-weight:600">email</a>.</div>
+          </sc-if>
 
           <div style="display:flex;flex-direction:column;gap:8px">
             <span style="font:600 14.5px Inter,system-ui,sans-serif">Кто вы</span>
@@ -86,9 +90,9 @@
           </sc-if>
 
           <div style="display:flex;flex-direction:column;gap:10px">
-            <button type="submit" aria-busy="{{ sending }}" style="display:inline-flex;align-items:center;justify-content:center;gap:9px;background:var(--accent-cta);color:var(--surface);border:none;cursor:pointer;font:600 16px/1 Inter,system-ui,sans-serif;padding:14px 24px;border-radius:13px;width:fit-content" style-hover="background:var(--accent)" style-focus-visible="outline:2px solid var(--text);outline-offset:2px">{{ submitLabel }}</button>
+            <button type="submit" disabled="{{ submitDisabled }}" aria-disabled="{{ submitDisabled }}" aria-busy="{{ sending }}" style="display:inline-flex;align-items:center;justify-content:center;gap:9px;background:var(--accent-cta);color:var(--surface);border:none;cursor:{{ submitCursor }};opacity:{{ submitOpacity }};font:600 16px/1 Inter,system-ui,sans-serif;padding:14px 24px;border-radius:13px;width:fit-content" style-hover="background:var(--accent)" style-focus-visible="outline:2px solid var(--text);outline-offset:2px">{{ submitLabel }}</button>
             <sc-if value="{{ demoMode }}" hint-placeholder-val="{{ true }}">
-              <span style="font:400 12.5px/1.5 JetBrains Mono,monospace;color:var(--text-muted)">// прототип: реальную отправку подключит Claude Code</span>
+              <span style="font:400 12.5px/1.5 Inter,system-ui,sans-serif;color:var(--text-muted)">Демонстрационный режим: данные не отправляются</span>
             </sc-if>
             <span style="font:400 12.5px/1.5 Inter,system-ui,sans-serif;color:var(--text-muted)">Отправляя, вы соглашаетесь с <a href="privacy.html" style="color:var(--accent);text-decoration:none;border-radius:4px" style-hover="text-decoration:underline" style-focus-visible="outline:2px solid var(--accent);outline-offset:1px">политикой конфиденциальности</a> и <a href="consent.html" style="color:var(--accent);text-decoration:none;border-radius:4px" style-hover="text-decoration:underline" style-focus-visible="outline:2px solid var(--accent);outline-offset:1px">обработкой персональных данных</a>.</span>
           </div>
@@ -99,7 +103,7 @@
         <div style="display:flex;flex-direction:column;gap:14px">
           <div style="background:var(--chat-area);border-radius:16px 16px 16px 5px;padding:14px 18px;font:400 15.5px/1.55 Inter,system-ui,sans-serif;max-width:480px">Заявка в партнёры принята ✓ Обычно отвечаем за пару часов, напишем вам в {{ echoContact }} и обсудим условия.</div>
           <sc-if value="{{ demoMode }}" hint-placeholder-val="{{ false }}">
-            <div style="font:400 13px/1.5 JetBrains Mono,monospace;color:var(--text-muted)">// это демонстрация: отправку на сервер подключит Claude Code</div>
+            <div style="font:400 13px/1.5 Inter,system-ui,sans-serif;color:var(--text-muted)">Демонстрационный режим: заявка не была отправлена</div>
           </sc-if>
           <button type="button" onClick="{{ onReset }}" style="font:500 14px Inter,system-ui,sans-serif;color:var(--accent);background:var(--accent-tint);border:none;cursor:pointer;padding:10px 16px;border-radius:10px;width:fit-content" style-hover="background:var(--accent-tint-2)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">Отправить ещё одну</button>
         </div>
@@ -117,7 +121,7 @@
           <div class="pa-line"></div>
           <div class="pa-step"><span class="pa-step-n">3</span><span class="pa-step-t"><b>Вы получаете долю.</b> С каждого оплаченного заказа. Процент фиксируем заранее.</span></div>
         </div>
-        <a href="partner.html" style="display:inline-flex;align-items:center;min-height:44px;font:500 13.5px Inter,system-ui,sans-serif;color:var(--accent);text-decoration:none" style-hover="text-decoration:underline" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">Все условия и калькулятор дохода →</a>
+        <a href="partner.html" style="display:inline-flex;align-items:center;min-height:44px;font:500 13.5px Inter,system-ui,sans-serif;color:var(--accent);text-decoration:none" style-hover="text-decoration:underline" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">Все условия и расчёт вознаграждения →</a>
       </div>
 
       <div style="background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(20px,3vw,26px);display:flex;flex-direction:column;gap:14px">
@@ -136,12 +140,11 @@
             <span style="font:500 13.5px JetBrains Mono,monospace;color:var(--accent)">{{ email }}</span>
           </span>
         </a>
-        <span style="display:flex;align-items:center;gap:8px;font:500 12.5px JetBrains Mono,monospace;color:var(--text-meta)"><span style="width:8px;height:8px;border-radius:50%;background:var(--online);flex:none"></span>работаем официально: ИП, договор, безнал</span>
+        <span style="display:flex;align-items:center;gap:8px;font:500 12.5px JetBrains Mono,monospace;color:var(--text-meta)"><span aria-hidden="true" style="color:var(--accent);font:700 14px Inter,system-ui,sans-serif">✓</span>работаем официально: ИП, договор, безнал</span>
       </div>
 
       <div style="display:flex;align-items:center;gap:10px;font:500 14px Inter,system-ui,sans-serif;color:var(--text-body);padding:0 6px">
-        <span style="width:8px;height:8px;border-radius:50%;background:var(--online);box-shadow:0 0 0 3px rgba(49,181,69,0.25);flex:none"></span>
-        онлайн · отвечаем обычно за пару часов
+        Ответим по указанному контакту
       </div>
     </div>
 
@@ -157,6 +160,8 @@ class Component extends DCLogic {
     const cfg = (typeof window !== 'undefined' && window.SITE_CONFIG) || {};
     const endpoint = (cfg.formEndpoint || '').trim();
     const demoMode = !endpoint;
+    const formUnavailable = !demoMode && cfg.formEnabled === false;
+    const submitDisabled = this.state.sending || formUnavailable;
     const roles = ['Предприниматель', 'Маркетолог / SMM', 'Фрилансер', 'Агентство / студия', 'Другое'];
     const roleChips = roles.map(label => {
       const on = this.state.role === label;
@@ -194,7 +199,11 @@ class Component extends DCLogic {
           ? 'Не получилось отправить — попробуйте ещё раз или напишите напрямую в Telegram.'
           : 'Заполните пару слов о себе и контакт, иначе не сможем ответить.',
       sending: this.state.sending,
-      submitLabel: this.state.sending ? 'Отправляю…' : 'Отправить заявку',
+      formUnavailable,
+      submitDisabled,
+      submitCursor: submitDisabled ? 'not-allowed' : 'pointer',
+      submitOpacity: submitDisabled ? '0.65' : '1',
+      submitLabel: formUnavailable ? 'Анкета временно недоступна' : this.state.sending ? 'Отправляю…' : 'Отправить заявку',
       echoContact: this.state.contact || 'Telegram',
       website: this.state.website,
       onWebsite: e => this.setState({ website: e.target.value }),
@@ -202,7 +211,7 @@ class Component extends DCLogic {
       onContact: e => this.setState({ contact: e.target.value, error: false }),
       onSubmit: (e) => {
         if (e) e.preventDefault();
-        if (this.state.sending) return;
+        if (submitDisabled) return;
         const missingAbout = !this.state.about.trim();
         const missingContact = !this.state.contact.trim();
         if (missingAbout || missingContact) {

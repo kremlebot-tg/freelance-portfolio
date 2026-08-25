@@ -327,7 +327,7 @@ def main() -> int:
 
         prefix = "../" if str(rel).startswith("en/") else "./"
         runtime_contract = (
-            f'<script defer src="{prefix}site-config.js?v=20260821b"></script>',
+            f'<script defer src="{prefix}site-config.js?v=20260825a"></script>',
             f'<script defer src="{prefix}vendor/react.production.min.js"',
             f'<script defer src="{prefix}vendor/react-dom.production.min.js"',
             f'<script defer src="{prefix}support.js"></script>',
@@ -474,7 +474,7 @@ def main() -> int:
         source = (ROOT / relative).read_text(encoding="utf-8")
         prefix = "../" if relative.startswith("en/") else "./"
         for token in (
-            f'<script defer src="{prefix}site-config.js?v=20260821b"></script>',
+            f'<script defer src="{prefix}site-config.js?v=20260825a"></script>',
             f'<script defer src="{prefix}vendor/react.production.min.js"',
             f'<script defer src="{prefix}vendor/react-dom.production.min.js"',
             f'<script defer src="{prefix}support.js"></script>',
@@ -534,6 +534,60 @@ def main() -> int:
         for copy in stale_personal_copy:
             if copy in source:
                 failures.append(f"{relative}: stale individual-positioning copy {copy!r}")
+
+    trust_contract = {
+        "index.html": ("Сначала фиксируем договорённости", "ИП · договор · безналичная оплата"),
+        "en/index.html": ("First, we make the terms explicit", "sole proprietor · contract · bank transfer"),
+        "about.html": ("Как проверить Re:dnd", "Исходники сайта на GitHub", "не просим коды из SMS"),
+        "en/about.html": ("How to verify Re:dnd", "Website source on GitHub", "never ask for SMS codes"),
+        "partner.html": ("одноуровневая реферальная программа", "нет вступительных взносов", "Расчёт вознаграждения"),
+        "en/partner.html": ("one-level referral program", "no entry fees", "Referral fee estimate"),
+        "partner-apply.html": ("Участие бесплатное", "Нет вступительного взноса"),
+        "en/partner-apply.html": ("Joining is free", "no entry fees"),
+    }
+    for relative, required_copy in trust_contract.items():
+        source = (ROOT / relative).read_text(encoding="utf-8")
+        for copy in required_copy:
+            if copy not in source:
+                failures.append(f"{relative}: missing trust copy {copy!r}")
+
+    deceptive_ui_copy = {
+        "index.html": ("Демо-чат", "онлайн · отвечаем обычно за пару часов", "12:04", "12:05"),
+        "en/index.html": ("Demo chat", "online · we usually reply within a couple of hours", "12:04", "12:05"),
+        "case-subscriptions.html": ("💳 Оплатить", "Проводим платёж", "Заплатить "),
+        "en/case-subscriptions.html": ("💳 Pay", "Processing payment", "('Pay "),
+    }
+    for relative, forbidden_copy in deceptive_ui_copy.items():
+        source = (ROOT / relative).read_text(encoding="utf-8")
+        for copy in forbidden_copy:
+            if copy in source:
+                failures.append(f"{relative}: deceptive UI copy remains {copy!r}")
+
+    for page in parsed:
+        source = page.read_text(encoding="utf-8")
+        if "Claude Code" in source:
+            failures.append(f"{page.relative_to(ROOT)}: internal AI tooling is exposed in public HTML")
+    readme_source = (ROOT / "README.md").read_text(encoding="utf-8")
+    for provider_name in ("Claude Design", "Claude Code"):
+        if provider_name in readme_source:
+            failures.append(f"README.md: internal AI tooling attribution remains {provider_name!r}")
+
+    site_config_source = (ROOT / "site-config.js").read_text(encoding="utf-8")
+    if "formEnabled:" not in site_config_source:
+        failures.append("site-config.js: missing form availability circuit breaker")
+    form_safety_contract = {
+        "contact.html": ("cfg.formEnabled === false", "formUnavailable", "submitDisabled", "Онлайн-форма временно недоступна"),
+        "en/contact.html": ("cfg.formEnabled === false", "formUnavailable", "submitDisabled", "The online form is temporarily unavailable"),
+        "partner-apply.html": ("cfg.formEnabled === false", "formUnavailable", "submitDisabled", "Онлайн-анкета временно недоступна"),
+        "en/partner-apply.html": ("cfg.formEnabled === false", "formUnavailable", "submitDisabled", "The online application is temporarily unavailable"),
+    }
+    for relative, tokens in form_safety_contract.items():
+        source = (ROOT / relative).read_text(encoding="utf-8")
+        for token in tokens:
+            if token not in source:
+                failures.append(f"{relative}: missing form outage safeguard {token!r}")
+        if "fetch(endpoint, { method: 'GET'" in source:
+            failures.append(f"{relative}: form health check must not create a console error on every visit")
 
     for forbidden in ("README.md", "package.json", "package-lock.json", "ios-frame.jsx"):
         if forbidden in {Path(urlparse(url).path).name for url in urls}:
@@ -973,7 +1027,7 @@ def main() -> int:
         rel = page.relative_to(ROOT)
         if "theme.css?v=" in source and "theme.css?v=20260821b" not in source:
             failures.append(f"{rel}: stale theme.css cache token")
-        if "site-config.js?v=" in source and "site-config.js?v=20260821b" not in source:
+        if "site-config.js?v=" in source and "site-config.js?v=20260825a" not in source:
             failures.append(f"{rel}: stale site-config.js cache token")
 
     site_config = (ROOT / "site-config.js").read_text(encoding="utf-8")

@@ -23,7 +23,7 @@
 <link rel="alternate" hreflang="ru" href="https://rednd.ru/partner.html">
 <link rel="alternate" hreflang="en" href="https://rednd.ru/en/partner.html">
 <link rel="alternate" hreflang="x-default" href="https://rednd.ru/partner.html">
-<script defer src="../site-config.js?v=20260821b"></script>
+<script defer src="../site-config.js?v=20260825a"></script>
 <script>(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 <link rel="preload" href="../fonts/inter-UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../fonts/sora-xMQ9uFFYT72X5wkB_18qmnndmSdSnh2BAfO5mnuyOo1lfiQwV6-xo6eeIw.woff2" as="font" type="font/woff2" crossorigin>
@@ -279,8 +279,9 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
       <span class="p-eyebrow">[ Partner program ]</span>
       <h1 class="p-h1">You bring the client, we build the project and share the payment</h1>
       <p class="p-lead">Know a business that needs a bot, an app, a web service, or automation? Introduce us. We take on the development, the client communication, and the launch. You get a solid share of every paid order.</p>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:14px 16px;font:400 14px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)"><strong style="color:var(--text)">This is a one-level referral program, not an investment or a job.</strong> Joining is free: there are no entry fees, required purchases, paid training, or rewards for recruiting other partners. A referral fee exists only after a real client project is paid.</div>
       <div style="display:flex;gap:11px;flex-wrap:wrap;margin-top:4px">
-        <a href="partner-apply.html" class="p-btn"><span style="width:8px;height:8px;border-radius:50%;background:var(--online);box-shadow:0 0 0 3px rgba(49,181,69,.25)"></span>Become a partner</a>
+        <a href="partner-apply.html" class="p-btn">Become a partner</a>
         <a href="projects.html" class="p-ghost">See the work first →</a>
       </div>
       <div class="p-chips" style="margin-top:6px">
@@ -309,7 +310,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
       <div class="step">
         <div class="sc" aria-hidden="true">
           <div class="sc-bars"><span class="sc-bar"></span><span class="sc-bar m"></span><span class="sc-bar"></span></div>
-          <span class="sc-live">● LIVE</span>
+          <span class="sc-live">in progress</span>
         </div>
         <div class="step-num">02</div>
         <div class="step-t">We run the project</div>
@@ -366,8 +367,8 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
 
   <!-- ============ CALCULATOR ============ -->
   <section class="p-wrap p-sec">
-    <h2 class="p-h2">Income estimate</h2>
-    <p class="p-sub">Pick a project type and how many clients you bring per month. We'll show a rough estimate of your share.</p>
+    <h2 class="p-h2">Referral fee estimate</h2>
+    <p class="p-sub">Pick a project type and a number of paid client projects. This is an illustration of the referral fee, not guaranteed income.</p>
     <div class="calc" style="margin-top:22px">
       <div>
         <div class="calc-label">Project type</div>
@@ -378,7 +379,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
           <button type="button" class="{{ projCls3 }}" onClick="{{ onProj3 }}">Web service</button>
           <button type="button" class="{{ projCls4 }}" onClick="{{ onProj4 }}">Mobile</button>
         </div>
-        <div class="calc-label">Clients per month</div>
+        <div class="calc-label">Paid projects</div>
         <div class="pgroup">
           <button type="button" class="{{ cntCls0 }}" onClick="{{ onCnt0 }}">1</button>
           <button type="button" class="{{ cntCls1 }}" onClick="{{ onCnt1 }}">2</button>
@@ -389,7 +390,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
       </div>
       <div class="calc-out" aria-live="polite">
         <div class="calc-big">≈ {{ shownFmt }} ₽</div>
-        <div class="calc-cap">your share per month</div>
+        <div class="calc-cap">illustrative referral fee</div>
         <div class="calc-row">
           <div class="calc-cell"><b>≈ {{ perProjectFmt }} ₽</b><span>per project</span></div>
         </div>
@@ -400,7 +401,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
   <!-- ============ TRANSPARENCY ============ -->
   <section class="p-wrap p-sec">
     <h2 class="p-h2">Honest and transparent</h2>
-    <p class="p-sub">No "get rich quick." You earn as much as you bring.</p>
+    <p class="p-sub">A referral fee is tied only to a specific paid project and terms agreed in advance.</p>
     <div style="margin-top:22px;max-width:640px">
       <div class="split" aria-hidden="true">
         <div class="split-you">you ≈20%</div>
@@ -536,7 +537,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
       <h2 class="p-h2">Shall we try?</h2>
       <p class="p-lead" style="color:var(--text-strong);max-width:520px">Tell us a bit about yourself and who you could bring. We'll reply and discuss terms, no strings attached.</p>
       <div class="p-cta-row">
-        <a href="partner-apply.html" class="p-btn"><span style="width:8px;height:8px;border-radius:50%;background:var(--online);box-shadow:0 0 0 3px rgba(49,181,69,.25)"></span>Send a request</a>
+        <a href="partner-apply.html" class="p-btn">Send a request</a>
         <a href="{{ telegramUrl }}" class="p-ghost" target="_blank" rel="noopener">Message on Telegram →</a>
       </div>
       <div class="p-direct">or directly: <a href="{{ telegramUrl }}" target="_blank" rel="noopener">{{ telegram }}</a></div>

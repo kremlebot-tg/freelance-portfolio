@@ -23,7 +23,7 @@
 <link rel="alternate" hreflang="ru" href="https://rednd.ru/about.html">
 <link rel="alternate" hreflang="en" href="https://rednd.ru/en/about.html">
 <link rel="alternate" hreflang="x-default" href="https://rednd.ru/about.html">
-<script defer src="./site-config.js?v=20260821b"></script>
+<script defer src="./site-config.js?v=20260825a"></script>
 <script>(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 <link rel="preload" href="./fonts/inter-UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa0ZL7W0Q5n-wU.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="./theme.css?v=20260821b">
@@ -87,7 +87,8 @@
         "logo": "https://rednd.ru/favicon.svg",
         "email": "mailto:politushkin@gmail.com",
         "sameAs": [
-          "https://t.me/re_dnd"
+          "https://t.me/re_dnd",
+          "https://github.com/kremlebot-tg/freelance-portfolio"
         ]
       }
     }
@@ -124,7 +125,7 @@
     </sc-if>
     <div style="display:flex;flex-direction:column;gap:6px">
       <h1 style="margin:0;font:700 clamp(28px,4vw,42px)/1.15 Sora,sans-serif;letter-spacing:-0.02em">О команде Re:dnd</h1>
-      <span style="display:flex;align-items:center;gap:8px;font:500 13.5px JetBrains Mono,monospace;color:var(--text-meta)"><span style="width:8px;height:8px;border-radius:50%;background:var(--online)"></span>команда продуктовой разработки</span>
+      <span style="font:500 13.5px JetBrains Mono,monospace;color:var(--text-meta)">команда продуктовой разработки</span>
     </div>
   </div>
 
@@ -142,6 +143,16 @@
       <p style="margin:0;font:400 clamp(15px,1.6vw,16.5px)/1.6 Inter,system-ui,sans-serif;color:var(--text-strong);text-wrap:pretty"><strong style="color:var(--text)">Доводим до production.</strong> Отдельно проверяем приём оплат, выдачу доступа, резервирование и передачу проекта.</p>
     </div>
   </div>
+
+  <section aria-labelledby="verify-title" style="margin-bottom:32px">
+    <h2 id="verify-title" style="margin:0 0 14px;font:600 19px/1.3 Sora,sans-serif">Как проверить Re:dnd</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:12px">
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:15px;padding:18px;display:flex;flex-direction:column;gap:7px"><span style="font:500 12px JetBrains Mono,monospace;color:var(--accent)">юридическое лицо</span><strong style="font:600 15px/1.4 Inter,system-ui,sans-serif">ИП Яценко Даниил Александрович</strong><span style="font:400 13.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">ИНН 502991709786<br>ОГРНИП 325774600194672</span></div>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:15px;padding:18px;display:flex;flex-direction:column;gap:7px"><span style="font:500 12px JetBrains Mono,monospace;color:var(--accent)">официальные контакты</span><a href="https://t.me/re_dnd" rel="me" style="font:600 15px/1.4 Inter,system-ui,sans-serif;color:var(--text);text-decoration:none" style-hover="color:var(--accent);text-decoration:underline">Telegram @re_dnd</a><a href="mailto:politushkin@gmail.com" style="font:400 13.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body);text-decoration:none;overflow-wrap:anywhere" style-hover="color:var(--accent);text-decoration:underline">politushkin@gmail.com</a></div>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:15px;padding:18px;display:flex;flex-direction:column;gap:7px"><span style="font:500 12px JetBrains Mono,monospace;color:var(--accent)">прозрачность</span><a href="https://github.com/kremlebot-tg/freelance-portfolio" style="font:600 15px/1.4 Inter,system-ui,sans-serif;color:var(--text);text-decoration:none" style-hover="color:var(--accent);text-decoration:underline">Исходники сайта на GitHub</a><a href=".well-known/security.txt" style="font:400 13.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body);text-decoration:none" style-hover="color:var(--accent);text-decoration:underline">Контакты для сообщений о безопасности</a></div>
+    </div>
+    <p style="margin:12px 0 0;font:400 13.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-muted)">Мы не просим коды из SMS, пароли, данные банковских карт или переводы в криптовалюте. Условия, стоимость и порядок оплаты фиксируются до начала работ.</p>
+  </section>
 
   <sc-if value="{{ hasAboutLines }}" hint-placeholder-val="{{ false }}">
     <div style="background:var(--surface);border-radius:18px 18px 18px 5px;padding:clamp(20px,3vw,26px);box-shadow:0 2px 6px var(--shadow-2);margin:-16px 0 32px">
@@ -164,7 +175,6 @@
 
   <div style="display:flex;gap:10px;flex-wrap:wrap">
     <a href="contact.html" style="display:inline-flex;align-items:center;gap:9px;background:var(--accent-cta);color:var(--surface);text-decoration:none;font:600 15.5px/1 Inter,system-ui,sans-serif;padding:13px 22px;min-height:44px;border-radius:12px" style-hover="background:var(--accent)" style-focus-visible="outline:2px solid var(--text);outline-offset:2px">
-      <span style="width:8px;height:8px;border-radius:50%;background:var(--online);box-shadow:0 0 0 3px rgba(49,181,69,0.25)"></span>
       Написать
     </a>
     <a href="projects.html" style="display:inline-flex;align-items:center;background:var(--surface);color:var(--accent);border:1px solid var(--border-input);text-decoration:none;font:600 15.5px/1 Inter,system-ui,sans-serif;padding:13px 22px;min-height:44px;border-radius:12px" style-hover="background:var(--accent-tint)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">Смотреть проекты</a>

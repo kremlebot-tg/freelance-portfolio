@@ -23,7 +23,7 @@
 <link rel="alternate" hreflang="ru" href="https://rednd.ru/case-subscriptions.html">
 <link rel="alternate" hreflang="en" href="https://rednd.ru/en/case-subscriptions.html">
 <link rel="alternate" hreflang="x-default" href="https://rednd.ru/case-subscriptions.html">
-<script defer src="../site-config.js?v=20260821b"></script>
+<script defer src="../site-config.js?v=20260825a"></script>
 <script>(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 <link rel="preload" href="../fonts/inter-UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../fonts/sora-xMQ9uFFYT72X5wkB_18qmnndmSdSnh2BAfO5mnuyOo1lfiQwV6-xo6eeIw.woff2" as="font" type="font/woff2" crossorigin>
@@ -213,18 +213,18 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
           <sc-if value="{{ s4 }}" hint-placeholder-val="{{ false }}">
             <div style="align-self:flex-start;max-width:88%;display:flex;flex-direction:column;gap:6px;animation:{{ anim }}">
               <div style="background:var(--surface);border-radius:15px 15px 15px 4px;padding:12px 13px;box-shadow:0 1px 1px var(--shadow-1);display:flex;flex-direction:column;gap:8px">
-                <span style="font:600 14.5px Inter,system-ui,sans-serif">Invoice</span>
-                <span style="font:400 13.5px/1.5 Inter,system-ui,sans-serif;color:var(--text-body)">Subscription · {{ chosenName }}<br>Merchant: {{ brandName }}</span>
+                <span style="font:600 14.5px Inter,system-ui,sans-serif">Invoice mock-up</span>
+                <span style="font:400 13.5px/1.5 Inter,system-ui,sans-serif;color:var(--text-body)">Subscription · {{ chosenName }}<br>Demo merchant: {{ brandName }}</span>
                 <span style="font:700 20px Sora,sans-serif">{{ chosenPrice }} ₽</span>
               </div>
-              <button type="button" onClick="{{ onOpenPay }}" disabled="{{ payLocked }}" style="text-align:center;padding:11px 12px;border-radius:11px;border:1px solid rgba(26,121,199,0.2);background:rgba(255,255,255,0.85);color:var(--accent);font:600 14px/1 Inter,system-ui,sans-serif;cursor:{{ payCursor }}" style-hover="background:var(--surface)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">💳 Pay {{ chosenPrice }} ₽</button>
+              <button type="button" onClick="{{ onOpenPay }}" disabled="{{ payLocked }}" style="text-align:center;padding:11px 12px;border-radius:11px;border:1px solid rgba(26,121,199,0.2);background:rgba(255,255,255,0.85);color:var(--accent);font:600 14px/1 Inter,system-ui,sans-serif;cursor:{{ payCursor }}" style-hover="background:var(--surface)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">Open mock-up · {{ chosenPrice }} ₽</button>
             </div>
           </sc-if>
 
           <sc-if value="{{ s5 }}" hint-placeholder-val="{{ false }}">
             <div style="align-self:flex-start;max-width:88%;display:flex;flex-direction:column;gap:6px;animation:{{ anim }}">
               <div style="background:var(--surface);border-radius:15px 15px 15px 4px;padding:12px 13px;box-shadow:0 1px 1px var(--shadow-1);display:flex;flex-direction:column;gap:10px">
-                <span style="font:600 14.5px Inter,system-ui,sans-serif;color:#1E9E46">Paid ✓ Access granted</span>
+                <span style="font:600 14.5px Inter,system-ui,sans-serif;color:#1E9E46">Demo complete · access state shown</span>
                 <pre style="margin:0;background:var(--text);color:#B8E2F7;border-radius:10px;padding:12px 14px;font:400 12px/1.65 JetBrains Mono,monospace;overflow-x:auto">plan:    {{ chosenName }}
 key:     dY7k-4fA2-x9Q1
 access:  until {{ paidUntil }}
@@ -257,11 +257,11 @@ status:  active · auto-renew</pre>
              card details; real data is entered only on the certified
              payment provider's own page. -->
         <sc-if value="{{ showPay }}" hint-placeholder-val="{{ false }}">
-          <div role="dialog" aria-label="Demo of a secure payment hand-off" style="position:absolute;inset:0;background:rgba(19,35,47,0.5);display:flex;align-items:flex-end;z-index:5">
+          <div role="dialog" aria-label="Mock-up of the hand-off to a payment provider" style="position:absolute;inset:0;background:rgba(19,35,47,0.5);display:flex;align-items:flex-end;z-index:5">
             <div style="width:100%;background:var(--surface);border-radius:18px 18px 0 0;padding:20px;display:flex;flex-direction:column;gap:14px;animation:{{ anim }}">
               <div style="display:flex;align-items:center;gap:8px">
-                <span style="font:700 17px Sora,sans-serif">Secure payment</span>
-                <span style="font:400 11.5px JetBrains Mono,monospace;color:var(--text-muted)">// flow demonstration</span>
+                <span style="font:700 17px Sora,sans-serif">Payment hand-off mock-up</span>
+                <span style="font:400 11.5px JetBrains Mono,monospace;color:var(--text-muted)">demo · no charge</span>
                 <button type="button" aria-label="Close" onClick="{{ onClosePay }}" style="margin-left:auto;border:none;background:var(--surface-2);color:var(--text-meta);width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:15px;line-height:1" style-hover="background:var(--border-soft)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">✕</button>
               </div>
               <div style="display:flex;align-items:baseline;gap:8px">
@@ -387,8 +387,8 @@ class Component extends DCLogic {
       brandName: this.props.brandName ?? 'Re:dnd',
       chatRef: this._chatRef,
       anim: reduced ? 'none' : 'bubbleIn 0.26s ease both',
-      statusText: st.typing ? 'typing…' : 'bot · online',
-      statusColor: st.typing ? '#1A79C7' : '#31B545',
+      statusText: st.typing ? 'showing the next step…' : 'demo bot',
+      statusColor: st.typing ? '#1A79C7' : 'var(--text-muted)',
       s1: st.stage >= 1, s2: st.stage >= 2, s3: st.stage >= 3, s4: st.stage >= 4, s5: st.stage >= 5,
       typing: st.typing,
       showStartChip: st.stage === 0,
@@ -417,7 +417,7 @@ class Component extends DCLogic {
       payCursor: st.stage >= 5 ? 'default' : 'pointer',
       showPay: st.showPay,
       paying: st.paying,
-      payBtnText: st.paying ? 'Processing payment…' : ('Pay ' + chosen.price + ' ₽'),
+      payBtnText: st.paying ? 'Showing result…' : 'Complete demo flow',
       onStart: () => {
         if (this.state.stage !== 0) return;
         this.setState({ stage: 1 });

@@ -106,6 +106,8 @@ curl -fsS https://rednd.ru/sitemap.xml >/dev/null
 6. Проверить route API Gateway `/submit` и допустимые origin
    `https://rednd.ru`, `https://www.rednd.ru`.
 7. Обновить `formEndpoint` в `site-config.js`, если адрес Gateway изменился.
+8. Оставить `formEnabled: false` до успешной проверки CORS и одного
+   согласованного сквозного теста; затем включить и повторно проверить production.
 
 Безопасная проверка CORS, не создающая заявку:
 

@@ -23,7 +23,7 @@
 <link rel="alternate" hreflang="ru" href="https://rednd.ru/contact.html">
 <link rel="alternate" hreflang="en" href="https://rednd.ru/en/contact.html">
 <link rel="alternate" hreflang="x-default" href="https://rednd.ru/contact.html">
-<script defer src="../site-config.js?v=20260821b"></script>
+<script defer src="../site-config.js?v=20260825a"></script>
 <script>(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 <link rel="preload" href="../fonts/inter-UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../fonts/sora-xMQ9uFFYT72X5wkB_18qmnndmSdSnh2BAfO5mnuyOo1lfiQwV6-xo6eeIw.woff2" as="font" type="font/woff2" crossorigin>
@@ -174,6 +174,10 @@
       <sc-if value="{{ notSubmitted }}" hint-placeholder-val="{{ true }}">
         <form data-conversion-form="contact" onSubmit="{{ onSubmit }}" style="display:flex;flex-direction:column;gap:20px">
 
+          <sc-if value="{{ formUnavailable }}" hint-placeholder-val="{{ false }}">
+            <div role="status" style="font:400 14px/1.55 Inter,system-ui,sans-serif;color:var(--text-body);background:var(--status-amber-bg);border:1px solid var(--status-amber-fg);border-radius:11px;padding:12px 14px"><strong style="color:var(--text)">The online form is temporarily unavailable.</strong> Submission is disabled so your description is not lost. Message <a href="https://t.me/re_dnd" style="color:var(--accent);font-weight:600">Telegram @re_dnd</a> or send an <a href="mailto:politushkin@gmail.com" style="color:var(--accent);font-weight:600">email</a>.</div>
+          </sc-if>
+
           <label style="display:flex;flex-direction:column;gap:8px">
             <span style="font:600 14.5px Inter,system-ui,sans-serif">What do you need built or automated</span>
             <textarea data-form-task name="task" required aria-required="true" rows="4" value="{{ task }}" onChange="{{ onTask }}" aria-invalid="{{ taskInvalid }}" aria-describedby="{{ formErrorId }}" placeholder="E.g.: collect leads from Telegram and push them to a Google Sheet" style="font:400 15px/1.55 Inter,system-ui,sans-serif;color:var(--text);border:1px solid var(--border-input);border-radius:12px;padding:12px 14px;resize:vertical;background:var(--input-bg);outline:none" style-focus-visible="border-color:var(--accent-cta);box-shadow:0 0 0 3px rgba(34,158,217,0.18)"></textarea>
@@ -209,9 +213,9 @@
           </sc-if>
 
           <div style="display:flex;flex-direction:column;gap:10px">
-            <button type="submit" aria-busy="{{ sending }}" style="display:inline-flex;align-items:center;justify-content:center;gap:9px;background:var(--accent-cta);color:var(--surface);border:none;cursor:pointer;font:600 16px/1 Inter,system-ui,sans-serif;padding:14px 24px;border-radius:13px;width:fit-content" style-hover="background:var(--accent)" style-focus-visible="outline:2px solid var(--text);outline-offset:2px">{{ submitLabel }}</button>
+            <button type="submit" disabled="{{ submitDisabled }}" aria-disabled="{{ submitDisabled }}" aria-busy="{{ sending }}" style="display:inline-flex;align-items:center;justify-content:center;gap:9px;background:var(--accent-cta);color:var(--surface);border:none;cursor:{{ submitCursor }};opacity:{{ submitOpacity }};font:600 16px/1 Inter,system-ui,sans-serif;padding:14px 24px;border-radius:13px;width:fit-content" style-hover="background:var(--accent)" style-focus-visible="outline:2px solid var(--text);outline-offset:2px">{{ submitLabel }}</button>
             <sc-if value="{{ demoMode }}" hint-placeholder-val="{{ true }}">
-              <span style="font:400 12.5px/1.5 JetBrains Mono,monospace;color:var(--text-muted)">// prototype: real submission will be wired by Claude Code</span>
+              <span style="font:400 12.5px/1.5 Inter,system-ui,sans-serif;color:var(--text-muted)">Demo mode: no data is sent</span>
             </sc-if>
             <span style="font:400 12.5px/1.5 Inter,system-ui,sans-serif;color:var(--text-muted)">By submitting, you agree to the <a href="privacy.html" style="display:inline-flex;min-height:44px;align-items:center;color:var(--accent);text-decoration:none;border-radius:4px" style-hover="text-decoration:underline" style-focus-visible="outline:2px solid var(--accent);outline-offset:1px">privacy policy</a> and <a href="consent.html" style="display:inline-flex;min-height:44px;align-items:center;color:var(--accent);text-decoration:none;border-radius:4px" style-hover="text-decoration:underline" style-focus-visible="outline:2px solid var(--accent);outline-offset:1px">personal data processing</a>.</span>
           </div>
@@ -222,7 +226,7 @@
         <div style="display:flex;flex-direction:column;gap:14px">
           <div style="background:var(--chat-area);border-radius:16px 16px 16px 5px;padding:14px 18px;font:400 15.5px/1.55 Inter,system-ui,sans-serif;max-width:480px">Request received ✓ We usually reply within a couple of hours, we'll message you at {{ echoContact }}.</div>
           <sc-if value="{{ demoMode }}" hint-placeholder-val="{{ false }}">
-            <div style="font:400 13px/1.5 JetBrains Mono,monospace;color:var(--text-muted)">// this is a demo: server submission will be wired by Claude Code</div>
+            <div style="font:400 13px/1.5 Inter,system-ui,sans-serif;color:var(--text-muted)">Demo mode: this request was not sent</div>
           </sc-if>
           <button type="button" onClick="{{ onReset }}" style="font:500 14px Inter,system-ui,sans-serif;color:var(--accent);background:var(--accent-tint);border:none;cursor:pointer;padding:10px 16px;border-radius:10px;width:fit-content" style-hover="background:var(--accent-tint-2)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">Fill in again</button>
         </div>
@@ -248,7 +252,7 @@
           </span>
         </a>
         <sc-if value="{{ contactsArePlaceholders }}" hint-placeholder-val="{{ true }}">
-          <span style="font:400 12.5px/1.5 JetBrains Mono,monospace;color:var(--text-muted)">// placeholders — put your contacts in site-config.js</span>
+          <span style="font:400 12.5px/1.5 Inter,system-ui,sans-serif;color:var(--text-muted)">Direct contacts are temporarily unavailable</span>
         </sc-if>
       </div>
       <div style="background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(20px,3vw,26px);display:flex;flex-direction:column;gap:12px">
@@ -290,11 +294,10 @@
             </div></div>
           </div>
         </div>
-        <span style="display:flex;align-items:center;gap:8px;font:500 12.5px JetBrains Mono,monospace;color:var(--text-meta)"><span style="width:8px;height:8px;border-radius:50%;background:var(--online);flex:none"></span>officially registered: sole proprietor, contract, bank transfer</span>
+        <span style="display:flex;align-items:center;gap:8px;font:500 12.5px JetBrains Mono,monospace;color:var(--text-meta)"><span aria-hidden="true" style="color:var(--accent);font:700 14px Inter,system-ui,sans-serif">✓</span>officially registered: sole proprietor, contract, bank transfer</span>
       </div>
       <div style="display:flex;align-items:center;gap:10px;font:500 14px Inter,system-ui,sans-serif;color:var(--text-body);padding:0 6px">
-        <span style="width:8px;height:8px;border-radius:50%;background:var(--online);box-shadow:0 0 0 3px rgba(49,181,69,0.25);flex:none"></span>
-        online · we usually reply within a couple of hours
+        We reply via the contact you provide
       </div>
     </div>
 
@@ -359,6 +362,8 @@ class Component extends DCLogic {
     const cfg = (typeof window !== 'undefined' && window.SITE_CONFIG) || {};
     const endpoint = (cfg.formEndpoint || '').trim();
     const demoMode = !endpoint;
+    const formUnavailable = !demoMode && cfg.formEnabled === false;
+    const submitDisabled = this.state.sending || formUnavailable;
     const types = ['Telegram bot', 'AI assistant', 'Automation', 'Web service', 'Mobile', 'other'];
     const typeChips = types.map(label => {
       const on = this.state.type === label;
@@ -426,7 +431,11 @@ class Component extends DCLogic {
           ? 'Sending failed — try again or message us directly on Telegram.'
           : 'Please fill in the task description and a contact, otherwise we can\'t reply.',
       sending: this.state.sending,
-      submitLabel: this.state.sending ? 'Sending…' : 'Send',
+      formUnavailable,
+      submitDisabled,
+      submitCursor: submitDisabled ? 'not-allowed' : 'pointer',
+      submitOpacity: submitDisabled ? '0.65' : '1',
+      submitLabel: formUnavailable ? 'Form temporarily unavailable' : this.state.sending ? 'Sending…' : 'Send',
       echoContact: this.state.contact || 'Telegram',
       website: this.state.website,
       onWebsite: e => this.setState({ website: e.target.value }),
@@ -435,7 +444,7 @@ class Component extends DCLogic {
       onContact: e => this.setState({ contact: e.target.value, error: false }),
       onSubmit: (e) => {
         if (e) e.preventDefault();
-        if (this.state.sending) return;
+        if (submitDisabled) return;
         const missingTask = !this.state.task.trim();
         const missingContact = !this.state.contact.trim();
         if (missingTask || missingContact) {

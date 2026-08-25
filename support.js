@@ -87,7 +87,6 @@
     .sc-placeholder{background:color-mix(in srgb,currentColor 8%,transparent);
       border:1px solid color-mix(in srgb,currentColor 50%,transparent);
       border-radius:2px;box-sizing:border-box;overflow:hidden}
-    @keyframes sc-shine{0%{background-position:100% 50%}100%{background-position:0% 50%}}
     html.sc-dc-streaming .sc-placeholder,
     html.sc-dc-streaming .sc-interp.sc-missing{position:relative;
       background:color-mix(in srgb,currentColor 5%,transparent);
@@ -95,10 +94,6 @@
     html.sc-dc-streaming .sc-placeholder::before,
     html.sc-dc-streaming .sc-interp.sc-missing::before{content:'';
       position:absolute;inset:0;pointer-events:none;
-      background:linear-gradient(90deg,rgba(217,119,87,0) 25%,rgba(247,225,211,.95) 37%,rgba(217,119,87,0) 63%);
-      background-size:400% 100%;animation:sc-shine 1.4s ease infinite}
-    html.sc-dc-streaming .sc-placeholder:nth-child(n+9 of .sc-placeholder)::before,
-    html.sc-dc-streaming .sc-interp.sc-missing:nth-child(n+9 of .sc-interp.sc-missing)::before{animation:none;
       background:color-mix(in srgb,currentColor 8%,transparent)}
     .sc-placeholder-error{padding:4px 8px;font:11px/1.4 ui-monospace,monospace;
       color:color-mix(in srgb,currentColor 70%,transparent);word-break:break-word}

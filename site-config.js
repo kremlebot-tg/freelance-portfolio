@@ -7,6 +7,10 @@ window.SITE_CONFIG = {
   // Заявка сначала пишется в Object Storage в РФ (152-ФЗ), потом уведомление
   // в Telegram. Токен бота и chat_id — в Lockbox, НЕ здесь. См. README.
   formEndpoint: 'https://d5d7olk60q94hjb111lj.kocrdvxt.apigw.yandexcloud.net/submit',
+  // Аварийный выключатель: false блокирует отправку и показывает прямые
+  // контакты. Вернуть true только после read-only проверки OPTIONS/GET и
+  // контрольной отправки через восстановленный API Gateway.
+  formEnabled: false,
   // Если endpoint пустой — форма показывает демо-режим. Сейчас задан.
 
   // --- Веб-аналитика (Яндекс Метрика, данные в РФ) ---

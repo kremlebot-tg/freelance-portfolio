@@ -26,7 +26,7 @@
 <script>(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 <link rel="preload" href="./fonts/inter-UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa0ZL7W0Q5n-wU.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="./theme.css?v=20260821b">
-<script defer src="./site-config.js?v=20260821b"></script>
+<script defer src="./site-config.js?v=20260825a"></script>
 <script defer src="./vendor/react.production.min.js" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z" crossorigin="anonymous"></script>
 <script defer src="./vendor/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous"></script>
 <script defer src="./support.js"></script>
@@ -48,7 +48,7 @@
       "identifier": { "@type": "PropertyValue", "propertyID": "ОГРНИП", "value": "325774600194672" },
       "email": "mailto:politushkin@gmail.com",
       "contactPoint": { "@type": "ContactPoint", "email": "politushkin@gmail.com", "availableLanguage": ["ru", "en"] },
-      "sameAs": ["https://t.me/re_dnd"]
+      "sameAs": ["https://t.me/re_dnd", "https://github.com/kremlebot-tg/freelance-portfolio"]
     },
     {
       "@type": "WebSite",
@@ -96,8 +96,6 @@
 <style>
 *,*::before,*::after{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
-@keyframes bubbleIn{from{opacity:0;transform:translateY(8px) scale(0.98)}to{opacity:1;transform:none}}
-@keyframes tgDot{0%,60%,100%{opacity:0.35;transform:translateY(0)}30%{opacity:1;transform:translateY(-2px)}}
 /* раскрываемые карточки (услуги + процесс) */
 .ex-sum{display:flex;flex-direction:column;gap:9px;width:100%;text-align:left;background:none;border:none;padding:0;margin:0;font:inherit;color:inherit;cursor:pointer}
 .ex-sum:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:8px}
@@ -164,52 +162,20 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
         <a href="projects.html" data-hero-action="projects" style="display:inline-flex;flex:1 1 170px;min-height:48px;align-items:center;justify-content:center;padding:0 18px;border:1px solid var(--border-hover);border-radius:12px;color:var(--text);font:600 15px/1 Inter,system-ui,sans-serif;text-decoration:none" style-hover="border-color:var(--accent);color:var(--accent)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">Посмотреть проекты</a>
       </div>
       <div style="display:flex;align-items:center;gap:10px;font:500 14px JetBrains Mono,monospace;color:var(--text-meta)">
-        <span style="width:8px;height:8px;border-radius:50%;background:var(--online);flex:none"></span>
-        онлайн · отвечаем обычно за пару часов
+        ИП · договор · безналичная оплата
       </div>
     </div>
 
-    <!-- Chat window -->
-    <div aria-label="Демо-чат" style="justify-self:center;width:100%;max-width:432px;background:var(--surface);border:1px solid var(--border);border-radius:20px;overflow:hidden;box-shadow:0 24px 60px -18px var(--shadow-3)">
-      <div style="display:flex;align-items:center;gap:11px;padding:12px 16px;background:var(--surface);border-bottom:1px solid var(--border-soft)">
-        <span style="width:38px;height:38px;border-radius:50%;background:var(--accent);color:var(--surface);display:grid;place-items:center;font:600 14px Sora,sans-serif">{{ personInitials }}</span>
-        <div style="display:flex;flex-direction:column;gap:2px">
-          <span style="font:600 15px/1 Sora,sans-serif">{{ personName }}</span>
-          <span style="font:400 13px/1 Inter,system-ui,sans-serif;color:{{ statusColor }}">{{ statusText }}</span>
-        </div>
-        <span style="margin-left:auto;font:500 12px JetBrains Mono,monospace;color:var(--text-muted)">@re_dnd</span>
+    <aside aria-labelledby="hero-terms-title" style="justify-self:center;width:100%;max-width:432px;background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:clamp(20px,3vw,28px);box-shadow:0 24px 60px -18px var(--shadow-3);display:flex;flex-direction:column;gap:18px">
+      <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--accent)">условия до старта</span>
+      <h2 id="hero-terms-title" style="margin:0;font:600 clamp(22px,2.6vw,28px)/1.25 Sora,sans-serif;letter-spacing:-0.01em">Сначала фиксируем договорённости</h2>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div style="display:grid;grid-template-columns:34px 1fr;gap:12px;align-items:start"><span style="font:600 13px JetBrains Mono,monospace;color:var(--accent)">01</span><div><strong style="display:block;font:600 15.5px/1.35 Inter,system-ui,sans-serif">Границы, срок и стоимость</strong><span style="display:block;margin-top:4px;font:400 14px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Предложение согласуем до начала разработки.</span></div></div>
+        <div style="display:grid;grid-template-columns:34px 1fr;gap:12px;align-items:start"><span style="font:600 13px JetBrains Mono,monospace;color:var(--accent)">02</span><div><strong style="display:block;font:600 15.5px/1.35 Inter,system-ui,sans-serif">Ответственного и точки проверки</strong><span style="display:block;margin-top:4px;font:400 14px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Промежуточный результат виден по ходу проекта.</span></div></div>
+        <div style="display:grid;grid-template-columns:34px 1fr;gap:12px;align-items:start"><span style="font:600 13px JetBrains Mono,monospace;color:var(--accent)">03</span><div><strong style="display:block;font:600 15.5px/1.35 Inter,system-ui,sans-serif">Передачу проекта и доступов</strong><span style="display:block;margin-top:4px;font:400 14px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Код, данные и рабочие аккаунты остаются у заказчика.</span></div></div>
       </div>
-      <div style="padding:18px 14px 14px;display:flex;flex-direction:column;gap:10px;min-height:330px;background-color:var(--chat-area)">
-        <sc-if value="{{ showB1 }}" hint-placeholder-val="{{ true }}">
-          <div style="align-self:flex-start;max-width:86%;background:var(--surface);border-radius:16px 16px 16px 5px;padding:9px 13px;box-shadow:0 1px 1px var(--shadow-1);font:400 15px/1.45 Inter,system-ui,sans-serif;animation:{{ bubbleAnim }}">Привет 👋 Мы — команда Re:dnd. Проектируем ботов, приложения и веб-сервисы для бизнеса.<span style="display:inline-block;margin-left:8px;font-size:11px;color:var(--text-muted);vertical-align:bottom">12:04</span></div>
-        </sc-if>
-        <sc-if value="{{ showB2 }}" hint-placeholder-val="{{ true }}">
-          <div style="align-self:flex-start;max-width:86%;background:var(--surface);border-radius:16px 16px 16px 5px;padding:9px 13px;box-shadow:0 1px 1px var(--shadow-1);font:400 15px/1.45 Inter,system-ui,sans-serif;animation:{{ bubbleAnim }}">Ведём проект от приёма заявок и интеграций до оплат, запуска и передачи доступов.<span style="display:inline-block;margin-left:8px;font-size:11px;color:var(--text-muted);vertical-align:bottom">12:04</span></div>
-        </sc-if>
-        <sc-if value="{{ showB3 }}" hint-placeholder-val="{{ true }}">
-          <div style="align-self:flex-start;max-width:86%;background:var(--surface);border-radius:16px 16px 16px 5px;padding:9px 13px;box-shadow:0 1px 1px var(--shadow-1);font:400 15px/1.45 Inter,system-ui,sans-serif;animation:{{ bubbleAnim }}">Расскажите, что нужно автоматизировать. Команда разберёт задачу и предложит следующий шаг.<span style="display:inline-block;margin-left:8px;font-size:11px;color:var(--text-muted);vertical-align:bottom">12:05</span></div>
-        </sc-if>
-        <sc-if value="{{ showTyping }}" hint-placeholder-val="{{ false }}">
-          <div aria-hidden="true" style="align-self:flex-start;background:var(--surface);border-radius:16px 16px 16px 5px;padding:13px 15px;box-shadow:0 1px 1px var(--shadow-1);display:flex;gap:4px">
-            <span style="width:6px;height:6px;border-radius:50%;background:var(--text-muted);animation:tgDot 1.1s infinite"></span>
-            <span style="width:6px;height:6px;border-radius:50%;background:var(--text-muted);animation:tgDot 1.1s 0.18s infinite"></span>
-            <span style="width:6px;height:6px;border-radius:50%;background:var(--text-muted);animation:tgDot 1.1s 0.36s infinite"></span>
-          </div>
-        </sc-if>
-        <sc-if value="{{ showKeys }}" hint-placeholder-val="{{ true }}">
-          <div style="display:flex;gap:6px;margin-top:2px;animation:{{ bubbleAnim }}">
-            <a href="projects.html" style="flex:1;text-align:center;padding:11px 8px;border-radius:11px;background:var(--chat-key-bg);color:var(--accent);text-decoration:none;font:500 14px/1 Inter,system-ui,sans-serif;border:1px solid rgba(26,121,199,0.14)" style-hover="background:var(--surface)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">Смотреть проекты</a>
-            <a href="contact.html" style="flex:1;text-align:center;padding:11px 8px;border-radius:11px;background:var(--chat-key-bg);color:var(--accent);text-decoration:none;font:500 14px/1 Inter,system-ui,sans-serif;border:1px solid rgba(26,121,199,0.14)" style-hover="background:var(--surface)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">Обсудить задачу</a>
-          </div>
-        </sc-if>
-      </div>
-      <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--surface);border-top:1px solid var(--border-soft)">
-        <span aria-hidden="true" style="flex:1;padding:9px 14px;border-radius:18px;background:var(--surface-2);color:var(--text-muted);font:400 14px Inter,system-ui,sans-serif">Сообщение</span>
-        <span aria-hidden="true" style="width:34px;height:34px;border-radius:50%;background:var(--accent-cta);display:grid;place-items:center;flex:none">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 12L20 4L13 20L11 13L4 12Z" fill="#FFFFFF"></path></svg>
-        </span>
-      </div>
-    </div>
+      <a href="about.html" style="display:inline-flex;min-height:44px;align-items:center;color:var(--accent);font:500 14px Inter,system-ui,sans-serif;text-decoration:none;border-top:1px solid var(--border-soft);padding-top:14px" style-hover="text-decoration:underline" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">Проверить реквизиты и порядок работы →</a>
+    </aside>
   </section>
 
   <!-- ============ SERVICES ============ -->
@@ -441,7 +407,7 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
       </div>
     </div>
     <div style="display:flex;align-items:center;gap:8px;margin-top:16px;font:500 13.5px JetBrains Mono,monospace;color:var(--text-meta)">
-      <span style="width:8px;height:8px;border-radius:50%;background:var(--online);flex:none"></span>
+      <span aria-hidden="true" style="color:var(--accent);font:700 14px Inter,system-ui,sans-serif">✓</span>
       Работаем официально: ИП, договор, безналичная оплата
     </div>
   </section>
@@ -495,7 +461,6 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
   <section style="max-width:760px;margin:0 auto;padding:clamp(48px,6vw,80px) 22px;display:flex;flex-direction:column;gap:18px;align-items:flex-start">
     <div style="align-self:stretch;background:var(--surface);border-radius:18px 18px 18px 5px;padding:18px 22px;box-shadow:0 2px 6px var(--shadow-2);font:400 clamp(17px,2vw,20px)/1.5 Inter,system-ui,sans-serif">Расскажите, что нужно автоматизировать. Мы вернёмся с планом, сроком и ценой.</div>
     <a href="contact.html" style="display:inline-flex;align-items:center;gap:9px;background:var(--accent-cta);color:var(--surface);text-decoration:none;font:600 16px/1 Inter,system-ui,sans-serif;padding:14px 24px;border-radius:13px" style-hover="background:var(--accent)" style-focus-visible="outline:2px solid var(--text);outline-offset:2px">
-      <span style="width:8px;height:8px;border-radius:50%;background:var(--online);box-shadow:0 0 0 3px rgba(49,181,69,0.25)"></span>
       Написать
     </a>
   </section>
@@ -504,30 +469,10 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
 
 <dc-import name="Footer" brand-name="{{ brandName }}" hint-size="100%,110px"></dc-import>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;brandName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Re:dnd&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Бренд&quot;},&quot;animateHero&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Герой&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;brandName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Re:dnd&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Бренд&quot;}}">
 class Component extends DCLogic {
-  state = { step: 0, typing: false, proc: ['closed','closed','closed','closed','closed'], serv: ['closed','closed','closed','closed','closed'] };
-  componentDidMount() {
-    this._timers = [];
-    const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const skip = reduced || (this.props.animateHero === false);
-    if (skip) { this.setState({ step: 4, typing: false }); return; }
-    this.setState({ step: 0, typing: false });
-    const seq = [
-      [500,  () => this.setState({ typing: true })],
-      [1500, () => this.setState({ typing: false, step: 1 })],
-      [2000, () => this.setState({ typing: true })],
-      [3100, () => this.setState({ typing: false, step: 2 })],
-      [3600, () => this.setState({ typing: true })],
-      [4800, () => this.setState({ typing: false, step: 3 })],
-      [5400, () => this.setState({ step: 4 })],
-    ];
-    seq.forEach(([t, fn]) => this._timers.push(setTimeout(fn, t)));
-  }
-  componentWillUnmount() { (this._timers || []).forEach(clearTimeout); }
+  state = { proc: ['closed','closed','closed','closed','closed'], serv: ['closed','closed','closed','closed','closed'] };
   renderVals() {
-    const reduced = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const { step, typing } = this.state;
     const testimonials = (typeof window !== 'undefined' && window.SITE_CONFIG && window.SITE_CONFIG.testimonials) || [];
     const procVals = {};
     this.state.proc.forEach((s, i) => {
@@ -547,16 +492,6 @@ class Component extends DCLogic {
       testimonials,
       hasTestimonials: testimonials.length > 0,
       brandName: this.props.brandName ?? 'Re:dnd',
-      personName: 'Re:dnd',
-      personInitials: 'R:',
-      showB1: step >= 1,
-      showB2: step >= 2,
-      showB3: step >= 3,
-      showKeys: step >= 4,
-      showTyping: typing,
-      statusText: typing ? 'печатает…' : 'онлайн',
-      statusColor: typing ? '#58B9FF' : '#31B545',
-      bubbleAnim: reduced ? 'none' : 'bubbleIn 0.28s ease both',
     };
   }
 }

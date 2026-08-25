@@ -228,7 +228,7 @@ main { position: relative; }
 .rd-skip-link:focus { transform: translateY(0); }
 
 /* Если DC-рантайм показывает короткий loading-state, оставляем его статичным:
-   без «нейросетевого» shimmer-градиента и бесконечной анимации. */
+   без декоративного shimmer-эффекта и бесконечной анимации. */
 html.sc-dc-streaming .sc-placeholder::before,
 html.sc-dc-streaming .sc-interp.sc-missing::before {
   background: color-mix(in srgb, currentColor 10%, transparent) !important;

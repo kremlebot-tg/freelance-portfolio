@@ -211,7 +211,10 @@ def page_schema(
             "url": f"{ORIGIN}/",
             "logo": f"{ORIGIN}/favicon.svg",
             "email": "mailto:politushkin@gmail.com",
-            "sameAs": ["https://t.me/re_dnd"],
+            "sameAs": [
+                "https://t.me/re_dnd",
+                "https://github.com/kremlebot-tg/freelance-portfolio",
+            ],
         }
     elif filename == "projects.html":
         project_base = f"{ORIGIN}/en/" if language == "en" else f"{ORIGIN}/"
@@ -304,13 +307,13 @@ def optimize_runtime(source: str, prefix: str) -> str:
         )
     source = source.replace(
         f'<script src="{prefix}site-config.js?v=20260812a"></script>',
-        f'<script defer src="{prefix}site-config.js?v=20260821a"></script>',
+        f'<script defer src="{prefix}site-config.js?v=20260825a"></script>',
     ).replace(
         f'<script src="{prefix}site-config.js?v=20260814a"></script>',
-        f'<script defer src="{prefix}site-config.js?v=20260821a"></script>',
+        f'<script defer src="{prefix}site-config.js?v=20260825a"></script>',
     ).replace(
         f'<script defer src="{prefix}site-config.js?v=20260814a"></script>',
-        f'<script defer src="{prefix}site-config.js?v=20260821a"></script>',
+        f'<script defer src="{prefix}site-config.js?v=20260825a"></script>',
     )
     font_href = f'{prefix}fonts/fonts.css' if prefix == "../" else "fonts/fonts.css"
     font_stylesheet = f'<link href="{font_href}" rel="stylesheet">'

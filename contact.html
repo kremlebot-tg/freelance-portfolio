@@ -23,7 +23,7 @@
 <link rel="alternate" hreflang="ru" href="https://rednd.ru/contact.html">
 <link rel="alternate" hreflang="en" href="https://rednd.ru/en/contact.html">
 <link rel="alternate" hreflang="x-default" href="https://rednd.ru/contact.html">
-<script defer src="./site-config.js?v=20260821b"></script>
+<script defer src="./site-config.js?v=20260825a"></script>
 <script>(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 <link rel="preload" href="./fonts/inter-UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa0ZL7W0Q5n-wU.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="./theme.css?v=20260821b">
@@ -173,6 +173,10 @@
       <sc-if value="{{ notSubmitted }}" hint-placeholder-val="{{ true }}">
         <form data-conversion-form="contact" onSubmit="{{ onSubmit }}" style="display:flex;flex-direction:column;gap:20px">
 
+          <sc-if value="{{ formUnavailable }}" hint-placeholder-val="{{ false }}">
+            <div role="status" style="font:400 14px/1.55 Inter,system-ui,sans-serif;color:var(--text-body);background:var(--status-amber-bg);border:1px solid var(--status-amber-fg);border-radius:11px;padding:12px 14px"><strong style="color:var(--text)">Онлайн-форма временно недоступна.</strong> Отправка отключена, чтобы описание задачи не потерялось. Напишите напрямую в <a href="https://t.me/re_dnd" style="color:var(--accent);font-weight:600">Telegram @re_dnd</a> или на <a href="mailto:politushkin@gmail.com" style="color:var(--accent);font-weight:600">email</a>.</div>
+          </sc-if>
+
           <label style="display:flex;flex-direction:column;gap:8px">
             <span style="font:600 14.5px Inter,system-ui,sans-serif">Что нужно разработать или автоматизировать</span>
             <textarea data-form-task name="task" required aria-required="true" rows="4" value="{{ task }}" onChange="{{ onTask }}" aria-invalid="{{ taskInvalid }}" aria-describedby="{{ formErrorId }}" placeholder="Например: принимать заявки из Telegram и складывать их в Google-таблицу" style="font:400 15px/1.55 Inter,system-ui,sans-serif;color:var(--text);border:1px solid var(--border-input);border-radius:12px;padding:12px 14px;resize:vertical;background:var(--input-bg);outline:none" style-focus-visible="border-color:var(--accent-cta);box-shadow:0 0 0 3px rgba(34,158,217,0.18)"></textarea>
@@ -208,9 +212,9 @@
           </sc-if>
 
           <div style="display:flex;flex-direction:column;gap:10px">
-            <button type="submit" aria-busy="{{ sending }}" style="display:inline-flex;align-items:center;justify-content:center;gap:9px;background:var(--accent-cta);color:var(--surface);border:none;cursor:pointer;font:600 16px/1 Inter,system-ui,sans-serif;padding:14px 24px;border-radius:13px;width:fit-content" style-hover="background:var(--accent)" style-focus-visible="outline:2px solid var(--text);outline-offset:2px">{{ submitLabel }}</button>
+            <button type="submit" disabled="{{ submitDisabled }}" aria-disabled="{{ submitDisabled }}" aria-busy="{{ sending }}" style="display:inline-flex;align-items:center;justify-content:center;gap:9px;background:var(--accent-cta);color:var(--surface);border:none;cursor:{{ submitCursor }};opacity:{{ submitOpacity }};font:600 16px/1 Inter,system-ui,sans-serif;padding:14px 24px;border-radius:13px;width:fit-content" style-hover="background:var(--accent)" style-focus-visible="outline:2px solid var(--text);outline-offset:2px">{{ submitLabel }}</button>
             <sc-if value="{{ demoMode }}" hint-placeholder-val="{{ true }}">
-              <span style="font:400 12.5px/1.5 JetBrains Mono,monospace;color:var(--text-muted)">// прототип: реальную отправку подключит Claude Code</span>
+              <span style="font:400 12.5px/1.5 Inter,system-ui,sans-serif;color:var(--text-muted)">Демонстрационный режим: данные не отправляются</span>
             </sc-if>
             <span style="font:400 12.5px/1.5 Inter,system-ui,sans-serif;color:var(--text-muted)">Отправляя, вы соглашаетесь с <a href="privacy.html" style="display:inline-flex;min-height:44px;align-items:center;color:var(--accent);text-decoration:none;border-radius:4px" style-hover="text-decoration:underline" style-focus-visible="outline:2px solid var(--accent);outline-offset:1px">политикой конфиденциальности</a> и <a href="consent.html" style="display:inline-flex;min-height:44px;align-items:center;color:var(--accent);text-decoration:none;border-radius:4px" style-hover="text-decoration:underline" style-focus-visible="outline:2px solid var(--accent);outline-offset:1px">обработкой персональных данных</a>.</span>
           </div>
@@ -221,7 +225,7 @@
         <div style="display:flex;flex-direction:column;gap:14px">
           <div style="background:var(--chat-area);border-radius:16px 16px 16px 5px;padding:14px 18px;font:400 15.5px/1.55 Inter,system-ui,sans-serif;max-width:480px">Заявка принята ✓ Обычно отвечаем за пару часов. Напишем вам в {{ echoContact }}.</div>
           <sc-if value="{{ demoMode }}" hint-placeholder-val="{{ false }}">
-            <div style="font:400 13px/1.5 JetBrains Mono,monospace;color:var(--text-muted)">// это демонстрация: отправку на сервер подключит Claude Code</div>
+            <div style="font:400 13px/1.5 Inter,system-ui,sans-serif;color:var(--text-muted)">Демонстрационный режим: заявка не была отправлена</div>
           </sc-if>
           <button type="button" onClick="{{ onReset }}" style="font:500 14px Inter,system-ui,sans-serif;color:var(--accent);background:var(--accent-tint);border:none;cursor:pointer;padding:10px 16px;border-radius:10px;width:fit-content" style-hover="background:var(--accent-tint-2)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">Заполнить ещё раз</button>
         </div>
@@ -247,7 +251,7 @@
           </span>
         </a>
         <sc-if value="{{ contactsArePlaceholders }}" hint-placeholder-val="{{ true }}">
-          <span style="font:400 12.5px/1.5 JetBrains Mono,monospace;color:var(--text-muted)">// плейсхолдеры — замените на свои контакты в site-config.js</span>
+          <span style="font:400 12.5px/1.5 Inter,system-ui,sans-serif;color:var(--text-muted)">Прямые контакты временно недоступны</span>
         </sc-if>
       </div>
       <div style="background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(20px,3vw,26px);display:flex;flex-direction:column;gap:12px">
@@ -289,11 +293,10 @@
             </div></div>
           </div>
         </div>
-        <span style="display:flex;align-items:center;gap:8px;font:500 12.5px JetBrains Mono,monospace;color:var(--text-meta)"><span style="width:8px;height:8px;border-radius:50%;background:var(--online);flex:none"></span>работаем официально: ИП, договор, безнал</span>
+        <span style="display:flex;align-items:center;gap:8px;font:500 12.5px JetBrains Mono,monospace;color:var(--text-meta)"><span aria-hidden="true" style="color:var(--accent);font:700 14px Inter,system-ui,sans-serif">✓</span>работаем официально: ИП, договор, безнал</span>
       </div>
       <div style="display:flex;align-items:center;gap:10px;font:500 14px Inter,system-ui,sans-serif;color:var(--text-body);padding:0 6px">
-        <span style="width:8px;height:8px;border-radius:50%;background:var(--online);box-shadow:0 0 0 3px rgba(49,181,69,0.25);flex:none"></span>
-        онлайн · отвечаем обычно за пару часов
+        Ответим по указанному контакту
       </div>
     </div>
 
@@ -330,7 +333,7 @@
       <div class="acc" data-state="{{ faqState4 }}" style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:8px">
         <h3 style="margin:0"><button type="button" class="acc-sum" onClick="{{ onFaq4 }}" aria-expanded="{{ faqExp4 }}" aria-controls="faq-4" style="font:600 16.5px/1.35 Sora,sans-serif;color:var(--text)"><span class="faq-ic" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20 8H4V6h16m0 12H4v-6h16m0-8H4c-1.11 0-2 .89-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2"/></svg></span>Как проходит оплата?<span class="acc-chev" aria-hidden="true">▾</span></button></h3>
         <div id="faq-4" class="acc-body" style="animation:{{ faqAnim4 }}"><div class="acc-inner">
-          <p style="margin:0;font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Официально: ИП, договор и ссылка на оплату через ЮKassa. Платёж не уходит на личную карту сотрудника. Обычно работаем этапами: согласованная часть на старте, остальное — по факту сдачи работающего продукта.</p>
+          <p style="margin:0;font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Официально: ИП, договор и согласованные реквизиты или платёжная ссылка. Платёж не уходит на личную карту участника команды. Обычно работаем этапами: согласованная часть на старте, остальное — по факту сдачи работающего продукта.</p>
         </div></div>
       </div>
       <div class="acc" data-state="{{ faqState5 }}" style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:8px">
@@ -358,6 +361,8 @@ class Component extends DCLogic {
     const cfg = (typeof window !== 'undefined' && window.SITE_CONFIG) || {};
     const endpoint = (cfg.formEndpoint || '').trim();
     const demoMode = !endpoint;
+    const formUnavailable = !demoMode && cfg.formEnabled === false;
+    const submitDisabled = this.state.sending || formUnavailable;
     const types = ['Telegram-бот', 'ИИ-ассистент', 'Автоматизация', 'Веб-сервис', 'Мобильное', 'другое'];
     const typeChips = types.map(label => {
       const on = this.state.type === label;
@@ -423,7 +428,11 @@ class Component extends DCLogic {
           ? 'Не получилось отправить — попробуйте ещё раз или напишите напрямую в Telegram.'
           : 'Заполните описание задачи и контакт, иначе не сможем ответить.',
       sending: this.state.sending,
-      submitLabel: this.state.sending ? 'Отправляю…' : 'Отправить',
+      formUnavailable,
+      submitDisabled,
+      submitCursor: submitDisabled ? 'not-allowed' : 'pointer',
+      submitOpacity: submitDisabled ? '0.65' : '1',
+      submitLabel: formUnavailable ? 'Форма временно недоступна' : this.state.sending ? 'Отправляю…' : 'Отправить',
       echoContact: this.state.contact || 'Telegram',
       website: this.state.website,
       onWebsite: e => this.setState({ website: e.target.value }),
@@ -432,7 +441,7 @@ class Component extends DCLogic {
       onContact: e => this.setState({ contact: e.target.value, error: false }),
       onSubmit: (e) => {
         if (e) e.preventDefault();
-        if (this.state.sending) return;
+        if (submitDisabled) return;
         const missingTask = !this.state.task.trim();
         const missingContact = !this.state.contact.trim();
         if (missingTask || missingContact) {

@@ -24,7 +24,7 @@
 <link rel="alternate" hreflang="ru" href="https://rednd.ru/partner-apply.html">
 <link rel="alternate" hreflang="en" href="https://rednd.ru/en/partner-apply.html">
 <link rel="alternate" hreflang="x-default" href="https://rednd.ru/partner-apply.html">
-<script defer src="../site-config.js?v=20260821b"></script>
+<script defer src="../site-config.js?v=20260825a"></script>
 <script>(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 <link rel="preload" href="../fonts/inter-UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../fonts/sora-xMQ9uFFYT72X5wkB_18qmnndmSdSnh2BAfO5mnuyOo1lfiQwV6-xo6eeIw.woff2" as="font" type="font/woff2" crossorigin>
@@ -53,7 +53,8 @@
 <main id="main-content" style="font-family:Inter,system-ui,sans-serif;max-width:1000px;margin:0 auto;padding:clamp(40px,5vw,64px) 22px clamp(56px,7vw,88px)">
   <a href="partner.html" style="display:inline-flex;align-items:center;gap:6px;font:500 13.5px Inter,system-ui,sans-serif;color:var(--text-muted);text-decoration:none;min-height:44px;margin-bottom:6px" style-hover="color:var(--accent)">← About the partner program</a>
   <h1 style="margin:0 0 12px;font:700 clamp(30px,4vw,44px)/1.15 Sora,sans-serif;letter-spacing:-0.02em">Partner application</h1>
-  <p style="margin:0 0 36px;font:400 clamp(15.5px,1.6vw,18px)/1.6 Inter,system-ui,sans-serif;color:var(--text-body);max-width:620px;text-wrap:pretty">Tell us a bit about yourself and who you could bring. We'll reply ourselves, usually within a couple of hours, and we'll discuss terms. This isn't a full-time job. It's a free partnership: you bring a client, you get a share.</p>
+  <p style="margin:0 0 14px;font:400 clamp(15.5px,1.6vw,18px)/1.6 Inter,system-ui,sans-serif;color:var(--text-body);max-width:620px;text-wrap:pretty">Tell us a little about yourself and who you could introduce to the team. This is not employment: a referral fee is discussed for a specific paid client project.</p>
+  <p style="margin:0 0 36px;padding:12px 14px;border:1px solid var(--border);border-radius:12px;background:var(--surface);font:400 13.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body);max-width:720px"><strong style="color:var(--text)">Joining is free.</strong> There are no entry fees, required purchases, paid training, or rewards for recruiting other partners.</p>
 
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:24px;align-items:start">
 
@@ -61,6 +62,9 @@
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(22px,3vw,30px)">
       <sc-if value="{{ notSubmitted }}" hint-placeholder-val="{{ true }}">
         <form data-conversion-form="partner" onSubmit="{{ onSubmit }}" style="display:flex;flex-direction:column;gap:20px">
+          <sc-if value="{{ formUnavailable }}" hint-placeholder-val="{{ false }}">
+            <div role="status" style="font:400 14px/1.55 Inter,system-ui,sans-serif;color:var(--text-body);background:var(--status-amber-bg);border:1px solid var(--status-amber-fg);border-radius:11px;padding:12px 14px"><strong style="color:var(--text)">The online application is temporarily unavailable.</strong> Submission is disabled so your details are not lost. Message <a href="https://t.me/re_dnd" style="color:var(--accent);font-weight:600">Telegram @re_dnd</a> or send an <a href="mailto:politushkin@gmail.com" style="color:var(--accent);font-weight:600">email</a>.</div>
+          </sc-if>
 
           <div style="display:flex;flex-direction:column;gap:8px">
             <span style="font:600 14.5px Inter,system-ui,sans-serif">Who you are</span>
@@ -87,9 +91,9 @@
           </sc-if>
 
           <div style="display:flex;flex-direction:column;gap:10px">
-            <button type="submit" aria-busy="{{ sending }}" style="display:inline-flex;align-items:center;justify-content:center;gap:9px;background:var(--accent-cta);color:var(--surface);border:none;cursor:pointer;font:600 16px/1 Inter,system-ui,sans-serif;padding:14px 24px;border-radius:13px;width:fit-content" style-hover="background:var(--accent)" style-focus-visible="outline:2px solid var(--text);outline-offset:2px">{{ submitLabel }}</button>
+            <button type="submit" disabled="{{ submitDisabled }}" aria-disabled="{{ submitDisabled }}" aria-busy="{{ sending }}" style="display:inline-flex;align-items:center;justify-content:center;gap:9px;background:var(--accent-cta);color:var(--surface);border:none;cursor:{{ submitCursor }};opacity:{{ submitOpacity }};font:600 16px/1 Inter,system-ui,sans-serif;padding:14px 24px;border-radius:13px;width:fit-content" style-hover="background:var(--accent)" style-focus-visible="outline:2px solid var(--text);outline-offset:2px">{{ submitLabel }}</button>
             <sc-if value="{{ demoMode }}" hint-placeholder-val="{{ true }}">
-              <span style="font:400 12.5px/1.5 JetBrains Mono,monospace;color:var(--text-muted)">// prototype: Claude Code will wire real sending</span>
+              <span style="font:400 12.5px/1.5 Inter,system-ui,sans-serif;color:var(--text-muted)">Demo mode: no data is sent</span>
             </sc-if>
             <span style="font:400 12.5px/1.5 Inter,system-ui,sans-serif;color:var(--text-muted)">By submitting, you agree to the <a href="privacy.html" style="color:var(--accent);text-decoration:none;border-radius:4px" style-hover="text-decoration:underline" style-focus-visible="outline:2px solid var(--accent);outline-offset:1px">privacy policy</a> and the <a href="../consent.html" hreflang="ru" style="color:var(--accent);text-decoration:none;border-radius:4px" style-hover="text-decoration:underline" style-focus-visible="outline:2px solid var(--accent);outline-offset:1px">personal-data processing consent (in Russian)</a>.</span>
           </div>
@@ -100,7 +104,7 @@
         <div style="display:flex;flex-direction:column;gap:14px">
           <div style="background:var(--chat-area);border-radius:16px 16px 16px 5px;padding:14px 18px;font:400 15.5px/1.55 Inter,system-ui,sans-serif;max-width:480px">Application received ✓ We usually reply within a couple of hours. We'll message you at {{ echoContact }} and discuss terms.</div>
           <sc-if value="{{ demoMode }}" hint-placeholder-val="{{ false }}">
-            <div style="font:400 13px/1.5 JetBrains Mono,monospace;color:var(--text-muted)">// this is a demo: Claude Code will wire server sending</div>
+            <div style="font:400 13px/1.5 Inter,system-ui,sans-serif;color:var(--text-muted)">Demo mode: this request was not sent</div>
           </sc-if>
           <button type="button" onClick="{{ onReset }}" style="font:500 14px Inter,system-ui,sans-serif;color:var(--accent);background:var(--accent-tint);border:none;cursor:pointer;padding:10px 16px;border-radius:10px;width:fit-content" style-hover="background:var(--accent-tint-2)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">Send another</button>
         </div>
@@ -118,7 +122,7 @@
           <div class="pa-line"></div>
           <div class="pa-step"><span class="pa-step-n">3</span><span class="pa-step-t"><b>You get your share.</b> Of every paid order. The percentage is fixed in advance.</span></div>
         </div>
-        <a href="partner.html" style="display:inline-flex;align-items:center;min-height:44px;font:500 13.5px Inter,system-ui,sans-serif;color:var(--accent);text-decoration:none" style-hover="text-decoration:underline" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">Full terms and income calculator →</a>
+        <a href="partner.html" style="display:inline-flex;align-items:center;min-height:44px;font:500 13.5px Inter,system-ui,sans-serif;color:var(--accent);text-decoration:none" style-hover="text-decoration:underline" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">Full terms and referral fee estimate →</a>
       </div>
 
       <div style="background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(20px,3vw,26px);display:flex;flex-direction:column;gap:14px">
@@ -137,12 +141,11 @@
             <span style="font:500 13.5px JetBrains Mono,monospace;color:var(--accent)">{{ email }}</span>
           </span>
         </a>
-        <span style="display:flex;align-items:center;gap:8px;font:500 12.5px JetBrains Mono,monospace;color:var(--text-meta)"><span style="width:8px;height:8px;border-radius:50%;background:var(--online);flex:none"></span>official: sole proprietor, contract</span>
+        <span style="display:flex;align-items:center;gap:8px;font:500 12.5px JetBrains Mono,monospace;color:var(--text-meta)"><span aria-hidden="true" style="color:var(--accent);font:700 14px Inter,system-ui,sans-serif">✓</span>official: sole proprietor, contract</span>
       </div>
 
       <div style="display:flex;align-items:center;gap:10px;font:500 14px Inter,system-ui,sans-serif;color:var(--text-body);padding:0 6px">
-        <span style="width:8px;height:8px;border-radius:50%;background:var(--online);box-shadow:0 0 0 3px rgba(49,181,69,0.25);flex:none"></span>
-        online · we usually reply within a couple of hours
+        We reply via the contact you provide
       </div>
     </div>
 
@@ -158,6 +161,8 @@ class Component extends DCLogic {
     const cfg = (typeof window !== 'undefined' && window.SITE_CONFIG) || {};
     const endpoint = (cfg.formEndpoint || '').trim();
     const demoMode = !endpoint;
+    const formUnavailable = !demoMode && cfg.formEnabled === false;
+    const submitDisabled = this.state.sending || formUnavailable;
     const roles = ['Entrepreneur', 'Marketer / SMM', 'Freelancer', 'Agency / studio', 'Other'];
     const roleChips = roles.map(label => {
       const on = this.state.role === label;
@@ -195,7 +200,11 @@ class Component extends DCLogic {
           ? "Couldn't send — try again or message us directly on Telegram."
           : 'Add a couple of words about yourself and a contact, otherwise we can\'t reply.',
       sending: this.state.sending,
-      submitLabel: this.state.sending ? 'Sending…' : 'Send application',
+      formUnavailable,
+      submitDisabled,
+      submitCursor: submitDisabled ? 'not-allowed' : 'pointer',
+      submitOpacity: submitDisabled ? '0.65' : '1',
+      submitLabel: formUnavailable ? 'Application temporarily unavailable' : this.state.sending ? 'Sending…' : 'Send application',
       echoContact: this.state.contact || 'Telegram',
       website: this.state.website,
       onWebsite: e => this.setState({ website: e.target.value }),
@@ -203,7 +212,7 @@ class Component extends DCLogic {
       onContact: e => this.setState({ contact: e.target.value, error: false }),
       onSubmit: (e) => {
         if (e) e.preventDefault();
-        if (this.state.sending) return;
+        if (submitDisabled) return;
         const missingAbout = !this.state.about.trim();
         const missingContact = !this.state.contact.trim();
         if (missingAbout || missingContact) {

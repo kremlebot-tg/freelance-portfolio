@@ -1,8 +1,8 @@
 # Re:dnd — сайт-портфолио
 
 Двуязычный (RU + `/en/`) статический сайт команды Re:dnd на **https://rednd.ru**: Telegram-боты, мини-аппы и кейсы
-с интерактивными демо и честными границами каждого продукта. Дизайн — Claude Design (формат `.dc.html` + рантайм
-`support.js`), инженерия и деплой — Claude Code.
+с интерактивными демо и честными границами каждого продукта. Интерфейс собран из компонентов `.dc.html`, клиентский
+рантайм находится в `support.js`, а публикация выполняется через GitHub Actions.
 
 ## ⚡ Что вписать после клона
 
@@ -10,6 +10,7 @@
 
 ```js
 formEndpoint: 'https://<...>.apigw.yandexcloud.net/submit',  // Yandex Cloud (см. ниже)
+formEnabled: true,  // аварийный выключатель; false блокирует отправку без потери данных
 telegram: '@re_dnd',
 email: 'politushkin@gmail.com',
 requisites / requisitesFull,      // ← отчество и ОГРНИП вместо плейсхолдеров
@@ -49,6 +50,11 @@ POST → API Gateway → Cloud Function → (1) запись заявки в Obj
 | Lockbox (Telegram) | `rednd-form-telegram` = `e6quh6r1v7fv7h6bidkt` |
 
 Endpoint (в `site-config.js`): `https://d5d7olk60q94hjb111lj.kocrdvxt.apigw.yandexcloud.net/submit`
+
+Если Gateway остановлен или не прошёл контрольную проверку, установите
+`formEnabled: false`: обе формы покажут прямые контакты и не будут имитировать
+успешную отправку. Возвращать `true` можно только после проверки CORS и одного
+согласованного сквозного теста с подтверждением записи в Object Storage.
 
 **Секреты Telegram** живут в Lockbox `rednd-form-telegram`, не в коде. Обновить
 значения (функция читает последнюю версию сама, редеплой не нужен):
@@ -113,7 +119,7 @@ cookie и обезличенные технические данные, вебв
 | `index.html`, `projects.html`, `services.html`, `about.html`, `contact.html`, `case-*.html`, `privacy.html`, `consent.html` | Русские страницы |
 | `en/*` | Английская версия (те же имена файлов; свои Header/Footer/CaseCTA и consent-страница) |
 | `Header.dc.html`, `Footer.dc.html`, `CaseCTA.dc.html` | Общие компоненты — подгружаются рантаймом по имени, **не переименовывать** (в `/en/` — свои копии) |
-| `support.js` | Рантайм Claude Design (изменены: пути React → `vendor/` относительно самого скрипта) |
+| `support.js` | Клиентский рантайм компонентов (пути React → `vendor/` относительно самого скрипта) |
 | `site-config.js` | ✏️ Всё редактируемое |
 | `yandex-function/index.py` | Бэкенд формы (Cloud Function, Yandex Cloud) |
 | `server/` | История: прежний VPS-бэкенд формы — не используется |

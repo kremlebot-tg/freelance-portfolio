@@ -26,7 +26,7 @@
 <script defer src="./site-config.js?v=20260825a"></script>
 <script>(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 <link rel="preload" href="./fonts/inter-UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa0ZL7W0Q5n-wU.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="./theme.css?v=20260821b">
+<link rel="stylesheet" href="./theme.css?v=20261013a">
 <script defer src="./vendor/react.production.min.js" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z" crossorigin="anonymous"></script>
 <script defer src="./vendor/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous"></script>
 <script defer src="./support.js"></script>
@@ -143,6 +143,7 @@
     <a href="#automation">Автоматизация</a>
     <a href="#web">Веб-сервисы</a>
     <a href="#mobile">Мобильные приложения</a>
+    <a href="#stack">Языки и backend</a>
   </nav>
 
   <div class="rd-service-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px">
@@ -193,6 +194,52 @@
     <span style="font:400 13.5px/1.5 Inter,system-ui,sans-serif;color:var(--text-muted)">«От» — это цена за простую версию под ключ; мобильные приложения считаем по задаче. Итоговую цену фиксируем до старта работ, и она не меняется по ходу.</span>
     <span style="display:flex;align-items:center;gap:8px;font:500 13.5px JetBrains Mono,monospace;color:var(--text-meta)"><span style="width:8px;height:8px;border-radius:50%;background:var(--online);flex:none"></span>7 дней исправления ошибок после сдачи</span>
   </div>
+
+  <section id="stack" class="rd-service-stack" aria-labelledby="service-stack-title">
+    <div class="rd-service-section-head">
+      <span class="rd-service-kicker">Технологии</span>
+      <h2 id="service-stack-title">Языки и backend, которые мы используем</h2>
+      <p>Не подгоняем каждую задачу под один стек. Выбираем язык, сервер и хранилище по нагрузке, данным, интеграциям и тому, кто будет поддерживать продукт после запуска.</p>
+    </div>
+    <div class="rd-service-stack__grid">
+      <article class="rd-service-stack__card">
+        <h3>Языки</h3>
+        <ul class="rd-service-stack__list">
+          <li><strong>JavaScript / TypeScript</strong><span>Интерфейсы, браузерная логика и серверные сервисы на Node.js.</span></li>
+          <li><strong>Python</strong><span>API, Telegram-боты, парсеры, автоматизация и обработка данных.</span></li>
+          <li><strong>Dart</strong><span>Мобильные приложения на Flutter для iOS и Android.</span></li>
+          <li><strong>SQL</strong><span>Структура данных, миграции, отчёты и проверяемые выборки.</span></li>
+        </ul>
+      </article>
+      <article class="rd-service-stack__card">
+        <h3>Backend и API</h3>
+        <ul class="rd-service-stack__list">
+          <li><strong>Node.js + Express</strong><span>Многопользовательские сервисы, CRM, фоновые задачи и интеграционные API.</span></li>
+          <li><strong>Python + FastAPI</strong><span>Прикладные API, кабинеты, автоматизация и серверная логика.</span></li>
+          <li><strong>aiogram + Telegram Bot API</strong><span>Боты, Mini Apps, уведомления и рабочие сценарии внутри Telegram.</span></li>
+          <li><strong>REST API · webhooks · OAuth</strong><span>Связь с CRM, платежами, маркетплейсами и внешними сервисами.</span></li>
+        </ul>
+      </article>
+      <article class="rd-service-stack__card">
+        <h3>Интерфейсы и мобильная разработка</h3>
+        <ul class="rd-service-stack__list">
+          <li><strong>HTML + CSS + JavaScript</strong><span>Быстрые сайты, кабинеты и интерактивные продуктовые сценарии.</span></li>
+          <li><strong>React</strong><span>Компоненты и насыщенные интерфейсы со сложным состоянием.</span></li>
+          <li><strong>Flutter</strong><span>Одна кодовая база для мобильного продукта и local-first сценариев.</span></li>
+        </ul>
+      </article>
+      <article class="rd-service-stack__card">
+        <h3>Данные и публикация</h3>
+        <ul class="rd-service-stack__list">
+          <li><strong>SQLite</strong><span>Надёжные локальные и компактные серверные базы с резервным копированием.</span></li>
+          <li><strong>Docker + Caddy / Nginx</strong><span>Изолированный запуск, HTTPS, reverse proxy и воспроизводимое окружение.</span></li>
+          <li><strong>GitHub Actions</strong><span>Автоматические тесты, проверки безопасности и контролируемая публикация.</span></li>
+          <li><strong>VPS + Yandex Cloud</strong><span>Развёртывание с учётом данных, региона и требований конкретного продукта.</span></li>
+        </ul>
+      </article>
+    </div>
+    <p class="rd-service-stack__proof">Примеры в работе: <a href="case-scout.html">Scout — многопользовательский Node.js-сервис</a>, <a href="case-chainya.html">Chainya — Python/FastAPI/SQLite</a>, <a href="case-faith.html">Faith App — Flutter/Dart</a>.</p>
+  </section>
 
   <section class="rd-service-fit" aria-labelledby="service-fit-title">
     <div class="rd-service-section-head">

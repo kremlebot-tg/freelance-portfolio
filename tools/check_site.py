@@ -28,6 +28,8 @@ CASE_SOCIAL_IMAGES = {
     Path("en/case-scout.html"): f"{SITE_ORIGIN}/og-case-scout-en.png",
     Path("case-chainya.html"): f"{SITE_ORIGIN}/assets/cases/chainya/og.jpg",
     Path("en/case-chainya.html"): f"{SITE_ORIGIN}/assets/cases/chainya/og-en.jpg",
+    Path("case-krem.html"): f"{SITE_ORIGIN}/assets/cases/krem/og.png",
+    Path("en/case-krem.html"): f"{SITE_ORIGIN}/assets/cases/krem/og.png",
     Path("case-crm.html"): f"{SITE_ORIGIN}/og-case-crm.png",
     Path("en/case-crm.html"): f"{SITE_ORIGIN}/og-case-crm-en.png",
     Path("case-faith.html"): f"{SITE_ORIGIN}/og-case-faith.png",
@@ -410,7 +412,7 @@ def main() -> int:
                 for node in schema_graph
                 if node.get("@id") == f"{url}#webpage"
             ]
-            expected_items = 8 if rel.name == "projects.html" else 5
+            expected_items = 9 if rel.name == "projects.html" else 5
             if (
                 len(item_lists) != 1
                 or not isinstance(item_lists[0], dict)
@@ -421,8 +423,8 @@ def main() -> int:
 
         if rel.name == "projects.html":
             heading_token = '<h2 style="margin:0;font:600 clamp(20px,2.4vw,25px)/1.25 Sora,sans-serif">'
-            if source.count(heading_token) != 8:
-                failures.append(f"{rel}: all eight project cards must use semantic h2 headings")
+            if source.count(heading_token) != 9:
+                failures.append(f"{rel}: all nine project cards must use semantic h2 headings")
 
     for field, values in (
         ("title", [parser.title.strip() for parser in indexable_parsers if parser.title.strip()]),
@@ -506,8 +508,8 @@ def main() -> int:
             failures.append(f"{relative}: stale individual-provider schema")
 
     team_contract = {
-        "index.html": ("Мы проектируем и собираем", "Что мы делаем"),
-        "en/index.html": ("We design and build", "What we build"),
+        "index.html": ("Мы проектируем и собираем", "Доказательства вместо общих обещаний"),
+        "en/index.html": ("We design and build", "Evidence instead of broad promises"),
         "Header.dc.html": ("О команде",),
         "en/Header.dc.html": ("Team",),
         "Footer.dc.html": ("О команде",),
@@ -650,7 +652,7 @@ def main() -> int:
 
     case_pages = sorted(ROOT.glob("case-*.html")) + sorted((ROOT / "en").glob("case-*.html"))
     expected_case_names = {
-        "case-scout.html", "case-chainya.html", "case-subscriptions.html", "case-crm.html",
+        "case-scout.html", "case-chainya.html", "case-krem.html", "case-subscriptions.html", "case-crm.html",
         "case-vetpulse.html", "case-autopricer.html", "case-mutual.html", "case-faith.html",
     }
     for directory in (ROOT, ROOT / "en"):
@@ -696,6 +698,40 @@ def main() -> int:
     for token in ("32 items · 4 journeys · 254 tests", "The server verifies critical data", "https://chainya.ru/"):
         if token not in chainya_en:
             failures.append(f"en/case-chainya.html: missing verified case evidence {token!r}")
+
+    krem_evidence_contract = {
+        "case-krem.html": (
+            "1 ₽", "5/5", "7/10", "23",
+            "Полная покупка на сайте прошла техническую репетицию, но не опубликована",
+            "Лимит устройств также не включён",
+            "Кремлинет",
+        ),
+        "en/case-krem.html": (
+            "₽1", "5/5", "7/10", "23",
+            "The full website purchase passed a technical rehearsal but is not public",
+            "Device limits are not enabled either",
+            "Kremlinet",
+        ),
+    }
+    for relative, required_copy in krem_evidence_contract.items():
+        source = (ROOT / relative).read_text(encoding="utf-8")
+        for copy in required_copy:
+            if copy not in source:
+                failures.append(f"{relative}: missing KREM evidence boundary {copy!r}")
+
+    krem_overclaims = (
+        "бесперебойный VPN",
+        "работает во всех странах",
+        "безлимит устройств",
+        "uninterrupted VPN",
+        "works in every country",
+        "unlimited devices",
+    )
+    for relative in krem_evidence_contract:
+        source = (ROOT / relative).read_text(encoding="utf-8")
+        for claim in krem_overclaims:
+            if claim.casefold() in source.casefold():
+                failures.append(f"{relative}: unsupported KREM claim {claim!r}")
 
     templated_process_copy = ("как работает бизнес-процесс", "how the business workflow works")
     for page in case_pages:
@@ -990,11 +1026,13 @@ def main() -> int:
     service_page_contract = {
         "services.html": (
             'aria-label="Направления разработки"',
+            'id="service-stack-title">Языки и backend, которые мы используем',
             'id="service-fit-title">Что подойдёт вашей задаче',
             'id="service-faq-title">Частые вопросы',
         ),
         "en/services.html": (
             'aria-label="Development services"',
+            'id="service-stack-title">The languages and backend tools we use',
             'id="service-fit-title">What fits your task',
             'id="service-faq-title">Common questions',
         ),
@@ -1004,7 +1042,7 @@ def main() -> int:
         for token in tokens:
             if source.count(token) != 1:
                 failures.append(f"{relative}: service decision contract {token!r} must occur once")
-        for section_id in ("telegram", "ai", "automation", "web", "mobile"):
+        for section_id in ("telegram", "ai", "automation", "web", "mobile", "stack"):
             token = f'id="{section_id}"'
             if source.count(token) != 1:
                 failures.append(f"{relative}: service anchor {token!r} must occur once")
@@ -1025,7 +1063,7 @@ def main() -> int:
     for page, parser in parsed.items():
         source = page.read_text(encoding="utf-8")
         rel = page.relative_to(ROOT)
-        if "theme.css?v=" in source and "theme.css?v=20260821b" not in source:
+        if "theme.css?v=" in source and "theme.css?v=20261013a" not in source:
             failures.append(f"{rel}: stale theme.css cache token")
         if "site-config.js?v=" in source and "site-config.js?v=20260825a" not in source:
             failures.append(f"{rel}: stale site-config.js cache token")
@@ -1056,11 +1094,45 @@ def main() -> int:
         for token in tokens:
             if source.count(token) != 1:
                 failures.append(f"{relative}: hero conversion contract {token!r} must occur exactly once")
+    home_proof_contract = {
+        "index.html": (
+            'class="rd-home-stack-link" href="services.html#stack"',
+            'id="proof-title">Доказательства вместо общих обещаний',
+            'class="rd-proof__card" href="case-autopricer.html"',
+        ),
+        "en/index.html": (
+            'class="rd-home-stack-link" href="services.html#stack"',
+            'id="proof-title">Evidence instead of broad promises',
+            'class="rd-proof__card" href="case-autopricer.html"',
+        ),
+    }
+    for relative, tokens in home_proof_contract.items():
+        source = (ROOT / relative).read_text(encoding="utf-8")
+        for token in tokens:
+            if source.count(token) != 1:
+                failures.append(f"{relative}: home proof contract {token!r} must occur exactly once")
+    project_preview_types = (
+        "scout", "chainya", "krem", "subscriptions", "crm",
+        "vetpulse", "autopricer", "mutual", "faith",
+    )
+    for relative in ("projects.html", "en/projects.html"):
+        source = (ROOT / relative).read_text(encoding="utf-8")
+        if source.count('class="rd-project-preview ') != len(project_preview_types):
+            failures.append(f"{relative}: every project must keep one lightweight visual preview")
+        for preview_type in project_preview_types:
+            token = f"rd-project-preview--{preview_type}"
+            if source.count(token) != 1:
+                failures.append(f"{relative}: project preview {token!r} must occur exactly once")
+    theme = (ROOT / "theme.css").read_text(encoding="utf-8")
+    for token in (".rd-project-preview {", ".rd-project-preview--krem", ".rd-project-preview--autopricer", ".rd-project-preview--faith"):
+        if token not in theme:
+            failures.append(f"theme.css: missing project preview contract {token!r}")
     theme = (ROOT / "theme.css").read_text(encoding="utf-8")
     if ".rd-cookie__button--primary" not in theme:
         failures.append("theme.css: missing analytics consent controls")
     for token in (
         ".rd-service-nav",
+        ".rd-service-stack__grid",
         ".rd-service-fit__grid",
         ".rd-service-faq__list",
         ".rd-service-grid > [id]:target",

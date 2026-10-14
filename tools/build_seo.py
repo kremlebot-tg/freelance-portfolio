@@ -29,6 +29,7 @@ LABELS = {
     "partner.html": ("Партнёрам", "Partners"),
     "case-scout.html": ("Scout", "Scout"),
     "case-chainya.html": ("Чайня", "Chainya"),
+    "case-krem.html": ("KREM VPN", "KREM VPN"),
     "case-crm.html": ("CRM для нетворкинга", "Networking CRM"),
     "case-subscriptions.html": ("Telegram-подписки", "Telegram subscriptions"),
     "case-autopricer.html": ("Репрайсер Ozon", "Ozon repricer"),
@@ -57,6 +58,7 @@ SERVICES = {
 CASE_ORDER = (
     "case-scout.html",
     "case-chainya.html",
+    "case-krem.html",
     "case-subscriptions.html",
     "case-crm.html",
     "case-vetpulse.html",

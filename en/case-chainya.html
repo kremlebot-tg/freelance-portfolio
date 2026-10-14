@@ -25,7 +25,7 @@
 <script>(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 <link rel="preload" href="../fonts/inter-UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../fonts/sora-xMQ9uFFYT72X5wkB_18qmnndmSdSnh2BAfO5mnuyOo1lfiQwV6-xo6eeIw.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../theme.css?v=20260821b">
+<link rel="stylesheet" href="../theme.css?v=20261013a">
 <script defer src="../vendor/react.production.min.js" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z" crossorigin="anonymous"></script>
 <script defer src="../vendor/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous"></script>
 <script defer src="../support.js"></script>
@@ -149,7 +149,7 @@
 
   <section class="section" aria-labelledby="tech-title"><div class="head"><h2 id="tech-title">What works behind the storefront</h2><p>The project also includes customer accounts and owner operations for orders, booking, enquiries, products and integrations.</p></div><div class="tech"><article><h3>Orders do not trust the browser</h3><p>The server rechecks price, stock and cart contents; only the payment provider confirms a successful payment.</p></article><article><h3>One database writer</h3><p>The public layer is separated from data operations, and one process writes to SQLite to protect orders during updates.</p></article><article><h3>Releases can roll back</h3><p>Each release starts with a snapshot and health checks; a failed check returns the previous version.</p></article></div></section>
   <dc-import name="CaseCTA" q="Need a commercial site with a clear customer journey?" hint-size="100%,170px"></dc-import>
-  <div style="display:flex;margin-top:18px"><a href="case-subscriptions.html" style="margin-left:auto;display:inline-flex;align-items:center;min-height:44px;font:500 15px Inter,system-ui,sans-serif;color:var(--accent);text-decoration:none;border-radius:8px;padding:6px 8px">next case: subscription service →</a></div>
+  <div style="display:flex;margin-top:18px"><a href="case-krem.html" style="margin-left:auto;display:inline-flex;align-items:center;min-height:44px;font:500 15px Inter,system-ui,sans-serif;color:var(--accent);text-decoration:none;border-radius:8px;padding:6px 8px">next case: KREM VPN →</a></div>
 </main>
 <dc-import name="Footer" brand-name="{{ brandName }}" hint-size="100%,110px"></dc-import>
 </x-dc>

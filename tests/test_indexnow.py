@@ -21,7 +21,7 @@ class _Response:
 class IndexNowTests(unittest.TestCase):
     def test_sitemap_contains_only_unique_public_urls(self):
         urls = submit_indexnow.sitemap_urls()
-        self.assertEqual(len(urls), 28)
+        self.assertEqual(len(urls), 30)
         self.assertEqual(len(urls), len(set(urls)))
         self.assertTrue(all(url.startswith("https://rednd.ru/") for url in urls))
 

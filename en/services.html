@@ -27,7 +27,7 @@
 <script>(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 <link rel="preload" href="../fonts/inter-UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../fonts/sora-xMQ9uFFYT72X5wkB_18qmnndmSdSnh2BAfO5mnuyOo1lfiQwV6-xo6eeIw.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../theme.css?v=20260821b">
+<link rel="stylesheet" href="../theme.css?v=20261013a">
 <script defer src="../vendor/react.production.min.js" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z" crossorigin="anonymous"></script>
 <script defer src="../vendor/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous"></script>
 <script defer src="../support.js"></script>
@@ -144,6 +144,7 @@
     <a href="#automation">Automation</a>
     <a href="#web">Web services</a>
     <a href="#mobile">Mobile apps</a>
+    <a href="#stack">Languages &amp; backend</a>
   </nav>
 
   <div class="rd-service-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px">
@@ -194,6 +195,52 @@
     <span style="font:400 13.5px/1.5 Inter,system-ui,sans-serif;color:var(--text-muted)">“From” is the price for a simple, turnkey version. Web and mobile are quoted per task. Whatever you pick, the price is fixed before we start and doesn't drift.</span>
     <span style="display:flex;align-items:center;gap:8px;font:500 13.5px JetBrains Mono,monospace;color:var(--text-meta)"><span style="width:8px;height:8px;border-radius:50%;background:var(--online);flex:none"></span>7 days of free bug fixes after delivery</span>
   </div>
+
+  <section id="stack" class="rd-service-stack" aria-labelledby="service-stack-title">
+    <div class="rd-service-section-head">
+      <span class="rd-service-kicker">Technology</span>
+      <h2 id="service-stack-title">The languages and backend tools we use</h2>
+      <p>We do not force every task into one stack. We choose the language, server and storage around load, data, integrations and the team that will maintain the product after launch.</p>
+    </div>
+    <div class="rd-service-stack__grid">
+      <article class="rd-service-stack__card">
+        <h3>Languages</h3>
+        <ul class="rd-service-stack__list">
+          <li><strong>JavaScript / TypeScript</strong><span>Interfaces, browser logic and server-side services on Node.js.</span></li>
+          <li><strong>Python</strong><span>APIs, Telegram bots, parsers, automation and data processing.</span></li>
+          <li><strong>Dart</strong><span>Flutter mobile applications for iOS and Android.</span></li>
+          <li><strong>SQL</strong><span>Data models, migrations, reporting and verifiable queries.</span></li>
+        </ul>
+      </article>
+      <article class="rd-service-stack__card">
+        <h3>Backend &amp; APIs</h3>
+        <ul class="rd-service-stack__list">
+          <li><strong>Node.js + Express</strong><span>Multi-user services, CRMs, background jobs and integration APIs.</span></li>
+          <li><strong>Python + FastAPI</strong><span>Application APIs, dashboards, automation and server-side logic.</span></li>
+          <li><strong>aiogram + Telegram Bot API</strong><span>Bots, Mini Apps, notifications and workflows inside Telegram.</span></li>
+          <li><strong>REST APIs · webhooks · OAuth</strong><span>Connections to CRMs, payments, marketplaces and external services.</span></li>
+        </ul>
+      </article>
+      <article class="rd-service-stack__card">
+        <h3>Web &amp; mobile interfaces</h3>
+        <ul class="rd-service-stack__list">
+          <li><strong>HTML + CSS + JavaScript</strong><span>Fast websites, dashboards and interactive product flows.</span></li>
+          <li><strong>React</strong><span>Components and state-heavy application interfaces.</span></li>
+          <li><strong>Flutter</strong><span>One mobile codebase and local-first product scenarios.</span></li>
+        </ul>
+      </article>
+      <article class="rd-service-stack__card">
+        <h3>Data &amp; delivery</h3>
+        <ul class="rd-service-stack__list">
+          <li><strong>SQLite</strong><span>Reliable local and compact server databases with backup workflows.</span></li>
+          <li><strong>Docker + Caddy / Nginx</strong><span>Isolated runtime, HTTPS, reverse proxy and reproducible environments.</span></li>
+          <li><strong>GitHub Actions</strong><span>Automated tests, security checks and controlled publishing.</span></li>
+          <li><strong>VPS + Yandex Cloud</strong><span>Deployment selected around data, region and product requirements.</span></li>
+        </ul>
+      </article>
+    </div>
+    <p class="rd-service-stack__proof">See it in practice: <a href="case-scout.html">Scout — a multi-user Node.js service</a>, <a href="case-chainya.html">Chainya — Python/FastAPI/SQLite</a>, <a href="case-faith.html">Faith App — Flutter/Dart</a>.</p>
+  </section>
 
   <section class="rd-service-fit" aria-labelledby="service-fit-title">
     <div class="rd-service-section-head">

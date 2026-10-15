@@ -1471,9 +1471,9 @@ html.rd-motion-ready .ap-margin-viz.is-visible .ap-margin-viz__bar { animation: 
   transform: translateY(-50%);
 }
 
-/* Four portfolio cards use real project frames instead of symbolic diagrams.
-   The labels state the evidence level; the image remains decorative because
-   the adjacent copy carries the same information for assistive technology. */
+/* Portfolio cards use project-owned frames instead of low-detail diagrams.
+   Labels state the evidence level; images remain decorative because the
+   adjacent copy carries the same information for assistive technology. */
 .rd-project-preview--media {
   --rd-preview-image: none;
   display: block;
@@ -1494,12 +1494,32 @@ html.rd-motion-ready .ap-margin-viz.is-visible .ap-margin-viz__bar { animation: 
   --rd-preview-image: url("assets/cases/chainya/shop-desktop.webp");
   background-position: center 31%;
 }
+.rd-project-preview--media.rd-project-preview--scout {
+  --rd-preview-image: url("og-case-scout.png");
+  background-position: center 50%;
+}
 .rd-project-preview--media.rd-project-preview--krem {
   --rd-preview-image: url("assets/cases/krem/setup-devices.avif");
   background-position: center 43%;
 }
+.rd-project-preview--media.rd-project-preview--subscriptions {
+  --rd-preview-image: url("og-case-subscriptions.png");
+  background-position: center 50%;
+}
 .rd-project-preview--media.rd-project-preview--crm {
   --rd-preview-image: url("og-case-crm.png");
+  background-position: center 50%;
+}
+.rd-project-preview--media.rd-project-preview--vetpulse {
+  --rd-preview-image: url("vetpulse/og-cover.png");
+  background-position: center 50%;
+}
+.rd-project-preview--media.rd-project-preview--autopricer {
+  --rd-preview-image: url("og-case-autopricer.png");
+  background-position: center 50%;
+}
+.rd-project-preview--media.rd-project-preview--mutual {
+  --rd-preview-image: url("og-case-mutual.png");
   background-position: center 50%;
 }
 .rd-project-preview--media.rd-project-preview--faith {
@@ -1511,6 +1531,13 @@ html.rd-motion-ready .ap-margin-viz.is-visible .ap-margin-viz__bar { animation: 
   background-position: center 50%;
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .035);
 }
+html[lang="en"] .rd-project-preview--media.rd-project-preview--scout { --rd-preview-image: url("og-case-scout-en.png"); }
+html[lang="en"] .rd-project-preview--media.rd-project-preview--subscriptions { --rd-preview-image: url("og-case-subscriptions-en.png"); }
+html[lang="en"] .rd-project-preview--media.rd-project-preview--crm { --rd-preview-image: url("og-case-crm-en.png"); }
+html[lang="en"] .rd-project-preview--media.rd-project-preview--vetpulse { --rd-preview-image: url("vetpulse/og-cover-en.png"); }
+html[lang="en"] .rd-project-preview--media.rd-project-preview--autopricer { --rd-preview-image: url("og-case-autopricer-en.png"); }
+html[lang="en"] .rd-project-preview--media.rd-project-preview--mutual { --rd-preview-image: url("og-case-mutual-en.png"); }
+html[lang="en"] .rd-project-preview--media.rd-project-preview--faith { --rd-preview-image: url("og-case-faith-en.png"); }
 .rd-project-preview--media > i,
 .rd-project-preview--media > i::before,
 .rd-project-preview--media > i::after { display: none; }

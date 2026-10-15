@@ -925,30 +925,51 @@ def main() -> int:
 
     project_media_contract = {
         "projects.html": (
+            'data-preview-label="ЖИВОЙ ПРОДУКТ"',
             'data-preview-label="ЖИВОЙ КАТАЛОГ"',
             'data-preview-label="ПОДКЛЮЧЕНИЕ УСТРОЙСТВА"',
+            'data-preview-label="ИНТЕРАКТИВНЫЙ ПРОТОТИП"',
             'data-preview-label="СЦЕНАРНОЕ ДЕМО"',
+            'data-preview-label="ПРОДУКТОВЫЙ ПРОТОТИП"',
+            'data-preview-label="ПОДТВЕРЖДЁННЫЕ ДАННЫЕ"',
             'data-preview-label="ТЕХНИЧЕСКАЯ СБОРКА"',
         ),
         "en/projects.html": (
+            'data-preview-label="LIVE PRODUCT"',
             'data-preview-label="LIVE CATALOGUE"',
             'data-preview-label="CONNECT A DEVICE"',
+            'data-preview-label="INTERACTIVE PROTOTYPE"',
             'data-preview-label="SCRIPTED DEMO"',
+            'data-preview-label="PRODUCT PROTOTYPE"',
+            'data-preview-label="VERIFIED DATA"',
             'data-preview-label="TECHNICAL BUILD"',
         ),
     }
     for relative, labels in project_media_contract.items():
         source = (ROOT / relative).read_text(encoding="utf-8")
-        if source.count("rd-project-preview--media") != 4:
-            failures.append(f"{relative}: expected four evidence-led project previews")
+        if source.count("rd-project-preview--media") != 9:
+            failures.append(f"{relative}: expected nine evidence-led project previews")
         for label in labels:
-            if source.count(label) != 1:
-                failures.append(f"{relative}: project preview label {label!r} must occur once")
+            expected = 2 if "INTERACTIVE PROTOTYPE" in label or "ИНТЕРАКТИВНЫЙ ПРОТОТИП" in label else 1
+            if source.count(label) != expected:
+                failures.append(f"{relative}: project preview label {label!r} must occur {expected} times")
     for relative in (
         "assets/cases/chainya/shop-desktop.webp",
         "assets/cases/krem/setup-devices.avif",
         "og-case-crm.png",
         "og-case-faith.png",
+        "og-case-scout.png",
+        "og-case-scout-en.png",
+        "og-case-subscriptions.png",
+        "og-case-subscriptions-en.png",
+        "og-case-crm-en.png",
+        "vetpulse/og-cover.png",
+        "vetpulse/og-cover-en.png",
+        "og-case-autopricer.png",
+        "og-case-autopricer-en.png",
+        "og-case-mutual.png",
+        "og-case-mutual-en.png",
+        "og-case-faith-en.png",
     ):
         if not (ROOT / relative).is_file():
             failures.append(f"missing project preview image: {relative}")
@@ -1102,7 +1123,7 @@ def main() -> int:
     for page, parser in parsed.items():
         source = page.read_text(encoding="utf-8")
         rel = page.relative_to(ROOT)
-        if "theme.css?v=" in source and "theme.css?v=20261013a" not in source:
+        if "theme.css?v=" in source and "theme.css?v=20261015b" not in source:
             failures.append(f"{rel}: stale theme.css cache token")
         if "site-config.js?v=" in source and "site-config.js?v=20261015b" not in source:
             failures.append(f"{rel}: stale site-config.js cache token")

@@ -51,6 +51,8 @@ jobs:
             --exclude 'tests/' \
             --exclude 'tools/' \
             --exclude 'yandex-function/' \
+            --exclude 'docs/' \
+            --exclude '**/SOURCE.md' \
             --exclude 'README.md' \
             --exclude 'RECOVERY.md' \
             --exclude 'package.json' \
@@ -66,6 +68,11 @@ jobs:
           test -f _site/.well-known/security.txt
           test -f "_site/${INDEXNOW_KEY}.txt"
           test ! -d _site/node_modules
+          test ! -d _site/docs
+          if find _site -type f -name 'SOURCE.md' | grep -q .; then
+            echo 'Internal provenance notes leaked into the Pages artifact.'
+            exit 1
+          fi
           if find _site -type f \( -name '*.py' -o -name '*.pyc' -o -name '*.jsx' \) | grep -q .; then
             echo 'Internal source leaked into the Pages artifact.'
             exit 1

@@ -332,7 +332,7 @@ def main() -> int:
             f'<script defer src="{prefix}site-config.js?v=20260825a"></script>',
             f'<script defer src="{prefix}vendor/react.production.min.js"',
             f'<script defer src="{prefix}vendor/react-dom.production.min.js"',
-            f'<script defer src="{prefix}support.js"></script>',
+            f'<script defer src="{prefix}support.js?v=20261015a"></script>',
         )
         for token in runtime_contract:
             if source.count(token) != 1:
@@ -479,7 +479,7 @@ def main() -> int:
             f'<script defer src="{prefix}site-config.js?v=20260825a"></script>',
             f'<script defer src="{prefix}vendor/react.production.min.js"',
             f'<script defer src="{prefix}vendor/react-dom.production.min.js"',
-            f'<script defer src="{prefix}support.js"></script>',
+            f'<script defer src="{prefix}support.js?v=20261015a"></script>',
         ):
             if source.count(token) != 1:
                 failures.append(f"{relative}: expected one optimized runtime token {token!r}")
@@ -1067,6 +1067,8 @@ def main() -> int:
             failures.append(f"{rel}: stale theme.css cache token")
         if "site-config.js?v=" in source and "site-config.js?v=20260825a" not in source:
             failures.append(f"{rel}: stale site-config.js cache token")
+        if "support.js" in source and "support.js?v=20261015a" not in source:
+            failures.append(f"{rel}: stale support.js cache token")
 
     site_config = (ROOT / "site-config.js").read_text(encoding="utf-8")
     for token in (
@@ -1144,6 +1146,16 @@ def main() -> int:
         if source.count("data-analytics-consent-control") != 1:
             failures.append(f"{relative}: expected one analytics consent control")
 
+    runtime = (ROOT / "support.js").read_text(encoding="utf-8")
+    for token in (
+        "scheduleRenderedHashScroll",
+        'document.querySelectorAll("#dc-root [id]")',
+        'window.addEventListener("hashchange"',
+        'event.target.closest(\'a[href^="#"]\')',
+    ):
+        if token not in runtime:
+            failures.append(f"support.js: missing rendered anchor navigation contract {token!r}")
+
     for relative in ("CaseCTA.dc.html", "en/CaseCTA.dc.html"):
         source = (ROOT / relative).read_text(encoding="utf-8")
         if source.count('class="case-cta-link"') != 1:
@@ -1177,9 +1189,13 @@ def main() -> int:
             'test -n "$INDEXNOW_KEY"',
             'printf \'%s\' "$INDEXNOW_KEY" > "_site/${INDEXNOW_KEY}.txt"',
             'test -f "_site/${INDEXNOW_KEY}.txt"',
+            "--exclude 'docs/'",
+            "--exclude '**/SOURCE.md'",
+            "test ! -d _site/docs",
+            "-name 'SOURCE.md'",
         ):
             if token not in source:
-                failures.append(f"{relative}: missing private IndexNow artifact contract {token!r}")
+                failures.append(f"{relative}: missing public artifact safety contract {token!r}")
 
     indexnow_workflow = (ROOT / ".github/workflows/indexnow.yml").read_text(encoding="utf-8")
     for token in (

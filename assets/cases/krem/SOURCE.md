@@ -6,4 +6,10 @@ Copied on 2026-10-15 from the owner-authorized canonical KREM repository:
 - `og.png` ← `brand/krem-vpn-cream/static-v2-20261002/home.png`, centre-cropped from 1200×720 to 1200×630 for social previews
 - `setup-devices.png` ← `brand/krem-vpn-cream/static-v2-20261002/setup-devices.png`
 
+Browser-facing derivatives preserve the PNG originals and were encoded locally
+with macOS ImageIO at quality 70:
+
+- `og-display.avif` ← `og.png`
+- `setup-devices.avif` ← `setup-devices.png`
+
 The assets contain no customer data, subscription URLs, payment identifiers or credentials. Originals remain unchanged in `/Users/mac/Desktop/KREM-Kremlinet`.

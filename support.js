@@ -1601,6 +1601,43 @@
       loadScript(REACT_DOM_URL, REACT_DOM_SRI)
     ]).then(() => void 0);
   }
+  // The raw <x-dc> template and the rendered React tree may briefly contain
+  // the same IDs. Native hash navigation can therefore select the hidden raw
+  // node. Always resolve same-page anchors inside the visible runtime root.
+  function scheduleRenderedHashScroll(hash = location.hash, settle = false) {
+    if (!hash || hash === "#") return;
+    let id;
+    try {
+      id = decodeURIComponent(hash.slice(1));
+    } catch {
+      id = hash.slice(1);
+    }
+    if (!id) return;
+    const scroll = (instant = false) => {
+      const target = [...document.querySelectorAll("#dc-root [id]")].find((node) => node.id === id);
+      if (!target) return;
+      const root = document.documentElement;
+      const previous = root.style.scrollBehavior;
+      if (instant) root.style.scrollBehavior = "auto";
+      target.scrollIntoView({ block: "start" });
+      if (instant) requestAnimationFrame(() => {
+        root.style.scrollBehavior = previous;
+      });
+    };
+    requestAnimationFrame(() => requestAnimationFrame(() => scroll(settle)));
+    if (settle) {
+      // Imported components can change the page height after the first React
+      // commit. Re-anchor without animation while that layout settles.
+      setTimeout(() => scroll(true), 250);
+      setTimeout(() => scroll(true), 900);
+      setTimeout(() => scroll(true), 1800);
+    }
+  }
+  window.addEventListener("hashchange", () => scheduleRenderedHashScroll());
+  document.addEventListener("click", (event) => {
+    const link = event.target instanceof Element ? event.target.closest('a[href^="#"]') : null;
+    if (link?.hash) scheduleRenderedHashScroll(link.hash);
+  });
   function init() {
     const runtime = createRuntime(document);
     let rootName = "Root";
@@ -1653,8 +1690,13 @@
     };
     Object.assign(window, api);
     window.__dcContentKeyed = true;
-    if (document.readyState !== "loading") api.__dcBoot();
-    else document.addEventListener("DOMContentLoaded", () => api.__dcBoot());
+    if (document.readyState !== "loading") {
+      api.__dcBoot();
+      scheduleRenderedHashScroll(location.hash, true);
+    } else document.addEventListener("DOMContentLoaded", () => {
+      api.__dcBoot();
+      scheduleRenderedHashScroll(location.hash, true);
+    });
   }
   hideRawTemplate();
   loadReactUmd().then(init).catch((err) => {

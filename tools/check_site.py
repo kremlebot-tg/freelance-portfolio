@@ -329,7 +329,7 @@ def main() -> int:
 
         prefix = "../" if str(rel).startswith("en/") else "./"
         runtime_contract = (
-            f'<script defer src="{prefix}site-config.js?v=20261015b"></script>',
+            f'<script defer src="{prefix}site-config.js?v=20261016a"></script>',
             f'<script defer src="{prefix}vendor/react.production.min.js"',
             f'<script defer src="{prefix}vendor/react-dom.production.min.js"',
             f'<script defer src="{prefix}support.js?v=20261015a"></script>',
@@ -476,7 +476,7 @@ def main() -> int:
         source = (ROOT / relative).read_text(encoding="utf-8")
         prefix = "../" if relative.startswith("en/") else "./"
         for token in (
-            f'<script defer src="{prefix}site-config.js?v=20261015b"></script>',
+            f'<script defer src="{prefix}site-config.js?v=20261016a"></script>',
             f'<script defer src="{prefix}vendor/react.production.min.js"',
             f'<script defer src="{prefix}vendor/react-dom.production.min.js"',
             f'<script defer src="{prefix}support.js?v=20261015a"></script>',
@@ -900,6 +900,8 @@ def main() -> int:
         ),
         "site-config.js": (
             "function observeMotionScenes(root)",
+            "function hydrateProjectPreviews(root)",
+            "rootMargin: '560px 0px'",
             ".rd-project-result",
             "rd-motion-observed",
             "observeMotionScenes(root);",
@@ -949,6 +951,18 @@ def main() -> int:
         source = (ROOT / relative).read_text(encoding="utf-8")
         if source.count("rd-project-preview--media") != 9:
             failures.append(f"{relative}: expected nine evidence-led project previews")
+        if source.count('class="rd-project-preview__image"') != 9:
+            failures.append(f"{relative}: expected nine real project preview images")
+        if source.count('class="rd-project-preview__scrim"') != 9:
+            failures.append(f"{relative}: expected nine readable project preview scrims")
+        if source.count('loading="lazy"') != 8:
+            failures.append(f"{relative}: exactly eight below-fold project previews must be lazy-loaded")
+        if source.count('data-preview-src=') != 8:
+            failures.append(f"{relative}: exactly eight below-fold project previews must wait for the viewport")
+        if source.count('fetchpriority="high"') != 1:
+            failures.append(f"{relative}: the visible lead project preview must keep high fetch priority")
+        if source.count('decoding="async"') < 9:
+            failures.append(f"{relative}: project previews must decode asynchronously")
         for label in labels:
             expected = 2 if "INTERACTIVE PROTOTYPE" in label or "ИНТЕРАКТИВНЫЙ ПРОТОТИП" in label else 1
             if source.count(label) != expected:
@@ -973,6 +987,15 @@ def main() -> int:
     ):
         if not (ROOT / relative).is_file():
             failures.append(f"missing project preview image: {relative}")
+    for token in (
+        ".rd-project-preview__image {",
+        ".rd-project-preview__scrim {",
+        "a:hover .rd-project-preview__image { transform: scale(1.06); }",
+    ):
+        if token not in theme:
+            failures.append(f"theme.css: missing project preview performance contract {token!r}")
+    if "--rd-preview-image" in theme:
+        failures.append("theme.css: project previews must not use eager CSS background images")
 
     case_visual_contract = {
         "case-scout.html": (('class="sc-claim flow"', 1), ('class="sc-claim__worker"', 2), ("сотрудник A", 1), ("сотрудник B", 1)),
@@ -1123,9 +1146,9 @@ def main() -> int:
     for page, parser in parsed.items():
         source = page.read_text(encoding="utf-8")
         rel = page.relative_to(ROOT)
-        if "theme.css?v=" in source and "theme.css?v=20261015b" not in source:
+        if "theme.css?v=" in source and "theme.css?v=20261016a" not in source:
             failures.append(f"{rel}: stale theme.css cache token")
-        if "site-config.js?v=" in source and "site-config.js?v=20261015b" not in source:
+        if "site-config.js?v=" in source and "site-config.js?v=20261016a" not in source:
             failures.append(f"{rel}: stale site-config.js cache token")
         if "support.js" in source and "support.js?v=20261015a" not in source:
             failures.append(f"{rel}: stale support.js cache token")

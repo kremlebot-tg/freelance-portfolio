@@ -367,6 +367,7 @@ window.SITE_CONFIG = {
 (function () {
   var started = false;
   var revealObserver = null;
+  var previewObserver = null;
   var mutationObserver = null;
   var mutationQueued = false;
   var reduceMotion = false;
@@ -392,6 +393,37 @@ window.SITE_CONFIG = {
     for (var i = 0; i < images.length; i++) {
       var src = (images[i].getAttribute('data-photo-src') || '').trim();
       if (src && src.indexOf('{{') === -1 && images[i].getAttribute('src') !== src) images[i].setAttribute('src', src);
+    }
+  }
+
+  function loadProjectPreview(image) {
+    var src = (image.getAttribute('data-preview-src') || '').trim();
+    if (!src) return;
+    image.setAttribute('src', src);
+    image.removeAttribute('data-preview-src');
+    image.removeAttribute('data-preview-observed');
+  }
+
+  function hydrateProjectPreviews(root) {
+    var images = (root || document).querySelectorAll('img.rd-project-preview__image[data-preview-src]');
+    if (!images.length) return;
+    if (!('IntersectionObserver' in window)) {
+      for (var i = 0; i < images.length; i++) loadProjectPreview(images[i]);
+      return;
+    }
+    if (!previewObserver) {
+      previewObserver = new IntersectionObserver(function (entries) {
+        for (var j = 0; j < entries.length; j++) {
+          if (!entries[j].isIntersecting) continue;
+          loadProjectPreview(entries[j].target);
+          previewObserver.unobserve(entries[j].target);
+        }
+      }, { rootMargin: '560px 0px', threshold: 0 });
+    }
+    for (var k = 0; k < images.length; k++) {
+      if (images[k].getAttribute('data-preview-observed') === 'true') continue;
+      images[k].setAttribute('data-preview-observed', 'true');
+      previewObserver.observe(images[k]);
     }
   }
 
@@ -509,6 +541,7 @@ window.SITE_CONFIG = {
     var main = document.querySelector('main');
     if (main && !main.id) main.id = 'main-content';
     hydrateDeferredImages(root);
+    hydrateProjectPreviews(root);
     enforceRequiredFields(root);
     markDisplayType(root);
     markCards(root);

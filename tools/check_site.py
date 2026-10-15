@@ -329,7 +329,7 @@ def main() -> int:
 
         prefix = "../" if str(rel).startswith("en/") else "./"
         runtime_contract = (
-            f'<script defer src="{prefix}site-config.js?v=20260825a"></script>',
+            f'<script defer src="{prefix}site-config.js?v=20261015b"></script>',
             f'<script defer src="{prefix}vendor/react.production.min.js"',
             f'<script defer src="{prefix}vendor/react-dom.production.min.js"',
             f'<script defer src="{prefix}support.js?v=20261015a"></script>',
@@ -476,7 +476,7 @@ def main() -> int:
         source = (ROOT / relative).read_text(encoding="utf-8")
         prefix = "../" if relative.startswith("en/") else "./"
         for token in (
-            f'<script defer src="{prefix}site-config.js?v=20260825a"></script>',
+            f'<script defer src="{prefix}site-config.js?v=20261015b"></script>',
             f'<script defer src="{prefix}vendor/react.production.min.js"',
             f'<script defer src="{prefix}vendor/react-dom.production.min.js"',
             f'<script defer src="{prefix}support.js?v=20261015a"></script>',
@@ -694,10 +694,17 @@ def main() -> int:
     if glance_layouts != {"split", "rail", "evidence"}:
         failures.append(f"case summaries: expected three visual layouts, found {sorted(glance_layouts)}")
 
+    chainya_ru = (ROOT / "case-chainya.html").read_text(encoding="utf-8")
     chainya_en = (ROOT / "en/case-chainya.html").read_text(encoding="utf-8")
     for token in ("text fields available in the owner site editor", "328 site and panel checks", "https://chainya.ru/"):
         if token not in chainya_en:
             failures.append(f"en/case-chainya.html: missing verified case evidence {token!r}")
+    for source_name, source in (("case-chainya.html", chainya_ru), ("en/case-chainya.html", chainya_en)):
+        if "https://chainya.ru/img/" in source:
+            failures.append(f"{source_name}: case evidence images must be stored locally for recovery")
+        for asset_name in ("tea-gaba-honey.webp", "hall-shelf.webp", "master-pour.webp"):
+            if asset_name not in source:
+                failures.append(f"{source_name}: missing local Chainya evidence image {asset_name!r}")
 
     krem_evidence_contract = {
         "case-krem.html": (
@@ -889,9 +896,11 @@ def main() -> int:
             ".ap-margin-viz {",
             ".sub-state {",
             '.case-process[data-layout="compact"] .case-process__stage {',
+            ".rd-project-preview--media {",
         ),
         "site-config.js": (
             "function observeMotionScenes(root)",
+            ".rd-project-result",
             "rd-motion-observed",
             "observeMotionScenes(root);",
             "function enforceRequiredFields(root)",
@@ -913,6 +922,36 @@ def main() -> int:
     for forbidden in ("filter: saturate", "rotate(360deg)"):
         if forbidden in theme:
             failures.append(f"theme.css: avoid expensive or distracting motion {forbidden!r}")
+
+    project_media_contract = {
+        "projects.html": (
+            'data-preview-label="ЖИВОЙ КАТАЛОГ"',
+            'data-preview-label="ПОДКЛЮЧЕНИЕ УСТРОЙСТВА"',
+            'data-preview-label="СЦЕНАРНОЕ ДЕМО"',
+            'data-preview-label="ТЕХНИЧЕСКАЯ СБОРКА"',
+        ),
+        "en/projects.html": (
+            'data-preview-label="LIVE CATALOGUE"',
+            'data-preview-label="CONNECT A DEVICE"',
+            'data-preview-label="SCRIPTED DEMO"',
+            'data-preview-label="TECHNICAL BUILD"',
+        ),
+    }
+    for relative, labels in project_media_contract.items():
+        source = (ROOT / relative).read_text(encoding="utf-8")
+        if source.count("rd-project-preview--media") != 4:
+            failures.append(f"{relative}: expected four evidence-led project previews")
+        for label in labels:
+            if source.count(label) != 1:
+                failures.append(f"{relative}: project preview label {label!r} must occur once")
+    for relative in (
+        "assets/cases/chainya/shop-desktop.webp",
+        "assets/cases/krem/setup-devices.avif",
+        "og-case-crm.png",
+        "og-case-faith.png",
+    ):
+        if not (ROOT / relative).is_file():
+            failures.append(f"missing project preview image: {relative}")
 
     case_visual_contract = {
         "case-scout.html": (('class="sc-claim flow"', 1), ('class="sc-claim__worker"', 2), ("сотрудник A", 1), ("сотрудник B", 1)),
@@ -1065,7 +1104,7 @@ def main() -> int:
         rel = page.relative_to(ROOT)
         if "theme.css?v=" in source and "theme.css?v=20261013a" not in source:
             failures.append(f"{rel}: stale theme.css cache token")
-        if "site-config.js?v=" in source and "site-config.js?v=20260825a" not in source:
+        if "site-config.js?v=" in source and "site-config.js?v=20261015b" not in source:
             failures.append(f"{rel}: stale site-config.js cache token")
         if "support.js" in source and "support.js?v=20261015a" not in source:
             failures.append(f"{rel}: stale support.js cache token")

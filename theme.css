@@ -1471,9 +1471,102 @@ html.rd-motion-ready .ap-margin-viz.is-visible .ap-margin-viz__bar { animation: 
   transform: translateY(-50%);
 }
 
+/* Four portfolio cards use real project frames instead of symbolic diagrams.
+   The labels state the evidence level; the image remains decorative because
+   the adjacent copy carries the same information for assistive technology. */
+.rd-project-preview--media {
+  --rd-preview-image: none;
+  display: block;
+  height: 172px;
+  padding: 0;
+  isolation: isolate;
+  background-color: #101c27;
+  background-image:
+    linear-gradient(180deg, rgba(8, 18, 27, .04) 28%, rgba(8, 18, 27, .82) 100%),
+    var(--rd-preview-image);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%, 101% auto;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .035);
+  transition: background-size .58s var(--ease-out), border-color .24s ease, box-shadow .24s ease;
+}
+.rd-project-preview--media.rd-project-preview--chainya {
+  --rd-preview-image: url("assets/cases/chainya/shop-desktop.webp");
+  background-position: center 31%;
+}
+.rd-project-preview--media.rd-project-preview--krem {
+  --rd-preview-image: url("assets/cases/krem/setup-devices.avif");
+  background-position: center 43%;
+}
+.rd-project-preview--media.rd-project-preview--crm {
+  --rd-preview-image: url("og-case-crm.png");
+  background-position: center 50%;
+}
+.rd-project-preview--media.rd-project-preview--faith {
+  --rd-preview-image: url("og-case-faith.png");
+  width: 100%;
+  margin: 0;
+  border-width: 1px;
+  border-radius: 14px;
+  background-position: center 50%;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .035);
+}
+.rd-project-preview--media > i,
+.rd-project-preview--media > i::before,
+.rd-project-preview--media > i::after { display: none; }
+.rd-project-preview--media::before,
+.rd-project-preview--media::after {
+  position: absolute;
+  z-index: 2;
+  right: auto;
+  bottom: auto;
+  width: auto;
+  height: auto;
+  border: 1px solid rgba(255, 255, 255, .18);
+  border-radius: 999px;
+  color: #fff;
+  background: rgba(8, 18, 27, .72);
+  box-shadow: none;
+  transform: none;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  white-space: nowrap;
+}
+.rd-project-preview--media::before {
+  content: attr(data-preview-label);
+  top: 12px;
+  left: 12px;
+  padding: 7px 9px;
+  font: 700 9.5px/1 JetBrains Mono, ui-monospace, monospace;
+  letter-spacing: .055em;
+}
+.rd-project-preview--media::after {
+  content: attr(data-preview-state);
+  top: auto;
+  right: 12px;
+  bottom: 12px;
+  left: 12px;
+  overflow: hidden;
+  padding: 8px 10px;
+  font: 650 10.5px/1.15 Inter, system-ui, sans-serif;
+  text-overflow: ellipsis;
+}
+@media (hover:hover) and (pointer:fine) {
+  a:hover .rd-project-preview--media {
+    border-color: rgba(var(--accent-rgb), .58);
+    background-size: 100% 100%, 106% auto;
+    box-shadow: inset 0 0 0 1px rgba(var(--accent-rgb), .16), 0 16px 34px -28px var(--shadow-3);
+  }
+}
+
 @media (max-width: 680px) {
   .rd-project-preview { height: 112px; }
+  .rd-project-preview--media { height: 154px; }
   .rd-project-result { padding-top: 4px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rd-project-preview--media { transition: none; }
 }
 
 /* Services: compact navigation, decision support and native FAQ. All blocks

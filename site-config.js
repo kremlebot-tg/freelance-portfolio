@@ -478,7 +478,7 @@ window.SITE_CONFIG = {
   function observeReveals(root) {
     if (!revealObserver || reduceMotion) return;
     var scope = root || document;
-    var items = scope.querySelectorAll('main h2,.rd-card,main > article,.case-process,main .flow');
+    var items = scope.querySelectorAll('main h2,.rd-card,.rd-project-result,main > article,.case-process,main .flow');
     for (var i = 0; i < items.length; i++) {
       var el = items[i];
       if (el.classList.contains('rd-reveal') || isHeroElement(el) || el.closest('[data-theme-lock],.ph-fit')) continue;

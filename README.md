@@ -128,7 +128,7 @@ cookie и обезличенные технические данные, вебв
 
 ## SEO
 
-Индексируемая поверхность сайта описана в `sitemap.xml`: 28 RU/EN URL с парными
+Индексируемая поверхность сайта описана в `sitemap.xml`: 30 RU/EN URL с парными
 `hreflang`, каноническими URL и правдивым `lastmod`. Служебные privacy, consent и
 partner-apply исключены из sitemap и имеют `noindex,follow`.
 

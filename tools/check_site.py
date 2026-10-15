@@ -695,7 +695,7 @@ def main() -> int:
         failures.append(f"case summaries: expected three visual layouts, found {sorted(glance_layouts)}")
 
     chainya_en = (ROOT / "en/case-chainya.html").read_text(encoding="utf-8")
-    for token in ("32 items · 4 journeys · 254 tests", "The server verifies critical data", "https://chainya.ru/"):
+    for token in ("text fields available in the owner site editor", "328 site and panel checks", "https://chainya.ru/"):
         if token not in chainya_en:
             failures.append(f"en/case-chainya.html: missing verified case evidence {token!r}")
 
@@ -938,7 +938,7 @@ def main() -> int:
 
     optimized_motion_contract = {
         "case-chainya.html": ("@keyframes chHeroIn", "@media(prefers-reduced-motion:reduce)", "transform .32s var(--ease-out)"),
-        "en/case-chainya.html": ("@keyframes chHeroIn", "@media(prefers-reduced-motion:reduce)", "transform .32s var(--ease-out)"),
+        "en/case-chainya.html": ("@keyframes heroIn", "@media(prefers-reduced-motion:reduce)", "transform .32s var(--ease-out)"),
         "case-vetpulse.html": ("transform:translateY(36px)",),
         "en/case-vetpulse.html": ("transform:translateY(36px)",),
         "case-mutual.html": (".m-you::after", "transform:translateY(176px)"),

@@ -129,21 +129,36 @@ def draw_faith_panel(draw: ImageDraw.ImageDraw, language: str) -> None:
         draw.text((852, y), label, font=font(14, bold=True), fill=COLORS["text"])
 
 
-def build_chainya_en() -> Image.Image:
-    image = Image.open(ROOT / "assets/cases/chainya/og.jpg").convert("RGB")
+def build_chainya(language: str) -> Image.Image:
+    image = Image.new("RGB", (WIDTH, HEIGHT), "#15110F")
+    screenshot = Image.open(ROOT / "assets/cases/chainya/shop-desktop.webp").convert("RGB")
+    screenshot = screenshot.resize((907, 630), Image.Resampling.LANCZOS)
+    image.paste(screenshot.crop((432, 0, 907, 630)), (725, 0))
     draw = ImageDraw.Draw(image)
-    draw.rectangle((0, 0, 768, HEIGHT), fill="#15110F")
-    draw.text((72, 67), "CHAINYA", font=font(31, bold=True), fill="#F4EFE9")
-    draw.text((72, 170), "LIVE MULTILINGUAL WEBSITE", font=font(16, bold=True), fill="#D56A58")
-    draw.multiline_text(
-        (72, 220),
-        "Tea catalogue,\norders and booking",
-        font=font(49, bold=True),
-        fill="#F4EFE9",
-        spacing=2,
-    )
-    draw.text((72, 405), "Server-verified customer journeys", font=font(23), fill="#C7BDB5")
-    draw.text((72, 535), "Moscow · 32 items · 3 languages", font=font(18), fill="#A99D95")
+    draw.rectangle((0, 0, 700, HEIGHT), fill="#15110F")
+    for x, alpha in ((700, 255), (720, 220), (740, 160), (760, 90), (780, 40)):
+        overlay = Image.new("RGBA", (20, HEIGHT), (21, 17, 15, alpha))
+        image.paste(overlay, (x, 0), overlay)
+    draw = ImageDraw.Draw(image)
+    copy = {
+        "ru": (
+            "ЧАЙНЯ · ЖИВОЙ САЙТ · 3 ЯЗЫКА",
+            "Каталог, бронь\nи управление",
+            "Магазин + чайная + панель владельца",
+            "Москва · FastAPI · SQLite",
+        ),
+        "en": (
+            "CHAINYA · LIVE SITE · 3 LANGUAGES",
+            "Catalogue, booking\nand owner tools",
+            "Shop + tea house + owner operations",
+            "Moscow · FastAPI · SQLite",
+        ),
+    }[language]
+    draw.text((72, 75), "Re:dnd", font=font(29, bold=True), fill="#F4EFE9")
+    draw.text((72, 174), copy[0], font=font(15, bold=True), fill="#D98A6A")
+    draw.multiline_text((72, 222), copy[1], font=font(51, bold=True), fill="#F4EFE9", spacing=2)
+    draw.text((72, 415), copy[2], font=font(22), fill="#C7BDB5")
+    draw.text((72, 540), copy[3], font=font(18), fill="#A99D95")
     return image
 
 
@@ -279,7 +294,8 @@ def assets() -> dict[Path, bytes]:
         ROOT / "og-case-mutual-en.png": png_bytes(build_card("mutual", "en")),
         ROOT / "og-case-subscriptions.png": png_bytes(build_card("subscriptions", "ru")),
         ROOT / "og-case-subscriptions-en.png": png_bytes(build_card("subscriptions", "en")),
-        ROOT / "assets/cases/chainya/og-en.jpg": jpeg_bytes(build_chainya_en()),
+        ROOT / "assets/cases/chainya/og.jpg": jpeg_bytes(build_chainya("ru")),
+        ROOT / "assets/cases/chainya/og-en.jpg": jpeg_bytes(build_chainya("en")),
         ROOT / "vetpulse/og-cover-en.png": png_bytes(build_vetpulse_en()),
     }
 

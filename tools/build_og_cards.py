@@ -43,11 +43,11 @@ def font(size: int, *, bold: bool = False) -> ImageFont.FreeTypeFont:
     return ImageFont.truetype(str(BOLD_FONT if bold else REGULAR_FONT), size=size)
 
 
-def draw_logo(draw: ImageDraw.ImageDraw) -> None:
-    x, y, size = 72, 70, 50
-    draw.rounded_rectangle((x, y, x + size, y + size), radius=13, fill=COLORS["blue"])
-    for dx, dy in ((16, 16), (34, 16), (16, 34), (34, 34), (25, 25)):
-        draw.ellipse((x + dx - 4, y + dy - 4, x + dx + 4, y + dy + 4), fill=COLORS["text"])
+def draw_logo(image: Image.Image) -> None:
+    draw = ImageDraw.Draw(image)
+    with Image.open(ROOT / "assets/brand/telegram-dice.png") as source:
+        mark = source.convert("RGBA").resize((50, 50), Image.Resampling.LANCZOS)
+    image.paste(mark, (72, 70), mark)
     draw.text((145, 78), "Re:dnd", font=font(29, bold=True), fill=COLORS["text"])
 
 
@@ -203,7 +203,7 @@ def build_vetpulse_en() -> Image.Image:
 def build_card(kind: str, language: str) -> Image.Image:
     image = Image.new("RGB", (WIDTH, HEIGHT), COLORS["background"])
     draw = ImageDraw.Draw(image)
-    draw_logo(draw)
+    draw_logo(image)
 
     if kind == "scout":
         kicker = "ЖИВОЙ ПРОДУКТ · CRM · DESKTOP" if language == "ru" else "LIVE PRODUCT · CRM · DESKTOP"

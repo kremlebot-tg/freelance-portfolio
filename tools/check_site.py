@@ -329,7 +329,7 @@ def main() -> int:
 
         prefix = "../" if str(rel).startswith("en/") else "./"
         runtime_contract = (
-            f'<script defer src="{prefix}site-config.js?v=20261016a"></script>',
+            f'<script defer src="{prefix}site-config.js?v=20261019b"></script>',
             f'<script defer src="{prefix}vendor/react.production.min.js"',
             f'<script defer src="{prefix}vendor/react-dom.production.min.js"',
             f'<script defer src="{prefix}support.js?v=20261015a"></script>',
@@ -476,7 +476,7 @@ def main() -> int:
         source = (ROOT / relative).read_text(encoding="utf-8")
         prefix = "../" if relative.startswith("en/") else "./"
         for token in (
-            f'<script defer src="{prefix}site-config.js?v=20261016a"></script>',
+            f'<script defer src="{prefix}site-config.js?v=20261019b"></script>',
             f'<script defer src="{prefix}vendor/react.production.min.js"',
             f'<script defer src="{prefix}vendor/react-dom.production.min.js"',
             f'<script defer src="{prefix}support.js?v=20261015a"></script>',
@@ -990,7 +990,7 @@ def main() -> int:
     for token in (
         ".rd-project-preview__image {",
         ".rd-project-preview__scrim {",
-        "a:hover .rd-project-preview__image { transform: scale(1.06); }",
+        "a:hover .rd-project-preview__image { transform: none; }",
     ):
         if token not in theme:
             failures.append(f"theme.css: missing project preview performance contract {token!r}")
@@ -1164,9 +1164,9 @@ def main() -> int:
     for page, parser in parsed.items():
         source = page.read_text(encoding="utf-8")
         rel = page.relative_to(ROOT)
-        if "theme.css?v=" in source and "theme.css?v=20261019a" not in source:
+        if "theme.css?v=" in source and "theme.css?v=20261019b" not in source:
             failures.append(f"{rel}: stale theme.css cache token")
-        if "site-config.js?v=" in source and "site-config.js?v=20261016a" not in source:
+        if "site-config.js?v=" in source and "site-config.js?v=20261019b" not in source:
             failures.append(f"{rel}: stale site-config.js cache token")
         if "support.js" in source and "support.js?v=20261015a" not in source:
             failures.append(f"{rel}: stale support.js cache token")

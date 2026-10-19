@@ -515,12 +515,13 @@ window.SITE_CONFIG = {
       var el = items[i];
       if (el.classList.contains('rd-reveal') || isHeroElement(el) || el.closest('[data-theme-lock],.ph-fit')) continue;
       if (el.tagName === 'H2' && el.closest('.rd-card')) continue;
+      if (el.classList.contains('rd-project-result') && el.closest('.rd-card')) continue;
       el.classList.add('rd-reveal');
       var siblings = el.parentElement ? Array.prototype.filter.call(el.parentElement.children, function (n) {
         return n.matches && (n.matches('.rd-card') || n.tagName === 'ARTICLE');
       }) : [];
       var idx = siblings.indexOf(el);
-      if (idx > -1) el.style.setProperty('--rd-delay', String(Math.min(idx % 4, 3) * 65) + 'ms');
+      if (idx > -1) el.style.setProperty('--rd-delay', String(Math.min(idx % 4, 2) * 45) + 'ms');
       revealObserver.observe(el);
     }
   }

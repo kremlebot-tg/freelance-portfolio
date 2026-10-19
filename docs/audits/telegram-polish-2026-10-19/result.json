@@ -1,0 +1,1628 @@
+{
+  "checkedAt": "2026-10-19T19:11:00.385Z",
+  "base": "http://127.0.0.1:8788/",
+  "browser": "155.0.8059.82",
+  "scenarios": 39,
+  "motion": {
+    "opacity": "1",
+    "transform": "none"
+  },
+  "errors": [],
+  "checks": [
+    {
+      "target": "index.html",
+      "theme": "light",
+      "width": 390,
+      "check": {
+        "theme": "light",
+        "width": 390,
+        "documentWidth": 390,
+        "mainPadding": "0px",
+        "logo": {
+          "src": "favicon.svg?v=20261019a",
+          "width": 512
+        },
+        "previews": [],
+        "type": [
+          {
+            "text": "Услуги",
+            "weight": "600",
+            "family": "Inter, system-ui, sans-serif"
+          },
+          {
+            "text": "Telegram-боты и мини-аппы",
+            "weight": "600",
+            "family": "Inter, system-ui, sans-serif"
+          },
+          {
+            "text": "ИИ-ассистенты и агенты",
+            "weight": "600",
+            "family": "Inter, system-ui, sans-serif"
+          },
+          {
+            "text": "Интеграции и автоматизация",
+            "weight": "600",
+            "family": "Inter, system-ui, sans-serif"
+          }
+        ]
+      }
+    },
+    {
+      "target": "projects.html",
+      "theme": "light",
+      "width": 390,
+      "check": {
+        "theme": "light",
+        "width": 390,
+        "documentWidth": 390,
+        "mainPadding": "22px",
+        "logo": {
+          "src": "favicon.svg?v=20261019a",
+          "width": 512
+        },
+        "previews": [
+          {
+            "fit": "contain",
+            "width": 1200,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1440,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1280,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1200,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1200,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1200,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1200,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1200,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1200,
+            "caption": "12.5px",
+            "wrap": "normal"
+          }
+        ],
+        "type": [
+          {
+            "text": "Проекты",
+            "weight": "700",
+            "family": "Inter, system-ui, sans-serif"
+          },
+          {
+            "text": "Scout — поиск и работа с B2B-лидами",
+            "weight": "600",
+            "family": "Inter, system-ui, sans-serif"
+          },
+          {
+            "text": "Поиск → следующий шаг",
+            "weight": "700",
+            "family": "Inter, system-ui, sans-serif"
+          },
+          {
+            "text": "Чайня — магазин и система чайной",
+            "weight": "600",
+            "family": "Inter, system-ui, sans-serif"
+          }
+        ]
+      }
+    },
+    {
+      "target": "services.html",
+      "theme": "light",
+      "width": 390,
+      "check": {
+        "theme": "light",
+        "width": 390,
+        "documentWidth": 390,
+        "mainPadding": "22px",
+        "logo": {
+          "src": "favicon.svg?v=20261019a",
+          "width": 512
+        },
+        "previews": [],
+        "type": [
+          {
+            "text": "Услуги",
+            "weight": "700",
+            "family": "Inter, system-ui, sans-serif"
+          },
+          {
+            "text": "Telegram-боты и мини-аппы",
+            "weight": "600",
+            "family": "Inter, system-ui, sans-serif"
+          },
+          {
+            "text": "от 7 000 ₽",
+            "weight": "600",
+            "family": "Inter, system-ui, sans-serif"
+          },
+          {
+            "text": "ИИ-ассистенты и агенты",
+            "weight": "600",
+            "family": "Inter, system-ui, sans-serif"
+          }
+        ]
+      }
+    },
+    {
+      "target": "about.html",
+      "theme": "light",
+      "width": 390,
+      "check": {
+        "theme": "light",
+        "width": 390,
+        "documentWidth": 390,
+        "mainPadding": "22px",
+        "logo": {
+          "src": "favicon.svg?v=20261019a",
+          "width": 512
+        },
+        "previews": [],
+        "type": [
+          {
+            "text": "О команде Re:dnd",
+            "weight": "700",
+            "family": "Inter, system-ui, sans-serif"
+          },
+          {
+            "text": "Как устроена работа",
+            "weight": "600",
+            "family": "Inter, system-ui, sans-serif"
+          },
+          {
+            "text": "Как проверить Re:dnd",
+            "weight": "600",
+            "family": "Inter, system-ui, sans-serif"
+          },
+          {
+            "text": "Стек",
+            "weight": "600",
+            "family": "Inter, system-ui, sans-serif"
+          }
+        ]
+      }
+    },
+    {
+      "target": "contact.html",
+      "theme": "light",
+      "width": 390,
+      "check": {
+        "theme": "light",
+        "width": 390,
+        "documentWidth": 390,
+        "mainPadding": "22px",
+        "logo": {
+          "src": "favicon.svg?v=20261019a",
+          "width": 512
+        },
+        "previews": [],
+        "type": [
+          {
+            "text": "Расскажите про задачу",
+            "weight": "700",
+            "family": "Inter, system-ui, sans-serif"
+          },
+          {
+            "text": "Или напрямую",
+            "weight": "600",
+            "family": "Inter, system-ui, sans-serif"
+          },
+          {
+            "text": "Как мы работаем",
+            "weight": "600",
+            "family": "Inter, system-ui, sans-serif"
+          },
+          {
+            "text": "Частые вопросы",
+            "weight": "600",
+            "family": "Inter, system-ui, sans-serif"
+          }
+        ]
+      }
+    },
+    {
+      "target": "en/index.html",
+      "theme": "light",
+      "width": 390,
+      "check": {
+        "theme": "light",
+        "width": 390,
+        "documentWidth": 390,
+        "mainPadding": "0px",
+        "logo": {
+          "src": "../favicon.svg?v=20261019a",
+          "width": 512
+        },
+        "previews": [],
+        "type": []
+      }
+    },
+    {
+      "target": "en/projects.html",
+      "theme": "light",
+      "width": 390,
+      "check": {
+        "theme": "light",
+        "width": 390,
+        "documentWidth": 390,
+        "mainPadding": "22px",
+        "logo": {
+          "src": "../favicon.svg?v=20261019a",
+          "width": 512
+        },
+        "previews": [
+          {
+            "fit": "contain",
+            "width": 1200,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1440,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1280,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1200,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1200,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1200,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1200,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1200,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1200,
+            "caption": "12.5px",
+            "wrap": "normal"
+          }
+        ],
+        "type": []
+      }
+    },
+    {
+      "target": "case-scout.html",
+      "theme": "light",
+      "width": 390,
+      "check": {
+        "theme": "light",
+        "width": 390,
+        "documentWidth": 390,
+        "mainPadding": "20px",
+        "logo": {
+          "src": "favicon.svg?v=20261019a",
+          "width": 512
+        },
+        "previews": [],
+        "type": []
+      }
+    },
+    {
+      "target": "case-chainya.html",
+      "theme": "light",
+      "width": 390,
+      "check": {
+        "theme": "light",
+        "width": 390,
+        "documentWidth": 390,
+        "mainPadding": "20px",
+        "logo": {
+          "src": "favicon.svg?v=20261019a",
+          "width": 512
+        },
+        "previews": [],
+        "type": []
+      }
+    },
+    {
+      "target": "case-krem.html",
+      "theme": "light",
+      "width": 390,
+      "check": {
+        "theme": "light",
+        "width": 390,
+        "documentWidth": 390,
+        "mainPadding": "20px",
+        "logo": {
+          "src": "favicon.svg?v=20261019a",
+          "width": 512
+        },
+        "previews": [],
+        "type": []
+      }
+    },
+    {
+      "target": "case-subscriptions.html",
+      "theme": "light",
+      "width": 390,
+      "check": {
+        "theme": "light",
+        "width": 390,
+        "documentWidth": 390,
+        "mainPadding": "22px",
+        "logo": {
+          "src": "favicon.svg?v=20261019a",
+          "width": 512
+        },
+        "previews": [],
+        "type": [
+          {
+            "text": "Подписочный Telegram-сервис",
+            "weight": "700",
+            "family": "Inter, system-ui, sans-serif"
+          }
+        ]
+      }
+    },
+    {
+      "target": "case-crm.html",
+      "theme": "light",
+      "width": 390,
+      "check": {
+        "theme": "light",
+        "width": 390,
+        "documentWidth": 390,
+        "mainPadding": "22px",
+        "logo": {
+          "src": "favicon.svg?v=20261019a",
+          "width": 512
+        },
+        "previews": [],
+        "type": [
+          {
+            "text": "Персональный CRM для нетворкинга",
+            "weight": "700",
+            "family": "Inter, system-ui, sans-serif"
+          },
+          {
+            "text": "Я",
+            "weight": "600",
+            "family": "Inter, system-ui, sans-serif"
+          },
+          {
+            "text": "И",
+            "weight": "600",
+            "family": "Inter, system-ui, sans-serif"
+          },
+          {
+            "text": "А",
+            "weight": "600",
+            "family": "Inter, system-ui, sans-serif"
+          }
+        ]
+      }
+    },
+    {
+      "target": "case-vetpulse.html",
+      "theme": "light",
+      "width": 390,
+      "check": {
+        "theme": "light",
+        "width": 390,
+        "documentWidth": 390,
+        "mainPadding": "22px",
+        "logo": {
+          "src": "favicon.svg?v=20261019a",
+          "width": 512
+        },
+        "previews": [],
+        "type": [
+          {
+            "text": "ВетПульс — прототип помощника для ветклиник",
+            "weight": "700",
+            "family": "Inter, system-ui, sans-serif"
+          },
+          {
+            "text": "ВП",
+            "weight": "600",
+            "family": "Inter, system-ui, sans-serif"
+          },
+          {
+            "text": "ВетПульс · AI-диспетчер",
+            "weight": "600",
+            "family": "Inter, system-ui, sans-serif"
+          },
+          {
+            "text": "От обращения до действия администратора",
+            "weight": "600",
+            "family": "Inter, system-ui, sans-serif"
+          }
+        ]
+      }
+    },
+    {
+      "target": "case-autopricer.html",
+      "theme": "light",
+      "width": 390,
+      "check": {
+        "theme": "light",
+        "width": 390,
+        "documentWidth": 390,
+        "mainPadding": "22px",
+        "logo": {
+          "src": "favicon.svg?v=20261019a",
+          "width": 512
+        },
+        "previews": [],
+        "type": [
+          {
+            "text": "Ozon: цены и юнит-экономика для FBO и FBS",
+            "weight": "700",
+            "family": "Inter, system-ui, sans-serif"
+          },
+          {
+            "text": "Параметры ценообразования",
+            "weight": "600",
+            "family": "Inter, system-ui, sans-serif"
+          }
+        ]
+      }
+    },
+    {
+      "target": "case-mutual.html",
+      "theme": "light",
+      "width": 390,
+      "check": {
+        "theme": "light",
+        "width": 390,
+        "documentWidth": 390,
+        "mainPadding": "22px",
+        "logo": {
+          "src": "favicon.svg?v=20261019a",
+          "width": 512
+        },
+        "previews": [],
+        "type": [
+          {
+            "text": "MUTUAL — знакомства через QR",
+            "weight": "700",
+            "family": "Inter, system-ui, sans-serif"
+          }
+        ]
+      }
+    },
+    {
+      "target": "case-faith.html",
+      "theme": "light",
+      "width": 390,
+      "check": {
+        "theme": "light",
+        "width": 390,
+        "documentWidth": 390,
+        "mainPadding": "22px",
+        "logo": {
+          "src": "favicon.svg?v=20261019a",
+          "width": 512
+        },
+        "previews": [],
+        "type": [
+          {
+            "text": "Faith App — православное обучение, Писание и библиотека",
+            "weight": "700",
+            "family": "Inter, system-ui, sans-serif"
+          }
+        ]
+      }
+    },
+    {
+      "target": "index.html",
+      "theme": "dark",
+      "width": 1280,
+      "check": {
+        "theme": "dark",
+        "width": 1280,
+        "documentWidth": 1280,
+        "mainPadding": "0px",
+        "logo": {
+          "src": "favicon.svg?v=20261019a",
+          "width": 512
+        },
+        "previews": [],
+        "type": [
+          {
+            "text": "Услуги",
+            "weight": "600",
+            "family": "Inter, system-ui, sans-serif"
+          },
+          {
+            "text": "Telegram-боты и мини-аппы",
+            "weight": "600",
+            "family": "Inter, system-ui, sans-serif"
+          },
+          {
+            "text": "ИИ-ассистенты и агенты",
+            "weight": "600",
+            "family": "Inter, system-ui, sans-serif"
+          },
+          {
+            "text": "Интеграции и автоматизация",
+            "weight": "600",
+            "family": "Inter, system-ui, sans-serif"
+          }
+        ]
+      }
+    },
+    {
+      "target": "projects.html",
+      "theme": "dark",
+      "width": 1280,
+      "check": {
+        "theme": "dark",
+        "width": 1280,
+        "documentWidth": 1280,
+        "mainPadding": "22px",
+        "logo": {
+          "src": "favicon.svg?v=20261019a",
+          "width": 512
+        },
+        "previews": [
+          {
+            "fit": "contain",
+            "width": 1200,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1440,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1280,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1200,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1200,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1200,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1200,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1200,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1200,
+            "caption": "12.5px",
+            "wrap": "normal"
+          }
+        ],
+        "type": [
+          {
+            "text": "Проекты",
+            "weight": "700",
+            "family": "Inter, system-ui, sans-serif"
+          },
+          {
+            "text": "Scout — поиск и работа с B2B-лидами",
+            "weight": "600",
+            "family": "Inter, system-ui, sans-serif"
+          },
+          {
+            "text": "Поиск → следующий шаг",
+            "weight": "700",
+            "family": "Inter, system-ui, sans-serif"
+          },
+          {
+            "text": "Чайня — магазин и система чайной",
+            "weight": "600",
+            "family": "Inter, system-ui, sans-serif"
+          }
+        ]
+      }
+    },
+    {
+      "target": "services.html",
+      "theme": "dark",
+      "width": 1280,
+      "check": {
+        "theme": "dark",
+        "width": 1280,
+        "documentWidth": 1280,
+        "mainPadding": "22px",
+        "logo": {
+          "src": "favicon.svg?v=20261019a",
+          "width": 512
+        },
+        "previews": [],
+        "type": [
+          {
+            "text": "Услуги",
+            "weight": "700",
+            "family": "Inter, system-ui, sans-serif"
+          },
+          {
+            "text": "Telegram-боты и мини-аппы",
+            "weight": "600",
+            "family": "Inter, system-ui, sans-serif"
+          },
+          {
+            "text": "от 7 000 ₽",
+            "weight": "600",
+            "family": "Inter, system-ui, sans-serif"
+          },
+          {
+            "text": "ИИ-ассистенты и агенты",
+            "weight": "600",
+            "family": "Inter, system-ui, sans-serif"
+          }
+        ]
+      }
+    },
+    {
+      "target": "about.html",
+      "theme": "dark",
+      "width": 1280,
+      "check": {
+        "theme": "dark",
+        "width": 1280,
+        "documentWidth": 1280,
+        "mainPadding": "22px",
+        "logo": {
+          "src": "favicon.svg?v=20261019a",
+          "width": 512
+        },
+        "previews": [],
+        "type": [
+          {
+            "text": "О команде Re:dnd",
+            "weight": "700",
+            "family": "Inter, system-ui, sans-serif"
+          },
+          {
+            "text": "Как устроена работа",
+            "weight": "600",
+            "family": "Inter, system-ui, sans-serif"
+          },
+          {
+            "text": "Как проверить Re:dnd",
+            "weight": "600",
+            "family": "Inter, system-ui, sans-serif"
+          },
+          {
+            "text": "Стек",
+            "weight": "600",
+            "family": "Inter, system-ui, sans-serif"
+          }
+        ]
+      }
+    },
+    {
+      "target": "contact.html",
+      "theme": "dark",
+      "width": 1280,
+      "check": {
+        "theme": "dark",
+        "width": 1280,
+        "documentWidth": 1280,
+        "mainPadding": "22px",
+        "logo": {
+          "src": "favicon.svg?v=20261019a",
+          "width": 512
+        },
+        "previews": [],
+        "type": [
+          {
+            "text": "Расскажите про задачу",
+            "weight": "700",
+            "family": "Inter, system-ui, sans-serif"
+          },
+          {
+            "text": "Или напрямую",
+            "weight": "600",
+            "family": "Inter, system-ui, sans-serif"
+          },
+          {
+            "text": "Как мы работаем",
+            "weight": "600",
+            "family": "Inter, system-ui, sans-serif"
+          },
+          {
+            "text": "Частые вопросы",
+            "weight": "600",
+            "family": "Inter, system-ui, sans-serif"
+          }
+        ]
+      }
+    },
+    {
+      "target": "en/index.html",
+      "theme": "dark",
+      "width": 1280,
+      "check": {
+        "theme": "dark",
+        "width": 1280,
+        "documentWidth": 1280,
+        "mainPadding": "0px",
+        "logo": {
+          "src": "../favicon.svg?v=20261019a",
+          "width": 512
+        },
+        "previews": [],
+        "type": []
+      }
+    },
+    {
+      "target": "en/projects.html",
+      "theme": "dark",
+      "width": 1280,
+      "check": {
+        "theme": "dark",
+        "width": 1280,
+        "documentWidth": 1280,
+        "mainPadding": "22px",
+        "logo": {
+          "src": "../favicon.svg?v=20261019a",
+          "width": 512
+        },
+        "previews": [
+          {
+            "fit": "contain",
+            "width": 1200,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1440,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1280,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1200,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1200,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1200,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1200,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1200,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1200,
+            "caption": "12.5px",
+            "wrap": "normal"
+          }
+        ],
+        "type": []
+      }
+    },
+    {
+      "target": "case-scout.html",
+      "theme": "dark",
+      "width": 1280,
+      "check": {
+        "theme": "dark",
+        "width": 1280,
+        "documentWidth": 1280,
+        "mainPadding": "20px",
+        "logo": {
+          "src": "favicon.svg?v=20261019a",
+          "width": 512
+        },
+        "previews": [],
+        "type": []
+      }
+    },
+    {
+      "target": "case-chainya.html",
+      "theme": "dark",
+      "width": 1280,
+      "check": {
+        "theme": "dark",
+        "width": 1280,
+        "documentWidth": 1280,
+        "mainPadding": "20px",
+        "logo": {
+          "src": "favicon.svg?v=20261019a",
+          "width": 512
+        },
+        "previews": [],
+        "type": []
+      }
+    },
+    {
+      "target": "case-krem.html",
+      "theme": "dark",
+      "width": 1280,
+      "check": {
+        "theme": "dark",
+        "width": 1280,
+        "documentWidth": 1280,
+        "mainPadding": "22px",
+        "logo": {
+          "src": "favicon.svg?v=20261019a",
+          "width": 512
+        },
+        "previews": [],
+        "type": []
+      }
+    },
+    {
+      "target": "case-subscriptions.html",
+      "theme": "dark",
+      "width": 1280,
+      "check": {
+        "theme": "dark",
+        "width": 1280,
+        "documentWidth": 1280,
+        "mainPadding": "22px",
+        "logo": {
+          "src": "favicon.svg?v=20261019a",
+          "width": 512
+        },
+        "previews": [],
+        "type": [
+          {
+            "text": "Подписочный Telegram-сервис",
+            "weight": "700",
+            "family": "Inter, system-ui, sans-serif"
+          }
+        ]
+      }
+    },
+    {
+      "target": "case-crm.html",
+      "theme": "dark",
+      "width": 1280,
+      "check": {
+        "theme": "dark",
+        "width": 1280,
+        "documentWidth": 1280,
+        "mainPadding": "22px",
+        "logo": {
+          "src": "favicon.svg?v=20261019a",
+          "width": 512
+        },
+        "previews": [],
+        "type": [
+          {
+            "text": "Персональный CRM для нетворкинга",
+            "weight": "700",
+            "family": "Inter, system-ui, sans-serif"
+          },
+          {
+            "text": "Я",
+            "weight": "600",
+            "family": "Inter, system-ui, sans-serif"
+          },
+          {
+            "text": "И",
+            "weight": "600",
+            "family": "Inter, system-ui, sans-serif"
+          },
+          {
+            "text": "А",
+            "weight": "600",
+            "family": "Inter, system-ui, sans-serif"
+          }
+        ]
+      }
+    },
+    {
+      "target": "case-vetpulse.html",
+      "theme": "dark",
+      "width": 1280,
+      "check": {
+        "theme": "dark",
+        "width": 1280,
+        "documentWidth": 1280,
+        "mainPadding": "22px",
+        "logo": {
+          "src": "favicon.svg?v=20261019a",
+          "width": 512
+        },
+        "previews": [],
+        "type": [
+          {
+            "text": "ВетПульс — прототип помощника для ветклиник",
+            "weight": "700",
+            "family": "Inter, system-ui, sans-serif"
+          },
+          {
+            "text": "ВП",
+            "weight": "600",
+            "family": "Inter, system-ui, sans-serif"
+          },
+          {
+            "text": "ВетПульс · AI-диспетчер",
+            "weight": "600",
+            "family": "Inter, system-ui, sans-serif"
+          },
+          {
+            "text": "От обращения до действия администратора",
+            "weight": "600",
+            "family": "Inter, system-ui, sans-serif"
+          }
+        ]
+      }
+    },
+    {
+      "target": "case-autopricer.html",
+      "theme": "dark",
+      "width": 1280,
+      "check": {
+        "theme": "dark",
+        "width": 1280,
+        "documentWidth": 1280,
+        "mainPadding": "22px",
+        "logo": {
+          "src": "favicon.svg?v=20261019a",
+          "width": 512
+        },
+        "previews": [],
+        "type": [
+          {
+            "text": "Ozon: цены и юнит-экономика для FBO и FBS",
+            "weight": "700",
+            "family": "Inter, system-ui, sans-serif"
+          },
+          {
+            "text": "Параметры ценообразования",
+            "weight": "600",
+            "family": "Inter, system-ui, sans-serif"
+          }
+        ]
+      }
+    },
+    {
+      "target": "case-mutual.html",
+      "theme": "dark",
+      "width": 1280,
+      "check": {
+        "theme": "dark",
+        "width": 1280,
+        "documentWidth": 1280,
+        "mainPadding": "22px",
+        "logo": {
+          "src": "favicon.svg?v=20261019a",
+          "width": 512
+        },
+        "previews": [],
+        "type": [
+          {
+            "text": "MUTUAL — знакомства через QR",
+            "weight": "700",
+            "family": "Inter, system-ui, sans-serif"
+          }
+        ]
+      }
+    },
+    {
+      "target": "case-faith.html",
+      "theme": "dark",
+      "width": 1280,
+      "check": {
+        "theme": "dark",
+        "width": 1280,
+        "documentWidth": 1280,
+        "mainPadding": "22px",
+        "logo": {
+          "src": "favicon.svg?v=20261019a",
+          "width": 512
+        },
+        "previews": [],
+        "type": [
+          {
+            "text": "Faith App — православное обучение, Писание и библиотека",
+            "weight": "700",
+            "family": "Inter, system-ui, sans-serif"
+          }
+        ]
+      }
+    },
+    {
+      "target": "index.html",
+      "theme": "light",
+      "width": 320,
+      "check": {
+        "theme": "light",
+        "width": 320,
+        "documentWidth": 320,
+        "mainPadding": "0px",
+        "logo": {
+          "src": "favicon.svg?v=20261019a",
+          "width": 512
+        },
+        "previews": [],
+        "type": [
+          {
+            "text": "Услуги",
+            "weight": "600",
+            "family": "Inter, system-ui, sans-serif"
+          },
+          {
+            "text": "Telegram-боты и мини-аппы",
+            "weight": "600",
+            "family": "Inter, system-ui, sans-serif"
+          },
+          {
+            "text": "ИИ-ассистенты и агенты",
+            "weight": "600",
+            "family": "Inter, system-ui, sans-serif"
+          },
+          {
+            "text": "Интеграции и автоматизация",
+            "weight": "600",
+            "family": "Inter, system-ui, sans-serif"
+          }
+        ]
+      }
+    },
+    {
+      "target": "projects.html",
+      "theme": "light",
+      "width": 320,
+      "check": {
+        "theme": "light",
+        "width": 320,
+        "documentWidth": 320,
+        "mainPadding": "22px",
+        "logo": {
+          "src": "favicon.svg?v=20261019a",
+          "width": 512
+        },
+        "previews": [
+          {
+            "fit": "contain",
+            "width": 1200,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1440,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1280,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1200,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1200,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1200,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1200,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1200,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1200,
+            "caption": "12.5px",
+            "wrap": "normal"
+          }
+        ],
+        "type": [
+          {
+            "text": "Проекты",
+            "weight": "700",
+            "family": "Inter, system-ui, sans-serif"
+          },
+          {
+            "text": "Scout — поиск и работа с B2B-лидами",
+            "weight": "600",
+            "family": "Inter, system-ui, sans-serif"
+          },
+          {
+            "text": "Поиск → следующий шаг",
+            "weight": "700",
+            "family": "Inter, system-ui, sans-serif"
+          },
+          {
+            "text": "Чайня — магазин и система чайной",
+            "weight": "600",
+            "family": "Inter, system-ui, sans-serif"
+          }
+        ]
+      }
+    },
+    {
+      "target": "en/projects.html",
+      "theme": "light",
+      "width": 320,
+      "check": {
+        "theme": "light",
+        "width": 320,
+        "documentWidth": 320,
+        "mainPadding": "22px",
+        "logo": {
+          "src": "../favicon.svg?v=20261019a",
+          "width": 512
+        },
+        "previews": [
+          {
+            "fit": "contain",
+            "width": 1200,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1440,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1280,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1200,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1200,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1200,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1200,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1200,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1200,
+            "caption": "12.5px",
+            "wrap": "normal"
+          }
+        ],
+        "type": []
+      }
+    },
+    {
+      "target": "index.html",
+      "theme": "dark",
+      "width": 390,
+      "check": {
+        "theme": "dark",
+        "width": 390,
+        "documentWidth": 390,
+        "mainPadding": "0px",
+        "logo": {
+          "src": "favicon.svg?v=20261019a",
+          "width": 512
+        },
+        "previews": [],
+        "type": [
+          {
+            "text": "Услуги",
+            "weight": "600",
+            "family": "Inter, system-ui, sans-serif"
+          },
+          {
+            "text": "Telegram-боты и мини-аппы",
+            "weight": "600",
+            "family": "Inter, system-ui, sans-serif"
+          },
+          {
+            "text": "ИИ-ассистенты и агенты",
+            "weight": "600",
+            "family": "Inter, system-ui, sans-serif"
+          },
+          {
+            "text": "Интеграции и автоматизация",
+            "weight": "600",
+            "family": "Inter, system-ui, sans-serif"
+          }
+        ]
+      }
+    },
+    {
+      "target": "projects.html",
+      "theme": "dark",
+      "width": 390,
+      "check": {
+        "theme": "dark",
+        "width": 390,
+        "documentWidth": 390,
+        "mainPadding": "22px",
+        "logo": {
+          "src": "favicon.svg?v=20261019a",
+          "width": 512
+        },
+        "previews": [
+          {
+            "fit": "contain",
+            "width": 1200,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1440,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1280,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1200,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1200,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1200,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1200,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1200,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1200,
+            "caption": "12.5px",
+            "wrap": "normal"
+          }
+        ],
+        "type": [
+          {
+            "text": "Проекты",
+            "weight": "700",
+            "family": "Inter, system-ui, sans-serif"
+          },
+          {
+            "text": "Scout — поиск и работа с B2B-лидами",
+            "weight": "600",
+            "family": "Inter, system-ui, sans-serif"
+          },
+          {
+            "text": "Поиск → следующий шаг",
+            "weight": "700",
+            "family": "Inter, system-ui, sans-serif"
+          },
+          {
+            "text": "Чайня — магазин и система чайной",
+            "weight": "600",
+            "family": "Inter, system-ui, sans-serif"
+          }
+        ]
+      }
+    },
+    {
+      "target": "en/projects.html",
+      "theme": "dark",
+      "width": 390,
+      "check": {
+        "theme": "dark",
+        "width": 390,
+        "documentWidth": 390,
+        "mainPadding": "22px",
+        "logo": {
+          "src": "../favicon.svg?v=20261019a",
+          "width": 512
+        },
+        "previews": [
+          {
+            "fit": "contain",
+            "width": 1200,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1440,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1280,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1200,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1200,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1200,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1200,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1200,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1200,
+            "caption": "12.5px",
+            "wrap": "normal"
+          }
+        ],
+        "type": []
+      }
+    },
+    {
+      "target": "projects.html",
+      "theme": "light",
+      "width": 768,
+      "check": {
+        "theme": "light",
+        "width": 768,
+        "documentWidth": 768,
+        "mainPadding": "22px",
+        "logo": {
+          "src": "favicon.svg?v=20261019a",
+          "width": 512
+        },
+        "previews": [
+          {
+            "fit": "contain",
+            "width": 1200,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1440,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1280,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1200,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1200,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1200,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1200,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1200,
+            "caption": "12.5px",
+            "wrap": "normal"
+          },
+          {
+            "fit": "contain",
+            "width": 1200,
+            "caption": "12.5px",
+            "wrap": "normal"
+          }
+        ],
+        "type": [
+          {
+            "text": "Проекты",
+            "weight": "700",
+            "family": "Inter, system-ui, sans-serif"
+          },
+          {
+            "text": "Scout — поиск и работа с B2B-лидами",
+            "weight": "600",
+            "family": "Inter, system-ui, sans-serif"
+          },
+          {
+            "text": "Поиск → следующий шаг",
+            "weight": "700",
+            "family": "Inter, system-ui, sans-serif"
+          },
+          {
+            "text": "Чайня — магазин и система чайной",
+            "weight": "600",
+            "family": "Inter, system-ui, sans-serif"
+          }
+        ]
+      }
+    }
+  ]
+}

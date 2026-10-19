@@ -1050,6 +1050,24 @@ def main() -> int:
         ):
             if token not in source:
                 failures.append(f"{relative}: missing 44px header target contract {token!r}")
+        logo_src = "../favicon.svg?v=20261019a" if relative.startswith("en/") else "favicon.svg?v=20261019a"
+        if f'<img class="hdr-logo-mark" src="{logo_src}"' not in source:
+            failures.append(f"{relative}: header must use the dice brand mark")
+        if "{{ initials }}" in source or "const initials =" in source:
+            failures.append(f"{relative}: stale generated-initials logo remains")
+
+    favicon = (ROOT / "favicon.svg").read_text(encoding="utf-8")
+    if '<svg ' not in favicon or '<path ' not in favicon:
+        failures.append("favicon.svg: dice brand mark is missing vector artwork")
+    if '<text ' in favicon or '>R:</text>' in favicon:
+        failures.append("favicon.svg: stale R: text mark remains")
+    for unsafe in ("<script", "javascript:", "onload=", "onclick=", 'href="http'):
+        if unsafe in favicon.lower():
+            failures.append(f"favicon.svg: unsafe or external SVG token {unsafe!r}")
+    for relative in ("about.html", "en/about.html", "theme.css"):
+        source = (ROOT / relative).read_text(encoding="utf-8")
+        if "initials: 'R:'" in source or 'content: "R:"' in source or "{{ initials }}" in source:
+            failures.append(f"{relative}: stale R: brand placeholder remains")
 
     for relative in ("Footer.dc.html", "en/Footer.dc.html"):
         source = (ROOT / relative).read_text(encoding="utf-8")
@@ -1146,7 +1164,7 @@ def main() -> int:
     for page, parser in parsed.items():
         source = page.read_text(encoding="utf-8")
         rel = page.relative_to(ROOT)
-        if "theme.css?v=" in source and "theme.css?v=20261016a" not in source:
+        if "theme.css?v=" in source and "theme.css?v=20261019a" not in source:
             failures.append(f"{rel}: stale theme.css cache token")
         if "site-config.js?v=" in source and "site-config.js?v=20261016a" not in source:
             failures.append(f"{rel}: stale site-config.js cache token")

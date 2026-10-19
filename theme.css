@@ -399,7 +399,10 @@ header.is-scrolled {
 .hdr-cta > span { animation: none; }
 .hdr-cta[aria-current="page"] { box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px rgba(var(--accent-rgb), .52); }
 .hdr-logo-mark {
-  background: var(--accent) !important;
+  display: block;
+  flex: none;
+  object-fit: contain;
+  background: transparent !important;
   box-shadow: none;
 }
 /* Аккордеоны и формы ощущаются цельно и реагируют на ввод. */
@@ -448,14 +451,14 @@ footer {
   background-image: none !important;
 }
 footer::after {
-  content: "R:";
+  content: "";
   position: absolute;
   right: clamp(18px, 5vw, 72px);
-  bottom: -22px;
-  color: var(--accent);
-  font: 700 86px/1 Sora, sans-serif;
-  letter-spacing: -.08em;
-  opacity: .045;
+  bottom: -14px;
+  width: 96px;
+  height: 96px;
+  background: url("favicon.svg?v=20261019a") center / contain no-repeat;
+  opacity: .065;
   pointer-events: none;
 }
 

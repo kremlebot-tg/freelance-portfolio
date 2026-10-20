@@ -25,7 +25,7 @@
 <link rel="alternate" hreflang="x-default" href="https://rednd.ru/">
 <script>(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 <link rel="preload" href="./fonts/inter-UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa0ZL7W0Q5n-wU.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="./theme.css?v=20261019b">
+<link rel="stylesheet" href="./theme.css?v=20261020a">
 <script defer src="./site-config.js?v=20261019b"></script>
 <script defer src="./vendor/react.production.min.js" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z" crossorigin="anonymous"></script>
 <script defer src="./vendor/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous"></script>
@@ -254,16 +254,16 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
   </section>
 
   <!-- ============ PROJECTS ============ -->
-  <section style="max-width:1140px;margin:0 auto;padding:clamp(28px,4vw,48px) 22px">
-    <div style="display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:24px">
-      <h2 style="margin:0;font:600 clamp(26px,3.2vw,36px)/1.15 Sora,sans-serif;letter-spacing:-0.01em">Проекты</h2>
-      <p style="margin:0;font:400 15.5px/1.5 Inter,system-ui,sans-serif;color:var(--text-meta)">Откройте живой продукт или изучите интерактивное демо внутри кейса.</p>
+  <section aria-labelledby="home-projects-title" style="max-width:1140px;margin:0 auto;padding:clamp(28px,4vw,48px) 22px">
+    <div class="rd-home-projects-heading">
+      <div><h2 id="home-projects-title" style="margin:0;font:600 clamp(26px,3.2vw,36px)/1.15 Sora,sans-serif;letter-spacing:-0.01em">Избранные проекты</h2><p class="rd-home-projects-intro">Три примера нашей работы. Остальные продукты, прототипы и демо — в полном каталоге.</p></div>
+      <a class="rd-all-projects" href="projects.html" data-analytics-placement="home-projects">Все проекты <span aria-hidden="true">→</span></a>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px">
+    <div class="rd-home-projects-grid" data-analytics-placement="home-featured" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px">
 
-      <a href="case-scout.html" style="display:flex;flex-direction:column;gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 14px 34px -14px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
+      <a data-featured-case="scout" href="case-scout.html" style="display:flex;flex-direction:column;gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 14px 34px -14px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
         <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--accent)">[SaaS · CRM · Desktop]</span>
-        <span style="font:600 20px/1.3 Sora,sans-serif">Scout — поиск и работа с B2B-лидами</span>
+        <h3 style="margin:0;font:600 20px/1.3 Sora,sans-serif">Scout — поиск и работа с B2B-лидами</h3>
         <span style="font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Собирает компании из карт, объединяет контакты и превращает базу в очередь работы команды.</span>
         <span style="margin-top:auto;display:flex;align-items:center;gap:8px">
           <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:var(--online)"></span>живой продукт</span>
@@ -271,9 +271,9 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
         </span>
       </a>
 
-      <a href="case-chainya.html" style="display:flex;flex-direction:column;gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 14px 34px -14px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
+      <a data-featured-case="chainya" href="case-chainya.html" style="display:flex;flex-direction:column;gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 14px 34px -14px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
         <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--accent)">[Веб · Локальный бизнес]</span>
-        <span style="font:600 20px/1.3 Sora,sans-serif">Чайня — магазин и система чайной</span>
+        <h3 style="margin:0;font:600 20px/1.3 Sora,sans-serif">Чайня — магазин и система чайной</h3>
         <span style="font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Каталог, заказы, бронь двух столов и зала, кабинет, обращения и панель владельца на трёх языках.</span>
         <span style="margin-top:auto;display:flex;align-items:center;gap:8px">
           <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:var(--online)"></span>живой сайт внутри</span>
@@ -281,72 +281,12 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
         </span>
       </a>
 
-      <a href="case-krem.html" style="display:flex;flex-direction:column;gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 14px 34px -14px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
+      <a data-featured-case="krem" href="case-krem.html" style="display:flex;flex-direction:column;gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 14px 34px -14px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
         <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--accent)">[VPN · Telegram · Оплаты]</span>
-        <span style="font:600 20px/1.3 Sora,sans-serif">KREM VPN — от оплаты до подключения</span>
+        <h3 style="margin:0;font:600 20px/1.3 Sora,sans-serif">KREM VPN — от оплаты до подключения</h3>
         <span style="font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Сайт, покупка в Telegram, кабинет, выдача доступа в Happ и Incy, мониторинг и восстановление.</span>
         <span style="margin-top:auto;display:flex;align-items:center;gap:8px">
           <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:var(--online)"></span>работающий продукт</span>
-          <span aria-hidden="true" style="margin-left:auto;color:var(--accent);font-size:18px">→</span>
-        </span>
-      </a>
-
-      <a href="case-subscriptions.html" style="display:flex;flex-direction:column;gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 14px 34px -14px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
-        <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--accent)">[Подписки · Оплаты]</span>
-        <span style="font:600 20px/1.3 Sora,sans-serif">Подписочный Telegram-сервис</span>
-        <span style="font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Прототип выбора тарифа, перехода к оплате и состояний доступа. Без реальных списаний.</span>
-        <span style="margin-top:auto;display:flex;align-items:center;gap:8px">
-          <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:var(--status-amber-fg)"></span>интерактивный прототип</span>
-          <span aria-hidden="true" style="margin-left:auto;color:var(--accent);font-size:18px">→</span>
-        </span>
-      </a>
-
-      <a href="case-crm.html" style="display:flex;flex-direction:column;gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 14px 34px -14px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
-        <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--accent)">[ИИ · CRM]</span>
-        <span style="font:600 20px/1.3 Sora,sans-serif">CRM для нетворкинга</span>
-        <span style="font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Заметки о людях превращаются в граф связей и извлечённые факты. Ничего не теряется.</span>
-        <span style="margin-top:auto;display:flex;align-items:center;gap:8px">
-          <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:var(--status-amber-fg)"></span>сценарное демо · 3 примера</span>
-          <span aria-hidden="true" style="margin-left:auto;color:var(--accent);font-size:18px">→</span>
-        </span>
-      </a>
-
-      <a href="case-vetpulse.html" style="display:flex;flex-direction:column;gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 14px 34px -14px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
-        <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--accent)">[Продукт · UX]</span>
-        <span style="font:600 20px/1.3 Sora,sans-serif">ВетПульс — прототип для ветклиник</span>
-        <span style="font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Пять сценарных разделов: обращения, черновики записи, напоминания и реактивация. Вымышленные данные.</span>
-        <span style="margin-top:auto;display:flex;align-items:center;gap:8px">
-          <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:var(--status-amber-fg)"></span>интерактивный прототип внутри</span>
-          <span aria-hidden="true" style="margin-left:auto;color:var(--accent);font-size:18px">→</span>
-        </span>
-      </a>
-
-      <a href="case-autopricer.html" style="display:flex;flex-direction:column;gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 14px 34px -14px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
-        <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--accent)">[Ozon · Автоматизация]</span>
-        <span style="font:600 20px/1.3 Sora,sans-serif">Ozon: цены и юнит-экономика</span>
-        <span style="font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">7 473 SKU в аудите, 126 тестов и 19 FBO SKU с подтверждённым достижением целевых цен. В текущем защищённом процессе каждое изменение проверяет человек.</span>
-        <span style="margin-top:auto;display:flex;align-items:center;gap:8px">
-          <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:var(--online)"></span>кейс менеджера · подтверждённые данные</span>
-          <span aria-hidden="true" style="margin-left:auto;color:var(--accent);font-size:18px">→</span>
-        </span>
-      </a>
-
-      <a href="case-mutual.html" style="display:flex;flex-direction:column;gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 14px 34px -14px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
-        <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--accent)">[Мини-апп]</span>
-        <span style="font:600 20px/1.3 Sora,sans-serif">MUTUAL — знакомства через QR</span>
-        <span style="font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Стритвир-бренд, где вещь знакомит: скан QR открывает профиль владельца.</span>
-        <span style="margin-top:auto;display:flex;align-items:center;gap:8px">
-          <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:var(--status-amber-fg)"></span>интерактивный прототип · 8 экранов</span>
-          <span aria-hidden="true" style="margin-left:auto;color:var(--accent);font-size:18px">→</span>
-        </span>
-      </a>
-
-      <a href="case-faith.html" style="display:flex;flex-direction:column;gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 14px 34px -14px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
-        <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--accent)">[Мобильное · Flutter]</span>
-        <span style="font:600 20px/1.3 Sora,sans-serif">Faith App — обучение в стиле Duolingo</span>
-        <span style="font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Обучающее приложение: короткие уроки с тестами, прогресс, серия дней.</span>
-        <span style="margin-top:auto;display:flex;align-items:center;gap:8px">
-          <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:var(--status-amber-fg)"></span>техническая сборка · до публикации</span>
           <span aria-hidden="true" style="margin-left:auto;color:var(--accent);font-size:18px">→</span>
         </span>
       </a>

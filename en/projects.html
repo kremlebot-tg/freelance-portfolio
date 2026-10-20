@@ -27,7 +27,7 @@
 <script>(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 <link rel="preload" href="../fonts/inter-UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../fonts/sora-xMQ9uFFYT72X5wkB_18qmnndmSdSnh2BAfO5mnuyOo1lfiQwV6-xo6eeIw.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../theme.css?v=20261019b">
+<link rel="stylesheet" href="../theme.css?v=20261020a">
 <script defer src="../vendor/react.production.min.js" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z" crossorigin="anonymous"></script>
 <script defer src="../vendor/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous"></script>
 <script defer src="../support.js?v=20261015a"></script>
@@ -66,7 +66,7 @@
       "name": "Case Studies: Bots, CRM, Automation & Apps — Re:dnd",
       "description": "Live products and transparent interactive prototypes: Scout, Chainya, a subscription flow, networking CRM, Ozon repricing, MUTUAL and Faith App.",
       "inLanguage": "en-US",
-      "dateModified": "2026-10-14",
+      "dateModified": "2026-10-20",
       "isPartOf": {
         "@id": "https://rednd.ru/#website"
       },
@@ -169,124 +169,142 @@
 
   <div style="display:flex;flex-direction:column;gap:16px">
 
-    <a href="case-scout.html" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:12px 32px;background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(20px,3vw,28px);text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 16px 40px -16px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
-      <span style="display:flex;flex-direction:column;gap:10px"><span style="font:500 12.5px JetBrains Mono,monospace;color:var(--accent)">[SaaS · CRM · Desktop]</span><h2 style="margin:0;font:600 clamp(20px,2.4vw,25px)/1.25 Sora,sans-serif">Scout: B2B lead discovery and CRM</h2><span style="font:400 15px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Collects companies from maps, merges contacts and turns a raw database into a clear team workflow.</span><span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif;width:fit-content"><span style="width:6px;height:6px;border-radius:50%;background:var(--online)"></span>live product</span></span>
-      <span class="rd-project-result" style="display:flex;flex-direction:column;gap:10px;justify-content:center">
-        <span class="rd-project-preview rd-project-preview--scout rd-project-preview--media" data-preview-label="LIVE PRODUCT" data-preview-state="shared pool → in progress → next step" aria-hidden="true"><img class="rd-project-preview__image" src="../og-case-scout-en.png" width="1200" height="630" alt="" decoding="async" fetchpriority="high"><span class="rd-project-preview__scrim"></span></span>
-        <span style="font:700 clamp(26px,3vw,34px)/1 Sora,sans-serif;color:var(--accent)">From discovery to action</span><span style="font:400 14px/1.5 Inter,system-ui,sans-serif;color:var(--text-meta)">sources, assignments, statuses and analytics</span><span style="font:400 12.5px JetBrains Mono,monospace;color:var(--text-muted)">Web · macOS · Windows · Python</span>
+    <a class="rd-project-card" href="case-scout.html" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:12px 32px;background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(20px,3vw,28px);text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 16px 40px -16px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
+      <span style="display:flex;flex-direction:column;gap:10px"><span style="font:500 12.5px JetBrains Mono,monospace;color:var(--accent)">[SaaS · CRM · Desktop]</span><h2 style="margin:0;font:600 clamp(20px,2.4vw,25px)/1.25 Sora,sans-serif">Scout: B2B lead discovery and CRM</h2><span style="font:400 15px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Collects companies from maps, merges contacts and turns a raw database into a clear team workflow.</span><span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif;width:fit-content"><span style="width:6px;height:6px;border-radius:50%;background:var(--online)"></span>live product</span></span>        <span class="rd-project-facts">
+        <span class="rd-project-fact">From discovery to action</span><span class="rd-project-fact-note">sources, assignments, statuses and analytics</span><span class="rd-project-stack">Web · macOS · Windows · Python</span>
+        </span>
+
+      <span class="rd-project-result">
+        <span class="rd-project-preview rd-project-preview--scout rd-project-preview--media" data-preview-label="LIVE PRODUCT" data-preview-state="Interface mockup · fictional companies" aria-hidden="true"><img class="rd-project-preview__image" src="../assets/previews/scout-en.jpg" width="678" height="602" alt="" decoding="async" fetchpriority="high"><span class="rd-project-preview__scrim"></span></span>
       </span>
     </a>
 
-    <a href="case-chainya.html" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:12px 32px;background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(20px,3vw,28px);text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 16px 40px -16px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
-      <span style="display:flex;flex-direction:column;gap:10px"><span style="font:500 12.5px JetBrains Mono,monospace;color:var(--accent)">[E-commerce · Booking · B2B]</span><h2 style="margin:0;font:600 clamp(20px,2.4vw,25px)/1.25 Sora,sans-serif">Chainya: shop and tea-house system</h2><span style="font:400 15px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Tea and teaware, orders, two-table and whole-room booking, accounts, enquiries and owner operations in three languages.</span><span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif;width:fit-content"><span style="width:6px;height:6px;border-radius:50%;background:var(--online)"></span>live commercial site</span></span>
-      <span class="rd-project-result" style="display:flex;flex-direction:column;gap:10px;justify-content:center">
-        <span class="rd-project-preview rd-project-preview--chainya rd-project-preview--media" data-preview-label="LIVE CATALOGUE" data-preview-state="RU · EN · 中文" aria-hidden="true"><img class="rd-project-preview__image" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-preview-src="../assets/cases/chainya/shop-desktop.webp" width="1440" height="1000" alt="" loading="lazy" decoding="async"><span class="rd-project-preview__scrim"></span></span>
-        <span style="font:700 clamp(26px,3vw,34px)/1 Sora,sans-serif;color:var(--accent)">3 languages · 602 fields</span><span style="font:400 14px/1.5 Inter,system-ui,sans-serif;color:var(--text-meta)">live site and owner editor</span><span style="font:400 12.5px JetBrains Mono,monospace;color:var(--text-muted)">JavaScript · FastAPI · SQLite · Telegram</span>
+    <a class="rd-project-card" href="case-chainya.html" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:12px 32px;background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(20px,3vw,28px);text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 16px 40px -16px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
+      <span style="display:flex;flex-direction:column;gap:10px"><span style="font:500 12.5px JetBrains Mono,monospace;color:var(--accent)">[E-commerce · Booking · B2B]</span><h2 style="margin:0;font:600 clamp(20px,2.4vw,25px)/1.25 Sora,sans-serif">Chainya: shop and tea-house system</h2><span style="font:400 15px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Tea and teaware, orders, two-table and whole-room booking, accounts, enquiries and owner operations in three languages.</span><span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif;width:fit-content"><span style="width:6px;height:6px;border-radius:50%;background:var(--online)"></span>live commercial site</span></span>        <span class="rd-project-facts">
+        <span class="rd-project-fact">3 languages · 602 fields</span><span class="rd-project-fact-note">live site and owner editor</span><span class="rd-project-stack">JavaScript · FastAPI · SQLite · Telegram</span>
+        </span>
+
+      <span class="rd-project-result">
+        <span class="rd-project-preview rd-project-preview--chainya rd-project-preview--media" data-preview-label="LIVE CATALOGUE" data-preview-state="Public catalogue · website screen" aria-hidden="true"><img class="rd-project-preview__image" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-preview-src="../assets/cases/chainya/shop-desktop.webp" width="1440" height="1000" alt="" loading="lazy" decoding="async"><span class="rd-project-preview__scrim"></span></span>
       </span>
     </a>
 
-    <a href="case-krem.html" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:12px 32px;background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(20px,3vw,28px);text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 16px 40px -16px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
+    <a class="rd-project-card" href="case-krem.html" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:12px 32px;background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(20px,3vw,28px);text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 16px 40px -16px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
       <span style="display:flex;flex-direction:column;gap:10px">
         <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--accent)">[VPN · Telegram · Payments · Infrastructure]</span>
         <h2 style="margin:0;font:600 clamp(20px,2.4vw,25px)/1.25 Sora,sans-serif">KREM VPN — from payment to connection</h2>
         <span style="font:400 15px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Brand and site, Telegram purchase through YooKassa, account, Happ and Incy delivery, monitoring and recovery.</span>
         <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif;width:fit-content"><span style="width:6px;height:6px;border-radius:50%;background:var(--online)"></span>working product · still evolving</span>
+        <span class="rd-project-facts">
+        <span class="rd-project-fact">Payment to connection</span>
+        <span class="rd-project-fact-note">₽1 controlled trial · 5 delivery formats</span>
+        <span class="rd-project-stack">Python · aiogram · YooKassa · Xray</span>
+        </span>
       </span>
-      <span class="rd-project-result" style="display:flex;flex-direction:column;gap:10px;justify-content:center">
-        <span class="rd-project-preview rd-project-preview--krem rd-project-preview--media" data-preview-label="CONNECT A DEVICE" data-preview-state="iOS · Android · Windows · macOS" aria-hidden="true"><img class="rd-project-preview__image" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-preview-src="../assets/cases/krem/setup-devices.avif" width="1280" height="720" alt="" loading="lazy" decoding="async"><span class="rd-project-preview__scrim"></span></span>
-        <span style="font:700 clamp(26px,3vw,34px)/1.08 Sora,sans-serif;color:var(--accent)">Payment to connection</span>
-        <span style="font:400 14px/1.5 Inter,system-ui,sans-serif;color:var(--text-meta)">₽1 controlled trial · 5 delivery formats</span>
-        <span style="font:400 12.5px JetBrains Mono,monospace;color:var(--text-muted)">Python · aiogram · YooKassa · Xray</span>
+      <span class="rd-project-result">
+        <span class="rd-project-preview rd-project-preview--krem rd-project-preview--media" data-preview-label="CONNECT A DEVICE" data-preview-state="Device setup · KREM VPN" aria-hidden="true"><img class="rd-project-preview__image" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-preview-src="../assets/cases/krem/setup-devices.avif" width="1280" height="720" alt="" loading="lazy" decoding="async"><span class="rd-project-preview__scrim"></span></span>
       </span>
     </a>
 
-    <a href="case-subscriptions.html" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:12px 32px;background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(20px,3vw,28px);text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 16px 40px -16px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
+    <a class="rd-project-card" href="case-subscriptions.html" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:12px 32px;background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(20px,3vw,28px);text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 16px 40px -16px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
       <span style="display:flex;flex-direction:column;gap:10px">
         <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--accent)">[Subscriptions · Payments]</span>
         <h2 style="margin:0;font:600 clamp(20px,2.4vw,25px)/1.25 Sora,sans-serif">Subscription Telegram service</h2>
         <span style="font:400 15px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">A clickable prototype of plan selection, payment hand-off and access states, with no real charges.</span>
         <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif;width:fit-content"><span style="width:6px;height:6px;border-radius:50%;background:var(--status-amber-fg)"></span>interactive prototype · no backend</span>
+        <span class="rd-project-facts">
+        <span class="rd-project-fact">Flow before backend</span>
+        <span class="rd-project-fact-note">validate the journey before implementation</span>
+        <span class="rd-project-stack">Prototype · Bot UI · Payment flow</span>
+        </span>
       </span>
-      <span class="rd-project-result" style="display:flex;flex-direction:column;gap:10px;justify-content:center">
-        <span class="rd-project-preview rd-project-preview--subscriptions rd-project-preview--media" data-preview-label="INTERACTIVE PROTOTYPE" data-preview-state="plan → payment mock-up → access" aria-hidden="true"><img class="rd-project-preview__image" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-preview-src="../og-case-subscriptions-en.png" width="1200" height="630" alt="" loading="lazy" decoding="async"><span class="rd-project-preview__scrim"></span></span>
-        <span style="font:700 clamp(26px,3vw,34px)/1 Sora,sans-serif;color:var(--accent)">Flow before backend</span>
-        <span style="font:400 14px/1.5 Inter,system-ui,sans-serif;color:var(--text-meta)">validate the journey before implementation</span>
-        <span style="font:400 12.5px JetBrains Mono,monospace;color:var(--text-muted)">Prototype · Bot UI · Payment flow</span>
+      <span class="rd-project-result">
+        <span class="rd-project-preview rd-project-preview--subscriptions rd-project-preview--media" data-preview-label="INTERACTIVE PROTOTYPE" data-preview-state="Prototype excerpt · no charges" aria-hidden="true"><img class="rd-project-preview__image" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-preview-src="../assets/previews/subscriptions-en.jpg" width="660" height="585" alt="" loading="lazy" decoding="async"><span class="rd-project-preview__scrim"></span></span>
       </span>
     </a>
 
-    <a href="case-crm.html" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:12px 32px;background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(20px,3vw,28px);text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 16px 40px -16px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
+    <a class="rd-project-card" href="case-crm.html" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:12px 32px;background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(20px,3vw,28px);text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 16px 40px -16px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
       <span style="display:flex;flex-direction:column;gap:10px">
         <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--accent)">[AI · CRM]</span>
         <h2 style="margin:0;font:600 clamp(20px,2.4vw,25px)/1.25 Sora,sans-serif">Personal CRM for networking</h2>
         <span style="font:400 15px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">A CRM in Telegram with auto-capture of new contacts and AI reminders of who's waiting for a reply.</span>
         <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif;width:fit-content"><span style="width:6px;height:6px;border-radius:50%;background:var(--status-amber-fg)"></span>scripted demo: graph + 3 examples</span>
+        <span class="rd-project-facts">
+        <span class="rd-project-fact">Your network, tracked</span>
+        <span class="rd-project-fact-note">facts about people and reminders</span>
+        <span class="rd-project-stack">Python · aiogram · FastAPI</span>
+        </span>
       </span>
-      <span class="rd-project-result" style="display:flex;flex-direction:column;gap:10px;justify-content:center">
-        <span class="rd-project-preview rd-project-preview--crm rd-project-preview--media" data-preview-label="SCRIPTED DEMO" data-preview-state="note → facts → reminder" aria-hidden="true"><img class="rd-project-preview__image" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-preview-src="../og-case-crm-en.png" width="1200" height="630" alt="" loading="lazy" decoding="async"><span class="rd-project-preview__scrim"></span></span>
-        <span style="font:700 clamp(26px,3vw,34px)/1 Sora,sans-serif;color:var(--accent)">Your network, tracked</span>
-        <span style="font:400 14px/1.5 Inter,system-ui,sans-serif;color:var(--text-meta)">facts about people and reminders</span>
-        <span style="font:400 12.5px JetBrains Mono,monospace;color:var(--text-muted)">Python · aiogram · FastAPI</span>
+      <span class="rd-project-result">
+        <span class="rd-project-preview rd-project-preview--crm rd-project-preview--media" data-preview-label="SCRIPTED DEMO" data-preview-state="Relationship graph · fictional contacts" aria-hidden="true"><img class="rd-project-preview__image" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-preview-src="../assets/previews/crm-en.jpg" width="761" height="545" alt="" loading="lazy" decoding="async"><span class="rd-project-preview__scrim"></span></span>
       </span>
     </a>
 
-    <a href="case-vetpulse.html" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:12px 32px;background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(20px,3vw,28px);text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 16px 40px -16px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
+    <a class="rd-project-card" href="case-vetpulse.html" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:12px 32px;background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(20px,3vw,28px);text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 16px 40px -16px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
       <span style="display:flex;flex-direction:column;gap:10px">
         <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--accent)">[Product · UX]</span>
         <h2 style="margin:0;font:600 clamp(20px,2.4vw,25px)/1.25 Sora,sans-serif">VetPulse: a prototype for vet clinics</h2>
         <span style="font:400 15px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Enquiries, booking drafts, reminders and reactivation scenarios. Fictional data; no live AI or Vetmanager connection.</span>
         <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif;width:fit-content"><span style="width:6px;height:6px;border-radius:50%;background:var(--status-amber-fg)"></span>interactive prototype · 5 sections</span>
+        <span class="rd-project-facts">
+        <span class="rd-project-fact">5 sections</span>
+        <span class="rd-project-fact-note">a scripted clinic office in the browser</span>
+        <span class="rd-project-stack">HTML · CSS · JavaScript · UX</span>
+        </span>
       </span>
-      <span class="rd-project-result" style="display:flex;flex-direction:column;gap:10px;justify-content:center">
-        <span class="rd-project-preview rd-project-preview--vetpulse rd-project-preview--media" data-preview-label="PRODUCT PROTOTYPE" data-preview-state="5 sections · fictional data" aria-hidden="true"><img class="rd-project-preview__image" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-preview-src="../vetpulse/og-cover-en.png" width="1200" height="630" alt="" loading="lazy" decoding="async"><span class="rd-project-preview__scrim"></span></span>
-        <span style="font:700 clamp(26px,3vw,34px)/1 Sora,sans-serif;color:var(--accent)">5 sections</span>
-        <span style="font:400 14px/1.5 Inter,system-ui,sans-serif;color:var(--text-meta)">a scripted clinic office in the browser</span>
-        <span style="font:400 12.5px JetBrains Mono,monospace;color:var(--text-muted)">HTML · CSS · JavaScript · UX</span>
+      <span class="rd-project-result">
+        <span class="rd-project-preview rd-project-preview--vetpulse rd-project-preview--media" data-preview-label="PRODUCT PROTOTYPE" data-preview-state="Prototype excerpt · fictional data" aria-hidden="true"><img class="rd-project-preview__image" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-preview-src="../assets/previews/vetpulse-en.jpg" width="690" height="585" alt="" loading="lazy" decoding="async"><span class="rd-project-preview__scrim"></span></span>
       </span>
     </a>
 
-    <a href="case-autopricer.html" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:12px 32px;background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(20px,3vw,28px);text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 16px 40px -16px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
+    <a class="rd-project-card" href="case-autopricer.html" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:12px 32px;background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(20px,3vw,28px);text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 16px 40px -16px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
       <span style="display:flex;flex-direction:column;gap:10px">
         <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--accent)">[Ozon · Automation · Analytics]</span>
         <h2 style="margin:0;font:600 clamp(20px,2.4vw,25px)/1.25 Sora,sans-serif">Ozon pricing and unit economics</h2>
         <span style="font:400 15px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">7,473 SKUs audited, 126 tests, and 19 FBO SKUs reaching target prices in a verified operation. In the current guarded flow, every change is reviewed by a person.</span>
         <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif;width:fit-content"><span style="width:6px;height:6px;border-radius:50%;background:var(--online)"></span>manager case · verified evidence</span>
+        <span class="rd-project-facts">
+        <span class="rd-project-fact">7,473 SKUs</span>
+        <span class="rd-project-fact-note">catalogue audit · 126 tests · 19 FBO SKUs</span>
+        <span class="rd-project-stack">Python · httpx · Ozon Seller API · Sima-land API</span>
+        </span>
       </span>
-      <span class="rd-project-result" style="display:flex;flex-direction:column;gap:10px;justify-content:center">
-        <span class="rd-project-preview rd-project-preview--autopricer rd-project-preview--media" data-preview-label="VERIFIED DATA" data-preview-state="7,473 SKUs · 126 tests · 19 FBO" aria-hidden="true"><img class="rd-project-preview__image" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-preview-src="../og-case-autopricer-en.png" width="1200" height="630" alt="" loading="lazy" decoding="async"><span class="rd-project-preview__scrim"></span></span>
-        <span style="font:700 clamp(26px,3vw,34px)/1 Sora,sans-serif;color:var(--accent)">7,473 SKUs</span>
-        <span style="font:400 14px/1.5 Inter,system-ui,sans-serif;color:var(--text-meta)">catalogue audit · 126 tests · 19 FBO SKUs</span>
-        <span style="font:400 12.5px JetBrains Mono,monospace;color:var(--text-muted)">Python · httpx · Ozon Seller API · Sima-land API</span>
+      <span class="rd-project-result">
+        <span class="rd-project-preview rd-project-preview--autopricer rd-project-preview--media" data-preview-label="VERIFIED DATA" data-preview-state="Calculation demo · synthetic products" aria-hidden="true"><img class="rd-project-preview__image" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-preview-src="../assets/previews/autopricer-en.jpg" width="951" height="633" alt="" loading="lazy" decoding="async"><span class="rd-project-preview__scrim"></span></span>
       </span>
     </a>
 
-    <a href="case-mutual.html" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:12px 32px;background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(20px,3vw,28px);text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 16px 40px -16px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
+    <a class="rd-project-card" href="case-mutual.html" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:12px 32px;background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(20px,3vw,28px);text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 16px 40px -16px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
       <span style="display:flex;flex-direction:column;gap:10px">
         <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--accent)">[Product · Mini app]</span>
         <h2 style="margin:0;font:600 clamp(20px,2.4vw,25px)/1.25 Sora,sans-serif">MUTUAL: meet via QR</h2>
         <span style="font:400 15px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">A streetwear brand where a static QR on a garment stands for the owner's identity, and meeting happens through consent.</span>
         <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif;width:fit-content"><span style="width:6px;height:6px;border-radius:50%;background:var(--status-amber-fg)"></span>interactive prototype · 8 screens</span>
+        <span class="rd-project-facts">
+        <span class="rd-project-fact">Meeting through things</span>
+        <span class="rd-project-fact-note">a QR on clothing, contact by consent</span>
+        <span class="rd-project-stack">Mini App · UX · product design</span>
+        </span>
       </span>
-      <span class="rd-project-result" style="display:flex;flex-direction:column;gap:10px;justify-content:center">
-        <span class="rd-project-preview rd-project-preview--mutual rd-project-preview--media" data-preview-label="INTERACTIVE PROTOTYPE" data-preview-state="QR → consent → mutual match" aria-hidden="true"><img class="rd-project-preview__image" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-preview-src="../og-case-mutual-en.png" width="1200" height="630" alt="" loading="lazy" decoding="async"><span class="rd-project-preview__scrim"></span></span>
-        <span style="font:700 clamp(26px,3vw,34px)/1 Sora,sans-serif;color:var(--accent)">Meeting through things</span>
-        <span style="font:400 14px/1.5 Inter,system-ui,sans-serif;color:var(--text-meta)">a QR on clothing, contact by consent</span>
-        <span style="font:400 12.5px JetBrains Mono,monospace;color:var(--text-muted)">Mini App · UX · product design</span>
+      <span class="rd-project-result">
+        <span class="rd-project-preview rd-project-preview--mutual rd-project-preview--media" data-preview-label="INTERACTIVE PROTOTYPE" data-preview-state="Mini App excerpt · prototype" aria-hidden="true"><img class="rd-project-preview__image" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-preview-src="../assets/previews/mutual-en.jpg" width="558" height="645" alt="" loading="lazy" decoding="async"><span class="rd-project-preview__scrim"></span></span>
       </span>
     </a>
 
-    <a href="case-faith.html" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:12px 32px;background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(20px,3vw,28px);text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 16px 40px -16px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
+    <a class="rd-project-card" href="case-faith.html" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:12px 32px;background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(20px,3vw,28px);text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 16px 40px -16px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
       <span style="display:flex;flex-direction:column;gap:10px">
         <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--accent)">[Mobile · Flutter]</span>
         <h2 style="margin:0;font:600 clamp(20px,2.4vw,25px)/1.25 Sora,sans-serif">Faith App: Duolingo-style learning</h2>
         <span style="font:400 15px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">A learning app: bite-size lessons with quizzes, day streaks and an offline book library.</span>
         <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif;width:fit-content"><span style="width:6px;height:6px;border-radius:50%;background:var(--status-amber-fg)"></span>technical build · pre-publication</span>
+        <span class="rd-project-facts">
+        <span class="rd-project-fact">Learning in your pocket</span>
+        <span class="rd-project-fact-note">quizzed lessons and offline books</span>
+        <span class="rd-project-stack">Flutter · Dart · iOS</span>
+        </span>
       </span>
-      <span class="rd-project-result" style="display:flex;flex-direction:column;gap:10px;justify-content:center">
-        <span class="rd-project-preview rd-project-preview--faith rd-project-preview--media" data-preview-label="TECHNICAL BUILD" data-preview-state="lesson → quiz → library" aria-hidden="true"><img class="rd-project-preview__image" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-preview-src="../og-case-faith-en.png" width="1200" height="630" alt="" loading="lazy" decoding="async"><span class="rd-project-preview__scrim"></span></span>
-        <span style="font:700 clamp(26px,3vw,34px)/1 Sora,sans-serif;color:var(--accent)">Learning in your pocket</span>
-        <span style="font:400 14px/1.5 Inter,system-ui,sans-serif;color:var(--text-meta)">quizzed lessons and offline books</span>
-        <span style="font:400 12.5px JetBrains Mono,monospace;color:var(--text-muted)">Flutter · Dart · iOS</span>
+      <span class="rd-project-result">
+        <span class="rd-project-preview rd-project-preview--faith rd-project-preview--media" data-preview-label="TECHNICAL BUILD" data-preview-state="Web demo excerpt · not the Flutter build" aria-hidden="true"><img class="rd-project-preview__image" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-preview-src="../assets/previews/faith-en.jpg" width="558" height="600" alt="" loading="lazy" decoding="async"><span class="rd-project-preview__scrim"></span></span>
       </span>
     </a>
 

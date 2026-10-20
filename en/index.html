@@ -27,7 +27,7 @@
 <script>(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 <link rel="preload" href="../fonts/inter-UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../fonts/sora-xMQ9uFFYT72X5wkB_18qmnndmSdSnh2BAfO5mnuyOo1lfiQwV6-xo6eeIw.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../theme.css?v=20261019b">
+<link rel="stylesheet" href="../theme.css?v=20261020a">
 <script defer src="../vendor/react.production.min.js" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z" crossorigin="anonymous"></script>
 <script defer src="../vendor/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous"></script>
 <script defer src="../support.js?v=20261015a"></script>
@@ -255,92 +255,32 @@ body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:anti
   </section>
 
   <!-- ============ PROJECTS ============ -->
-  <section style="max-width:1140px;margin:0 auto;padding:clamp(28px,4vw,48px) 22px">
-    <div style="display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:24px">
-      <h2 style="margin:0;font:600 clamp(26px,3.2vw,36px)/1.15 Sora,sans-serif;letter-spacing:-0.01em">Projects</h2>
-      <p style="margin:0;font:400 15.5px/1.5 Inter,system-ui,sans-serif;color:var(--text-meta)">Open a live product or explore an interactive demo inside each case study.</p>
+  <section aria-labelledby="home-projects-title" style="max-width:1140px;margin:0 auto;padding:clamp(28px,4vw,48px) 22px">
+    <div class="rd-home-projects-heading">
+      <div><h2 id="home-projects-title" style="margin:0;font:600 clamp(26px,3.2vw,36px)/1.15 Sora,sans-serif;letter-spacing:-0.01em">Selected projects</h2><p class="rd-home-projects-intro">Three examples of our work. The full collection includes products, prototypes and demos.</p></div>
+      <a class="rd-all-projects" href="projects.html" data-analytics-placement="home-projects">All projects <span aria-hidden="true">→</span></a>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px">
+    <div class="rd-home-projects-grid" data-analytics-placement="home-featured" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px">
 
-      <a href="case-scout.html" style="display:flex;flex-direction:column;gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 14px 34px -14px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
+      <a data-featured-case="scout" href="case-scout.html" style="display:flex;flex-direction:column;gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 14px 34px -14px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
         <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--accent)">[SaaS · CRM · Desktop]</span>
-        <span style="font:600 20px/1.3 Sora,sans-serif">Scout — B2B lead discovery and CRM</span>
+        <h3 style="margin:0;font:600 20px/1.3 Sora,sans-serif">Scout — B2B lead discovery and CRM</h3>
         <span style="font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Collects companies from maps, merges contacts and turns a raw base into a team workflow.</span>
         <span style="margin-top:auto;display:flex;align-items:center;gap:8px"><span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:var(--online)"></span>live product</span><span aria-hidden="true" style="margin-left:auto;color:var(--accent);font-size:18px">→</span></span>
       </a>
 
-      <a href="case-chainya.html" style="display:flex;flex-direction:column;gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 14px 34px -14px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
+      <a data-featured-case="chainya" href="case-chainya.html" style="display:flex;flex-direction:column;gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 14px 34px -14px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
         <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--accent)">[E-commerce · Booking]</span>
-        <span style="font:600 20px/1.3 Sora,sans-serif">Chainya — shop and tea-house system</span>
+        <h3 style="margin:0;font:600 20px/1.3 Sora,sans-serif">Chainya — shop and tea-house system</h3>
         <span style="font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">A live three-language shop with orders, two-table and whole-room booking, accounts, enquiries and an owner editor.</span>
         <span style="margin-top:auto;display:flex;align-items:center;gap:8px"><span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:var(--online)"></span>live site</span><span aria-hidden="true" style="margin-left:auto;color:var(--accent);font-size:18px">→</span></span>
       </a>
 
-      <a href="case-krem.html" style="display:flex;flex-direction:column;gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 14px 34px -14px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
+      <a data-featured-case="krem" href="case-krem.html" style="display:flex;flex-direction:column;gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 14px 34px -14px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
         <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--accent)">[VPN · Telegram · Payments]</span>
-        <span style="font:600 20px/1.3 Sora,sans-serif">KREM VPN — payment to connection</span>
+        <h3 style="margin:0;font:600 20px/1.3 Sora,sans-serif">KREM VPN — payment to connection</h3>
         <span style="font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Site, Telegram purchase, account, Happ and Incy delivery, monitoring and recovery.</span>
         <span style="margin-top:auto;display:flex;align-items:center;gap:8px"><span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:var(--online)"></span>working product</span><span aria-hidden="true" style="margin-left:auto;color:var(--accent);font-size:18px">→</span></span>
-      </a>
-
-      <a href="case-subscriptions.html" style="display:flex;flex-direction:column;gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 14px 34px -14px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
-        <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--accent)">[Subscriptions · Payments]</span>
-        <span style="font:600 20px/1.3 Sora,sans-serif">Subscription Telegram service</span>
-        <span style="font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">A prototype of plan selection, payment hand-off and access states. No real charges.</span>
-        <span style="margin-top:auto;display:flex;align-items:center;gap:8px">
-          <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:var(--status-amber-fg)"></span>interactive prototype</span>
-          <span aria-hidden="true" style="margin-left:auto;color:var(--accent);font-size:18px">→</span>
-        </span>
-      </a>
-
-      <a href="case-crm.html" style="display:flex;flex-direction:column;gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 14px 34px -14px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
-        <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--accent)">[AI · CRM]</span>
-        <span style="font:600 20px/1.3 Sora,sans-serif">CRM for networking</span>
-        <span style="font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Notes about people turn into a relationship graph and extracted facts. Nothing gets lost.</span>
-        <span style="margin-top:auto;display:flex;align-items:center;gap:8px">
-          <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:var(--status-amber-fg)"></span>scripted demo · 3 examples</span>
-          <span aria-hidden="true" style="margin-left:auto;color:var(--accent);font-size:18px">→</span>
-        </span>
-      </a>
-
-      <a href="case-vetpulse.html" style="display:flex;flex-direction:column;gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 14px 34px -14px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
-        <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--accent)">[Product · UX]</span>
-        <span style="font:600 20px/1.3 Sora,sans-serif">VetPulse — a prototype for vet clinics</span>
-        <span style="font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Five scripted sections for enquiries, booking drafts, reminders and reactivation. Fictional data.</span>
-        <span style="margin-top:auto;display:flex;align-items:center;gap:8px">
-          <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:var(--status-amber-fg)"></span>interactive prototype inside</span>
-          <span aria-hidden="true" style="margin-left:auto;color:var(--accent);font-size:18px">→</span>
-        </span>
-      </a>
-
-      <a href="case-autopricer.html" style="display:flex;flex-direction:column;gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 14px 34px -14px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
-        <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--accent)">[Ozon · Automation]</span>
-        <span style="font:600 20px/1.3 Sora,sans-serif">Ozon pricing and unit economics</span>
-        <span style="font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">7,473 SKUs audited, 126 tests, and 19 FBO SKUs reaching target prices in a verified operation. In the current guarded flow, every change is reviewed by a person.</span>
-        <span style="margin-top:auto;display:flex;align-items:center;gap:8px">
-          <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:var(--online)"></span>manager case · verified evidence</span>
-          <span aria-hidden="true" style="margin-left:auto;color:var(--accent);font-size:18px">→</span>
-        </span>
-      </a>
-
-      <a href="case-mutual.html" style="display:flex;flex-direction:column;gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 14px 34px -14px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
-        <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--accent)">[Mini app]</span>
-        <span style="font:600 20px/1.3 Sora,sans-serif">MUTUAL — meeting people via QR</span>
-        <span style="font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">A streetwear brand where the garment breaks the ice: scanning a QR opens the owner&#39;s profile.</span>
-        <span style="margin-top:auto;display:flex;align-items:center;gap:8px">
-          <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:var(--status-amber-fg)"></span>interactive prototype · 8 screens</span>
-          <span aria-hidden="true" style="margin-left:auto;color:var(--accent);font-size:18px">→</span>
-        </span>
-      </a>
-
-      <a href="case-faith.html" style="display:flex;flex-direction:column;gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 14px 34px -14px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
-        <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--accent)">[Mobile · Flutter]</span>
-        <span style="font:600 20px/1.3 Sora,sans-serif">Faith App — Duolingo-style learning</span>
-        <span style="font:400 14.5px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">A learning app: short lessons with quizzes, progress tracking, day streaks.</span>
-        <span style="margin-top:auto;display:flex;align-items:center;gap:8px">
-          <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif"><span style="width:6px;height:6px;border-radius:50%;background:var(--status-amber-fg)"></span>technical build · pre-publication</span>
-          <span aria-hidden="true" style="margin-left:auto;color:var(--accent);font-size:18px">→</span>
-        </span>
       </a>
 
     </div>

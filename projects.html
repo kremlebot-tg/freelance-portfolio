@@ -26,7 +26,7 @@
 <script defer src="./site-config.js?v=20261019b"></script>
 <script>(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 <link rel="preload" href="./fonts/inter-UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa0ZL7W0Q5n-wU.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="./theme.css?v=20261019b">
+<link rel="stylesheet" href="./theme.css?v=20261020a">
 <script defer src="./vendor/react.production.min.js" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z" crossorigin="anonymous"></script>
 <script defer src="./vendor/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous"></script>
 <script defer src="./support.js?v=20261015a"></script>
@@ -65,7 +65,7 @@
       "name": "Кейсы: боты, CRM, автоматизация и приложения — Re:dnd",
       "description": "Проекты Re:dnd: Scout — CRM для поиска B2B-лидов, интернет-магазин Чайня, боты, ИИ-CRM, автоматизация и мобильные приложения.",
       "inLanguage": "ru-RU",
-      "dateModified": "2026-10-14",
+      "dateModified": "2026-10-20",
       "isPartOf": {
         "@id": "https://rednd.ru/#website"
       },
@@ -168,138 +168,156 @@
 
   <div style="display:flex;flex-direction:column;gap:16px">
 
-    <a href="case-scout.html" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:12px 32px;background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(20px,3vw,28px);text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 16px 40px -16px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
+    <a class="rd-project-card" href="case-scout.html" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:12px 32px;background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(20px,3vw,28px);text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 16px 40px -16px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
       <span style="display:flex;flex-direction:column;gap:10px">
         <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--accent)">[SaaS · CRM · Desktop]</span>
         <h2 style="margin:0;font:600 clamp(20px,2.4vw,25px)/1.25 Sora,sans-serif">Scout — поиск и работа с B2B-лидами</h2>
         <span style="font:400 15px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Карты, единая база, распределение лидов, быстрые статусы и аналитика для команды.</span>
         <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif;width:fit-content"><span style="width:6px;height:6px;border-radius:50%;background:var(--online)"></span>живой продукт: web + macOS + Windows</span>
+        <span class="rd-project-facts">
+        <span class="rd-project-fact">Поиск → следующий шаг</span>
+        <span class="rd-project-fact-note">от открытой карточки компании до сделки</span>
+        <span class="rd-project-stack">Web · Desktop · CRM · Integrations</span>
+        </span>
       </span>
-      <span class="rd-project-result" style="display:flex;flex-direction:column;gap:10px;justify-content:center">
-        <span class="rd-project-preview rd-project-preview--scout rd-project-preview--media" data-preview-label="ЖИВОЙ ПРОДУКТ" data-preview-state="общий пул → в работе → следующий шаг" aria-hidden="true"><img class="rd-project-preview__image" src="og-case-scout.png" width="1200" height="630" alt="" decoding="async" fetchpriority="high"><span class="rd-project-preview__scrim"></span></span>
-        <span style="font:700 clamp(26px,3vw,34px)/1.08 Sora,sans-serif;color:var(--accent)">Поиск → следующий шаг</span>
-        <span style="font:400 14px/1.5 Inter,system-ui,sans-serif;color:var(--text-meta)">от открытой карточки компании до сделки</span>
-        <span style="font:400 12.5px JetBrains Mono,monospace;color:var(--text-muted)">Web · Desktop · CRM · Integrations</span>
+      <span class="rd-project-result">
+        <span class="rd-project-preview rd-project-preview--scout rd-project-preview--media" data-preview-label="ЖИВОЙ ПРОДУКТ" data-preview-state="Макет интерфейса · вымышленные компании" aria-hidden="true"><img class="rd-project-preview__image" src="assets/previews/scout.jpg" width="753" height="645" alt="" decoding="async" fetchpriority="high"><span class="rd-project-preview__scrim"></span></span>
       </span>
     </a>
 
-    <a href="case-chainya.html" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:12px 32px;background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(20px,3vw,28px);text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 16px 40px -16px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
+    <a class="rd-project-card" href="case-chainya.html" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:12px 32px;background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(20px,3vw,28px);text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 16px 40px -16px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
       <span style="display:flex;flex-direction:column;gap:10px">
         <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--accent)">[Веб · Локальный бизнес]</span>
         <h2 style="margin:0;font:600 clamp(20px,2.4vw,25px)/1.25 Sora,sans-serif">Чайня — магазин и система чайной</h2>
         <span style="font:400 15px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Каталог чая и посуды, заказы, два стола и зал, кабинет, обращения и панель владельца — на трёх языках.</span>
         <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif;width:fit-content"><span style="width:6px;height:6px;border-radius:50%;background:var(--online)"></span>живой коммерческий сайт внутри</span>
+        <span class="rd-project-facts">
+        <span class="rd-project-fact">3 языка · 602 поля</span>
+        <span class="rd-project-fact-note">живой сайт и редактор владельца</span>
+        <span class="rd-project-stack">JavaScript · FastAPI · SQLite · Telegram</span>
+        </span>
       </span>
-      <span class="rd-project-result" style="display:flex;flex-direction:column;gap:10px;justify-content:center">
-        <span class="rd-project-preview rd-project-preview--chainya rd-project-preview--media" data-preview-label="ЖИВОЙ КАТАЛОГ" data-preview-state="RU · EN · 中文" aria-hidden="true"><img class="rd-project-preview__image" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-preview-src="assets/cases/chainya/shop-desktop.webp" width="1440" height="1000" alt="" loading="lazy" decoding="async"><span class="rd-project-preview__scrim"></span></span>
-        <span style="font:700 clamp(26px,3vw,34px)/1 Sora,sans-serif;color:var(--accent)">3 языка · 602 поля</span>
-        <span style="font:400 14px/1.5 Inter,system-ui,sans-serif;color:var(--text-meta)">живой сайт и редактор владельца</span>
-        <span style="font:400 12.5px JetBrains Mono,monospace;color:var(--text-muted)">JavaScript · FastAPI · SQLite · Telegram</span>
+      <span class="rd-project-result">
+        <span class="rd-project-preview rd-project-preview--chainya rd-project-preview--media" data-preview-label="ЖИВОЙ КАТАЛОГ" data-preview-state="Публичный каталог · экран сайта" aria-hidden="true"><img class="rd-project-preview__image" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-preview-src="assets/cases/chainya/shop-desktop.webp" width="1440" height="1000" alt="" loading="lazy" decoding="async"><span class="rd-project-preview__scrim"></span></span>
       </span>
     </a>
 
-    <a href="case-krem.html" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:12px 32px;background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(20px,3vw,28px);text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 16px 40px -16px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
+    <a class="rd-project-card" href="case-krem.html" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:12px 32px;background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(20px,3vw,28px);text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 16px 40px -16px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
       <span style="display:flex;flex-direction:column;gap:10px">
         <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--accent)">[VPN · Telegram · Оплаты · Инфраструктура]</span>
         <h2 style="margin:0;font:600 clamp(20px,2.4vw,25px)/1.25 Sora,sans-serif">KREM VPN — продукт от оплаты до подключения</h2>
         <span style="font:400 15px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Бренд и сайт, покупка в Telegram через ЮKassa, кабинет, выдача в Happ и Incy, мониторинг и восстановление.</span>
         <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif;width:fit-content"><span style="width:6px;height:6px;border-radius:50%;background:var(--online)"></span>работающий продукт · развитие продолжается</span>
+        <span class="rd-project-facts">
+        <span class="rd-project-fact">От оплаты к подключению</span>
+        <span class="rd-project-fact-note">1 ₽ контрольная проба · 5 форматов выдачи</span>
+        <span class="rd-project-stack">Python · aiogram · YooKassa · Xray</span>
+        </span>
       </span>
-      <span class="rd-project-result" style="display:flex;flex-direction:column;gap:10px;justify-content:center">
-        <span class="rd-project-preview rd-project-preview--krem rd-project-preview--media" data-preview-label="ПОДКЛЮЧЕНИЕ УСТРОЙСТВА" data-preview-state="iOS · Android · Windows · macOS" aria-hidden="true"><img class="rd-project-preview__image" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-preview-src="assets/cases/krem/setup-devices.avif" width="1280" height="720" alt="" loading="lazy" decoding="async"><span class="rd-project-preview__scrim"></span></span>
-        <span style="font:700 clamp(26px,3vw,34px)/1.08 Sora,sans-serif;color:var(--accent)">От оплаты к подключению</span>
-        <span style="font:400 14px/1.5 Inter,system-ui,sans-serif;color:var(--text-meta)">1 ₽ контрольная проба · 5 форматов выдачи</span>
-        <span style="font:400 12.5px JetBrains Mono,monospace;color:var(--text-muted)">Python · aiogram · YooKassa · Xray</span>
+      <span class="rd-project-result">
+        <span class="rd-project-preview rd-project-preview--krem rd-project-preview--media" data-preview-label="ПОДКЛЮЧЕНИЕ УСТРОЙСТВА" data-preview-state="Экран подключения · KREM VPN" aria-hidden="true"><img class="rd-project-preview__image" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-preview-src="assets/cases/krem/setup-devices.avif" width="1280" height="720" alt="" loading="lazy" decoding="async"><span class="rd-project-preview__scrim"></span></span>
       </span>
     </a>
 
-    <a href="case-subscriptions.html" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:12px 32px;background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(20px,3vw,28px);text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 16px 40px -16px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
+    <a class="rd-project-card" href="case-subscriptions.html" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:12px 32px;background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(20px,3vw,28px);text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 16px 40px -16px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
       <span style="display:flex;flex-direction:column;gap:10px">
         <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--accent)">[Подписки · Оплаты]</span>
         <h2 style="margin:0;font:600 clamp(20px,2.4vw,25px)/1.25 Sora,sans-serif">Подписочный Telegram-сервис</h2>
         <span style="font:400 15px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Кликабельный прототип выбора тарифа, перехода к оплате и состояний доступа — без реальных списаний.</span>
         <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif;width:fit-content"><span style="width:6px;height:6px;border-radius:50%;background:var(--status-amber-fg)"></span>интерактивный прототип · без backend</span>
+        <span class="rd-project-facts">
+        <span class="rd-project-fact">Сценарий до backend</span>
+        <span class="rd-project-fact-note">проверка пути пользователя до внедрения</span>
+        <span class="rd-project-stack">Prototype · Bot UI · Payment flow</span>
+        </span>
       </span>
-      <span class="rd-project-result" style="display:flex;flex-direction:column;gap:10px;justify-content:center">
-        <span class="rd-project-preview rd-project-preview--subscriptions rd-project-preview--media" data-preview-label="ИНТЕРАКТИВНЫЙ ПРОТОТИП" data-preview-state="тариф → макет оплаты → доступ" aria-hidden="true"><img class="rd-project-preview__image" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-preview-src="og-case-subscriptions.png" width="1200" height="630" alt="" loading="lazy" decoding="async"><span class="rd-project-preview__scrim"></span></span>
-        <span style="font:700 clamp(26px,3vw,34px)/1 Sora,sans-serif;color:var(--accent)">Сценарий до backend</span>
-        <span style="font:400 14px/1.5 Inter,system-ui,sans-serif;color:var(--text-meta)">проверка пути пользователя до внедрения</span>
-        <span style="font:400 12.5px JetBrains Mono,monospace;color:var(--text-muted)">Prototype · Bot UI · Payment flow</span>
+      <span class="rd-project-result">
+        <span class="rd-project-preview rd-project-preview--subscriptions rd-project-preview--media" data-preview-label="ИНТЕРАКТИВНЫЙ ПРОТОТИП" data-preview-state="Фрагмент прототипа · без списаний" aria-hidden="true"><img class="rd-project-preview__image" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-preview-src="assets/previews/subscriptions.jpg" width="660" height="585" alt="" loading="lazy" decoding="async"><span class="rd-project-preview__scrim"></span></span>
       </span>
     </a>
 
-    <a href="case-crm.html" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:12px 32px;background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(20px,3vw,28px);text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 16px 40px -16px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
+    <a class="rd-project-card" href="case-crm.html" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:12px 32px;background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(20px,3vw,28px);text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 16px 40px -16px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
       <span style="display:flex;flex-direction:column;gap:10px">
         <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--accent)">[ИИ · CRM]</span>
         <h2 style="margin:0;font:600 clamp(20px,2.4vw,25px)/1.25 Sora,sans-serif">Персональный CRM для нетворкинга</h2>
         <span style="font:400 15px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">CRM в Telegram с автозахватом новых контактов и ИИ-напоминаниями, кто ждёт ответа.</span>
         <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif;width:fit-content"><span style="width:6px;height:6px;border-radius:50%;background:var(--status-amber-fg)"></span>сценарное демо: граф + 3 примера</span>
+        <span class="rd-project-facts">
+        <span class="rd-project-fact">Связи под рукой</span>
+        <span class="rd-project-fact-note">факты о людях и напоминания</span>
+        <span class="rd-project-stack">Python · aiogram · FastAPI</span>
+        </span>
       </span>
-      <span class="rd-project-result" style="display:flex;flex-direction:column;gap:10px;justify-content:center">
-        <span class="rd-project-preview rd-project-preview--crm rd-project-preview--media" data-preview-label="СЦЕНАРНОЕ ДЕМО" data-preview-state="заметка → факты → напоминание" aria-hidden="true"><img class="rd-project-preview__image" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-preview-src="og-case-crm.png" width="1200" height="630" alt="" loading="lazy" decoding="async"><span class="rd-project-preview__scrim"></span></span>
-        <span style="font:700 clamp(26px,3vw,34px)/1 Sora,sans-serif;color:var(--accent)">Связи под рукой</span>
-        <span style="font:400 14px/1.5 Inter,system-ui,sans-serif;color:var(--text-meta)">факты о людях и напоминания</span>
-        <span style="font:400 12.5px JetBrains Mono,monospace;color:var(--text-muted)">Python · aiogram · FastAPI</span>
+      <span class="rd-project-result">
+        <span class="rd-project-preview rd-project-preview--crm rd-project-preview--media" data-preview-label="СЦЕНАРНОЕ ДЕМО" data-preview-state="Граф связей · вымышленные контакты" aria-hidden="true"><img class="rd-project-preview__image" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-preview-src="assets/previews/crm.jpg" width="761" height="545" alt="" loading="lazy" decoding="async"><span class="rd-project-preview__scrim"></span></span>
       </span>
     </a>
 
-    <a href="case-vetpulse.html" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:12px 32px;background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(20px,3vw,28px);text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 16px 40px -16px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
+    <a class="rd-project-card" href="case-vetpulse.html" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:12px 32px;background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(20px,3vw,28px);text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 16px 40px -16px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
       <span style="display:flex;flex-direction:column;gap:10px">
         <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--accent)">[Продукт · UX]</span>
         <h2 style="margin:0;font:600 clamp(20px,2.4vw,25px)/1.25 Sora,sans-serif">ВетПульс — прототип для ветклиник</h2>
         <span style="font:400 15px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Сценарии обращений, черновиков записи, напоминаний и реактивации. Вымышленные данные; без живого AI и Vetmanager.</span>
         <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif;width:fit-content"><span style="width:6px;height:6px;border-radius:50%;background:var(--status-amber-fg)"></span>интерактивный прототип · 5 разделов</span>
+        <span class="rd-project-facts">
+        <span class="rd-project-fact">5 разделов</span>
+        <span class="rd-project-fact-note">сценарный кабинет в браузере</span>
+        <span class="rd-project-stack">HTML · CSS · JavaScript · UX</span>
+        </span>
       </span>
-      <span class="rd-project-result" style="display:flex;flex-direction:column;gap:10px;justify-content:center">
-        <span class="rd-project-preview rd-project-preview--vetpulse rd-project-preview--media" data-preview-label="ПРОДУКТОВЫЙ ПРОТОТИП" data-preview-state="5 разделов · вымышленные данные" aria-hidden="true"><img class="rd-project-preview__image" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-preview-src="vetpulse/og-cover.png" width="1200" height="630" alt="" loading="lazy" decoding="async"><span class="rd-project-preview__scrim"></span></span>
-        <span style="font:700 clamp(26px,3vw,34px)/1 Sora,sans-serif;color:var(--accent)">5 разделов</span>
-        <span style="font:400 14px/1.5 Inter,system-ui,sans-serif;color:var(--text-meta)">сценарный кабинет в браузере</span>
-        <span style="font:400 12.5px JetBrains Mono,monospace;color:var(--text-muted)">HTML · CSS · JavaScript · UX</span>
+      <span class="rd-project-result">
+        <span class="rd-project-preview rd-project-preview--vetpulse rd-project-preview--media" data-preview-label="ПРОДУКТОВЫЙ ПРОТОТИП" data-preview-state="Фрагмент прототипа · вымышленные данные" aria-hidden="true"><img class="rd-project-preview__image" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-preview-src="assets/previews/vetpulse.jpg" width="690" height="585" alt="" loading="lazy" decoding="async"><span class="rd-project-preview__scrim"></span></span>
       </span>
     </a>
 
-    <a href="case-autopricer.html" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:12px 32px;background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(20px,3vw,28px);text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 16px 40px -16px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
+    <a class="rd-project-card" href="case-autopricer.html" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:12px 32px;background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(20px,3vw,28px);text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 16px 40px -16px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
       <span style="display:flex;flex-direction:column;gap:10px">
         <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--accent)">[Ozon · Автоматизация · Аналитика]</span>
         <h2 style="margin:0;font:600 clamp(20px,2.4vw,25px)/1.25 Sora,sans-serif">Ozon: цены и юнит-экономика</h2>
         <span style="font:400 15px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">7 473 SKU в аудите, 126 тестов и 19 FBO SKU с подтверждённым достижением целевых цен. В текущем защищённом процессе каждое изменение проверяет человек.</span>
         <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif;width:fit-content"><span style="width:6px;height:6px;border-radius:50%;background:var(--online)"></span>кейс менеджера · подтверждённые данные</span>
+        <span class="rd-project-facts">
+        <span class="rd-project-fact">7 473 SKU</span>
+        <span class="rd-project-fact-note">аудит каталога · 126 тестов · 19 FBO SKU</span>
+        <span class="rd-project-stack">Python · httpx · Ozon Seller API · Sima-land API</span>
+        </span>
       </span>
-      <span class="rd-project-result" style="display:flex;flex-direction:column;gap:10px;justify-content:center">
-        <span class="rd-project-preview rd-project-preview--autopricer rd-project-preview--media" data-preview-label="ПОДТВЕРЖДЁННЫЕ ДАННЫЕ" data-preview-state="7 473 SKU · 126 тестов · 19 FBO" aria-hidden="true"><img class="rd-project-preview__image" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-preview-src="og-case-autopricer.png" width="1200" height="630" alt="" loading="lazy" decoding="async"><span class="rd-project-preview__scrim"></span></span>
-        <span style="font:700 clamp(26px,3vw,34px)/1 Sora,sans-serif;color:var(--accent)">7 473 SKU</span>
-        <span style="font:400 14px/1.5 Inter,system-ui,sans-serif;color:var(--text-meta)">аудит каталога · 126 тестов · 19 FBO SKU</span>
-        <span style="font:400 12.5px JetBrains Mono,monospace;color:var(--text-muted)">Python · httpx · Ozon Seller API · Sima-land API</span>
+      <span class="rd-project-result">
+        <span class="rd-project-preview rd-project-preview--autopricer rd-project-preview--media" data-preview-label="ПОДТВЕРЖДЁННЫЕ ДАННЫЕ" data-preview-state="Демо расчёта · синтетические товары" aria-hidden="true"><img class="rd-project-preview__image" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-preview-src="assets/previews/autopricer.jpg" width="951" height="648" alt="" loading="lazy" decoding="async"><span class="rd-project-preview__scrim"></span></span>
       </span>
     </a>
 
-    <a href="case-mutual.html" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:12px 32px;background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(20px,3vw,28px);text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 16px 40px -16px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
+    <a class="rd-project-card" href="case-mutual.html" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:12px 32px;background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(20px,3vw,28px);text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 16px 40px -16px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
       <span style="display:flex;flex-direction:column;gap:10px">
         <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--accent)">[Продукт · Мини-апп]</span>
         <h2 style="margin:0;font:600 clamp(20px,2.4vw,25px)/1.25 Sora,sans-serif">MUTUAL — знакомства через QR</h2>
         <span style="font:400 15px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Стритвир-бренд, где статичный QR на вещи — личность владельца, а знакомство идёт через согласие.</span>
         <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif;width:fit-content"><span style="width:6px;height:6px;border-radius:50%;background:var(--status-amber-fg)"></span>интерактивный прототип · 8 экранов</span>
+        <span class="rd-project-facts">
+        <span class="rd-project-fact">Знакомства через вещи</span>
+        <span class="rd-project-fact-note">QR на одежде, контакт по согласию</span>
+        <span class="rd-project-stack">Mini App · UX · продуктовый дизайн</span>
+        </span>
       </span>
-      <span class="rd-project-result" style="display:flex;flex-direction:column;gap:10px;justify-content:center">
-        <span class="rd-project-preview rd-project-preview--mutual rd-project-preview--media" data-preview-label="ИНТЕРАКТИВНЫЙ ПРОТОТИП" data-preview-state="QR → согласие → взаимный матч" aria-hidden="true"><img class="rd-project-preview__image" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-preview-src="og-case-mutual.png" width="1200" height="630" alt="" loading="lazy" decoding="async"><span class="rd-project-preview__scrim"></span></span>
-        <span style="font:700 clamp(26px,3vw,34px)/1 Sora,sans-serif;color:var(--accent)">Знакомства через вещи</span>
-        <span style="font:400 14px/1.5 Inter,system-ui,sans-serif;color:var(--text-meta)">QR на одежде, контакт по согласию</span>
-        <span style="font:400 12.5px JetBrains Mono,monospace;color:var(--text-muted)">Mini App · UX · продуктовый дизайн</span>
+      <span class="rd-project-result">
+        <span class="rd-project-preview rd-project-preview--mutual rd-project-preview--media" data-preview-label="ИНТЕРАКТИВНЫЙ ПРОТОТИП" data-preview-state="Фрагмент мини-аппа · прототип" aria-hidden="true"><img class="rd-project-preview__image" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-preview-src="assets/previews/mutual.jpg" width="558" height="645" alt="" loading="lazy" decoding="async"><span class="rd-project-preview__scrim"></span></span>
       </span>
     </a>
 
-    <a href="case-faith.html" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:12px 32px;background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(20px,3vw,28px);text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 16px 40px -16px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
+    <a class="rd-project-card" href="case-faith.html" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:12px 32px;background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(20px,3vw,28px);text-decoration:none;color:var(--text);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease" style-hover="transform:translateY(-3px);box-shadow:0 16px 40px -16px rgba(19,35,47,0.25);border-color:var(--border-hover)" style-focus-visible="outline:2px solid var(--accent);outline-offset:2px">
       <span style="display:flex;flex-direction:column;gap:10px">
         <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--accent)">[Мобильное · Flutter]</span>
         <h2 style="margin:0;font:600 clamp(20px,2.4vw,25px)/1.25 Sora,sans-serif">Faith App — обучение в стиле Duolingo</h2>
         <span style="font:400 15px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Обучающее приложение: короткие уроки с тестами, серия дней и офлайн-библиотека книг.</span>
         <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif;width:fit-content"><span style="width:6px;height:6px;border-radius:50%;background:var(--status-amber-fg)"></span>техническая сборка · до публикации</span>
+        <span class="rd-project-facts">
+        <span class="rd-project-fact">Обучение в кармане</span>
+        <span class="rd-project-fact-note">уроки с тестами и книги офлайн</span>
+        <span class="rd-project-stack">Flutter · Dart · iOS</span>
+        </span>
       </span>
-      <span class="rd-project-result" style="display:flex;flex-direction:column;gap:10px;justify-content:center">
-        <span class="rd-project-preview rd-project-preview--faith rd-project-preview--media" data-preview-label="ТЕХНИЧЕСКАЯ СБОРКА" data-preview-state="урок → тест → библиотека" aria-hidden="true"><img class="rd-project-preview__image" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-preview-src="og-case-faith.png" width="1200" height="630" alt="" loading="lazy" decoding="async"><span class="rd-project-preview__scrim"></span></span>
-        <span style="font:700 clamp(26px,3vw,34px)/1 Sora,sans-serif;color:var(--accent)">Обучение в кармане</span>
-        <span style="font:400 14px/1.5 Inter,system-ui,sans-serif;color:var(--text-meta)">уроки с тестами и книги офлайн</span>
-        <span style="font:400 12.5px JetBrains Mono,monospace;color:var(--text-muted)">Flutter · Dart · iOS</span>
+      <span class="rd-project-result">
+        <span class="rd-project-preview rd-project-preview--faith rd-project-preview--media" data-preview-label="ТЕХНИЧЕСКАЯ СБОРКА" data-preview-state="Фрагмент веб-демо · не Flutter-сборка" aria-hidden="true"><img class="rd-project-preview__image" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-preview-src="assets/previews/faith.jpg" width="558" height="600" alt="" loading="lazy" decoding="async"><span class="rd-project-preview__scrim"></span></span>
       </span>
     </a>
 

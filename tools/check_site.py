@@ -1164,7 +1164,7 @@ def main() -> int:
     for page, parser in parsed.items():
         source = page.read_text(encoding="utf-8")
         rel = page.relative_to(ROOT)
-        if "theme.css?v=" in source and "theme.css?v=20261019b" not in source:
+        if "theme.css?v=" in source and "theme.css?v=20261020a" not in source:
             failures.append(f"{rel}: stale theme.css cache token")
         if "site-config.js?v=" in source and "site-config.js?v=20261019b" not in source:
             failures.append(f"{rel}: stale site-config.js cache token")
@@ -1242,6 +1242,23 @@ def main() -> int:
     ):
         if token not in theme:
             failures.append(f"theme.css: missing services UX contract {token!r}")
+    for relative in ("index.html", "en/index.html"):
+        source = (ROOT / relative).read_text(encoding="utf-8")
+        if source.count("data-featured-case=") != 3:
+            failures.append(f"{relative}: homepage must show three selected cases, not the full catalogue")
+        for slug in ("scout", "chainya", "krem"):
+            if source.count(f'data-featured-case="{slug}"') != 1:
+                failures.append(f"{relative}: missing selected case {slug}")
+        if source.count('class="rd-all-projects" href="projects.html"') != 1:
+            failures.append(f"{relative}: expected one clear all-projects link beside selected cases")
+    for language in ("", "en/"):
+        source = (ROOT / language / "projects.html").read_text(encoding="utf-8")
+        for slug in ("scout", "subscriptions", "crm", "vetpulse", "autopricer", "mutual", "faith"):
+            asset = f"assets/previews/{slug}{'-en' if language else ''}.jpg"
+            if asset not in source or not (ROOT / asset).is_file():
+                failures.append(f"{language}projects.html: missing interface excerpt {asset}")
+        if re.search(r'(?:src|data-preview-src)="(?:\.\./)?og-case-', source):
+            failures.append(f"{language}projects.html: social cards are not interface previews")
     for relative in ("privacy.html", "en/privacy.html"):
         source = (ROOT / relative).read_text(encoding="utf-8")
         if source.count("data-analytics-consent-control") != 1:

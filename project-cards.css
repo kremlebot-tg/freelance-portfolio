@@ -1,0 +1,156 @@
+/* Catalogue only: complete, proportional screenshots in full-width frames. */
+.rd-project-card {
+  display: grid;
+  grid-template-columns: minmax(0, .94fr) minmax(0, 1.06fr);
+  align-items: stretch;
+  gap: 0;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: var(--surface);
+  color: var(--text);
+  text-decoration: none;
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+
+.rd-project-card__body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  min-width: 0;
+  padding: clamp(24px, 3.1vw, 36px);
+}
+
+.rd-project-card__body > * { max-width: 100%; }
+
+.rd-project-card h2 {
+  margin: 0;
+  font: 600 clamp(22px, 2.3vw, 29px)/1.23 Sora, Inter, system-ui, sans-serif;
+  letter-spacing: -.025em;
+  overflow-wrap: anywhere;
+  text-wrap: balance;
+}
+
+.rd-project-card .rd-project-facts {
+  align-self: stretch;
+  gap: 6px;
+  margin-top: 8px;
+  padding-top: 18px;
+}
+
+.rd-project-card .rd-project-fact-note { font-size: 14px; }
+.rd-project-card .rd-project-stack { font-size: 12px; }
+
+.rd-project-card__action {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 44px;
+  margin-top: auto;
+  padding-top: 12px;
+  color: var(--accent);
+  font: 600 14px/1.4 Inter, system-ui, sans-serif;
+}
+
+.rd-project-card__action svg { flex: none; }
+
+.rd-project-card .rd-project-result {
+  position: relative;
+  display: block;
+  min-width: 0;
+  min-height: 0;
+  padding: 0;
+  border-left: 1px solid var(--border-soft);
+}
+
+.rd-project-card .rd-project-preview--media,
+.rd-project-card .rd-project-preview--media.rd-project-preview--faith {
+  position: relative;
+  inset: auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr) auto;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* Reserve each source ratio before lazy loading; portrait and landscape frames
+   keep their own proportions instead of being forced into a shared crop. */
+.rd-project-card .rd-project-preview--scout { --project-preview-ratio: 753 / 645; }
+.rd-project-card .rd-project-preview--chainya { --project-preview-ratio: 1440 / 1000; }
+.rd-project-card .rd-project-preview--krem { --project-preview-ratio: 1280 / 720; }
+.rd-project-card .rd-project-preview--subscriptions { --project-preview-ratio: 660 / 585; }
+.rd-project-card .rd-project-preview--crm { --project-preview-ratio: 761 / 545; }
+.rd-project-card .rd-project-preview--vetpulse { --project-preview-ratio: 690 / 585; }
+.rd-project-card .rd-project-preview--autopricer { --project-preview-ratio: 951 / 648; }
+.rd-project-card .rd-project-preview--mutual { --project-preview-ratio: 558 / 645; }
+.rd-project-card .rd-project-preview--faith { --project-preview-ratio: 558 / 600; }
+
+/* English screenshots have their own intrinsic dimensions. */
+html[lang="en"] .rd-project-card .rd-project-preview--scout { --project-preview-ratio: 678 / 602; }
+html[lang="en"] .rd-project-card .rd-project-preview--autopricer { --project-preview-ratio: 951 / 633; }
+
+.rd-project-card .rd-project-preview__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  aspect-ratio: var(--project-preview-ratio, auto);
+  object-fit: contain;
+  object-position: center;
+  align-self: center;
+  background: transparent;
+  transform: none;
+}
+
+/* The source image determines each frame's height. Wider images keep their
+   complete canvas when the text column is taller; portrait screens stay full-width. */
+.rd-project-card .rd-project-preview--krem { background: #fff; }
+
+.rd-project-card .rd-project-preview--media::after {
+  display: flex;
+  align-items: center;
+  min-height: 46px;
+  padding: 12px 20px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.rd-project-card:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 4px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .rd-project-card:hover {
+    border-color: var(--border-hover);
+    box-shadow: 0 12px 32px -22px var(--shadow-3);
+  }
+  .rd-project-card:hover .rd-project-card__action { text-decoration: underline; text-underline-offset: 4px; }
+  .rd-project-card:hover .rd-project-preview--media { box-shadow: none; }
+}
+
+@media (max-width: 899px) {
+  .rd-project-card { grid-template-columns: minmax(0, 1fr); }
+  .rd-project-card .rd-project-result { min-height: 0; border-left: 0; border-top: 1px solid var(--border-soft); }
+  .rd-project-card .rd-project-preview--media,
+  .rd-project-card .rd-project-preview--media.rd-project-preview--faith { position: relative; inset: auto; height: auto; }
+  .rd-project-card__action { padding-top: 4px; }
+}
+
+@media (max-width: 480px) {
+  .rd-project-card { border-radius: 16px; }
+  .rd-project-card__body { gap: 12px; padding: 22px; }
+  .rd-project-card h2 { font-size: 23px; line-height: 1.25; }
+  .rd-project-card .rd-project-preview--media::after { padding: 12px 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rd-project-card { transition: none; }
+}

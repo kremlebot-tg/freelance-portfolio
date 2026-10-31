@@ -422,8 +422,11 @@ def main() -> int:
                 failures.append(f"{rel}: expected an ItemList with {expected_items} entries")
 
         if rel.name == "projects.html":
-            heading_token = '<h2 style="margin:0;font:600 clamp(20px,2.4vw,25px)/1.25 Sora,sans-serif">'
-            if source.count(heading_token) != 9:
+            project_cards = re.findall(r'<a class="rd-project-card"[^>]*>(.*?)</a>', source, re.S)
+            if len(project_cards) != 9 or any(
+                len(re.findall(r'<h2\b[^>]*>.+?</h2>', card, re.S)) != 1
+                for card in project_cards
+            ):
                 failures.append(f"{rel}: all nine project cards must use semantic h2 headings")
 
     for field, values in (

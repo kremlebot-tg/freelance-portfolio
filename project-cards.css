@@ -84,6 +84,7 @@
    keep their own proportions instead of being forced into a shared crop. */
 .rd-project-card .rd-project-preview--scout { --project-preview-ratio: 753 / 645; }
 .rd-project-card .rd-project-preview--chainya { --project-preview-ratio: 1440 / 1000; }
+.rd-project-card .rd-project-preview--trustmacro { --project-preview-ratio: 1440 / 900; }
 .rd-project-card .rd-project-preview--krem { --project-preview-ratio: 1280 / 720; }
 .rd-project-card .rd-project-preview--subscriptions { --project-preview-ratio: 660 / 585; }
 .rd-project-card .rd-project-preview--crm { --project-preview-ratio: 761 / 545; }
@@ -111,7 +112,8 @@ html[lang="en"] .rd-project-card .rd-project-preview--autopricer { --project-pre
 
 /* The source image determines each frame's height. Wider images keep their
    complete canvas when the text column is taller; portrait screens stay full-width. */
-.rd-project-card .rd-project-preview--krem { background: #fff; }
+.rd-project-card .rd-project-preview--krem,
+.rd-project-card .rd-project-preview--trustmacro { background: #fff; }
 
 .rd-project-card .rd-project-preview--media::after {
   display: flex;

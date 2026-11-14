@@ -27,7 +27,7 @@
 <script>(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 <link rel="preload" href="./fonts/inter-UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa0ZL7W0Q5n-wU.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="./theme.css?v=20261020a">
-<link rel="stylesheet" href="project-cards.css?v=20261031a">
+<link rel="stylesheet" href="project-cards.css?v=20261114-trustmacro">
 <script defer src="./vendor/react.production.min.js" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z" crossorigin="anonymous"></script>
 <script defer src="./vendor/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous"></script>
 <script defer src="./support.js?v=20261015a"></script>
@@ -66,7 +66,7 @@
       "name": "Кейсы: боты, CRM, автоматизация и приложения — Re:dnd",
       "description": "Проекты Re:dnd: Scout — CRM для поиска B2B-лидов, интернет-магазин Чайня, боты, ИИ-CRM, автоматизация и мобильные приложения.",
       "inLanguage": "ru-RU",
-      "dateModified": "2026-10-20",
+      "dateModified": "2026-11-14",
       "isPartOf": {
         "@id": "https://rednd.ru/#website"
       },
@@ -82,7 +82,7 @@
       },
       "mainEntity": {
         "@type": "ItemList",
-        "numberOfItems": 9,
+        "numberOfItems": 10,
         "itemListElement": [
           {
             "@type": "ListItem",
@@ -99,42 +99,48 @@
           {
             "@type": "ListItem",
             "position": 3,
+            "name": "TrustMacro",
+            "url": "https://rednd.ru/case-trustmacro.html"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
             "name": "KREM VPN",
             "url": "https://rednd.ru/case-krem.html"
           },
           {
             "@type": "ListItem",
-            "position": 4,
+            "position": 5,
             "name": "Telegram-подписки",
             "url": "https://rednd.ru/case-subscriptions.html"
           },
           {
             "@type": "ListItem",
-            "position": 5,
+            "position": 6,
             "name": "CRM для нетворкинга",
             "url": "https://rednd.ru/case-crm.html"
           },
           {
             "@type": "ListItem",
-            "position": 6,
+            "position": 7,
             "name": "ВетПульс",
             "url": "https://rednd.ru/case-vetpulse.html"
           },
           {
             "@type": "ListItem",
-            "position": 7,
+            "position": 8,
             "name": "Репрайсер Ozon",
             "url": "https://rednd.ru/case-autopricer.html"
           },
           {
             "@type": "ListItem",
-            "position": 8,
+            "position": 9,
             "name": "MUTUAL",
             "url": "https://rednd.ru/case-mutual.html"
           },
           {
             "@type": "ListItem",
-            "position": 9,
+            "position": 10,
             "name": "Faith App",
             "url": "https://rednd.ru/case-faith.html"
           }
@@ -202,6 +208,24 @@
       </div>
       <span class="rd-project-result">
         <span class="rd-project-preview rd-project-preview--chainya rd-project-preview--media" data-preview-label="ЖИВОЙ КАТАЛОГ" data-preview-state="Публичный каталог · экран сайта" aria-hidden="true"><img class="rd-project-preview__image" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-preview-src="assets/cases/chainya/shop-desktop.webp" width="1440" height="1000" alt="" loading="lazy" decoding="async"><span class="rd-project-preview__scrim"></span></span>
+      </span>
+    </a>
+
+    <a class="rd-project-card" href="case-trustmacro.html">
+      <div class="rd-project-card__body">
+        <span style="font:500 12.5px JetBrains Mono,monospace;color:var(--accent)">[Хостинг · Веб-сервис]</span>
+        <h2>TrustMacro — платформа хостинга</h2>
+        <span style="font:400 15px/1.55 Inter,system-ui,sans-serif;color:var(--text-body)">Витрина инфраструктуры и учебный заказ Ubuntu VPS. Можно выбрать конфигурацию, посмотреть карточку сервера и пример обращения в поддержку.</span>
+        <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:var(--accent-tint);color:var(--accent);font:500 12.5px Inter,system-ui,sans-serif;width:fit-content"><span style="width:6px;height:6px;border-radius:50%;background:var(--status-amber-fg)"></span>витрина и учебный заказ доступны</span>
+        <span class="rd-project-facts">
+          <span class="rd-project-fact">Учебный заказ Ubuntu VPS</span>
+          <span class="rd-project-fact-note">конфигурация · сервис · поддержка</span>
+          <span class="rd-project-stack">TypeScript · Next.js · PostgreSQL</span>
+        </span>
+        <span class="rd-project-card__action">Смотреть проект<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+      <span class="rd-project-result">
+        <span class="rd-project-preview rd-project-preview--trustmacro rd-project-preview--media" data-preview-label="ВИТРИНА ХОСТИНГА" data-preview-state="Публичная витрина · учебный заказ" aria-hidden="true"><img class="rd-project-preview__image" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-preview-src="./assets/cases/trustmacro/storefront.webp" width="1440" height="900" alt="" loading="lazy" decoding="async"><span class="rd-project-preview__scrim"></span></span>
       </span>
     </a>
 

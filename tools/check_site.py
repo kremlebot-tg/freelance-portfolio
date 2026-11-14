@@ -30,6 +30,8 @@ CASE_SOCIAL_IMAGES = {
     Path("en/case-chainya.html"): f"{SITE_ORIGIN}/assets/cases/chainya/og-en.jpg",
     Path("case-krem.html"): f"{SITE_ORIGIN}/assets/cases/krem/og.png",
     Path("en/case-krem.html"): f"{SITE_ORIGIN}/assets/cases/krem/og.png",
+    Path("case-trustmacro.html"): f"{SITE_ORIGIN}/assets/cases/trustmacro/og.png",
+    Path("en/case-trustmacro.html"): f"{SITE_ORIGIN}/assets/cases/trustmacro/og-en.png",
     Path("case-crm.html"): f"{SITE_ORIGIN}/og-case-crm.png",
     Path("en/case-crm.html"): f"{SITE_ORIGIN}/og-case-crm-en.png",
     Path("case-faith.html"): f"{SITE_ORIGIN}/og-case-faith.png",
@@ -43,6 +45,8 @@ CASE_SOCIAL_IMAGES = {
     Path("case-vetpulse.html"): f"{SITE_ORIGIN}/vetpulse/og-cover.png",
     Path("en/case-vetpulse.html"): f"{SITE_ORIGIN}/vetpulse/og-cover-en.png",
 }
+CASE_NAMES = {path.name for path in CASE_SOCIAL_IMAGES}
+PROJECT_COUNT = len(CASE_NAMES)
 
 
 class PageParser(HTMLParser):
@@ -412,7 +416,7 @@ def main() -> int:
                 for node in schema_graph
                 if node.get("@id") == f"{url}#webpage"
             ]
-            expected_items = 9 if rel.name == "projects.html" else 5
+            expected_items = PROJECT_COUNT if rel.name == "projects.html" else 5
             if (
                 len(item_lists) != 1
                 or not isinstance(item_lists[0], dict)
@@ -423,11 +427,11 @@ def main() -> int:
 
         if rel.name == "projects.html":
             project_cards = re.findall(r'<a class="rd-project-card"[^>]*>(.*?)</a>', source, re.S)
-            if len(project_cards) != 9 or any(
+            if len(project_cards) != PROJECT_COUNT or any(
                 len(re.findall(r'<h2\b[^>]*>.+?</h2>', card, re.S)) != 1
                 for card in project_cards
             ):
-                failures.append(f"{rel}: all nine project cards must use semantic h2 headings")
+                failures.append(f"{rel}: expected {PROJECT_COUNT} project cards with semantic h2 headings")
 
     for field, values in (
         ("title", [parser.title.strip() for parser in indexable_parsers if parser.title.strip()]),
@@ -654,16 +658,12 @@ def main() -> int:
                 failures.append(f"{relative}: missing transparent demo label {copy!r}")
 
     case_pages = sorted(ROOT.glob("case-*.html")) + sorted((ROOT / "en").glob("case-*.html"))
-    expected_case_names = {
-        "case-scout.html", "case-chainya.html", "case-krem.html", "case-subscriptions.html", "case-crm.html",
-        "case-vetpulse.html", "case-autopricer.html", "case-mutual.html", "case-faith.html",
-    }
     for directory in (ROOT, ROOT / "en"):
         actual = {page.name for page in directory.glob("case-*.html")}
-        if actual != expected_case_names:
+        if actual != CASE_NAMES:
             failures.append(
                 f"{directory.relative_to(ROOT) or '.'}: RU/EN case parity mismatch; "
-                f"missing={sorted(expected_case_names - actual)}, extra={sorted(actual - expected_case_names)}"
+                f"missing={sorted(CASE_NAMES - actual)}, extra={sorted(actual - CASE_NAMES)}"
             )
 
     glance_layouts: set[str] = set()
@@ -930,6 +930,7 @@ def main() -> int:
 
     project_media_contract = {
         "projects.html": (
+            'data-preview-label="ВИТРИНА ХОСТИНГА"',
             'data-preview-label="ЖИВОЙ ПРОДУКТ"',
             'data-preview-label="ЖИВОЙ КАТАЛОГ"',
             'data-preview-label="ПОДКЛЮЧЕНИЕ УСТРОЙСТВА"',
@@ -940,6 +941,7 @@ def main() -> int:
             'data-preview-label="ТЕХНИЧЕСКАЯ СБОРКА"',
         ),
         "en/projects.html": (
+            'data-preview-label="HOSTING STOREFRONT"',
             'data-preview-label="LIVE PRODUCT"',
             'data-preview-label="LIVE CATALOGUE"',
             'data-preview-label="CONNECT A DEVICE"',
@@ -952,19 +954,19 @@ def main() -> int:
     }
     for relative, labels in project_media_contract.items():
         source = (ROOT / relative).read_text(encoding="utf-8")
-        if source.count("rd-project-preview--media") != 9:
-            failures.append(f"{relative}: expected nine evidence-led project previews")
-        if source.count('class="rd-project-preview__image"') != 9:
-            failures.append(f"{relative}: expected nine real project preview images")
-        if source.count('class="rd-project-preview__scrim"') != 9:
-            failures.append(f"{relative}: expected nine readable project preview scrims")
-        if source.count('loading="lazy"') != 8:
-            failures.append(f"{relative}: exactly eight below-fold project previews must be lazy-loaded")
-        if source.count('data-preview-src=') != 8:
-            failures.append(f"{relative}: exactly eight below-fold project previews must wait for the viewport")
+        if source.count("rd-project-preview--media") != PROJECT_COUNT:
+            failures.append(f"{relative}: expected {PROJECT_COUNT} evidence-led project previews")
+        if source.count('class="rd-project-preview__image"') != PROJECT_COUNT:
+            failures.append(f"{relative}: expected {PROJECT_COUNT} real project preview images")
+        if source.count('class="rd-project-preview__scrim"') != PROJECT_COUNT:
+            failures.append(f"{relative}: expected {PROJECT_COUNT} readable project preview scrims")
+        if source.count('loading="lazy"') != PROJECT_COUNT - 1:
+            failures.append(f"{relative}: every below-fold project preview must be lazy-loaded")
+        if source.count('data-preview-src=') != PROJECT_COUNT - 1:
+            failures.append(f"{relative}: every below-fold project preview must wait for the viewport")
         if source.count('fetchpriority="high"') != 1:
             failures.append(f"{relative}: the visible lead project preview must keep high fetch priority")
-        if source.count('decoding="async"') < 9:
+        if source.count('decoding="async"') < PROJECT_COUNT:
             failures.append(f"{relative}: project previews must decode asynchronously")
         for label in labels:
             expected = 2 if "INTERACTIVE PROTOTYPE" in label or "ИНТЕРАКТИВНЫЙ ПРОТОТИП" in label else 1
@@ -1218,7 +1220,7 @@ def main() -> int:
             if source.count(token) != 1:
                 failures.append(f"{relative}: home proof contract {token!r} must occur exactly once")
     project_preview_types = (
-        "scout", "chainya", "krem", "subscriptions", "crm",
+        "scout", "chainya", "trustmacro", "krem", "subscriptions", "crm",
         "vetpulse", "autopricer", "mutual", "faith",
     )
     for relative in ("projects.html", "en/projects.html"):

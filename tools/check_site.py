@@ -1259,7 +1259,7 @@ def main() -> int:
     for language in ("", "en/"):
         source = (ROOT / language / "projects.html").read_text(encoding="utf-8")
         for slug in ("scout", "subscriptions", "crm", "vetpulse", "autopricer", "mutual", "faith"):
-            asset = f"assets/previews/{slug}{'-en' if language else ''}.jpg"
+            asset = f"assets/previews/retina-v2/{slug}{'-en' if language else ''}.webp"
             if asset not in source or not (ROOT / asset).is_file():
                 failures.append(f"{language}projects.html: missing interface excerpt {asset}")
         if re.search(r'(?:src|data-preview-src)="(?:\.\./)?og-case-', source):

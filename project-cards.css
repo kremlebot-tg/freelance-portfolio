@@ -82,20 +82,20 @@
 
 /* Reserve each source ratio before lazy loading; portrait and landscape frames
    keep their own proportions instead of being forced into a shared crop. */
-.rd-project-card .rd-project-preview--scout { --project-preview-ratio: 753 / 645; }
+.rd-project-card .rd-project-preview--scout { --project-preview-ratio: 2008 / 1720; }
 .rd-project-card .rd-project-preview--chainya { --project-preview-ratio: 1440 / 1000; }
 .rd-project-card .rd-project-preview--trustmacro { --project-preview-ratio: 1440 / 900; }
 .rd-project-card .rd-project-preview--krem { --project-preview-ratio: 1280 / 720; }
-.rd-project-card .rd-project-preview--subscriptions { --project-preview-ratio: 660 / 585; }
-.rd-project-card .rd-project-preview--crm { --project-preview-ratio: 761 / 545; }
-.rd-project-card .rd-project-preview--vetpulse { --project-preview-ratio: 690 / 585; }
-.rd-project-card .rd-project-preview--autopricer { --project-preview-ratio: 951 / 648; }
-.rd-project-card .rd-project-preview--mutual { --project-preview-ratio: 558 / 645; }
-.rd-project-card .rd-project-preview--faith { --project-preview-ratio: 558 / 600; }
+.rd-project-card .rd-project-preview--subscriptions { --project-preview-ratio: 1760 / 1560; }
+.rd-project-card .rd-project-preview--crm { --project-preview-ratio: 2028 / 1452; }
+.rd-project-card .rd-project-preview--vetpulse { --project-preview-ratio: 1840 / 1560; }
+.rd-project-card .rd-project-preview--autopricer { --project-preview-ratio: 2536 / 1728; }
+.rd-project-card .rd-project-preview--mutual { --project-preview-ratio: 1488 / 1720; }
+.rd-project-card .rd-project-preview--faith { --project-preview-ratio: 1488 / 1600; }
 
 /* English screenshots have their own intrinsic dimensions. */
-html[lang="en"] .rd-project-card .rd-project-preview--scout { --project-preview-ratio: 678 / 602; }
-html[lang="en"] .rd-project-card .rd-project-preview--autopricer { --project-preview-ratio: 951 / 633; }
+html[lang="en"] .rd-project-card .rd-project-preview--scout { --project-preview-ratio: 1808 / 1604; }
+html[lang="en"] .rd-project-card .rd-project-preview--autopricer { --project-preview-ratio: 2536 / 1688; }
 
 .rd-project-card .rd-project-preview__image {
   display: block;

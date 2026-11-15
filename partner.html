@@ -616,12 +616,12 @@ class Component extends DCLogic {
   renderVals() {
     const fmt = n => Math.round(n).toLocaleString('ru-RU');
     const cfg = (typeof window !== 'undefined' && window.SITE_CONFIG) || {};
-    const tg = (cfg.telegram || '@re_dnd').replace(/^@/, '');
+    const tg = (cfg.telegram || '@kremlebot_tg').replace(/^@/, '');
     const perProject = this.PRICES[this.state.proj] * this.RATE;
     const monthly = perProject * this.COUNTS[this.state.cnt];
     const v = {
       brandName: this.props.brandName ?? 'Re:dnd',
-      telegram: cfg.telegram || '@re_dnd',
+      telegram: cfg.telegram || '@kremlebot_tg',
       telegramUrl: 'https://t.me/' + tg,
       shownFmt: fmt(this.state.shown),
       perProjectFmt: fmt(perProject),

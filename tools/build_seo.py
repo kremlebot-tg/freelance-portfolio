@@ -216,7 +216,7 @@ def page_schema(
             "logo": f"{ORIGIN}/favicon.svg",
             "email": "mailto:politushkin@gmail.com",
             "sameAs": [
-                "https://t.me/re_dnd",
+                "https://t.me/kremlebot_tg",
                 "https://github.com/kremlebot-tg/freelance-portfolio",
             ],
         }

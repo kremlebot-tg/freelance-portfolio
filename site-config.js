@@ -24,7 +24,7 @@ window.SITE_CONFIG = {
   metrikaWebvisor: false,
 
   // --- Прямые контакты (страницы «Связаться» / Contact) ---
-  telegram: '@re_dnd',
+  telegram: '@kremlebot_tg',
   email: 'politushkin@gmail.com',
 
   // --- Цены услуг (5 направлений) ---

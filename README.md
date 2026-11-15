@@ -11,7 +11,7 @@
 ```js
 formEndpoint: 'https://<...>.apigw.yandexcloud.net/submit',  // Yandex Cloud (см. ниже)
 formEnabled: true,  // аварийный выключатель; false блокирует отправку без потери данных
-telegram: '@re_dnd',
+telegram: '@kremlebot_tg',
 email: 'politushkin@gmail.com',
 requisites / requisitesFull,      // ← отчество и ОГРНИП вместо плейсхолдеров
 prices / pricesEn,                // ← стартовые цены («от»)
